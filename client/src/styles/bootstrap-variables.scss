@@ -1,0 +1,29 @@
+// colors
+$white: #fff;
+$blue: #320e74;
+
+// fonts
+// $font-family-sans-serif: "Noto Sans", "Century Gothic", Arial, sans-serif;
+// $font-family-title: Montserrat, "Avant Garde", Arial, sans-serif;
+$text-muted: #606060;
+
+// headings
+$headings-font-weight: 700;
+$headings-margin-bottom: 0;
+
+// nav links
+$nav-link-padding-y: 0.5rem;
+$nav-link-padding-x: 1rem;
+// $nav-link-font-size: 14px;
+$nav-link-font-weight: 500;
+
+// navbars
+$navbar-padding-y: 0.5rem;
+$navbar-padding-x: 0;
+$navbar-nav-link-padding-x: 1rem;
+
+$navbar-dark-color: $white;
+$navbar-dark-hover-color: #2f2f2f;
+$navbar-dark-active-color: $white;
+$navbar-dark-disabled-color: rgba($white, 0.25) !default;
+$navbar-dark-toggler-border-color: transparent;
