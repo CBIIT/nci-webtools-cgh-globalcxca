@@ -1,4 +1,10 @@
-export const screeningTests = {
+export const scenarios = [
+	{ value: "ScreenDiagnosticTestTreat", label: "Screen, Diagnostic Test & Treat" },
+	{ value: "ScreenTreat", label: "Screen & Treat" },
+	{ value: "ScreenTriageDiagnosticTestTreat", label: "Screen, Triage, Diagnostic Test & Treat" },
+];
+
+export const tests = {
 	ivaa: {
 		sensitivity: 0.6,
 		specificity: 0.84,
@@ -30,7 +36,7 @@ export const defaultParameters = {
 	triageTestSpecificity: 0.85,
 }
 
-export function runTriageAndTreatmentModel({
+export function runScreeningTriageAndTreatmentModel({
 	populationSize,
 	screeningInterval,
 	cinPrevalence,
@@ -148,7 +154,6 @@ export function runTriageAndTreatmentModel({
 	}
 
 	return {
-		parameters,
 		results,
 	};
 }
@@ -238,7 +243,6 @@ export function runScreeningAndTreatmentModel({
 	}
 
 	return {
-		parameters,
 		results,
 	};
 }
@@ -274,12 +278,12 @@ export function runConfirmatoryScreeningTriageAndTreatmentModel({
 
 	// confirmed population
 	const lostToFollowUpAtConfirmation = 1;
-	const confirmedHealthy;
-	const confirmedWithPrecancer;
-	const confirmedFalseNegatives;
-	const confirmedTrueNegatives;
-	const confirmedTruePositives;
-	const confirmedFalsePostives;
+	const confirmedHealthy = 0;
+	const confirmedWithPrecancer = 0;
+	const confirmedFalseNegatives = 0;
+	const confirmedTrueNegatives = 0;
+	const confirmedTruePositives = 0;
+	const confirmedFalsePostives = 0;
 
 	// diagnostic triaged population
 	const lostToFollowUpAtTriage = screenedTruePositives * (1 - percentTriaged);
@@ -374,7 +378,6 @@ export function runConfirmatoryScreeningTriageAndTreatmentModel({
 	}
 
 	return {
-		parameters,
 		results,
 	};
 }
