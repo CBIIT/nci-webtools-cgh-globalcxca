@@ -6,7 +6,7 @@ import NavbarSearch from './navbar-search';
 
 export default function AppNavbar({routes}) {
   return (
-    <Navbar bg="transparent" variant="dark" className="text-uppercase font-title" expand="md">
+    <Navbar bg="transparent" variant="dark" className="text-uppercase font-title" expand="lg">
       <Container>
         <Navbar.Toggle aria-controls="navbar-nav" className="px-0 py-3 text-uppercase">
           <i className="bi bi-list me-1"></i>
