@@ -228,7 +228,8 @@ export default function RunScenarios() {
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentTriaged">
                       <Form.Label column sm={8}>
-                        Percent of screen positives with triage test
+                        {form.scenario === "ScreenDiagnosticTestTreat" && <>Percent of screen positives with diagnostic test</>}
+                        {form.scenario === "ScreenTriageDiagnosticTestTreat" && <>Percent of screen positives with triage test</>}
                       </Form.Label>
                       <Col sm={4}>
                         <Form.Control
@@ -245,7 +246,7 @@ export default function RunScenarios() {
                   </ListGroup.Item>
                 )}
 
-                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
+                {["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentTriagedDiagnostic">
                       <Form.Label column sm={8}>
