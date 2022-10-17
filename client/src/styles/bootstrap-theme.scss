@@ -83,18 +83,34 @@ body {
   }
 }
 
-.hover-select {
-  border-top: 7px solid transparent !important;
-  border-bottom: 7px solid transparent !important;
+.transparent {
+  background-color: transparent;
+  border: none;
 }
 
-.hover-select:hover {
-  cursor: pointer;
-  border-bottom: 7px solid $primary !important;
+.list-group.striped {
+  .list-group-item {
+    border: none;
+  }
+
+  .list-group-item:nth-child(odd) {
+    background-color: #f9fafb;
+  }
+
+  .list-group-item:nth-child(odd):hover {
+    background-color: #f8f9fa;
+  }
+
+  .list-group-item:hover {
+    background-color: #fafbfc;
+  }
 }
 
-.centered {
-  align-items: center;
-  justify-content: center;
-  display: flex;
+.card {
+  box-shadow: $box-shadow;
+
+  .card-header {
+    border-bottom: 1px solid #eee;
+  }
 }
+

@@ -3,12 +3,13 @@ $white: #fff;
 $blue: #320e74;
 
 // fonts
-// $font-family-sans-serif: "Noto Sans", "Century Gothic", Arial, sans-serif;
-// $font-family-title: Montserrat, "Avant Garde", Arial, sans-serif;
 $text-muted: #606060;
 
+// spacing
+$spacer: 1.5rem;
+
 // headings
-$headings-font-weight: 700;
+$headings-font-weight: 500;
 $headings-margin-bottom: 0;
 
 // nav links
@@ -27,3 +28,16 @@ $navbar-dark-hover-color: #2f2f2f;
 $navbar-dark-active-color: $white;
 $navbar-dark-disabled-color: rgba($white, 0.25) !default;
 $navbar-dark-toggler-border-color: transparent;
+
+// cards
+$card-title-spacer-y: 0.25rem;
+$card-border-width: 0;
+$card-spacer-y: 2rem;
+$card-cap-bg: white;
+
+// form labels
+$form-label-font-weight: 500;
+$form-label-color: #494949;
+
+// buttons
+$btn-font-weight: 500;
