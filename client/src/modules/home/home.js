@@ -12,7 +12,7 @@ export default function Home() {
           <Col md={6}>
             <div className="d-flex h-100 align-items-center">
               <div className="mb-4">
-                <h1 className="text-light display-4 mb-3">Welcome</h1>
+                <h1 className="text-light display-4 mb-3 d-none d-md-block">Welcome</h1>
                 <hr className="border-white" />
                 <p className="lead text-light">
                   Explore epidemiological outcomes for target populations with our screening impact assessment tool.

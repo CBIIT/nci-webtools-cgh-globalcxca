@@ -8,7 +8,8 @@ export default function AppNavbar({routes}) {
   return (
     <Navbar bg="transparent" variant="dark" className="text-uppercase font-title" expand="lg">
       <Container>
-        <Navbar.Toggle aria-controls="navbar-nav" className="px-0 py-3 text-uppercase">
+        <Navbar.Brand className="font-title d-inline-block d-lg-none">CERVICAL-CP</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbar-nav" className="px-0 text-uppercase">
           <i className="bi bi-list me-1"></i>
           Menu
         </Navbar.Toggle>
