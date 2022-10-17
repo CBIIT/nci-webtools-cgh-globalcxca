@@ -1,4 +1,7 @@
 import { atom } from "recoil";
+import { defaultParameters } from "./models";
+
+const debug = false;
 
 export const formState = atom({
 	key: "runScenarios.formState",
@@ -21,5 +24,6 @@ export const formState = atom({
 		diagnosticTest: "",
 		diagnosticTestSensitivity: "",
 		diagnosticTestSpecificity: "",
+		...(debug && defaultParameters)
 	}
 });

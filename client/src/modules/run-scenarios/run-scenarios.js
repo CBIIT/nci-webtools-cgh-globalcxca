@@ -58,7 +58,6 @@ export default function RunScenarios() {
     resetForm();
   }
 
-
   return (
     <div className="bg-light py-4">
       <Container>
@@ -115,7 +114,6 @@ export default function RunScenarios() {
                         value={form.populationSize}
                         onChange={handleChange}
                         required
-                        min="0"
                       />
                     </Col>
                   </Form.Group>
@@ -135,7 +133,6 @@ export default function RunScenarios() {
                         value={form.hpvCancerPrevalence}
                         onChange={handleChange}
                         required
-                        min="0"
                       />
                     </Col>
                   </Form.Group>
@@ -155,7 +152,6 @@ export default function RunScenarios() {
                         value={form.hpvPrevalence}
                         onChange={handleChange}
                         required
-                        min="0"
                       />
                     </Col>
                   </Form.Group>
@@ -175,7 +171,6 @@ export default function RunScenarios() {
                         value={form.cinPrevalence}
                         onChange={handleChange}
                         required
-                        min="0"
                       />
                     </Col>
                   </Form.Group>
@@ -205,7 +200,6 @@ export default function RunScenarios() {
                         value={form.screeningInterval}
                         onChange={handleChange}
                         required
-                        min="0"
                       />
                     </Col>
                   </Form.Group>
@@ -225,78 +219,74 @@ export default function RunScenarios() {
                         value={form.percentScreened}
                         onChange={handleChange}
                         required
-                        min="0"
                       />
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
 
-                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && 
-                <ListGroup.Item>
-                  <Form.Group as={Row} controlId="percentTriaged">
-                    <Form.Label column sm={8}>
-                      Percent of screen positives with triage test
-                    </Form.Label>
-                    <Col sm={4}>
-                      <Form.Control
-                        type="number"
-                        placeholder="Enter value"
-                        className="transparent"
-                        name="percentTriaged"
-                        value={form.percentTriaged}
-                        onChange={handleChange}
-                        required
-                        min="0"
-                      />
-                    </Col>
-                  </Form.Group>
-                </ListGroup.Item>}
-
-                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && 
-                <ListGroup.Item>
-                  <Form.Group as={Row} controlId="percentTriagedDiagnostic">
-                    <Form.Label column sm={8}>
-                      Percent of triage test positives with diagnostic test
-                    </Form.Label>
-                    <Col sm={4}>
-                      <Form.Control
-                        type="number"
-                        placeholder="Enter value"
-                        className="transparent"
-                        name="percentTriagedDiagnostic"
-                        value={form.percentTriagedDiagnostic}
-                        onChange={handleChange}
-                        required
-                        min="0"
-                      />
-                    </Col>
-                  </Form.Group>
-                </ListGroup.Item>}
-
+                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
                   <ListGroup.Item>
-                    <Form.Group as={Row} controlId="percentTreated">
+                    <Form.Group as={Row} controlId="percentTriaged">
                       <Form.Label column sm={8}>
-                      {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>
-                        Percent of diagnostic test positives treated
-                      </>}
-                      {["ScreenTreat"].includes(form.scenario) && <>
-                        Percent of screen test positives treated
-                      </>}
+                        Percent of screen positives with triage test
                       </Form.Label>
                       <Col sm={4}>
                         <Form.Control
                           type="number"
                           placeholder="Enter value"
                           className="transparent"
-                          name="percentTreated"
-                          value={form.percentTreated}
+                          name="percentTriaged"
+                          value={form.percentTriaged}
                           onChange={handleChange}
                           required
-                          min="0"
                         />
                       </Col>
                     </Form.Group>
                   </ListGroup.Item>
+                )}
+
+                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
+                  <ListGroup.Item>
+                    <Form.Group as={Row} controlId="percentTriagedDiagnostic">
+                      <Form.Label column sm={8}>
+                        Percent of triage test positives with diagnostic test
+                      </Form.Label>
+                      <Col sm={4}>
+                        <Form.Control
+                          type="number"
+                          placeholder="Enter value"
+                          className="transparent"
+                          name="percentTriagedDiagnostic"
+                          value={form.percentTriagedDiagnostic}
+                          onChange={handleChange}
+                          required
+                        />
+                      </Col>
+                    </Form.Group>
+                  </ListGroup.Item>
+                )}
+
+                <ListGroup.Item>
+                  <Form.Group as={Row} controlId="percentTreated">
+                    <Form.Label column sm={8}>
+                      {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
+                        <>Percent of diagnostic test positives treated</>
+                      )}
+                      {["ScreenTreat"].includes(form.scenario) && <>Percent of screen test positives treated</>}
+                    </Form.Label>
+                    <Col sm={4}>
+                      <Form.Control
+                        type="number"
+                        placeholder="Enter value"
+                        className="transparent"
+                        name="percentTreated"
+                        value={form.percentTreated}
+                        onChange={handleChange}
+                        required
+                      />
+                    </Col>
+                  </Form.Group>
+                </ListGroup.Item>
               </ListGroup>
             </Card.Body>
           </Card>
@@ -344,7 +334,6 @@ export default function RunScenarios() {
                         value={form.screeningTestSensitivity}
                         onChange={handleChange}
                         required
-                        min="0"
                       />
                     </Col>
                   </Form.Group>
@@ -364,131 +353,129 @@ export default function RunScenarios() {
                         value={form.screeningTestSpecificity}
                         onChange={handleChange}
                         required
-                        min="0"
                       />
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
 
-                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>
-                <ListGroup.Item>
-                  <Form.Group as={Row} controlId="triageTest">
-                    <Form.Label column sm={8}>
-                      Triage or diagnostic test chosen
-                    </Form.Label>
-                    <Col sm={4}>
-                      <Form.Select className="transparent" name="triageTest" value={form.triageTest} onChange={handleChange} required>
-                        <option value="" hidden>
-                          No test chosen
-                        </option>
-                        <option value="pap">Pap</option>
-                        <option value="ivaa">VIA</option>
-                        <option value="hpv16or18">HPV16/18</option>
-                      </Form.Select>
-                    </Col>
-                  </Form.Group>
-                </ListGroup.Item>
+                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
+                  <>
+                    <ListGroup.Item>
+                      <Form.Group as={Row} controlId="triageTest">
+                        <Form.Label column sm={8}>
+                          Triage or diagnostic test chosen
+                        </Form.Label>
+                        <Col sm={4}>
+                          <Form.Select className="transparent" name="triageTest" value={form.triageTest} onChange={handleChange} required>
+                            <option value="" hidden>
+                              No test chosen
+                            </option>
+                            <option value="pap">Pap</option>
+                            <option value="ivaa">VIA</option>
+                            <option value="hpv16or18">HPV16/18</option>
+                          </Form.Select>
+                        </Col>
+                      </Form.Group>
+                    </ListGroup.Item>
 
-                <ListGroup.Item className="ps-4">
-                  <Form.Group as={Row}  controlId="triageTestSensitivity">
-                    <Form.Label column sm={8}>
-                      Triage or diagnostic test sensitivity for CIN2/3
-                    </Form.Label>
-                    <Col sm={4}>
-                      <Form.Control
-                        type="number"
-                        placeholder="Enter value"
-                        className="transparent"
-                        name="triageTestSensitivity"
-                        value={form.triageTestSensitivity}
-                        onChange={handleChange}
-                        required
-                        min="0"
-                      />
-                    </Col>
-                  </Form.Group>
-                </ListGroup.Item>
+                    <ListGroup.Item className="ps-4">
+                      <Form.Group as={Row} controlId="triageTestSensitivity">
+                        <Form.Label column sm={8}>
+                          Triage or diagnostic test sensitivity for CIN2/3
+                        </Form.Label>
+                        <Col sm={4}>
+                          <Form.Control
+                            type="number"
+                            placeholder="Enter value"
+                            className="transparent"
+                            name="triageTestSensitivity"
+                            value={form.triageTestSensitivity}
+                            onChange={handleChange}
+                            required
+                          />
+                        </Col>
+                      </Form.Group>
+                    </ListGroup.Item>
 
-                <ListGroup.Item className="ps-4">
-                  <Form.Group as={Row} controlId="triageTestSpecificity">
-                    <Form.Label column sm={8}>
-                      Triage or diagnostic test specificity for CIN2/3
-                    </Form.Label>
-                    <Col sm={4}>
-                      <Form.Control
-                        type="number"
-                        placeholder="Enter value"
-                        className="transparent"
-                        name="triageTestSpecificity"
-                        value={form.triageTestSpecificity}
-                        onChange={handleChange}
-                        required
-                        min="0"
-                      />
-                    </Col>
-                  </Form.Group>
-                </ListGroup.Item>
-                </>}
+                    <ListGroup.Item className="ps-4">
+                      <Form.Group as={Row} controlId="triageTestSpecificity">
+                        <Form.Label column sm={8}>
+                          Triage or diagnostic test specificity for CIN2/3
+                        </Form.Label>
+                        <Col sm={4}>
+                          <Form.Control
+                            type="number"
+                            placeholder="Enter value"
+                            className="transparent"
+                            name="triageTestSpecificity"
+                            value={form.triageTestSpecificity}
+                            onChange={handleChange}
+                            required
+                          />
+                        </Col>
+                      </Form.Group>
+                    </ListGroup.Item>
+                  </>
+                )}
 
+                {["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
+                  <>
+                    <ListGroup.Item>
+                      <Form.Group as={Row} controlId="diagnosticTest">
+                        <Form.Label column sm={8}>
+                          Diagnostic test chosen
+                        </Form.Label>
+                        <Col sm={4}>
+                          <Form.Select className="transparent" name="diagnosticTest" value={form.diagnosticTest} onChange={handleChange} required>
+                            <option value="" hidden>
+                              No test chosen
+                            </option>
+                            <option value="colposcopicImpression">Coloscopic impression</option>
+                            <option value="colposcopyAndBiopsy">Colposcopy with biopsy</option>
+                          </Form.Select>
+                        </Col>
+                      </Form.Group>
+                    </ListGroup.Item>
 
-              {["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>
-                <ListGroup.Item>
-                  <Form.Group as={Row} controlId="diagnosticTest">
-                    <Form.Label column sm={8}>
-                      Diagnostic test chosen
-                    </Form.Label>
-                    <Col sm={4}>
-                      <Form.Select className="transparent" name="diagnosticTest" value={form.diagnosticTest} onChange={handleChange} required>
-                        <option value="" hidden>
-                          No test chosen
-                        </option>
-                        <option value="colposcopicImpression">Coloscopic impression</option>
-                        <option value="colposcopyAndBiopsy">Colposcopy with biopsy</option>
-                      </Form.Select>
-                    </Col>
-                  </Form.Group>
-                </ListGroup.Item>
+                    <ListGroup.Item className="ps-4">
+                      <Form.Group as={Row} controlId="diagnosticTestSensitivity">
+                        <Form.Label column sm={8}>
+                          Diagnostic test sensitivity for CIN2/3
+                        </Form.Label>
+                        <Col sm={4}>
+                          <Form.Control
+                            type="number"
+                            placeholder="Enter value"
+                            className="transparent"
+                            name="diagnosticTestSensitivity"
+                            value={form.diagnosticTestSensitivity}
+                            onChange={handleChange}
+                            required
+                          />
+                        </Col>
+                      </Form.Group>
+                    </ListGroup.Item>
 
-                <ListGroup.Item className="ps-4">
-                  <Form.Group as={Row} controlId="diagnosticTestSensitivity">
-                    <Form.Label column sm={8}>
-                      Diagnostic test sensitivity for CIN2/3
-                    </Form.Label>
-                    <Col sm={4}>
-                      <Form.Control
-                        type="number"
-                        placeholder="Enter value"
-                        className="transparent"
-                        name="diagnosticTestSensitivity"
-                        value={form.diagnosticTestSensitivity}
-                        onChange={handleChange}
-                        required
-                        min="0"
-                      />
-                    </Col>
-                  </Form.Group>
-                </ListGroup.Item>
-
-                <ListGroup.Item className="ps-4">
-                  <Form.Group as={Row} controlId="diagnosticTestSpecificity">
-                    <Form.Label column sm={8}>
-                      Diagnostic test specificity for CIN2/3
-                    </Form.Label>
-                    <Col sm={4}>
-                      <Form.Control
-                        type="number"
-                        placeholder="Enter value"
-                        className="transparent"
-                        name="diagnosticTestSpecificity"
-                        value={form.diagnosticTestSpecificity}
-                        onChange={handleChange}
-                        required
-                        min="0"
-                      />
-                    </Col>
-                  </Form.Group>
-                </ListGroup.Item>
-                </>}
+                    <ListGroup.Item className="ps-4">
+                      <Form.Group as={Row} controlId="diagnosticTestSpecificity">
+                        <Form.Label column sm={8}>
+                          Diagnostic test specificity for CIN2/3
+                        </Form.Label>
+                        <Col sm={4}>
+                          <Form.Control
+                            type="number"
+                            placeholder="Enter value"
+                            className="transparent"
+                            name="diagnosticTestSpecificity"
+                            value={form.diagnosticTestSpecificity}
+                            onChange={handleChange}
+                            required
+                          />
+                        </Col>
+                      </Form.Group>
+                    </ListGroup.Item>
+                  </>
+                )}
               </ListGroup>
             </Card.Body>
           </Card>
