@@ -24,17 +24,24 @@ export const tests = {
 };
 
 export const defaultParameters = {
+	scenario: "ScreenDiagnosticTestTreat",
 	populationSize: 200000,
 	screeningInterval: 5,
+	hpvCancerPrevalence: 0,
+	hpvPrevalence: 0,
 	cinPrevalence: 0.03,
 	percentScreened: 0.7,
 	percentTriaged: 0.9,
+	percentTriagedDiagnostic: 0.9,
 	percentTreated: 0.9,
+	screeningTest: "hpv",
 	screeningTestSensitivity: 0.9,
 	screeningTestSpecificity: 0.84,
+	triageTest: "pap",
 	triageTestSensitivity: 0.9,
 	triageTestSpecificity: 0.85,
 }
+
 
 export function runScreeningTriageAndTreatmentModel({
 	populationSize,
