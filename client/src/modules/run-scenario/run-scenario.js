@@ -4,11 +4,10 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import FormCheck from "react-bootstrap/FormCheck";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import { formState } from "./state";
-import { scenarios, tests } from "./models";
+import { runModel, scenarios, tests } from "./models";
 
 export default function RunScenarios() {
   const [form, setForm] = useRecoilState(formState);
@@ -50,6 +49,8 @@ export default function RunScenarios() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(form);
+    const results = runModel(form);
+    console.log(results);
   }
 
   function handleReset(event) {
@@ -69,37 +70,41 @@ export default function RunScenarios() {
               </Card.Title>
               <Card.Text className="small text-muted">Please choose a scenario to evaluate epidemiological outcomes for.</Card.Text>
             </Card.Header>
-            <Card.Body className="p-0">
-              <ListGroup variant="flush hover striped">
-                {scenarios.map((scenario) => (
-                  <ListGroup.Item key={scenario.value}>
-                    <FormCheck>
-                      <FormCheck.Input
-                        type="radio"
-                        name="scenario"
-                        id={scenario.value}
-                        value={scenario.value}
-                        checked={form.scenario === scenario.value}
-                        onChange={handleChange}
-                        required
-                      />
-                      <FormCheck.Label className="form-label d-block mb-0" htmlFor={scenario.value}>
-                        {scenario.label}
-                      </FormCheck.Label>
-                    </FormCheck>
-                  </ListGroup.Item>
+            <Card.Body className="py-0">
+              <Row>
+              {scenarios.map((scenario) => (
+                <Col>
+                  <Form.Check key={scenario.value} className="p-0 shadow-sm">
+                    <Form.Check.Input
+                      type="radio"
+                      name="scenario"
+                      id={scenario.value}
+                      value={scenario.value}
+                      checked={form.scenario === scenario.value}
+                      className="ms-1"
+                      onChange={handleChange}
+                      required
+                    />
+                    <Form.Check.Label 
+                      className={"form-label d-block text-center my-3 p-3 cursor-pointer " + (form.scenario === scenario.value ? "bg-primary text-white" : "bg-light text-dark")}
+                      htmlFor={scenario.value}>
+                      {scenario.label}
+                    </Form.Check.Label>
+                  </Form.Check>
+                  </Col>
                 ))}
-              </ListGroup>
+              </Row>
+             
             </Card.Body>
           </Card>
 
           <Card className="mb-4">
             <Card.Header>
               <Card.Title>Epidemiological Context</Card.Title>
-              <Card.Text className="small text-muted">Enter best estimate of fixed epidemiological parameters for your setting</Card.Text>
+              <Card.Text className="small text-muted">Best estimate of fixed epidemiological parameters for your setting</Card.Text>
             </Card.Header>
             <Card.Body className="p-0">
-              <ListGroup variant="flush hover striped">
+              <ListGroup variant="flush hover borderless">
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="populationSize">
                     <Form.Label column sm={8}>
@@ -109,7 +114,7 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        className="transparent"
+                        
                         name="populationSize"
                         value={form.populationSize}
                         onChange={handleChange}
@@ -128,7 +133,7 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        className="transparent"
+                        
                         name="hpvCancerPrevalence"
                         value={form.hpvCancerPrevalence}
                         onChange={handleChange}
@@ -147,7 +152,7 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        className="transparent"
+                        
                         name="hpvPrevalence"
                         value={form.hpvPrevalence}
                         onChange={handleChange}
@@ -166,7 +171,7 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        className="transparent"
+                        
                         name="cinPrevalence"
                         value={form.cinPrevalence}
                         onChange={handleChange}
@@ -182,10 +187,10 @@ export default function RunScenarios() {
           <Card className="mb-4">
             <Card.Header>
               <Card.Title>Participation in Health Services</Card.Title>
-              <Card.Text className="text-muted small">Enter observed or targeted participation in cervical cancer screening program in your setting</Card.Text>
+              <Card.Text className="text-muted small">Observed or targeted participation in cervical cancer screening program in your setting</Card.Text>
             </Card.Header>
             <Card.Body className="p-0">
-              <ListGroup variant="flush hover striped">
+              <ListGroup variant="flush hover borderless">
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningInterval">
                     <Form.Label column sm={8}>
@@ -195,7 +200,7 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        className="transparent"
+                        
                         name="screeningInterval"
                         value={form.screeningInterval}
                         onChange={handleChange}
@@ -214,7 +219,7 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        className="transparent"
+                        
                         name="percentScreened"
                         value={form.percentScreened}
                         onChange={handleChange}
@@ -235,7 +240,7 @@ export default function RunScenarios() {
                         <Form.Control
                           type="number"
                           placeholder="Enter value"
-                          className="transparent"
+                          
                           name="percentTriaged"
                           value={form.percentTriaged}
                           onChange={handleChange}
@@ -256,7 +261,7 @@ export default function RunScenarios() {
                         <Form.Control
                           type="number"
                           placeholder="Enter value"
-                          className="transparent"
+                          
                           name="percentTriagedDiagnostic"
                           value={form.percentTriagedDiagnostic}
                           onChange={handleChange}
@@ -279,7 +284,7 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        className="transparent"
+                        
                         name="percentTreated"
                         value={form.percentTreated}
                         onChange={handleChange}
@@ -301,14 +306,14 @@ export default function RunScenarios() {
               </Card.Text>
             </Card.Header>
             <Card.Body className="p-0">
-              <ListGroup variant="flush hover striped">
+              <ListGroup variant="flush hover borderless">
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTest">
                     <Form.Label column sm={8}>
                       Screening test chosen
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Select className="transparent" name="screeningTest" value={form.screeningTest} onChange={handleChange} required>
+                      <Form.Select  name="screeningTest" value={form.screeningTest} onChange={handleChange} required>
                         <option value="" hidden>
                           No test chosen
                         </option>
@@ -330,7 +335,7 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        className="transparent"
+                        
                         name="screeningTestSensitivity"
                         value={form.screeningTestSensitivity}
                         onChange={handleChange}
@@ -349,7 +354,7 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        className="transparent"
+                        
                         name="screeningTestSpecificity"
                         value={form.screeningTestSpecificity}
                         onChange={handleChange}
@@ -367,13 +372,15 @@ export default function RunScenarios() {
                           Triage or diagnostic test chosen
                         </Form.Label>
                         <Col sm={4}>
-                          <Form.Select className="transparent" name="triageTest" value={form.triageTest} onChange={handleChange} required>
+                          <Form.Select  name="triageTest" value={form.triageTest} onChange={handleChange} required>
                             <option value="" hidden>
                               No test chosen
                             </option>
                             <option value="pap">Pap</option>
                             <option value="ivaa">VIA</option>
                             <option value="hpv16or18">HPV16/18</option>
+                            <option value="colposcopicImpression">Coloscopic impression</option>
+                            <option value="colposcopyWithBiopsy">Colposcopy with biopsy</option>
                           </Form.Select>
                         </Col>
                       </Form.Group>
@@ -388,7 +395,7 @@ export default function RunScenarios() {
                           <Form.Control
                             type="number"
                             placeholder="Enter value"
-                            className="transparent"
+                            
                             name="triageTestSensitivity"
                             value={form.triageTestSensitivity}
                             onChange={handleChange}
@@ -407,7 +414,7 @@ export default function RunScenarios() {
                           <Form.Control
                             type="number"
                             placeholder="Enter value"
-                            className="transparent"
+                            
                             name="triageTestSpecificity"
                             value={form.triageTestSpecificity}
                             onChange={handleChange}
@@ -427,12 +434,12 @@ export default function RunScenarios() {
                           Diagnostic test chosen
                         </Form.Label>
                         <Col sm={4}>
-                          <Form.Select className="transparent" name="diagnosticTest" value={form.diagnosticTest} onChange={handleChange} required>
+                          <Form.Select  name="diagnosticTest" value={form.diagnosticTest} onChange={handleChange} required>
                             <option value="" hidden>
                               No test chosen
                             </option>
                             <option value="colposcopicImpression">Coloscopic impression</option>
-                            <option value="colposcopyAndBiopsy">Colposcopy with biopsy</option>
+                            <option value="colposcopyWithBiopsy">Colposcopy with biopsy</option>
                           </Form.Select>
                         </Col>
                       </Form.Group>
@@ -447,7 +454,7 @@ export default function RunScenarios() {
                           <Form.Control
                             type="number"
                             placeholder="Enter value"
-                            className="transparent"
+                            
                             name="diagnosticTestSensitivity"
                             value={form.diagnosticTestSensitivity}
                             onChange={handleChange}
@@ -466,7 +473,7 @@ export default function RunScenarios() {
                           <Form.Control
                             type="number"
                             placeholder="Enter value"
-                            className="transparent"
+                            
                             name="diagnosticTestSpecificity"
                             value={form.diagnosticTestSpecificity}
                             onChange={handleChange}
