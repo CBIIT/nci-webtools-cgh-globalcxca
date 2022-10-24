@@ -1,6 +1,7 @@
 import App from "./app";
 import Home from "./modules/home/home";
-import RunScenarios from "./modules/run-scenarios/run-scenarios";
+import RunScenario from "./modules/run-scenario/run-scenario";
+import RunScenarioResults from "./modules/run-scenario/run-scenario-results";
 import CompareScenarios from "./modules/compare-scenarios/compare-scenarios";
 import About from "./modules/about/about";
 
@@ -14,9 +15,16 @@ export const routes = [
         title: "Home",
       },
       {
-        path: "run-scenarios",
-        element: <RunScenarios />,
-        title: "Run Scenarios",
+        path: "run-scenario",
+        element: <RunScenario />,
+        title: "Run Scenario",
+        children: [
+          {
+            path: "results",
+            element: <RunScenarioResults />,
+            title: "Run Scenario - Results",
+          }
+        ]
       },
       {
         path: "compare-scenarios",
