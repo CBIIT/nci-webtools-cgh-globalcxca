@@ -70,10 +70,10 @@ export default function RunScenarios() {
               </Card.Title>
               <Card.Text className="small text-muted">Please choose a scenario to evaluate epidemiological outcomes for.</Card.Text>
             </Card.Header>
-            <Card.Body className="py-0">
+            <Card.Body className="pt-3 pb-2 py-lg-0">
               <Row>
               {scenarios.map((scenario) => (
-                <Col>
+                <Col lg={4} key={scenario.value}>
                   <Form.Check key={scenario.value} className="p-0 shadow-sm">
                     <Form.Check.Input
                       type="radio"
@@ -86,7 +86,7 @@ export default function RunScenarios() {
                       required
                     />
                     <Form.Check.Label 
-                      className={"form-label d-block text-center my-3 p-3 cursor-pointer " + (form.scenario === scenario.value ? "bg-primary text-white" : "bg-light text-dark")}
+                      className={"form-label d-block text-center mb-2 my-lg-3 p-3 cursor-pointer " + (form.scenario === scenario.value ? "bg-primary text-white" : "bg-light text-dark")}
                       htmlFor={scenario.value}>
                       {scenario.label}
                     </Form.Check.Label>
