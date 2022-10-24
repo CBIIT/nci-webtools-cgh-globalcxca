@@ -88,19 +88,13 @@ body {
   border: none;
 }
 
-.list-group.striped {
+.list-group.borderless {
   .list-group-item {
     border: none;
   }
+}
 
-  .list-group-item:nth-child(odd) {
-    background-color: #f9fafb;
-  }
-
-  .list-group-item:nth-child(odd):hover {
-    background-color: #f8f9fa;
-  }
-
+.list-group.hover {
   .list-group-item:hover {
     background-color: #fafbfc;
   }
@@ -114,3 +108,6 @@ body {
   }
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
