@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import { defaultParameters } from "./models";
 
-const debug = true;
+const debug = false;
 
 export const formState = atom({
 	key: "runScenarios.formState",
