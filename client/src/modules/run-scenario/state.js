@@ -14,6 +14,7 @@ export const formState = atom({
 		screeningInterval: "",
 		percentScreened: "",
 		percentTriaged: "",
+		percentDiagnosticTriaged: "",
 		percentTreated: "",
 		screeningTest: "",
 		screeningTestSensitivity: "",
