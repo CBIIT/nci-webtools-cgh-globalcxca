@@ -72,29 +72,34 @@ export default function RunScenarios() {
             </Card.Header>
             <Card.Body className="pt-3 pb-2 py-lg-0">
               <Row>
-              {scenarios.map((scenario) => (
-                <Col lg={4} key={scenario.value}>
-                  <Form.Check key={scenario.value} className="p-0 shadow-sm">
-                    <Form.Check.Input
-                      type="radio"
-                      name="scenario"
-                      id={scenario.value}
-                      value={scenario.value}
-                      checked={form.scenario === scenario.value}
-                      className="ms-1"
-                      onChange={handleChange}
-                      required
-                    />
-                    <Form.Check.Label 
-                      className={"form-label d-block text-center mb-2 my-lg-3 p-3 cursor-pointer " + (form.scenario === scenario.value ? "bg-primary text-white" : "bg-light text-dark")}
-                      htmlFor={scenario.value}>
-                      {scenario.label}
-                    </Form.Check.Label>
-                  </Form.Check>
+                {scenarios.map((scenario) => (
+                  <Col lg={4} key={scenario.value}>
+                    <Form.Check key={scenario.value} className="p-0 shadow-sm">
+                      <Form.Check.Input
+                        type="radio"
+                        name="scenario"
+                        id={scenario.value}
+                        value={scenario.value}
+                        checked={form.scenario === scenario.value}
+                        className="ms-1"
+                        onChange={handleChange}
+                        required
+                      />
+                      <Form.Check.Label
+                        className={
+                          [
+                            "form-label d-block text-center mb-2 my-lg-3 p-3 cursor-pointer",
+                            (form.scenario === scenario.value ? "bg-primary text-white" : "bg-light text-dark")
+                          ].join(" ")
+                        }
+                        htmlFor={scenario.value}
+                      >
+                        {scenario.label}
+                      </Form.Check.Label>
+                    </Form.Check>
                   </Col>
                 ))}
               </Row>
-             
             </Card.Body>
           </Card>
 
@@ -114,7 +119,6 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        
                         name="populationSize"
                         value={form.populationSize}
                         onChange={handleChange}
@@ -133,7 +137,6 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        
                         name="hpvCancerPrevalence"
                         value={form.hpvCancerPrevalence}
                         onChange={handleChange}
@@ -149,15 +152,7 @@ export default function RunScenarios() {
                       Prevalence of HPV16/18
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control
-                        type="number"
-                        placeholder="Enter value"
-                        
-                        name="hpvPrevalence"
-                        value={form.hpvPrevalence}
-                        onChange={handleChange}
-                        required
-                      />
+                      <Form.Control type="number" placeholder="Enter value" name="hpvPrevalence" value={form.hpvPrevalence} onChange={handleChange} required />
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
@@ -168,15 +163,7 @@ export default function RunScenarios() {
                       Prevalence of CIN2 or worse
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control
-                        type="number"
-                        placeholder="Enter value"
-                        
-                        name="cinPrevalence"
-                        value={form.cinPrevalence}
-                        onChange={handleChange}
-                        required
-                      />
+                      <Form.Control type="number" placeholder="Enter value" name="cinPrevalence" value={form.cinPrevalence} onChange={handleChange} required />
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
@@ -200,7 +187,6 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        
                         name="screeningInterval"
                         value={form.screeningInterval}
                         onChange={handleChange}
@@ -219,7 +205,6 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        
                         name="percentScreened"
                         value={form.percentScreened}
                         onChange={handleChange}
@@ -240,7 +225,6 @@ export default function RunScenarios() {
                         <Form.Control
                           type="number"
                           placeholder="Enter value"
-                          
                           name="percentTriaged"
                           value={form.percentTriaged}
                           onChange={handleChange}
@@ -253,7 +237,7 @@ export default function RunScenarios() {
 
                 {["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
                   <ListGroup.Item>
-                    <Form.Group as={Row} controlId="percentTriagedDiagnostic">
+                    <Form.Group as={Row} controlId="percentDiagnosticTriaged">
                       <Form.Label column sm={8}>
                         Percent of triage test positives with diagnostic test
                       </Form.Label>
@@ -261,9 +245,8 @@ export default function RunScenarios() {
                         <Form.Control
                           type="number"
                           placeholder="Enter value"
-                          
-                          name="percentTriagedDiagnostic"
-                          value={form.percentTriagedDiagnostic}
+                          name="percentDiagnosticTriaged"
+                          value={form.percentDiagnosticTriaged}
                           onChange={handleChange}
                           required
                         />
@@ -284,7 +267,6 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        
                         name="percentTreated"
                         value={form.percentTreated}
                         onChange={handleChange}
@@ -313,7 +295,7 @@ export default function RunScenarios() {
                       Screening test chosen
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Select  name="screeningTest" value={form.screeningTest} onChange={handleChange} required>
+                      <Form.Select name="screeningTest" value={form.screeningTest} onChange={handleChange} required>
                         <option value="" hidden>
                           No test chosen
                         </option>
@@ -335,7 +317,6 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        
                         name="screeningTestSensitivity"
                         value={form.screeningTestSensitivity}
                         onChange={handleChange}
@@ -354,7 +335,6 @@ export default function RunScenarios() {
                       <Form.Control
                         type="number"
                         placeholder="Enter value"
-                        
                         name="screeningTestSpecificity"
                         value={form.screeningTestSpecificity}
                         onChange={handleChange}
@@ -372,7 +352,7 @@ export default function RunScenarios() {
                           Triage or diagnostic test chosen
                         </Form.Label>
                         <Col sm={4}>
-                          <Form.Select  name="triageTest" value={form.triageTest} onChange={handleChange} required>
+                          <Form.Select name="triageTest" value={form.triageTest} onChange={handleChange} required>
                             <option value="" hidden>
                               No test chosen
                             </option>
@@ -395,7 +375,6 @@ export default function RunScenarios() {
                           <Form.Control
                             type="number"
                             placeholder="Enter value"
-                            
                             name="triageTestSensitivity"
                             value={form.triageTestSensitivity}
                             onChange={handleChange}
@@ -414,7 +393,6 @@ export default function RunScenarios() {
                           <Form.Control
                             type="number"
                             placeholder="Enter value"
-                            
                             name="triageTestSpecificity"
                             value={form.triageTestSpecificity}
                             onChange={handleChange}
@@ -434,12 +412,12 @@ export default function RunScenarios() {
                           Diagnostic test chosen
                         </Form.Label>
                         <Col sm={4}>
-                          <Form.Select  name="diagnosticTest" value={form.diagnosticTest} onChange={handleChange} required>
+                          <Form.Select name="diagnosticTest" value={form.diagnosticTest} onChange={handleChange} required>
                             <option value="" hidden>
                               No test chosen
                             </option>
                             <option value="colposcopicImpression">Coloscopic impression</option>
-                            <option value="colposcopyWithBiopsy">Colposcopy with biopsy</option>
+                            <option value="colposcopyOrBiopsy">Colposcopy with biopsy</option>
                           </Form.Select>
                         </Col>
                       </Form.Group>
@@ -454,7 +432,6 @@ export default function RunScenarios() {
                           <Form.Control
                             type="number"
                             placeholder="Enter value"
-                            
                             name="diagnosticTestSensitivity"
                             value={form.diagnosticTestSensitivity}
                             onChange={handleChange}
@@ -473,7 +450,6 @@ export default function RunScenarios() {
                           <Form.Control
                             type="number"
                             placeholder="Enter value"
-                            
                             name="diagnosticTestSpecificity"
                             value={form.diagnosticTestSpecificity}
                             onChange={handleChange}
