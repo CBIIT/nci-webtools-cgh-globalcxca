@@ -18,8 +18,10 @@ export default function ScenarioResults() {
   const results = useRecoilValue(resultsState);
 
   function saveScenario() {
-    const scenario = new Blob([JSON.stringify(params)], {type: "text/plain;charset=utf-8"});
-    saveAs(scenario, `${params.scenario}.scenario`);
+    const filename = `${params.scenario}.scenario`;
+    const type = "text/plain;charset=utf-8";
+    const contents = [JSON.stringify(params)];
+    saveAs(contents, filename, { type });
   }
 
   async function exportResults() {
