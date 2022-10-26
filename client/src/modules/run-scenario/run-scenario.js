@@ -1,6 +1,6 @@
 import { useRecoilState, useSetRecoilState, useResetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import mapValues from 'lodash/mapValues';
+import mapValues from "lodash/mapValues";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
 import { defaultFormState, formState, paramsState, resultsState } from "./state";
 import { runModel, scenarios, tests, screeningTests, triageTests, diagnosticTests, asNumber } from "./models";
 
@@ -102,12 +103,10 @@ export default function RunScenarios() {
                         required
                       />
                       <Form.Check.Label
-                        className={
-                          [
-                            "form-label d-block text-center mb-2 my-lg-3 p-3 cursor-pointer",
-                            (form.scenario === scenario.value ? "bg-primary text-white" : "bg-light text-dark")
-                          ].join(" ")
-                        }
+                        className={[
+                          "form-label d-block text-center mb-2 my-lg-3 p-3 cursor-pointer",
+                          form.scenario === scenario.value ? "bg-primary text-white" : "bg-light text-dark",
+                        ].join(" ")}
                         htmlFor={scenario.value}
                       >
                         {scenario.label}
@@ -133,7 +132,8 @@ export default function RunScenarios() {
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Control
-                        type="number" min="0"
+                        type="number"
+                        min="0"
                         placeholder="Enter value"
                         name="populationSize"
                         value={form.populationSize}
@@ -145,41 +145,26 @@ export default function RunScenarios() {
                 </ListGroup.Item>
 
                 <ListGroup.Item>
-                  <Form.Group as={Row} controlId="hpvCancerPrevalence">
-                    <Form.Label column sm={8}>
-                      Prevalence of carcinogenic HPV infection
-                    </Form.Label>
-                    <Col sm={4}>
-                      <Form.Control
-                        type="number" min="0" max="100" step="0.1"
-                        placeholder="Enter value"
-                        name="hpvCancerPrevalence"
-                        value={form.hpvCancerPrevalence}
-                        onChange={handleChange}
-                        required
-                      />
-                    </Col>
-                  </Form.Group>
-                </ListGroup.Item>
-
-                <ListGroup.Item>
-                  <Form.Group as={Row} controlId="hpvPrevalence">
-                    <Form.Label column sm={8}>
-                      Prevalence of HPV16/18
-                    </Form.Label>
-                    <Col sm={4}>
-                      <Form.Control type="number" min="0" max="100" step="0.1" placeholder="Enter value" name="hpvPrevalence" value={form.hpvPrevalence} onChange={handleChange} required />
-                    </Col>
-                  </Form.Group>
-                </ListGroup.Item>
-
-                <ListGroup.Item>
                   <Form.Group as={Row} controlId="cinPrevalence">
                     <Form.Label column sm={8}>
-                      Prevalence of CIN2 or worse
+                      Prevalence of CIN2/3
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control type="number" min="0" max="100" step="0.1" placeholder="Enter value" name="cinPrevalence" value={form.cinPrevalence} onChange={handleChange} required />
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="0.1"
+                          placeholder="Enter value"
+                          name="cinPrevalence"
+                          className="border-end-0"
+                          value={form.cinPrevalence}
+                          onChange={handleChange}
+                          required
+                        />
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
@@ -201,7 +186,8 @@ export default function RunScenarios() {
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Control
-                        type="number" min="0"
+                        type="number"
+                        min="0"
                         placeholder="Enter value"
                         name="screeningInterval"
                         value={form.screeningInterval}
@@ -215,17 +201,24 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="percentScreened">
                     <Form.Label column sm={8}>
-                      Percent screening coverage
+                      Screening coverage
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control
-                        type="number" min="0" max="100" step="0.1"
-                        placeholder="Enter value"
-                        name="percentScreened"
-                        value={form.percentScreened}
-                        onChange={handleChange}
-                        required
-                      />
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="0.1"
+                          className="border-end-0"
+                          placeholder="Enter value"
+                          name="percentScreened"
+                          value={form.percentScreened}
+                          onChange={handleChange}
+                          required
+                        />
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
@@ -234,18 +227,25 @@ export default function RunScenarios() {
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentTriaged">
                       <Form.Label column sm={8}>
-                        {form.scenario === "ScreenDiagnosticTestTreat" && <>Percent of screen positives with diagnostic test</>}
-                        {form.scenario === "ScreenTriageDiagnosticTestTreat" && <>Percent of screen positives with triage test</>}
+                        {form.scenario === "ScreenDiagnosticTestTreat" && <>Screen positives with diagnostic test</>}
+                        {form.scenario === "ScreenTriageDiagnosticTestTreat" && <>Screen positives with triage test</>}
                       </Form.Label>
                       <Col sm={4}>
-                        <Form.Control
-                          type="number" min="0" max="100" step="0.1"
-                          placeholder="Enter value"
-                          name="percentTriaged"
-                          value={form.percentTriaged}
-                          onChange={handleChange}
-                          required
-                        />
+                        <InputGroup>
+                          <Form.Control
+                            type="number"
+                            min="0"
+                            max="100"
+                            step="0.1"
+                            className="border-end-0"
+                            placeholder="Enter value"
+                            name="percentTriaged"
+                            value={form.percentTriaged}
+                            onChange={handleChange}
+                            required
+                          />
+                          <InputGroup.Text>%</InputGroup.Text>
+                        </InputGroup>
                       </Col>
                     </Form.Group>
                   </ListGroup.Item>
@@ -258,14 +258,21 @@ export default function RunScenarios() {
                         Percent of triage test positives with diagnostic test
                       </Form.Label>
                       <Col sm={4}>
-                        <Form.Control
-                          type="number" min="0" max="100" step="0.1"
-                          placeholder="Enter value"
-                          name="percentDiagnosticTriaged"
-                          value={form.percentDiagnosticTriaged}
-                          onChange={handleChange}
-                          required
-                        />
+                        <InputGroup>
+                          <Form.Control
+                            type="number"
+                            min="0"
+                            max="100"
+                            step="0.1"
+                            className="border-end-0"
+                            placeholder="Enter value"
+                            name="percentDiagnosticTriaged"
+                            value={form.percentDiagnosticTriaged}
+                            onChange={handleChange}
+                            required
+                          />
+                          <InputGroup.Text>%</InputGroup.Text>
+                        </InputGroup>
                       </Col>
                     </Form.Group>
                   </ListGroup.Item>
@@ -274,20 +281,25 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="percentTreated">
                     <Form.Label column sm={8}>
-                      {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
-                        <>Percent of diagnostic test positives treated</>
-                      )}
-                      {["ScreenTreat"].includes(form.scenario) && <>Percent of screen test positives treated</>}
+                      {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>Diagnostic test positives treated</>}
+                      {["ScreenTreat"].includes(form.scenario) && <>Screen test positives treated</>}
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control
-                        type="number" min="0" max="100" step="0.1"
-                        placeholder="Enter value"
-                        name="percentTreated"
-                        value={form.percentTreated}
-                        onChange={handleChange}
-                        required
-                      />
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="0.1"
+                          className="border-end-0"
+                          placeholder="Enter value"
+                          name="percentTreated"
+                          value={form.percentTreated}
+                          onChange={handleChange}
+                          required
+                        />
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
@@ -315,44 +327,62 @@ export default function RunScenarios() {
                         <option value="" hidden>
                           No test chosen
                         </option>
-                        {screeningTests.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+                        {screeningTests.map((t) => (
+                          <option key={t.value} value={t.value}>
+                            {t.label}
+                          </option>
+                        ))}
                       </Form.Select>
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
 
-                <ListGroup.Item className="ps-4">
+                <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTestSensitivity">
-                    <Form.Label column sm={8}>
+                    <Form.Label column sm={8} className="ps-4">
                       Screening test sensitivity for CIN2/3
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control
-                        type="number" min="0" max="100" step="0.1"
-                        placeholder="Enter value"
-                        name="screeningTestSensitivity"
-                        value={form.screeningTestSensitivity}
-                        onChange={handleChange}
-                        required
-                      />
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="0.1"
+                          className="border-end-0"
+                          placeholder="Enter value"
+                          name="screeningTestSensitivity"
+                          value={form.screeningTestSensitivity}
+                          onChange={handleChange}
+                          required
+                        />
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
 
-                <ListGroup.Item className="ps-4">
+                <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTestSpecificity">
-                    <Form.Label column sm={8}>
+                    <Form.Label column sm={8}  className="ps-4">
                       Screening test specificity for CIN2/3
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control
-                        type="number" min="0" max="100" step="0.1"
-                        placeholder="Enter value"
-                        name="screeningTestSpecificity"
-                        value={form.screeningTestSpecificity}
-                        onChange={handleChange}
-                        required
-                      />
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="0.1"
+                          className="border-end-0"
+                          placeholder="Enter value"
+                          name="screeningTestSpecificity"
+                          value={form.screeningTestSpecificity}
+                          onChange={handleChange}
+                          required
+                        />
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
@@ -369,44 +399,62 @@ export default function RunScenarios() {
                             <option value="" hidden>
                               No test chosen
                             </option>
-                            {triageTests.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+                            {triageTests.map((t) => (
+                              <option key={t.value} value={t.value}>
+                                {t.label}
+                              </option>
+                            ))}
                           </Form.Select>
                         </Col>
                       </Form.Group>
                     </ListGroup.Item>
 
-                    <ListGroup.Item className="ps-4">
+                    <ListGroup.Item>
                       <Form.Group as={Row} controlId="triageTestSensitivity">
-                        <Form.Label column sm={8}>
+                        <Form.Label column sm={8} className="ps-4">
                           Triage or diagnostic test sensitivity for CIN2/3
                         </Form.Label>
                         <Col sm={4}>
-                          <Form.Control
-                            type="number" min="0" max="100" step="0.1"
-                            placeholder="Enter value"
-                            name="triageTestSensitivity"
-                            value={form.triageTestSensitivity}
-                            onChange={handleChange}
-                            required
-                          />
+                          <InputGroup>
+                            <Form.Control
+                              type="number"
+                              min="0"
+                              max="100"
+                              step="0.1"
+                              className="border-end-0"
+                              placeholder="Enter value"
+                              name="triageTestSensitivity"
+                              value={form.triageTestSensitivity}
+                              onChange={handleChange}
+                              required
+                            />
+                            <InputGroup.Text>%</InputGroup.Text>
+                          </InputGroup>
                         </Col>
                       </Form.Group>
                     </ListGroup.Item>
 
-                    <ListGroup.Item className="ps-4">
+                    <ListGroup.Item>
                       <Form.Group as={Row} controlId="triageTestSpecificity">
-                        <Form.Label column sm={8}>
+                        <Form.Label column sm={8} className="ps-4">
                           Triage or diagnostic test specificity for CIN2/3
                         </Form.Label>
                         <Col sm={4}>
-                          <Form.Control
-                            type="number" min="0" max="100" step="0.1"
-                            placeholder="Enter value"
-                            name="triageTestSpecificity"
-                            value={form.triageTestSpecificity}
-                            onChange={handleChange}
-                            required
-                          />
+                          <InputGroup>
+                            <Form.Control
+                              type="number"
+                              min="0"
+                              max="100"
+                              step="0.1"
+                              className="border-end-0"
+                              placeholder="Enter value"
+                              name="triageTestSpecificity"
+                              value={form.triageTestSpecificity}
+                              onChange={handleChange}
+                              required
+                            />
+                            <InputGroup.Text>%</InputGroup.Text>
+                          </InputGroup>
                         </Col>
                       </Form.Group>
                     </ListGroup.Item>
@@ -425,44 +473,62 @@ export default function RunScenarios() {
                             <option value="" hidden>
                               No test chosen
                             </option>
-                            {diagnosticTests.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+                            {diagnosticTests.map((t) => (
+                              <option key={t.value} value={t.value}>
+                                {t.label}
+                              </option>
+                            ))}
                           </Form.Select>
                         </Col>
                       </Form.Group>
                     </ListGroup.Item>
 
-                    <ListGroup.Item className="ps-4">
+                    <ListGroup.Item>
                       <Form.Group as={Row} controlId="diagnosticTestSensitivity">
-                        <Form.Label column sm={8}>
+                        <Form.Label column sm={8} className="ps-4">
                           Diagnostic test sensitivity for CIN2/3
                         </Form.Label>
                         <Col sm={4}>
-                          <Form.Control
-                            type="number" min="0" max="100" step="0.1"
-                            placeholder="Enter value"
-                            name="diagnosticTestSensitivity"
-                            value={form.diagnosticTestSensitivity}
-                            onChange={handleChange}
-                            required
-                          />
+                          <InputGroup>
+                            <Form.Control
+                              type="number"
+                              min="0"
+                              max="100"
+                              step="0.1"
+                              className="border-end-0"
+                              placeholder="Enter value"
+                              name="diagnosticTestSensitivity"
+                              value={form.diagnosticTestSensitivity}
+                              onChange={handleChange}
+                              required
+                            />
+                            <InputGroup.Text>%</InputGroup.Text>
+                          </InputGroup>
                         </Col>
                       </Form.Group>
                     </ListGroup.Item>
 
-                    <ListGroup.Item className="ps-4">
+                    <ListGroup.Item>
                       <Form.Group as={Row} controlId="diagnosticTestSpecificity">
-                        <Form.Label column sm={8}>
+                        <Form.Label column sm={8} className="ps-4">
                           Diagnostic test specificity for CIN2/3
                         </Form.Label>
                         <Col sm={4}>
-                          <Form.Control
-                            type="number" min="0" max="100" step="0.1"
-                            placeholder="Enter value"
-                            name="diagnosticTestSpecificity"
-                            value={form.diagnosticTestSpecificity}
-                            onChange={handleChange}
-                            required
-                          />
+                          <InputGroup>
+                            <Form.Control
+                              type="number"
+                              min="0"
+                              max="100"
+                              step="0.1"
+                              className="border-end-0"
+                              placeholder="Enter value"
+                              name="diagnosticTestSpecificity"
+                              value={form.diagnosticTestSpecificity}
+                              onChange={handleChange}
+                              required
+                            />
+                            <InputGroup.Text>%</InputGroup.Text>
+                          </InputGroup>
                         </Col>
                       </Form.Group>
                     </ListGroup.Item>
