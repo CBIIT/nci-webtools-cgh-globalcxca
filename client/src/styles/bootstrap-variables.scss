@@ -1,0 +1,56 @@
+// colors
+$primary: #320e74;
+$info: #0d6efd;
+$warning: #fd7e14;
+$success: #0dab61;
+
+// fonts
+$text-muted: #606060;
+
+// spacing
+$spacer: 1.5rem;
+
+// headings
+$headings-font-weight: 500;
+$headings-margin-bottom: 0;
+
+// nav links
+$nav-link-padding-y: 0.5rem;
+$nav-link-padding-x: 1rem;
+// $nav-link-font-size: 14px;
+$nav-link-font-weight: 500;
+
+// navbars
+$navbar-padding-y: 0.5rem;
+$navbar-padding-x: 0;
+$navbar-nav-link-padding-x: 1rem;
+
+$navbar-dark-color: white;
+$navbar-dark-hover-color: #2f2f2f;
+$navbar-dark-active-color: white;
+$navbar-dark-disabled-color: rgba(white, 0.25) !default;
+$navbar-dark-toggler-border-color: transparent;
+
+// cards
+$card-title-spacer-y: 0.25rem;
+$card-border-width: 0;
+$card-spacer-y: 2rem;
+$card-cap-bg: white;
+
+// form labels
+$form-label-font-weight: 500;
+$form-label-color: #494949;
+
+// buttons
+$btn-font-weight: 500;
+
+
+// nav tabs
+$nav-tabs-border-color: transparent;
+$nav-tabs-border-width: 2px;
+$nav-tabs-border-radius: 0;
+$nav-tabs-link-active-border-color: $primary;
+
+// input groups
+$input-group-addon-color: #494949;
+$input-group-addon-bg: white;

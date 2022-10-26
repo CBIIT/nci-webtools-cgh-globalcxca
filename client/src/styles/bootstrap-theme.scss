@@ -1,0 +1,139 @@
+a {
+  text-decoration: none;
+  font-weight: 500;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+body {
+  min-width: 320px;
+}
+
+select:invalid,
+select option[value=""] {
+  color: #6c757d;
+}
+
+/** Ensure translate element passes contrast checks */
+.goog-te-gadget, .goog-te-combo, .goog-logo-link {
+  font-family: $font-family-sans-serif !important; 
+  font-weight: normal !important;
+  font-size: 11px !important;
+  color: black !important;
+}
+
+.bg-primary-dark {
+  background-color: #20094b;
+}
+
+.bg-dark-gradient {
+  background: linear-gradient(180deg,#363636 0,#4a4a4a)
+}
+
+.bg-primary-radial-gradient {
+  background-image: radial-gradient(
+    farthest-corner at 40px 40px,
+    #bf00a4 0%,
+    #20094b 100%
+  );
+}
+
+.cover-image {
+  // background-attachment: fixed;
+  // background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.font-title {
+  // font-family: $font-family-title;
+}
+
+/** Navbar */
+.navbar-dark {
+  .nav-link {
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    padding-left: $navbar-nav-link-padding-x !important;
+    padding-right: $navbar-nav-link-padding-x !important;
+    transition: background-color .15s linear;
+    text-decoration: none;
+
+    &:hover, &.active {
+      // background-color: white;
+      border-bottom-color: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    &.active {
+      border-bottom-color: white;
+    }
+  }
+
+  .search-control, .search-control-button {
+    background-color: transparent;
+    border-left: none;
+    border-right: none;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid white;
+    color: white;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+
+    &::placeholder {
+      color: white;
+    }
+  }
+}
+
+.transparent {
+  background-color: transparent;
+  border: none;
+}
+
+.list-group.borderless {
+  .list-group-item {
+    border: none;
+  }
+}
+
+.list-group.hover {
+  .list-group-item:hover {
+    background-color: #fafbfc;
+  }
+}
+
+.card {
+  box-shadow: $box-shadow;
+
+  .card-header {
+    border-bottom: 1px solid #eee;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.table {
+  tbody {
+    th {
+      font-weight: 500;
+    }
+  }
+}
+
+.nav-tabs {
+  .nav-item {
+    .nav-link {
+      border: 0;
+      text-decoration: none;
+
+      &.active {
+        border-bottom: 2px solid $primary;
+      }
+    }
+  }
+}
