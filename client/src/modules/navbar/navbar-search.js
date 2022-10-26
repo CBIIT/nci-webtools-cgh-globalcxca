@@ -8,7 +8,7 @@ export default function NavbarSearch() {
 
     const form = event.target;
     const search = form.elements.search.value;
-    const site = window.location.host;
+    const site = window.location.origin + window.location.pathname;
     const query = encodeURIComponent(`site:${site} ${search}`);
     const searchUrl = `https://www.google.com/search?q=${query}`;
     window.open(searchUrl, "_blank");
