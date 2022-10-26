@@ -111,3 +111,24 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.table {
+  tbody {
+    th {
+      font-weight: 500;
+    }
+  }
+}
+
+.nav-tabs {
+  .nav-item {
+    .nav-link {
+      border: 0;
+      text-decoration: none;
+
+      &.active {
+        border-bottom: 2px solid $primary;
+      }
+    }
+  }
+}
