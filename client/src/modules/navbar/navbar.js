@@ -15,8 +15,8 @@ export default function AppNavbar({routes}) {
         </Navbar.Toggle>
         <Navbar.Collapse id="navbar-nav" className="align-items-stretch">
           <Nav className="me-auto">
-            {routes.map((route) => (
-              <NavLink className="nav-link" key={route.path} to={route.path} end>
+            {routes.filter(r => r.navbar).map((route) => (
+              <NavLink className="nav-link" key={route.path} to={route.path} end={route.end}>
                 {route.title}
               </NavLink>
             ))}

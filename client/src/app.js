@@ -3,9 +3,7 @@ import Navbar from './modules/navbar/navbar';
 import { routes } from './routes';
 
 export default function App() {
-  const childRoutes = routes[0]
-    .children
-    .filter((route) => !route.notFound);
+  const childRoutes = routes[0].children;
 
   return (
     <>
