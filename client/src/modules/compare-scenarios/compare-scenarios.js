@@ -21,11 +21,12 @@ export default function CompareScenarios() {
 
     if (files.length > 0) {
       try {
-        const file = files[0];
-        let scenario = JSON.parse(await readFile(file));
-        scenario.name = file.name.replace(/.scenario$/, "");
-        scenario.results = runModel(scenario);
-        setScenarios((scenarios) => [...scenarios, scenario]);
+        for (const file of files) {
+          let scenario = JSON.parse(await readFile(file));
+          scenario.name = file.name.replace(/.scenario$/, "");
+          scenario.results = runModel(scenario);
+          setScenarios((scenarios) => [...scenarios, scenario]);
+        }
       }
       catch (error) {
         console.error(error);
@@ -84,7 +85,7 @@ export default function CompareScenarios() {
                   <label htmlFor="fileInput" className="btn btn-outline-primary">
                     Add Scenario
                   </label>
-                  <input id="fileInput" type="file" onChange={addScenario} hidden accept=".scenario" />
+                  <input id="fileInput" type="file" onChange={addScenario} hidden accept=".scenario" multiple />
                 </ListGroup.Item>
               </ListGroup>
             </Card.Body>
