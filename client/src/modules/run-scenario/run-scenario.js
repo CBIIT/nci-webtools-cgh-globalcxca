@@ -133,7 +133,7 @@ export default function RunScenarios() {
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Control
-                        type="number"
+                        type="number" min="0"
                         placeholder="Enter value"
                         name="populationSize"
                         value={form.populationSize}
@@ -151,7 +151,7 @@ export default function RunScenarios() {
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Control
-                        type="number"
+                        type="number" min="0" max="100" step="0.1"
                         placeholder="Enter value"
                         name="hpvCancerPrevalence"
                         value={form.hpvCancerPrevalence}
@@ -168,7 +168,7 @@ export default function RunScenarios() {
                       Prevalence of HPV16/18
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control type="number" placeholder="Enter value" name="hpvPrevalence" value={form.hpvPrevalence} onChange={handleChange} required />
+                      <Form.Control type="number" min="0" max="100" step="0.1" placeholder="Enter value" name="hpvPrevalence" value={form.hpvPrevalence} onChange={handleChange} required />
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
@@ -179,7 +179,7 @@ export default function RunScenarios() {
                       Prevalence of CIN2 or worse
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control type="number" placeholder="Enter value" name="cinPrevalence" value={form.cinPrevalence} onChange={handleChange} required />
+                      <Form.Control type="number" min="0" max="100" step="0.1" placeholder="Enter value" name="cinPrevalence" value={form.cinPrevalence} onChange={handleChange} required />
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
@@ -201,7 +201,7 @@ export default function RunScenarios() {
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Control
-                        type="number"
+                        type="number" min="0"
                         placeholder="Enter value"
                         name="screeningInterval"
                         value={form.screeningInterval}
@@ -219,7 +219,7 @@ export default function RunScenarios() {
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Control
-                        type="number"
+                        type="number" min="0" max="100" step="0.1"
                         placeholder="Enter value"
                         name="percentScreened"
                         value={form.percentScreened}
@@ -239,7 +239,7 @@ export default function RunScenarios() {
                       </Form.Label>
                       <Col sm={4}>
                         <Form.Control
-                          type="number"
+                          type="number" min="0" max="100" step="0.1"
                           placeholder="Enter value"
                           name="percentTriaged"
                           value={form.percentTriaged}
@@ -259,7 +259,7 @@ export default function RunScenarios() {
                       </Form.Label>
                       <Col sm={4}>
                         <Form.Control
-                          type="number"
+                          type="number" min="0" max="100" step="0.1"
                           placeholder="Enter value"
                           name="percentDiagnosticTriaged"
                           value={form.percentDiagnosticTriaged}
@@ -281,7 +281,7 @@ export default function RunScenarios() {
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Control
-                        type="number"
+                        type="number" min="0" max="100" step="0.1"
                         placeholder="Enter value"
                         name="percentTreated"
                         value={form.percentTreated}
@@ -328,7 +328,7 @@ export default function RunScenarios() {
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Control
-                        type="number"
+                        type="number" min="0" max="100" step="0.1"
                         placeholder="Enter value"
                         name="screeningTestSensitivity"
                         value={form.screeningTestSensitivity}
@@ -346,7 +346,7 @@ export default function RunScenarios() {
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Control
-                        type="number"
+                        type="number" min="0" max="100" step="0.1"
                         placeholder="Enter value"
                         name="screeningTestSpecificity"
                         value={form.screeningTestSpecificity}
@@ -382,7 +382,7 @@ export default function RunScenarios() {
                         </Form.Label>
                         <Col sm={4}>
                           <Form.Control
-                            type="number"
+                            type="number" min="0" max="100" step="0.1"
                             placeholder="Enter value"
                             name="triageTestSensitivity"
                             value={form.triageTestSensitivity}
@@ -400,7 +400,7 @@ export default function RunScenarios() {
                         </Form.Label>
                         <Col sm={4}>
                           <Form.Control
-                            type="number"
+                            type="number" min="0" max="100" step="0.1"
                             placeholder="Enter value"
                             name="triageTestSpecificity"
                             value={form.triageTestSpecificity}
@@ -438,7 +438,7 @@ export default function RunScenarios() {
                         </Form.Label>
                         <Col sm={4}>
                           <Form.Control
-                            type="number"
+                            type="number" min="0" max="100" step="0.1"
                             placeholder="Enter value"
                             name="diagnosticTestSensitivity"
                             value={form.diagnosticTestSensitivity}
@@ -456,7 +456,7 @@ export default function RunScenarios() {
                         </Form.Label>
                         <Col sm={4}>
                           <Form.Control
-                            type="number"
+                            type="number" min="0" max="100" step="0.1"
                             placeholder="Enter value"
                             name="diagnosticTestSpecificity"
                             value={form.diagnosticTestSpecificity}

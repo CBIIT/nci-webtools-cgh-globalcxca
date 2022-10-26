@@ -22,6 +22,10 @@ export default function ScenarioResults() {
     saveAs(scenario, `${params.scenario}.scenario`);
   }
 
+  async function exportResults() {
+
+  }
+
   if (!params || !results) {
     return <Navigate to="/run-scenario" />;
   }
@@ -38,7 +42,7 @@ export default function ScenarioResults() {
             <Row>
               <Col lg={6}>
                 <Table hover responsive>
-                  <thead className="bg-info text-light">
+                  <thead className="table-info">
                     <tr>
                       <th colSpan={2}>Epidemiological Context</th>
                     </tr>
@@ -50,21 +54,21 @@ export default function ScenarioResults() {
                     </tr>
                     <tr>
                       <th>Prevalence of carcinogenic HPV infection</th>
-                      <td className="text-end">{params.hpvCancerPrevalence}</td>
+                      <td className="text-end">{asPercent(params.hpvCancerPrevalence)}</td>
                     </tr>
                     <tr>
                       <th>Prevalence of HPV16/18</th>
-                      <td className="text-end">{params.hpvPrevalence}</td>
+                      <td className="text-end">{asPercent(params.hpvPrevalence)}</td>
                     </tr>
                     <tr>
                       <th>Prevalence of CIN2 or worse</th>
-                      <td className="text-end">{params.cinPrevalence}</td>
+                      <td className="text-end">{asPercent(params.cinPrevalence)}</td>
                     </tr>
                   </tbody>
                 </Table>
 
                 <Table hover responsive>
-                  <thead className="bg-info text-light">
+                  <thead className="table-info">
                     <tr>
                       <th colSpan={2}>Participation in Health Services</th>
                     </tr>
@@ -95,49 +99,49 @@ export default function ScenarioResults() {
               </Col>
               <Col lg={6}>
                 <Table hover responsive>
-                  <thead className="bg-info text-light">
+                  <thead className="table-info">
                     <tr>
                       <th colSpan={2}>Screening and Treatment Characteristics</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="table-info">
+                    <tr  className="table-light">
                       <th>Screening test chosen</th>
                       <td className="text-end">{asLabel(params.screeningTest, screeningTests)}</td>
                     </tr>
                     <tr>
                       <th className="ps-3">Screening test sensitivity for CIN2/3</th>
-                      <td className="text-end">{params.screeningTestSensitivity}</td>
+                      <td className="text-end">{asPercent(params.screeningTestSensitivity)}</td>
                     </tr>
                     <tr>
                       <th className="ps-3">Screening test specificity for CIN2/3</th>
-                      <td className="text-end">{params.screeningTestSpecificity}</td>
+                      <td className="text-end">{asPercent(params.screeningTestSpecificity)}</td>
                     </tr>
 
-                    <tr className="table-info">
+                    <tr  className="table-light">
                       <th>Triage or diagnostic test chosen</th>
                       <td className="text-end">{asLabel(params.triageTest, triageTests)}</td>
                     </tr>
                     <tr>
                       <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3</th>
-                      <td className="text-end">{params.triageTestSensitivity}</td>
+                      <td className="text-end">{asPercent(params.triageTestSensitivity)}</td>
                     </tr>
                     <tr>
                       <th className="ps-3">Triage or diagnostic test specificity for CIN2/3</th>
-                      <td className="text-end">{params.triageTestSpecificity}</td>
+                      <td className="text-end">{asPercent(params.triageTestSpecificity)}</td>
                     </tr>
 
-                    <tr className="table-info">
+                    <tr  className="table-light">
                       <th>Diagnostic test chosen</th>
                       <td className="text-end">{asLabel(params.diagnosticTest, diagnosticTests)}</td>
                     </tr>
                     <tr>
                       <th className="ps-3">Diagnostic test sensitivity for CIN2/3</th>
-                      <td className="text-end">{params.diagnosticTestSensitivity}</td>
+                      <td className="text-end">{asPercent(params.diagnosticTestSensitivity)}</td>
                     </tr>
                     <tr>
                       <th className="ps-3">Diagnostic test specificity for CIN2/3</th>
-                      <td className="text-end">{params.diagnosticTestSpecificity}</td>
+                      <td className="text-end">{asPercent(params.diagnosticTestSpecificity)}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -160,7 +164,7 @@ export default function ScenarioResults() {
             </Card.Header>
             <Card.Body>
               <Tab.Content>
-                <Tab.Pane eventKey="results">
+                <Tab.Pane eventKey="results" mountOnEnter={false} unmountOnExit={false} >
                   <Table hover responsive>
                     <thead className="bg-info text-light">
                       <tr>
@@ -456,6 +460,7 @@ export default function ScenarioResults() {
           <Link className="btn btn-outline-primary text-decoration-none" to="/run-scenario">
             Back to Scenario
           </Link>
+          <Button onClick={exportResults} className="ms-2" variant="primary">Export Results</Button>
           <Button onClick={saveScenario} className="ms-2" variant="primary">Save Scenario</Button>
         </div>
       </Container>

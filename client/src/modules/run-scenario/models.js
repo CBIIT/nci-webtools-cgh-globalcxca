@@ -12,7 +12,7 @@ export const asNumber = (value) => {
 
 export const asLabel = (value, options) => options.find(o => o.value === value)?.label;
 
-export const asPercent = (value, places = 2) => [null, undefined, NaN].includes(value) ? null : `${(+value * 100).toFixed(places)}%`;
+export const asPercent = (value, places = 2) => [null, undefined, NaN].includes(value) ? null : `${(+value).toFixed(places)}%`;
 
 export const scenarios = [
   { value: "ScreenDiagnosticTestTreat", label: "Screen, Diagnostic Test & Treat" },
@@ -42,20 +42,20 @@ export const diagnosticTests = [
 
 export const tests = {
   ivaa: {
-    sensitivity: 0.6,
-    specificity: 0.84,
+    sensitivity: 60,
+    specificity: 84,
   },
   pap: {
-    sensitivity: 0.6,
-    specificity: 0.91,
+    sensitivity: 60,
+    specificity: 91,
   },
   hpv: {
-    sensitivity: 0.9,
-    specificity: 0.89,
+    sensitivity: 90,
+    specificity: 89,
   },
   colposcopyWithBiopsy: {
-    sensitivity: 0.65,
-    specificity: 0.85,
+    sensitivity: 65,
+    specificity: 85,
   }
 };
 
@@ -65,20 +65,20 @@ export const defaultParameters = {
   screeningInterval: 5,
   hpvCancerPrevalence: 0,
   hpvPrevalence: 0,
-  cinPrevalence: 0.03,
-  percentScreened: 0.7,
-  percentTriaged: 0.5,
-  percentDiagnosticTriaged: 0.4,
-  percentTreated: 0.9,
+  cinPrevalence: 3,
+  percentScreened: 70,
+  percentTriaged: 50,
+  percentDiagnosticTriaged: 40,
+  percentTreated: 90,
   screeningTest: "hpv",
-  screeningTestSensitivity: 0.9,
-  screeningTestSpecificity: 0.89,
+  screeningTestSensitivity: 90,
+  screeningTestSpecificity: 89,
   triageTest: "pap",
-  triageTestSensitivity: 0.80,
-  triageTestSpecificity: 0.91,
+  triageTestSensitivity: 80,
+  triageTestSpecificity: 91,
   diagnosticTest: "colposcopyWithBiopsy",
-  diagnosticTestSensitivity: 0.8,
-  diagnosticTestSpecificity: 0.85,
+  diagnosticTestSensitivity: 80,
+  diagnosticTestSpecificity: 85,
 }
 
 export function runModel(params) {
@@ -106,6 +106,15 @@ export function runScreenDiagnosticTestTreatModel({
   triageTestSensitivity,
   triageTestSpecificity,
 }) {
+  cinPrevalence /= 100;
+  percentScreened /= 100;
+  percentTriaged /= 100;
+  percentTreated /= 100;
+  screeningTestSensitivity /= 100;
+  screeningTestSpecificity /= 100;
+  triageTestSensitivity /= 100;
+  triageTestSpecificity /= 100;
+
   // target population
   const healthyWomenTargetedForScreening = (populationSize / screeningInterval) * (1 - cinPrevalence);
   const precancersTargetedForScreening = (populationSize / screeningInterval) * cinPrevalence;
@@ -134,15 +143,15 @@ export function runScreenDiagnosticTestTreatModel({
   const treatedWithPrecancer = triagedTruePositives * percentTreated;
 
   // impact on disease
-  const percentPrecancersTreated =  treatedWithPrecancer / precancersTargetedForScreening;
-  const percentHealthyOvertreated =  treatedHealthy / healthyWomenTargetedForScreening;
+  const percentPrecancersTreated =  100 * treatedWithPrecancer / precancersTargetedForScreening;
+  const percentHealthyOvertreated =  100 * treatedHealthy / healthyWomenTargetedForScreening;
 
   // sources of missed precancers
-  const percentMissedDueToNoScreening =  unscreenedPrecancers / precancersTargetedForScreening;
-  const percentMissedDueToSensitivityOfScreeningTest =  screenedFalseNegatives / precancersTargetedForScreening;
-  const percentMissedDueToLossAtTriage =  lostToFollowUpAtTriage / precancersTargetedForScreening;
-  const percentMissedDueToSensitivityOfTriageTest =  triagedFalseNegatives / precancersTargetedForScreening;
-  const percentMissedDueToLossAtTreatment =  lostToFollowUpAtTreatment / precancersTargetedForScreening;
+  const percentMissedDueToNoScreening = 100 * unscreenedPrecancers / precancersTargetedForScreening;
+  const percentMissedDueToSensitivityOfScreeningTest = 100 * screenedFalseNegatives / precancersTargetedForScreening;
+  const percentMissedDueToLossAtTriage = 100 * lostToFollowUpAtTriage / precancersTargetedForScreening;
+  const percentMissedDueToSensitivityOfTriageTest = 100 * triagedFalseNegatives / precancersTargetedForScreening;
+  const percentMissedDueToLossAtTreatment = 100 * lostToFollowUpAtTreatment / precancersTargetedForScreening;
   const percentPrecancersMissed = percentMissedDueToNoScreening 
     + percentMissedDueToSensitivityOfScreeningTest 
     + percentMissedDueToLossAtTriage 
@@ -224,6 +233,12 @@ export function runScreenTreatModel({
   screeningTestSensitivity,
   screeningTestSpecificity,
 }) {
+  cinPrevalence /= 100;
+  percentScreened /= 100;
+  percentTreated /= 100;
+  screeningTestSensitivity /= 100;
+  screeningTestSpecificity /= 100;
+
   // target population
   const healthyWomenTargetedForScreening = (populationSize / screeningInterval) * (1 - cinPrevalence);
   const precancersTargetedForScreening = (populationSize / screeningInterval) * cinPrevalence;
@@ -243,13 +258,13 @@ export function runScreenTreatModel({
   const treatedWithPrecancer = screenedTruePositives * percentTreated;
 
   // impact on disease
-  const percentPrecancersTreated =  treatedWithPrecancer / precancersTargetedForScreening;
-  const percentHealthyOvertreated =  treatedHealthy / healthyWomenTargetedForScreening;
+  const percentPrecancersTreated = 100 * treatedWithPrecancer / precancersTargetedForScreening;
+  const percentHealthyOvertreated = 100 * treatedHealthy / healthyWomenTargetedForScreening;
 
   // sources of missed precancers
-  const percentMissedDueToNoScreening =  unscreenedPrecancers / precancersTargetedForScreening;
-  const percentMissedDueToSensitivityOfScreeningTest =  screenedFalseNegatives / precancersTargetedForScreening;
-  const percentMissedDueToLossAtTreatment =  lostToFollowUpAtTreatment / precancersTargetedForScreening;
+  const percentMissedDueToNoScreening =  100 * unscreenedPrecancers / precancersTargetedForScreening;
+  const percentMissedDueToSensitivityOfScreeningTest =  100 * screenedFalseNegatives / precancersTargetedForScreening;
+  const percentMissedDueToLossAtTreatment =  100 * lostToFollowUpAtTreatment / precancersTargetedForScreening;
   const percentPrecancersMissed = percentMissedDueToNoScreening 
     + percentMissedDueToSensitivityOfScreeningTest 
     + percentMissedDueToLossAtTreatment;
@@ -317,6 +332,18 @@ export function runScreenTriageDiagnosticTestTreatModel({
   diagnosticTestSensitivity,
   diagnosticTestSpecificity,
 }) {
+  cinPrevalence /= 100;
+  percentScreened /= 100;
+  percentTriaged /= 100;
+  percentDiagnosticTriaged /= 100;
+  percentTreated /= 100;
+  screeningTestSensitivity /= 100;
+  screeningTestSpecificity /= 100;
+  triageTestSensitivity /= 100;
+  triageTestSpecificity /= 100;
+  diagnosticTestSensitivity /= 100;
+  diagnosticTestSpecificity /= 100;
+
   // target population
   const healthyWomenTargetedForScreening = (populationSize / screeningInterval) * (1 - cinPrevalence);
   const precancersTargetedForScreening = (populationSize / screeningInterval) * cinPrevalence;
@@ -354,17 +381,17 @@ export function runScreenTriageDiagnosticTestTreatModel({
   const treatedWithPrecancer = diagnosticTriagedTruePositives * percentTreated;
 
   // impact on disease
-  const percentPrecancersTreated =  treatedWithPrecancer / precancersTargetedForScreening;
-  const percentHealthyOvertreated =  treatedHealthy / healthyWomenTargetedForScreening;
+  const percentPrecancersTreated =  100 * treatedWithPrecancer / precancersTargetedForScreening;
+  const percentHealthyOvertreated =  100 * treatedHealthy / healthyWomenTargetedForScreening;
 
   // sources of missed precancers
-  const percentMissedDueToNoScreening =  unscreenedPrecancers / precancersTargetedForScreening;
-  const percentMissedDueToSensitivityOfScreeningTest =  screenedFalseNegatives / precancersTargetedForScreening;
-  const percentMissedDueToLossAtTriage =  lostToFollowUpAtTriage / precancersTargetedForScreening;
-  const percentMissedDueToSensitivityOfTriageTest =  triagedFalseNegatives / precancersTargetedForScreening;
-  const percentMissedDueToLossAtDiagnosticTriage =  lostToFollowUpAtDiagnosticTriage / precancersTargetedForScreening;
-  const percentMissedDueToSensitivityOfDiagnosticTriageTest =  diagnosticTriagedFalseNegatives / precancersTargetedForScreening;
-  const percentMissedDueToLossAtTreatment =  lostToFollowUpAtTreatment / precancersTargetedForScreening;
+  const percentMissedDueToNoScreening = 100 * unscreenedPrecancers / precancersTargetedForScreening;
+  const percentMissedDueToSensitivityOfScreeningTest = 100 * screenedFalseNegatives / precancersTargetedForScreening;
+  const percentMissedDueToLossAtTriage = 100 * lostToFollowUpAtTriage / precancersTargetedForScreening;
+  const percentMissedDueToSensitivityOfTriageTest = 100 * triagedFalseNegatives / precancersTargetedForScreening;
+  const percentMissedDueToLossAtDiagnosticTriage = 100 * lostToFollowUpAtDiagnosticTriage / precancersTargetedForScreening;
+  const percentMissedDueToSensitivityOfDiagnosticTriageTest = 100 * diagnosticTriagedFalseNegatives / precancersTargetedForScreening;
+  const percentMissedDueToLossAtTreatment = 100 * lostToFollowUpAtTreatment / precancersTargetedForScreening;
   const percentPrecancersMissed = percentMissedDueToNoScreening 
     + percentMissedDueToSensitivityOfScreeningTest 
     + percentMissedDueToLossAtTriage 
