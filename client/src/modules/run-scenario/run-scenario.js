@@ -1,5 +1,6 @@
 import { useRecoilState, useSetRecoilState, useResetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
+import mapValues from 'lodash/mapValues';
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
@@ -7,12 +8,13 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
-import { defaultFormState, formState, resultsState } from "./state";
-import { runModel, scenarios, tests, screeningTests, triageTests, diagnosticTests } from "./models";
+import { defaultFormState, formState, paramsState, resultsState } from "./state";
+import { runModel, scenarios, tests, screeningTests, triageTests, diagnosticTests, asNumber } from "./models";
 
 export default function RunScenarios() {
   const [form, setForm] = useRecoilState(formState);
   const resetForm = useResetRecoilState(formState);
+  const setParams = useSetRecoilState(paramsState);
   const setResults = useSetRecoilState(resultsState);
   const navigate = useNavigate();
 
@@ -59,7 +61,9 @@ export default function RunScenarios() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const results = runModel(form);
+    const params = mapValues(form, asNumber);
+    const results = runModel(params);
+    setParams(params);
     setResults(results);
     window.scrollTo(0, 0);
     navigate("results");
