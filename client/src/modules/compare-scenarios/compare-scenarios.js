@@ -269,19 +269,7 @@ export default function CompareScenarios() {
                         ))}
                       </tr>
                       <tr>
-                        <th>Prevalence of carcinogenic HPV infection</th>
-                        {scenarios.map((params, index) => (
-                          <td className="text-end" key={index}>{params.hpvCancerPrevalence}</td>
-                        ))}
-                      </tr>
-                      <tr>
-                        <th>Prevalence of HPV16/18</th>
-                        {scenarios.map((params, index) => (
-                          <td className="text-end" key={index}>{params.hpvPrevalence}</td>
-                        ))}
-                      </tr>
-                      <tr>
-                        <th>Prevalence of CIN2 or worse</th>
+                        <th>Prevalence of CIN2/3</th>
                         {scenarios.map((params, index) => (
                           <td className="text-end" key={index}>{params.cinPrevalence}</td>
                         ))}
