@@ -1,9 +1,33 @@
 import mapValues from 'lodash/mapValues';
 
+export const asLabel = (value, options) => options.find(o => o.value === value)?.label;
+
+export const asPercent = (value, places = 2) => isNaN(value) ? value : `${(value * 100).toFixed(places)}%`;
+
 export const scenarios = [
   { value: "ScreenDiagnosticTestTreat", label: "Screen, Diagnostic Test & Treat" },
   { value: "ScreenTreat", label: "Screen & Treat" },
   { value: "ScreenTriageDiagnosticTestTreat", label: "Screen, Triage, Diagnostic Test & Treat" },
+];
+
+export const screeningTests = [
+  { value: "pap", label: "Pap" },
+  { value: "ivaa", label: "VIA" },
+  { value: "hpv", label: "HPV" },
+  { value: "hpv16or18", label: "HPV16/18" },
+];
+
+export const triageTests = [
+  { value: "pap", label: "Pap" },
+  { value: "ivaa", label: "VIA" },
+  { value: "hpv16or18", label: "HPV16/18" },
+  { value: "colposcopicImpression", label: "Coloscopic impression" },
+  { value: "colposcopyWithBiopsy", label: "Colposcopy with biopsy" },
+];
+
+export const diagnosticTests = [
+  { value: "colposcopicImpression", label: "Coloscopic impression" },
+  { value: "colposcopyWithBiopsy", label: "Colposcopy with biopsy" },
 ];
 
 export const tests = {
@@ -19,7 +43,7 @@ export const tests = {
     sensitivity: 0.9,
     specificity: 0.89,
   },
-  colposcopyOrBiopsy: {
+  colposcopyWithBiopsy: {
     sensitivity: 0.65,
     specificity: 0.85,
   }
@@ -42,7 +66,7 @@ export const defaultParameters = {
   triageTest: "pap",
   triageTestSensitivity: 0.80,
   triageTestSpecificity: 0.91,
-  diagnosticTest: "colposcopyOrBiopsy",
+  diagnosticTest: "colposcopyWithBiopsy",
   diagnosticTestSensitivity: 0.8,
   diagnosticTestSpecificity: 0.85,
 }
@@ -157,15 +181,15 @@ export function runScreenDiagnosticTestTreatModel({
     treatedHealthy: Math.round(treatedHealthy),
     treatedWithPrecancer: Math.round(treatedWithPrecancer),
 
-    percentPrecancersTreated: +percentPrecancersTreated.toFixed(2),
-    percentHealthyOvertreated: +percentHealthyOvertreated.toFixed(2),
+    percentPrecancersTreated: percentPrecancersTreated.toFixed(2),
+    percentHealthyOvertreated: percentHealthyOvertreated.toFixed(2),
 
-    percentMissedDueToNoScreening: +percentMissedDueToNoScreening.toFixed(2),
-    percentMissedDueToSensitivityOfScreeningTest: +percentMissedDueToSensitivityOfScreeningTest.toFixed(2),
-    percentMissedDueToLossAtTriage: +percentMissedDueToLossAtTriage.toFixed(2),
-    percentMissedDueToSensitivityOfTriageTest: +percentMissedDueToSensitivityOfTriageTest.toFixed(2),
-    percentMissedDueToLossAtTreatment: +percentMissedDueToLossAtTreatment.toFixed(2),
-    percentPrecancersMissed: +percentPrecancersMissed.toFixed(2),
+    percentMissedDueToNoScreening: percentMissedDueToNoScreening.toFixed(2),
+    percentMissedDueToSensitivityOfScreeningTest: percentMissedDueToSensitivityOfScreeningTest.toFixed(2),
+    percentMissedDueToLossAtTriage: percentMissedDueToLossAtTriage.toFixed(2),
+    percentMissedDueToSensitivityOfTriageTest: percentMissedDueToSensitivityOfTriageTest.toFixed(2),
+    percentMissedDueToLossAtTreatment: percentMissedDueToLossAtTreatment.toFixed(2),
+    percentPrecancersMissed: percentPrecancersMissed.toFixed(2),
 
     numberMissedDueToNoScreening: Math.round(numberMissedDueToNoScreening),
     numberMissedDueToSensitivityOfScreeningTest: Math.round(numberMissedDueToSensitivityOfScreeningTest),
@@ -249,13 +273,13 @@ export function runScreenTreatModel({
     treatedHealthy: Math.round(treatedHealthy),
     treatedWithPrecancer: Math.round(treatedWithPrecancer),
 
-    percentPrecancersTreated: +percentPrecancersTreated.toFixed(2),
-    percentHealthyOvertreated: +percentHealthyOvertreated.toFixed(2),
+    percentPrecancersTreated: percentPrecancersTreated.toFixed(2),
+    percentHealthyOvertreated: percentHealthyOvertreated.toFixed(2),
 
-    percentMissedDueToNoScreening: +percentMissedDueToNoScreening.toFixed(2),
-    percentMissedDueToSensitivityOfScreeningTest: +percentMissedDueToSensitivityOfScreeningTest.toFixed(2),
-    percentMissedDueToLossAtTreatment: +percentMissedDueToLossAtTreatment.toFixed(2),
-    percentPrecancersMissed: +percentPrecancersMissed.toFixed(2),
+    percentMissedDueToNoScreening: percentMissedDueToNoScreening.toFixed(2),
+    percentMissedDueToSensitivityOfScreeningTest: percentMissedDueToSensitivityOfScreeningTest.toFixed(2),
+    percentMissedDueToLossAtTreatment: percentMissedDueToLossAtTreatment.toFixed(2),
+    percentPrecancersMissed: percentPrecancersMissed.toFixed(2),
 
     numberMissedDueToNoScreening: Math.round(numberMissedDueToNoScreening),
     numberMissedDueToSensitivityOfScreeningTest: Math.round(numberMissedDueToSensitivityOfScreeningTest),
@@ -345,8 +369,8 @@ export function runScreenTriageDiagnosticTestTreatModel({
   const numberMissedDueToSensitivityOfScreeningTest = screenedFalseNegatives;
   const numberMissedDueToLossAtTriage = lostToFollowUpAtTriage;
   const numberMissedDueToSensitivityOfTriageTest = triagedFalseNegatives;
-  const numberMissedDueToLossAtDiagnosticTriage = lostToFollowUpAtDiagnosticTriage / precancersTargetedForScreening;
-  const numberMissedDueToSensitivityOfDiagnosticTriageTest = diagnosticTriagedFalseNegatives / precancersTargetedForScreening;
+  const numberMissedDueToLossAtDiagnosticTriage = lostToFollowUpAtDiagnosticTriage;
+  const numberMissedDueToSensitivityOfDiagnosticTriageTest = diagnosticTriagedFalseNegatives;
   const numberMissedDueToLossAtTreatment = lostToFollowUpAtTreatment;
   const numberPrecancersMissed =  numberMissedDueToNoScreening
     + numberMissedDueToSensitivityOfScreeningTest
@@ -394,17 +418,17 @@ export function runScreenTriageDiagnosticTestTreatModel({
     treatedHealthy: Math.round(treatedHealthy),
     treatedWithPrecancer: Math.round(treatedWithPrecancer),
 
-    percentPrecancersTreated: +percentPrecancersTreated.toFixed(2),
-    percentHealthyOvertreated: +percentHealthyOvertreated.toFixed(2),
+    percentPrecancersTreated: percentPrecancersTreated.toFixed(2),
+    percentHealthyOvertreated: percentHealthyOvertreated.toFixed(2),
 
-    percentMissedDueToNoScreening: +percentMissedDueToNoScreening.toFixed(2),
-    percentMissedDueToSensitivityOfScreeningTest: +percentMissedDueToSensitivityOfScreeningTest.toFixed(2),
-    percentMissedDueToLossAtTriage: +percentMissedDueToLossAtTriage.toFixed(2),
-    percentMissedDueToSensitivityOfTriageTest: +percentMissedDueToSensitivityOfTriageTest.toFixed(2),
-    percentMissedDueToLossAtDiagnosticTriage: +percentMissedDueToLossAtDiagnosticTriage.toFixed(2),
-    percentMissedDueToSensitivityOfDiagnosticTriageTest: +percentMissedDueToSensitivityOfDiagnosticTriageTest.toFixed(2),
-    percentMissedDueToLossAtTreatment: +percentMissedDueToLossAtTreatment.toFixed(2),
-    percentPrecancersMissed: +percentPrecancersMissed.toFixed(2),
+    percentMissedDueToNoScreening: percentMissedDueToNoScreening.toFixed(2),
+    percentMissedDueToSensitivityOfScreeningTest: percentMissedDueToSensitivityOfScreeningTest.toFixed(2),
+    percentMissedDueToLossAtTriage: percentMissedDueToLossAtTriage.toFixed(2),
+    percentMissedDueToSensitivityOfTriageTest: percentMissedDueToSensitivityOfTriageTest.toFixed(2),
+    percentMissedDueToLossAtDiagnosticTriage: percentMissedDueToLossAtDiagnosticTriage.toFixed(2),
+    percentMissedDueToSensitivityOfDiagnosticTriageTest: percentMissedDueToSensitivityOfDiagnosticTriageTest.toFixed(2),
+    percentMissedDueToLossAtTreatment: percentMissedDueToLossAtTreatment.toFixed(2),
+    percentPrecancersMissed: percentPrecancersMissed.toFixed(2),
 
     numberMissedDueToNoScreening: Math.round(numberMissedDueToNoScreening),
     numberMissedDueToSensitivityOfScreeningTest: Math.round(numberMissedDueToSensitivityOfScreeningTest),
