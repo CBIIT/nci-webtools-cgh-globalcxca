@@ -31,6 +31,11 @@ export const formState = atom({
 	default: defaultFormState
 });
 
+export const paramsState = atom({
+	key: "runScenarios.paramsState",
+	default: null,
+})
+
 export const resultsState = atom({
 	key: "runScenarios.resultsState",
 	default: null
