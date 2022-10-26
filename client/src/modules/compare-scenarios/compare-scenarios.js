@@ -271,7 +271,7 @@ export default function CompareScenarios() {
                       <tr>
                         <th>Prevalence of CIN2/3</th>
                         {scenarios.map((params, index) => (
-                          <td className="text-end" key={index}>{params.cinPrevalence}</td>
+                          <td className="text-end" key={index}>{asPercent(params.cinPrevalence)}</td>
                         ))}
                       </tr>
 
