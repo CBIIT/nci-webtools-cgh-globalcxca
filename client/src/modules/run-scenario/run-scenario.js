@@ -156,7 +156,7 @@ export default function RunScenarios() {
                           min="0"
                           max="100"
                           step="0.1"
-                          placeholder="Enter value"
+                          placeholder="Enter percentage"
                           name="cinPrevalence"
                           className="border-end-0"
                           value={form.cinPrevalence}
@@ -211,7 +211,7 @@ export default function RunScenarios() {
                           max="100"
                           step="0.1"
                           className="border-end-0"
-                          placeholder="Enter value"
+                          placeholder="Enter percentage"
                           name="percentScreened"
                           value={form.percentScreened}
                           onChange={handleChange}
@@ -238,7 +238,7 @@ export default function RunScenarios() {
                             max="100"
                             step="0.1"
                             className="border-end-0"
-                            placeholder="Enter value"
+                            placeholder="Enter percentage"
                             name="percentTriaged"
                             value={form.percentTriaged}
                             onChange={handleChange}
@@ -265,7 +265,7 @@ export default function RunScenarios() {
                             max="100"
                             step="0.1"
                             className="border-end-0"
-                            placeholder="Enter value"
+                            placeholder="Enter percentage"
                             name="percentDiagnosticTriaged"
                             value={form.percentDiagnosticTriaged}
                             onChange={handleChange}
@@ -292,7 +292,7 @@ export default function RunScenarios() {
                           max="100"
                           step="0.1"
                           className="border-end-0"
-                          placeholder="Enter value"
+                          placeholder="Enter percentage"
                           name="percentTreated"
                           value={form.percentTreated}
                           onChange={handleChange}
@@ -325,7 +325,7 @@ export default function RunScenarios() {
                     <Col sm={4}>
                       <Form.Select name="screeningTest" value={form.screeningTest} onChange={handleChange} required>
                         <option value="" hidden>
-                          No test chosen
+                          Select a test
                         </option>
                         {screeningTests.map((t) => (
                           <option key={t.value} value={t.value}>
@@ -350,7 +350,7 @@ export default function RunScenarios() {
                           max="100"
                           step="0.1"
                           className="border-end-0"
-                          placeholder="Enter value"
+                          placeholder="Enter percentage"
                           name="screeningTestSensitivity"
                           value={form.screeningTestSensitivity}
                           onChange={handleChange}
@@ -375,7 +375,7 @@ export default function RunScenarios() {
                           max="100"
                           step="0.1"
                           className="border-end-0"
-                          placeholder="Enter value"
+                          placeholder="Enter percentage"
                           name="screeningTestSpecificity"
                           value={form.screeningTestSpecificity}
                           onChange={handleChange}
@@ -397,7 +397,7 @@ export default function RunScenarios() {
                         <Col sm={4}>
                           <Form.Select name="triageTest" value={form.triageTest} onChange={handleChange} required>
                             <option value="" hidden>
-                              No test chosen
+                              Select a test
                             </option>
                             {triageTests.map((t) => (
                               <option key={t.value} value={t.value}>
@@ -422,7 +422,7 @@ export default function RunScenarios() {
                               max="100"
                               step="0.1"
                               className="border-end-0"
-                              placeholder="Enter value"
+                              placeholder="Enter percentage"
                               name="triageTestSensitivity"
                               value={form.triageTestSensitivity}
                               onChange={handleChange}
@@ -447,7 +447,7 @@ export default function RunScenarios() {
                               max="100"
                               step="0.1"
                               className="border-end-0"
-                              placeholder="Enter value"
+                              placeholder="Enter percentage"
                               name="triageTestSpecificity"
                               value={form.triageTestSpecificity}
                               onChange={handleChange}
@@ -471,7 +471,7 @@ export default function RunScenarios() {
                         <Col sm={4}>
                           <Form.Select name="diagnosticTest" value={form.diagnosticTest} onChange={handleChange} required>
                             <option value="" hidden>
-                              No test chosen
+                              Select a test
                             </option>
                             {diagnosticTests.map((t) => (
                               <option key={t.value} value={t.value}>
@@ -496,7 +496,7 @@ export default function RunScenarios() {
                               max="100"
                               step="0.1"
                               className="border-end-0"
-                              placeholder="Enter value"
+                              placeholder="Enter percentage"
                               name="diagnosticTestSensitivity"
                               value={form.diagnosticTestSensitivity}
                               onChange={handleChange}
@@ -521,7 +521,7 @@ export default function RunScenarios() {
                               max="100"
                               step="0.1"
                               className="border-end-0"
-                              placeholder="Enter value"
+                              placeholder="Enter percentage"
                               name="diagnosticTestSpecificity"
                               value={form.diagnosticTestSpecificity}
                               onChange={handleChange}
