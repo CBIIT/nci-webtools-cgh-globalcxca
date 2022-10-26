@@ -10,6 +10,11 @@ body {
   min-width: 320px;
 }
 
+select:invalid,
+select option[value=""] {
+  color: #6c757d;
+}
+
 /** Ensure translate element passes contrast checks */
 .goog-te-gadget, .goog-te-combo, .goog-logo-link {
   font-family: $font-family-sans-serif !important; 
