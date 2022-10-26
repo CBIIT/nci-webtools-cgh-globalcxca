@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import App from "./app";
 import Home from "./modules/home/home";
 import RunScenario from "./modules/run-scenario/run-scenario";
@@ -38,7 +39,7 @@ export const routes = [
       },      
       {
         path: "*",
-        element: <div>Not Found</div>,
+        element: <Navigate to="/" />,
         navbar: false,
       }
     ]
