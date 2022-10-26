@@ -20,8 +20,8 @@ export default function ScenarioResults() {
   function saveScenario() {
     const filename = `${params.scenario}.scenario`;
     const type = "text/plain;charset=utf-8";
-    const contents = [JSON.stringify(params)];
-    saveAs(contents, filename, { type });
+    const contents = JSON.stringify(params);
+    saveAs(new Blob([contents]), filename, { type });
   }
 
   async function exportResults() {
@@ -55,16 +55,8 @@ export default function ScenarioResults() {
                       <td className="text-end">{params.populationSize}</td>
                     </tr>
                     <tr>
-                      <th>Prevalence of carcinogenic HPV infection</th>
-                      <td className="text-end">{asPercent(params.hpvCancerPrevalence)}</td>
-                    </tr>
-                    <tr>
-                      <th>Prevalence of HPV16/18</th>
-                      <td className="text-end">{asPercent(params.hpvPrevalence)}</td>
-                    </tr>
-                    <tr>
-                      <th>Prevalence of CIN2 or worse</th>
-                      <td className="text-end">{asPercent(params.cinPrevalence)}</td>
+                      <th>Prevalence of CIN2/3</th>
+                      <td className="text-end">{asPercent(params.cinPrevalence, 0)}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -82,19 +74,19 @@ export default function ScenarioResults() {
                     </tr>
                     <tr>
                       <th>Percent screening coverage</th>
-                      <td className="text-end">{asPercent(params.percentScreened)}</td>
+                      <td className="text-end">{asPercent(params.percentScreened, 0)}</td>
                     </tr>
                     <tr>
                       <th>Percent of screen positives with triage test</th>
-                      <td className="text-end">{asPercent(params.percentTriaged)}</td>
+                      <td className="text-end">{asPercent(params.percentTriaged, 0)}</td>
                     </tr>
                     <tr>
                       <th>Percent of triage test positives with diagnostic test</th>
-                      <td className="text-end">{asPercent(params.percentDiagnosticTriaged)}</td>
+                      <td className="text-end">{asPercent(params.percentDiagnosticTriaged, 0)}</td>
                     </tr>
                     <tr>
                       <th>Percent of diagnostic test positives treated</th>
-                      <td className="text-end">{asPercent(params.percentTreated)}</td>
+                      <td className="text-end">{asPercent(params.percentTreated, 0)}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -113,11 +105,11 @@ export default function ScenarioResults() {
                     </tr>
                     <tr>
                       <th className="ps-3">Screening test sensitivity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.screeningTestSensitivity)}</td>
+                      <td className="text-end">{asPercent(params.screeningTestSensitivity, 0)}</td>
                     </tr>
                     <tr>
                       <th className="ps-3">Screening test specificity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.screeningTestSpecificity)}</td>
+                      <td className="text-end">{asPercent(params.screeningTestSpecificity, 0)}</td>
                     </tr>
 
                     <tr  className="table-light">
@@ -126,11 +118,11 @@ export default function ScenarioResults() {
                     </tr>
                     <tr>
                       <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.triageTestSensitivity)}</td>
+                      <td className="text-end">{asPercent(params.triageTestSensitivity, 0)}</td>
                     </tr>
                     <tr>
                       <th className="ps-3">Triage or diagnostic test specificity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.triageTestSpecificity)}</td>
+                      <td className="text-end">{asPercent(params.triageTestSpecificity, 0)}</td>
                     </tr>
 
                     <tr  className="table-light">
@@ -139,11 +131,11 @@ export default function ScenarioResults() {
                     </tr>
                     <tr>
                       <th className="ps-3">Diagnostic test sensitivity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.diagnosticTestSensitivity)}</td>
+                      <td className="text-end">{asPercent(params.diagnosticTestSensitivity, 0)}</td>
                     </tr>
                     <tr>
                       <th className="ps-3">Diagnostic test specificity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.diagnosticTestSpecificity)}</td>
+                      <td className="text-end">{asPercent(params.diagnosticTestSpecificity, 0)}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -299,16 +291,8 @@ export default function ScenarioResults() {
                         <td className="text-end">{params.populationSize}</td>
                       </tr>
                       <tr>
-                        <th>Prevalence of carcinogenic HPV infection</th>
-                        <td className="text-end">{params.hpvCancerPrevalence}</td>
-                      </tr>
-                      <tr>
-                        <th>Prevalence of HPV16/18</th>
-                        <td className="text-end">{params.hpvPrevalence}</td>
-                      </tr>
-                      <tr>
-                        <th>Prevalence of CIN2 or worse</th>
-                        <td className="text-end">{params.cinPrevalence}</td>
+                        <th>Prevalence of CIN2/3</th>
+                        <td className="text-end">{asPercent(params.cinPrevalence)}</td>
                       </tr>
 
                       <tr className="table-info">
@@ -463,7 +447,7 @@ export default function ScenarioResults() {
             Back to Scenario
           </Link>
           <Button onClick={exportResults} className="ms-2" variant="primary">Export Results</Button>
-          <Button onClick={saveScenario} className="ms-2" variant="primary">Save Scenario</Button>
+          <Button onClick={saveScenario} className="ms-2" variant="primary">Download Scenario</Button>
         </div>
       </Container>
     </div>
