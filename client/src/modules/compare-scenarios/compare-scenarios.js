@@ -23,8 +23,9 @@ export default function CompareScenarios() {
       try {
         for (const file of files) {
           let scenario = JSON.parse(await readFile(file));
-          scenario.name = file.name.replace(/.scenario$/, "");
+          scenario.name = file.name.replace(/.scenario$/i, "");
           scenario.results = runModel(scenario);
+          console.log(scenario);
           setScenarios((scenarios) => [...scenarios, scenario]);
         }
       }
@@ -140,13 +141,13 @@ export default function CompareScenarios() {
                       <tr>
                         <th>Percent precancers treated</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentPrecancersTreated}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentPrecancersTreated)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th>Percent healthy over-treated</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentHealthyOvertreated}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentHealthyOvertreated)}</td>
                         ))}
                       </tr>
                     </tbody>
@@ -163,55 +164,55 @@ export default function CompareScenarios() {
                       <tr>
                         <th>Missed due to no screening</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index} title={results.numberMissedDueToNoScreening}>{results.percentMissedDueToNoScreening}%</td>
+                          <td className="text-end" key={index} title={results.numberMissedDueToNoScreening}>{asPercent(results.percentMissedDueToNoScreening)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th>Missed due to sensitivity of screening test</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfScreeningTest}>{results.percentMissedDueToSensitivityOfScreeningTest}% </td>
+                          <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfScreeningTest}>{asPercent(results.percentMissedDueToSensitivityOfScreeningTest)} </td>
                         ))}
                       </tr>
 
                       <tr>
                         <th>Missed due to loss at triage</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index} title={results.numberMissedDueToLossAtTriage}>{results.percentMissedDueToLossAtTriage}% </td>
+                          <td className="text-end" key={index} title={results.numberMissedDueToLossAtTriage}>{asPercent(results.percentMissedDueToLossAtTriage)} </td>
                         ))}
                       </tr>
 
                       <tr>
                         <th>Missed due to sensitivity of triage test</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfTriageTest}>{results.percentMissedDueToSensitivityOfTriageTest}% </td>
+                          <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfTriageTest}>{asPercent(results.percentMissedDueToSensitivityOfTriageTest)} </td>
                         ))}
                       </tr>
 
                       <tr>
                         <th>Missed due to loss at diagnosis</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index} title={results.numberMissedDueToLossAtDiagnosticTriage}>{results.percentMissedDueToLossAtDiagnosticTriage}% </td>
+                          <td className="text-end" key={index} title={results.numberMissedDueToLossAtDiagnosticTriage}>{asPercent(results.percentMissedDueToLossAtDiagnosticTriage)} </td>
                         ))}
                       </tr>
 
                       <tr>
                         <th>Missed due to sensitivity of diagnostic test</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfDiagnosticTriageTest}>{results.percentMissedDueToSensitivityOfDiagnosticTriageTest}% </td>
+                          <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfDiagnosticTriageTest}>{asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest)} </td>
                         ))}
                       </tr>
 
                       <tr>
                         <th>Missed due to loss at treatment</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index} title={results.numberMissedDueToLossAtTreatment}>{results.percentMissedDueToLossAtTreatment}% </td>
+                          <td className="text-end" key={index} title={results.numberMissedDueToLossAtTreatment}>{asPercent(results.percentMissedDueToLossAtTreatment)} </td>
                         ))}
                       </tr>
 
                       <tr>
                         <th>Pre-cancers missed</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index} title={results.numberPrecancersMissed}>{results.percentPrecancersMissed}% </td>
+                          <td className="text-end" key={index} title={results.numberPrecancersMissed}>{asPercent(results.percentPrecancersMissed)} </td>
                         ))}
                       </tr>
                     </tbody>
@@ -263,108 +264,108 @@ export default function CompareScenarios() {
                     <tbody>
                       <tr>
                         <th>Target population size of screen-eligible women</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{form.populationSize}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{params.populationSize}</td>
                         ))}
                       </tr>
                       <tr>
                         <th>Prevalence of carcinogenic HPV infection</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{form.hpvCancerPrevalence}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{params.hpvCancerPrevalence}</td>
                         ))}
                       </tr>
                       <tr>
                         <th>Prevalence of HPV16/18</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{form.hpvPrevalence}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{params.hpvPrevalence}</td>
                         ))}
                       </tr>
                       <tr>
                         <th>Prevalence of CIN2 or worse</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{form.cinPrevalence}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{params.cinPrevalence}</td>
                         ))}
                       </tr>
 
                       <tr className="table-info">
                         <th>Screening test chosen</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asLabel(form.screeningTest, screeningTests)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asLabel(params.screeningTest, screeningTests)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th className="ps-3">Screening coverage</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.percentScreened)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.percentScreened)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th className="ps-3">Screening test sensitivity for CIN2/3</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.screeningTestSensitivity)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.screeningTestSensitivity)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th className="ps-3">Screening test specificity for CIN2/3</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.screeningTestSpecificity)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.screeningTestSpecificity)}</td>
                         ))}
                       </tr>
 
                       <tr className="table-info">
                         <th>Triage or diagnostic test chosen</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asLabel(form.triageTest, triageTests)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asLabel(params.triageTest, triageTests)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th className="ps-3">Triage or diagnostic test attendance</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.percentTriaged)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.percentTriaged)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.triageTestSensitivity)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.triageTestSensitivity)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th className="ps-3">Triage or diagnostic test specificity for CIN2/3</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.triageTestSpecificity)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.triageTestSpecificity)}</td>
                         ))}
                       </tr>
 
                       <tr className="table-info">
                         <th>Diagnostic test chosen</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asLabel(form.diagnosticTest, diagnosticTests)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asLabel(params.diagnosticTest, diagnosticTests)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th className="ps-3">Diagnostic test attendance</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.percentDiagnosticTriaged)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.percentDiagnosticTriaged)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th className="ps-3">Diagnostic test sensitivity for CIN2/3</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.diagnosticTestSensitivity)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.diagnosticTestSensitivity)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th className="ps-3">Diagnostic test specificity for CIN2/3</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.diagnosticTestSpecificity)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.diagnosticTestSpecificity)}</td>
                         ))}
                       </tr>
 
                       <tr className="table-info">
                         <th>Treatment attendance</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.percentTreated)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.percentTreated)}</td>
                         ))}
                       </tr>
                     </tbody>
@@ -380,69 +381,69 @@ export default function CompareScenarios() {
                     <tbody>
                       <tr className="table-danger">
                         <th>Pre-cancers treated</th>
-                        {scenarios.map((form, index) => (
-                          <td className="text-end" key={index}>{asPercent(form.percentTreated)}</td>
+                        {scenarios.map((params, index) => (
+                          <td className="text-end" key={index}>{asPercent(params.percentTreated)}</td>
                         ))}
                       </tr>
                       <tr className="table-danger">
                         <th>Pre-cancers missed</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentPrecancersMissed}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentPrecancersMissed)}</td>
                         ))}
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to no screening</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentMissedDueToNoScreening}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentMissedDueToNoScreening)}</td>
                         ))}
                       </tr>
                       <tr>
                         <th className="ps-3">Missed due to sensitivity of screening test</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentMissedDueToSensitivityOfScreeningTest}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentMissedDueToSensitivityOfScreeningTest)}</td>
                         ))}
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to loss at triage</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentMissedDueToLossAtTriage}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentMissedDueToLossAtTriage)}</td>
                         ))}
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to sensitivity of triage test</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentMissedDueToSensitivityOfTriageTest}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentMissedDueToSensitivityOfTriageTest)}</td>
                         ))}
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to loss at diagnosis</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentMissedDueToLossAtDiagnosticTriage}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentMissedDueToLossAtDiagnosticTriage)}</td>
                         ))}
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to sensitivity of diagnostic test</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentMissedDueToSensitivityOfDiagnosticTriageTest}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest)}</td>
                         ))}
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to loss at treatment</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentMissedDueToLossAtTreatment}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentMissedDueToLossAtTreatment)}</td>
                         ))}
                       </tr>
 
                       <tr className="bg-light">
                         <th>Percent healthy over-treated</th>
                         {scenarios.map(({results}, index) => (
-                          <td className="text-end" key={index}>{results.percentHealthyOvertreated}%</td>
+                          <td className="text-end" key={index}>{asPercent(results.percentHealthyOvertreated)}</td>
                         ))}
                       </tr>
                     </tbody>
