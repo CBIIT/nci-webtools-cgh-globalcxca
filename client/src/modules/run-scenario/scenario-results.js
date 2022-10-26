@@ -1,5 +1,6 @@
 import { useRecoilValue } from "recoil";
 import { Link, Navigate } from "react-router-dom";
+import { saveAs } from "file-saver";
 import { formState, resultsState } from "./state";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
@@ -8,11 +9,17 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 import { scenarios, asLabel, asPercent, screeningTests, triageTests, diagnosticTests } from "./models";
 
 export default function ScenarioResults() {
   const form = useRecoilValue(formState);
   const results = useRecoilValue(resultsState);
+
+  function saveScenario() {
+    const scenario = new Blob([JSON.stringify(form)], {type: "text/plain;charset=utf-8"});
+    saveAs(scenario, `${form.scenario}.scenario`);
+  }
 
   if (!form || !results) {
     return <Navigate to="/run-scenario" />;
@@ -29,7 +36,7 @@ export default function ScenarioResults() {
           <Card.Body>
             <Row>
               <Col lg={6}>
-                <Table hover>
+                <Table hover responsive>
                   <thead className="bg-info text-light">
                     <tr>
                       <th colSpan={2}>Epidemiological Context</th>
@@ -55,7 +62,7 @@ export default function ScenarioResults() {
                   </tbody>
                 </Table>
 
-                <Table hover>
+                <Table hover responsive>
                   <thead className="bg-info text-light">
                     <tr>
                       <th colSpan={2}>Participation in Health Services</th>
@@ -86,7 +93,7 @@ export default function ScenarioResults() {
                 </Table>
               </Col>
               <Col lg={6}>
-                <Table hover>
+                <Table hover responsive>
                   <thead className="bg-info text-light">
                     <tr>
                       <th colSpan={2}>Screening and Treatment Characteristics</th>
@@ -153,7 +160,7 @@ export default function ScenarioResults() {
             <Card.Body>
               <Tab.Content>
                 <Tab.Pane eventKey="results">
-                  <Table hover>
+                  <Table hover responsive>
                     <thead className="bg-info text-light">
                       <tr>
                         <th colSpan={2}>Target</th>
@@ -171,7 +178,7 @@ export default function ScenarioResults() {
                     </tbody>
                   </Table>
 
-                  <Table hover>
+                  <Table hover responsive>
                     <thead className="bg-warning text-light">
                       <tr>
                         <th colSpan={2}>IMPACT on Disease</th>
@@ -189,7 +196,7 @@ export default function ScenarioResults() {
                     </tbody>
                   </Table>
 
-                  <Table hover>
+                  <Table hover responsive>
                     <thead className="bg-warning text-light">
                       <tr>
                         <th colSpan={3}>Sources of missed PRECANCERS</th>
@@ -245,7 +252,7 @@ export default function ScenarioResults() {
                     </tbody>
                   </Table>
 
-                  <Table hover>
+                  <Table hover responsive>
                     <thead className="bg-warning text-light">
                       <tr>
                         <th colSpan={2}>IMPACT on Resources</th>
@@ -272,7 +279,7 @@ export default function ScenarioResults() {
                   </Table>
                 </Tab.Pane>
                 <Tab.Pane eventKey="summary">
-                  <Table hover>
+                  <Table hover responsive>
                     <thead>
                       <tr className="bg-info text-light">
                         <th>Assumptions</th>
@@ -355,7 +362,7 @@ export default function ScenarioResults() {
                     </tbody>
                   </Table>
 
-                  <Table hover>
+                  <Table hover responsive>
                     <thead>
                       <tr className="bg-danger text-light">
                         <th>Annual Impact</th>
@@ -413,7 +420,7 @@ export default function ScenarioResults() {
                     </tbody>
                   </Table>
 
-                  <Table hover>
+                  <Table hover responsive>
                     <thead>
                       <tr className="bg-success text-light">
                         <th colSpan={2}>Annual Resource Requirements</th>
@@ -448,6 +455,7 @@ export default function ScenarioResults() {
           <Link className="btn btn-outline-primary text-decoration-none" to="/run-scenario">
             Back to Scenario
           </Link>
+          <Button onClick={saveScenario} className="ms-2" variant="primary">Save Scenario</Button>
         </div>
       </Container>
     </div>
