@@ -1,4 +1,5 @@
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState, useResetRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
@@ -6,15 +7,25 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
-import { formState } from "./state";
-import { runModel, scenarios, tests } from "./models";
+import { defaultFormState, formState, resultsState } from "./state";
+import { runModel, scenarios, tests, screeningTests, triageTests, diagnosticTests } from "./models";
 
 export default function RunScenarios() {
   const [form, setForm] = useRecoilState(formState);
   const resetForm = useResetRecoilState(formState);
+  const setResults = useSetRecoilState(resultsState);
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
+
+    if (name === "scenario") {
+      setForm({
+        ...defaultFormState,
+        scenario: value,
+      });
+      return;
+    }
 
     if (name === "screeningTest") {
       setForm((prevForm) => ({
@@ -48,9 +59,10 @@ export default function RunScenarios() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(form);
     const results = runModel(form);
-    console.log(results);
+    setResults(results);
+    window.scrollTo(0, 0);
+    navigate("results");
   }
 
   function handleReset(event) {
@@ -299,10 +311,7 @@ export default function RunScenarios() {
                         <option value="" hidden>
                           No test chosen
                         </option>
-                        <option value="pap">Pap</option>
-                        <option value="ivaa">VIA</option>
-                        <option value="hpv">HPV</option>
-                        <option value="hpv16or18">HPV16/18</option>
+                        {screeningTests.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
                       </Form.Select>
                     </Col>
                   </Form.Group>
@@ -356,11 +365,7 @@ export default function RunScenarios() {
                             <option value="" hidden>
                               No test chosen
                             </option>
-                            <option value="pap">Pap</option>
-                            <option value="ivaa">VIA</option>
-                            <option value="hpv16or18">HPV16/18</option>
-                            <option value="colposcopicImpression">Coloscopic impression</option>
-                            <option value="colposcopyWithBiopsy">Colposcopy with biopsy</option>
+                            {triageTests.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
                           </Form.Select>
                         </Col>
                       </Form.Group>
@@ -416,8 +421,7 @@ export default function RunScenarios() {
                             <option value="" hidden>
                               No test chosen
                             </option>
-                            <option value="colposcopicImpression">Coloscopic impression</option>
-                            <option value="colposcopyOrBiopsy">Colposcopy with biopsy</option>
+                            {diagnosticTests.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
                           </Form.Select>
                         </Col>
                       </Form.Group>
