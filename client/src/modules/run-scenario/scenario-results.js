@@ -30,11 +30,14 @@ export default function ScenarioResults() {
   async function exportResults() {
     // we need to allow google translate time to translate the page
     // before we export it to pdf.  This is a hack to allow that to happen.
-    setActiveTab("results");
-    await new Promise(resolve => setTimeout(resolve, 100));
-    setActiveTab("summary");
-    await new Promise(resolve => setTimeout(resolve, 100));
-    setActiveTab("results");
+    const defaultTab = activeTab;
+    if (activeTab === "results") {
+      setActiveTab("summary");
+    } else if (activeTab === "summary") {
+      setActiveTab("results");
+    }
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    setActiveTab(defaultTab);
 
     const filename = `${params.scenario}.pdf`;
     const nodes = Array.from(document.querySelectorAll('[data-export]'));

@@ -55,11 +55,14 @@ export default function CompareScenarios() {
 
   async function exportResults() {
     // allow google translate time to translate each tab
-    setActiveTab("results");
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    setActiveTab("summary");
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    setActiveTab("results");
+    const defaultTab = activeTab;
+    if (activeTab === "results") {
+      setActiveTab("summary");
+    } else if (activeTab === "summary") {
+      setActiveTab("results");
+    }
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    setActiveTab(defaultTab);
 
     const filename = `ScenarioComparison.pdf`;
     const nodes = Array.from(document.querySelectorAll("[data-export]"));
