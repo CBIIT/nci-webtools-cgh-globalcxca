@@ -10,8 +10,9 @@ import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { paramsState, resultsState } from "./state";
-
-import { scenarios, asLabel, asPercent, screeningTests, triageTests, diagnosticTests } from "./models";
+import { scenarios, screeningTests, triageTests, diagnosticTests } from "../../services/models";
+import { exportPdf } from "../../services/pdf-utils";
+import { asLabel, asPercent } from "../../services/formatters";
 
 export default function ScenarioResults() {
   const params = useRecoilValue(paramsState);
@@ -24,8 +25,10 @@ export default function ScenarioResults() {
     saveAs(new Blob([contents]), filename, { type });
   }
 
-  async function exportResults() {
-
+  function exportResults() {
+    const filename = `${params.scenario}.pdf`;
+    const nodes = Array.from(document.querySelectorAll('[data-export]'));
+    exportPdf(filename, nodes);
   }
 
   if (!params || !results) {
@@ -37,16 +40,20 @@ export default function ScenarioResults() {
       <Container>
         <Card className="mb-4">
           <Card.Header>
-            <Card.Title>Scenario: {asLabel(params.scenario, scenarios)}</Card.Title>
+            <Card.Title data-export>
+              Scenario: {asLabel(params.scenario, scenarios)}
+              </Card.Title>
             <Card.Text className="small text-muted">User Parameters</Card.Text>
           </Card.Header>
           <Card.Body>
             <Row>
               <Col lg={6}>
-                <Table hover responsive>
-                  <thead className="table-info">
-                    <tr>
-                      <th colSpan={2}>Epidemiological Context</th>
+                <Table hover responsive data-export>
+                  <thead>
+                    <tr className="table-info">
+                      <th>Epidemiological Context</th>
+                      {/* Placeholder th simplifies pdf export (consistent row lengths) */}
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -61,10 +68,11 @@ export default function ScenarioResults() {
                   </tbody>
                 </Table>
 
-                <Table hover responsive>
-                  <thead className="table-info">
-                    <tr>
-                      <th colSpan={2}>Participation in Health Services</th>
+                <Table hover responsive data-export>
+                  <thead>
+                    <tr className="table-info">
+                      <th>Participation in Health Services</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -92,14 +100,15 @@ export default function ScenarioResults() {
                 </Table>
               </Col>
               <Col lg={6}>
-                <Table hover responsive>
-                  <thead className="table-info">
-                    <tr>
-                      <th colSpan={2}>Screening and Treatment Characteristics</th>
-                    </tr>
+                <Table hover responsive data-export>
+                  <thead>
+                      <tr className="table-info">
+                        <th>Screening and Treatment Characteristics</th>
+                        <th></th>
+                      </tr>
                   </thead>
                   <tbody>
-                    <tr  className="table-light">
+                    <tr className="table-light">
                       <th>Screening test chosen</th>
                       <td className="text-end">{asLabel(params.screeningTest, screeningTests)}</td>
                     </tr>
@@ -144,6 +153,9 @@ export default function ScenarioResults() {
           </Card.Body>
         </Card>
 
+        {/* pdf page break */}
+        <hr className="d-none" data-export />
+
         <Tab.Container id="results-tabs" defaultActiveKey="results">
           <Card className="mb-4">
             <Card.Header>
@@ -159,91 +171,95 @@ export default function ScenarioResults() {
             <Card.Body>
               <Tab.Content>
                 <Tab.Pane eventKey="results" mountOnEnter={false} unmountOnExit={false} >
-                  <Table hover responsive>
-                    <thead className="bg-info text-light">
-                      <tr>
-                        <th colSpan={2}>Target</th>
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-info text-light">
+                        <th>Target</th>
+                        <th></th>
                       </tr>
                     </thead>
-                    <tbody className="table-info">
-                      <tr>
+                    <tbody>
+                      <tr className="table-info">
                         <th>Healthy women targeted for screening</th>
                         <td className="text-end">{results.healthyWomenTargetedForScreening}</td>
                       </tr>
-                      <tr>
+                      <tr className="table-info">
                         <th>Precancers targeted for screening</th>
                         <td className="text-end">{results.precancersTargetedForScreening}</td>
                       </tr>
                     </tbody>
                   </Table>
 
-                  <Table hover responsive>
-                    <thead className="bg-warning text-light">
-                      <tr>
-                        <th colSpan={2}>IMPACT on Disease</th>
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr  className="bg-warning text-light">
+                        <th>IMPACT on Disease</th>
+                        <th></th>
                       </tr>
                     </thead>
-                    <tbody className="table-warning">
-                      <tr>
+                    <tbody>
+                      <tr className="table-warning">
                         <th>Percent precancers treated</th>
                         <td className="text-end">{asPercent(results.percentPrecancersTreated)}</td>
                       </tr>
-                      <tr>
+                      <tr className="table-warning">
                         <th>Percent healthy over-treated</th>
                         <td className="text-end">{asPercent(results.percentHealthyOvertreated)}</td>
                       </tr>
                     </tbody>
                   </Table>
 
-                  <Table hover responsive>
-                    <thead className="bg-warning text-light">
-                      <tr>
-                        <th colSpan={3}>Sources of missed PRECANCERS</th>
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-warning text-light">
+                        <th>Sources of missed PRECANCERS</th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </thead>
-                    <tbody className="table-warning">
-                      <tr>
+                    <tbody>
+                      <tr className="table-warning">
                         <th>Missed due to no screening</th>
                         <td className="text-end">{asPercent(results.percentMissedDueToNoScreening)}</td>
                         <td className="text-end">{results.numberMissedDueToNoScreening}</td>
                       </tr>
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to sensitivity of screening test</th>
                         <td className="text-end">{asPercent(results.percentMissedDueToSensitivityOfScreeningTest)}</td>
                         <td className="text-end">{results.numberMissedDueToSensitivityOfScreeningTest}</td>
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to loss at triage</th>
                         <td className="text-end">{asPercent(results.percentMissedDueToLossAtTriage)}</td>
                         <td className="text-end">{results.numberMissedDueToLossAtTriage}</td>
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to sensitivity of triage test</th>
                         <td className="text-end">{asPercent(results.percentMissedDueToSensitivityOfTriageTest)}</td>
                         <td className="text-end">{results.numberMissedDueToSensitivityOfTriageTest}</td>
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to loss at diagnosis</th>
                         <td className="text-end">{asPercent(results.percentMissedDueToLossAtDiagnosticTriage)}</td>
                         <td className="text-end">{results.numberMissedDueToLossAtDiagnosticTriage}</td>
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to sensitivity of diagnostic test</th>
                         <td className="text-end">{asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest)}</td>
                         <td className="text-end">{results.numberMissedDueToSensitivityOfDiagnosticTriageTest}</td>
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to loss at treatment</th>
                         <td className="text-end">{asPercent(results.percentMissedDueToLossAtTreatment)}</td>
                         <td className="text-end">{results.numberMissedDueToLossAtTreatment}</td>
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Pre-cancers missed</th>
                         <td className="text-end">{asPercent(results.percentPrecancersMissed)}</td>
                         <td className="text-end">{results.numberPrecancersMissed}</td>
@@ -251,34 +267,37 @@ export default function ScenarioResults() {
                     </tbody>
                   </Table>
 
-                  <Table hover responsive>
-                    <thead className="bg-warning text-light">
-                      <tr>
-                        <th colSpan={2}>IMPACT on Resources</th>
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-warning text-light">
+                        <th>IMPACT on Resources</th>
+                        <th></th>
                       </tr>
                     </thead>
-                    <tbody className="table-warning">
-                      <tr>
+                    <tbody>
+                      <tr className="table-warning">
                         <th>Total needed to screen</th>
                         <td className="text-end">{results.totalNeededToScreen}</td>
                       </tr>
-                      <tr>
+                      <tr className="table-warning">
                         <th>Total needed to triage</th>
                         <td className="text-end">{results.totalNeededToTriage}</td>
                       </tr>
-                      <tr>
+                      <tr className="table-warning">
                         <th>Total needed to diagnose</th>
                         <td className="text-end">{results.totalNeededToDiagnosticTriage}</td>
                       </tr>
-                      <tr>
+                      <tr className="table-warning">
                         <th>Total needed to treat</th>
                         <td className="text-end">{results.totalNeededToTreat}</td>
                       </tr>
                     </tbody>
                   </Table>
+                  {/* page break */}
+                  <hr className="d-none" data-export />
                 </Tab.Pane>
-                <Tab.Pane eventKey="summary">
-                  <Table hover responsive>
+                <Tab.Pane eventKey="summary" mountOnEnter={false} unmountOnExit={false}>
+                  <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-info text-light">
                         <th>Assumptions</th>
@@ -353,7 +372,7 @@ export default function ScenarioResults() {
                     </tbody>
                   </Table>
 
-                  <Table hover responsive>
+                  <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-danger text-light">
                         <th>Annual Impact</th>
@@ -411,10 +430,11 @@ export default function ScenarioResults() {
                     </tbody>
                   </Table>
 
-                  <Table hover responsive>
+                  <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-success text-light">
-                        <th colSpan={2}>Annual Resource Requirements</th>
+                        <th>Annual Resource Requirements</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
