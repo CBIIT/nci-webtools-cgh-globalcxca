@@ -1,7 +1,28 @@
 import { atom } from "recoil";
-import { defaultParameters } from "./models";
 
-const debug = false;
+const useExample = false;
+
+export const exampleFormState = {
+  scenario: "ScreenTriageDiagnosticTestTreat",
+  populationSize: 20000,
+  screeningInterval: 5,
+  hpvCancerPrevalence: 0,
+  hpvPrevalence: 0,
+  cinPrevalence: 3,
+  percentScreened: 70,
+  percentTriaged: 50,
+  percentDiagnosticTriaged: 40,
+  percentTreated: 90,
+  screeningTest: "hpv",
+  screeningTestSensitivity: 90,
+  screeningTestSpecificity: 89,
+  triageTest: "pap",
+  triageTestSensitivity: 80,
+  triageTestSpecificity: 91,
+  diagnosticTest: "colposcopyWithBiopsy",
+  diagnosticTestSensitivity: 80,
+  diagnosticTestSpecificity: 85,
+}
 
 export const defaultFormState = {
 	scenario: "ScreenDiagnosticTestTreat",
@@ -23,12 +44,12 @@ export const defaultFormState = {
 	diagnosticTest: "",
 	diagnosticTestSensitivity: "",
 	diagnosticTestSpecificity: "",
-	...(debug && defaultParameters)
+	...(useExample && exampleFormState)
 }
 
 export const formState = atom({
 	key: "runScenarios.formState",
-	default: defaultFormState
+	default:  defaultFormState
 });
 
 export const paramsState = atom({
