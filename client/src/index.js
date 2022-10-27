@@ -18,5 +18,5 @@ root.render(
   </StrictMode>
 );
 
-register();
+// register();
 reportWebVitals(console.log);
