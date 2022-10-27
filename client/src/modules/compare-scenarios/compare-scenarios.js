@@ -10,8 +10,10 @@ import Nav from "react-bootstrap/Nav";
 import Table from "react-bootstrap/Table";
 import Tab from "react-bootstrap/Tab";
 import { scenariosState } from "./state";
-import { readFile } from "./utils";
-import { asLabel, asPercent, screeningTests, triageTests, diagnosticTests, runModel } from "../run-scenario/models";
+import { readFile } from "../../services/file-utils";
+import { asLabel, asPercent } from "../../services/formatters";
+import { screeningTests, triageTests, diagnosticTests, runModel } from "../../services/models";
+import { exportPdf } from "../../services/pdf-utils";
 
 export default function CompareScenarios() {
   const [scenarios, setScenarios] = useRecoilState(scenariosState);
@@ -48,6 +50,17 @@ export default function CompareScenarios() {
 
   function removeScenario(index) {
     setScenarios((scenarios) => scenarios.filter((_, i) => i !== index));
+  }
+
+  function exportResults() {
+    const filename = `ScenarioComparison.pdf`;
+    const nodes = Array.from(document.querySelectorAll('[data-export]'));
+    exportPdf(filename, nodes, {
+      pageSize: {
+        width: 400 + (200 * scenarios.length),
+        height: 800
+      },
+    });
   }
 
   return (
@@ -107,22 +120,22 @@ export default function CompareScenarios() {
             </Card.Header>
             <Card.Body>
               <Tab.Content>
-                <Tab.Pane eventKey="results">
-                  <Table hover responsive>
-                    <thead className="bg-info text-light">
-                      <tr>
+                <Tab.Pane eventKey="results" mountOnEnter={false} unmountOnExit={false}>
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-info text-light">
                         <th>Target</th>
                         {scenarios.map((scenario, index) => <th key={index} className="text-end">{scenario.name}</th>)}
                       </tr>
                     </thead>
-                    <tbody className="table-info">
-                      <tr>
+                    <tbody>
+                      <tr className="table-info">
                         <th>Healthy women targeted for screening</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index}>{results.healthyWomenTargetedForScreening}</td>
                         ))}
                       </tr>
-                      <tr>
+                      <tr className="table-info">
                         <th>Precancers targeted for screening</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index}>{results.precancersTargetedForScreening}</td>
@@ -130,21 +143,21 @@ export default function CompareScenarios() {
                       </tr>
                     </tbody>
                   </Table>
-                  <Table hover responsive>
-                    <thead className="bg-warning text-light">
-                      <tr>
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-warning text-light">
                         <th>IMPACT on Disease</th>
                         {scenarios.map((scenario, index) => <th key={index} className="text-end">{scenario.name}</th>)}
                       </tr>
                     </thead>
-                    <tbody className="table-warning">
-                      <tr>
+                    <tbody>
+                      <tr className="table-warning">
                         <th>Percent precancers treated</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index}>{asPercent(results.percentPrecancersTreated)}</td>
                         ))}
                       </tr>
-                      <tr>
+                      <tr className="table-warning">
                         <th>Percent healthy over-treated</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index}>{asPercent(results.percentHealthyOvertreated)}</td>
@@ -153,63 +166,63 @@ export default function CompareScenarios() {
                     </tbody>
                   </Table>
 
-                  <Table hover responsive>
-                    <thead className="bg-warning text-light">
-                      <tr>
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-warning text-light">
                         <th>Sources of missed PRECANCERS</th>
                         {scenarios.map((scenario, index) => <th key={index} className="text-end">{scenario.name}</th>)}
                       </tr>
                     </thead>
-                    <tbody className="table-warning">
-                      <tr>
+                    <tbody>
+                      <tr className="table-warning">
                         <th>Missed due to no screening</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index} title={results.numberMissedDueToNoScreening}>{asPercent(results.percentMissedDueToNoScreening)}</td>
                         ))}
                       </tr>
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to sensitivity of screening test</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfScreeningTest}>{asPercent(results.percentMissedDueToSensitivityOfScreeningTest)} </td>
                         ))}
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to loss at triage</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index} title={results.numberMissedDueToLossAtTriage}>{asPercent(results.percentMissedDueToLossAtTriage)} </td>
                         ))}
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to sensitivity of triage test</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfTriageTest}>{asPercent(results.percentMissedDueToSensitivityOfTriageTest)} </td>
                         ))}
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to loss at diagnosis</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index} title={results.numberMissedDueToLossAtDiagnosticTriage}>{asPercent(results.percentMissedDueToLossAtDiagnosticTriage)} </td>
                         ))}
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to sensitivity of diagnostic test</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfDiagnosticTriageTest}>{asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest)} </td>
                         ))}
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Missed due to loss at treatment</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index} title={results.numberMissedDueToLossAtTreatment}>{asPercent(results.percentMissedDueToLossAtTreatment)} </td>
                         ))}
                       </tr>
 
-                      <tr>
+                      <tr className="table-warning">
                         <th>Pre-cancers missed</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index} title={results.numberPrecancersMissed}>{asPercent(results.percentPrecancersMissed)} </td>
@@ -218,33 +231,33 @@ export default function CompareScenarios() {
                     </tbody>
                   </Table>
 
-                  <Table hover responsive>
-                    <thead className="bg-warning text-light">
-                      <tr>
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-warning text-light">
                         <th>IMPACT on Resources</th>
                         {scenarios.map((scenario, index) => <th key={index} className="text-end">{scenario.name}</th>)}
                       </tr>
                     </thead>
-                    <tbody className="table-warning">
-                      <tr>
+                    <tbody>
+                      <tr className="table-warning">
                         <th>Total needed to screen</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index}>{results.totalNeededToScreen}</td>
                         ))}
                       </tr>
-                      <tr>
+                      <tr className="table-warning">
                         <th>Total needed to triage</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index}>{results.totalNeededToTriage}</td>
                         ))}
                       </tr>
-                      <tr>
+                      <tr className="table-warning">
                         <th>Total needed to diagnose</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index}>{results.totalNeededToDiagnosticTriage}</td>
                         ))}
                       </tr>
-                      <tr>
+                      <tr className="table-warning">
                         <th>Total needed to treat</th>
                         {scenarios.map(({results}, index) => (
                           <td className="text-end" key={index}>{results.totalNeededToTreat}</td>
@@ -252,9 +265,10 @@ export default function CompareScenarios() {
                       </tr>
                     </tbody>
                   </Table>
+                  <hr className="d-none" data-export />
                 </Tab.Pane>
-                <Tab.Pane eventKey="summary">
-                  <Table hover responsive>
+                <Tab.Pane eventKey="summary" mountOnEnter={false} unmountOnExit={false}>
+                  <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-info text-light">
                         <th>Assumptions</th>
@@ -359,7 +373,7 @@ export default function CompareScenarios() {
                     </tbody>
                   </Table>
 
-                  <Table hover responsive>
+                  <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-danger text-light">
                         <th>Annual Impact</th>
@@ -437,7 +451,7 @@ export default function CompareScenarios() {
                     </tbody>
                   </Table>
 
-                  <Table hover responsive>
+                  <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-success text-light">
                         <th>Annual Resource Requirements</th>
@@ -476,6 +490,10 @@ export default function CompareScenarios() {
             </Card.Body>
           </Card>
         </Tab.Container>}
+        
+        <div className="text-center">
+          <Button onClick={exportResults} className="ms-2" variant="primary">Export Results</Button>
+        </div>
         </Form>
       </Container>
     </div>
