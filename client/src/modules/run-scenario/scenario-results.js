@@ -13,10 +13,12 @@ import { paramsState, resultsState } from "./state";
 import { scenarios, screeningTests, triageTests, diagnosticTests } from "../../services/models";
 import { exportPdf } from "../../services/pdf-utils";
 import { asLabel, asPercent } from "../../services/formatters";
+import { useState } from "react";
 
 export default function ScenarioResults() {
   const params = useRecoilValue(paramsState);
   const results = useRecoilValue(resultsState);
+  const [activeTab, setActiveTab] = useState("results");
 
   function saveScenario() {
     const filename = `${params.scenario}.scenario`;
@@ -25,7 +27,15 @@ export default function ScenarioResults() {
     saveAs(new Blob([contents]), filename, { type });
   }
 
-  function exportResults() {
+  async function exportResults() {
+    // we need to allow google translate time to translate the page
+    // before we export it to pdf.  This is a hack to allow that to happen.
+    setActiveTab("results");
+    await new Promise(resolve => setTimeout(resolve, 100));
+    setActiveTab("summary");
+    await new Promise(resolve => setTimeout(resolve, 100));
+    setActiveTab("results");
+
     const filename = `${params.scenario}.pdf`;
     const nodes = Array.from(document.querySelectorAll('[data-export]'));
     exportPdf(filename, nodes);
@@ -156,7 +166,7 @@ export default function ScenarioResults() {
         {/* pdf page break */}
         <hr className="d-none" data-export />
 
-        <Tab.Container id="results-tabs" defaultActiveKey="results">
+        <Tab.Container id="results-tabs" activeKey={activeTab}>
           <Card className="mb-4">
             <Card.Header>
               <Nav variant="tabs">
