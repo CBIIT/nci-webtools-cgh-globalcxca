@@ -10,7 +10,8 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import { defaultFormState, formState, paramsState, resultsState } from "./state";
-import { runModel, scenarios, tests, screeningTests, triageTests, diagnosticTests, asNumber } from "./models";
+import { runModel, scenarios, tests, screeningTests, triageTests, diagnosticTests } from "../../services/models";
+import { asNumber } from "../../services/formatters";
 
 export default function RunScenarios() {
   const [form, setForm] = useRecoilState(formState);
