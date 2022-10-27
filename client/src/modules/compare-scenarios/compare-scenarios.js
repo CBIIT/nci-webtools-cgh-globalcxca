@@ -118,7 +118,7 @@ export default function CompareScenarios() {
           </Card>
 
           {scenarios.length > 0 && (
-            <Tab.Container id="results-tabs" activeKey={activeTab}>
+            <Tab.Container id="results-tabs" activeKey={activeTab}  onSelect={setActiveTab}>
               <Card className="mb-4">
                 <Card.Header>
                   <Nav variant="tabs">
