@@ -83,7 +83,7 @@ export default function CompareScenarios() {
           <Card className="mb-4">
             <Card.Header>
               <Card.Title>Compare Scenarios</Card.Title>
-              <Card.Text className="small text-muted">Please upload scenarios for comparison.</Card.Text>
+              <Card.Text className="small text-muted">Upload up to {limit} scenarios for comparison.</Card.Text>
             </Card.Header>
             <Card.Body className="p-0">
               <ListGroup variant="flush hover striped">
