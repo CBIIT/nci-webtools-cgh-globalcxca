@@ -23,11 +23,7 @@ export default function RunScenarios() {
   const navigate = useNavigate();
 
   function handleChange(event) {
-    let { name, type, value } = event.target;
-
-    if (value && type === "number") {
-      value = Math.floor(+value);
-    }
+    let { name, value } = event.target;
 
     if (name === "scenario") {
       setForm({
@@ -125,7 +121,7 @@ export default function RunScenarios() {
             </Card.Body>
           </Card>
 
-          <div className="small text-end text-muted mb-2">* All fields are required</div>
+          <div className="small text-end text-muted mb-2">All fields are required</div>
 
           <Card className="mb-4">
             <Card.Header>
