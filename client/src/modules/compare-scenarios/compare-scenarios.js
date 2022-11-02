@@ -354,7 +354,7 @@ export default function CompareScenarios() {
                           </thead>
                           <tbody>
                             <tr>
-                              <th>Target population size of screen-eligible women</th>
+                              <th>Number of people in target population for cervical screening</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end text-nowrap" key={index}>
                                   {params.populationSize?.toLocaleString(locale) ?? "N/A"}
@@ -362,7 +362,7 @@ export default function CompareScenarios() {
                               ))}
                             </tr>
                             <tr>
-                              <th>Prevalence of CIN2/3</th>
+                              <th>Prevalence of CIN2/3 in population for cervical screening</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end text-nowrap" key={index}>
                                   {asPercent(params.cinPrevalence) ?? "N/A"}
@@ -371,7 +371,7 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr className="table-info">
-                              <th>Screening test chosen</th>
+                              <th>Cervical screening test chosen</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end text-nowrap" key={index}>
                                   {asLabel(params.screeningTest, screeningTests) ?? "N/A"}
