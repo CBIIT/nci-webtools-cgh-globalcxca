@@ -54,15 +54,15 @@ export default function ScenarioResults() {
       <Container>
         <Card className="mb-4">
           <Card.Header>
-            <Card.Title data-export>Scenario: {asLabel(params.scenario, scenarios)}</Card.Title>
-            <Card.Text className="small text-muted">User Parameters</Card.Text>
+            <Card.Title data-export>{asLabel(params.scenario, scenarios)}</Card.Title>
+            <Card.Text className="small text-muted">Scenario Parameters</Card.Text>
           </Card.Header>
           <Card.Body>
             <Row>
               <Col lg={6}>
                 <Table hover responsive data-export>
                   <thead>
-                    <tr className="table-info">
+                    <tr className="bg-grey">
                       <th>Epidemiological Context</th>
                       {/* Placeholder th simplifies pdf export (consistent row lengths) */}
                       <th></th>
@@ -82,7 +82,7 @@ export default function ScenarioResults() {
 
                 <Table hover responsive data-export>
                   <thead>
-                    <tr className="table-info">
+                    <tr className="bg-grey">
                       <th>Participation in Health Services</th>
                       <th></th>
                     </tr>
@@ -114,7 +114,7 @@ export default function ScenarioResults() {
               <Col lg={6}>
                 <Table hover responsive data-export>
                   <thead>
-                    <tr className="table-info">
+                    <tr className="bg-grey">
                       <th>Screening and Treatment Characteristics</th>
                       <th></th>
                     </tr>
