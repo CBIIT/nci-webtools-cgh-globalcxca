@@ -110,10 +110,7 @@ export default function CompareScenarios() {
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>
-                  <label htmlFor="fileInput" className={[
-                    "btn btn-outline-primary",
-                    scenarios.length >= limit && "disabled"
-                  ].join(" ")}>
+                  <label htmlFor="fileInput" className={["btn btn-outline-primary", scenarios.length >= limit && "disabled"].join(" ")}>
                     Add Scenario
                   </label>
                   <input id="fileInput" type="file" onChange={addScenario} hidden accept=".scenario" multiple />
@@ -424,7 +421,7 @@ export default function CompareScenarios() {
                               <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.triageTestSensitivity)} ?? 'N/A'}
+                                  {asPercent(params.triageTestSensitivity) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -488,7 +485,7 @@ export default function CompareScenarios() {
                               {scenarios.map((scenario, index) => (
                                 <th key={index} className="text-end">
                                   {scenario.name} <br />
-                                  {asLabel(scenario.scenario, scenarios) ?? "N/A"}
+                                  {asLabel(scenario.scenario, scenarios)}
                                 </th>
                               ))}
                             </tr>
