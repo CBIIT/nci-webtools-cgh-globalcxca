@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import App from "./app";
-import Home from "./modules/home/home";
+// import Home from "./modules/home/home";
 import RunScenario from "./modules/run-scenario/run-scenario";
 import ScenarioResults from "./modules/run-scenario/scenario-results";
 import CompareScenarios from "./modules/compare-scenarios/compare-scenarios";
@@ -9,13 +9,13 @@ export const routes = [
   {
     element: <App />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-        title: "Home",
-        navbar: true,
-        end: true,
-      },
+      // {
+      //   path: "/",
+      //   element: <Home />,
+      //   title: "Home",
+      //   navbar: true,
+      //   end: true,
+      // },
       {
         path: "run-scenario",
         element: <RunScenario />,
@@ -39,7 +39,7 @@ export const routes = [
       },      
       {
         path: "*",
-        element: <Navigate to="/" />,
+        element: <Navigate to="/run-scenario" />,
         navbar: false,
       }
     ]
