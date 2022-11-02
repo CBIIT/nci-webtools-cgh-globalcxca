@@ -112,7 +112,7 @@ export default function RunScenarios() {
                       <Form.Check.Label
                         className={[
                           "form-label d-block text-center mb-2 my-lg-3 p-3 cursor-pointer rounded custom-card-radio",
-                          form.scenario === scenario.value ? "border-primary bg-white shadow" : "bg-light border-transparent",
+                          form.scenario === scenario.value ? "border-primary bg-white shadow fw-bold text-primary" : "bg-light border-transparent",
                         ].join(" ")}
                         htmlFor={scenario.value}
                       >
@@ -125,7 +125,7 @@ export default function RunScenarios() {
             </Card.Body>
           </Card>
 
-          <div className="text-end fw-semibold text-muted mb-2">* indicates required fields</div>
+          <div className="small text-end text-muted mb-2">* All fields are required</div>
 
           <Card className="mb-4">
             <Card.Header>
@@ -137,7 +137,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="populationSize">
                     <Form.Label column sm={8}>
-                      <span className="required">Target population size of screen-eligible women</span>
+                      <span >Target population size of screen-eligible women</span>
                       <OverlayTrigger
                         overlay={<Tooltip id="populationSize-help">Enter targeted number of people in the population eligible for cervical screening </Tooltip>}
                       >
@@ -161,7 +161,7 @@ export default function RunScenarios() {
                   </Form.Group>
                 </ListGroup.Item>
 
-                <ListGroup.Item>
+                {/* <ListGroup.Item>
                   <Form.Group as={Row} controlId="hpvCancerPrevalence">
                     <Form.Label column sm={8}>
                       <span>Prevalence of carcinogenic HPV infection</span>
@@ -215,12 +215,12 @@ export default function RunScenarios() {
                       </InputGroup>
                     </Col>
                   </Form.Group>
-                </ListGroup.Item>
+                </ListGroup.Item> */}
 
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="cinPrevalence">
                     <Form.Label column sm={8}>
-                      <span className="required">Prevalence of CIN2/3</span>
+                      <span >Prevalence of CIN2/3</span>
                       <OverlayTrigger
                         overlay={
                           <Tooltip id="cinPrevalence-help">
@@ -264,7 +264,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningInterval">
                     <Form.Label column sm={8}>
-                      <span className="required">Interval of cervical screening in years </span>
+                      <span >Interval of cervical screening in years </span>
                       <OverlayTrigger
                         overlay={
                           <Tooltip id="screeningInterval-help">
@@ -298,7 +298,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="percentScreened">
                     <Form.Label column sm={8}>
-                      <span className="required">Percent screening coverage</span>
+                      <span >Percent screening coverage</span>
                       <OverlayTrigger overlay={<Tooltip id="percentScreened-help">Enter a value between 0 and 100.</Tooltip>}>
                         <i className="ms-1 bi bi-question-circle"></i>
                       </OverlayTrigger>
@@ -327,7 +327,7 @@ export default function RunScenarios() {
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentTriaged">
                       <Form.Label column sm={8}>
-                        <span className="required">
+                        <span >
                           {form.scenario === "ScreenDiagnosticTestTreat" && <>Percent of screen positives with diagnostic test</>}
                           {form.scenario === "ScreenTriageDiagnosticTestTreat" && <>Percent of screen positives with triage test</>}
                         </span>
@@ -360,7 +360,7 @@ export default function RunScenarios() {
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentDiagnosticTriaged">
                       <Form.Label column sm={8}>
-                        <span className="required">Percent of triage test positives with diagnostic test</span>
+                        <span >Percent of triage test positives with diagnostic test</span>
                         <OverlayTrigger overlay={<Tooltip id="percentDiagnosticTriaged-help">Enter a value between 0 and 100.</Tooltip>}>
                           <i className="ms-1 bi bi-question-circle"></i>
                         </OverlayTrigger>
@@ -389,7 +389,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="percentTreated">
                     <Form.Label column sm={8}>
-                      <span className="required">
+                      <span >
                         {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>Diagnostic test positives treated</>}
                         {["ScreenTreat"].includes(form.scenario) && <>Screen test positives treated</>}
                       </span>
@@ -433,7 +433,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTest">
                     <Form.Label column sm={8}>
-                      <span className="required">Cervical screening test chosen</span>
+                      <span >Cervical screening test chosen</span>
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Select name="screeningTest" value={form.screeningTest} onChange={handleChange} required>
@@ -453,7 +453,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTestSensitivity">
                     <Form.Label column sm={8} className="ps-2 ps-sm-4">
-                      <span className="required">Screening test sensitivity for CIN2/3 (NIC2/3)</span>
+                      <span >Screening test sensitivity for CIN2/3 (NIC2/3)</span>
                       <OverlayTrigger overlay={<Tooltip id="screeningTestSensitivity-help">Enter a value between 0 and 100.</Tooltip>}>
                         <i className="ms-1 bi bi-question-circle"></i>
                       </OverlayTrigger>
@@ -481,7 +481,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTestSpecificity">
                     <Form.Label column sm={8} className="ps-2 ps-sm-4">
-                      <span className="required">Screening test specificity for CIN2/3 (NIC2/3)</span>
+                      <span >Screening test specificity for CIN2/3 (NIC2/3)</span>
                       <OverlayTrigger overlay={<Tooltip id="screeningTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
                         <i className="ms-1 bi bi-question-circle"></i>
                       </OverlayTrigger>
@@ -511,7 +511,7 @@ export default function RunScenarios() {
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="triageTest">
                         <Form.Label column sm={8}>
-                          <span className="required">Triage or diagnostic test chosen</span>
+                          <span >Triage or diagnostic test chosen</span>
                         </Form.Label>
                         <Col sm={4}>
                           <Form.Select name="triageTest" value={form.triageTest} onChange={handleChange} required>
@@ -531,7 +531,7 @@ export default function RunScenarios() {
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="triageTestSensitivity">
                         <Form.Label column sm={8} className="ps-2 ps-sm-4">
-                          <span className="required">Triage or diagnostic test sensitivity for CIN2/3 (NIC2/3)</span>
+                          <span >Triage or diagnostic test sensitivity for CIN2/3 (NIC2/3)</span>
                           <OverlayTrigger overlay={<Tooltip id="screeningTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
                             <i className="ms-1 bi bi-question-circle"></i>
                           </OverlayTrigger>
@@ -559,7 +559,7 @@ export default function RunScenarios() {
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="triageTestSpecificity">
                         <Form.Label column sm={8} className="ps-2 ps-sm-4">
-                          <span className="required">Triage or diagnostic test specificity for CIN2/3 (NIC2/3)</span>
+                          <span >Triage or diagnostic test specificity for CIN2/3 (NIC2/3)</span>
                           <OverlayTrigger overlay={<Tooltip id="screeningTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
                             <i className="ms-1 bi bi-question-circle"></i>
                           </OverlayTrigger>
@@ -591,7 +591,7 @@ export default function RunScenarios() {
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="diagnosticTest">
                         <Form.Label column sm={8}>
-                          <span className="required">Diagnostic test chosen</span>
+                          <span >Diagnostic test chosen</span>
                         </Form.Label>
                         <Col sm={4}>
                           <Form.Select name="diagnosticTest" value={form.diagnosticTest} onChange={handleChange} required>
@@ -611,7 +611,7 @@ export default function RunScenarios() {
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="diagnosticTestSensitivity">
                         <Form.Label column sm={8} className="ps-2 ps-sm-4">
-                          <span className="required">Diagnostic test sensitivity for CIN2/3 (NIC2/3)</span>
+                          <span >Diagnostic test sensitivity for CIN2/3 (NIC2/3)</span>
                           <OverlayTrigger overlay={<Tooltip id="diagnosticTestSensitivity-help">Enter a value between 0 and 100.</Tooltip>}>
                             <i className="ms-1 bi bi-question-circle"></i>
                           </OverlayTrigger>
@@ -639,7 +639,7 @@ export default function RunScenarios() {
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="diagnosticTestSpecificity">
                         <Form.Label column sm={8} className="ps-2 ps-sm-4">
-                          <span className="required">Diagnostic test specificity for CIN2/3 (NIC2/3)</span>
+                          <span >Diagnostic test specificity for CIN2/3 (NIC2/3)</span>
                           <OverlayTrigger overlay={<Tooltip id="diagnosticTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
                             <i className="ms-1 bi bi-question-circle"></i>
                           </OverlayTrigger>
@@ -672,7 +672,7 @@ export default function RunScenarios() {
             <Button type="submit" className="me-1 shadow" variant="primary">
               Submit
             </Button>
-            <Button type="reset" className="shadow" variant="danger">
+            <Button type="reset" className="shadow" variant="outline-primary">
               Reset
             </Button>
           </Form.Group>
