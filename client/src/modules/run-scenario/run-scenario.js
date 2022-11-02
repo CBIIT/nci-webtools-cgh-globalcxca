@@ -260,7 +260,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningInterval">
                     <Form.Label column sm={8}>
-                      <span >Interval of cervical screening in years </span>
+                      <span >Interval of cervical screening in years</span>
                       <OverlayTrigger
                         overlay={
                           <Tooltip id="screeningInterval-help">
@@ -319,13 +319,12 @@ export default function RunScenarios() {
                   </Form.Group>
                 </ListGroup.Item>
 
-                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
+                {["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentTriaged">
                       <Form.Label column sm={8}>
-                        <span >
-                          {form.scenario === "ScreenDiagnosticTestTreat" && <>Percent of screen positives with diagnostic test</>}
-                          {form.scenario === "ScreenTriageDiagnosticTestTreat" && <>Percent of screen positives with triage test</>}
+                        <span>
+                          Percent of screen positives with triage test
                         </span>
                         <OverlayTrigger overlay={<Tooltip id="percentTriaged-help">Enter a value between 0 and 100.</Tooltip>}>
                           <i className="ms-1 bi bi-question-circle"></i>
@@ -352,11 +351,14 @@ export default function RunScenarios() {
                   </ListGroup.Item>
                 )}
 
-                {["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
+                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentDiagnosticTriaged">
                       <Form.Label column sm={8}>
-                        <span >Percent of triage test positives with diagnostic test</span>
+                        <span>
+                            {["ScreenDiagnosticTestTreat"].includes(form.scenario) && <>Percent of screen test positives with diagnostic test</>}
+                            {["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>Percent of triage test positives with diagnostic test</>}
+                          </span>
                         <OverlayTrigger overlay={<Tooltip id="percentDiagnosticTriaged-help">Enter a value between 0 and 100.</Tooltip>}>
                           <i className="ms-1 bi bi-question-circle"></i>
                         </OverlayTrigger>
@@ -386,8 +388,8 @@ export default function RunScenarios() {
                   <Form.Group as={Row} controlId="percentTreated">
                     <Form.Label column sm={8}>
                       <span >
-                        {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>Diagnostic test positives treated</>}
-                        {["ScreenTreat"].includes(form.scenario) && <>Screen test positives treated</>}
+                        {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>Percent of diagnostic test positives treated</>}
+                        {["ScreenTreat"].includes(form.scenario) && <>Percent of screen test positives treated</>}
                       </span>
                       <OverlayTrigger overlay={<Tooltip id="percentDiagnosticTriaged-help">Enter a value between 0 and 100.</Tooltip>}>
                         <i className="ms-1 bi bi-question-circle"></i>
