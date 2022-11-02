@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { Link, Navigate } from "react-router-dom";
 import { saveAs } from "file-saver";
@@ -10,16 +11,17 @@ import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { paramsState, resultsState } from "./state";
+import { localeState } from "../../app.state";
 import { scenarios, screeningTests, triageTests, diagnosticTests } from "../../services/models";
 import { getTimestamp } from "../../services/file-utils";
 import { exportPdf } from "../../services/pdf-utils";
 import { asLabel, asPercent } from "../../services/formatters";
-import { useState } from "react";
 
 export default function ScenarioResults() {
   const params = useRecoilValue(paramsState);
   const results = useRecoilValue(resultsState);
   const [activeTab, setActiveTab] = useState("results");
+  const locale = useRecoilValue(localeState);
 
   function saveScenario() {
     const filename = `${params.scenario}_${getTimestamp()}.scenario`;
@@ -71,11 +73,11 @@ export default function ScenarioResults() {
                   <tbody>
                     <tr>
                       <th>Target population size of screen-eligible women</th>
-                      <td className="text-end">{params.populationSize?.toLocaleString() ?? "N/A"}</td>
+                      <td className="text-end text-nowrap">{params.populationSize?.toLocaleString(locale) ?? "N/A"}</td>
                     </tr>
                     <tr>
                       <th>Prevalence of CIN2/3</th>
-                      <td className="text-end">{asPercent(params.cinPrevalence, 0) ?? "N/A"}</td>
+                      <td className="text-end text-nowrap">{asPercent(params.cinPrevalence, 0) ?? "N/A"}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -90,23 +92,29 @@ export default function ScenarioResults() {
                   <tbody>
                     <tr>
                       <th>Interval of cervical screening in years</th>
-                      <td className="text-end">{params.screeningInterval?.toLocaleString() ?? "N/A"}</td>
+                      <td className="text-end text-nowrap">{params.screeningInterval?.toLocaleString(locale) ?? "N/A"}</td>
                     </tr>
                     <tr>
                       <th>Percent screening coverage</th>
-                      <td className="text-end">{asPercent(params.percentScreened, 0) ?? "N/A"}</td>
+                      <td className="text-end text-nowrap">{asPercent(params.percentScreened, 0) ?? "N/A"}</td>
                     </tr>
-                    <tr>
+                    {["ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <tr>
                       <th>Percent of screen positives with triage test</th>
-                      <td className="text-end">{asPercent(params.percentTriaged, 0) ?? "N/A"}</td>
-                    </tr>
+                      <td className="text-end text-nowrap">{asPercent(params.percentTriaged, 0) ?? "N/A"}</td>
+                    </tr>}
+                    {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <tr>
+                      <th>
+                        {["ScreenDiagnosticTestTreat"].includes(params.scenario) && <>Percent of screen test positives with diagnostic test</>}
+                        {["ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <>Percent of triage test positives with diagnostic test</>}
+                        </th>
+                      <td className="text-end text-nowrap">{asPercent(params.percentDiagnosticTriaged, 0) ?? "N/A"}</td>
+                    </tr>}
                     <tr>
-                      <th>Percent of triage test positives with diagnostic test</th>
-                      <td className="text-end">{asPercent(params.percentDiagnosticTriaged, 0) ?? "N/A"}</td>
-                    </tr>
-                    <tr>
-                      <th>Percent of diagnostic test positives treated</th>
-                      <td className="text-end">{asPercent(params.percentTreated, 0) ?? "N/A"}</td>
+                      <th>
+                        {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <>Percent of diagnostic test positives treated</>}
+                        {["ScreenTreat"].includes(params.scenario) && <>Percent of screen test positives treated</>}
+                      </th>
+                      <td className="text-end text-nowrap">{asPercent(params.percentTreated, 0) ?? "N/A"}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -120,44 +128,50 @@ export default function ScenarioResults() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="table-light">
-                      <th>Screening test chosen</th>
-                      <td className="text-end">{asLabel(params.screeningTest, screeningTests) ?? "N/A"}</td>
-                    </tr>
-                    <tr>
-                      <th className="ps-3">Screening test sensitivity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.screeningTestSensitivity, 0) ?? "N/A"}</td>
-                    </tr>
-                    <tr>
-                      <th className="ps-3">Screening test specificity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.screeningTestSpecificity, 0) ?? "N/A"}</td>
-                    </tr>
+                    {params.screeningTest && <>
+                      <tr className="table-light">
+                        <th>Screening test chosen</th>
+                        <td className="text-end text-nowrap">{asLabel(params.screeningTest, screeningTests) ?? "N/A"}</td>
+                      </tr>
+                      <tr>
+                        <th className="ps-3">Screening test sensitivity for CIN2/3</th>
+                        <td className="text-end text-nowrap">{asPercent(params.screeningTestSensitivity, 0) ?? "N/A"}</td>
+                      </tr>
+                      <tr>
+                        <th className="ps-3">Screening test specificity for CIN2/3</th>
+                        <td className="text-end text-nowrap">{asPercent(params.screeningTestSpecificity, 0) ?? "N/A"}</td>
+                      </tr>
+                    </>}
 
-                    <tr className="table-light">
-                      <th>Triage or diagnostic test chosen</th>
-                      <td className="text-end">{asLabel(params.triageTest, triageTests) ?? "N/A"}</td>
-                    </tr>
-                    <tr>
-                      <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.triageTestSensitivity, 0) ?? "N/A"}</td>
-                    </tr>
-                    <tr>
-                      <th className="ps-3">Triage or diagnostic test specificity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.triageTestSpecificity, 0) ?? "N/A"}</td>
-                    </tr>
+                    {params.triageTest && <>
+                      <tr className="table-light">
+                        <th>Triage or diagnostic test chosen</th>
+                        <td className="text-end text-nowrap">{asLabel(params.triageTest, triageTests) ?? "N/A"}</td>
+                      </tr>
+                      <tr>
+                        <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3</th>
+                        <td className="text-end text-nowrap">{asPercent(params.triageTestSensitivity, 0) ?? "N/A"}</td>
+                      </tr>
+                      <tr>
+                        <th className="ps-3">Triage or diagnostic test specificity for CIN2/3</th>
+                        <td className="text-end text-nowrap">{asPercent(params.triageTestSpecificity, 0) ?? "N/A"}</td>
+                      </tr>
+                    </>}
 
-                    <tr className="table-light">
-                      <th>Diagnostic test chosen</th>
-                      <td className="text-end">{asLabel(params.diagnosticTest, diagnosticTests) ?? "N/A"}</td>
-                    </tr>
-                    <tr>
-                      <th className="ps-3">Diagnostic test sensitivity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.diagnosticTestSensitivity, 0) ?? "N/A"}</td>
-                    </tr>
-                    <tr>
-                      <th className="ps-3">Diagnostic test specificity for CIN2/3</th>
-                      <td className="text-end">{asPercent(params.diagnosticTestSpecificity, 0) ?? "N/A"}</td>
-                    </tr>
+                    {params.diagnosticTest && <>
+                      <tr className="table-light">
+                        <th>Diagnostic test chosen</th>
+                        <td className="text-end text-nowrap">{asLabel(params.diagnosticTest, diagnosticTests) ?? "N/A"}</td>
+                      </tr>
+                      <tr>
+                        <th className="ps-3">Diagnostic test sensitivity for CIN2/3</th>
+                        <td className="text-end text-nowrap">{asPercent(params.diagnosticTestSensitivity, 0) ?? "N/A"}</td>
+                      </tr>
+                      <tr>
+                        <th className="ps-3">Diagnostic test specificity for CIN2/3</th>
+                        <td className="text-end text-nowrap">{asPercent(params.diagnosticTestSpecificity, 0) ?? "N/A"}</td>
+                      </tr>
+                    </>}
                   </tbody>
                 </Table>
               </Col>
@@ -193,11 +207,11 @@ export default function ScenarioResults() {
                     <tbody>
                       <tr className="table-info">
                         <th>Population without precancer targeted for screening</th>
-                        <td className="text-end">{results.healthyWomenTargetedForScreening?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.healthyWomenTargetedForScreening?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                       <tr className="table-info">
                         <th>Population with precancer targeted for screening</th>
-                        <td className="text-end">{results.precancersTargetedForScreening?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.precancersTargetedForScreening?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -212,11 +226,11 @@ export default function ScenarioResults() {
                     <tbody>
                       <tr className="table-warning">
                         <th>Percent precancers treated</th>
-                        <td className="text-end">{asPercent(results.percentPrecancersTreated) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentPrecancersTreated) ?? "N/A"}</td>
                       </tr>
                       <tr className="table-warning">
                         <th>Percent of population targeted for screening without precancer and possibly over-treated</th>
-                        <td className="text-end">{asPercent(results.percentHealthyOvertreated) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentHealthyOvertreated) ?? "N/A"}</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -232,8 +246,8 @@ export default function ScenarioResults() {
                     <tbody>
                       <tr className="table-warning">
                         <th>Total precancers missed (% of all precancers)</th>
-                        <td className="text-end">{asPercent(results.percentPrecancersMissed) ?? "N/A"}</td>
-                        <td className="text-end">{results.numberPrecancersMissed?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentPrecancersMissed) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.numberPrecancersMissed?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                       <tr className="table-warning">
                         <th>Sources of missed precancers (% missed precancers)</th>
@@ -242,43 +256,43 @@ export default function ScenarioResults() {
                       </tr>
                       <tr className="table-warning">
                         <th className="ps-3">No screening</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToNoScreening) ?? "N/A"}</td>
-                        <td className="text-end">{results.numberMissedDueToNoScreening?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToNoScreening) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.numberMissedDueToNoScreening?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                       <tr className="table-warning">
                         <th className="ps-3">Sensitivity of screening test</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToSensitivityOfScreeningTest) ?? "N/A"}</td>
-                        <td className="text-end">{results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfScreeningTest) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
 
                       <tr className="table-warning">
                         <th className="ps-3">Loss at triage/diagnostic test</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"}</td>
-                        <td className="text-end">{results.numberMissedDueToLossAtTriage?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.numberMissedDueToLossAtTriage?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
 
                       <tr className="table-warning">
                         <th className="ps-3">Sensitivity of triage/diagnostic test</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToSensitivityOfTriageTest) ?? "N/A"}</td>
-                        <td className="text-end">{results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfTriageTest) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
 
                       <tr className="table-warning">
                         <th className="ps-3">Loss at diagnosis</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToLossAtDiagnosticTriage) ?? "N/A"}</td>
-                        <td className="text-end">{results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtDiagnosticTriage) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
 
                       <tr className="table-warning">
                         <th className="ps-3">Sensitivity of diagnostic test</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest) ?? "N/A"}</td>
-                        <td className="text-end">{results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
 
                       <tr className="table-warning">
                         <th className="ps-3">Loss at treatment</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToLossAtTreatment) ?? "N/A"}</td>
-                        <td className="text-end">{results.numberMissedDueToLossAtTreatment?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtTreatment) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.numberMissedDueToLossAtTreatment?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -293,19 +307,19 @@ export default function ScenarioResults() {
                     <tbody>
                       <tr className="table-warning">
                         <th>Total requiring screening test</th>
-                        <td className="text-end">{results.totalNeededToScreen?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.totalNeededToScreen?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                       <tr className="table-warning">
                         <th>Total requiring triage/diagnostic test</th>
-                        <td className="text-end">{results.totalNeededToTriage?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.totalNeededToTriage?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                       <tr className="table-warning">
                         <th>Total requiring diagnostic test</th>
-                        <td className="text-end">{results.totalNeededToDiagnosticTriage?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.totalNeededToDiagnosticTriage?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                       <tr className="table-warning">
                         <th>Total requiring treatment</th>
-                        <td className="text-end">{results.totalNeededToTreat?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.totalNeededToTreat?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -317,73 +331,73 @@ export default function ScenarioResults() {
                     <thead>
                       <tr className="bg-info text-light">
                         <th>Assumptions</th>
-                        <th className="text-end">{asLabel(params.scenario, scenarios)}</th>
+                        <th className="text-end text-nowrap">{asLabel(params.scenario, scenarios)}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th>Target population size of screen-eligible women</th>
-                        <td className="text-end">{params.populationSize?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{params.populationSize?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th>Prevalence of CIN2/3</th>
-                        <td className="text-end">{asPercent(params.cinPrevalence) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.cinPrevalence) ?? "N/A"}</td>
                       </tr>
 
                       <tr className="table-info">
                         <th>Screening test chosen</th>
-                        <td className="text-end">{asLabel(params.screeningTest, screeningTests) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asLabel(params.screeningTest, screeningTests) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th className="ps-3">Screening coverage</th>
-                        <td className="text-end">{asPercent(params.percentScreened) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.percentScreened) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th className="ps-3">Screening test sensitivity for CIN2/3</th>
-                        <td className="text-end">{asPercent(params.screeningTestSensitivity) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.screeningTestSensitivity) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th className="ps-3">Screening test specificity for CIN2/3</th>
-                        <td className="text-end">{asPercent(params.screeningTestSpecificity) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.screeningTestSpecificity) ?? "N/A"}</td>
                       </tr>
 
                       <tr className="table-info">
                         <th>Triage or diagnostic test chosen</th>
-                        <td className="text-end">{asLabel(params.triageTest, triageTests) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asLabel(params.triageTest, triageTests) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th className="ps-3">Triage or diagnostic test attendance</th>
-                        <td className="text-end">{asPercent(params.percentTriaged) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.percentTriaged) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3</th>
-                        <td className="text-end">{asPercent(params.triageTestSensitivity) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.triageTestSensitivity) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th className="ps-3">Triage or diagnostic test specificity for CIN2/3</th>
-                        <td className="text-end">{asPercent(params.triageTestSpecificity) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.triageTestSpecificity) ?? "N/A"}</td>
                       </tr>
 
                       <tr className="table-info">
                         <th>Diagnostic test chosen</th>
-                        <td className="text-end">{asLabel(params.diagnosticTest, diagnosticTests) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asLabel(params.diagnosticTest, diagnosticTests) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th className="ps-3">Diagnostic test attendance</th>
-                        <td className="text-end">{asPercent(params.percentDiagnosticTriaged) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.percentDiagnosticTriaged) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th className="ps-3">Diagnostic test sensitivity for CIN2/3</th>
-                        <td className="text-end">{asPercent(params.diagnosticTestSensitivity) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.diagnosticTestSensitivity) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th className="ps-3">Diagnostic test specificity for CIN2/3</th>
-                        <td className="text-end">{asPercent(params.diagnosticTestSpecificity) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.diagnosticTestSpecificity) ?? "N/A"}</td>
                       </tr>
 
                       <tr className="table-info">
                         <th>Treatment attendance</th>
-                        <td className="text-end">{asPercent(params.percentTreated) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(params.percentTreated) ?? "N/A"}</td>
                       </tr>
                     </tbody>
                   </Table> */}
@@ -392,56 +406,56 @@ export default function ScenarioResults() {
                     <thead>
                       <tr className="bg-danger text-light">
                         <th>Annual Impact</th>
-                        <th className="text-end">{asLabel(params.scenario, scenarios)}</th>
+                        <th className="text-end text-nowrap">{asLabel(params.scenario, scenarios)}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr className="table-danger">
                         <th>Pre-cancers treated</th>
-                        <td className="text-end">{asPercent(results.percentPrecancersTreated) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentPrecancersTreated) ?? "N/A"}</td>
                       </tr>
                       <tr className="table-danger">
                         <th>Pre-cancers missed</th>
-                        <td className="text-end">{asPercent(results.percentPrecancersMissed) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentPrecancersMissed) ?? "N/A"}</td>
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to no screening</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToNoScreening) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToNoScreening) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th className="ps-3">Missed due to sensitivity of screening test</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToSensitivityOfScreeningTest) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfScreeningTest) ?? "N/A"}</td>
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to Loss at triage/diagnostic test</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"}</td>
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to Sensitivity of triage/diagnostic test</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToSensitivityOfTriageTest) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfTriageTest) ?? "N/A"}</td>
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to loss at diagnosis</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToLossAtDiagnosticTriage) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtDiagnosticTriage) ?? "N/A"}</td>
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to sensitivity of diagnostic test</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest) ?? "N/A"}</td>
                       </tr>
 
                       <tr>
                         <th className="ps-3">Missed due to loss at treatment</th>
-                        <td className="text-end">{asPercent(results.percentMissedDueToLossAtTreatment) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtTreatment) ?? "N/A"}</td>
                       </tr>
 
                       <tr className="bg-light">
                         <th>Percent healthy over-treated</th>
-                        <td className="text-end">{asPercent(results.percentHealthyOvertreated) ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{asPercent(results.percentHealthyOvertreated) ?? "N/A"}</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -456,19 +470,19 @@ export default function ScenarioResults() {
                     <tbody>
                       <tr>
                         <th>Total needed to screen</th>
-                        <td className="text-end">{results.totalNeededToScreen?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.totalNeededToScreen?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th>Total needed to triage</th>
-                        <td className="text-end">{results.totalNeededToTriage?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.totalNeededToTriage?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th>Total needed to diagnose</th>
-                        <td className="text-end">{results.totalNeededToDiagnosticTriage?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.totalNeededToDiagnosticTriage?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                       <tr>
                         <th>Total needed to treat</th>
-                        <td className="text-end">{results.totalNeededToTreat?.toLocaleString() ?? "N/A"}</td>
+                        <td className="text-end text-nowrap">{results.totalNeededToTreat?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                     </tbody>
                   </Table>
