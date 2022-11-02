@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -20,7 +20,7 @@ import { localeState } from "../../app.state";
 export default function CompareScenarios() {
   const [scenarios, setScenarios] = useRecoilState(scenariosState);
   const [activeTab, setActiveTab] = useState("results");
-  const locale = useRecoilState(localeState);
+  const locale = useRecoilValue(localeState);
   const limit = 10;
 
   async function addScenario(event) {
