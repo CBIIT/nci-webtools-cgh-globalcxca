@@ -9,6 +9,8 @@ import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import { defaultFormState, formState, paramsState, resultsState } from "./state";
 import { runModel, scenarios, tests, screeningTests, triageTests, diagnosticTests } from "../../services/models";
 import { asNumber } from "../../services/formatters";
@@ -21,7 +23,11 @@ export default function RunScenarios() {
   const navigate = useNavigate();
 
   function handleChange(event) {
-    const { name, value } = event.target;
+    let { name, type, value } = event.target;
+
+    if (value && type === "number") {
+      value = Math.floor(+value);
+    }
 
     if (name === "scenario") {
       setForm({
@@ -105,8 +111,8 @@ export default function RunScenarios() {
                       />
                       <Form.Check.Label
                         className={[
-                          "form-label d-block text-center mb-2 my-lg-3 p-3 cursor-pointer",
-                          form.scenario === scenario.value ? "bg-primary text-white" : "bg-light text-dark",
+                          "form-label d-block text-center mb-2 my-lg-3 p-3 cursor-pointer rounded custom-card-radio",
+                          form.scenario === scenario.value ? "border-primary bg-white shadow" : "bg-light border-transparent",
                         ].join(" ")}
                         htmlFor={scenario.value}
                       >
@@ -119,6 +125,8 @@ export default function RunScenarios() {
             </Card.Body>
           </Card>
 
+          <div className="text-end fw-semibold text-muted mb-2">* indicates required fields</div>
+
           <Card className="mb-4">
             <Card.Header>
               <Card.Title>Epidemiological Context</Card.Title>
@@ -129,26 +137,39 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="populationSize">
                     <Form.Label column sm={8}>
-                      Target population size of screen-eligible women
+                      <span className="required">Target population size of screen-eligible women</span>
+                      <OverlayTrigger
+                        overlay={<Tooltip id="populationSize-help">Enter targeted number of people in the population eligible for cervical screening </Tooltip>}
+                      >
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control
-                        type="number"
-                        min="0"
-                        placeholder="Enter value"
-                        name="populationSize"
-                        value={form.populationSize}
-                        onChange={handleChange}
-                        required
-                      />
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="1"
+                          step="1"
+                          placeholder="Enter value"
+                          name="populationSize"
+                          value={form.populationSize}
+                          onChange={handleChange}
+                          required
+                        />
+                      </InputGroup>
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
 
                 <ListGroup.Item>
-                  <Form.Group as={Row} controlId="cinPrevalence">
+                  <Form.Group as={Row} controlId="hpvCancerPrevalence">
                     <Form.Label column sm={8}>
-                      Prevalence of CIN2/3
+                      <span>Prevalence of carcinogenic HPV infection</span>
+                      <OverlayTrigger
+                        overlay={<Tooltip id="hpvCancerPrevalence-help">Enter number of people who test positive for HPV per 100 people</Tooltip>}
+                      >
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
                     </Form.Label>
                     <Col sm={4}>
                       <InputGroup>
@@ -156,8 +177,68 @@ export default function RunScenarios() {
                           type="number"
                           min="0"
                           max="100"
-                          step="0.1"
-                          placeholder="Enter percentage"
+                          step="1"
+                          placeholder="Enter 0 - 100"
+                          name="hpvCancerPrevalence"
+                          className="border-end-0"
+                          value={form.hpvCancerPrevalence}
+                          onChange={handleChange}
+                        />
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
+                    </Col>
+                  </Form.Group>
+                </ListGroup.Item>
+
+                <ListGroup.Item>
+                  <Form.Group as={Row} controlId="hpvPrevalence">
+                    <Form.Label column sm={8}>
+                      <span>Proportion HPV-positives with HPV16/18</span>
+                      <OverlayTrigger overlay={<Tooltip id="hpvPrevalence-help">Enter number of people with HPV16/18 per 100 HPV-positive people</Tooltip>}>
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
+                    </Form.Label>
+                    <Col sm={4}>
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="1"
+                          placeholder="Enter 0 - 100"
+                          name="hpvPrevalence"
+                          className="border-end-0"
+                          value={form.hpvPrevalence}
+                          onChange={handleChange}
+                        />
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
+                    </Col>
+                  </Form.Group>
+                </ListGroup.Item>
+
+                <ListGroup.Item>
+                  <Form.Group as={Row} controlId="cinPrevalence">
+                    <Form.Label column sm={8}>
+                      <span className="required">Prevalence of CIN2/3</span>
+                      <OverlayTrigger
+                        overlay={
+                          <Tooltip id="cinPrevalence-help">
+                            Enter number of women with CIN2/3 per 100 people in the population eligible for cervical screening
+                          </Tooltip>
+                        }
+                      >
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
+                    </Form.Label>
+                    <Col sm={4}>
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="1"
+                          placeholder="Enter 0 - 100"
                           name="cinPrevalence"
                           className="border-end-0"
                           value={form.cinPrevalence}
@@ -176,25 +257,40 @@ export default function RunScenarios() {
           <Card className="mb-4">
             <Card.Header>
               <Card.Title>Participation in Health Services</Card.Title>
-              <Card.Text className="text-muted small">Observed or targeted participation in cervical cancer screening program in your setting</Card.Text>
+              <Card.Text className="text-muted small">Observed or anticipated participation in cervical cancer screening program in your setting</Card.Text>
             </Card.Header>
             <Card.Body className="p-0">
               <ListGroup variant="flush hover borderless">
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningInterval">
                     <Form.Label column sm={8}>
-                      Screening interval
+                      <span className="required">Interval of cervical screening in years </span>
+                      <OverlayTrigger
+                        overlay={
+                          <Tooltip id="screeningInterval-help">
+                            If people have one screening in a lifetime, enter 20 years. For two cervical screenings in a lifetime, enter 10 years.
+                          </Tooltip>
+                        }
+                      >
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Control
-                        type="number"
-                        min="0"
-                        placeholder="Enter value"
-                        name="screeningInterval"
-                        value={form.screeningInterval}
-                        onChange={handleChange}
-                        required
-                      />
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="1"
+                          max="40"
+                          step="1"
+                          className="border-end-0"
+                          placeholder="Enter 1 - 40"
+                          name="screeningInterval"
+                          value={form.screeningInterval}
+                          onChange={handleChange}
+                          required
+                        />
+                        <InputGroup.Text>Year(s)</InputGroup.Text>
+                      </InputGroup>
                     </Col>
                   </Form.Group>
                 </ListGroup.Item>
@@ -202,7 +298,10 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="percentScreened">
                     <Form.Label column sm={8}>
-                      Screening coverage
+                      <span className="required">Percent screening coverage</span>
+                      <OverlayTrigger overlay={<Tooltip id="percentScreened-help">Enter a value between 0 and 100.</Tooltip>}>
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
                     </Form.Label>
                     <Col sm={4}>
                       <InputGroup>
@@ -210,9 +309,9 @@ export default function RunScenarios() {
                           type="number"
                           min="0"
                           max="100"
-                          step="0.1"
+                          step="1"
                           className="border-end-0"
-                          placeholder="Enter percentage"
+                          placeholder="Enter 0 - 100"
                           name="percentScreened"
                           value={form.percentScreened}
                           onChange={handleChange}
@@ -228,8 +327,13 @@ export default function RunScenarios() {
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentTriaged">
                       <Form.Label column sm={8}>
-                        {form.scenario === "ScreenDiagnosticTestTreat" && <>Screen positives with diagnostic test</>}
-                        {form.scenario === "ScreenTriageDiagnosticTestTreat" && <>Screen positives with triage test</>}
+                        <span className="required">
+                          {form.scenario === "ScreenDiagnosticTestTreat" && <>Percent of screen positives with diagnostic test</>}
+                          {form.scenario === "ScreenTriageDiagnosticTestTreat" && <>Percent of screen positives with triage test</>}
+                        </span>
+                        <OverlayTrigger overlay={<Tooltip id="percentTriaged-help">Enter a value between 0 and 100.</Tooltip>}>
+                          <i className="ms-1 bi bi-question-circle"></i>
+                        </OverlayTrigger>
                       </Form.Label>
                       <Col sm={4}>
                         <InputGroup>
@@ -237,9 +341,9 @@ export default function RunScenarios() {
                             type="number"
                             min="0"
                             max="100"
-                            step="0.1"
+                            step="1"
                             className="border-end-0"
-                            placeholder="Enter percentage"
+                            placeholder="Enter 0 - 100"
                             name="percentTriaged"
                             value={form.percentTriaged}
                             onChange={handleChange}
@@ -256,7 +360,10 @@ export default function RunScenarios() {
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentDiagnosticTriaged">
                       <Form.Label column sm={8}>
-                        Percent of triage test positives with diagnostic test
+                        <span className="required">Percent of triage test positives with diagnostic test</span>
+                        <OverlayTrigger overlay={<Tooltip id="percentDiagnosticTriaged-help">Enter a value between 0 and 100.</Tooltip>}>
+                          <i className="ms-1 bi bi-question-circle"></i>
+                        </OverlayTrigger>
                       </Form.Label>
                       <Col sm={4}>
                         <InputGroup>
@@ -264,9 +371,9 @@ export default function RunScenarios() {
                             type="number"
                             min="0"
                             max="100"
-                            step="0.1"
+                            step="1"
                             className="border-end-0"
-                            placeholder="Enter percentage"
+                            placeholder="Enter 0 - 100"
                             name="percentDiagnosticTriaged"
                             value={form.percentDiagnosticTriaged}
                             onChange={handleChange}
@@ -282,8 +389,13 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="percentTreated">
                     <Form.Label column sm={8}>
-                      {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>Diagnostic test positives treated</>}
-                      {["ScreenTreat"].includes(form.scenario) && <>Screen test positives treated</>}
+                      <span className="required">
+                        {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>Diagnostic test positives treated</>}
+                        {["ScreenTreat"].includes(form.scenario) && <>Screen test positives treated</>}
+                      </span>
+                      <OverlayTrigger overlay={<Tooltip id="percentDiagnosticTriaged-help">Enter a value between 0 and 100.</Tooltip>}>
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
                     </Form.Label>
                     <Col sm={4}>
                       <InputGroup>
@@ -291,9 +403,9 @@ export default function RunScenarios() {
                           type="number"
                           min="0"
                           max="100"
-                          step="0.1"
+                          step="1"
                           className="border-end-0"
-                          placeholder="Enter percentage"
+                          placeholder="Enter 0 - 100"
                           name="percentTreated"
                           value={form.percentTreated}
                           onChange={handleChange}
@@ -321,7 +433,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTest">
                     <Form.Label column sm={8}>
-                      Screening test chosen
+                      <span className="required">Cervical screening test chosen</span>
                     </Form.Label>
                     <Col sm={4}>
                       <Form.Select name="screeningTest" value={form.screeningTest} onChange={handleChange} required>
@@ -340,8 +452,11 @@ export default function RunScenarios() {
 
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTestSensitivity">
-                    <Form.Label column sm={8} className="ps-4">
-                      Screening test sensitivity for CIN2/3
+                    <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                      <span className="required">Screening test sensitivity for CIN2/3 (NIC2/3)</span>
+                      <OverlayTrigger overlay={<Tooltip id="screeningTestSensitivity-help">Enter a value between 0 and 100.</Tooltip>}>
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
                     </Form.Label>
                     <Col sm={4}>
                       <InputGroup>
@@ -349,9 +464,9 @@ export default function RunScenarios() {
                           type="number"
                           min="0"
                           max="100"
-                          step="0.1"
+                          step="1"
                           className="border-end-0"
-                          placeholder="Enter percentage"
+                          placeholder="Enter 0 - 100"
                           name="screeningTestSensitivity"
                           value={form.screeningTestSensitivity}
                           onChange={handleChange}
@@ -365,8 +480,11 @@ export default function RunScenarios() {
 
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTestSpecificity">
-                    <Form.Label column sm={8}  className="ps-4">
-                      Screening test specificity for CIN2/3
+                    <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                      <span className="required">Screening test specificity for CIN2/3 (NIC2/3)</span>
+                      <OverlayTrigger overlay={<Tooltip id="screeningTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
                     </Form.Label>
                     <Col sm={4}>
                       <InputGroup>
@@ -374,9 +492,9 @@ export default function RunScenarios() {
                           type="number"
                           min="0"
                           max="100"
-                          step="0.1"
+                          step="1"
                           className="border-end-0"
-                          placeholder="Enter percentage"
+                          placeholder="Enter 0 - 100"
                           name="screeningTestSpecificity"
                           value={form.screeningTestSpecificity}
                           onChange={handleChange}
@@ -393,7 +511,7 @@ export default function RunScenarios() {
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="triageTest">
                         <Form.Label column sm={8}>
-                          Triage or diagnostic test chosen
+                          <span className="required">Triage or diagnostic test chosen</span>
                         </Form.Label>
                         <Col sm={4}>
                           <Form.Select name="triageTest" value={form.triageTest} onChange={handleChange} required>
@@ -412,8 +530,11 @@ export default function RunScenarios() {
 
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="triageTestSensitivity">
-                        <Form.Label column sm={8} className="ps-4">
-                          Triage or diagnostic test sensitivity for CIN2/3
+                        <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                          <span className="required">Triage or diagnostic test sensitivity for CIN2/3 (NIC2/3)</span>
+                          <OverlayTrigger overlay={<Tooltip id="screeningTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
+                            <i className="ms-1 bi bi-question-circle"></i>
+                          </OverlayTrigger>
                         </Form.Label>
                         <Col sm={4}>
                           <InputGroup>
@@ -421,9 +542,9 @@ export default function RunScenarios() {
                               type="number"
                               min="0"
                               max="100"
-                              step="0.1"
+                              step="1"
                               className="border-end-0"
-                              placeholder="Enter percentage"
+                              placeholder="Enter 0 - 100"
                               name="triageTestSensitivity"
                               value={form.triageTestSensitivity}
                               onChange={handleChange}
@@ -437,8 +558,11 @@ export default function RunScenarios() {
 
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="triageTestSpecificity">
-                        <Form.Label column sm={8} className="ps-4">
-                          Triage or diagnostic test specificity for CIN2/3
+                        <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                          <span className="required">Triage or diagnostic test specificity for CIN2/3 (NIC2/3)</span>
+                          <OverlayTrigger overlay={<Tooltip id="screeningTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
+                            <i className="ms-1 bi bi-question-circle"></i>
+                          </OverlayTrigger>
                         </Form.Label>
                         <Col sm={4}>
                           <InputGroup>
@@ -446,9 +570,9 @@ export default function RunScenarios() {
                               type="number"
                               min="0"
                               max="100"
-                              step="0.1"
+                              step="1"
                               className="border-end-0"
-                              placeholder="Enter percentage"
+                              placeholder="Enter 0 - 100"
                               name="triageTestSpecificity"
                               value={form.triageTestSpecificity}
                               onChange={handleChange}
@@ -467,7 +591,7 @@ export default function RunScenarios() {
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="diagnosticTest">
                         <Form.Label column sm={8}>
-                          Diagnostic test chosen
+                          <span className="required">Diagnostic test chosen</span>
                         </Form.Label>
                         <Col sm={4}>
                           <Form.Select name="diagnosticTest" value={form.diagnosticTest} onChange={handleChange} required>
@@ -486,8 +610,11 @@ export default function RunScenarios() {
 
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="diagnosticTestSensitivity">
-                        <Form.Label column sm={8} className="ps-4">
-                          Diagnostic test sensitivity for CIN2/3
+                        <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                          <span className="required">Diagnostic test sensitivity for CIN2/3 (NIC2/3)</span>
+                          <OverlayTrigger overlay={<Tooltip id="diagnosticTestSensitivity-help">Enter a value between 0 and 100.</Tooltip>}>
+                            <i className="ms-1 bi bi-question-circle"></i>
+                          </OverlayTrigger>
                         </Form.Label>
                         <Col sm={4}>
                           <InputGroup>
@@ -495,9 +622,9 @@ export default function RunScenarios() {
                               type="number"
                               min="0"
                               max="100"
-                              step="0.1"
+                              step="1"
                               className="border-end-0"
-                              placeholder="Enter percentage"
+                              placeholder="Enter 0 - 100"
                               name="diagnosticTestSensitivity"
                               value={form.diagnosticTestSensitivity}
                               onChange={handleChange}
@@ -511,8 +638,11 @@ export default function RunScenarios() {
 
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="diagnosticTestSpecificity">
-                        <Form.Label column sm={8} className="ps-4">
-                          Diagnostic test specificity for CIN2/3
+                        <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                          <span className="required">Diagnostic test specificity for CIN2/3 (NIC2/3)</span>
+                          <OverlayTrigger overlay={<Tooltip id="diagnosticTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
+                            <i className="ms-1 bi bi-question-circle"></i>
+                          </OverlayTrigger>
                         </Form.Label>
                         <Col sm={4}>
                           <InputGroup>
@@ -520,9 +650,9 @@ export default function RunScenarios() {
                               type="number"
                               min="0"
                               max="100"
-                              step="0.1"
+                              step="1"
                               className="border-end-0"
-                              placeholder="Enter percentage"
+                              placeholder="Enter 0 - 100"
                               name="diagnosticTestSpecificity"
                               value={form.diagnosticTestSpecificity}
                               onChange={handleChange}
