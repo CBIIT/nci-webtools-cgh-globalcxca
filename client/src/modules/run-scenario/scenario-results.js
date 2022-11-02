@@ -104,15 +104,15 @@ export default function ScenarioResults() {
                     </tr>}
                     {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <tr>
                       <th>
-                        {["ScreenDiagnosticTestTreat"].includes(params.scenario) && <>Percent of screen test positives with diagnostic test</>}
-                        {["ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <>Percent of triage test positives with diagnostic test</>}
+                        {["ScreenDiagnosticTestTreat"].includes(params.scenario) && <>Percent of screen positives with diagnostic test</>}
+                        {["ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <>Percent of triage positives with diagnostic test</>}
                         </th>
                       <td className="text-end text-nowrap">{asPercent(params.percentDiagnosticTriaged, 0) ?? "N/A"}</td>
                     </tr>}
                     <tr>
                       <th>
-                        {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <>Percent of diagnostic test positives treated</>}
-                        {["ScreenTreat"].includes(params.scenario) && <>Percent of screen test positives treated</>}
+                        {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <>Percent of diagnostic positives treated</>}
+                        {["ScreenTreat"].includes(params.scenario) && <>Percent of screen positives treated</>}
                       </th>
                       <td className="text-end text-nowrap">{asPercent(params.percentTreated, 0) ?? "N/A"}</td>
                     </tr>
@@ -130,15 +130,15 @@ export default function ScenarioResults() {
                   <tbody>
                     {params.screeningTest && <>
                       <tr className="table-light">
-                        <th>Screening test chosen</th>
+                        <th>Cervical screening test chosen</th>
                         <td className="text-end text-nowrap">{asLabel(params.screeningTest, screeningTests) ?? "N/A"}</td>
                       </tr>
                       <tr>
-                        <th className="ps-3">Screening test sensitivity for CIN2/3</th>
+                        <th className="ps-3">Screening test sensitivity for CIN2/3 (NIC2/3)</th>
                         <td className="text-end text-nowrap">{asPercent(params.screeningTestSensitivity, 0) ?? "N/A"}</td>
                       </tr>
                       <tr>
-                        <th className="ps-3">Screening test specificity for CIN2/3</th>
+                        <th className="ps-3">Screening test specificity for CIN2/3 (NIC2/3)</th>
                         <td className="text-end text-nowrap">{asPercent(params.screeningTestSpecificity, 0) ?? "N/A"}</td>
                       </tr>
                     </>}
@@ -149,11 +149,11 @@ export default function ScenarioResults() {
                         <td className="text-end text-nowrap">{asLabel(params.triageTest, triageTests) ?? "N/A"}</td>
                       </tr>
                       <tr>
-                        <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3</th>
+                        <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3 (NIC2/3)</th>
                         <td className="text-end text-nowrap">{asPercent(params.triageTestSensitivity, 0) ?? "N/A"}</td>
                       </tr>
                       <tr>
-                        <th className="ps-3">Triage or diagnostic test specificity for CIN2/3</th>
+                        <th className="ps-3">Triage or diagnostic test specificity for CIN2/3 (NIC2/3)</th>
                         <td className="text-end text-nowrap">{asPercent(params.triageTestSpecificity, 0) ?? "N/A"}</td>
                       </tr>
                     </>}
@@ -164,11 +164,11 @@ export default function ScenarioResults() {
                         <td className="text-end text-nowrap">{asLabel(params.diagnosticTest, diagnosticTests) ?? "N/A"}</td>
                       </tr>
                       <tr>
-                        <th className="ps-3">Diagnostic test sensitivity for CIN2/3</th>
+                        <th className="ps-3">Diagnostic test sensitivity for CIN2/3 (NIC2/3)</th>
                         <td className="text-end text-nowrap">{asPercent(params.diagnosticTestSensitivity, 0) ?? "N/A"}</td>
                       </tr>
                       <tr>
-                        <th className="ps-3">Diagnostic test specificity for CIN2/3</th>
+                        <th className="ps-3">Diagnostic test specificity for CIN2/3 (NIC2/3)</th>
                         <td className="text-end text-nowrap">{asPercent(params.diagnosticTestSpecificity, 0) ?? "N/A"}</td>
                       </tr>
                     </>}
