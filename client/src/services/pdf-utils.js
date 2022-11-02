@@ -21,6 +21,9 @@ export const pdfStyles = {
   "table-info": {
     fillColor: "#cfe2ff",
   },
+  "bg-grey": {
+    fillColor: "#ebebeb",
+  },
   "bg-info": {
     fillColor: "#0d6efd",
   },
@@ -60,6 +63,7 @@ export function exportPdf(filename, nodes, config = {}) {
           margin: [0, 0, 0, 20],
           table: {
             headerRows: 1,
+            widths: Array.from(node.querySelector("tr").querySelectorAll("td, th")).map(v => "*"),
             body: Array.from(node.querySelectorAll("tr")).map((tr) =>
               Array.from(tr.querySelectorAll("td, th")).map((cell) => ({
                 text: cell.innerText,
