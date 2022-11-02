@@ -72,11 +72,11 @@ export default function ScenarioResults() {
                   </thead>
                   <tbody>
                     <tr>
-                      <th>Target population size of screen-eligible women</th>
+                      <th>Number of people in target population for cervical screening</th>
                       <td className="text-end text-nowrap">{params.populationSize?.toLocaleString(locale) ?? "N/A"}</td>
                     </tr>
                     <tr>
-                      <th>Prevalence of CIN2/3</th>
+                      <th>Prevalence of CIN2/3 in population for cervical screening</th>
                       <td className="text-end text-nowrap">{asPercent(params.cinPrevalence, 0) ?? "N/A"}</td>
                     </tr>
                   </tbody>

@@ -135,7 +135,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="populationSize">
                     <Form.Label column sm={8}>
-                      <span>Target population size of screen-eligible women</span>
+                      <span>Number of people in target population for cervical screening</span>
                       <OverlayTrigger
                         overlay={<Tooltip id="populationSize-help">Enter targeted number of people in the population eligible for cervical screening </Tooltip>}
                       >
@@ -218,7 +218,7 @@ export default function RunScenarios() {
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="cinPrevalence">
                     <Form.Label column sm={8}>
-                      <span>Prevalence of CIN2/3</span>
+                      <span>Prevalence of CIN2/3 in population for cervical screening</span>
                       <OverlayTrigger
                         overlay={
                           <Tooltip id="cinPrevalence-help">
