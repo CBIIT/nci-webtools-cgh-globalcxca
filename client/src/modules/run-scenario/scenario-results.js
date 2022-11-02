@@ -89,7 +89,7 @@ export default function ScenarioResults() {
                   </thead>
                   <tbody>
                     <tr>
-                      <th>Screening interval</th>
+                      <th>Interval of cervical screening in years</th>
                       <td className="text-end">{params.screeningInterval?.toLocaleString() ?? "N/A"}</td>
                     </tr>
                     <tr>
@@ -313,7 +313,7 @@ export default function ScenarioResults() {
                   <hr className="d-none" data-export />
                 </Tab.Pane>
                 <Tab.Pane eventKey="summary" mountOnEnter={false} unmountOnExit={false}>
-                  <Table hover responsive data-export>
+                  {/* <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-info text-light">
                         <th>Assumptions</th>
@@ -386,7 +386,7 @@ export default function ScenarioResults() {
                         <td className="text-end">{asPercent(params.percentTreated) ?? "N/A"}</td>
                       </tr>
                     </tbody>
-                  </Table>
+                  </Table> */}
 
                   <Table hover responsive data-export>
                     <thead>
