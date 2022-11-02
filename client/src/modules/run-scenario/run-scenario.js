@@ -291,7 +291,7 @@ export default function RunScenarios() {
                   </Form.Group>
                 </ListGroup.Item>
 
-                <ListGroup.Item>
+               <ListGroup.Item>
                   <Form.Group as={Row} controlId="percentScreened">
                     <Form.Label column sm={8}>
                       <span >Percent screening coverage</span>
@@ -319,7 +319,7 @@ export default function RunScenarios() {
                   </Form.Group>
                 </ListGroup.Item>
 
-                {["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
+                <div className={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) ? "d-block" : "d-none"}>
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentTriaged">
                       <Form.Label column sm={8}>
@@ -349,15 +349,17 @@ export default function RunScenarios() {
                       </Col>
                     </Form.Group>
                   </ListGroup.Item>
-                )}
+                </div>
 
-                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
+                <div className={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) ? "d-block" : "d-none"}>
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentDiagnosticTriaged">
                       <Form.Label column sm={8}>
                         <span>
-                            {["ScreenDiagnosticTestTreat"].includes(form.scenario) && <>Percent of screen test positives with diagnostic test</>}
-                            {["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>Percent of triage test positives with diagnostic test</>}
+                            {{
+                              "ScreenDiagnosticTestTreat": "Percent of screen positives with diagnostic test",
+                              "ScreenTriageDiagnosticTestTreat": "Percent of triage positives with diagnostic test"
+                            }[form.scenario]}
                           </span>
                         <OverlayTrigger overlay={<Tooltip id="percentDiagnosticTriaged-help">Enter a value between 0 and 100.</Tooltip>}>
                           <i className="ms-1 bi bi-question-circle"></i>
@@ -382,14 +384,17 @@ export default function RunScenarios() {
                       </Col>
                     </Form.Group>
                   </ListGroup.Item>
-                )}
-
+                </div>
+ 
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="percentTreated">
                     <Form.Label column sm={8}>
-                      <span >
-                        {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && <>Percent of diagnostic test positives treated</>}
-                        {["ScreenTreat"].includes(form.scenario) && <>Percent of screen test positives treated</>}
+                      <span>
+                        {{
+                          "ScreenTreat": "Percent of screen positives treated",
+                          "ScreenDiagnosticTestTreat": "Percent of diagnostic positives treated",
+                          "ScreenTriageDiagnosticTestTreat": "Percent of diagnostic positives treated"
+                        }[form.scenario]}
                       </span>
                       <OverlayTrigger overlay={<Tooltip id="percentDiagnosticTriaged-help">Enter a value between 0 and 100.</Tooltip>}>
                         <i className="ms-1 bi bi-question-circle"></i>
@@ -413,7 +418,7 @@ export default function RunScenarios() {
                       </InputGroup>
                     </Col>
                   </Form.Group>
-                </ListGroup.Item>
+                </ListGroup.Item> 
               </ListGroup>
             </Card.Body>
           </Card>
@@ -504,9 +509,8 @@ export default function RunScenarios() {
                   </Form.Group>
                 </ListGroup.Item>
 
-                {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
-                  <>
-                    <ListGroup.Item>
+                <div className={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) ? 'd-block' : 'd-none'}>
+                  <ListGroup.Item>
                       <Form.Group as={Row} controlId="triageTest">
                         <Form.Label column sm={8}>
                           <span >Triage or diagnostic test chosen</span>
@@ -581,11 +585,9 @@ export default function RunScenarios() {
                         </Col>
                       </Form.Group>
                     </ListGroup.Item>
-                  </>
-                )}
+                  </div>
 
-                {["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) && (
-                  <>
+                  <div className={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) ? 'd-block' : 'd-none'}>
                     <ListGroup.Item>
                       <Form.Group as={Row} controlId="diagnosticTest">
                         <Form.Label column sm={8}>
@@ -661,8 +663,7 @@ export default function RunScenarios() {
                         </Col>
                       </Form.Group>
                     </ListGroup.Item>
-                  </>
-                )}
+                  </div>
               </ListGroup>
             </Card.Body>
           </Card>
