@@ -39,6 +39,10 @@ select option[value=""] {
   );
 }
 
+.border-transparent {
+  border-color: transparent;
+}
+
 .cover-image {
   // background-attachment: fixed;
   // background-position: 50%;
@@ -46,8 +50,9 @@ select option[value=""] {
   background-size: cover;
 }
 
-.font-title {
-  // font-family: $font-family-title;
+.required::after {
+  content: "*";
+  color: $danger;
 }
 
 /** Navbar */
@@ -110,6 +115,15 @@ select option[value=""] {
 
   .card-header {
     border-bottom: 1px solid #eee;
+  }
+}
+
+.custom-card-radio {
+  border-bottom-width: 7px;
+  border-bottom-style: solid;
+  transition: all .05s linear;
+  &:hover {
+    background-color: white !important;
   }
 }
 
