@@ -111,7 +111,7 @@ export default function ScenarioResults() {
                     </tr>}
                     <tr>
                       <th>
-                        {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <>Percent of diagnostic positives treated</>}
+                        {["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(params.scenario) && <>Percent of diagnostic test positives treated</>}
                         {["ScreenTreat"].includes(params.scenario) && <>Percent of screen positives treated</>}
                       </th>
                       <td className="text-end text-nowrap">{asPercent(params.percentTreated, 0) ?? "N/A"}</td>
