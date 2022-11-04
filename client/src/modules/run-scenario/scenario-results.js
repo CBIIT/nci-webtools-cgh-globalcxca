@@ -31,17 +31,6 @@ export default function ScenarioResults() {
   }
 
   async function exportResults() {
-    // we need to allow google translate time to translate the page
-    // before we export it to pdf.  This is a hack to allow that to happen.
-    const defaultTab = activeTab;
-    if (activeTab === "results") {
-      setActiveTab("summary");
-    } else if (activeTab === "summary") {
-      setActiveTab("results");
-    }
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    setActiveTab(defaultTab);
-
     const filename = `${params.scenario}_${getTimestamp()}.pdf`;
     const nodes = Array.from(document.querySelectorAll("[data-export]"));
     exportPdf(filename, nodes);
@@ -57,7 +46,7 @@ export default function ScenarioResults() {
         <Card className="mb-4">
           <Card.Header>
             <Card.Title data-export>{asLabel(params.scenario, scenarios)}</Card.Title>
-            <Card.Text className="small text-muted">Scenario Parameters</Card.Text>
+            <Card.Text className="small text-muted">Scenario Assumptions</Card.Text>
           </Card.Header>
           <Card.Body>
             <Row>
@@ -208,9 +197,6 @@ export default function ScenarioResults() {
                 <Nav.Item>
                   <Nav.Link eventKey="results">Results</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="summary">Summary</Nav.Link>
-                </Nav.Item>
               </Nav>
             </Card.Header>
             <Card.Body>
@@ -238,7 +224,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-warning text-light">
-                        <th>Impact on cervical precancer and impact on the population targeted for screening</th>
+                        <th>Impact on Cervical Precancer and Impact on the Population Targeted for Screening</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -256,59 +242,59 @@ export default function ScenarioResults() {
 
                   <Table hover responsive data-export>
                     <thead>
-                      <tr className="bg-warning text-light">
-                        <th>MISSED PRECANCERS</th>
+                      <tr className="bg-danger text-light">
+                        <th>Missed Precancers</th>
                         <th></th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="table-warning">
+                      <tr className="table-danger">
                         <th>Total precancers missed (% of all precancers)</th>
                         <td className="text-end text-nowrap">{asPercent(results.percentPrecancersMissed) ?? "N/A"}</td>
                         <td className="text-end text-nowrap">{results.numberPrecancersMissed?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
-                      <tr className="table-warning">
+                      <tr className="table-danger">
                         <th>Sources of missed precancers (% missed precancers)</th>
                         <td></td>
                         <td></td>
                       </tr>
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th className="ps-3">Did not have screening test</th>
                         <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToNoScreening) ?? "N/A"}</td>
                         <td className="text-end text-nowrap">{results.numberMissedDueToNoScreening?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th className="ps-3">Sensitivity of screening test</th>
                         <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfScreeningTest) ?? "N/A"}</td>
                         <td className="text-end text-nowrap">{results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
 
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th className="ps-3">Loss at triage/diagnostic test</th>
                         <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"}</td>
                         <td className="text-end text-nowrap">{results.numberMissedDueToLossAtTriage?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
 
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th className="ps-3">Sensitivity of triage/diagnostic test</th>
                         <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfTriageTest) ?? "N/A"}</td>
                         <td className="text-end text-nowrap">{results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
 
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th className="ps-3">Loss at diagnosis</th>
                         <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtDiagnosticTriage) ?? "N/A"}</td>
                         <td className="text-end text-nowrap">{results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
 
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th className="ps-3">Sensitivity of diagnostic test</th>
                         <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest) ?? "N/A"}</td>
                         <td className="text-end text-nowrap">{results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
 
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th className="ps-3">Loss at treatment</th>
                         <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtTreatment) ?? "N/A"}</td>
                         <td className="text-end text-nowrap">{results.numberMissedDueToLossAtTreatment?.toLocaleString(locale) ?? "N/A"}</td>
@@ -318,189 +304,26 @@ export default function ScenarioResults() {
 
                   <Table hover responsive data-export>
                     <thead>
-                      <tr className="bg-warning text-light">
+                      <tr className="bg-success text-light">
                         <th>Annual Impact on Resources</th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th>Total requiring screening test</th>
                         <td className="text-end text-nowrap">{results.totalNeededToScreen?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th>Total requiring triage/diagnostic test</th>
                         <td className="text-end text-nowrap">{results.totalNeededToTriage?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th>Total requiring diagnostic test</th>
                         <td className="text-end text-nowrap">{results.totalNeededToDiagnosticTriage?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
-                      <tr className="table-warning">
+                      <tr className="table-light">
                         <th>Total requiring treatment</th>
-                        <td className="text-end text-nowrap">{results.totalNeededToTreat?.toLocaleString(locale) ?? "N/A"}</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                  {/* page break */}
-                  <hr className="d-none" data-export />
-                </Tab.Pane>
-                <Tab.Pane eventKey="summary" mountOnEnter={false} unmountOnExit={false}>
-                  {/* <Table hover responsive data-export>
-                    <thead>
-                      <tr className="bg-info text-light">
-                        <th>Assumptions</th>
-                        <th className="text-end text-nowrap">{asLabel(params.scenario, scenarios)}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>Target population size of screen-eligible women</th>
-                        <td className="text-end text-nowrap">{params.populationSize?.toLocaleString(locale) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th>Prevalence of CIN2/3</th>
-                        <td className="text-end text-nowrap">{asPercent(params.cinPrevalence) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr className="table-info">
-                        <th>Screening test chosen</th>
-                        <td className="text-end text-nowrap">{asLabel(params.screeningTest, screeningTests) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th className="ps-3">Screening coverage</th>
-                        <td className="text-end text-nowrap">{asPercent(params.percentScreened) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th className="ps-3">Screening test sensitivity for CIN2/3</th>
-                        <td className="text-end text-nowrap">{asPercent(params.screeningTestSensitivity) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th className="ps-3">Screening test specificity for CIN2/3</th>
-                        <td className="text-end text-nowrap">{asPercent(params.screeningTestSpecificity) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr className="table-info">
-                        <th>Triage or diagnostic test chosen</th>
-                        <td className="text-end text-nowrap">{asLabel(params.triageTest, triageTests) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th className="ps-3">Triage or diagnostic test attendance</th>
-                        <td className="text-end text-nowrap">{asPercent(params.percentTriaged) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3</th>
-                        <td className="text-end text-nowrap">{asPercent(params.triageTestSensitivity) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th className="ps-3">Triage or diagnostic test specificity for CIN2/3</th>
-                        <td className="text-end text-nowrap">{asPercent(params.triageTestSpecificity) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr className="table-info">
-                        <th>Diagnostic test chosen</th>
-                        <td className="text-end text-nowrap">{asLabel(params.diagnosticTest, diagnosticTests) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th className="ps-3">Diagnostic test attendance</th>
-                        <td className="text-end text-nowrap">{asPercent(params.percentDiagnosticTriaged) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th className="ps-3">Diagnostic test sensitivity for CIN2/3</th>
-                        <td className="text-end text-nowrap">{asPercent(params.diagnosticTestSensitivity) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th className="ps-3">Diagnostic test specificity for CIN2/3</th>
-                        <td className="text-end text-nowrap">{asPercent(params.diagnosticTestSpecificity) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr className="table-info">
-                        <th>Treatment attendance</th>
-                        <td className="text-end text-nowrap">{asPercent(params.percentTreated) ?? "N/A"}</td>
-                      </tr>
-                    </tbody>
-                  </Table> */}
-
-                  <Table hover responsive data-export>
-                    <thead>
-                      <tr className="bg-danger text-light">
-                        <th>Annual Impact</th>
-                        <th className="text-end text-nowrap">{asLabel(params.scenario, scenarios)}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="table-danger">
-                        <th>Pre-cancers treated</th>
-                        <td className="text-end text-nowrap">{asPercent(results.percentPrecancersTreated) ?? "N/A"}</td>
-                      </tr>
-                      <tr className="table-danger">
-                        <th>Pre-cancers missed</th>
-                        <td className="text-end text-nowrap">{asPercent(results.percentPrecancersMissed) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr>
-                        <th className="ps-3">Missed due to no screening</th>
-                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToNoScreening) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th className="ps-3">Missed due to sensitivity of screening test</th>
-                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfScreeningTest) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr>
-                        <th className="ps-3">Missed due to loss at triage/diagnostic test</th>
-                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr>
-                        <th className="ps-3">Missed due to sensitivity of triage/diagnostic test</th>
-                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfTriageTest) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr>
-                        <th className="ps-3">Missed due to loss at diagnosis</th>
-                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtDiagnosticTriage) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr>
-                        <th className="ps-3">Missed due to sensitivity of diagnostic test</th>
-                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr>
-                        <th className="ps-3">Missed due to loss at treatment</th>
-                        <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToLossAtTreatment) ?? "N/A"}</td>
-                      </tr>
-
-                      <tr className="bg-light">
-                        <th>Percent healthy over-treated</th>
-                        <td className="text-end text-nowrap">{asPercent(results.percentHealthyOvertreated) ?? "N/A"}</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-
-                  <Table hover responsive data-export>
-                    <thead>
-                      <tr className="bg-success text-light">
-                        <th>Annual Resource Requirements</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>Total needed to screen</th>
-                        <td className="text-end text-nowrap">{results.totalNeededToScreen?.toLocaleString(locale) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th>Total needed to triage</th>
-                        <td className="text-end text-nowrap">{results.totalNeededToTriage?.toLocaleString(locale) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th>Total needed to diagnose</th>
-                        <td className="text-end text-nowrap">{results.totalNeededToDiagnosticTriage?.toLocaleString(locale) ?? "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <th>Total needed to treat</th>
                         <td className="text-end text-nowrap">{results.totalNeededToTreat?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
                     </tbody>
