@@ -12,4 +12,4 @@ export const asNumber = (value) => {
 
 export const asLabel = (value, options) => options.find(o => o.value === value)?.label;
 
-export const asPercent = (value, places = 2) => [null, undefined, NaN].includes(value) ? null : `${(+value).toFixed(places)}%`;
+export const asPercent = (value, places = 1) => [null, undefined, NaN].includes(value) ? null : `${(+value).toFixed(places)}%`;
