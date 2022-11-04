@@ -637,7 +637,7 @@ export default function CompareScenarios() {
                 </Card>
               </Tab.Container>
               <div className="text-center">
-                <Button onClick={exportResults} className="ms-2" variant="primary">
+                <Button onClick={exportResults} className="m-1" variant="primary">
                   Export Results to PDF
                 </Button>
               </div>

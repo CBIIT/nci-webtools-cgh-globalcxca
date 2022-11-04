@@ -512,13 +512,13 @@ export default function ScenarioResults() {
         </Tab.Container>
 
         <div className="text-center">
-          <Link className="btn btn-outline-primary text-decoration-none" to="/run-scenario">
+          <Link className="btn btn-outline-primary text-decoration-none m-1" to="/run-scenario">
             Back to Scenario
           </Link>
-          <Button onClick={saveScenario} className="ms-2" variant="primary">
+          <Button onClick={saveScenario} className="m-1" variant="primary">
             Save Scenario
           </Button>
-          <Button onClick={exportResults} className="ms-2" variant="primary">
+          <Button onClick={exportResults} className="m-1" variant="primary">
             Export Results to PDF
           </Button>
         </div>
