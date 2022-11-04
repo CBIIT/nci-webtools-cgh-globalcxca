@@ -70,9 +70,11 @@ export default function CompareScenarios() {
 
     const filename = `ScenarioComparison_${getTimestamp()}.pdf`;
     const nodes = Array.from(document.querySelectorAll("[data-export]"));
+    const maxWidth = Math.max(...nodes.map((n) => n.offsetWidth));
+
     exportPdf(filename, nodes, {
       pageSize: {
-        width: 400 + 200 * scenarios.length,
+        width: 400 + maxWidth,
         height: 800,
       },
     });
@@ -85,7 +87,7 @@ export default function CompareScenarios() {
           <Card className="mb-4">
             <Card.Header>
               <Card.Title>Compare Scenarios</Card.Title>
-              <Card.Text className="small text-muted">Upload up to {limit} scenarios for comparison.</Card.Text>
+              <Card.Text className="small text-muted">Upload up to {limit} scenarios for comparison. Files must be of the “.scenario” file format. Click the title of the scenario to rename it.</Card.Text>
             </Card.Header>
             <Card.Body className="p-0">
               <ListGroup variant="flush hover striped">
@@ -172,7 +174,7 @@ export default function CompareScenarios() {
                         <Table hover responsive data-export>
                           <thead>
                             <tr className="bg-warning text-light">
-                              <th>Impact on Disease and Screening Population</th>
+                              <th>Impact on cervical precancer and impact on the population targeted for screening</th>
                               {scenarios.map((scenario, index) => (
                                 <th key={index} className="text-end text-nowrap">
                                   {scenario.name}
@@ -228,7 +230,7 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr className="table-warning">
-                              <th className="ps-3">No screening</th>
+                              <th className="ps-3">Did not have screening test</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end text-nowrap" key={index} title={results.numberMissedDueToNoScreening?.toLocaleString(locale)}>
                                   {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"}
@@ -294,7 +296,7 @@ export default function CompareScenarios() {
                         <Table hover responsive data-export>
                           <thead>
                             <tr className="bg-warning text-light">
-                              <th>Impact on Resources</th>
+                              <th>Annual Impact on Resources</th>
                               {scenarios.map((scenario, index) => (
                                 <th key={index} className="text-end text-nowrap">
                                   {scenario.name}
@@ -636,7 +638,7 @@ export default function CompareScenarios() {
               </Tab.Container>
               <div className="text-center">
                 <Button onClick={exportResults} className="ms-2" variant="primary">
-                  Export Results
+                  Export Results to PDF
                 </Button>
               </div>
             </>
