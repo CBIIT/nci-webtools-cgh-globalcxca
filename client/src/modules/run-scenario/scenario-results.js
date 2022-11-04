@@ -219,7 +219,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-warning text-light">
-                        <th>Impact on Disease and Screening Population</th>
+                        <th>Impact on cervical precancer and impact on the population targeted for screening</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -255,7 +255,7 @@ export default function ScenarioResults() {
                         <td></td>
                       </tr>
                       <tr className="table-warning">
-                        <th className="ps-3">No screening</th>
+                        <th className="ps-3">Did not have screening test</th>
                         <td className="text-end text-nowrap">{asPercent(results.percentMissedDueToNoScreening) ?? "N/A"}</td>
                         <td className="text-end text-nowrap">{results.numberMissedDueToNoScreening?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
@@ -300,7 +300,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-warning text-light">
-                        <th>Impact on Resources</th>
+                        <th>Annual Impact on Resources</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -500,7 +500,7 @@ export default function ScenarioResults() {
             Save Scenario
           </Button>
           <Button onClick={exportResults} className="ms-2" variant="primary">
-            Export Results
+            Export Results to PDF
           </Button>
         </div>
       </Container>

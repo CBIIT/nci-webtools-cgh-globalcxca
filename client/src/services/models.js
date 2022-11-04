@@ -6,22 +6,22 @@ export const scenarios = [
 ];
 
 export const screeningTests = [
-  { value: "pap", label: "Pap" },
+  { value: "pap", label: "Pap test" },
   { value: "ivaa", label: "VIA (IVAA)" },
   { value: "hpv", label: "HPV" },
   { value: "hpv16or18", label: "HPV16/18" },
 ];
 
 export const triageTests = [
-  { value: "pap", label: "Pap" },
+  { value: "pap", label: "Pap test" },
   { value: "ivaa", label: "VIA (IVAA)" },
   { value: "hpv16or18", label: "HPV16/18" },
-  { value: "colposcopicImpression", label: "Coloscopic Impression" },
+  { value: "colposcopicImpression", label: "Impression of colposcopy" },
   { value: "colposcopyWithBiopsy", label: "Colposcopy with Biopsy" },
 ];
 
 export const diagnosticTests = [
-  { value: "colposcopicImpression", label: "Coloscopic Impression" },
+  { value: "colposcopicImpression", label: "Impression of colposcopy" },
   { value: "colposcopyWithBiopsy", label: "Colposcopy with Biopsy" },
 ];
 
