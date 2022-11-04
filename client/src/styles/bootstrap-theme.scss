@@ -125,6 +125,9 @@ select option[value=""] {
 .custom-card-radio {
   border-bottom-width: 7px;
   border-bottom-style: solid;
+  border-top-width: 7px;
+  border-top-style: solid;
+  border-top-color: transparent !important;
   transition: all .05s linear;
   &:hover {
     background-color: white !important;
