@@ -530,7 +530,7 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr>
-                              <th className="ps-3">Missed due to Loss at triage/diagnostic test</th>
+                              <th className="ps-3">Missed due to loss at triage/diagnostic test</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end text-nowrap" key={index}>
                                   {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"}
@@ -539,7 +539,7 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr>
-                              <th className="ps-3">Missed due to Sensitivity of triage/diagnostic test</th>
+                              <th className="ps-3">Missed due to sensitivity of triage/diagnostic test</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end text-nowrap" key={index}>
                                   {asPercent(results.percentMissedDueToSensitivityOfTriageTest) ?? "N/A"}

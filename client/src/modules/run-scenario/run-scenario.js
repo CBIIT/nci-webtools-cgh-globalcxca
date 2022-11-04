@@ -358,7 +358,7 @@ export default function RunScenarios() {
                         <span>
                           {
                             {
-                              ScreenDiagnosticTestTreat: "Percent of screen positives with diagnostic test",
+                              ScreenDiagnosticTestTreat: "Percent of screen positives with triage/diagnostic test",
                               ScreenTriageDiagnosticTestTreat: "Percent of triage positives with diagnostic test",
                             }[form.scenario]
                           }
@@ -395,7 +395,7 @@ export default function RunScenarios() {
                         {
                           {
                             ScreenTreat: "Percent of screen positives treated",
-                            ScreenDiagnosticTestTreat: "Percent of diagnostic test positives treated",
+                            ScreenDiagnosticTestTreat: "Percent of triage/diagnostic test positives treated",
                             ScreenTriageDiagnosticTestTreat: "Percent of diagnostic test positives treated",
                           }[form.scenario]
                         }

@@ -57,13 +57,13 @@ export function runModel(params) {
   }
 }
 
-
 export function runScreenDiagnosticTestTreatModel({
   populationSize,
   screeningInterval,
   cinPrevalence,
   percentScreened,
   percentDiagnosticTriaged,
+  percentTriaged,
   percentTreated,
   screeningTestSensitivity,
   screeningTestSpecificity,
@@ -72,12 +72,15 @@ export function runScreenDiagnosticTestTreatModel({
 }) {
   cinPrevalence /= 100;
   percentScreened /= 100;
+  percentTriaged /= 100;
   percentDiagnosticTriaged /= 100;
   percentTreated /= 100;
   screeningTestSensitivity /= 100;
   screeningTestSpecificity /= 100;
   triageTestSensitivity /= 100;
   triageTestSpecificity /= 100;
+
+  percentTriaged = percentDiagnosticTriaged;
 
   // target population
   const healthyWomenTargetedForScreening = (populationSize / screeningInterval) * (1 - cinPrevalence);
@@ -92,19 +95,19 @@ export function runScreenDiagnosticTestTreatModel({
   const screenedTruePositives = screenedWithPrecancer * screeningTestSensitivity;
   const screenedFalsePositives = screenedHealthy * (1 - screeningTestSpecificity);
 
-  // diagnostic diagnosticTriaged population
-  const lostToFollowUpAtDiagnosticTriage = screenedTruePositives * (1 - percentDiagnosticTriaged);
-  const diagnosticTriagedHealthy = screenedFalsePositives * percentDiagnosticTriaged;
-  const diagnosticTriagedWithPrecancer = screenedTruePositives * percentDiagnosticTriaged;
-  const diagnosticTriagedFalseNegatives = diagnosticTriagedWithPrecancer * (1 - triageTestSensitivity);
-  const diagnosticTriagedTrueNegatives = diagnosticTriagedHealthy * triageTestSpecificity;
-  const diagnosticTriagedTruePositives = diagnosticTriagedWithPrecancer * triageTestSensitivity;
-  const diagnosticTriagedFalsePositives = diagnosticTriagedHealthy * (1 - triageTestSpecificity);
+  // diagnostic triaged population
+  const lostToFollowUpAtTriage = screenedTruePositives * (1 - percentTriaged);
+  const triagedHealthy = screenedFalsePositives * percentTriaged;
+  const triagedWithPrecancer = screenedTruePositives * percentTriaged;
+  const triagedFalseNegatives = triagedWithPrecancer * (1 - triageTestSensitivity);
+  const triagedTrueNegatives = triagedHealthy * triageTestSpecificity;
+  const triagedTruePositives = triagedWithPrecancer * triageTestSensitivity;
+  const triagedFalsePositives = triagedHealthy * (1 - triageTestSpecificity);
 
   // treated population
-  const lostToFollowUpAtTreatment = diagnosticTriagedTruePositives * (1 - percentTreated);
-  const treatedHealthy = diagnosticTriagedFalsePositives * percentTreated;
-  const treatedWithPrecancer = diagnosticTriagedTruePositives * percentTreated;
+  const lostToFollowUpAtTreatment = triagedTruePositives * (1 - percentTreated);
+  const treatedHealthy = triagedFalsePositives * percentTreated;
+  const treatedWithPrecancer = triagedTruePositives * percentTreated;
 
   // impact on disease
   const percentPrecancersTreated =  100 * treatedWithPrecancer / precancersTargetedForScreening;
@@ -113,25 +116,25 @@ export function runScreenDiagnosticTestTreatModel({
   // sources of missed precancers
   const numberMissedDueToNoScreening = unscreenedPrecancers;
   const numberMissedDueToSensitivityOfScreeningTest = screenedFalseNegatives;
-  const numberMissedDueToLossAtDiagnosticTriage = lostToFollowUpAtDiagnosticTriage;
-  const numberMissedDueToSensitivityOfDiagnosticTriageTest = diagnosticTriagedFalseNegatives;
+  const numberMissedDueToLossAtTriage = lostToFollowUpAtTriage;
+  const numberMissedDueToSensitivityOfTriageTest = triagedFalseNegatives;
   const numberMissedDueToLossAtTreatment = lostToFollowUpAtTreatment;
   const numberPrecancersMissed =  numberMissedDueToNoScreening
     + numberMissedDueToSensitivityOfScreeningTest
-    + numberMissedDueToLossAtDiagnosticTriage
-    + numberMissedDueToSensitivityOfDiagnosticTriageTest
+    + numberMissedDueToLossAtTriage
+    + numberMissedDueToSensitivityOfTriageTest
     + numberMissedDueToLossAtTreatment;
 
   const percentMissedDueToNoScreening = 100 * unscreenedPrecancers / numberPrecancersMissed;
   const percentMissedDueToSensitivityOfScreeningTest = 100 * screenedFalseNegatives / numberPrecancersMissed;
-  const percentMissedDueToLossAtDiagnosticTriage = 100 * lostToFollowUpAtDiagnosticTriage / numberPrecancersMissed;
-  const percentMissedDueToSensitivityOfDiagnosticTriageTest = 100 * diagnosticTriagedFalseNegatives / numberPrecancersMissed;
+  const percentMissedDueToLossAtTriage = 100 * lostToFollowUpAtTriage / numberPrecancersMissed;
+  const percentMissedDueToSensitivityOfTriageTest = 100 * triagedFalseNegatives / numberPrecancersMissed;
   const percentMissedDueToLossAtTreatment = 100 * lostToFollowUpAtTreatment / numberPrecancersMissed;
   const percentPrecancersMissed = 100 * numberPrecancersMissed / precancersTargetedForScreening;
 
   // impact on resources
   const totalNeededToScreen = screenedHealthy + screenedWithPrecancer;
-  const totalNeededToTriage = diagnosticTriagedHealthy + diagnosticTriagedWithPrecancer;
+  const totalNeededToTriage = triagedHealthy + triagedWithPrecancer;
   const totalNeededToTreat = treatedHealthy + treatedWithPrecancer;
 
   const results = {
@@ -146,13 +149,13 @@ export function runScreenDiagnosticTestTreatModel({
     screenedTruePositives: Math.round(screenedTruePositives),
     screenedFalsePositives: Math.round(screenedFalsePositives),
 
-    lostToFollowUpAtDiagnosticTriage: Math.round(lostToFollowUpAtDiagnosticTriage),
-    diagnosticTriagedHealthy: Math.round(diagnosticTriagedHealthy),
-    diagnosticTriagedWithPrecancer: Math.round(diagnosticTriagedWithPrecancer),
-    diagnosticTriagedFalseNegatives: Math.round(diagnosticTriagedFalseNegatives),
-    diagnosticTriagedTrueNegatives: Math.round(diagnosticTriagedTrueNegatives),
-    diagnosticTriagedTruePositives: Math.round(diagnosticTriagedTruePositives),
-    diagnosticTriagedFalsePositives: Math.round(diagnosticTriagedFalsePositives),
+    lostToFollowUpAtTriage: Math.round(lostToFollowUpAtTriage),
+    triagedHealthy: Math.round(triagedHealthy),
+    triagedWithPrecancer: Math.round(triagedWithPrecancer),
+    triagedFalseNegatives: Math.round(triagedFalseNegatives),
+    triagedTrueNegatives: Math.round(triagedTrueNegatives),
+    triagedTruePositives: Math.round(triagedTruePositives),
+    triagedFalsePositives: Math.round(triagedFalsePositives),
 
     lostToFollowUpAtTreatment: Math.round(lostToFollowUpAtTreatment),
     treatedHealthy: Math.round(treatedHealthy),
@@ -163,15 +166,15 @@ export function runScreenDiagnosticTestTreatModel({
 
     percentMissedDueToNoScreening: percentMissedDueToNoScreening,
     percentMissedDueToSensitivityOfScreeningTest: percentMissedDueToSensitivityOfScreeningTest,
-    percentMissedDueToLossAtDiagnosticTriage: percentMissedDueToLossAtDiagnosticTriage,
-    percentMissedDueToSensitivityOfDiagnosticTriageTest: percentMissedDueToSensitivityOfDiagnosticTriageTest,
+    percentMissedDueToLossAtTriage: percentMissedDueToLossAtTriage,
+    percentMissedDueToSensitivityOfTriageTest: percentMissedDueToSensitivityOfTriageTest,
     percentMissedDueToLossAtTreatment: percentMissedDueToLossAtTreatment,
     percentPrecancersMissed: percentPrecancersMissed,
 
     numberMissedDueToNoScreening: Math.round(numberMissedDueToNoScreening),
     numberMissedDueToSensitivityOfScreeningTest: Math.round(numberMissedDueToSensitivityOfScreeningTest),
-    numberMissedDueToLossAtDiagnosticTriage: Math.round(numberMissedDueToLossAtDiagnosticTriage),
-    numberMissedDueToSensitivityOfDiagnosticTriageTest: Math.round(numberMissedDueToSensitivityOfDiagnosticTriageTest),
+    numberMissedDueToLossAtTriage: Math.round(numberMissedDueToLossAtTriage),
+    numberMissedDueToSensitivityOfTriageTest: Math.round(numberMissedDueToSensitivityOfTriageTest),
     numberMissedDueToLossAtTreatment: Math.round(numberMissedDueToLossAtTreatment),
     numberPrecancersMissed: Math.round(numberPrecancersMissed),
 
