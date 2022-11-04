@@ -111,22 +111,33 @@
     </footer>    
 
     <script>
-      window.localeChangeListeners = [];
+      window.localeChangeListeners = [locale => console.log(locale, Math.random())];
 
       function registerLocaleChangeListener(callback) {
         window.localeChangeListeners.push(callback);
         return () => {window.localeChangeListeners = window.localeChangeListeners.filter(c => c != callback)};
       }
 
+      function emitLocaleChangeEvent(locale) {
+        window.localeChangeListeners.forEach(c => c(locale));
+      }
+
       function googleTranslateElementInit() {
+        const id = "google_translate_element";
+        const defaultLocale = 'en';
         new google.translate.TranslateElement(
           { pageLanguage: "en", layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL },
-          "google_translate_element"
+          id
         );
-        setTimeout(() => {
+        // use observer instead of onchange since google translate re-renders this element
+        const observer = new MutationObserver(() => {
           const node = document.getElementById(':0.targetLanguage')?.querySelector('select');
-          node?.addEventListener('change', ev => window.localeChangeListeners.forEach(c => c(ev.target?.value || 'en')));
-        }, 100);
+          emitLocaleChangeEvent(node?.value || defaultLocale);
+        });
+        observer.observe(
+          document.getElementById(id), 
+          { attributes: false, childList: true, subtree: true }
+        );
       }
     </script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
