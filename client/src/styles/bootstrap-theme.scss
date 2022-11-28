@@ -15,6 +15,17 @@ select option[value=""] {
   color: #6c757d;
 }
 
+/** Disable spin buttons */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 /** Ensure translate element passes contrast checks */
 .goog-te-gadget, .goog-te-combo, .goog-logo-link {
   font-family: $font-family-sans-serif !important; 
