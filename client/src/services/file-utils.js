@@ -10,8 +10,13 @@ export async function readFile(file) {
 
 export function getTimestamp(d = new Date()) {
   const padDateValue = val => String(val).padStart(2, '0');
-  return [
-    [d.getFullYear(), d.getMonth() + 1, d.getDate()].map(padDateValue).join(''),
-    [d.getHours(), d.getMinutes(), d.getSeconds()].map(padDateValue).join(''),
-  ].join('_')
+  const dateParts = [
+    d.getFullYear(), 
+    d.getMonth() + 1, 
+    d.getDate(),
+    d.getHours(), 
+    d.getMinutes(), 
+    d.getSeconds()
+  ];
+  return dateParts.map(padDateValue).join('');
 }

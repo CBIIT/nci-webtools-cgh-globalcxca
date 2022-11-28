@@ -24,14 +24,14 @@ export default function ScenarioResults() {
   const locale = useRecoilValue(localeState);
 
   function saveScenario() {
-    const filename = `${params.scenario}_${getTimestamp()}.scenario`;
+    const filename = `${params.scenario} ${getTimestamp()}.scenario`;
     const type = "text/plain;charset=utf-8";
     const contents = JSON.stringify(params);
     saveAs(new Blob([contents]), filename, { type });
   }
 
   async function exportResults() {
-    const filename = `${params.scenario}_${getTimestamp()}.pdf`;
+    const filename = `${params.scenario} ${getTimestamp()}.pdf`;
     const nodes = Array.from(document.querySelectorAll("[data-export]"));
     exportPdf(filename, nodes);
   }

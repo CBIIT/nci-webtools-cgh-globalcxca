@@ -149,12 +149,24 @@ input[type=number] {
   cursor: pointer;
 }
 
+.table-responsive {
+  margin-bottom: 1rem;
+  .table {
+    margin-bottom: 0;
+  }
+}
+
 .table {
   tbody {
     th {
       font-weight: 500;
+      min-width: 400px;
+      max-width: 500px;
+      white-space: normal;
+      text-overflow: ellipsis;
     }
   }
+ 
 }
 
 .nav-tabs {
