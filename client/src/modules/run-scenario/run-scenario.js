@@ -105,6 +105,7 @@ export default function RunScenarios() {
                         checked={form.scenario === scenario.value}
                         className="ms-1"
                         onChange={handleChange}
+                        onWheel={(e) => e.target.blur()}
                         required
                       />
                       <Form.Check.Label
@@ -152,6 +153,7 @@ export default function RunScenarios() {
                           name="populationSize"
                           value={form.populationSize}
                           onChange={handleChange}
+                          onWheel={(e) => e.target.blur()}
                           required
                         />
                       </InputGroup>
@@ -180,7 +182,7 @@ export default function RunScenarios() {
                           name="hpvCancerPrevalence"
                           className="border-end-0"
                           value={form.hpvCancerPrevalence}
-                          onChange={handleChange}
+                          onChange={handleChange} onWheel={(e) => e.target.blur()}
                         />
                         <InputGroup.Text>%</InputGroup.Text>
                       </InputGroup>
@@ -207,7 +209,7 @@ export default function RunScenarios() {
                           name="hpvPrevalence"
                           className="border-end-0"
                           value={form.hpvPrevalence}
-                          onChange={handleChange}
+                          onChange={handleChange} onWheel={(e) => e.target.blur()}
                         />
                         <InputGroup.Text>%</InputGroup.Text>
                       </InputGroup>
@@ -241,6 +243,7 @@ export default function RunScenarios() {
                           className="border-end-0"
                           value={form.cinPrevalence}
                           onChange={handleChange}
+                          onWheel={(e) => e.target.blur()}
                           required
                         />
                         <InputGroup.Text>%</InputGroup.Text>
@@ -285,6 +288,7 @@ export default function RunScenarios() {
                           name="screeningInterval"
                           value={form.screeningInterval}
                           onChange={handleChange}
+                          onWheel={(e) => e.target.blur()}
                           required
                         />
                         <InputGroup.Text>Year(s)</InputGroup.Text>
@@ -313,6 +317,7 @@ export default function RunScenarios() {
                           name="percentScreened"
                           value={form.percentScreened}
                           onChange={handleChange}
+                          onWheel={(e) => e.target.blur()}
                           required
                         />
                         <InputGroup.Text>%</InputGroup.Text>
@@ -342,6 +347,7 @@ export default function RunScenarios() {
                             name="percentTriaged"
                             value={form.percentTriaged}
                             onChange={handleChange}
+                            onWheel={(e) => e.target.blur()}
                             required={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
                           <InputGroup.Text>%</InputGroup.Text>
@@ -379,6 +385,7 @@ export default function RunScenarios() {
                             name="percentDiagnosticTriaged"
                             value={form.percentDiagnosticTriaged}
                             onChange={handleChange}
+                            onWheel={(e) => e.target.blur()}
                             required={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
                           <InputGroup.Text>%</InputGroup.Text>
@@ -416,6 +423,7 @@ export default function RunScenarios() {
                           name="percentTreated"
                           value={form.percentTreated}
                           onChange={handleChange}
+                          onWheel={(e) => e.target.blur()}
                           required
                         />
                         <InputGroup.Text>%</InputGroup.Text>
@@ -443,7 +451,7 @@ export default function RunScenarios() {
                       <span>Cervical screening test chosen</span>
                     </Form.Label>
                     <Col sm={4}>
-                      <Form.Select name="screeningTest" value={form.screeningTest} onChange={handleChange} required>
+                      <Form.Select name="screeningTest" value={form.screeningTest} onChange={handleChange} onWheel={(e) => e.target.blur()} required>
                         <option value="" hidden>
                           Select a test
                         </option>
@@ -477,6 +485,7 @@ export default function RunScenarios() {
                           name="screeningTestSensitivity"
                           value={form.screeningTestSensitivity}
                           onChange={handleChange}
+                          onWheel={(e) => e.target.blur()}
                           required
                         />
                         <InputGroup.Text>%</InputGroup.Text>
@@ -505,6 +514,7 @@ export default function RunScenarios() {
                           name="screeningTestSpecificity"
                           value={form.screeningTestSpecificity}
                           onChange={handleChange}
+                          onWheel={(e) => e.target.blur()}
                           required
                         />
                         <InputGroup.Text>%</InputGroup.Text>
@@ -524,6 +534,7 @@ export default function RunScenarios() {
                           name="triageTest"
                           value={form.triageTest}
                           onChange={handleChange}
+                          onWheel={(e) => e.target.blur()}
                           required={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                         >
                           <option value="" hidden>
@@ -559,6 +570,7 @@ export default function RunScenarios() {
                             name="triageTestSensitivity"
                             value={form.triageTestSensitivity}
                             onChange={handleChange}
+                            onWheel={(e) => e.target.blur()}
                             required={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
                           <InputGroup.Text>%</InputGroup.Text>
@@ -587,6 +599,7 @@ export default function RunScenarios() {
                             name="triageTestSpecificity"
                             value={form.triageTestSpecificity}
                             onChange={handleChange}
+                            onWheel={(e) => e.target.blur()}
                             required={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
                           <InputGroup.Text>%</InputGroup.Text>
@@ -607,6 +620,7 @@ export default function RunScenarios() {
                           name="diagnosticTest"
                           value={form.diagnosticTest}
                           onChange={handleChange}
+                          onWheel={(e) => e.target.blur()}
                           required={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                         >
                           <option value="" hidden>
@@ -642,6 +656,7 @@ export default function RunScenarios() {
                             name="diagnosticTestSensitivity"
                             value={form.diagnosticTestSensitivity}
                             onChange={handleChange}
+                            onWheel={(e) => e.target.blur()}
                             required={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
                           <InputGroup.Text>%</InputGroup.Text>
@@ -670,6 +685,7 @@ export default function RunScenarios() {
                             name="diagnosticTestSpecificity"
                             value={form.diagnosticTestSpecificity}
                             onChange={handleChange}
+                            onWheel={(e) => e.target.blur()}
                             required={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
                           <InputGroup.Text>%</InputGroup.Text>
