@@ -67,6 +67,7 @@ export function exportPdf(filename, nodes, config = {}) {
             body: Array.from(node.querySelectorAll("tr")).map((tr) =>
               Array.from(tr.querySelectorAll("td, th")).map((cell) => ({
                 text: cell.innerText,
+                colSpan: cell.colSpan || 1,
                 style: [...tr.classList, ...cell.classList, cell.tagName],
               }))
             ),
