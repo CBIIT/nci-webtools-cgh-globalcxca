@@ -141,7 +141,7 @@ export default function CompareScenarios() {
                   <Card.Body>
                     <Tab.Content>
                       <Tab.Pane eventKey="results" mountOnEnter={false} unmountOnExit={false}>
-                        <Table hover responsive data-export>
+                        <Table responsive data-export>
                           <thead>
                             <tr className="bg-info text-light">
                               <th className="table-header">Annual Targets</th>
@@ -169,20 +169,10 @@ export default function CompareScenarios() {
                                 </td>
                               ))}
                             </tr>
-                          </tbody>
-                        </Table>
-                        <Table hover responsive data-export>
-                          <thead>
-                            <tr className="bg-warning text-light">
-                              <th>Impact on Cervical Precancer and Impact on the Population Targeted for Screening</th>
-                              {scenarios.map((scenario, index) => (
-                                <th key={index} className="text-end">
-                                  {scenario.name}
-                                </th>
-                              ))}
+                          
+                          <tr className="bg-warning text-light">
+                              <th colSpan={1 + scenarios.length}>Impact on Cervical Precancer and Impact on the Population Targeted for Screening</th>
                             </tr>
-                          </thead>
-                          <tbody>
                             <tr className="table-warning">
                               <th>Percent precancers treated</th>
                               {scenarios.map(({ results }, index) => (
@@ -199,21 +189,11 @@ export default function CompareScenarios() {
                                 </td>
                               ))}
                             </tr>
-                          </tbody>
-                        </Table>
-
-                        <Table hover responsive data-export>
-                          <thead>
-                            <tr className="bg-danger text-light">
-                              <th>Missed Precancers</th>
-                              {scenarios.map((scenario, index) => (
-                                <th key={index} className="text-end">
-                                  {scenario.name}
-                                </th>
-                              ))}
+                          
+                          <tr className="bg-danger text-light">
+                              <th colSpan={1 + scenarios.length}>Missed Precancers</th>
                             </tr>
-                          </thead>
-                          <tbody>
+
                             <tr className="table-danger">
                               <th>Total precancers missed (% of all precancers)</th>
                               {scenarios.map(({ results }, index) => (
@@ -290,21 +270,11 @@ export default function CompareScenarios() {
                                 </td>
                               ))}
                             </tr>
-                          </tbody>
-                        </Table>
-
-                        <Table hover responsive data-export>
-                          <thead>
+                          
                             <tr className="bg-success text-light">
-                              <th>Annual Impact on Resources</th>
-                              {scenarios.map((scenario, index) => (
-                                <th key={index} className="text-end">
-                                  {scenario.name}
-                                </th>
-                              ))}
+                              <th colSpan={1 + scenarios.length}>Annual Impact on Resources</th>
                             </tr>
-                          </thead>
-                          <tbody>
+                        
                             <tr className="table-light">
                               <th>Total requiring screening test</th>
                               {scenarios.map(({ results }, index) => (
