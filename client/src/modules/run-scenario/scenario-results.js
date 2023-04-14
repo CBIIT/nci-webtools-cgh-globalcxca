@@ -16,6 +16,8 @@ import { scenarios, screeningTests, triageTests, diagnosticTests } from "../../s
 import { getTimestamp } from "../../services/file-utils";
 import { exportPdf } from "../../services/pdf-utils";
 import { asLabel, asPercent } from "../../services/formatters";
+import PieChart from "./pie-chart";
+import BarChart from "./bar-chart";
 
 export default function ScenarioResults() {
   const params = useRecoilValue(paramsState);
@@ -37,13 +39,14 @@ export default function ScenarioResults() {
   }
 
   if (!params || !results) {
-    return <Navigate to="/run-scenario" />;
+    return null;
+    // return <Navigate to="/run-scenario" />;
   }
 
   return (
-    <div className="bg-light py-4">
+    <div>
       <Container>
-        <Card className="mb-4">
+        <Card className="mb-4 d-none">
           <Card.Header>
             <Card.Title data-export>{asLabel(params.scenario, scenarios)}</Card.Title>
             <Card.Text className="small text-muted">Scenario Assumptions</Card.Text>
@@ -184,6 +187,33 @@ export default function ScenarioResults() {
                 </Table>
               </Col>
             </Row>
+          </Card.Body>
+        </Card>
+
+        <Card className="mb-4">
+          <Card.Body>
+            <Row>
+              <Col md={6}>
+                <h2 className="text-center h5">Precancers Treated</h2>
+                <PieChart data={[
+                  { label: "% Precancers Missed", value: results.percentPrecancersMissed }, 
+                  { label: "% Precancers Treated", value: results.percentPrecancersTreated },
+                ]} />
+              </Col>
+
+              <Col md={6}>
+                <h2 className="text-center h5">Interventions Required</h2>
+                <BarChart data={[
+                  { label: "Screening Test", value: results.totalNeededToScreen },
+                  { label: "Triage Test", value: results.totalNeededToTriage },
+                  { label: "Diagnostic Test", value: results.totalNeededToDiagnosticTriage },
+                  { label: "Treatment", value: results.totalNeededToTreat },
+                ]} />
+
+
+              </Col>
+            </Row>
+
           </Card.Body>
         </Card>
 
@@ -335,9 +365,9 @@ export default function ScenarioResults() {
         </Tab.Container>
 
         <div className="text-center">
-          <Link className="btn btn-outline-primary text-decoration-none m-1" to="/run-scenario">
+          {/* <Link className="btn btn-outline-primary text-decoration-none m-1" to="/run-scenario">
             Back to Scenario
-          </Link>
+          </Link> */}
           <Button onClick={saveScenario} className="m-1" variant="primary">
             Save Scenario
           </Button>

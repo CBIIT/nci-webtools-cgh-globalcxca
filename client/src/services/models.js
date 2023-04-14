@@ -1,8 +1,8 @@
 
 export const scenarios = [
-  { value: "ScreenDiagnosticTestTreat", label: "Screen, Diagnostic Test & Treat" },
-  { value: "ScreenTreat", label: "Screen & Treat" },
-  { value: "ScreenTriageDiagnosticTestTreat", label: "Screen, Triage, Diagnostic Test & Treat" },
+  { value: "ScreenTreat", label: "Screening Test" },
+  { value: "ScreenTriageDiagnosticTestTreat", label: "Triage Test" },
+  { value: "ScreenDiagnosticTestTreat", label: "Diagnostic Test" },
 ];
 
 export const screeningTests = [

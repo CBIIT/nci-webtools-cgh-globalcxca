@@ -14,6 +14,7 @@ import Tooltip from "react-bootstrap/Tooltip";
 import { defaultFormState, formState, paramsState, resultsState } from "./state";
 import { runModel, scenarios, tests, screeningTests, triageTests, diagnosticTests } from "../../services/models";
 import { asNumber } from "../../services/formatters";
+import ScenarioResults from "./scenario-results";
 
 // NOTE: Do not conditionally render elements, as this will break after google translates the page.
 
@@ -63,16 +64,18 @@ export default function RunScenarios() {
       ...prevForm,
       [name]: value,
     }));
+
+    setTimeout(() => handleSubmit())
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+    event?.preventDefault();
     const params = mapValues(form, asNumber);
     const results = runModel(params);
     setParams(params);
     setResults(results);
-    window.scrollTo(0, 0);
-    navigate("results");
+    // window.scrollTo(0, 0);
+    // navigate("results");
   }
 
   function handleReset(event) {
@@ -84,21 +87,23 @@ export default function RunScenarios() {
   return (
     <div className="bg-light py-4">
       <Container>
-        <Form onSubmit={handleSubmit} onReset={handleReset}>
+        <Row>
+          <Col md={4}>
+          <Form onSubmit={handleSubmit} onReset={handleReset}>
           <Card className="mb-4">
             <Card.Header>
               <Card.Title>
                 Run Scenario: <span className="text-primary">{scenarios.find((s) => s.value === form.scenario)?.label}</span>
               </Card.Title>
-              <Card.Text className="small text-muted">Please choose a scenario to evaluate epidemiological outcomes for.</Card.Text>
+              <Card.Text className="small text-muted">Please choose tests to include in your scenario.</Card.Text>
             </Card.Header>
-            <Card.Body className="pt-3 pb-2 py-lg-0">
+            <Card.Body className="pt-3 pb-2">
               <Row>
                 {scenarios.map((scenario) => (
-                  <Col lg={4} key={scenario.value}>
+                  <Col lg={12} key={scenario.value}>
                     <Form.Check key={scenario.value} className="p-0 shadow-sm">
                       <Form.Check.Input
-                        type="radio"
+                        type="checkbox"
                         name="scenario"
                         id={scenario.value}
                         value={scenario.value}
@@ -106,11 +111,11 @@ export default function RunScenarios() {
                         className="ms-1"
                         onChange={handleChange}
                         onWheel={(e) => e.target.blur()}
-                        required
+                        
                       />
                       <Form.Check.Label
                         className={[
-                          "form-label d-block text-center mb-2 my-lg-3 p-3 cursor-pointer rounded custom-card-radio",
+                          "form-label d-block text-center mb-2 p-3 cursor-pointer rounded custom-card-radio",
                           form.scenario === scenario.value ? "border-primary bg-white shadow fw-bold text-primary" : "bg-light border-transparent",
                         ].join(" ")}
                         htmlFor={scenario.value}
@@ -135,7 +140,7 @@ export default function RunScenarios() {
               <ListGroup variant="flush hover borderless">
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="populationSize">
-                    <Form.Label column sm={8}>
+                    <Form.Label column sm={12}>
                       <span>Number of people in target population for cervical screening</span>
                       <OverlayTrigger
                         overlay={<Tooltip id="populationSize-help">Enter targeted number of people in the population eligible for cervical screening </Tooltip>}
@@ -143,7 +148,7 @@ export default function RunScenarios() {
                         <i className="ms-1 bi bi-question-circle"></i>
                       </OverlayTrigger>
                     </Form.Label>
-                    <Col sm={4}>
+                    <Col sm={12}>
                       <InputGroup>
                         <Form.Control
                           type="number"
@@ -219,7 +224,7 @@ export default function RunScenarios() {
 
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="cinPrevalence">
-                    <Form.Label column sm={8}>
+                    <Form.Label column sm={12}>
                       <span>Prevalence of CIN2/3 in population for cervical screening</span>
                       <OverlayTrigger
                         overlay={
@@ -231,22 +236,22 @@ export default function RunScenarios() {
                         <i className="ms-1 bi bi-question-circle"></i>
                       </OverlayTrigger>
                     </Form.Label>
-                    <Col sm={4}>
-                      <InputGroup>
-                        <Form.Control
-                          type="number"
+                    <Col sm={12}>
+                      <InputGroup className="flex-nowrap">
+                        <Form.Range
+                          type="range"
                           min="0"
                           max="100"
                           step="1"
                           placeholder="Enter 0 - 100"
                           name="cinPrevalence"
-                          className="border-end-0"
+                          className="border-end-0 me-2"
                           value={form.cinPrevalence}
                           onChange={handleChange}
                           onWheel={(e) => e.target.blur()}
                           required
                         />
-                        <InputGroup.Text>%</InputGroup.Text>
+                        <span className="text-nowrap">{form.cinPrevalence}%</span>
                       </InputGroup>
                     </Col>
                   </Form.Group>
@@ -264,7 +269,7 @@ export default function RunScenarios() {
               <ListGroup variant="flush hover borderless">
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningInterval">
-                    <Form.Label column sm={8}>
+                    <Form.Label column sm={12}>
                       <span>Interval of cervical screening in years</span>
                       <OverlayTrigger
                         overlay={
@@ -276,14 +281,14 @@ export default function RunScenarios() {
                         <i className="ms-1 bi bi-question-circle"></i>
                       </OverlayTrigger>
                     </Form.Label>
-                    <Col sm={4}>
-                      <InputGroup>
-                        <Form.Control
+                    <Col sm={12}>
+                      <InputGroup className="flex-nowrap">
+                        <Form.Range
                           type="number"
                           min="1"
                           max="40"
                           step="1"
-                          className="border-end-0"
+                          className="border-end-0 me-2"
                           placeholder="Enter 1 - 40"
                           name="screeningInterval"
                           value={form.screeningInterval}
@@ -291,7 +296,7 @@ export default function RunScenarios() {
                           onWheel={(e) => e.target.blur()}
                           required
                         />
-                        <InputGroup.Text>Year(s)</InputGroup.Text>
+                        <span className="text-nowrap">{form.screeningInterval} Year(s)</span>
                       </InputGroup>
                     </Col>
                   </Form.Group>
@@ -299,20 +304,19 @@ export default function RunScenarios() {
 
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="percentScreened">
-                    <Form.Label column sm={8}>
+                    <Form.Label column sm={12}>
                       <span>Percent screening coverage</span>
                       <OverlayTrigger overlay={<Tooltip id="percentScreened-help">Enter a value between 0 and 100.</Tooltip>}>
                         <i className="ms-1 bi bi-question-circle"></i>
                       </OverlayTrigger>
                     </Form.Label>
-                    <Col sm={4}>
-                      <InputGroup>
-                        <Form.Control
-                          type="number"
+                    <Col sm={12}>
+                      <InputGroup className="flex-nowrap">
+                        <Form.Range
                           min="0"
                           max="100"
                           step="1"
-                          className="border-end-0"
+                          className="border-end-0 me-2"
                           placeholder="Enter 0 - 100"
                           name="percentScreened"
                           value={form.percentScreened}
@@ -320,7 +324,7 @@ export default function RunScenarios() {
                           onWheel={(e) => e.target.blur()}
                           required
                         />
-                        <InputGroup.Text>%</InputGroup.Text>
+                        <span className="text-nowrap">{form.percentScreened} %</span>
                       </InputGroup>
                     </Col>
                   </Form.Group>
@@ -329,20 +333,19 @@ export default function RunScenarios() {
                 <div className={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) ? "d-block" : "d-none"}>
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentTriaged">
-                      <Form.Label column sm={8}>
+                      <Form.Label column sm={12}>
                         <span>Percent of screen positives with triage test</span>
                         <OverlayTrigger overlay={<Tooltip id="percentTriaged-help">Enter a value between 0 and 100.</Tooltip>}>
                           <i className="ms-1 bi bi-question-circle"></i>
                         </OverlayTrigger>
                       </Form.Label>
-                      <Col sm={4}>
-                        <InputGroup>
-                          <Form.Control
-                            type="number"
+                      <Col sm={12}>
+                        <InputGroup className="flex-nowrap">
+                          <Form.Range
                             min="0"
                             max="100"
                             step="1"
-                            className="border-end-0"
+                            className="border-end-0 me-2"
                             placeholder="Enter 0 - 100"
                             name="percentTriaged"
                             value={form.percentTriaged}
@@ -350,7 +353,7 @@ export default function RunScenarios() {
                             onWheel={(e) => e.target.blur()}
                             required={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
-                          <InputGroup.Text>%</InputGroup.Text>
+                          <span className="text-nowrap">{form.percentTriaged} %</span>
                         </InputGroup>
                       </Col>
                     </Form.Group>
@@ -360,7 +363,7 @@ export default function RunScenarios() {
                 <div className={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) ? "d-block" : "d-none"}>
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="percentDiagnosticTriaged">
-                      <Form.Label column sm={8}>
+                      <Form.Label column sm={12}>
                         <span>
                           {
                             {
@@ -373,14 +376,14 @@ export default function RunScenarios() {
                           <i className="ms-1 bi bi-question-circle"></i>
                         </OverlayTrigger>
                       </Form.Label>
-                      <Col sm={4}>
-                        <InputGroup>
-                          <Form.Control
+                      <Col sm={12}>
+                        <InputGroup className="flex-nowrap">
+                          <Form.Range
                             type="number"
                             min="0"
                             max="100"
                             step="1"
-                            className="border-end-0"
+                            className="border-end-0 me-2"
                             placeholder="Enter 0 - 100"
                             name="percentDiagnosticTriaged"
                             value={form.percentDiagnosticTriaged}
@@ -388,7 +391,7 @@ export default function RunScenarios() {
                             onWheel={(e) => e.target.blur()}
                             required={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
-                          <InputGroup.Text>%</InputGroup.Text>
+                          <span className="text-nowrap">{form.percentDiagnosticTriaged} %</span>
                         </InputGroup>
                       </Col>
                     </Form.Group>
@@ -397,7 +400,7 @@ export default function RunScenarios() {
 
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="percentTreated">
-                    <Form.Label column sm={8}>
+                    <Form.Label column sm={12}>
                       <span>
                         {
                           {
@@ -411,14 +414,14 @@ export default function RunScenarios() {
                         <i className="ms-1 bi bi-question-circle"></i>
                       </OverlayTrigger>
                     </Form.Label>
-                    <Col sm={4}>
-                      <InputGroup>
-                        <Form.Control
+                    <Col sm={12}>
+                      <InputGroup className="flex-nowrap">
+                        <Form.Range
                           type="number"
                           min="0"
                           max="100"
                           step="1"
-                          className="border-end-0"
+                          className="border-end-0 me-2"
                           placeholder="Enter 0 - 100"
                           name="percentTreated"
                           value={form.percentTreated}
@@ -426,7 +429,7 @@ export default function RunScenarios() {
                           onWheel={(e) => e.target.blur()}
                           required
                         />
-                        <InputGroup.Text>%</InputGroup.Text>
+                        <span className="text-nowrap">{form.percentTreated} %</span>
                       </InputGroup>
                     </Col>
                   </Form.Group>
@@ -447,10 +450,10 @@ export default function RunScenarios() {
               <ListGroup variant="flush hover borderless">
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTest">
-                    <Form.Label column sm={8}>
+                    <Form.Label column sm={12}>
                       <span>Cervical screening test chosen</span>
                     </Form.Label>
-                    <Col sm={4}>
+                    <Col sm={12}>
                       <Form.Select name="screeningTest" value={form.screeningTest} onChange={handleChange} onWheel={(e) => e.target.blur()} required>
                         <option value="" hidden>
                           Select a test
@@ -467,20 +470,20 @@ export default function RunScenarios() {
 
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTestSensitivity">
-                    <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                    <Form.Label column sm={12} className="">
                       <span>Screening test sensitivity for CIN2/3 (NIC2/3)</span>
                       <OverlayTrigger overlay={<Tooltip id="screeningTestSensitivity-help">Enter a value between 0 and 100.</Tooltip>}>
                         <i className="ms-1 bi bi-question-circle"></i>
                       </OverlayTrigger>
                     </Form.Label>
-                    <Col sm={4}>
-                      <InputGroup>
-                        <Form.Control
+                    <Col sm={12}>
+                      <InputGroup className="flex-nowrap">
+                        <Form.Range
                           type="number"
                           min="0"
                           max="100"
                           step="1"
-                          className="border-end-0"
+                          className="border-end-0 me-2"
                           placeholder="Enter 0 - 100"
                           name="screeningTestSensitivity"
                           value={form.screeningTestSensitivity}
@@ -488,7 +491,7 @@ export default function RunScenarios() {
                           onWheel={(e) => e.target.blur()}
                           required
                         />
-                        <InputGroup.Text>%</InputGroup.Text>
+                        <span className="text-nowrap">{form.screeningTestSensitivity} %</span>
                       </InputGroup>
                     </Col>
                   </Form.Group>
@@ -496,20 +499,20 @@ export default function RunScenarios() {
 
                 <ListGroup.Item>
                   <Form.Group as={Row} controlId="screeningTestSpecificity">
-                    <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                    <Form.Label column sm={12} className="">
                       <span>Screening test specificity for CIN2/3 (NIC2/3)</span>
                       <OverlayTrigger overlay={<Tooltip id="screeningTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
                         <i className="ms-1 bi bi-question-circle"></i>
                       </OverlayTrigger>
                     </Form.Label>
-                    <Col sm={4}>
-                      <InputGroup>
-                        <Form.Control
+                    <Col sm={12}>
+                      <InputGroup className="flex-nowrap">
+                        <Form.Range
                           type="number"
                           min="0"
                           max="100"
                           step="1"
-                          className="border-end-0"
+                          className="border-end-0 me-2"
                           placeholder="Enter 0 - 100"
                           name="screeningTestSpecificity"
                           value={form.screeningTestSpecificity}
@@ -517,7 +520,7 @@ export default function RunScenarios() {
                           onWheel={(e) => e.target.blur()}
                           required
                         />
-                        <InputGroup.Text>%</InputGroup.Text>
+                        <span className="text-nowrap">{form.screeningTestSpecificity} %</span>
                       </InputGroup>
                     </Col>
                   </Form.Group>
@@ -526,10 +529,10 @@ export default function RunScenarios() {
                 <div className={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario) ? "d-block" : "d-none"}>
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="triageTest">
-                      <Form.Label column sm={8}>
+                      <Form.Label column sm={12}>
                         <span>Triage or diagnostic test chosen</span>
                       </Form.Label>
-                      <Col sm={4}>
+                      <Col sm={12}>
                         <Form.Select
                           name="triageTest"
                           value={form.triageTest}
@@ -552,20 +555,20 @@ export default function RunScenarios() {
 
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="triageTestSensitivity">
-                      <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                      <Form.Label column sm={12} className="">
                         <span>Triage or diagnostic test sensitivity for CIN2/3 (NIC2/3)</span>
                         <OverlayTrigger overlay={<Tooltip id="screeningTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
                           <i className="ms-1 bi bi-question-circle"></i>
                         </OverlayTrigger>
                       </Form.Label>
-                      <Col sm={4}>
-                        <InputGroup>
-                          <Form.Control
+                      <Col sm={12}>
+                        <InputGroup className="flex-nowrap">
+                          <Form.Range
                             type="number"
                             min="0"
                             max="100"
                             step="1"
-                            className="border-end-0"
+                            className="border-end-0 me-2"
                             placeholder="Enter 0 - 100"
                             name="triageTestSensitivity"
                             value={form.triageTestSensitivity}
@@ -573,7 +576,7 @@ export default function RunScenarios() {
                             onWheel={(e) => e.target.blur()}
                             required={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
-                          <InputGroup.Text>%</InputGroup.Text>
+                        <span className="text-nowrap">{form.triageTestSensitivity} %</span>
                         </InputGroup>
                       </Col>
                     </Form.Group>
@@ -581,20 +584,20 @@ export default function RunScenarios() {
 
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="triageTestSpecificity">
-                      <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                      <Form.Label column sm={12} className="">
                         <span>Triage or diagnostic test specificity for CIN2/3 (NIC2/3)</span>
                         <OverlayTrigger overlay={<Tooltip id="screeningTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
                           <i className="ms-1 bi bi-question-circle"></i>
                         </OverlayTrigger>
                       </Form.Label>
-                      <Col sm={4}>
-                        <InputGroup>
-                          <Form.Control
+                      <Col sm={12}>
+                       <InputGroup className="flex-nowrap">
+                          <Form.Range
                             type="number"
                             min="0"
                             max="100"
                             step="1"
-                            className="border-end-0"
+                            className="border-end-0 me-2"
                             placeholder="Enter 0 - 100"
                             name="triageTestSpecificity"
                             value={form.triageTestSpecificity}
@@ -602,7 +605,7 @@ export default function RunScenarios() {
                             onWheel={(e) => e.target.blur()}
                             required={["ScreenDiagnosticTestTreat", "ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
-                          <InputGroup.Text>%</InputGroup.Text>
+                          <span className="text-nowrap">{form.triageTestSpecificity} %</span>
                         </InputGroup>
                       </Col>
                     </Form.Group>
@@ -612,10 +615,10 @@ export default function RunScenarios() {
                 <div className={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario) ? "d-block" : "d-none"}>
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="diagnosticTest">
-                      <Form.Label column sm={8}>
+                      <Form.Label column sm={12}>
                         <span>Diagnostic test chosen</span>
                       </Form.Label>
-                      <Col sm={4}>
+                      <Col sm={12}>
                         <Form.Select
                           name="diagnosticTest"
                           value={form.diagnosticTest}
@@ -638,20 +641,20 @@ export default function RunScenarios() {
 
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="diagnosticTestSensitivity">
-                      <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                      <Form.Label column sm={12} className="">
                         <span>Diagnostic test sensitivity for CIN2/3 (NIC2/3)</span>
                         <OverlayTrigger overlay={<Tooltip id="diagnosticTestSensitivity-help">Enter a value between 0 and 100.</Tooltip>}>
                           <i className="ms-1 bi bi-question-circle"></i>
                         </OverlayTrigger>
                       </Form.Label>
-                      <Col sm={4}>
-                        <InputGroup>
-                          <Form.Control
+                      <Col sm={12}>
+                        <InputGroup className="flex-nowrap">
+                          <Form.Range
                             type="number"
                             min="0"
                             max="100"
                             step="1"
-                            className="border-end-0"
+                            className="border-end-0 me-2"
                             placeholder="Enter 0 - 100"
                             name="diagnosticTestSensitivity"
                             value={form.diagnosticTestSensitivity}
@@ -659,7 +662,7 @@ export default function RunScenarios() {
                             onWheel={(e) => e.target.blur()}
                             required={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
-                          <InputGroup.Text>%</InputGroup.Text>
+                          <span className="text-nowrap">{form.diagnosticTestSensitivity} %</span>
                         </InputGroup>
                       </Col>
                     </Form.Group>
@@ -667,20 +670,20 @@ export default function RunScenarios() {
 
                   <ListGroup.Item>
                     <Form.Group as={Row} controlId="diagnosticTestSpecificity">
-                      <Form.Label column sm={8} className="ps-2 ps-sm-4">
+                      <Form.Label column sm={12} className="">
                         <span>Diagnostic test specificity for CIN2/3 (NIC2/3)</span>
                         <OverlayTrigger overlay={<Tooltip id="diagnosticTestSpecificity-help">Enter a value between 0 and 100.</Tooltip>}>
                           <i className="ms-1 bi bi-question-circle"></i>
                         </OverlayTrigger>
                       </Form.Label>
-                      <Col sm={4}>
-                        <InputGroup>
-                          <Form.Control
+                      <Col sm={12}>
+                        <InputGroup className="flex-nowrap">
+                          <Form.Range
                             type="number"
                             min="0"
                             max="100"
                             step="1"
-                            className="border-end-0"
+                            className="border-end-0 me-2"
                             placeholder="Enter 0 - 100"
                             name="diagnosticTestSpecificity"
                             value={form.diagnosticTestSpecificity}
@@ -688,7 +691,7 @@ export default function RunScenarios() {
                             onWheel={(e) => e.target.blur()}
                             required={["ScreenTriageDiagnosticTestTreat"].includes(form.scenario)}
                           />
-                          <InputGroup.Text>%</InputGroup.Text>
+                          <span className="text-nowrap">{form.diagnosticTestSpecificity} %</span>
                         </InputGroup>
                       </Col>
                     </Form.Group>
@@ -698,14 +701,19 @@ export default function RunScenarios() {
             </Card.Body>
           </Card>
           <Form.Group className="mb-4 text-center">
-            <Button type="submit" className="me-1 shadow" variant="primary">
+            {/* <Button type="submit" className="me-1 shadow" variant="primary">
               Submit
-            </Button>
+            </Button> */}
             <Button type="reset" className="shadow" variant="outline-primary">
               Reset
             </Button>
           </Form.Group>
-        </Form>
+        </Form>            
+          </Col>
+          <Col md={8}>
+            <ScenarioResults />
+          </Col>
+        </Row>
       </Container>
     </div>
   );

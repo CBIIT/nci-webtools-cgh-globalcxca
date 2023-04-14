@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.2",
+    "d3": "^7.8.4",
     "file-saver": "^2.0.5",
     "pdfmake": "^0.2.6",
     "react": "^18.2.0",
