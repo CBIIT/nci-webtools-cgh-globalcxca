@@ -191,6 +191,11 @@ export default function ScenarioResults() {
         </Card>
 
         <Card className="mb-4">
+          <Card.Header>
+            <Card.Title>
+            Screening Test → Treatment
+            </Card.Title>
+          </Card.Header>
           <Card.Body>
             <Row>
               <Col md={6}>
@@ -220,18 +225,8 @@ export default function ScenarioResults() {
         {/* pdf page break */}
         <hr className="d-none" data-export />
 
-        <Tab.Container id="results-tabs" activeKey={activeTab} onSelect={setActiveTab}>
           <Card className="mb-4">
-            <Card.Header>
-              <Nav variant="tabs">
-                <Nav.Item>
-                  <Nav.Link eventKey="results">Results</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Card.Header>
             <Card.Body>
-              <Tab.Content>
-                <Tab.Pane eventKey="results" mountOnEnter={false} unmountOnExit={false}>
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-info text-light">
@@ -358,11 +353,8 @@ export default function ScenarioResults() {
                       </tr>
                     </tbody>
                   </Table>
-                </Tab.Pane>
-              </Tab.Content>
             </Card.Body>
           </Card>
-        </Tab.Container>
 
         <div className="text-center">
           {/* <Link className="btn btn-outline-primary text-decoration-none m-1" to="/run-scenario">

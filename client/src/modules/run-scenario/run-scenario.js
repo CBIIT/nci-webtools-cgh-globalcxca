@@ -92,32 +92,25 @@ export default function RunScenarios() {
           <Form onSubmit={handleSubmit} onReset={handleReset}>
           <Card className="mb-4">
             <Card.Header>
-              <Card.Title>
-                Run Scenario: <span className="text-primary">{scenarios.find((s) => s.value === form.scenario)?.label}</span>
-              </Card.Title>
+              <Card.Title>Test Selection</Card.Title>
               <Card.Text className="small text-muted">Please choose tests to include in your scenario.</Card.Text>
             </Card.Header>
-            <Card.Body className="pt-3 pb-2">
+            <Card.Body>
               <Row>
                 {scenarios.map((scenario) => (
                   <Col lg={12} key={scenario.value}>
-                    <Form.Check key={scenario.value} className="p-0 shadow-sm">
+                    <Form.Check key={scenario.value}>
                       <Form.Check.Input
                         type="checkbox"
                         name="scenario"
                         id={scenario.value}
                         value={scenario.value}
                         checked={form.scenario === scenario.value}
-                        className="ms-1"
                         onChange={handleChange}
                         onWheel={(e) => e.target.blur()}
                         
                       />
                       <Form.Check.Label
-                        className={[
-                          "form-label d-block text-center mb-2 p-3 cursor-pointer rounded custom-card-radio",
-                          form.scenario === scenario.value ? "border-primary bg-white shadow fw-bold text-primary" : "bg-light border-transparent",
-                        ].join(" ")}
                         htmlFor={scenario.value}
                       >
                         {scenario.label}
