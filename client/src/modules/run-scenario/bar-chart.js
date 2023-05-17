@@ -17,7 +17,7 @@ export default function BarChart({data, layout = defaultLayout}) {
       ref.current.appendChild(d3BarChart(data, {
         x: d => d.label,
         y: d => d.value,
-        yFormat: "",
+        yFormat: ",.2r",
         yLabel: "Counts",
         width: 500,
         height: 500,
@@ -109,6 +109,18 @@ function d3BarChart(data, {
       .attr("height", i => yScale(0) - yScale(Y[i]))
       .attr("width", xScale.bandwidth())
       .attr("title", d => d.label);
+          
+    svg.append("g")
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", 10)
+      .attr("text-anchor", "middle")
+    .selectAll("text")
+    .data(I)
+    .join("text")
+      .attr("transform", d => `translate(${xScale(X[d]) + xScale.bandwidth() / 2},${yScale(Y[d]) - 6})`)
+      .attr("font-size", "1rem")
+      .attr("text-anchor", "middle")
+      .text(i => yScale.tickFormat(100, yFormat)(Y[i]));
 
   if (title) bar.append("title")
       .text(title)

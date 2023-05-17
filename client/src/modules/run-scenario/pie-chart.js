@@ -21,6 +21,8 @@ export default function PieChart({data, layout = defaultLayout}) {
         value: d => d.value,
         width: layout.width,
         height: layout.height,
+        labelRadius: Math.min(layout.width, layout.height) / 2 * 0.5,
+        format: ".1%",
       }));
       
     }
@@ -45,7 +47,7 @@ function d3PieChart(data, {
   names, // array of names (the domain of the color scale)
   colors, // array of colors for names
   stroke = innerRadius > 0 ? "none" : "white", // stroke separating widths
-  strokeWidth = 1, // width of stroke separating wedges
+  strokeWidth = 1, // width of stroke separating format
   strokeLinejoin = "round", // line join of stroke separating wedges
   padAngle = stroke === "none" ? 1 / outerRadius : 0, // angular separation between wedges
 } = {}) {
@@ -100,7 +102,7 @@ function d3PieChart(data, {
       .attr("font-size", "1rem");
 
   svg.append("g")
-      .attr("font-family", "sans-serif")
+      .attr("font-family", "system-ui, sans-serif")
       .attr("font-size", 10)
       .attr("text-anchor", "middle")
     .selectAll("text")

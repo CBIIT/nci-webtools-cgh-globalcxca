@@ -92,8 +92,8 @@ export default function RunScenarios() {
           <Form onSubmit={handleSubmit} onReset={handleReset}>
           <Card className="mb-4">
             <Card.Header>
-              <Card.Title>Test Selection</Card.Title>
-              <Card.Text className="small text-muted">Please choose tests to include in your scenario.</Card.Text>
+              <Card.Title>Strategy Selection</Card.Title>
+              <Card.Text className="small text-muted">Please choose strategies to include in your scenario.</Card.Text>
             </Card.Header>
             <Card.Body>
               <Row>
@@ -113,7 +113,7 @@ export default function RunScenarios() {
                       <Form.Check.Label
                         htmlFor={scenario.value}
                       >
-                        {scenario.label}
+                        {scenario.strategy}
                       </Form.Check.Label>
                     </Form.Check>
                   </Col>
@@ -127,7 +127,7 @@ export default function RunScenarios() {
           <Card className="mb-4">
             <Card.Header>
               <Card.Title>Epidemiological Context</Card.Title>
-              <Card.Text className="small text-muted">Best estimate of fixed epidemiological parameters for your setting</Card.Text>
+              <Card.Text className="small text-muted">Please enter the best estimate of fixed epidemiological parameters for your setting</Card.Text>
             </Card.Header>
             <Card.Body className="p-0">
               <ListGroup variant="flush hover borderless">
@@ -256,7 +256,7 @@ export default function RunScenarios() {
           <Card className="mb-4">
             <Card.Header>
               <Card.Title>Participation in Health Services</Card.Title>
-              <Card.Text className="text-muted small">Observed or anticipated participation in cervical cancer screening program in your setting</Card.Text>
+              <Card.Text className="text-muted small">Please enter the observed or anticipated participation in the cervical cancer screening program in your setting</Card.Text>
             </Card.Header>
             <Card.Body className="p-0">
               <ListGroup variant="flush hover borderless">

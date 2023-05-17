@@ -193,7 +193,7 @@ export default function ScenarioResults() {
         <Card className="mb-4">
           <Card.Header>
             <Card.Title>
-            Screening Test → Treatment
+            Screening → Treatment
             </Card.Title>
           </Card.Header>
           <Card.Body>
@@ -201,18 +201,18 @@ export default function ScenarioResults() {
               <Col md={6}>
                 <h2 className="text-center h5">Precancers Treated</h2>
                 <PieChart data={[
-                  { label: "% Precancers Missed", value: results.percentPrecancersMissed }, 
-                  { label: "% Precancers Treated", value: results.percentPrecancersTreated },
+                  { label: "% Precancers Missed", value: +results.percentPrecancersMissed / 100 }, 
+                  { label: "% Precancers Treated", value: +results.percentPrecancersTreated / 100 },
                 ]} />
               </Col>
 
               <Col md={6}>
                 <h2 className="text-center h5">Interventions Required</h2>
                 <BarChart data={[
-                  { label: "Screening Test", value: results.totalNeededToScreen },
-                  { label: "Triage Test", value: results.totalNeededToTriage },
-                  { label: "Diagnostic Test", value: results.totalNeededToDiagnosticTriage },
-                  { label: "Treatment", value: results.totalNeededToTreat },
+                  { label: "Screening Test", value: +results.totalNeededToScreen || 0 },
+                  { label: "Triage Test", value: +results.totalNeededToTriage || 0 },
+                  { label: "Diagnostic Test", value: +results.totalNeededToDiagnosticTriage || 0 },
+                  { label: "Treatment", value: +results.totalNeededToTreat || 0 },
                 ]} />
 
 
@@ -243,7 +243,11 @@ export default function ScenarioResults() {
                         <th>Population with precancer targeted for screening</th>
                         <td className="text-end text-nowrap">{results.precancersTargetedForScreening?.toLocaleString(locale) ?? "N/A"}</td>
                       </tr>
-                    </tbody>
+                      <tr className="table-info">
+                        <th>Third Metric</th>
+                        <td className="text-end text-nowrap">N/A</td>
+                      </tr>
+                      </tbody>
                   </Table>
 
                   <Table hover responsive data-export>
