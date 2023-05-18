@@ -4,6 +4,7 @@ import Home from "./modules/home/home";
 import RunScenario from "./modules/run-scenario/run-scenario";
 import ScenarioResults from "./modules/run-scenario/scenario-results";
 import CompareScenarios from "./modules/compare-scenarios/compare-scenarios";
+import About from "./modules/about/about";
 
 export const routes = [
   {
@@ -36,12 +37,19 @@ export const routes = [
         title: "Compare Scenarios",
         navbar: true,
         end: true,
-      },      
+      },
+      {
+        path: "about",
+        element: <About />,
+        title: "About",
+        navbar: true,
+        end: true,
+      },
       {
         path: "*",
         element: <Navigate to="/run-scenario" />,
         navbar: false,
-      }
-    ]
+      },
+    ],
   },
 ];
