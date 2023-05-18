@@ -1,0 +1,15 @@
+{
+  "greeting": "Hello!",
+  "welcome": "Welcome to Globalcxca.",
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "runScenerio": "Run runScenerio",
+    "compareScenerios": "Compare Scenarios"
+  },
+  "errors": {
+    "requiredField": "This field is required.",
+    "invalidEmail": "Invalid email address."
+  }
+}
