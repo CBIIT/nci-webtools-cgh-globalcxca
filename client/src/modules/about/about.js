@@ -8,7 +8,7 @@ export default function About() {
   return (
     <div className="bg-light py-4">
       <Container>
-        <Table striped bordered hover>
+        <Table striped bordered hover >
           <thead>
             <tr>
               <th>Parameter</th>
