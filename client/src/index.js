@@ -1,13 +1,14 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { RouterProvider, createHashRouter } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 // import { register } from './serviceWorkerRegistration';
-import { reportWebVitals } from './reportWebVitals';
-import { routes } from './routes';
-import './styles/main.scss';
+import { reportWebVitals } from "./reportWebVitals";
+import { routes } from "./routes";
+import "./styles/main.scss";
+import "./locales/en/en";
 
-const root = createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById("root"));
 const router = createHashRouter(routes);
 
 root.render(

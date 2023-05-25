@@ -13,7 +13,12 @@ import Tab from "react-bootstrap/Tab";
 import { scenariosState } from "./state";
 import { getTimestamp, readFile } from "../../services/file-utils";
 import { asLabel, asPercent } from "../../services/formatters";
-import { screeningTests, triageTests, diagnosticTests, runModel } from "../../services/models";
+import {
+  screeningTests,
+  triageTests,
+  diagnosticTests,
+  runModel,
+} from "../../services/models";
 import { exportPdf } from "../../services/pdf-utils";
 import { localeState } from "../../app.state";
 
@@ -31,7 +36,7 @@ export default function CompareScenarios() {
       try {
         for (const file of files) {
           let scenario = JSON.parse(await readFile(file));
-          scenario.name = file.name.replace(/.scenario$/i, "")
+          scenario.name = file.name.replace(/.scenario$/i, "");
           scenario.results = runModel(scenario);
           console.log(scenario);
           setScenarios((scenarios) => [...scenarios, scenario]);
@@ -87,7 +92,11 @@ export default function CompareScenarios() {
           <Card className="mb-4">
             <Card.Header>
               <Card.Title>Compare Scenarios</Card.Title>
-              <Card.Text className="small text-muted">Upload up to {limit} scenarios for comparison. Files must be of the “.scenario” file format. Click the title of the scenario to rename it.</Card.Text>
+              <Card.Text className="small text-muted">
+                Upload up to {limit} scenarios for comparison. Files must be of
+                the “.scenario” file format. Click the title of the scenario to
+                rename it.
+              </Card.Text>
             </Card.Header>
             <Card.Body className="p-0">
               <ListGroup variant="flush hover striped">
@@ -102,11 +111,16 @@ export default function CompareScenarios() {
                           placeholder="Enter name"
                           className="transparent mb-md-0 mb-2 px-0"
                           value={scenario.name}
-                          onChange={(ev) => renameScenario(index, ev.target.value)}
+                          onChange={(ev) =>
+                            renameScenario(index, ev.target.value)
+                          }
                         />
                       </Col>
                       <Col md={2} className="text-md-end">
-                        <Button variant="danger" onClick={(ev) => removeScenario(index)}>
+                        <Button
+                          variant="danger"
+                          onClick={(ev) => removeScenario(index)}
+                        >
                           Remove
                         </Button>
                       </Col>
@@ -114,11 +128,28 @@ export default function CompareScenarios() {
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>
-                  <label htmlFor="fileInput" className={["btn btn-outline-primary", scenarios.length >= limit && "disabled"].join(" ")}>
+                  <label
+                    htmlFor="fileInput"
+                    className={[
+                      "btn btn-outline-primary",
+                      scenarios.length >= limit && "disabled",
+                    ].join(" ")}
+                  >
                     Add Scenario
                   </label>
-                  <input id="fileInput" type="file" onChange={addScenario} hidden accept=".scenario" multiple />
-                  {scenarios.length >= limit && <small className="ms-2">A limit of {limit} scenarios can be compared at one time.</small>}
+                  <input
+                    id="fileInput"
+                    type="file"
+                    onChange={addScenario}
+                    hidden
+                    accept=".scenario"
+                    multiple
+                  />
+                  {scenarios.length >= limit && (
+                    <small className="ms-2">
+                      A limit of {limit} scenarios can be compared at one time.
+                    </small>
+                  )}
                 </ListGroup.Item>
               </ListGroup>
             </Card.Body>
@@ -126,7 +157,11 @@ export default function CompareScenarios() {
 
           {scenarios.length > 0 && (
             <>
-              <Tab.Container id="results-tabs" activeKey={activeTab} onSelect={setActiveTab}>
+              <Tab.Container
+                id="results-tabs"
+                activeKey={activeTab}
+                onSelect={setActiveTab}
+              >
                 <Card className="mb-4">
                   <Card.Header>
                     <Nav variant="tabs">
@@ -134,19 +169,29 @@ export default function CompareScenarios() {
                         <Nav.Link eventKey="results">Results</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link eventKey="scenarioAssumptions">Scenario Assumptions</Nav.Link>
+                        <Nav.Link eventKey="scenarioAssumptions">
+                          Scenario Assumptions
+                        </Nav.Link>
                       </Nav.Item>
                     </Nav>
                   </Card.Header>
                   <Card.Body>
                     <Tab.Content>
-                      <Tab.Pane eventKey="results" mountOnEnter={false} unmountOnExit={false}>
+                      <Tab.Pane
+                        eventKey="results"
+                        mountOnEnter={false}
+                        unmountOnExit={false}
+                      >
                         <Table responsive data-export>
                           <thead>
                             <tr className="bg-info text-light">
                               <th className="table-header">Annual Targets</th>
                               {scenarios.map((scenario, index) => (
-                                <th key={index} className="text-end table-header" title={scenario.name}>
+                                <th
+                                  key={index}
+                                  className="text-end table-header"
+                                  title={scenario.name}
+                                >
                                   {scenario.name}
                                 </th>
                               ))}
@@ -154,92 +199,165 @@ export default function CompareScenarios() {
                           </thead>
                           <tbody>
                             <tr className="table-info">
-                              <th>Population without precancer targeted for screening</th>
+                              <th>
+                                Population without precancer targeted for
+                                screening
+                              </th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.healthyWomenTargetedForScreening?.toLocaleString(locale) ?? "N/A"}
+                                  {results.healthyWomenTargetedForScreening?.toLocaleString(
+                                    locale
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr className="table-info">
-                              <th>Population with precancer targeted for screening</th>
+                              <th>
+                                Population with precancer targeted for screening
+                              </th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.precancersTargetedForScreening?.toLocaleString(locale) ?? "N/A"}
+                                  {results.precancersTargetedForScreening?.toLocaleString(
+                                    locale
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
-                          
-                          <tr className="bg-warning text-light">
-                              <th colSpan={1 + scenarios.length}>Impact on Cervical Precancer and Impact on the Population Targeted for Screening</th>
+
+                            <tr className="bg-warning text-light">
+                              <th colSpan={1 + scenarios.length}>
+                                Impact on Cervical Precancer and Impact on the
+                                Population Targeted for Screening
+                              </th>
                             </tr>
                             <tr className="table-warning">
                               <th>Percent precancers treated</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(results.percentPrecancersTreated) ?? "N/A"}
+                                  {asPercent(
+                                    results.percentPrecancersTreated
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr className="table-warning">
-                              <th>Percent of population targeted for screening without precancer and possibly over-treated</th>
+                              <th>
+                                Percent of population targeted for screening
+                                without precancer and possibly over-treated
+                              </th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(results.percentHealthyOvertreated) ?? "N/A"}
+                                  {asPercent(
+                                    results.percentHealthyOvertreated
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
-                          
-                          <tr className="bg-danger text-light">
-                              <th colSpan={1 + scenarios.length}>Missed Precancers</th>
+
+                            <tr className="bg-danger text-light">
+                              <th colSpan={1 + scenarios.length}>
+                                Missed Precancers
+                              </th>
                             </tr>
 
                             <tr className="table-danger">
-                              <th>Total precancers missed (% of all precancers)</th>
+                              <th>
+                                Total precancers missed (% of all precancers)
+                              </th>
                               {scenarios.map(({ results }, index) => (
-                                <td className="text-end" key={index} title={results.numberPrecancersMissed?.toLocaleString(locale)}>
-                                  {asPercent(results.percentPrecancersMissed) ?? "N/A"}
+                                <td
+                                  className="text-end"
+                                  key={index}
+                                  title={results.numberPrecancersMissed?.toLocaleString(
+                                    locale
+                                  )}
+                                >
+                                  {asPercent(results.percentPrecancersMissed) ??
+                                    "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr className="table-danger">
-                              <th>Sources of missed precancers (% missed precancers)</th>
+                              <th>
+                                Sources of missed precancers (% missed
+                                precancers)
+                              </th>
                               {scenarios.map(({ results }, index) => (
                                 <td key={index}></td>
                               ))}
                             </tr>
 
                             <tr className="table-light">
-                              <th className="ps-3">Did not have screening test</th>
+                              <th className="ps-3">
+                                Did not have screening test
+                              </th>
                               {scenarios.map(({ results }, index) => (
-                                <td className="text-end" key={index} title={results.numberMissedDueToNoScreening?.toLocaleString(locale)}>
-                                  {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"}
+                                <td
+                                  className="text-end"
+                                  key={index}
+                                  title={results.numberMissedDueToNoScreening?.toLocaleString(
+                                    locale
+                                  )}
+                                >
+                                  {asPercent(
+                                    results.percentMissedDueToNoScreening
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr className="table-light">
-                              <th className="ps-3">Sensitivity of screening test</th>
+                              <th className="ps-3">
+                                Sensitivity of screening test
+                              </th>
                               {scenarios.map(({ results }, index) => (
-                                <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(locale)}>
-                                  {asPercent(results.percentMissedDueToSensitivityOfScreeningTest) ?? "N/A"}
+                                <td
+                                  className="text-end"
+                                  key={index}
+                                  title={results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(
+                                    locale
+                                  )}
+                                >
+                                  {asPercent(
+                                    results.percentMissedDueToSensitivityOfScreeningTest
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
 
                             <tr className="table-light">
-                              <th className="ps-3">Loss at triage/diagnostic test</th>
+                              <th className="ps-3">
+                                Loss at triage/diagnostic test
+                              </th>
                               {scenarios.map(({ results }, index) => (
-                                <td className="text-end" key={index} title={results.numberMissedDueToLossAtTriage?.toLocaleString(locale)}>
-                                  {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"}
+                                <td
+                                  className="text-end"
+                                  key={index}
+                                  title={results.numberMissedDueToLossAtTriage?.toLocaleString(
+                                    locale
+                                  )}
+                                >
+                                  {asPercent(
+                                    results.percentMissedDueToLossAtTriage
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
 
                             <tr className="table-light">
-                              <th className="ps-3">Sensitivity of triage/diagnostic test</th>
+                              <th className="ps-3">
+                                Sensitivity of triage/diagnostic test
+                              </th>
                               {scenarios.map(({ results }, index) => (
-                                <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(locale)}>
-                                  {asPercent(results.percentMissedDueToSensitivityOfTriageTest) ?? "N/A"}
+                                <td
+                                  className="text-end"
+                                  key={index}
+                                  title={results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(
+                                    locale
+                                  )}
+                                >
+                                  {asPercent(
+                                    results.percentMissedDueToSensitivityOfTriageTest
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -247,17 +365,35 @@ export default function CompareScenarios() {
                             <tr className="table-light">
                               <th className="ps-3">Loss at diagnosis</th>
                               {scenarios.map(({ results }, index) => (
-                                <td className="text-end" key={index} title={results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(locale)}>
-                                  {asPercent(results.percentMissedDueToLossAtDiagnosticTriage) ?? "N/A"}
+                                <td
+                                  className="text-end"
+                                  key={index}
+                                  title={results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(
+                                    locale
+                                  )}
+                                >
+                                  {asPercent(
+                                    results.percentMissedDueToLossAtDiagnosticTriage
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
 
                             <tr className="table-light">
-                              <th className="ps-3">Sensitivity of diagnostic test</th>
+                              <th className="ps-3">
+                                Sensitivity of diagnostic test
+                              </th>
                               {scenarios.map(({ results }, index) => (
-                                <td className="text-end" key={index} title={results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(locale)}>
-                                  {asPercent(results.percentMissedDueToSensitivityOfDiagnosticTriageTest) ?? "N/A"}
+                                <td
+                                  className="text-end"
+                                  key={index}
+                                  title={results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(
+                                    locale
+                                  )}
+                                >
+                                  {asPercent(
+                                    results.percentMissedDueToSensitivityOfDiagnosticTriageTest
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -265,21 +401,33 @@ export default function CompareScenarios() {
                             <tr className="table-light">
                               <th className="ps-3">Loss at treatment</th>
                               {scenarios.map(({ results }, index) => (
-                                <td className="text-end" key={index} title={results.numberMissedDueToLossAtTreatment?.toLocaleString(locale)}>
-                                  {asPercent(results.percentMissedDueToLossAtTreatment) ?? "N/A"}
+                                <td
+                                  className="text-end"
+                                  key={index}
+                                  title={results.numberMissedDueToLossAtTreatment?.toLocaleString(
+                                    locale
+                                  )}
+                                >
+                                  {asPercent(
+                                    results.percentMissedDueToLossAtTreatment
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
-                          
+
                             <tr className="bg-success text-light">
-                              <th colSpan={1 + scenarios.length}>Annual Impact on Resources</th>
+                              <th colSpan={1 + scenarios.length}>
+                                Annual Impact on Resources
+                              </th>
                             </tr>
-                        
+
                             <tr className="table-light">
                               <th>Total requiring screening test</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.totalNeededToScreen?.toLocaleString(locale) ?? "N/A"}
+                                  {results.totalNeededToScreen?.toLocaleString(
+                                    locale
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -287,7 +435,9 @@ export default function CompareScenarios() {
                               <th>Total requiring triage/diagnostic test</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.totalNeededToTriage?.toLocaleString(locale) ?? "N/A"}
+                                  {results.totalNeededToTriage?.toLocaleString(
+                                    locale
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -295,7 +445,9 @@ export default function CompareScenarios() {
                               <th>Total requiring diagnostic test</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.totalNeededToDiagnosticTriage?.toLocaleString(locale) ?? "N/A"}
+                                  {results.totalNeededToDiagnosticTriage?.toLocaleString(
+                                    locale
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -303,7 +455,9 @@ export default function CompareScenarios() {
                               <th>Total requiring treatment</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.totalNeededToTreat?.toLocaleString(locale) ?? "N/A"}
+                                  {results.totalNeededToTreat?.toLocaleString(
+                                    locale
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -311,7 +465,11 @@ export default function CompareScenarios() {
                         </Table>
                         <hr className="d-none" data-export />
                       </Tab.Pane>
-                      <Tab.Pane eventKey="scenarioAssumptions" mountOnEnter={false} unmountOnExit={false}>
+                      <Tab.Pane
+                        eventKey="scenarioAssumptions"
+                        mountOnEnter={false}
+                        unmountOnExit={false}
+                      >
                         <Table hover responsive data-export>
                           <thead>
                             <tr className="bg-info text-light">
@@ -326,15 +484,23 @@ export default function CompareScenarios() {
                           </thead>
                           <tbody>
                             <tr>
-                              <th>Number of people in target population for cervical screening</th>
+                              <th>
+                                Number of people in target population for
+                                cervical screening
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {params.populationSize?.toLocaleString(locale) ?? "N/A"}
+                                  {params.populationSize?.toLocaleString(
+                                    locale
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr>
-                              <th>Prevalence of CIN2/3 in population for cervical screening</th>
+                              <th>
+                                Prevalence of CIN2/3 in population for cervical
+                                screening
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
                                   {asPercent(params.cinPrevalence) ?? "N/A"}
@@ -346,7 +512,10 @@ export default function CompareScenarios() {
                               <th>Cervical screening test chosen</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asLabel(params.screeningTest, screeningTests) ?? "N/A"}
+                                  {asLabel(
+                                    params.screeningTest,
+                                    screeningTests
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -359,18 +528,24 @@ export default function CompareScenarios() {
                               ))}
                             </tr>
                             <tr>
-                              <th className="ps-3">Screening test sensitivity for CIN2/3</th>
+                              <th className="ps-3">
+                                Screening test sensitivity for CIN2/3
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.screeningTestSensitivity) ?? "N/A"}
+                                  {asPercent(params.screeningTestSensitivity) ??
+                                    "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr>
-                              <th className="ps-3">Screening test specificity for CIN2/3</th>
+                              <th className="ps-3">
+                                Screening test specificity for CIN2/3
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.screeningTestSpecificity) ?? "N/A"}
+                                  {asPercent(params.screeningTestSpecificity) ??
+                                    "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -379,12 +554,15 @@ export default function CompareScenarios() {
                               <th>Triage or diagnostic test chosen</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asLabel(params.triageTest, triageTests) ?? "N/A"}
+                                  {asLabel(params.triageTest, triageTests) ??
+                                    "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr>
-                              <th className="ps-3">Triage or diagnostic test attendance</th>
+                              <th className="ps-3">
+                                Triage or diagnostic test attendance
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
                                   {asPercent(params.percentTriaged) ?? "N/A"}
@@ -392,18 +570,24 @@ export default function CompareScenarios() {
                               ))}
                             </tr>
                             <tr>
-                              <th className="ps-3">Triage or diagnostic test sensitivity for CIN2/3</th>
+                              <th className="ps-3">
+                                Triage or diagnostic test sensitivity for CIN2/3
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.triageTestSensitivity) ?? "N/A"}
+                                  {asPercent(params.triageTestSensitivity) ??
+                                    "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr>
-                              <th className="ps-3">Triage or diagnostic test specificity for CIN2/3</th>
+                              <th className="ps-3">
+                                Triage or diagnostic test specificity for CIN2/3
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.triageTestSpecificity) ?? "N/A"}
+                                  {asPercent(params.triageTestSpecificity) ??
+                                    "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -412,31 +596,45 @@ export default function CompareScenarios() {
                               <th>Diagnostic test chosen</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asLabel(params.diagnosticTest, diagnosticTests) ?? "N/A"}
+                                  {asLabel(
+                                    params.diagnosticTest,
+                                    diagnosticTests
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr>
-                              <th className="ps-3">Diagnostic test attendance</th>
+                              <th className="ps-3">
+                                Diagnostic test attendance
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.percentDiagnosticTriaged) ?? "N/A"}
+                                  {asPercent(params.percentDiagnosticTriaged) ??
+                                    "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr>
-                              <th className="ps-3">Diagnostic test sensitivity for CIN2/3</th>
+                              <th className="ps-3">
+                                Diagnostic test sensitivity for CIN2/3
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.diagnosticTestSensitivity) ?? "N/A"}
+                                  {asPercent(
+                                    params.diagnosticTestSensitivity
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
                             <tr>
-                              <th className="ps-3">Diagnostic test specificity for CIN2/3</th>
+                              <th className="ps-3">
+                                Diagnostic test specificity for CIN2/3
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.diagnosticTestSpecificity) ?? "N/A"}
+                                  {asPercent(
+                                    params.diagnosticTestSpecificity
+                                  ) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -457,7 +655,11 @@ export default function CompareScenarios() {
                 </Card>
               </Tab.Container>
               <div className="text-center">
-                <Button onClick={exportResults} className="m-1" variant="primary">
+                <Button
+                  onClick={exportResults}
+                  className="m-1"
+                  variant="primary"
+                >
                   Export Results to PDF
                 </Button>
               </div>
