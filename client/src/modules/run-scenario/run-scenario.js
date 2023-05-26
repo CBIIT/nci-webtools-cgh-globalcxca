@@ -1,4 +1,5 @@
 import { useRecoilState, useSetRecoilState, useResetRecoilState } from "recoil";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import mapValues from "lodash/mapValues";
 import Container from "react-bootstrap/Container";
@@ -39,6 +40,8 @@ export default function RunScenarios() {
 
   function handleChange(event) {
     let { name, value } = event.target;
+    console.log("event.target - name", name);
+    console.log("event.target - value", value);
 
     if (name === "scenario") {
       setForm({
