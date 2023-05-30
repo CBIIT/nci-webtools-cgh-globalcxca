@@ -23,6 +23,7 @@ import { exportPdf } from "../../services/pdf-utils";
 import { asLabel, asPercent } from "../../services/formatters";
 import PieChart from "./pie-chart";
 import BarChart from "./bar-chart";
+import { write, utils } from "xlsx";
 
 export default function ScenarioResults() {
   const params = useRecoilValue(paramsState);
@@ -44,6 +45,33 @@ export default function ScenarioResults() {
     const filename = `${params.scenario} ${getTimestamp()}.pdf`;
     const nodes = Array.from(document.querySelectorAll("[data-export]"));
     exportPdf(filename, nodes);
+  }
+
+  async function exportResultsExcel() {
+    const filename = `${params.scenario} ${getTimestamp()}.xlsx`;
+    const nodes = Array.from(document.querySelectorAll("[data-export]"));
+    const workbook = utils.book_new();
+    const worksheet = utils.table_to_sheet(nodes[0]); // Assuming nodes[0] contains the data you want to export
+    utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+    const excelBuffer = write(workbook, { type: "array", bookType: "xlsx" });
+    saveExcelFile(excelBuffer, filename);
+  }
+
+  function saveExcelFile(buffer, filename) {
+    const data = new Blob([buffer], { type: "application/octet-stream" });
+    if (navigator.msSaveBlob) {
+      // For IE11 and Edge
+      navigator.msSaveBlob(data, filename);
+    } else {
+      // For other browsers
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(data);
+      link.download = filename;
+      link.click();
+      setTimeout(() => {
+        window.URL.revokeObjectURL(data);
+      }, 100);
+    }
   }
 
   if (!params || !results) {
@@ -558,6 +586,13 @@ export default function ScenarioResults() {
           </Button>
           <Button onClick={exportResults} className="m-1" variant="primary">
             Export Results to PDF
+          </Button>
+          <Button
+            onClick={exportResultsExcel}
+            className="m-1"
+            variant="primary"
+          >
+            Export Results to Excel
           </Button>
         </div>
       </Container>
