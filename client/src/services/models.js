@@ -836,7 +836,7 @@ function processStage(allStages, stage, stageIndex) {
   return allStages;
 }
 
-function calculateValues(
+export function calculateValues(
   populationSize,
   screeningInterval,
   cinPrevalence,
@@ -844,7 +844,8 @@ function calculateValues(
   sensitivity,
   specificity
 ) {
-  const stages = 3;
+  const stages = sensitivity.length;
+  console.log(stages);
 
   const testedTrueNegatives = [];
   const testedFalsePositives = [];
@@ -855,23 +856,26 @@ function calculateValues(
   const testedTruePositives = [];
 
   // Stage 0 (initial conditions)
-  testedTrueNegatives[0] =
-    (populationSize / screeningInterval) * (1 - cinPrevalence);
   testedFalsePositives[0] =
-    (populationSize / screeningInterval) * cinPrevalence;
+    (populationSize / screeningInterval) * (1 - cinPrevalence);
+  testedTruePositives[0] = (populationSize / screeningInterval) * cinPrevalence;
 
   for (let stage = 1; stage <= stages; stage++) {
-    // Stage N
+    console.log(stage);
+    console.log("specificity ", specificity[stage - 1]);
+    console.log("sensitivity ", sensitivity[stage - 1]);
     untestedPositives[stage] =
       testedTruePositives[stage - 1] * (1 - coverage[stage]);
     testedNegatives[stage] = testedFalsePositives[stage - 1] * coverage[stage];
     testedPositives[stage] = testedTruePositives[stage - 1] * coverage[stage];
     testedFalseNegatives[stage] =
-      testedPositives[stage] * (1 - sensitivity[stage]);
-    testedTrueNegatives[stage] = testedNegatives[stage] * specificity[stage];
-    testedTruePositives[stage] = testedPositives[stage] * sensitivity[stage];
+      testedPositives[stage] * (1 - sensitivity[stage - 1]);
+    testedTrueNegatives[stage] =
+      testedNegatives[stage] * specificity[stage - 1];
+    testedTruePositives[stage] =
+      testedPositives[stage] * sensitivity[stage - 1];
     testedFalsePositives[stage] =
-      testedNegatives[stage] * (1 - specificity[stage]);
+      testedNegatives[stage] * (1 - specificity[stage - 1]);
   }
 
   return {

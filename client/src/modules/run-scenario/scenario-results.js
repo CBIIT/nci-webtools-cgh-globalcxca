@@ -17,6 +17,7 @@ import {
   screeningTests,
   triageTests,
   diagnosticTests,
+  calculateValues,
 } from "../../services/models";
 import { getTimestamp } from "../../services/file-utils";
 import { exportPdf } from "../../services/pdf-utils";
@@ -33,6 +34,23 @@ export default function ScenarioResults() {
 
   console.log("results", results);
   console.log("params ", params);
+
+  // Example usage:
+  const populationSize = 200000;
+  const screeningInterval = 5;
+  const cinPrevalence = 0.02;
+  const coverage = [0.1, 0.8, 0.9, 0.95]; // Example coverage values for stages 1, 2, and 3
+  const sensitivity = [0.6, 0.6, 0.7]; // Example sensitivity values for stages 1, 2, and 3
+  const specificity = [0.91, 0.84, 0.75]; // Example specificity values for stages 1, 2, and 3
+  const values = calculateValues(
+    populationSize,
+    screeningInterval,
+    cinPrevalence,
+    coverage,
+    sensitivity,
+    specificity
+  );
+  console.log("VALUES TEST", values);
 
   function saveScenario() {
     const filename = `${params.scenario} ${getTimestamp()}.scenario`;
@@ -364,7 +382,10 @@ export default function ScenarioResults() {
               </thead>
               <tbody>
                 <tr className="table-info">
-                  <th>Population without precancer targeted for screening</th>
+                  <th>
+                    Population without precancer targeted for screening
+                    (testedTrueNegatives[0])
+                  </th>
                   <td className="text-end text-nowrap">
                     {results.healthyWomenTargetedForScreening?.toLocaleString(
                       locale
@@ -372,7 +393,10 @@ export default function ScenarioResults() {
                   </td>
                 </tr>
                 <tr className="table-info">
-                  <th>Population with precancer targeted for screening</th>
+                  <th>
+                    Population with precancer targeted for screening
+                    (testedFalsePositives[0])
+                  </th>
                   <td className="text-end text-nowrap">
                     {results.precancersTargetedForScreening?.toLocaleString(
                       locale
