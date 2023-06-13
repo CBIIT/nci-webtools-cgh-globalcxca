@@ -42,6 +42,7 @@ export default function RunScenarios() {
     let { name, value } = event.target;
     console.log("event.target - name", name);
     console.log("event.target - value", value);
+    console.log("test[value]", tests[value]);
 
     if (name === "scenario") {
       setForm({
