@@ -52,6 +52,7 @@ function d3PieChart(
     padAngle = stroke === "none" ? 1 / outerRadius : 0, // angular separation between wedges
   } = {}
 ) {
+  console.log("PIE DATA", data);
   // Compute values.
   const N = d3.map(data, name);
   const V = d3.map(data, value);

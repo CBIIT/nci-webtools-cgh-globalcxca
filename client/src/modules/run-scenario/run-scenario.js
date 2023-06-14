@@ -41,10 +41,6 @@ export default function RunScenarios() {
 
   function handleChange(event) {
     let { name, value } = event.target;
-    console.log("event.target - name", name);
-    console.log("event.target - value", value);
-    console.log("test[value]", tests[value]);
-    console.log("defaultFormState", defaultFormState);
 
     if (name === "scenario") {
       setForm({
@@ -84,13 +80,10 @@ export default function RunScenarios() {
     }));
 
     //setTimeout(() => handleSubmit(), 100);
-    console.log("FORM------ ", form);
   }
   const results = runModel(form);
-  console.log(results);
   const params = mapValues(form, asNumber);
   setParams(params);
-
   setResults(results);
 
   function handleSubmit(event) {
@@ -466,9 +459,9 @@ export default function RunScenarios() {
                               {
                                 {
                                   ScreenDiagnosticTestTreat:
-                                    "Percent of screen positives with triage/diagnostic test (percentDiagnosticTriaged)",
+                                    "Percent of screen positives with triage/diagnostic test",
                                   ScreenTriageDiagnosticTestTreat:
-                                    "Percent of triage positives with diagnostic test (percentDiagnosticTriaged--)",
+                                    "Percent of triage positives with diagnostic test",
                                 }[form.scenario]
                               }
                             </span>
@@ -518,9 +511,9 @@ export default function RunScenarios() {
                                 ScreenTreat:
                                   "Percent of screen positives treated",
                                 ScreenDiagnosticTestTreat:
-                                  "Percent of triage/diagnostic test positives treated (percentTreated)",
+                                  "Percent of triage/diagnostic test positives treated",
                                 ScreenTriageDiagnosticTestTreat:
-                                  "Percent of diagnostic test positives treated (percentTreated--)",
+                                  "Percent of diagnostic test positives treated",
                               }[form.scenario]
                             }
                           </span>
