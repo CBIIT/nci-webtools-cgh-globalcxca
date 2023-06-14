@@ -382,25 +382,23 @@ export default function ScenarioResults() {
               </thead>
               <tbody>
                 <tr className="table-info">
-                  <th>
-                    Population without precancer targeted for screening
-                    (testedFalsePositives[0])
-                  </th>
+                  <th>Population without precancer targeted for screening</th>
                   <td className="text-end text-nowrap">
-                    {results.healthyWomenTargetedForScreening?.toLocaleString(
+                    {/* {results.healthyWomenTargetedForScreening?.toLocaleString(
                       locale
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {results.testedFalsePositives[0]?.toLocaleString(locale) ??
+                      "N/A"}
                   </td>
                 </tr>
                 <tr className="table-info">
-                  <th>
-                    Population with precancer targeted for screening
-                    (testedTruePositives[0])
-                  </th>
+                  <th>Population with precancer targeted for screening</th>
                   <td className="text-end text-nowrap">
-                    {results.precancersTargetedForScreening?.toLocaleString(
+                    {/* {results.precancersTargetedForScreening?.toLocaleString(
                       locale
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {results.testedTruePositives[0]?.toLocaleString(locale) ??
+                      "N/A"}
                   </td>
                 </tr>
                 <tr className="table-info">
@@ -466,37 +464,47 @@ export default function ScenarioResults() {
                 <tr className="table-light">
                   <th className="ps-3">Did not have screening test</th>
                   <td className="text-end text-nowrap">
-                    {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"}
+                    {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
+                    {asPercent(results.percentMissed[0]) ?? "N/A"}
                   </td>
                   <td className="text-end text-nowrap">
-                    {results.numberMissedDueToNoScreening?.toLocaleString(
+                    {/* {results.numberMissedDueToNoScreening?.toLocaleString(
                       locale
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {results.untestedPositives[1]?.toLocaleString(locale) ??
+                      "N/A"}
                   </td>
                 </tr>
                 <tr className="table-light">
                   <th className="ps-3">Sensitivity of screening test</th>
                   <td className="text-end text-nowrap">
-                    {asPercent(
+                    {/* {asPercent(
                       results.percentMissedDueToSensitivityOfScreeningTest
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {asPercent(results.percentMissedDueToSensitivity[0]) ??
+                      "N/A"}
                   </td>
                   <td className="text-end text-nowrap">
-                    {results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(
+                    {/* {results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(
                       locale
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {results.testedFalseNegatives[1]?.toLocaleString(locale) ??
+                      "N/A"}
                   </td>
                 </tr>
 
                 <tr className="table-light">
                   <th className="ps-3">Loss at triage/diagnostic test</th>
                   <td className="text-end text-nowrap">
-                    {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"}
+                    {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
+                    {asPercent(results.percentMissed[1]) ?? "N/A"}
                   </td>
                   <td className="text-end text-nowrap">
-                    {results.numberMissedDueToLossAtTriage?.toLocaleString(
+                    {/* {results.numberMissedDueToLossAtTriage?.toLocaleString(
                       locale
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {results.untestedPositives[2]?.toLocaleString(locale) ??
+                      "N/A"}
                   </td>
                 </tr>
 
@@ -505,55 +513,69 @@ export default function ScenarioResults() {
                     Sensitivity of triage/diagnostic test
                   </th>
                   <td className="text-end text-nowrap">
-                    {asPercent(
+                    {/* {asPercent(
                       results.percentMissedDueToSensitivityOfTriageTest
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {asPercent(results.percentMissedDueToSensitivity[1]) ??
+                      "N/A"}
                   </td>
                   <td className="text-end text-nowrap">
-                    {results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(
+                    {/* {results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(
                       locale
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {results.untestedPositives[3]?.toLocaleString(locale) ??
+                      "N/A"}
                   </td>
                 </tr>
 
                 <tr className="table-light">
                   <th className="ps-3">Loss at diagnosis</th>
                   <td className="text-end text-nowrap">
-                    {asPercent(
+                    {/* {asPercent(
                       results.percentMissedDueToLossAtDiagnosticTriage
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {asPercent(results.percentMissed[3]) ?? "N/A"}
                   </td>
                   <td className="text-end text-nowrap">
-                    {results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(
+                    {/* {results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(
                       locale
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {results.untestedPositives[4]?.toLocaleString(locale) ??
+                      "N/A"}
                   </td>
                 </tr>
 
                 <tr className="table-light">
                   <th className="ps-3">Sensitivity of diagnostic test</th>
                   <td className="text-end text-nowrap">
-                    {asPercent(
+                    {/* {asPercent(
                       results.percentMissedDueToSensitivityOfDiagnosticTriageTest
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {asPercent(results.percentMissedDueToSensitivity[2]) ??
+                      "N/A"}
                   </td>
                   <td className="text-end text-nowrap">
-                    {results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(
+                    {/* {results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(
                       locale
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {results.testedFalseNegatives[3]?.toLocaleString(locale) ??
+                      "N/A"}
                   </td>
                 </tr>
 
                 <tr className="table-light">
                   <th className="ps-3">Loss at treatment</th>
                   <td className="text-end text-nowrap">
-                    {asPercent(results.percentMissedDueToLossAtTreatment) ??
-                      "N/A"}
+                    {/* {asPercent(results.percentMissedDueToLossAtTreatment) ??
+                      "N/A"} */}
+                    {asPercent(results.percentMissed[4]) ?? "N/A"}
                   </td>
                   <td className="text-end text-nowrap">
-                    {results.numberMissedDueToLossAtTreatment?.toLocaleString(
+                    {/* {results.numberMissedDueToLossAtTreatment?.toLocaleString(
                       locale
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {results.untestedPositives[4]?.toLocaleString(locale) ??
+                      "N/A"}
                   </td>
                 </tr>
               </tbody>
@@ -570,30 +592,34 @@ export default function ScenarioResults() {
                 <tr className="table-light">
                   <th>Total requiring screening test</th>
                   <td className="text-end text-nowrap">
-                    {results.totalNeededToScreen?.toLocaleString(locale) ??
-                      "N/A"}
+                    {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
+                      "N/A"} */}
+                    {results.totalNeeded[0]?.toLocaleString(locale) ?? "N/A"}
                   </td>
                 </tr>
                 <tr className="table-light">
                   <th>Total requiring triage/diagnostic test</th>
                   <td className="text-end text-nowrap">
-                    {results.totalNeededToTriage?.toLocaleString(locale) ??
-                      "N/A"}
+                    {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
+                      "N/A"} */}
+                    {results.totalNeeded[1]?.toLocaleString(locale) ?? "N/A"}
                   </td>
                 </tr>
                 <tr className="table-light">
                   <th>Total requiring diagnostic test</th>
                   <td className="text-end text-nowrap">
-                    {results.totalNeededToDiagnosticTriage?.toLocaleString(
+                    {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                       locale
-                    ) ?? "N/A"}
+                    ) ?? "N/A"} */}
+                    {results.totalNeeded[2]?.toLocaleString(locale) ?? "N/A"}
                   </td>
                 </tr>
                 <tr className="table-light">
                   <th>Total requiring treatment</th>
                   <td className="text-end text-nowrap">
-                    {results.totalNeededToTreat?.toLocaleString(locale) ??
-                      "N/A"}
+                    {/* {results.totalNeededToTreat?.toLocaleString(locale) ??
+                      "N/A"} */}
+                    {results.totalNeeded[3]?.toLocaleString(locale) ?? "N/A"}
                   </td>
                 </tr>
               </tbody>

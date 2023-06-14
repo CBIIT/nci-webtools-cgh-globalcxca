@@ -78,12 +78,24 @@ export function runModel(params) {
   const populationSize = parseInt(params.populationSize, 10);
   const screeningInterval = parseInt(params.screeningInterval, 10);
   const cinPrevalence = parseInt(params.cinPrevalence, 10) / 100;
-  let coverage = [0];
+  let coverage = [];
   let sensitivity = [];
   let specificity = [];
+  coverage[0] = 0;
   coverage[1] = parseInt(params?.percentScreened, 10) / 100 || 0;
-  coverage[2] = parseInt(params?.percentTriaged, 10) / 100 || 0;
-  coverage[3] = parseInt(params?.percentDiagnosticTriaged, 10) / 100 || 0;
+  if (params.scenario === "ScreenDiagnosticTestTreat") {
+    console.log("STAGE 2-----");
+    coverage[3] = parseInt(params?.percentTriaged, 10) / 100 || 0;
+    coverage[2] = parseInt(params?.percentDiagnosticTriaged, 10) / 100 || 0;
+  } else if (params.scenario === "ScreenTriageDiagnosticTestTreat") {
+    console.log("STAGE 3-----");
+    coverage[2] = parseInt(params?.percentTriaged, 10) / 100 || 0;
+    coverage[3] = parseInt(params?.percentDiagnosticTriaged, 10) / 100 || 0;
+  } else {
+    coverage[3] = 0;
+    coverage[2] = 0;
+  }
+
   coverage[4] = parseInt(params?.percentTreated, 10) / 100 || 0;
   sensitivity[0] = parseInt(params?.screeningTestSensitivity, 10) / 100 || 0;
   sensitivity[1] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
@@ -696,9 +708,10 @@ export function calculateValues(
   testedTruePositives[0] = (populationSize / screeningInterval) * cinPrevalence;
 
   //coverage[1] = percentScreened
-  //coverage[2] =  -- If DIAGNOSIS => percentTriaged.
-  //coverage[3] = -- If Triage => percentDiagnosticTriaged
+  //coverage[2] =  -- If DIAGNOSIS => percentDiagnosticTriaged , else percentTriaged.
+  //coverage[3] = -- If Triage => percentTriaged
   //coverage[4] = percentTreated -- always the last one
+  console.log("coverage", coverage);
 
   //sensitivity[0] - screening
   //sensitivity[1] - diagnosis

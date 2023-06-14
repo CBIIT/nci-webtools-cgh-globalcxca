@@ -409,6 +409,7 @@ export default function RunScenarios() {
                           <Form.Label column sm={12}>
                             <span>
                               Percent of screen positives with triage test
+                              (percentTriaged--)
                             </span>
                             <OverlayTrigger
                               overlay={
@@ -465,9 +466,9 @@ export default function RunScenarios() {
                               {
                                 {
                                   ScreenDiagnosticTestTreat:
-                                    "Percent of screen positives with triage/diagnostic test",
+                                    "Percent of screen positives with triage/diagnostic test (percentDiagnosticTriaged)",
                                   ScreenTriageDiagnosticTestTreat:
-                                    "Percent of triage positives with diagnostic test",
+                                    "Percent of triage positives with diagnostic test (percentDiagnosticTriaged--)",
                                 }[form.scenario]
                               }
                             </span>
@@ -517,9 +518,9 @@ export default function RunScenarios() {
                                 ScreenTreat:
                                   "Percent of screen positives treated",
                                 ScreenDiagnosticTestTreat:
-                                  "Percent of triage/diagnostic test positives treated",
+                                  "Percent of triage/diagnostic test positives treated (percentTreated)",
                                 ScreenTriageDiagnosticTestTreat:
-                                  "Percent of diagnostic test positives treated",
+                                  "Percent of diagnostic test positives treated (percentTreated--)",
                               }[form.scenario]
                             }
                           </span>
