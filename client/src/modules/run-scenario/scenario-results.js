@@ -39,9 +39,9 @@ export default function ScenarioResults() {
   const populationSize = 200000;
   const screeningInterval = 5;
   const cinPrevalence = 0.02;
-  const coverage = [0, 0.1, 0.8, 0, 0.15]; // Example coverage values screen coverage, screen positive treat
-  const sensitivity = [0.6, 0.5, 0]; // Example sensitivity values for stages 1, 2, and 3
-  const specificity = [0.91, 0.88, 0.0]; // Example specificity values for stages 1, 2, and 3
+  const coverage = [0, 0.1, 0.15]; // Example coverage values screen coverage, screen positive treat
+  const sensitivity = [0.6]; // Example sensitivity values for stages 1, 2, and 3
+  const specificity = [0.91]; // Example specificity values for stages 1, 2, and 3
   const values = calculateValues(
     populationSize,
     screeningInterval,

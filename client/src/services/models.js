@@ -83,26 +83,26 @@ export function runModel(params) {
   let specificity = [];
   coverage[0] = 0;
   coverage[1] = parseInt(params?.percentScreened, 10) / 100 || 0;
+  sensitivity[0] = parseInt(params?.screeningTestSensitivity, 10) / 100 || 0;
+  specificity[0] = parseInt(params?.screeningTestSpecificity, 10) / 100 || 0;
   if (params.scenario === "ScreenDiagnosticTestTreat") {
     console.log("STAGE 2-----");
-    coverage[3] = parseInt(params?.percentTriaged, 10) / 100 || 0;
     coverage[2] = parseInt(params?.percentDiagnosticTriaged, 10) / 100 || 0;
+    coverage[3] = parseInt(params?.percentTreated, 10) / 100 || 0;
+    sensitivity[1] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
+    specificity[1] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
   } else if (params.scenario === "ScreenTriageDiagnosticTestTreat") {
     console.log("STAGE 3-----");
     coverage[2] = parseInt(params?.percentTriaged, 10) / 100 || 0;
     coverage[3] = parseInt(params?.percentDiagnosticTriaged, 10) / 100 || 0;
+    coverage[4] = parseInt(params?.percentTreated, 10) / 100 || 0;
+    sensitivity[1] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
+    specificity[1] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
+    sensitivity[2] = parseInt(params?.diagnosticTestSensitivity, 10) / 100 || 0;
+    specificity[2] = parseInt(params?.diagnosticTestSpecificity, 10) / 100 || 0;
   } else {
-    coverage[3] = 0;
-    coverage[2] = 0;
+    coverage[2] = parseInt(params?.percentTreated, 10) / 100 || 0;
   }
-
-  coverage[4] = parseInt(params?.percentTreated, 10) / 100 || 0;
-  sensitivity[0] = parseInt(params?.screeningTestSensitivity, 10) / 100 || 0;
-  sensitivity[1] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
-  sensitivity[2] = parseInt(params?.diagnosticTestSensitivity, 10) / 100 || 0;
-  specificity[0] = parseInt(params?.screeningTestSpecificity, 10) / 100 || 0;
-  specificity[1] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
-  specificity[2] = parseInt(params?.diagnosticTestSpecificity, 10) / 100 || 0;
 
   console.log("populationSize", populationSize);
   console.log("screeningInterval", screeningInterval);
@@ -162,9 +162,11 @@ export function runScreenDiagnosticTestTreatModel({
   //testedFalsePositives[0]
   const healthyWomenTargetedForScreening =
     (populationSize / screeningInterval) * (1 - cinPrevalence);
+  console.log("testedFalsePositives[0]]", healthyWomenTargetedForScreening);
   //testedTruePositives[0]
   const precancersTargetedForScreening =
     (populationSize / screeningInterval) * cinPrevalence;
+  console.log("testedTruePositives[0]", precancersTargetedForScreening);
 
   // screened population
   //untestedPositives[1]
@@ -687,6 +689,7 @@ export function calculateValues(
   specificity
 ) {
   const stages = sensitivity.length;
+  console.log("STAGEs", stages);
 
   const testedFalsePositives = [];
   const testedTruePositives = [];
