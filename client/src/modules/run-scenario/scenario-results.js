@@ -39,7 +39,7 @@ export default function ScenarioResults() {
   const populationSize = 200000;
   const screeningInterval = 5;
   const cinPrevalence = 0.02;
-  const coverage = [0, 0.1, 0.8, 0.15, 0]; // Example coverage values screen coverage, screen positive treat
+  const coverage = [0, 0.1, 0.8, 0, 0.15]; // Example coverage values screen coverage, screen positive treat
   const sensitivity = [0.6, 0.5, 0]; // Example sensitivity values for stages 1, 2, and 3
   const specificity = [0.91, 0.88, 0.0]; // Example specificity values for stages 1, 2, and 3
   const values = calculateValues(
@@ -50,25 +50,7 @@ export default function ScenarioResults() {
     sensitivity,
     specificity
   );
-  console.log("VALUES TEST", values);
-  console.log(
-    "healthyWomenTargetedForScreening ",
-    results?.healthyWomenTargetedForScreening
-  );
-  console.log("percentPrecancersTreated", results?.percentPrecancersTreated);
-  console.log("treatedWithPrecancer", results?.treatedWithPrecancer);
-  console.log(
-    "precancersTargetedForScreening,",
-    results?.precancersTargetedForScreening
-  );
-  console.log(
-    "diagnosticTriagedTruePositives, ",
-    results?.diagnosticTriagedTruePositives
-  );
-  console.log("percentTreated, ", params?.percentTreated);
-  console.log("lostToFollowUpAtTreatment", results?.lostToFollowUpAtTreatment);
-  console.log("percentPrecancersMissed", results?.percentPrecancersMissed);
-  console.log("numberPrecancersMissed", results?.numberPrecancersMissed);
+  console.log("VALUES ---", values);
 
   function saveScenario() {
     const filename = `${params.scenario} ${getTimestamp()}.scenario`;

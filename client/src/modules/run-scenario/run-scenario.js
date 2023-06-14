@@ -25,6 +25,7 @@ import {
   screeningTests,
   triageTests,
   diagnosticTests,
+  calculateValues,
 } from "../../services/models";
 import { asNumber } from "../../services/formatters";
 import ScenarioResults from "./scenario-results";
@@ -43,6 +44,7 @@ export default function RunScenarios() {
     console.log("event.target - name", name);
     console.log("event.target - value", value);
     console.log("test[value]", tests[value]);
+    console.log("defaultFormState", defaultFormState);
 
     if (name === "scenario") {
       setForm({
@@ -81,8 +83,15 @@ export default function RunScenarios() {
       [name]: value,
     }));
 
-    setTimeout(() => handleSubmit());
+    //setTimeout(() => handleSubmit(), 100);
+    console.log("FORM------ ", form);
   }
+  const results = runModel(form);
+  console.log(results);
+  const params = mapValues(form, asNumber);
+  setParams(params);
+
+  setResults(results);
 
   function handleSubmit(event) {
     event?.preventDefault();
@@ -105,7 +114,7 @@ export default function RunScenarios() {
       <Container>
         <Row>
           <Col md={4}>
-            <Form onSubmit={handleSubmit} onReset={handleReset}>
+            <Form onReset={handleReset}>
               <Card className="mb-4">
                 <Card.Header>
                   <Card.Title>Strategy Selection</Card.Title>
