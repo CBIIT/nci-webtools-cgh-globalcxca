@@ -60,7 +60,6 @@ export const tests = {
 };
 
 // export function runModel(params) {
-//   console.log("params RUN MODEL", params);
 //   switch (params?.scenario) {
 //     case "ScreenDiagnosticTestTreat":
 //       return runScreenDiagnosticTestTreatModel(params);
@@ -74,7 +73,6 @@ export const tests = {
 // }
 
 export function runModel(params) {
-  console.log("params RUN MODEL", params);
   const scenario = params.scenario;
   const populationSize = parseInt(params.populationSize, 10);
   const screeningInterval = parseInt(params.screeningInterval, 10);
@@ -89,14 +87,12 @@ export function runModel(params) {
   specificity[0] = parseInt(params?.screeningTestSpecificity, 10) / 100 || 0;
   screentest[0] = params?.screeningTest || "N/A";
   if (params.scenario === "ScreenDiagnosticTestTreat") {
-    console.log("STAGE 2-----");
     coverage[2] = parseInt(params?.percentDiagnosticTriaged, 10) / 100 || 0;
     coverage[3] = parseInt(params?.percentTreated, 10) / 100 || 0;
     sensitivity[1] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
     specificity[1] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
     screentest[1] = params?.triageTest || "N/A";
   } else if (params.scenario === "ScreenTriageDiagnosticTestTreat") {
-    console.log("STAGE 3-----");
     coverage[2] = parseInt(params?.percentTriaged, 10) / 100 || 0;
     coverage[3] = parseInt(params?.percentDiagnosticTriaged, 10) / 100 || 0;
     coverage[4] = parseInt(params?.percentTreated, 10) / 100 || 0;
@@ -108,15 +104,6 @@ export function runModel(params) {
   } else {
     coverage[2] = parseInt(params?.percentTreated, 10) / 100 || 0;
   }
-  console.log("scenario", scenario);
-  console.log("screentest", screentest);
-  console.log("populationSize", populationSize);
-  console.log("screeningInterval", screeningInterval);
-  console.log("cinPrevalence", cinPrevalence);
-  console.log("coverage", coverage);
-  console.log("sensitivity", sensitivity);
-  console.log("specificity", specificity);
-  console.log("sensitivity.length", sensitivity.length);
 
   return calculateValues(
     scenario,
@@ -155,27 +142,13 @@ export function runScreenDiagnosticTestTreatModel({
 
   percentTriaged = percentDiagnosticTriaged;
 
-  console.log("populationSize ", populationSize);
-  console.log("screeningInterval ", screeningInterval);
-  console.log("cinPrevalence ", cinPrevalence);
-  console.log("percentScreened ", percentScreened);
-  console.log("percentTreated ", percentTreated);
-  console.log("percentDiagnosticTriaged ", percentDiagnosticTriaged);
-  console.log("percentTriaged ", percentTriaged);
-  console.log("screeningTestSensitivity ", screeningTestSensitivity);
-  console.log("screeningTestSpecificity ", screeningTestSpecificity);
-  console.log("triageTestSensitivity", triageTestSensitivity);
-  console.log("triageTestSpecificity, ", triageTestSpecificity);
-
   // target population
   //testedFalsePositives[0]
   const healthyWomenTargetedForScreening =
     (populationSize / screeningInterval) * (1 - cinPrevalence);
-  console.log("testedFalsePositives[0]]", healthyWomenTargetedForScreening);
   //testedTruePositives[0]
   const precancersTargetedForScreening =
     (populationSize / screeningInterval) * cinPrevalence;
-  console.log("testedTruePositives[0]", precancersTargetedForScreening);
 
   // screened population
   //untestedPositives[1]
@@ -691,16 +664,7 @@ export function calculateValues(
   sensitivity,
   specificity
 ) {
-  console.log("populationSize", populationSize);
-  console.log("screeningInterval", screeningInterval);
-  console.log("cinPrevalence", cinPrevalence);
-  console.log("coverage", coverage);
-  console.log("sensitivity", sensitivity);
-  console.log("specificity", specificity);
-
   const stages = sensitivity.length;
-  console.log("STAGEs", stages);
-
   const testedFalsePositives = [];
   const testedTruePositives = [];
   const untestedPositives = [];
@@ -724,7 +688,6 @@ export function calculateValues(
   //coverage[2] =  -- If DIAGNOSIS => percentDiagnosticTriaged , else percentTriaged.
   //coverage[3] = -- If Triage => percentTriaged
   //coverage[4] = percentTreated -- always the last one
-  console.log("coverage", coverage);
 
   //sensitivity[0] - screening
   //sensitivity[1] - diagnosis
@@ -744,7 +707,6 @@ export function calculateValues(
     testedFalsePositives[stage] =
       testedNegatives[stage] * (1 - specificity[stage - 1]);
   }
-  console.log("coverage[stages + 1] --- ", coverage[stages + 1]);
   //treaeted
   untestedPositives[stages + 1] =
     testedTruePositives[stages] * (1 - coverage[stages + 1]); //treated is the last one
@@ -806,10 +768,6 @@ export function calculateValues(
 
   const percentMissedDueToLossAtTreatment =
     (100 * untestedPositives[stages + 1]) / numberPrecancersMissed;
-  console.log(
-    "percentMissedDueToLossAtTreatment",
-    percentMissedDueToLossAtTreatment
-  );
 
   percentMissed.push(percentMissedDueToLossAtTreatment); // the last number is percent precancers treated
   const totalNeededToTreat =

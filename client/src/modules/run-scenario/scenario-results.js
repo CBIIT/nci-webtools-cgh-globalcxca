@@ -32,21 +32,8 @@ export default function ScenarioResults() {
   const [activeTab, setActiveTab] = useState("results");
   const locale = useRecoilValue(localeState);
 
-  console.log("results", results);
-  console.log("params ", params);
   let treatedIndex = results.totalNeeded.length - 1;
-  let diagnosisIndex;
-  let triageIndex;
-  if (results.scenario == "ScreenTreat") {
-    diagnosisIndex = 1;
-  } else if (results.scenario == "ScreenTriageDiagnosticTestTreat") {
-    diagnosisIndex = treatedIndex - 1;
-  } else {
-    triageIndex = treatedIndex - 1;
-    diagnosisIndex = treatedIndex - 2;
-  }
 
-  console.log("treatedIndex ==== ", treatedIndex);
   function saveScenario() {
     const filename = `${params.scenario} ${getTimestamp()}.scenario`;
     const type = "text/plain;charset=utf-8";
