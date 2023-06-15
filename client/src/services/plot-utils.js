@@ -1,4 +1,11 @@
 export function exportSvg(selector, filename) {
+  console.log("selector", selector);
+  console.log("filename", filename);
+  const chartElement = document.querySelector(selector);
+  if (!chartElement) {
+    console.error(`Element with selector '${selector}' not found.`);
+    return;
+  }
   const svgString = new XMLSerializer().serializeToString(
     document.querySelector(selector)
   );

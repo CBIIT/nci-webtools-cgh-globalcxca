@@ -5,7 +5,7 @@ export const defaultLayout = {
   width: 450,
 };
 
-export default function BarChart({ data, layout = defaultLayout }) {
+export default function BarChart({ id, data, layout = defaultLayout }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function BarChart({ data, layout = defaultLayout }) {
     }
   });
 
-  return <div className="img-fluid p-2" ref={ref} />;
+  return <div className="img-fluid p-2" ref={ref} id={id} />;
 }
 function d3BarChart(
   data,

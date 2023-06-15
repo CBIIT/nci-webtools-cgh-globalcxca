@@ -7,7 +7,7 @@ export const defaultLayout = {
   margin: 20,
 };
 
-export default function PieChart({ data, layout = defaultLayout }) {
+export default function PieChart({ id, data, layout = defaultLayout }) {
   const ref = useRef(null);
   useEffect(() => {
     if (ref.current && data && layout) {
@@ -39,7 +39,7 @@ export default function PieChart({ data, layout = defaultLayout }) {
     }
   }, [data, layout]);
 
-  return <div className="img-fluid p-2" ref={ref} />;
+  return <div className="img-fluid p-2" ref={ref} id={id} />;
 }
 
 function d3PieChart(

@@ -32,6 +32,8 @@ export default function ScenarioResults() {
   const results = useRecoilValue(resultsState);
   const [activeTab, setActiveTab] = useState("results");
   const locale = useRecoilValue(localeState);
+  const barChartId = "barChart";
+  const pieChartId = "pieChart";
   console.log("params", params);
   console.log("result", results);
 
@@ -119,9 +121,9 @@ export default function ScenarioResults() {
     }
   }
 
-  function handleExport() {
-    const plotSelector = `plot`;
-    const fileName = `plot-test.svg`;
+  function handleExportSvg() {
+    const plotSelector = `#${barChartId}`;
+    const fileName = `${barChartId} ${results.scenario}.svg`;
     exportSvg(plotSelector, fileName);
   }
 
@@ -361,6 +363,7 @@ export default function ScenarioResults() {
               <Col md={6}>
                 <h2 className="text-center h5">Precancers Treated</h2>
                 <PieChart
+                  id={pieChartId}
                   data={[
                     {
                       label: "% Precancers Missed",
@@ -379,6 +382,7 @@ export default function ScenarioResults() {
               <Col md={6}>
                 <h2 className="text-center h5">Interventions Required</h2>
                 <BarChart
+                  id={barChartId}
                   data={[
                     {
                       label: "Screening Test",
@@ -406,11 +410,24 @@ export default function ScenarioResults() {
                 />
               </Col>
             </Row>
-            {/* <Row className="justify-content-end mt-3">
-              <Button variant="link" onClick={handleExport}>
-                Export Plot
-              </Button>
-            </Row> */}
+            <Row className="mt-3">
+              <Col md={6} className="d-flex justify-content-center">
+                <Button
+                  variant="link"
+                  onClick={() => handleExportSvg(pieChartId)}
+                >
+                  Export Pie Chart
+                </Button>
+              </Col>
+              <Col md={6} className="d-flex justify-content-center ">
+                <Button
+                  variant="link"
+                  onClick={() => handleExportSvg(barChartId)}
+                >
+                  Export Bar Chart
+                </Button>
+              </Col>
+            </Row>
           </Card.Body>
         </Card>
 
