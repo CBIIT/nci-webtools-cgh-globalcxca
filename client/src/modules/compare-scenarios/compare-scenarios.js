@@ -205,9 +205,16 @@ export default function CompareScenarios() {
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.healthyWomenTargetedForScreening?.toLocaleString(
+                                  {/* {results.healthyWomenTargetedForScreening?.toLocaleString(
                                     locale
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {results.testedFalsePositives[0] !==
+                                    undefined &&
+                                  !isNaN(results.testedFalsePositives[0])
+                                    ? Math.round(
+                                        results.testedFalsePositives[0]
+                                      ).toLocaleString(locale)
+                                    : "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -217,9 +224,16 @@ export default function CompareScenarios() {
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.precancersTargetedForScreening?.toLocaleString(
+                                  {/* {results.precancersTargetedForScreening?.toLocaleString(
                                     locale
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {results.testedTruePositives[0] !==
+                                    undefined &&
+                                  !isNaN(results.testedTruePositives[0])
+                                    ? Math.round(
+                                        results.testedTruePositives[0]
+                                      ).toLocaleString(locale)
+                                    : "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -295,13 +309,23 @@ export default function CompareScenarios() {
                                 <td
                                   className="text-end"
                                   key={index}
-                                  title={results.numberMissedDueToNoScreening?.toLocaleString(
-                                    locale
-                                  )}
+                                  // title={results.numberMissedDueToNoScreening?.toLocaleString(
+                                  //   locale
+                                  // )}
+                                  title={
+                                    results.untestedPositives[1] !==
+                                      undefined &&
+                                    !isNaN(results.untestedPositives[1])
+                                      ? Math.round(
+                                          results.untestedPositives[1]
+                                        ).toLocaleString(locale)
+                                      : "N/A"
+                                  }
                                 >
-                                  {asPercent(
+                                  {/* {asPercent(
                                     results.percentMissedDueToNoScreening
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {asPercent(results.percentMissed[0]) ?? "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -313,12 +337,24 @@ export default function CompareScenarios() {
                                 <td
                                   className="text-end"
                                   key={index}
-                                  title={results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(
-                                    locale
-                                  )}
+                                  // title={results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(
+                                  //   locale
+                                  // )}
+                                  title={
+                                    results.testedFalseNegatives[1] !==
+                                      undefined &&
+                                    !isNaN(results.testedFalseNegatives[1])
+                                      ? Math.round(
+                                          results.testedFalseNegatives[1]
+                                        ).toLocaleString(locale)
+                                      : "N/A"
+                                  }
                                 >
-                                  {asPercent(
+                                  {/* {asPercent(
                                     results.percentMissedDueToSensitivityOfScreeningTest
+                                  ) ?? "N/A"} */}
+                                  {asPercent(
+                                    results.percentMissedDueToSensitivity[0]
                                   ) ?? "N/A"}
                                 </td>
                               ))}
@@ -332,13 +368,79 @@ export default function CompareScenarios() {
                                 <td
                                   className="text-end"
                                   key={index}
-                                  title={results.numberMissedDueToLossAtTriage?.toLocaleString(
-                                    locale
-                                  )}
+                                  // title={results.numberMissedDueToLossAtTriage?.toLocaleString(
+                                  //   locale
+                                  // )}
+                                  title={
+                                    results.scenario === "ScreenTreat"
+                                      ? "N/A"
+                                      : results.scenario ===
+                                        "ScreenTriageDiagnosticTestTreat"
+                                      ? results.untestedPositives[
+                                          results.totalNeeded.length - 1 - 1
+                                        ] !== undefined &&
+                                        !isNaN(
+                                          results.untestedPositives[
+                                            results.totalNeeded.length - 1 - 1
+                                          ]
+                                        )
+                                        ? Math.round(
+                                            results.untestedPositives[
+                                              results.totalNeeded.length - 1 - 1
+                                            ]
+                                          ).toLocaleString(locale)
+                                        : "N/A"
+                                      : results.untestedPositives[
+                                          results.totalNeeded.length - 1
+                                        ] !== undefined &&
+                                        !isNaN(
+                                          results.untestedPositives[
+                                            results.totalNeeded.length - 1
+                                          ]
+                                        )
+                                      ? Math.round(
+                                          results.untestedPositives[
+                                            results.totalNeeded.length - 1
+                                          ]
+                                        ).toLocaleString(locale)
+                                      : "N/A"
+                                  }
                                 >
-                                  {asPercent(
+                                  {/* {asPercent(
                                     results.percentMissedDueToLossAtTriage
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {results.scenario === "ScreenTreat"
+                                    ? "N/A"
+                                    : results.scenario ===
+                                      "ScreenTriageDiagnosticTestTreat"
+                                    ? results.percentMissed[
+                                        results.totalNeeded.length - 1 - 2
+                                      ] !== undefined &&
+                                      !isNaN(
+                                        results.percentMissed[
+                                          results.totalNeeded.length - 1 - 2
+                                        ]
+                                      )
+                                      ? asPercent(
+                                          results.percentMissed[
+                                            results.totalNeeded.length - 1 - 2
+                                          ]
+                                        )
+                                      : "N/A"
+                                    : results.percentMissed[
+                                        results.totalNeeded.length - 1 - 1
+                                      ] !== undefined &&
+                                      !isNaN(
+                                        results.percentMissed[
+                                          results.totalNeeded.length - 1 - 1
+                                        ]
+                                      )
+                                    ? asPercent(
+                                        results.percentMissed[
+                                          results.totalNeeded.length - 1 - 1
+                                        ]
+                                      )
+                                    : "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -351,13 +453,79 @@ export default function CompareScenarios() {
                                 <td
                                   className="text-end"
                                   key={index}
-                                  title={results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(
-                                    locale
-                                  )}
+                                  // title={results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(
+                                  //   locale
+                                  // )}
+                                  title={
+                                    results.scenario === "ScreenTreat"
+                                      ? "N/A"
+                                      : results.scenario ===
+                                        "ScreenTriageDiagnosticTestTreat"
+                                      ? results.testedFalseNegatives[
+                                          results.totalNeeded.length - 1 - 1
+                                        ] !== undefined &&
+                                        !isNaN(
+                                          results.testedFalseNegatives[
+                                            results.totalNeeded.length - 1 - 1
+                                          ]
+                                        )
+                                        ? Math.round(
+                                            results.testedFalseNegatives[
+                                              results.totalNeeded.length - 1 - 1
+                                            ]
+                                          ).toLocaleString(locale)
+                                        : "N/A"
+                                      : results.testedFalseNegatives[
+                                          results.totalNeeded.length - 1
+                                        ] !== undefined &&
+                                        !isNaN(
+                                          results.testedFalseNegatives[
+                                            results.totalNeeded.length - 1
+                                          ]
+                                        )
+                                      ? Math.round(
+                                          results.testedFalseNegatives[
+                                            results.totalNeeded.length - 1
+                                          ]
+                                        ).toLocaleString(locale)
+                                      : "N/A"
+                                  }
                                 >
-                                  {asPercent(
+                                  {/* {asPercent(
                                     results.percentMissedDueToSensitivityOfTriageTest
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {results.scenario === "ScreenTreat"
+                                    ? "N/A"
+                                    : results.scenario ===
+                                      "ScreenTriageDiagnosticTestTreat"
+                                    ? results.percentMissedDueToSensitivity[
+                                        results.totalNeeded.length - 1 - 2
+                                      ] !== undefined &&
+                                      !isNaN(
+                                        results.percentMissedDueToSensitivity[
+                                          results.totalNeeded.length - 1 - 2
+                                        ]
+                                      )
+                                      ? asPercent(
+                                          results.percentMissedDueToSensitivity[
+                                            results.totalNeeded.length - 1 - 2
+                                          ]
+                                        )
+                                      : "NA"
+                                    : results.percentMissedDueToSensitivity[
+                                        results.totalNeeded.length - 1 - 1
+                                      ] !== undefined &&
+                                      !isNaN(
+                                        results.percentMissedDueToSensitivity[
+                                          results.totalNeeded.length - 1 - 1
+                                        ]
+                                      )
+                                    ? asPercent(
+                                        results.percentMissedDueToSensitivity[
+                                          results.totalNeeded.length - 1 - 1
+                                        ]
+                                      )
+                                    : "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -368,13 +536,53 @@ export default function CompareScenarios() {
                                 <td
                                   className="text-end"
                                   key={index}
-                                  title={results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(
-                                    locale
-                                  )}
+                                  // title={results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(
+                                  //   locale
+                                  // )}
+                                  title={
+                                    results.scenario === "ScreenTreat"
+                                      ? "N/A"
+                                      : results.scenario ===
+                                        "ScreenTriageDiagnosticTestTreat"
+                                      ? results.untestedPositives[
+                                          results.totalNeeded.length - 1
+                                        ] !== undefined &&
+                                        !isNaN(
+                                          results.untestedPositives[
+                                            results.totalNeeded.length - 1
+                                          ]
+                                        )
+                                        ? Math.round(
+                                            results.untestedPositives[
+                                              results.totalNeeded.length - 1
+                                            ]
+                                          ).toLocaleString(locale)
+                                        : "N/A"
+                                      : "N/A"
+                                  }
                                 >
-                                  {asPercent(
+                                  {/* {asPercent(
                                     results.percentMissedDueToLossAtDiagnosticTriage
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {results.scenario === "ScreenTreat"
+                                    ? "N/A"
+                                    : results.scenario ===
+                                      "ScreenTriageDiagnosticTestTreat"
+                                    ? results.percentMissed[
+                                        results.totalNeeded.length - 1 - 1
+                                      ] !== undefined &&
+                                      !isNaN(
+                                        results.percentMissed[
+                                          results.totalNeeded.length - 1 - 1
+                                        ]
+                                      )
+                                      ? asPercent(
+                                          results.percentMissed[
+                                            results.totalNeeded.length - 1 - 1
+                                          ]
+                                        )
+                                      : "N/A"
+                                    : "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -387,13 +595,53 @@ export default function CompareScenarios() {
                                 <td
                                   className="text-end"
                                   key={index}
-                                  title={results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(
-                                    locale
-                                  )}
+                                  // title={results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(
+                                  //   locale
+                                  // )}
+                                  title={
+                                    results.scenario === "ScreenTreat"
+                                      ? "N/A"
+                                      : results.scenario ===
+                                        "ScreenTriageDiagnosticTestTreat"
+                                      ? results.testedFalseNegatives[
+                                          results.totalNeeded.length - 1
+                                        ] !== undefined &&
+                                        !isNaN(
+                                          results.testedFalseNegatives[
+                                            results.totalNeeded.length - 1
+                                          ]
+                                        )
+                                        ? Math.round(
+                                            results.testedFalseNegatives[
+                                              results.totalNeeded.length - 1
+                                            ]
+                                          ).toLocaleString(locale)
+                                        : "N/A"
+                                      : "N/A"
+                                  }
                                 >
-                                  {asPercent(
+                                  {/* {asPercent(
                                     results.percentMissedDueToSensitivityOfDiagnosticTriageTest
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {results.scenario === "ScreenTreat"
+                                    ? "N/A"
+                                    : results.scenario ===
+                                      "ScreenTriageDiagnosticTestTreat"
+                                    ? results.percentMissedDueToSensitivity[
+                                        results.totalNeeded.length - 1 - 1
+                                      ] !== undefined &&
+                                      !isNaN(
+                                        results.percentMissedDueToSensitivity[
+                                          results.totalNeeded.length - 1 - 1
+                                        ]
+                                      )
+                                      ? asPercent(
+                                          results.percentMissedDueToSensitivity[
+                                            results.totalNeeded.length - 1 - 1
+                                          ]
+                                        )
+                                      : "N/A"
+                                    : "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -404,12 +652,33 @@ export default function CompareScenarios() {
                                 <td
                                   className="text-end"
                                   key={index}
-                                  title={results.numberMissedDueToLossAtTreatment?.toLocaleString(
-                                    locale
-                                  )}
+                                  // title={results.numberMissedDueToLossAtTreatment?.toLocaleString(
+                                  //   locale
+                                  // )}
+                                  title={
+                                    results.untestedPositives[
+                                      results.totalNeeded.length - 1 + 1
+                                    ] !== undefined &&
+                                    !isNaN(
+                                      results.untestedPositives[
+                                        results.totalNeeded.length - 1 + 1
+                                      ]
+                                    )
+                                      ? Math.round(
+                                          results.untestedPositives[
+                                            results.totalNeeded.length - 1 + 1
+                                          ]
+                                        ).toLocaleString(locale)
+                                      : "N/A"
+                                  }
                                 >
-                                  {asPercent(
+                                  {/* {asPercent(
                                     results.percentMissedDueToLossAtTreatment
+                                  ) ?? "N/A"} */}
+                                  {asPercent(
+                                    results.percentMissed[
+                                      results.totalNeeded.length - 1
+                                    ]
                                   ) ?? "N/A"}
                                 </td>
                               ))}
@@ -425,9 +694,15 @@ export default function CompareScenarios() {
                               <th>Total requiring screening test</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.totalNeededToScreen?.toLocaleString(
+                                  {/* {results.totalNeededToScreen?.toLocaleString(
                                     locale
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {results.totalNeeded[0] !== undefined &&
+                                  !isNaN(results.totalNeeded[0])
+                                    ? Math.round(
+                                        results.totalNeeded[0]
+                                      ).toLocaleString(locale)
+                                    : "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -435,9 +710,41 @@ export default function CompareScenarios() {
                               <th>Total requiring triage/diagnostic test</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.totalNeededToTriage?.toLocaleString(
+                                  {/* {results.totalNeededToTriage?.toLocaleString(
                                     locale
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {results.scenario === "ScreenTreat"
+                                    ? "N/A"
+                                    : results.scenario ===
+                                      "ScreenTriageDiagnosticTestTreat"
+                                    ? results.totalNeeded[
+                                        results.totalNeeded.length - 1 - 2
+                                      ] !== undefined &&
+                                      !isNaN(
+                                        results.totalNeeded[
+                                          results.totalNeeded.length - 1 - 2
+                                        ]
+                                      )
+                                      ? Math.round(
+                                          results.totalNeeded[
+                                            results.totalNeeded.length - 1 - 2
+                                          ]
+                                        ).toLocaleString(locale)
+                                      : "N/A"
+                                    : results.totalNeeded[
+                                        results.totalNeeded.length - 1 - 1
+                                      ] !== undefined &&
+                                      !isNaN(
+                                        results.totalNeeded[
+                                          results.totalNeeded.length - 1 - 1
+                                        ]
+                                      )
+                                    ? Math.round(
+                                        results.totalNeeded[
+                                          results.totalNeeded.length - 1 - 1
+                                        ]
+                                      ).toLocaleString(locale)
+                                    : "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -445,9 +752,28 @@ export default function CompareScenarios() {
                               <th>Total requiring diagnostic test</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.totalNeededToDiagnosticTriage?.toLocaleString(
+                                  {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                                     locale
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {results.scenario === "ScreenTreat"
+                                    ? "N/A"
+                                    : results.scenario ===
+                                      "ScreenTriageDiagnosticTestTreat"
+                                    ? results.totalNeeded[
+                                        results.totalNeeded.length - 1 - 1
+                                      ] !== undefined &&
+                                      !isNaN(
+                                        results.totalNeeded[
+                                          results.totalNeeded.length - 1 - 1
+                                        ]
+                                      )
+                                      ? Math.round(
+                                          results.totalNeeded[
+                                            results.totalNeeded.length - 1 - 1
+                                          ]
+                                        ).toLocaleString(locale)
+                                      : "N/A"
+                                    : "N/A"}
                                 </td>
                               ))}
                             </tr>
@@ -455,9 +781,23 @@ export default function CompareScenarios() {
                               <th>Total requiring treatment</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
-                                  {results.totalNeededToTreat?.toLocaleString(
+                                  {/* {results.totalNeededToTreat?.toLocaleString(
                                     locale
-                                  ) ?? "N/A"}
+                                  ) ?? "N/A"} */}
+                                  {results.totalNeeded[
+                                    results.totalNeeded.length - 1
+                                  ] !== undefined &&
+                                  !isNaN(
+                                    results.totalNeeded[
+                                      results.totalNeeded.length - 1
+                                    ]
+                                  )
+                                    ? Math.round(
+                                        results.totalNeeded[
+                                          results.totalNeeded.length - 1
+                                        ]
+                                      ).toLocaleString(locale)
+                                    : "N/A"}
                                 </td>
                               ))}
                             </tr>
