@@ -375,7 +375,9 @@ export default function ScenarioResults() {
                     ) ?? "N/A"} */}
                     {results.testedFalsePositives[0] !== undefined &&
                     !isNaN(results.testedFalsePositives[0])
-                      ? results.testedFalsePositives[0].toLocaleString(locale)
+                      ? Math.round(
+                          results.testedFalsePositives[0]
+                        ).toLocaleString(locale)
                       : "N/A"}
                   </td>
                 </tr>
