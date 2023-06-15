@@ -315,13 +315,13 @@ export default function ScenarioResults() {
                   data={[
                     {
                       label: "% Precancers Missed",
-                      value: +results.percentPrecancersMissed / 100,
-                      valueNum: +results.numberPrecancersMissed,
+                      //value: +results.percentPrecancersMissed / 100,
+                      value: +results.numberPrecancersMissed,
                     },
                     {
                       label: "% Precancers Treated",
-                      value: +results.percentPrecancersTreated / 100,
-                      valueNum: +results.percentPrecancersTreated,
+                      //value: +results.percentPrecancersTreated / 100,
+                      value: +results.testedPositives[treatedIndex + 1],
                     },
                   ]}
                 />

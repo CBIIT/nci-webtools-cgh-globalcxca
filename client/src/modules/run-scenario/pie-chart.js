@@ -10,24 +10,36 @@ export const defaultLayout = {
 export default function PieChart({ data, layout = defaultLayout }) {
   const ref = useRef(null);
 
+  console.log("DATA", data);
   useEffect(() => {
     if (ref.current && data && layout) {
       while (ref.current.firstChild) {
         ref.current.removeChild(ref.current.firstChild);
       }
 
-      ref.current.appendChild(
-        d3PieChart(data, {
-          name: (d) => d.label,
-          value: (d) => d.value,
-          width: layout.width,
-          height: layout.height,
-          labelRadius: (Math.min(layout.width, layout.height) / 2) * 0.5,
-          format: ".1%",
-        })
-      );
+      if (isNaN(data[0].value)) {
+        const noDataText = document.createElement("p");
+        noDataText.textContent = "NO DATA AVAILABLE";
+        noDataText.style.display = "flex";
+        noDataText.style.justifyContent = "center";
+        noDataText.style.alignItems = "center";
+        noDataText.style.height = "100%";
+        noDataText.style.color = "red"; // Set the text color to red
+        ref.current.appendChild(noDataText);
+      } else {
+        ref.current.appendChild(
+          d3PieChart(data, {
+            name: (d) => d.label,
+            value: (d) => d.value,
+            width: layout.width,
+            height: layout.height,
+            labelRadius: (Math.min(layout.width, layout.height) / 2) * 0.5,
+            format: ".0f",
+          })
+        );
+      }
     }
-  });
+  }, [data, layout]);
 
   return <div className="img-fluid p-2" ref={ref} />;
 }
@@ -58,6 +70,17 @@ function d3PieChart(
   const V = d3.map(data, value);
   const I = d3.range(N.length).filter((i) => !isNaN(V[i]));
 
+  // Calculate total value.
+  const totalValue = d3.sum(I, (i) => V[i]);
+  console.log("totalValue", totalValue);
+
+  // Calculate percentages.
+  const percentages = I.map((i) => (V[i] / totalValue) * 100);
+  console.log("percentages", percentages);
+
+  // Check if data is empty
+  const hasData = data.length > 0;
+
   // Unique the names.
   if (names === undefined) names = N;
   names = new d3.InternSet(names);
@@ -73,14 +96,38 @@ function d3PieChart(
   // Construct scales.
   const color = d3.scaleOrdinal(names, colors);
 
+  const formatTotal = d3.format(`.${0}f`); // Specify the desired rounding for the total
   // Compute titles.
   if (title === undefined) {
     const formatValue = d3.format(format);
-    title = (i) => `${N[i]}\n${formatValue(V[i])}`;
+
+    title = (i) => {
+      if (hasData) {
+        const label = N[i].replace("%", "").trim();
+        return `% ${label}: ${percentages[i].toFixed(
+          1
+        )}%\n ${label}: ${formatValue(V[i])}\n Total: ${formatTotal(
+          totalValue
+        )}`;
+      } else {
+        return "NO DATA AVAILABLE";
+      }
+    };
   } else {
     const O = d3.map(data, (d) => d);
     const T = title;
-    title = (i) => T(O[i], i, data);
+    title = (i) => {
+      if (hasData) {
+        const label = N[i].replace("%", "").trim();
+        return `% ${label}: ${percentages[i].toFixed(1)}%\n ${label}: ${T(
+          O[i],
+          i,
+          data
+        )}\n Total: ${formatTotal(totalValue)}`;
+      } else {
+        return "NO DATA AVAILABLE";
+      }
+    };
   }
 
   // Construct arcs.
@@ -130,7 +177,7 @@ function d3PieChart(
       tooltip.style("visibility", "hidden");
     })
     .append("title")
-    .text((d) => title(d.data))
+    .text((d, i) => `${title(d.data)} `)
     .attr("font-size", "1rem");
 
   svg
@@ -147,7 +194,7 @@ function d3PieChart(
     .selectAll("tspan")
     .data((d) => {
       const lines = `${title(d.data)}`.split(/\n/);
-      return d.endAngle - d.startAngle > 0.25 ? lines : lines.slice(0, 1);
+      return d.endAngle - d.startAngle > 0.5 ? lines : lines.slice(0, 1);
     })
     .join("tspan")
     .attr("x", 0)
