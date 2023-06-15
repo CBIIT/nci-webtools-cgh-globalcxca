@@ -9,15 +9,13 @@ export const defaultLayout = {
 
 export default function PieChart({ data, layout = defaultLayout }) {
   const ref = useRef(null);
-
-  console.log("DATA", data);
   useEffect(() => {
     if (ref.current && data && layout) {
       while (ref.current.firstChild) {
         ref.current.removeChild(ref.current.firstChild);
       }
 
-      if (isNaN(data[0].value)) {
+      if (isNaN(data[0].value) || data.every((item) => item.value === 0)) {
         const noDataText = document.createElement("p");
         noDataText.textContent = "NO DATA AVAILABLE";
         noDataText.style.display = "flex";
@@ -64,7 +62,6 @@ function d3PieChart(
     padAngle = stroke === "none" ? 1 / outerRadius : 0, // angular separation between wedges
   } = {}
 ) {
-  console.log("PIE DATA", data);
   // Compute values.
   const N = d3.map(data, name);
   const V = d3.map(data, value);
@@ -72,11 +69,9 @@ function d3PieChart(
 
   // Calculate total value.
   const totalValue = d3.sum(I, (i) => V[i]);
-  console.log("totalValue", totalValue);
 
   // Calculate percentages.
   const percentages = I.map((i) => (V[i] / totalValue) * 100);
-  console.log("percentages", percentages);
 
   // Check if data is empty
   const hasData = data.length > 0;

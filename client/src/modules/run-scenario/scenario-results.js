@@ -25,6 +25,7 @@ import { asLabel, asPercent } from "../../services/formatters";
 import PieChart from "./pie-chart";
 import BarChart from "./bar-chart";
 import { write, utils } from "xlsx";
+import { exportSvg } from "../../services/plot-utils";
 
 export default function ScenarioResults() {
   const params = useRecoilValue(paramsState);
@@ -116,6 +117,12 @@ export default function ScenarioResults() {
         window.URL.revokeObjectURL(data);
       }, 100);
     }
+  }
+
+  function handleExport() {
+    const plotSelector = `plot`;
+    const fileName = `plot-test.svg`;
+    exportSvg(plotSelector, fileName);
   }
 
   if (!params || !results) {
@@ -375,24 +382,35 @@ export default function ScenarioResults() {
                   data={[
                     {
                       label: "Screening Test",
-                      value: +totalNeededToScreen || 0,
+                      value:
+                        parseInt(totalNeededToScreen.replace(/,/g, "")) || 0,
                     },
                     {
                       label: "Triage Test",
-                      value: +totalNeededToTriage || 0,
+                      value:
+                        parseInt(totalNeededToTriage.replace(/,/g, "")) || 0,
                     },
                     {
                       label: "Diagnostic Test",
-                      value: +totalNeededToDiagnosticTriage || 0,
+                      value:
+                        parseInt(
+                          totalNeededToDiagnosticTriage.replace(/,/g, "")
+                        ) || 0,
                     },
                     {
                       label: "Treatment",
-                      value: +totalNeededToTreat || 0,
+                      value:
+                        parseInt(totalNeededToTreat.replace(/,/g, "")) || 0,
                     },
                   ]}
                 />
               </Col>
             </Row>
+            {/* <Row className="justify-content-end mt-3">
+              <Button variant="link" onClick={handleExport}>
+                Export Plot
+              </Button>
+            </Row> */}
           </Card.Body>
         </Card>
 
