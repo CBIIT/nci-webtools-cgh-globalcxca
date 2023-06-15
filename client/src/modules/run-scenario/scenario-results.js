@@ -35,6 +35,48 @@ export default function ScenarioResults() {
   console.log("result", results);
 
   const treatedIndex = results.totalNeeded.length - 1;
+  let totalNeededToScreen,
+    totalNeededToTriage,
+    totalNeededToDiagnosticTriage,
+    totalNeededToTreat;
+
+  totalNeededToScreen =
+    results.totalNeeded[0] !== undefined && !isNaN(results.totalNeeded[0])
+      ? Math.round(results.totalNeeded[0]).toLocaleString(locale)
+      : "N/A";
+
+  totalNeededToTriage =
+    results.scenario === "ScreenTreat"
+      ? "N/A"
+      : results.scenario === "ScreenTriageDiagnosticTestTreat"
+      ? results.totalNeeded[treatedIndex - 2] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex - 2])
+        ? Math.round(results.totalNeeded[treatedIndex - 2]).toLocaleString(
+            locale
+          )
+        : "N/A"
+      : results.totalNeeded[treatedIndex - 1] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex - 1])
+      ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(locale)
+      : "N/A";
+
+  totalNeededToDiagnosticTriage =
+    results.scenario === "ScreenTreat"
+      ? "N/A"
+      : results.scenario === "ScreenTriageDiagnosticTestTreat"
+      ? results.totalNeeded[treatedIndex - 1] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex - 1])
+        ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
+            locale
+          )
+        : "N/A"
+      : "N/A";
+
+  totalNeededToTreat =
+    results.totalNeeded[treatedIndex] !== undefined &&
+    !isNaN(results.totalNeeded[treatedIndex])
+      ? Math.round(results.totalNeeded[treatedIndex]).toLocaleString(locale)
+      : "N/A";
 
   function saveScenario() {
     const filename = `${params.scenario} ${getTimestamp()}.scenario`;
@@ -333,19 +375,19 @@ export default function ScenarioResults() {
                   data={[
                     {
                       label: "Screening Test",
-                      value: +results.totalNeededToScreen || 0,
+                      value: +totalNeededToScreen || 0,
                     },
                     {
                       label: "Triage Test",
-                      value: +results.totalNeededToTriage || 0,
+                      value: +totalNeededToTriage || 0,
                     },
                     {
                       label: "Diagnostic Test",
-                      value: +results.totalNeededToDiagnosticTriage || 0,
+                      value: +totalNeededToDiagnosticTriage || 0,
                     },
                     {
                       label: "Treatment",
-                      value: +results.totalNeededToTreat || 0,
+                      value: +totalNeededToTreat || 0,
                     },
                   ]}
                 />
@@ -721,12 +763,8 @@ export default function ScenarioResults() {
                   <td className="text-end text-nowrap">
                     {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
                       "N/A"} */}
-                    {results.totalNeeded[0] !== undefined &&
-                    !isNaN(results.totalNeeded[0])
-                      ? Math.round(results.totalNeeded[0]).toLocaleString(
-                          locale
-                        )
-                      : "N/A"}
+
+                    {totalNeededToScreen}
                   </td>
                 </tr>
                 <tr className="table-light">
@@ -734,21 +772,8 @@ export default function ScenarioResults() {
                   <td className="text-end text-nowrap">
                     {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
                       "N/A"} */}
-                    {results.scenario === "ScreenTreat"
-                      ? "N/A"
-                      : results.scenario === "ScreenTriageDiagnosticTestTreat"
-                      ? results.totalNeeded[treatedIndex - 2] !== undefined &&
-                        !isNaN(results.totalNeeded[treatedIndex - 2])
-                        ? Math.round(
-                            results.totalNeeded[treatedIndex - 2]
-                          ).toLocaleString(locale)
-                        : "N/A"
-                      : results.totalNeeded[treatedIndex - 1] !== undefined &&
-                        !isNaN(results.totalNeeded[treatedIndex - 1])
-                      ? Math.round(
-                          results.totalNeeded[treatedIndex - 1]
-                        ).toLocaleString(locale)
-                      : "N/A"}
+
+                    {totalNeededToTriage}
                   </td>
                 </tr>
                 <tr className="table-light">
@@ -757,16 +782,8 @@ export default function ScenarioResults() {
                     {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                       locale
                     ) ?? "N/A"} */}
-                    {results.scenario === "ScreenTreat"
-                      ? "N/A"
-                      : results.scenario === "ScreenTriageDiagnosticTestTreat"
-                      ? results.totalNeeded[treatedIndex - 1] !== undefined &&
-                        !isNaN(results.totalNeeded[treatedIndex - 1])
-                        ? Math.round(
-                            results.totalNeeded[treatedIndex - 1]
-                          ).toLocaleString(locale)
-                        : "N/A"
-                      : "N/A"}
+
+                    {totalNeededToDiagnosticTriage}
                   </td>
                 </tr>
                 <tr className="table-light">
@@ -774,12 +791,8 @@ export default function ScenarioResults() {
                   <td className="text-end text-nowrap">
                     {/* {results.totalNeededToTreat?.toLocaleString(locale) ??
                       "N/A"} */}
-                    {results.totalNeeded[treatedIndex] !== undefined &&
-                    !isNaN(results.totalNeeded[treatedIndex])
-                      ? Math.round(
-                          results.totalNeeded[treatedIndex]
-                        ).toLocaleString(locale)
-                      : "N/A"}
+
+                    {totalNeededToTreat}
                   </td>
                 </tr>
               </tbody>
