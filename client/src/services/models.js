@@ -105,9 +105,6 @@ export function runModel(params) {
     coverage[2] = parseInt(params?.percentTreated, 10) / 100 || 0;
   }
 
-  console.log("coverage", coverage);
-  console.log("sensitivity", sensitivity);
-
   return calculateValues(
     scenario,
     screentest,
