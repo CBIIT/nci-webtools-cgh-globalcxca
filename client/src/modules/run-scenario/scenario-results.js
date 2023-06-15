@@ -34,8 +34,8 @@ export default function ScenarioResults() {
   const locale = useRecoilValue(localeState);
   const barChartId = "barChart";
   const pieChartId = "pieChart";
-  console.log("params", params);
-  console.log("result", results);
+  // console.log("params", params);
+  // console.log("result", results);
 
   const treatedIndex = results.totalNeeded.length - 1;
   let totalNeededToScreen,
