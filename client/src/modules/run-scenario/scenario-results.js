@@ -347,79 +347,88 @@ export default function ScenarioResults() {
           <Card.Body>
             <Row>
               <Col md={6}>
-                <h2 className="text-center h5">Precancers Treated</h2>
-                <PieChart
-                  id={pieChartId}
-                  data={[
-                    {
-                      label: "% Precancers Missed",
-                      //value: +results.percentPrecancersMissed / 100,
-                      value: +results.numberPrecancersMissed,
-                    },
-                    {
-                      label: "% Precancers Treated",
-                      //value: +results.percentPrecancersTreated / 100,
-                      value: +results.testedPositives[treatedIndex + 1],
-                    },
-                  ]}
-                />
+                <Row>
+                  <Col md={12}>
+                    <h2 className="text-center h5">Precancers Treated</h2>
+                    <PieChart
+                      id={pieChartId}
+                      data={[
+                        {
+                          label: "% Precancers Missed",
+                          //value: +results.percentPrecancersMissed / 100,
+                          value: +results.numberPrecancersMissed,
+                        },
+                        {
+                          label: "% Precancers Treated",
+                          //value: +results.percentPrecancersTreated / 100,
+                          value: +results.testedPositives[treatedIndex + 1],
+                        },
+                      ]}
+                    />
+                  </Col>
+                  <Col md={12} className="d-flex justify-content-center">
+                    <Button
+                      variant="link"
+                      onClick={() => handleExportSvg(pieChartId)}
+                    >
+                      Export SVG
+                    </Button>
+                    <Button variant="link" id="savePNG0" className="savePNG">
+                      Export PNG
+                    </Button>
+                  </Col>
+                </Row>
               </Col>
 
               <Col md={6}>
-                <h2 className="text-center h5">Interventions Required</h2>
-                <BarChart
-                  id={barChartId}
-                  data={[
-                    {
-                      label: "Screening Test",
-                      value:
-                        parseInt(totalNeededToScreen.replace(/,/g, "")) || 0,
-                    },
-                    {
-                      label: "Triage Test",
-                      value:
-                        parseInt(totalNeededToTriage.replace(/,/g, "")) || 0,
-                    },
-                    {
-                      label: "Diagnostic Test",
-                      value:
-                        parseInt(
-                          totalNeededToDiagnosticTriage.replace(/,/g, "")
-                        ) || 0,
-                    },
-                    {
-                      label: "Treatment",
-                      value:
-                        parseInt(totalNeededToTreat.replace(/,/g, "")) || 0,
-                    },
-                  ]}
-                />
+                <Row>
+                  <Col md={12}>
+                    <h2 className="text-center h5">Interventions Required</h2>
+                    <BarChart
+                      id={barChartId}
+                      data={[
+                        {
+                          label: "Screening Test",
+                          value:
+                            parseInt(totalNeededToScreen.replace(/,/g, "")) ||
+                            0,
+                        },
+                        {
+                          label: "Triage Test",
+                          value:
+                            parseInt(totalNeededToTriage.replace(/,/g, "")) ||
+                            0,
+                        },
+                        {
+                          label: "Diagnostic Test",
+                          value:
+                            parseInt(
+                              totalNeededToDiagnosticTriage.replace(/,/g, "")
+                            ) || 0,
+                        },
+                        {
+                          label: "Treatment",
+                          value:
+                            parseInt(totalNeededToTreat.replace(/,/g, "")) || 0,
+                        },
+                      ]}
+                    />
+                  </Col>
+                  <Col md={12} className="d-flex justify-content-center ">
+                    <Button
+                      variant="link"
+                      onClick={() => handleExportSvg(barChartId)}
+                    >
+                      Export SVG
+                    </Button>
+                    <Button variant="link" id="savePNG1" className="savePNG">
+                      Export PNG
+                    </Button>
+                  </Col>
+                </Row>
               </Col>
             </Row>
-            <Row className="mt-3">
-              <Col md={6} className="d-flex justify-content-center">
-                <Button
-                  variant="link"
-                  onClick={() => handleExportSvg(pieChartId)}
-                >
-                  Export SVG
-                </Button>
-                <Button variant="link" id="savePNG0" className="savePNG">
-                  Export PNG
-                </Button>
-              </Col>
-              <Col md={6} className="d-flex justify-content-center ">
-                <Button
-                  variant="link"
-                  onClick={() => handleExportSvg(barChartId)}
-                >
-                  Export SVG
-                </Button>
-                <Button variant="link" id="savePNG1" className="savePNG">
-                  Export PNG
-                </Button>
-              </Col>
-            </Row>
+            <Row className="mt-3"></Row>
           </Card.Body>
         </Card>
 
