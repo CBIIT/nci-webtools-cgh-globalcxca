@@ -1,3 +1,7 @@
+import * as d3 from "d3";
+import { defaultLayout } from "../modules/run-scenario/pie-chart";
+import { saveAs } from "file-saver";
+
 export function exportSvg(selector, filename) {
   const chartElement = document.querySelector(selector);
   if (!chartElement) {
@@ -17,41 +21,25 @@ export function exportSvg(selector, filename) {
   document.body.removeChild(downloadLink);
 }
 
-export function exportPng(selector, filename) {
-  const chartElement = document.querySelector(selector);
-  if (!chartElement) {
-    console.error(`Element with selector '${selector}' not found.`);
-    return;
+//export chart to PNG
+export function saveChartAsPNG(chartId, filename) {
+  var chartSVG = d3.select("#" + chartId).select("svg");
+
+  // Set the background color of the SVG element to white
+  chartSVG.style("background-color", "white");
+
+  var svgString = getSVGString(chartSVG.node());
+  svgString2Image(
+    svgString,
+    2 * defaultLayout.width,
+    2 * defaultLayout.height,
+    "png",
+    save
+  );
+
+  function save(dataBlob, filesize) {
+    saveAs(dataBlob, filename);
   }
-
-  const svgString = new XMLSerializer().serializeToString(chartElement);
-  const svgDataUrl = "data:image/svg+xml;base64," + btoa(svgString);
-
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d");
-
-  const img = new Image();
-  img.onload = function () {
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(img, 0, 0);
-
-    canvas.toBlob(function (blob) {
-      const url = URL.createObjectURL(blob);
-
-      const downloadLink = document.createElement("a");
-      downloadLink.href = url;
-      downloadLink.download = filename;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-
-      URL.revokeObjectURL(url);
-    }, "image/png");
-  };
-  img.src = svgDataUrl;
 }
 
 export function getSVGString(svgNode) {

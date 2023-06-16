@@ -23,16 +23,9 @@ import { exportPdf } from "../../services/pdf-utils";
 import { asLabel, asPercent } from "../../services/formatters";
 import PieChart from "./pie-chart";
 import BarChart from "./bar-chart";
-import { defaultLayout } from "./pie-chart";
-import { write, utils } from "xlsx";
-import {
-  exportSvg,
-  getSVGString,
-  svgString2Image,
-} from "../../services/plot-utils";
+import { exportSvg, saveChartAsPNG } from "../../services/plot-utils";
 import * as d3 from "d3";
 import { exportExcel } from "../../services/excel-utils";
-import * as XLSX from "xlsx";
 
 export default function ScenarioResults() {
   const params = useRecoilValue(paramsState);
@@ -111,32 +104,13 @@ export default function ScenarioResults() {
     const fileName = `${results.scenario}_${id}.svg`;
     exportSvg(plotSelector, fileName);
   }
-  //export chart to PNG
-  function saveChartAsPNG(chartId) {
-    var chartSVG = d3.select("#" + chartId).select("svg");
 
-    // Set the background color of the SVG element to white
-    chartSVG.style("background-color", "white");
-
-    var svgString = getSVGString(chartSVG.node());
-    svgString2Image(
-      svgString,
-      2 * defaultLayout.width,
-      2 * defaultLayout.height,
-      "png",
-      save
-    );
-
-    function save(dataBlob, filesize) {
-      saveAs(dataBlob, `${results.scenario}_${chartId}`);
-    }
-  }
   d3.select("#savePNG0").on("click", function () {
-    saveChartAsPNG(pieChartId);
+    saveChartAsPNG(pieChartId, `${results.scenario}_${pieChartId}`);
   });
 
   d3.select("#savePNG1").on("click", function () {
-    saveChartAsPNG(barChartId);
+    saveChartAsPNG(barChartId, `${results.scenario}_${barChartId}`);
   });
 
   if (!params || !results) {
