@@ -114,11 +114,9 @@ function d3PieChart(
     tooltipData = (i) => {
       if (hasData) {
         const label = N[i].replace("%", "").trim();
-        return `% ${label}: ${percentages[i].toFixed(
+        return `${formatValue(V[i])} (${percentages[i].toFixed(
           1
-        )}%\n ${label}: ${formatValue(
-          V[i]
-        )}\n Targeted Number for precancer treatments: ${formatTotal(
+        )}%) ${label}\nTargeted Number for precancer treatments: ${formatTotal(
           totalValue
         )}`;
       } else {
