@@ -200,8 +200,27 @@ export default function CompareScenarios() {
                           <tbody>
                             <tr className="table-info">
                               <th>
-                                Population without precancer targeted for
-                                screening
+                                Population targeted for screening with 100%
+                                coverage
+                              </th>
+                              {scenarios.map(({ results }, index) => (
+                                <td className="text-end" key={index}>
+                                  {/* {results.healthyWomenTargetedForScreening?.toLocaleString(
+                                    locale
+                                  ) ?? "N/A"} */}
+                                  {results.populationTargeted !== undefined &&
+                                  !isNaN(results.populationTargeted)
+                                    ? Math.round(
+                                        results.populationTargeted
+                                      ).toLocaleString(locale)
+                                    : "N/A"}
+                                </td>
+                              ))}
+                            </tr>
+                            <tr className="table-info">
+                              <th className="ps-3">
+                                Population targeted for screening without
+                                Precancer
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
@@ -219,8 +238,8 @@ export default function CompareScenarios() {
                               ))}
                             </tr>
                             <tr className="table-info">
-                              <th>
-                                Population with precancer targeted for screening
+                              <th className="ps-3">
+                                Population targeted for screening with Precancer
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
