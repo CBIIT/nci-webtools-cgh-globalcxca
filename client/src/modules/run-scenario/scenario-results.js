@@ -35,6 +35,8 @@ export default function ScenarioResults() {
   const ScreentestBarChartId = "screenTestBarChart";
   const barChartId = "barChart";
   const pieChartId = "pieChart";
+  const barChartTitle = "Interventions Required";
+  const pieChartTitle = "Precancers Treated";
   // console.log("params", params);
   // console.log("result", results);
 
@@ -107,17 +109,26 @@ export default function ScenarioResults() {
   }
 
   d3.select("#savePNG0").on("click", function () {
-    saveChartAsPNG(pieChartId, `${results.scenario}_${pieChartId}`);
+    saveChartAsPNG(
+      pieChartId,
+      `${results.scenario}_${pieChartId}`,
+      barChartTitle
+    );
   });
 
   d3.select("#savePNG1").on("click", function () {
-    saveChartAsPNG(barChartId, `${results.scenario}_${barChartId}`);
+    saveChartAsPNG(
+      barChartId,
+      `${results.scenario}_${barChartId}`,
+      barChartTitle
+    );
   });
 
   d3.select("#savePNG2").on("click", function () {
     saveChartAsPNG(
       ScreentestBarChartId,
-      `${results.scenario}_${ScreentestBarChartId}`
+      `${results.scenario}_${ScreentestBarChartId}`,
+      pieChartTitle
     );
   });
 
@@ -353,7 +364,7 @@ export default function ScenarioResults() {
             <Card.Title>Screening → Treatment</Card.Title>
           </Card.Header>
           <Card.Body>
-            <h2 className="text-center h5">Interventions Required</h2>
+            <h2 className="text-center h5">{barChartTitle}</h2>
             <Row>
               <Col md={6}>
                 <BarChartScreenTest
@@ -417,7 +428,7 @@ export default function ScenarioResults() {
             </Row>
 
             <Row>
-              <h2 className="text-center h5">Precancers Treated</h2>
+              <h2 className="text-center h5">{pieChartTitle}</h2>
               <Col md={3}></Col>
               <Col md={6}>
                 <PieChart
