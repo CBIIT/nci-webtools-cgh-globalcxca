@@ -33,6 +33,7 @@ export default function PieChart({ id, data, layout = defaultLayout }) {
             height: layout.height,
             labelRadius: (Math.min(layout.width, layout.height) / 2) * 0.5,
             format: ".0f",
+            //colors: ["#D13C4B", "#FD7E14"],
           })
         );
       }
