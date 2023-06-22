@@ -240,9 +240,9 @@ export default function RunScenarios() {
                             <Form.Range
                               type="range"
                               min="0"
-                              max="100"
+                              max="5"
                               step="1"
-                              placeholder="Enter 0 - 100"
+                              placeholder="Enter 0 - 5"
                               name="cinPrevalence"
                               className="border-end-0 me-2"
                               value={form.cinPrevalence}
