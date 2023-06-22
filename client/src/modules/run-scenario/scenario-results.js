@@ -129,7 +129,7 @@ export default function ScenarioResults() {
   return (
     <div>
       <Container>
-        <Card className="mb-4 d-none" data-export>
+        <Card className="mb-4 d-none">
           <Card.Header>
             <Card.Title data-export>
               {asLabel(params.scenario, scenarios)}
@@ -453,7 +453,7 @@ export default function ScenarioResults() {
         {/* pdf page break */}
         <hr className="d-none" data-export />
 
-        <Card className="mb-4" data-export>
+        <Card className="mb-4">
           <Card.Body>
             <Table hover responsive data-export>
               <thead>
