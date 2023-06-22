@@ -39,8 +39,10 @@ export default function RunScenarios() {
   const setResults = useSetRecoilState(resultsState);
   const navigate = useNavigate();
 
+  console.log("scenarios", scenarios);
   function handleChange(event) {
     let { name, value } = event.target;
+    console.log("event.target ", event.target);
 
     if (name === "scenario") {
       setForm({
@@ -106,52 +108,8 @@ export default function RunScenarios() {
     <div className="bg-light py-4">
       <Container>
         <Row>
-          <Col md={4}>
+          <Col md={4} style={{ overflow: "auto", maxHeight: "100vh" }}>
             <Form onReset={handleReset}>
-              <Card className="mb-4">
-                <Card.Header>
-                  <Card.Title>Strategy Selection</Card.Title>
-                  <Card.Text className="small text-muted">
-                    Please choose strategies to include in your scenario.
-                  </Card.Text>
-                </Card.Header>
-                <Card.Body>
-                  <Row>
-                    {scenarios.map((scenario) => (
-                      <Col lg={12} key={scenario.value}>
-                        <Form.Check key={scenario.value}>
-                          <Form.Check.Input
-                            type="checkbox"
-                            name="scenario"
-                            id={scenario.value}
-                            value={scenario.value}
-                            //checked={form.scenario === scenario.value}
-                            checked={
-                              (scenario.strategy === "Screening" &&
-                                form.scenario !== "Diagnosis" &&
-                                form.scenario !== "Triage") ||
-                              (scenario.strategy === "Diagnosis" &&
-                                (form.scenario ===
-                                  "ScreenDiagnosticTestTreat" ||
-                                  form.scenario ===
-                                    "ScreenTriageDiagnosticTestTreat")) ||
-                              (scenario.strategy === "Triage" &&
-                                form.scenario ===
-                                  "ScreenTriageDiagnosticTestTreat")
-                            }
-                            onChange={handleChange}
-                            onWheel={(e) => e.target.blur()}
-                          />
-                          <Form.Check.Label htmlFor={scenario.value}>
-                            {scenario.strategy}
-                          </Form.Check.Label>
-                        </Form.Check>
-                      </Col>
-                    ))}
-                  </Row>
-                </Card.Body>
-              </Card>
-
               <div className="small text-end text-muted mb-2">
                 All fields are required
               </div>
@@ -300,6 +258,42 @@ export default function RunScenarios() {
                       </Form.Group>
                     </ListGroup.Item>
                   </ListGroup>
+                </Card.Body>
+              </Card>
+
+              <Card className="mb-4">
+                <Card.Header>
+                  <Card.Title>Strategy Selection</Card.Title>
+                  <Card.Text className="small text-muted">
+                    Please choose strategies to include in your scenario.
+                  </Card.Text>
+                </Card.Header>
+                <Card.Body>
+                  <Row>
+                    {scenarios.map((scenario) => (
+                      <Col lg={12} key={scenario.value}>
+                        <Form.Check key={scenario.value}>
+                          <Form.Check.Input
+                            type="checkbox"
+                            name="scenario"
+                            id={scenario.value}
+                            value={scenario.value}
+                            //checked={form.scenario === scenario.value}
+                            checked={
+                              scenario.strategy === "Screening" ||
+                              scenario.strategy === "Diagnosis" ||
+                              scenario.strategy === "Triage"
+                            }
+                            onChange={handleChange}
+                            onWheel={(e) => e.target.blur()}
+                          />
+                          <Form.Check.Label htmlFor={scenario.value}>
+                            {scenario.strategy}
+                          </Form.Check.Label>
+                        </Form.Check>
+                      </Col>
+                    ))}
+                  </Row>
                 </Card.Body>
               </Card>
 

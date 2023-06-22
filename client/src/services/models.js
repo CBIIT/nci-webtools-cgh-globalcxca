@@ -1,14 +1,21 @@
 export const scenarios = [
-  { value: "ScreenTreat", label: "Screening Test", strategy: "Screening" },
+  {
+    value: "ScreenTreat",
+    label: "Screening Test",
+    strategy: "Screening",
+    name: "screeningTest",
+  },
   {
     value: "ScreenDiagnosticTestTreat",
     label: "Diagnostic Test",
     strategy: "Diagnosis",
+    name: "diagnosticTest",
   },
   {
     value: "ScreenTriageDiagnosticTestTreat",
     label: "Triage Test",
     strategy: "Triage",
+    name: "triageTest",
   },
 ];
 
