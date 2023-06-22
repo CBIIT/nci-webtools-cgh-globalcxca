@@ -679,6 +679,8 @@ export function calculateValues(
   testedFalseNegatives[0] = 0;
   testedTrueNegatives[0] = 0;
 
+  const populationTargeted = populationSize / screeningInterval;
+
   // Stage 0 (initial conditions)
   testedFalsePositives[0] =
     (populationSize / screeningInterval) * (1 - cinPrevalence);
@@ -786,6 +788,7 @@ export function calculateValues(
   return {
     scenario,
     screentest,
+    populationTargeted,
     testedTrueNegatives,
     testedFalsePositives,
     untestedPositives,

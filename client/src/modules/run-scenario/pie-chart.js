@@ -92,6 +92,8 @@ function d3PieChart(
   const color = d3.scaleOrdinal(names, colors);
 
   const formatTotal = d3.format(`.${0}f`); // Specify the desired rounding for the total
+  let tooltipData;
+
   // Compute titles.
   if (title === undefined) {
     const formatValue = d3.format(format);
@@ -99,9 +101,24 @@ function d3PieChart(
     title = (i) => {
       if (hasData) {
         const label = N[i].replace("%", "").trim();
+        const words = label.split(" ");
+        const lastWord = words[words.length - 1];
+        return `${formatValue(V[i])} (${percentages[i].toFixed(
+          1
+        )}%) ${lastWord}`;
+      } else {
+        return "NO DATA AVAILABLE";
+      }
+    };
+
+    tooltipData = (i) => {
+      if (hasData) {
+        const label = N[i].replace("%", "").trim();
         return `% ${label}: ${percentages[i].toFixed(
           1
-        )}%\n ${label}: ${formatValue(V[i])}\n Total: ${formatTotal(
+        )}%\n ${label}: ${formatValue(
+          V[i]
+        )}\n Targeted Number for precancer treatments: ${formatTotal(
           totalValue
         )}`;
       } else {
@@ -118,12 +135,29 @@ function d3PieChart(
           O[i],
           i,
           data
-        )}\n Total: ${formatTotal(totalValue)}`;
+        )}\n `;
+      } else {
+        return "NO DATA AVAILABLE";
+      }
+    };
+
+    tooltipData = (i) => {
+      if (hasData) {
+        const label = N[i].replace("%", "").trim();
+        return `% ${label}: ${percentages[i].toFixed(1)}%\n ${label}: ${T(
+          O[i],
+          i,
+          data
+        )}\n Targeted Number for precancer treatments: ${formatTotal(
+          totalValue
+        )}`;
       } else {
         return "NO DATA AVAILABLE";
       }
     };
   }
+
+  console.log("tooltipData", tooltipData);
 
   // Construct arcs.
   const arcs = d3
@@ -147,8 +181,7 @@ function d3PieChart(
     .style("position", "absolute")
     .style("z-index", "10")
     .style("visibility", "hidden")
-    .style("background", "#000")
-    .text("a simple tooltip");
+    .style("background", "red");
 
   svg
     .append("g")
@@ -166,13 +199,13 @@ function d3PieChart(
         .style("visibility", "visible")
         .style("left", `${x}px`)
         .style("top", `${y}px`)
-        .text(title(d.data));
+        .html(`${tooltipData(d.data)}`);
     })
     .on("mouseout", () => {
       tooltip.style("visibility", "hidden");
     })
     .append("title")
-    .text((d, i) => `${title(d.data)} `)
+    .text((d, i) => `${tooltipData(d.data)} `)
     .attr("font-size", "1rem");
 
   svg
