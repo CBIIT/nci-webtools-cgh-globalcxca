@@ -113,8 +113,6 @@ export function exportExcel(filename) {
       remainingTablesData.push({ data: tableRows, sheetName });
     }
   });
-  console.log("firstThreeTablesData", firstThreeTablesData);
-  console.log("remainingTablesData", remainingTablesData);
 
   // Create a worksheet for the first three tables
   const firstThreeTablesSheet = XLSX.utils.aoa_to_sheet(firstThreeTablesData);
