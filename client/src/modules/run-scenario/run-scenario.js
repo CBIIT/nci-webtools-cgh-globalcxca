@@ -402,7 +402,6 @@ export default function RunScenarios() {
                           <Form.Label column sm={12}>
                             <span>
                               Percent of screen positives with triage test
-                              (percentTriaged--)
                             </span>
                             <OverlayTrigger
                               overlay={
