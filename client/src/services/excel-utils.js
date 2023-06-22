@@ -1,6 +1,6 @@
 import * as XLSX from "xlsx";
 
-export function exportExcel(filename) {
+export function exportExcelCard(filename) {
   // Create a new workbook
   const wb = XLSX.utils.book_new();
 
@@ -69,6 +69,82 @@ export function exportExcel(filename) {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   //const filename = `${params.scenario} ${getTimestamp()}.xlsx`;
+  link.href = url;
+  link.download = filename;
+  link.click();
+}
+
+export function exportExcel(filename) {
+  // Create a new workbook
+  const wb = XLSX.utils.book_new();
+
+  // Get the HTML elements containing the data to export
+  const tables = document.querySelectorAll("table[data-export]");
+
+  // Create an array to store the table data
+  const firstThreeTablesData = [];
+  const remainingTablesData = [];
+
+  // Iterate over the tables and extract the table data
+  tables.forEach((table, index) => {
+    const rows = table.querySelectorAll("tr");
+    const tableRows = [];
+
+    rows.forEach((row) => {
+      const rowData = [];
+      const cells = row.querySelectorAll("th, td");
+
+      cells.forEach((cell) => {
+        rowData.push(cell.innerText);
+      });
+
+      tableRows.push(rowData);
+    });
+
+    if (index < 3) {
+      // Store the table data for the first three tables
+      firstThreeTablesData.push(...tableRows);
+    } else {
+      // Store the table data for the remaining tables separately
+      const headers = table.querySelectorAll("th");
+      let sheetName =
+        headers.length > 0 ? headers[0].innerText : `Table ${index + 1}`;
+      sheetName = sheetName.substring(0, 31); // Truncate sheet name if it exceeds 31 characters
+      remainingTablesData.push({ data: tableRows, sheetName });
+    }
+  });
+  console.log("firstThreeTablesData", firstThreeTablesData);
+  console.log("remainingTablesData", remainingTablesData);
+
+  // Create a worksheet for the first three tables
+  const firstThreeTablesSheet = XLSX.utils.aoa_to_sheet(firstThreeTablesData);
+
+  // Set the worksheet name
+  const firstThreeTablesSheetName = "Inputs";
+  XLSX.utils.book_append_sheet(
+    wb,
+    firstThreeTablesSheet,
+    firstThreeTablesSheetName
+  );
+
+  // Create worksheets for the remaining tables
+  remainingTablesData.forEach(({ data, sheetName }) => {
+    const ws = XLSX.utils.aoa_to_sheet(data);
+
+    // Set the worksheet name as the table header
+    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+  });
+
+  // Generate the Excel file
+  const excelFile = XLSX.write(wb, { type: "binary", bookType: "xlsx" });
+
+  // Save the file or do whatever you want with it
+  // For example, you can create a download link
+  const blob = new Blob([s2ab(excelFile)], {
+    type: "application/octet-stream",
+  });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
   link.href = url;
   link.download = filename;
   link.click();
