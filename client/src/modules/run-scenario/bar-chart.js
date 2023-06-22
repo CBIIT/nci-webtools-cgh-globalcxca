@@ -61,6 +61,7 @@ function d3BarChart(
     yFormat, // a format specifier string for the y-axis
     yLabel, // a label for the y-axis
     color = "currentColor", // bar fill color
+    singleBarWidth = 140, // set a custom width for single data bar
   } = {}
 ) {
   // Compute values.
@@ -121,6 +122,8 @@ function d3BarChart(
         .text(yLabel)
     );
 
+  const barWidth = data.length > 1 ? xScale.bandwidth() : singleBarWidth; // determine the bar width
+
   const bar = svg
     .append("g")
     .attr("fill", color)
@@ -130,8 +133,13 @@ function d3BarChart(
     .attr("x", (i) => xScale(X[i]))
     .attr("y", (i) => yScale(Y[i]))
     .attr("height", (i) => yScale(0) - yScale(Y[i]))
-    .attr("width", xScale.bandwidth())
+    //.attr("width", xScale.bandwidth())
+    .attr("width", barWidth)
     .attr("title", (d) => d.label);
+
+  if (data.length === 1) {
+    bar.attr("transform", `translate(${(xRange[1] - barWidth) / 3.5}, 0)`);
+  }
 
   svg
     .append("g")

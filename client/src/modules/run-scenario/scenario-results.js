@@ -22,7 +22,7 @@ import { getTimestamp } from "../../services/file-utils";
 import { exportPdf } from "../../services/pdf-utils";
 import { asLabel, asPercent } from "../../services/formatters";
 import PieChart from "./pie-chart";
-import BarChart from "./bar-chart";
+import BarChartScreenTest from "./bar-chart";
 import { exportSvg, saveChartAsPNG } from "../../services/plot-utils";
 import * as d3 from "d3";
 import { exportExcel } from "../../services/excel-utils";
@@ -32,6 +32,7 @@ export default function ScenarioResults() {
   const results = useRecoilValue(resultsState);
   const [activeTab, setActiveTab] = useState("results");
   const locale = useRecoilValue(localeState);
+  const ScreentestBarChartId = "screenTestBarChart";
   const barChartId = "barChart";
   const pieChartId = "pieChart";
   // console.log("params", params);
@@ -111,6 +112,13 @@ export default function ScenarioResults() {
 
   d3.select("#savePNG1").on("click", function () {
     saveChartAsPNG(barChartId, `${results.scenario}_${barChartId}`);
+  });
+
+  d3.select("#savePNG2").on("click", function () {
+    saveChartAsPNG(
+      ScreentestBarChartId,
+      `${results.scenario}_${ScreentestBarChartId}`
+    );
   });
 
   if (!params || !results) {
@@ -345,87 +353,97 @@ export default function ScenarioResults() {
             <Card.Title>Screening → Treatment</Card.Title>
           </Card.Header>
           <Card.Body>
+            <h2 className="text-center h5">Interventions Required</h2>
             <Row>
               <Col md={6}>
-                <Row>
-                  <Col md={12}>
-                    <h2 className="text-center h5">Precancers Treated</h2>
-                    <PieChart
-                      id={pieChartId}
-                      data={[
-                        {
-                          label: "% Precancers Missed",
-                          //value: +results.percentPrecancersMissed / 100,
-                          value: +results.numberPrecancersMissed,
-                        },
-                        {
-                          label: "% Precancers Treated",
-                          //value: +results.percentPrecancersTreated / 100,
-                          value: +results.testedPositives[treatedIndex + 1],
-                        },
-                      ]}
-                    />
-                  </Col>
-                  <Col md={12} className="d-flex justify-content-center">
-                    <Button
-                      variant="link"
-                      onClick={() => handleExportSvg(pieChartId)}
-                    >
-                      Export SVG
-                    </Button>
-                    <Button variant="link" id="savePNG0" className="savePNG">
-                      Export PNG
-                    </Button>
-                  </Col>
-                </Row>
+                <BarChartScreenTest
+                  id={ScreentestBarChartId}
+                  data={[
+                    {
+                      label: "Screening Test",
+                      value:
+                        parseInt(totalNeededToScreen.replace(/,/g, "")) || 0,
+                    },
+                  ]}
+                />
+                <Col md={12} className="d-flex justify-content-center ">
+                  <Button
+                    variant="link"
+                    onClick={() => handleExportSvg(ScreentestBarChartId)}
+                  >
+                    Export SVG
+                  </Button>
+                  <Button variant="link" id="savePNG2" className="savePNG">
+                    Export PNG
+                  </Button>
+                </Col>
               </Col>
 
               <Col md={6}>
-                <Row>
-                  <Col md={12}>
-                    <h2 className="text-center h5">Interventions Required</h2>
-                    <BarChart
-                      id={barChartId}
-                      data={[
-                        {
-                          label: "Screening Test",
-                          value:
-                            parseInt(totalNeededToScreen.replace(/,/g, "")) ||
-                            0,
-                        },
-                        {
-                          label: "Triage Test",
-                          value:
-                            parseInt(totalNeededToTriage.replace(/,/g, "")) ||
-                            0,
-                        },
-                        {
-                          label: "Diagnostic Test",
-                          value:
-                            parseInt(
-                              totalNeededToDiagnosticTriage.replace(/,/g, "")
-                            ) || 0,
-                        },
-                        {
-                          label: "Treatment",
-                          value:
-                            parseInt(totalNeededToTreat.replace(/,/g, "")) || 0,
-                        },
-                      ]}
-                    />
-                  </Col>
-                  <Col md={12} className="d-flex justify-content-center ">
-                    <Button
-                      variant="link"
-                      onClick={() => handleExportSvg(barChartId)}
-                    >
-                      Export SVG
-                    </Button>
-                    <Button variant="link" id="savePNG1" className="savePNG">
-                      Export PNG
-                    </Button>
-                  </Col>
-                </Row>
+                <BarChartScreenTest
+                  id={barChartId}
+                  data={[
+                    {
+                      label: "Triage Test",
+                      value:
+                        parseInt(totalNeededToTriage.replace(/,/g, "")) || 0,
+                    },
+                    {
+                      label: "Diagnostic Test",
+                      value:
+                        parseInt(
+                          totalNeededToDiagnosticTriage.replace(/,/g, "")
+                        ) || 0,
+                    },
+                    {
+                      label: "Treatment",
+                      value:
+                        parseInt(totalNeededToTreat.replace(/,/g, "")) || 0,
+                    },
+                  ]}
+                />
+                <Col md={12} className="d-flex justify-content-center ">
+                  <Button
+                    variant="link"
+                    onClick={() => handleExportSvg(barChartId)}
+                  >
+                    Export SVG
+                  </Button>
+                  <Button variant="link" id="savePNG1" className="savePNG">
+                    Export PNG
+                  </Button>
+                </Col>
+              </Col>
+            </Row>
+
+            <Row>
+              <h2 className="text-center h5">Precancers Treated</h2>
+              <Col md={3}></Col>
+              <Col md={6}>
+                <PieChart
+                  id={pieChartId}
+                  data={[
+                    {
+                      label: "% Precancers Missed",
+                      value: +results.numberPrecancersMissed,
+                    },
+                    {
+                      label: "% Precancers Treated",
+                      value: +results.testedPositives[treatedIndex + 1],
+                    },
+                  ]}
+                />
+                <Col md={12} className="d-flex justify-content-center">
+                  <Button
+                    variant="link"
+                    onClick={() => handleExportSvg(pieChartId)}
+                  >
+                    Export SVG
+                  </Button>
+                  <Button variant="link" id="savePNG0" className="savePNG">
+                    Export PNG
+                  </Button>
+                </Col>
               </Col>
             </Row>
             <Row className="mt-3"></Row>
@@ -446,7 +464,21 @@ export default function ScenarioResults() {
               </thead>
               <tbody>
                 <tr className="table-info">
-                  <th>Population without precancer targeted for screening</th>
+                  <th>Population targeted for screening with 100% coverage</th>
+                  <td className="text-end text-nowrap">
+                    {" "}
+                    {results.populationTargeted !== undefined &&
+                    !isNaN(results.populationTargeted)
+                      ? Math.round(results.populationTargeted).toLocaleString(
+                          locale
+                        )
+                      : "N/A"}
+                  </td>
+                </tr>
+                <tr className="table-info">
+                  <th className="ps-3">
+                    Population targeted for screening without Precancer
+                  </th>
                   <td className="text-end text-nowrap">
                     {/* {results.healthyWomenTargetedForScreening?.toLocaleString(
                       locale
@@ -460,7 +492,9 @@ export default function ScenarioResults() {
                   </td>
                 </tr>
                 <tr className="table-info">
-                  <th>Population with precancer targeted for screening</th>
+                  <th className="ps-3">
+                    Population targeted for screening with Precancer
+                  </th>
                   <td className="text-end text-nowrap">
                     {/* {results.precancersTargetedForScreening?.toLocaleString(
                       locale
@@ -472,10 +506,6 @@ export default function ScenarioResults() {
                         ).toLocaleString(locale)
                       : "N/A"}
                   </td>
-                </tr>
-                <tr className="table-info">
-                  <th>Third Metric</th>
-                  <td className="text-end text-nowrap">N/A</td>
                 </tr>
               </tbody>
             </Table>
