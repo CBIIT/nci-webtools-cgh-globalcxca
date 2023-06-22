@@ -2,8 +2,8 @@ import { useRef, useEffect } from "react";
 import * as d3 from "d3";
 
 export const defaultLayout = {
-  width: 450,
-  height: 450,
+  width: 400,
+  height: 400,
   margin: 20,
 };
 

@@ -29,8 +29,8 @@ export default function BarChart({ id, data, layout = defaultLayout }) {
             y: (d) => d.value,
             yFormat: ",.0f",
             yLabel: "Counts",
-            width: 500,
-            height: 500,
+            width: 400,
+            height: 400,
             color: "#0DAB61",
           })
         );
@@ -61,7 +61,7 @@ function d3BarChart(
     yFormat, // a format specifier string for the y-axis
     yLabel, // a label for the y-axis
     color = "currentColor", // bar fill color
-    singleBarWidth = 140, // set a custom width for single data bar
+    singleBarWidth = width / 4, // set a custom width for single data bar
   } = {}
 ) {
   // Compute values.
