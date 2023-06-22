@@ -6,16 +6,16 @@ export const scenarios = [
     name: "screeningTest",
   },
   {
-    value: "ScreenDiagnosticTestTreat",
-    label: "Diagnostic Test",
-    strategy: "Diagnosis",
-    name: "diagnosticTest",
-  },
-  {
     value: "ScreenTriageDiagnosticTestTreat",
     label: "Triage Test",
     strategy: "Triage",
     name: "triageTest",
+  },
+  {
+    value: "ScreenDiagnosticTestTreat",
+    label: "Diagnostic Test",
+    strategy: "Diagnosis",
+    name: "diagnosticTest",
   },
 ];
 

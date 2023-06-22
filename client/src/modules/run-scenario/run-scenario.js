@@ -278,12 +278,12 @@ export default function RunScenarios() {
                             name="scenario"
                             id={scenario.value}
                             value={scenario.value}
-                            //checked={form.scenario === scenario.value}
-                            checked={
-                              scenario.strategy === "Screening" ||
-                              scenario.strategy === "Diagnosis" ||
-                              scenario.strategy === "Triage"
-                            }
+                            checked={form.scenario === scenario.value}
+                            // checked={
+                            //   scenario.strategy === "Screening" ||
+                            //   scenario.strategy === "Diagnosis" ||
+                            //   scenario.strategy === "Triage"
+                            // }
                             onChange={handleChange}
                             onWheel={(e) => e.target.blur()}
                           />
