@@ -157,8 +157,6 @@ function d3PieChart(
     };
   }
 
-  console.log("tooltipData", tooltipData);
-
   // Construct arcs.
   const arcs = d3
     .pie()
