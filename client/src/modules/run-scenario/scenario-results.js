@@ -37,8 +37,16 @@ export default function ScenarioResults() {
   const pieChartId = "pieChart";
   const barChartTitle = "Interventions Required";
   const pieChartTitle = "Precancers Treated";
+
   // console.log("params", params);
   // console.log("result", results);
+
+  const chartTiles =
+    results.scenario === "ScreenDiagnosticTestTreat"
+      ? "Screening → Triage/Diagnosis → Treatment"
+      : results.scenario === "ScreenTriageDiagnosticTestTreat"
+      ? "Screening → Triage → Diagnosis → Treatment"
+      : "Screening → Treatment";
 
   const treatedIndex = results.totalNeeded.length - 1;
   let totalNeededToScreen,
@@ -361,7 +369,7 @@ export default function ScenarioResults() {
 
         <Card className="mb-4">
           <Card.Header>
-            <Card.Title>Screening → Treatment</Card.Title>
+            <Card.Title>{chartTiles}</Card.Title>
           </Card.Header>
           <Card.Body>
             <h2 className="text-center h5">{barChartTitle}</h2>
