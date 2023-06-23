@@ -42,17 +42,19 @@ export default function RunScenarios() {
 
   function handleChange(e) {
     const { name, value, checked } = e.target;
+
+    if (name === "ScreenTreat" && !checked) {
+      // Ignore the unchecked action for "Screening Test" checkbox
+      return;
+    }
     let updatedValues = [];
 
     if (checked) {
       // Add the checked value to the array
       updatedValues = [...checkedValues, value];
     } else {
-      // Exclude "Screening Test" from being unchecked
-      if (value !== "ScreenTreat") {
-        // Remove the unchecked value from the array
-        updatedValues = checkedValues.filter((val) => val !== value);
-      }
+      // Remove the unchecked value from the array
+      updatedValues = checkedValues.filter((val) => val !== value);
     }
 
     setCheckedValues(updatedValues);
