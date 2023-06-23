@@ -38,11 +38,24 @@ export default function RunScenarios() {
   const setParams = useSetRecoilState(paramsState);
   const setResults = useSetRecoilState(resultsState);
   const navigate = useNavigate();
+  const [checkedValues, setCheckedValues] = useState([]);
 
-  console.log("scenarios", scenarios);
-  function handleChange(event) {
-    let { name, value } = event.target;
-    console.log("event.target ", event.target);
+  function handleChange(e) {
+    const { name, value, checked } = e.target;
+    let updatedValues = [];
+
+    if (checked) {
+      // Add the checked value to the array
+      updatedValues = [...checkedValues, value];
+    } else {
+      // Exclude "Screening Test" from being unchecked
+      if (value !== "ScreenTreat") {
+        // Remove the unchecked value from the array
+        updatedValues = checkedValues.filter((val) => val !== value);
+      }
+    }
+
+    setCheckedValues(updatedValues);
 
     if (name === "scenario") {
       setForm({
@@ -80,9 +93,31 @@ export default function RunScenarios() {
       ...prevForm,
       [name]: value,
     }));
-
-    //setTimeout(() => handleSubmit(), 100);
   }
+  useEffect(() => {
+    if (checkedValues.length === 1) {
+      setForm((prevForm) => ({
+        ...prevForm,
+        scenario: "ScreenTreat",
+      }));
+    } else if (checkedValues.length === 2) {
+      setForm((prevForm) => ({
+        ...prevForm,
+        scenario: "ScreenDiagnosticTestTreat",
+      }));
+    } else {
+      setForm((prevForm) => ({
+        ...prevForm,
+        scenario: "ScreenTriageDiagnosticTestTreat",
+      }));
+    }
+  }, [checkedValues, setForm]);
+
+  useEffect(() => {
+    // Set the initial checked value to "Screening Test"
+    setCheckedValues(["ScreenTreat"]);
+  }, []);
+
   const results = runModel(form);
   const params = mapValues(form, asNumber);
   setParams(params);
@@ -275,15 +310,11 @@ export default function RunScenarios() {
                         <Form.Check key={scenario.value}>
                           <Form.Check.Input
                             type="checkbox"
-                            name="scenario"
+                            //name="scenario"
+                            checked={checkedValues.includes(scenario.value)}
+                            name={scenario.value}
                             id={scenario.value}
                             value={scenario.value}
-                            checked={form.scenario === scenario.value}
-                            // checked={
-                            //   scenario.strategy === "Screening" ||
-                            //   scenario.strategy === "Diagnosis" ||
-                            //   scenario.strategy === "Triage"
-                            // }
                             onChange={handleChange}
                             onWheel={(e) => e.target.blur()}
                           />
