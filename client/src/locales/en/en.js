@@ -8,6 +8,7 @@ import enLocale from "./en.json";
 // Initialize i18next
 i18next
   .use(initReactI18next) // Initialize i18next with react-i18next
+  .use(LanguageDetector)
   .init({
     lng: "en", // Set the default language
     fallbackLng: "en", // Fallback language if translation is not available

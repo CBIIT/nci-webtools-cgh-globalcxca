@@ -29,10 +29,12 @@ import {
 } from "../../services/models";
 import { asNumber } from "../../services/formatters";
 import ScenarioResults from "./scenario-results";
+import { useTranslation, Trans } from "react-i18next";
 
 // NOTE: Do not conditionally render elements, as this will break after google translates the page.
 
 export default function RunScenarios() {
+  const { t } = useTranslation;
   const [form, setForm] = useRecoilState(formState);
   const resetForm = useResetRecoilState(formState);
   const setParams = useSetRecoilState(paramsState);

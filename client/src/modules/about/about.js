@@ -223,6 +223,167 @@ export default function About() {
             </Table>
           </Card.Body>
         </Card>
+        <Card>
+          <Card.Body className="pt-2">
+            <h4 className="text-center mb-1">
+              Screening and Treatment Characteristics
+            </h4>
+            <Table bordered hover>
+              <thead>
+                <tr>
+                  <th>Test Name</th>
+                  <th>Default Sensitivity</th>
+                  <th>Default Specificity</th>
+                  <th>Justification text </th>
+                  <th>Sources/justification</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pap test </td>
+                  <td>61</td>
+                  <td>90</td>
+                  <td>
+                    Pap test performance varies widely across settings.
+                    Sensitivity can range from 25-75%, with most estimates
+                    50-70%
+                  </td>
+                  <td>
+                    <p>
+                      Arbyn M, Sankaranarayanan R, Muwonge R, Keita N, Dolo A,
+                      Mbalawa CG, et al. Pooled analysis of the accuracy of five
+                      cervical cancer screening tests assessed in eleven studies
+                      in Africa and India. Int J Cancer 2008; 123: 153-160.
+                    </p>
+                    <p>
+                      Cuzick J, et al. Overview of the European and North
+                      American studies on HPV testing in primary cervical cancer
+                      screening. IJC.2006;119:1095–1101.{" "}
+                    </p>
+                    <p>
+                      Mayrand HM, et al. Human papillomavirus DNA versus
+                      papanicolaou screening tests for cervical cancer. NEJM
+                      2007;357:1579-1588.{" "}
+                    </p>
+                    <p>
+                      Almonte et al. Cervical screening by visual inspection,
+                      HPV testing, liquid-based and conventional cytology in
+                      Amazonian Peru. IJC 121, 706-802, 2007.{" "}
+                    </p>
+                    <p>Nanda K et al. Ann Intern Med 2000</p>
+                    <p>
+                      Web Annex A. Syntheses of evidence. In: WHO guideline for
+                      screening and treatment of cervical pre-cancer lesions for
+                      cervical cancer prevention, second edition. Geneva: World
+                      Health Organization{" "}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>VIA (IVAA) </td>
+                  <td>60</td>
+                  <td>84</td>
+                  <td>
+                    Estimates very wide and dependent on training and continued
+                    quality control. Global average about 65% sensitivity and
+                    87% specificity. Estimates of test performance following a
+                    positive HPV test are similarly wide.
+                  </td>
+                  <td>
+                    <p>
+                      Web Annex A. Syntheses of evidence. In: WHO guideline for
+                      screening and treatment of cervical pre-cancer lesions for
+                      cervical cancer prevention, second edition. Geneva: World
+                      Health Organization{" "}
+                    </p>
+                    <p>
+                      Almonte et al. Cervical screening by visual inspection,
+                      HPV testing, liquid-based and conventional cytology in
+                      Amazonian Peru. IJC 121, 706-802, 2007.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>HPV</td>
+                  <td>90</td>
+                  <td>89</td>
+                  <td>
+                    Estimates of HPV test performance in screening programs are
+                    less variable.
+                  </td>
+                  <td>
+                    <p>
+                      Web Annex A. Syntheses of evidence. In: WHO guideline for
+                      screening and treatment of cervical pre-cancer lesions for
+                      cervical cancer prevention, second edition. Geneva: World
+                      Health Organization{" "}
+                    </p>
+                    <p>
+                      Cuzick J, et al. Overview of the European and North
+                      American studies on HPV testing in primary cervical cancer
+                      screening. IJC.2006;119:1095–1101.{" "}
+                    </p>
+                    <p>
+                      Almonte et al. Cervical screening by visual inspection,
+                      HPV testing, liquid-based and conventional cytology in
+                      Amazonian Peru. IJC 121, 706-802, 2007.{" "}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>HPV16/18 </td>
+                  <td>60</td>
+                  <td>75</td>
+                  <td></td>
+                  <td>
+                    <p>
+                      Web Annex A. Syntheses of evidence. In: WHO guideline for
+                      screening and treatment of cervical pre-cancer lesions for
+                      cervical cancer prevention, second edition. Geneva: World
+                      Health Organization{" "}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Impression of colposcopy</td>
+                  <td>70</td>
+                  <td>75</td>
+                  <td>
+                    Accuracy of colposcopic impression varies widely with
+                    significant bias. Most estimates of sensitivity are 50-80%
+                    while estimates of specificity are 70-95%.
+                  </td>
+                  <td>
+                    <p>
+                      Brown BH, Tidy JA. The diagnostic accuracy of colposcopy -
+                      A review of research methodology and impact on the
+                      outcomes of quality assurance. Eur J Obstet Gynecol Reprod
+                      Biol. 2019 Sep;240:182-186. doi:
+                      10.1016/j.ejogrb.2019.07.003. Epub 2019 Jul 3. PMID:
+                      31302386.{" "}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Colposcopy with biopsy </td>
+                  <td>65</td>
+                  <td>85</td>
+                  <td></td>
+                  <td>
+                    <p>
+                      Brown BH, Tidy JA. The diagnostic accuracy of colposcopy -
+                      A review of research methodology and impact on the
+                      outcomes of quality assurance. Eur J Obstet Gynecol Reprod
+                      Biol. 2019 Sep;240:182-186. doi:
+                      10.1016/j.ejogrb.2019.07.003. Epub 2019 Jul 3. PMID:
+                      31302386.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          </Card.Body>
+        </Card>
       </Container>
     </div>
   );
