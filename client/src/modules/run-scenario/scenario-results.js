@@ -147,7 +147,8 @@ export default function ScenarioResults() {
 
   return (
     <div>
-      <Container style={{ overflow: "auto", maxHeight: "100vh" }}>
+      {/* <Container style={{ overflow: "auto", maxHeight: "100vh" }}> */}
+      <Container>
         <Card className="mb-4 d-none">
           <Card.Header>
             <Card.Title data-export>
