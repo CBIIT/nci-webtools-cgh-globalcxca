@@ -30,7 +30,7 @@ export default function About() {
                     Prevalence of CIN2/3 in population for cervical screening
                   </td>
                   <td>0%</td>
-                  <td>100%</td>
+                  <td>5%</td>
                   <td>2%</td>
                   <td>
                     Population-based prevalence studies suggest 1-3% prevalence,
