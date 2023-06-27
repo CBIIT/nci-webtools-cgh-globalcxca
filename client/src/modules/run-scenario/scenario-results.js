@@ -386,6 +386,7 @@ export default function ScenarioResults() {
                     },
                   ]}
                   color="#0D6EFD" // Set the color to blue
+                  //layout={{ width: 450, height: 350 * 1.5 }} // Adjust the width and height as needed
                 />
                 <Col md={12} className="d-flex justify-content-center ">
                   <Button
@@ -423,6 +424,7 @@ export default function ScenarioResults() {
                     },
                   ]}
                   color="#0DAB61"
+                  //layout={{ width: 450, height: 350 - 50 }} // Adjust the width and height as needed
                 />
                 <Col md={12} className="d-flex justify-content-center ">
                   <Button

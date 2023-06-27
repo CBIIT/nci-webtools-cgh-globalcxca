@@ -2,7 +2,8 @@ import { useRef, useEffect } from "react";
 import * as d3 from "d3";
 
 export const defaultLayout = {
-  width: 450,
+  width: 400,
+  height: 400,
 };
 
 export default function BarChart({ id, data, layout = defaultLayout, color }) {
@@ -29,8 +30,8 @@ export default function BarChart({ id, data, layout = defaultLayout, color }) {
             y: (d) => d.value,
             yFormat: ",.0f",
             yLabel: "Counts",
-            width: 400,
-            height: 400,
+            width: layout.width, // Use the width from the layout object
+            height: layout.height, // Use the height from the layout object
             color: color || "#0DAB61", // Use the provided color or default to green
           })
         );
@@ -38,7 +39,7 @@ export default function BarChart({ id, data, layout = defaultLayout, color }) {
     }
   }, [data, layout, color]);
 
-  return <div className="img-fluid p-2" ref={ref} id={id} />;
+  return <div className="" ref={ref} id={id} />;
 }
 function d3BarChart(
   data,
