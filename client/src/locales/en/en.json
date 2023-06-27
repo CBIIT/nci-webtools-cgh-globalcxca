@@ -3,13 +3,15 @@
   "welcome": "Welcome to Globalcxca.",
   "menu": {
     "home": "Home",
-    "about": "About",
-    "contact": "Contact",
-    "runScenerio": "Run Run Scenerio",
-    "compareScenerios": "Compare Scenarios"
+    "runScenario": "Run Scenario",
+    "compareScenerios": "Compare Scenerios",
+    "about": "About"
   },
   "errors": {
     "requiredField": "This field is required.",
     "invalidEmail": "Invalid email address."
+  },
+  "runScenarioPage": {
+    "title-ep": "Epidemiological Context"
   }
 }

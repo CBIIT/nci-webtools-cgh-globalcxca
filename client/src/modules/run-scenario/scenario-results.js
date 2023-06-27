@@ -22,7 +22,7 @@ import { getTimestamp } from "../../services/file-utils";
 import { exportPdf } from "../../services/pdf-utils";
 import { asLabel, asPercent } from "../../services/formatters";
 import PieChart from "./pie-chart";
-import BarChartScreenTest from "./bar-chart";
+import BarChart from "./bar-chart";
 import { exportSvg, saveChartAsPNG } from "../../services/plot-utils";
 import * as d3 from "d3";
 import { exportExcel } from "../../services/excel-utils";
@@ -376,7 +376,7 @@ export default function ScenarioResults() {
             <h2 className="text-center h5">{barChartTitle}</h2>
             <Row>
               <Col md={6}>
-                <BarChartScreenTest
+                <BarChart
                   id={ScreentestBarChartId}
                   data={[
                     {
@@ -385,6 +385,7 @@ export default function ScenarioResults() {
                         parseInt(totalNeededToScreen.replace(/,/g, "")) || 0,
                     },
                   ]}
+                  color="#0D6EFD" // Set the color to blue
                 />
                 <Col md={12} className="d-flex justify-content-center ">
                   <Button
@@ -400,7 +401,7 @@ export default function ScenarioResults() {
               </Col>
 
               <Col md={6}>
-                <BarChartScreenTest
+                <BarChart
                   id={barChartId}
                   data={[
                     {
@@ -421,6 +422,7 @@ export default function ScenarioResults() {
                         parseInt(totalNeededToTreat.replace(/,/g, "")) || 0,
                     },
                   ]}
+                  color="#0DAB61"
                 />
                 <Col md={12} className="d-flex justify-content-center ">
                   <Button

@@ -5,7 +5,7 @@ export const defaultLayout = {
   width: 450,
 };
 
-export default function BarChart({ id, data, layout = defaultLayout }) {
+export default function BarChart({ id, data, layout = defaultLayout, color }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -31,12 +31,12 @@ export default function BarChart({ id, data, layout = defaultLayout }) {
             yLabel: "Counts",
             width: 400,
             height: 400,
-            color: "#0DAB61",
+            color: color || "#0DAB61", // Use the provided color or default to green
           })
         );
       }
     }
-  });
+  }, [data, layout, color]);
 
   return <div className="img-fluid p-2" ref={ref} id={id} />;
 }

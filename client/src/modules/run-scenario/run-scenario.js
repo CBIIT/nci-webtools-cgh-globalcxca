@@ -307,7 +307,7 @@ export default function RunScenarios() {
                     Please choose strategies to include in your scenario.
                   </Card.Text>
                 </Card.Header>
-                <Card.Body>
+                <Card.Body className="pt-2 pb-2">
                   <Row>
                     {scenarios.map((scenario) => (
                       <Col lg={12} key={scenario.value}>
