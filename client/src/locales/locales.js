@@ -3,7 +3,8 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
 //import locale file
-import enLocale from "./en.json";
+import enLocale from "./en/en.json";
+import esLocale from "./es/es.json";
 
 // Initialize i18next
 i18next
@@ -20,6 +21,9 @@ i18next
         translation: enLocale, // English locale file
       },
       // Add other language translations here if needed
+      es: {
+        translation: esLocale, // English locale file
+      },
     },
 
     // Common configuration options

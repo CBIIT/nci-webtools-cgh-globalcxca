@@ -1,0 +1,17 @@
+{
+  "greeting": "Hola!",
+  "welcome": "Bienvenido a Globalcxca.",
+  "menu": {
+    "home": "Inicio",
+    "runScenario": "Ejecutar Escenario",
+    "compareScenerios": "Comparar Escenarios",
+    "about": "Sobre"
+  },
+  "errors": {
+    "requiredField": "Este campo es obligatorio.",
+    "invalidEmail": "Dirección de correo electrónico inválida."
+  },
+  "runScenarioPage": {
+    "title-ep": "Contexto Epidemiológico"
+  }
+}
