@@ -9,7 +9,9 @@ export default function About() {
   return (
     <div className="bg-light py-4">
       <Container>
-        <h1 className="text-center h2">Form Input Instructions</h1>
+        <h1 className="text-center h2">
+          Description and sources for simulation parameters
+        </h1>
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
             <h4 className="text-center mb-1">Epidemiological Context</h4>
