@@ -7,7 +7,7 @@ export const defaultLayout = {
   margin: 20,
 };
 
-export default function PieChart({ id, data, layout = defaultLayout }) {
+export default function PieChart({ id, data, layout = defaultLayout, colors }) {
   const ref = useRef(null);
   useEffect(() => {
     if (ref.current && data && layout) {
@@ -34,11 +34,12 @@ export default function PieChart({ id, data, layout = defaultLayout }) {
             labelRadius: (Math.min(layout.width, layout.height) / 2) * 0.5,
             format: ".0f",
             //colors: ["#D13C4B", "#FD7E14"],
+            colors: colors,
           })
         );
       }
     }
-  }, [data, layout]);
+  }, [data, layout, colors]);
 
   return <div className="img-fluid p-2" ref={ref} id={id} />;
 }

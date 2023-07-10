@@ -39,7 +39,7 @@ export default function ScenarioResults() {
   const pieChartTitle = "Precancers Treated";
 
   // console.log("params", params);
-  // console.log("result", results);
+  console.log("result", results);
 
   const chartTiles =
     results.scenario === "ScreenDiagnosticTestTreat"
@@ -442,7 +442,6 @@ export default function ScenarioResults() {
 
             <Row>
               <h2 className="text-center h5">{pieChartTitle}</h2>
-              <Col md={3}></Col>
               <Col md={6}>
                 <PieChart
                   id={pieChartId}
@@ -456,6 +455,34 @@ export default function ScenarioResults() {
                       value: +results.testedPositives[treatedIndex + 1],
                     },
                   ]}
+                  colors={["#D13C4B", "#FD7E14"]} // Pass the custom color palette to the PieChart component
+                />
+                <Col md={12} className="d-flex justify-content-center">
+                  <Button
+                    variant="link"
+                    onClick={() => handleExportSvg(pieChartId)}
+                  >
+                    Export SVG
+                  </Button>
+                  <Button variant="link" id="savePNG0" className="savePNG">
+                    Export PNG
+                  </Button>
+                </Col>
+              </Col>
+              <Col md={6}>
+                <PieChart
+                  id={pieChartId}
+                  data={[
+                    {
+                      label: "Population Without-Precancer",
+                      value: +results.testedFalsePositives[0],
+                    },
+                    {
+                      label: "% Precancers Over-Treated",
+                      value: +results.healthyOvertreated,
+                    },
+                  ]}
+                  colors={["#0D6EFD", "#FD7E14"]} // Pass the custom color palette to the PieChart component
                 />
                 <Col md={12} className="d-flex justify-content-center">
                   <Button

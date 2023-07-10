@@ -731,6 +731,9 @@ export function calculateValues(
   const percentHealthyOvertreated =
     (100 * testedNegatives[stages + 1]) / testedFalsePositives[0];
 
+  const healthyOvertreated =
+    (percentHealthyOvertreated * testedFalsePositives[0]) / 100;
+
   let numberPrecancersMissed = 0;
 
   for (let stage = 1; stage <= stages; stage++) {
@@ -805,6 +808,7 @@ export function calculateValues(
     testedTruePositives,
     percentPrecancersTreated,
     percentHealthyOvertreated,
+    healthyOvertreated,
     numberPrecancersMissed,
     percentMissed,
     percentMissedDueToSensitivity,
