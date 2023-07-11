@@ -10,7 +10,7 @@ export default function About() {
     <div className="bg-light py-4">
       <Container>
         <h1 className="text-center h2">
-          Description and sources for simulation parameters
+          Description and sources for scenario parameters
         </h1>
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">

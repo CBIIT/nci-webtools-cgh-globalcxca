@@ -659,7 +659,7 @@ export default function ScenarioResults() {
                 </tr>
 
                 <tr className="table-light">
-                  <th className="ps-3">Loss at triage/diagnostic test</th>
+                  <th className="ps-3">Loss at triage test</th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
                     {/* {asPercent(results.percentMissed[1]) ?? "N/A"} */}
@@ -701,9 +701,7 @@ export default function ScenarioResults() {
                 </tr>
 
                 <tr className="table-light">
-                  <th className="ps-3">
-                    Sensitivity of triage/diagnostic test
-                  </th>
+                  <th className="ps-3">Sensitivity of triage test</th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
                       results.percentMissedDueToSensitivityOfTriageTest
