@@ -763,7 +763,7 @@ export default function ScenarioResults() {
                 </tr>
 
                 <tr className="table-light">
-                  <th className="ps-3">Loss at diagnosis</th>
+                  <th className="ps-3">Loss at diagnosis test</th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
                       results.percentMissedDueToLossAtDiagnosticTriage
