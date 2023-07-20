@@ -2,8 +2,8 @@ import { useRef, useEffect } from "react";
 import * as d3 from "d3";
 
 export const defaultLayout = {
-  width: 400,
-  height: 400,
+  width: 280,
+  height: 280,
   margin: 20,
 };
 
@@ -41,7 +41,9 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
     }
   }, [data, layout, colors]);
 
-  return <div className="img-fluid p-2" ref={ref} id={id} />;
+  return (
+    <div className="img-fluid p-2 pie-chart-container" ref={ref} id={id} />
+  );
 }
 
 function d3PieChart(
@@ -118,9 +120,7 @@ function d3PieChart(
         const label = N[i].replace("%", "").trim();
         return `${formatValue(V[i])} (${percentages[i].toFixed(
           1
-        )}%) ${label}\nTargeted Number for precancer treatments: ${formatTotal(
-          totalValue
-        )}`;
+        )}%) ${label}\nTotal: ${formatTotal(totalValue)}`;
       } else {
         return "NO DATA AVAILABLE";
       }
@@ -148,9 +148,7 @@ function d3PieChart(
           O[i],
           i,
           data
-        )}\n Targeted Number for precancer treatments: ${formatTotal(
-          totalValue
-        )}`;
+        )}\n Total: ${formatTotal(totalValue)}`;
       } else {
         return "NO DATA AVAILABLE";
       }
@@ -215,7 +213,7 @@ function d3PieChart(
     .data(arcs)
     .join("text")
     .attr("transform", (d) => `translate(${arcLabel.centroid(d)})`)
-    .attr("font-size", "1rem")
+    .attr("font-size", "0.8rem")
     .attr("fill", "white")
     .selectAll("tspan")
     .data((d) => {

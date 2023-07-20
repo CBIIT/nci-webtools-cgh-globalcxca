@@ -58,7 +58,7 @@ export default function RunScenarios() {
       // Remove the unchecked value from the array
       updatedValues = checkedValues.filter((val) => val !== value);
     }
-    console.log("updatedValues -----", updatedValues);
+
     setCheckedValues(updatedValues);
 
     if (name === "scenario") {
@@ -148,22 +148,22 @@ export default function RunScenarios() {
       {/* <Container> */}
       <div className="mx-3">
         <Row>
-          <Col md={5} style={{ overflow: "auto", maxHeight: "100vh" }}>
-            <div>
-              <Form onReset={handleReset}>
-                <div className="small text-end text-muted mb-2">
-                  All fields are required
-                </div>
-                <Row>
-                  <Col md={6}>
-                    <div>
-                      <h5>Epidemiological Context</h5>
-                      <div className="small text-muted">
+          <Col md={6} style={{ overflow: "auto", maxHeight: "100vh" }}>
+            <Form onReset={handleReset}>
+              <div className="small text-end text-muted mb-2">
+                All fields are required
+              </div>
+              <Row>
+                <Col md={6}>
+                  <Card className="mb-4">
+                    <Card.Header>
+                      <Card.Title>Epidemiological Context</Card.Title>
+                      <Card.Text className="small text-muted">
                         Please enter the best estimate of fixed epidemiological
                         parameters for your setting
-                      </div>
-                    </div>
-                    <div className="p-0">
+                      </Card.Text>
+                    </Card.Header>
+                    <Card.Body className="p-0">
                       <ListGroup variant="flush hover borderless">
                         <ListGroup.Item>
                           <Form.Group as={Row} controlId="populationSize">
@@ -200,6 +200,62 @@ export default function RunScenarios() {
                             </Col>
                           </Form.Group>
                         </ListGroup.Item>
+
+                        {/* <ListGroup.Item>
+                  <Form.Group as={Row} controlId="hpvCancerPrevalence">
+                    <Form.Label column sm={8}>
+                      <span>Prevalence of carcinogenic HPV infection</span>
+                      <OverlayTrigger
+                        overlay={<Tooltip id="hpvCancerPrevalence-help">Enter number of people who test positive for HPV per 100 people</Tooltip>}
+                      >
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
+                    </Form.Label>
+                    <Col sm={4}>
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="1"
+                          placeholder="Enter 0 - 100"
+                          name="hpvCancerPrevalence"
+                          className="border-end-0"
+                          value={form.hpvCancerPrevalence}
+                          onChange={handleChange} onWheel={(e) => e.target.blur()}
+                        />
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
+                    </Col>
+                  </Form.Group>
+                </ListGroup.Item>
+
+                <ListGroup.Item>
+                  <Form.Group as={Row} controlId="hpvPrevalence">
+                    <Form.Label column sm={8}>
+                      <span>Proportion HPV-positives with HPV16/18</span>
+                      <OverlayTrigger overlay={<Tooltip id="hpvPrevalence-help">Enter number of people with HPV16/18 per 100 HPV-positive people</Tooltip>}>
+                        <i className="ms-1 bi bi-question-circle"></i>
+                      </OverlayTrigger>
+                    </Form.Label>
+                    <Col sm={4}>
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="1"
+                          placeholder="Enter 0 - 100"
+                          name="hpvPrevalence"
+                          className="border-end-0"
+                          value={form.hpvPrevalence}
+                          onChange={handleChange} onWheel={(e) => e.target.blur()}
+                        />
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
+                    </Col>
+                  </Form.Group>
+                </ListGroup.Item> */}
 
                         <ListGroup.Item>
                           <Form.Group as={Row} controlId="cinPrevalence">
@@ -243,8 +299,48 @@ export default function RunScenarios() {
                           </Form.Group>
                         </ListGroup.Item>
                       </ListGroup>
-                    </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
 
+                <Col md={6}>
+                  <Card className="mb-4">
+                    <Card.Header>
+                      <Card.Title>Strategy Selection</Card.Title>
+                      <Card.Text className="small text-muted">
+                        Please choose strategies to include in your scenario.
+                      </Card.Text>
+                    </Card.Header>
+                    <Card.Body className="pt-2 pb-2">
+                      <Row>
+                        {scenarios.map((scenario) => (
+                          <Col lg={12} key={scenario.value}>
+                            <Form.Check key={scenario.value}>
+                              <Form.Check.Input
+                                type="checkbox"
+                                //name="scenario"
+                                checked={checkedValues.includes(scenario.value)}
+                                name={scenario.value}
+                                id={scenario.value}
+                                value={scenario.value}
+                                onChange={handleChange}
+                                onWheel={(e) => e.target.blur()}
+                              />
+                              <Form.Check.Label htmlFor={scenario.value}>
+                                {scenario.strategy}
+                              </Form.Check.Label>
+                            </Form.Check>
+                          </Col>
+                        ))}
+                      </Row>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={6}>
+                  <Card className="mb-4">
                     <Card.Header>
                       <Card.Title>Participation in Health Services</Card.Title>
                       <Card.Text className="text-muted small">
@@ -493,38 +589,10 @@ export default function RunScenarios() {
                         </ListGroup.Item>
                       </ListGroup>
                     </Card.Body>
-                  </Col>
-
-                  <Col md={6}>
-                    <Card.Header>
-                      <Card.Title>Strategy Selection</Card.Title>
-                      <Card.Text className="small text-muted">
-                        Please choose strategies to include in your scenario.
-                      </Card.Text>
-                    </Card.Header>
-                    <Card.Body className="pt-2 pb-2">
-                      <Row>
-                        {scenarios.map((scenario) => (
-                          <Col lg={12} key={scenario.value}>
-                            <Form.Check key={scenario.value}>
-                              <Form.Check.Input
-                                type="checkbox"
-                                //name="scenario"
-                                checked={checkedValues.includes(scenario.value)}
-                                name={scenario.value}
-                                id={scenario.value}
-                                value={scenario.value}
-                                onChange={handleChange}
-                                onWheel={(e) => e.target.blur()}
-                              />
-                              <Form.Check.Label htmlFor={scenario.value}>
-                                {scenario.strategy}
-                              </Form.Check.Label>
-                            </Form.Check>
-                          </Col>
-                        ))}
-                      </Row>
-                    </Card.Body>
+                  </Card>
+                </Col>
+                <Col md={6}>
+                  <Card className="mb-4">
                     <Card.Header>
                       <Card.Title>
                         Screening and Treatment Characteristics
@@ -908,22 +976,25 @@ export default function RunScenarios() {
                         </div>
                       </ListGroup>
                     </Card.Body>
-                  </Col>
-                </Row>
+                  </Card>
+                </Col>
+              </Row>
 
-                <Form.Group className="mb-4 text-center">
-                  <Button
-                    type="reset"
-                    className="shadow"
-                    variant="outline-primary"
-                  >
-                    Reset
-                  </Button>
-                </Form.Group>
-              </Form>
-            </div>
+              <Form.Group className="mb-4 text-center">
+                {/* <Button type="submit" className="me-1 shadow" variant="primary">
+              Submit
+            </Button> */}
+                <Button
+                  type="reset"
+                  className="shadow"
+                  variant="outline-primary"
+                >
+                  Reset
+                </Button>
+              </Form.Group>
+            </Form>
           </Col>
-          <Col md={7}>
+          <Col md={6}>
             <ScenarioResults />
           </Col>
         </Row>

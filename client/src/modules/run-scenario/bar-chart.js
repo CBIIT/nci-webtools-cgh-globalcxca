@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 export const defaultLayout = {
   width: 400,
-  height: 400,
+  height: 300,
 };
 
 export default function BarChart({ id, data, layout = defaultLayout, color }) {
@@ -116,7 +116,7 @@ function d3BarChart(
       g
         .append("text")
         .attr("x", -marginLeft)
-        .attr("y", 15)
+        .attr("y", 12)
         .attr("fill", "currentColor")
         .attr("text-anchor", "start")
         .attr("font-size", "1rem")

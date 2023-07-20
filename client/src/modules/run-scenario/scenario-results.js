@@ -373,7 +373,7 @@ export default function ScenarioResults() {
           <Card.Header>
             <Card.Title>{chartTiles}</Card.Title>
           </Card.Header>
-          <Card.Body>
+          <Card.Body className="pt-1">
             <h2 className="text-center h5">{barChartTitle}</h2>
             <Row>
               <Col md={6}>
