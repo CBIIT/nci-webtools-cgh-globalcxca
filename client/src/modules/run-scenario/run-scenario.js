@@ -44,6 +44,7 @@ export default function RunScenarios() {
 
   function handleChange(e) {
     const { name, value, checked } = e.target;
+    console.log("checked", checked);
 
     if (name === "ScreenTreat" && !checked) {
       // Ignore the unchecked action for "Screening Test" checkbox
@@ -103,16 +104,19 @@ export default function RunScenarios() {
       setForm((prevForm) => ({
         ...prevForm,
         scenario: "ScreenTreat",
+        checkedValues: checkedValues,
       }));
     } else if (checkedValues.length === 2) {
       setForm((prevForm) => ({
         ...prevForm,
         scenario: "ScreenDiagnosticTestTreat",
+        checkedValues: checkedValues,
       }));
     } else {
       setForm((prevForm) => ({
         ...prevForm,
         scenario: "ScreenTriageDiagnosticTestTreat",
+        checkedValues: checkedValues,
       }));
     }
   }, [checkedValues, setForm]);
@@ -124,6 +128,7 @@ export default function RunScenarios() {
 
   const results = runModel(form);
   const params = mapValues(form, asNumber);
+  console.log("paramsssss: , ", params);
   setParams(params);
   setResults(results);
 

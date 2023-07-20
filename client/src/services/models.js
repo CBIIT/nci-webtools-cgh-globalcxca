@@ -80,10 +80,12 @@ export const tests = {
 // }
 
 export function runModel(params) {
+  console.log("PARMS ---- ", params);
   const scenario = params.scenario;
   const populationSize = parseInt(params.populationSize, 10);
   const screeningInterval = parseInt(params.screeningInterval, 10);
   const cinPrevalence = parseInt(params.cinPrevalence, 10) / 100;
+  const checkedValues = params.checkedValues;
   let coverage = [];
   let sensitivity = [];
   let specificity = [];
@@ -120,7 +122,8 @@ export function runModel(params) {
     cinPrevalence,
     coverage,
     sensitivity,
-    specificity
+    specificity,
+    checkedValues
   );
 }
 
@@ -669,7 +672,8 @@ export function calculateValues(
   cinPrevalence,
   coverage,
   sensitivity,
-  specificity
+  specificity,
+  checkedValues
 ) {
   const stages = sensitivity.length;
   const testedFalsePositives = [];
@@ -814,5 +818,6 @@ export function calculateValues(
     percentMissedDueToSensitivity,
     percentPrecancersMissed,
     totalNeeded,
+    checkedValues,
   };
 }

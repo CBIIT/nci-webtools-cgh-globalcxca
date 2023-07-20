@@ -43,9 +43,13 @@ export default function ScenarioResults() {
   console.log("result", results);
 
   const chartTiles =
-    results.scenario === "ScreenDiagnosticTestTreat"
-      ? "Screening → Triage/Diagnosis → Treatment"
-      : results.scenario === "ScreenTriageDiagnosticTestTreat"
+    results.checkedValues.length === 2 &&
+    results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+      ? "Screening → Diagnosis → Treatment"
+      : results.checkedValues.length === 2 &&
+        results.checkedValues[1] === "ScreenTriageDiagnosticTestTreat"
+      ? "Screening → Triage → Treatment"
+      : results.checkedValues.length === 3
       ? "Screening → Triage → Diagnosis → Treatment"
       : "Screening → Treatment";
 
