@@ -386,7 +386,7 @@ export default function ScenarioResults() {
                         parseInt(totalNeededToScreen.replace(/,/g, "")) || 0,
                     },
                   ]}
-                  color="#0D6EFD" // Set the color to blue
+                  color="#58d898" // Set the color to blue
                   //layout={{ width: 450, height: 350 * 1.5 }} // Adjust the width and height as needed
                 />
                 <Col md={12} className="d-flex justify-content-center ">
