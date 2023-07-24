@@ -531,9 +531,7 @@ export default function RunScenarios() {
                       </Row>
                     </Card.Body>
                     <Card.Header>
-                      <Card.Title>
-                        Screening and Treatment Characteristics
-                      </Card.Title>
+                      <Card.Title>Strategy Characteristics</Card.Title>
                       <Card.Text className="small text-muted">
                         Please select the screening, triage and diagnostic tests
                         and treatment modality you will use and enter an
