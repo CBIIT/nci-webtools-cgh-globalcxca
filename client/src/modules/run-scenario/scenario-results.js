@@ -43,13 +43,15 @@ export default function ScenarioResults() {
   console.log("result", results);
 
   const chartTiles =
+    results.checkedValues &&
     results.checkedValues.length === 2 &&
     results.checkedValues[1] === "ScreenDiagnosticTestTreat"
       ? "Screening → Diagnosis → Treatment"
-      : results.checkedValues.length === 2 &&
+      : results.checkedValues &&
+        results.checkedValues.length === 2 &&
         results.checkedValues[1] === "ScreenTriageDiagnosticTestTreat"
       ? "Screening → Triage → Treatment"
-      : results.checkedValues.length === 3
+      : results.checkedValues && results.checkedValues.length === 3
       ? "Screening → Triage → Diagnosis → Treatment"
       : "Screening → Treatment";
 
