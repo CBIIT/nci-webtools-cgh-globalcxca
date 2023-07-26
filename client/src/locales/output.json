@@ -1,0 +1,1192 @@
+{
+  "﻿Key": {
+    "en": {
+      "translation": {
+        "welcome": "English",
+        "home.introdution": "Spanish - Final"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "English",
+        "home.introdution": "Spanish - Final"
+      }
+    }
+  },
+  "welcome": {
+    "en": {
+      "translation": {
+        "welcome": "Welcome",
+        "home.introdution": "Bienvenidos"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Welcome",
+        "home.introdution": "Bienvenidos"
+      }
+    }
+  },
+  "home.introdution": {
+    "en": {
+      "translation": {
+        "welcome": "Explore epidemiological outcomes for target populations with our screening impact assessment tool.",
+        "home.introdution": "Conocer los efectos epidemiológicos en una población objetivo con nuestra herramienta de evaluación de impacto de un programa de tamizaje."
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Explore epidemiological outcomes for target populations with our screening impact assessment tool.",
+        "home.introdution": "Conocer los efectos epidemiológicos en una población objetivo con nuestra herramienta de evaluación de impacto de un programa de tamizaje."
+      }
+    }
+  },
+  "runScenario.title": {
+    "en": {
+      "translation": {
+        "welcome": "Run Scenario",
+        "home.introdution": "Ejecutar escenario"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Run Scenario",
+        "home.introdution": "Ejecutar escenario"
+      }
+    }
+  },
+  "runScenario.fieldRequired": {
+    "en": {
+      "translation": {
+        "welcome": "All fields are required",
+        "home.introdution": "Se necesita completar toda la información"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "All fields are required",
+        "home.introdution": "Se necesita completar toda la información"
+      }
+    }
+  },
+  "runScenario.epidemiologicalTitle": {
+    "en": {
+      "translation": {
+        "welcome": "Explore epidemiological outcomes for target populations with our screening impact assessment tool.",
+        "home.introdution": "Conocer los efectos epidemiológicos en la población objetivo con nuestra herramienta de evaluación de impacto del tamizaje."
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Explore epidemiological outcomes for target populations with our screening impact assessment tool.",
+        "home.introdution": "Conocer los efectos epidemiológicos en la población objetivo con nuestra herramienta de evaluación de impacto del tamizaje."
+      }
+    }
+  },
+  "runScenario.numPeople": {
+    "en": {
+      "translation": {
+        "welcome": "Number of people in target population for cervical screening",
+        "home.introdution": "Número de personas en la población objetivo que requiere tamizaje cervical"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Number of people in target population for cervical screening",
+        "home.introdution": "Número de personas en la población objetivo que requiere tamizaje cervical"
+      }
+    }
+  },
+  "runScenario.prevelance": {
+    "en": {
+      "translation": {
+        "welcome": "Prevalence of CIN2/3 in population for cervical screening",
+        "home.introdution": "Prevalencia de NIC2/3 en la población objetivo que requiere tamizaje cervical"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Prevalence of CIN2/3 in population for cervical screening",
+        "home.introdution": "Prevalencia de NIC2/3 en la población objetivo que requiere tamizaje cervical"
+      }
+    }
+  },
+  "runScenario.numberWomenWithCin": {
+    "en": {
+      "translation": {
+        "welcome": "Enter number of women with CIN2/3 per 100 people in the population eligible for cervical screening",
+        "home.introdution": "Ingrese el número de mujeres con NIC2/3 por cada 100 personas en la población objetivo que requiere tamizaje cervical"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Enter number of women with CIN2/3 per 100 people in the population eligible for cervical screening",
+        "home.introdution": "Ingrese el número de mujeres con NIC2/3 por cada 100 personas en la población objetivo que requiere tamizaje cervical"
+      }
+    }
+  },
+  "runScenario.strategySelectionTitle": {
+    "en": {
+      "translation": {
+        "welcome": "Strategy Selection",
+        "home.introdution": "Selección de la estrategia"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Strategy Selection",
+        "home.introdution": "Selección de la estrategia"
+      }
+    }
+  },
+  "runScenario.strategyChoosen": {
+    "en": {
+      "translation": {
+        "welcome": "Please choose strategies to include in your scenario.",
+        "home.introdution": "Elija estrategias a incluir en su escenario."
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Please choose strategies to include in your scenario.",
+        "home.introdution": "Elija estrategias a incluir en su escenario."
+      }
+    }
+  },
+  "screening": {
+    "en": {
+      "translation": {
+        "welcome": "Sceening",
+        "home.introdution": "Tamizaje"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Sceening",
+        "home.introdution": "Tamizaje"
+      }
+    }
+  },
+  "triage": {
+    "en": {
+      "translation": {
+        "welcome": "Triage",
+        "home.introdution": "Triaje"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Triage",
+        "home.introdution": "Triaje"
+      }
+    }
+  },
+  "diagnosis": {
+    "en": {
+      "translation": {
+        "welcome": "Diagnosis",
+        "home.introdution": "Diagnóstico"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Diagnosis",
+        "home.introdution": "Diagnóstico"
+      }
+    }
+  },
+  "runScenario.participationTitle": {
+    "en": {
+      "translation": {
+        "welcome": "Participation in Health Services",
+        "home.introdution": "Participación en servicios de salud"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Participation in Health Services",
+        "home.introdution": "Participación en servicios de salud"
+      }
+    }
+  },
+  "runScenario.participationWarning": {
+    "en": {
+      "translation": {
+        "welcome": "Please enter the observed or anticipated participation in the cervical cancer screening program in your setting",
+        "home.introdution": "Ingrese la participación observada o anticipada en el programa de tamizaje cervical de su población"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Please enter the observed or anticipated participation in the cervical cancer screening program in your setting",
+        "home.introdution": "Ingrese la participación observada o anticipada en el programa de tamizaje cervical de su población"
+      }
+    }
+  },
+  "runScenario.intervalofCervicalInYears": {
+    "en": {
+      "translation": {
+        "welcome": "Interval of cervical screening in years",
+        "home.introdution": "Intervalo de tamizaje cervical (en años)"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Interval of cervical screening in years",
+        "home.introdution": "Intervalo de tamizaje cervical (en años)"
+      }
+    }
+  },
+  "runScenario.intervalInformation": {
+    "en": {
+      "translation": {
+        "welcome": "If people have one screening in a lifetime, enter 20 years. For two cervical screenings in a lifetime, enter 10 years.",
+        "home.introdution": "Si las personas tienen un tamizaje cervical una vez en la vida, ingrese 20 años. Para dos tamizajes cervicales en la vida, ingrese 10 años."
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "If people have one screening in a lifetime, enter 20 years. For two cervical screenings in a lifetime, enter 10 years.",
+        "home.introdution": "Si las personas tienen un tamizaje cervical una vez en la vida, ingrese 20 años. Para dos tamizajes cervicales en la vida, ingrese 10 años."
+      }
+    }
+  },
+  "runScenario.percentScreeningCoverage": {
+    "en": {
+      "translation": {
+        "welcome": "Percent screening coverage",
+        "home.introdution": "Porcentaje de cobertura de tamizaje"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Percent screening coverage",
+        "home.introdution": "Porcentaje de cobertura de tamizaje"
+      }
+    }
+  },
+  "enterValue0t100HelpText": {
+    "en": {
+      "translation": {
+        "welcome": "Enter a value between 0 and 100.",
+        "home.introdution": "Ingrese un valor entre 0 y 100."
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Enter a value between 0 and 100.",
+        "home.introdution": "Ingrese un valor entre 0 y 100."
+      }
+    }
+  },
+  "runScenario.percentScreeningPositiveWithTriage": {
+    "en": {
+      "translation": {
+        "welcome": "Percent of screen positives with triage test",
+        "home.introdution": "Porcentaje de personas con tamizaje positivo que reciben una prueba de triaje"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Percent of screen positives with triage test",
+        "home.introdution": "Porcentaje de personas con tamizaje positivo que reciben una prueba de triaje"
+      }
+    }
+  },
+  "runScenario.percentTriagePositiveWithDiagnostic": {
+    "en": {
+      "translation": {
+        "welcome": "Percent of triage positives with diagnostic test",
+        "home.introdution": "Porcentaje de personas con triaje positivo que reciben una prueba diagnóstica"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Percent of triage positives with diagnostic test",
+        "home.introdution": "Porcentaje de personas con triaje positivo que reciben una prueba diagnóstica"
+      }
+    }
+  },
+  "runScenario.percentDiagnosticPositiveTreated": {
+    "en": {
+      "translation": {
+        "welcome": "Percent of diagnostic test positives treated",
+        "home.introdution": "Porcentaje de personas con diagnóstico positivo que reciiben tratamiento"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Percent of diagnostic test positives treated",
+        "home.introdution": "Porcentaje de personas con diagnóstico positivo que reciiben tratamiento"
+      }
+    }
+  },
+  "runScenario.screeningAndTreatmentTitle": {
+    "en": {
+      "translation": {
+        "welcome": "Screening and Treatment Characteristics",
+        "home.introdution": "Características del tamizaje y tratamiento"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Screening and Treatment Characteristics",
+        "home.introdution": "Características del tamizaje y tratamiento"
+      }
+    }
+  },
+  "runScenario.screeningAndTreatmentWarning": {
+    "en": {
+      "translation": {
+        "welcome": "Please select the screening, triage and diagnostic tests and treatment modality you will use and enter an estimate of their performance characteristics.",
+        "home.introdution": "Seleccione las pruebas de tamizaje, triaje y diagnóstico y modalidad de tratamiento que usará e ingrese un estimado de sus características de rendimiento."
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Please select the screening, triage and diagnostic tests and treatment modality you will use and enter an estimate of their performance characteristics.",
+        "home.introdution": "Seleccione las pruebas de tamizaje, triaje y diagnóstico y modalidad de tratamiento que usará e ingrese un estimado de sus características de rendimiento."
+      }
+    }
+  },
+  "runScenario.cervicalScreeningTestChosen": {
+    "en": {
+      "translation": {
+        "welcome": "Cervical screening test chosen",
+        "home.introdution": "Prueba de tamizaje cervical elegida"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Cervical screening test chosen",
+        "home.introdution": "Prueba de tamizaje cervical elegida"
+      }
+    }
+  },
+  "runScenario.selectTest": {
+    "en": {
+      "translation": {
+        "welcome": "Select a test",
+        "home.introdution": "Seleccione una prueba"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Select a test",
+        "home.introdution": "Seleccione una prueba"
+      }
+    }
+  },
+  "runScenario.screeningTestSenvitivity": {
+    "en": {
+      "translation": {
+        "welcome": "Screening test sensitivity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Sensibilidad de prueba de tamizaje para NIC2/3"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Screening test sensitivity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Sensibilidad de prueba de tamizaje para NIC2/3"
+      }
+    }
+  },
+  "runScenario.screeningTestSpecificity": {
+    "en": {
+      "translation": {
+        "welcome": "Screening test specificity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Especificidad de prueba de tamizaje para NIC2/3"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Screening test specificity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Especificidad de prueba de tamizaje para NIC2/3"
+      }
+    }
+  },
+  "runScenario.triageOrDiagnosticTestChosen": {
+    "en": {
+      "translation": {
+        "welcome": "Triage or diagnostic test chosen",
+        "home.introdution": "Prueba de triage o diagnóstico elegida"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Triage or diagnostic test chosen",
+        "home.introdution": "Prueba de triage o diagnóstico elegida"
+      }
+    }
+  },
+  "runScenario.triageOrDiagnosticTestSensitivity": {
+    "en": {
+      "translation": {
+        "welcome": "Triage or diagnostic test sensitivity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Sensibilidad de la prueba de triaje o diagnóstico para NIC2/3"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Triage or diagnostic test sensitivity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Sensibilidad de la prueba de triaje o diagnóstico para NIC2/3"
+      }
+    }
+  },
+  "runScenario.triageOrDiagnosticTestSpecificity": {
+    "en": {
+      "translation": {
+        "welcome": "Triage or diagnostic test specificity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Especificidad de la prueba de triaje o diagnóstico para NIC2/3"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Triage or diagnostic test specificity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Especificidad de la prueba de triaje o diagnóstico para NIC2/3"
+      }
+    }
+  },
+  "runScenario.diagnosticTestChosen": {
+    "en": {
+      "translation": {
+        "welcome": "Diagnostic test chosen",
+        "home.introdution": "Prueba diagnóstica elegida"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Diagnostic test chosen",
+        "home.introdution": "Prueba diagnóstica elegida"
+      }
+    }
+  },
+  "runScenario.diagnosticTestSensitivity": {
+    "en": {
+      "translation": {
+        "welcome": "Diagnostic test sensitivity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Sensibilidad de la prueba diagnóstica para NIC2/3"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Diagnostic test sensitivity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Sensibilidad de la prueba diagnóstica para NIC2/3"
+      }
+    }
+  },
+  "runScenario.diagnosticTestSpecificity": {
+    "en": {
+      "translation": {
+        "welcome": "Diagnostic test specificity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Especificidad de la prueba diagnóstica para NIC2/3"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Diagnostic test specificity for CIN2/3 (NIC2/3)",
+        "home.introdution": "Especificidad de la prueba diagnóstica para NIC2/3"
+      }
+    }
+  },
+  "results.interventionsRequired": {
+    "en": {
+      "translation": {
+        "welcome": "Interventions Required",
+        "home.introdution": "Intervenciones requeridas"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Interventions Required",
+        "home.introdution": "Intervenciones requeridas"
+      }
+    }
+  },
+  "results.noDataAvailable": {
+    "en": {
+      "translation": {
+        "welcome": "NO DATA AVAILABLE",
+        "home.introdution": "DATOS NO DISPONIBLES"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "NO DATA AVAILABLE",
+        "home.introdution": "DATOS NO DISPONIBLES"
+      }
+    }
+  },
+  "results.precancersTreated.": {
+    "en": {
+      "translation": {
+        "welcome": "Precancers Treated",
+        "home.introdution": "Precánceres tratados"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Precancers Treated",
+        "home.introdution": "Precánceres tratados"
+      }
+    }
+  },
+  "results.annualTargets": {
+    "en": {
+      "translation": {
+        "welcome": "Annual Targets",
+        "home.introdution": "Objetivos anuales"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Annual Targets",
+        "home.introdution": "Objetivos anuales"
+      }
+    }
+  },
+  "results.populationTargetedWithCoverageTitle": {
+    "en": {
+      "translation": {
+        "welcome": "Population targeted for screening with 100% coverage",
+        "home.introdution": "Población objetivo para tamizaje (100% de cobertura)"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Population targeted for screening with 100% coverage",
+        "home.introdution": "Población objetivo para tamizaje (100% de cobertura)"
+      }
+    }
+  },
+  "results.populationTargetedWithoutPrecancer": {
+    "en": {
+      "translation": {
+        "welcome": "Population targeted for screening without Precancer",
+        "home.introdution": "Población objetivo para tamizaje, sin precáncer"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Population targeted for screening without Precancer",
+        "home.introdution": "Población objetivo para tamizaje, sin precáncer"
+      }
+    }
+  },
+  "results.populationTargetedWithPrecancer": {
+    "en": {
+      "translation": {
+        "welcome": "Population targeted for screening with Precancer",
+        "home.introdution": "Población objetivo para tamizaje, con precáncer"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Population targeted for screening with Precancer",
+        "home.introdution": "Población objetivo para tamizaje, con precáncer"
+      }
+    }
+  },
+  "results.impactOnCervicalPrecancerTitle": {
+    "en": {
+      "translation": {
+        "welcome": "Impact on Cervical Precancer and Impact on the Population Targeted for Screening",
+        "home.introdution": "Impacto Sobre Precancer Cervical e Impacto en la Población Objetivo para Tamizaje"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Impact on Cervical Precancer and Impact on the Population Targeted for Screening",
+        "home.introdution": "Impacto Sobre Precancer Cervical e Impacto en la Población Objetivo para Tamizaje"
+      }
+    }
+  },
+  "results.percentPrecancersTreated": {
+    "en": {
+      "translation": {
+        "welcome": "Percent precancers treated",
+        "home.introdution": "Porcentaje de precánceres tratados"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Percent precancers treated",
+        "home.introdution": "Porcentaje de precánceres tratados"
+      }
+    }
+  },
+  "results.percentPolulationTargetedOverTreated": {
+    "en": {
+      "translation": {
+        "welcome": "Percent of population targeted for screening without precancer and possibly over-treated",
+        "home.introdution": "Porcentaje de la población objetivo para tamizaje, sin precáncer y posiblemente sobretratada"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Percent of population targeted for screening without precancer and possibly over-treated",
+        "home.introdution": "Porcentaje de la población objetivo para tamizaje, sin precáncer y posiblemente sobretratada"
+      }
+    }
+  },
+  "results.missedPrecancersTitle": {
+    "en": {
+      "translation": {
+        "welcome": "Missed Precancers",
+        "home.introdution": "Precánceres Perdidos (No Tratadas)"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Missed Precancers",
+        "home.introdution": "Precánceres Perdidos (No Tratadas)"
+      }
+    }
+  },
+  "results.totalPrecancersMissed": {
+    "en": {
+      "translation": {
+        "welcome": "Total precancers missed (% of all precancers)",
+        "home.introdution": "Total precánceres perdidos (% de todos precánceres)"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Total precancers missed (% of all precancers)",
+        "home.introdution": "Total precánceres perdidos (% de todos precánceres)"
+      }
+    }
+  },
+  "results.sourcesMissedPrecancers": {
+    "en": {
+      "translation": {
+        "welcome": "Sources of missed precancers (% missed precancers)",
+        "home.introdution": "Fuentes de precánceres perdidos (% de precánceres perdidos)"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Sources of missed precancers (% missed precancers)",
+        "home.introdution": "Fuentes de precánceres perdidos (% de precánceres perdidos)"
+      }
+    }
+  },
+  "results.didNotHaveScreeningTest": {
+    "en": {
+      "translation": {
+        "welcome": "Did not have screening test",
+        "home.introdution": "No tuvo una prueba de tamizaje"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Did not have screening test",
+        "home.introdution": "No tuvo una prueba de tamizaje"
+      }
+    }
+  },
+  "results.sensitivityOfScreeningTest": {
+    "en": {
+      "translation": {
+        "welcome": "Sensitivity of screening test",
+        "home.introdution": "Sensibilidad de prueba de tamizaje "
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Sensitivity of screening test",
+        "home.introdution": "Sensibilidad de prueba de tamizaje "
+      }
+    }
+  },
+  "results.lossAtTriageDiagnosticTest": {
+    "en": {
+      "translation": {
+        "welcome": "Loss at triage/diagnostic test",
+        "home.introdution": "Pérdida en la prueba de triaje/diagnóstico"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Loss at triage/diagnostic test",
+        "home.introdution": "Pérdida en la prueba de triaje/diagnóstico"
+      }
+    }
+  },
+  "results.sensitivityOfTriageDiagnosticTest": {
+    "en": {
+      "translation": {
+        "welcome": "Sensitivity of triage/diagnostic test",
+        "home.introdution": "Sensibilidad de prueba de triaje/diagnóstico"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Sensitivity of triage/diagnostic test",
+        "home.introdution": "Sensibilidad de prueba de triaje/diagnóstico"
+      }
+    }
+  },
+  "results.lossAtDiagnosis": {
+    "en": {
+      "translation": {
+        "welcome": "Loss at diagnosis",
+        "home.introdution": "Pérdida en la prueba diagnóstico"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Loss at diagnosis",
+        "home.introdution": "Pérdida en la prueba diagnóstico"
+      }
+    }
+  },
+  "results.sensitivityOfDiagnosticTest": {
+    "en": {
+      "translation": {
+        "welcome": "Sensitivity of diagnostic test",
+        "home.introdution": "Sensibilidad de prueba diagnóstico"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Sensitivity of diagnostic test",
+        "home.introdution": "Sensibilidad de prueba diagnóstico"
+      }
+    }
+  },
+  "results.lossAtTreatment": {
+    "en": {
+      "translation": {
+        "welcome": "Loss at treatment",
+        "home.introdution": "Pérdida en el tratamiento"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Loss at treatment",
+        "home.introdution": "Pérdida en el tratamiento"
+      }
+    }
+  },
+  "results.AnnualImpactOnResourcesTitle": {
+    "en": {
+      "translation": {
+        "welcome": "Annual Impact on Resources",
+        "home.introdution": "Impacto anual en los recursos"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Annual Impact on Resources",
+        "home.introdution": "Impacto anual en los recursos"
+      }
+    }
+  },
+  "results.totalRequiringScreeningTest": {
+    "en": {
+      "translation": {
+        "welcome": "Total requiring screening test",
+        "home.introdution": "Total de personas que requieren prueba de tamizaje"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Total requiring screening test",
+        "home.introdution": "Total de personas que requieren prueba de tamizaje"
+      }
+    }
+  },
+  "results.totalRequiringTriageDiagnosticTest": {
+    "en": {
+      "translation": {
+        "welcome": "Total requiring triage/diagnostic test",
+        "home.introdution": "Total de personas que requieren prueba de triaje/diagnóstico"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Total requiring triage/diagnostic test",
+        "home.introdution": "Total de personas que requieren prueba de triaje/diagnóstico"
+      }
+    }
+  },
+  "results.totalRequiringDiagnisticTest": {
+    "en": {
+      "translation": {
+        "welcome": "Total requiring diagnostic test",
+        "home.introdution": "Total de personas que requieren prueba diagnóstica"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Total requiring diagnostic test",
+        "home.introdution": "Total de personas que requieren prueba diagnóstica"
+      }
+    }
+  },
+  "results.totalRequiringTreatment": {
+    "en": {
+      "translation": {
+        "welcome": "Total requiring treatment",
+        "home.introdution": "Total que requiere tratamiento"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Total requiring treatment",
+        "home.introdution": "Total que requiere tratamiento"
+      }
+    }
+  },
+  "results.saveScenario": {
+    "en": {
+      "translation": {
+        "welcome": "Save scenario",
+        "home.introdution": "Guardar escenario"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Save scenario",
+        "home.introdution": "Guardar escenario"
+      }
+    }
+  },
+  "results.exportResultsToPDF": {
+    "en": {
+      "translation": {
+        "welcome": "Export Results to PDF",
+        "home.introdution": "Exporte resultados a PDF"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Export Results to PDF",
+        "home.introdution": "Exporte resultados a PDF"
+      }
+    }
+  },
+  "results.exportResultsToExcel": {
+    "en": {
+      "translation": {
+        "welcome": "Export Results to Excel",
+        "home.introdution": "Exporte resultados a Excel"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Export Results to Excel",
+        "home.introdution": "Exporte resultados a Excel"
+      }
+    }
+  },
+  "runScenario.PapTest": {
+    "en": {
+      "translation": {
+        "welcome": "Pap test",
+        "home.introdution": "Citología or Pap"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Pap test",
+        "home.introdution": "Citología or Pap"
+      }
+    }
+  },
+  "runScenario.VIA": {
+    "en": {
+      "translation": {
+        "welcome": "VIA (IVAA)",
+        "home.introdution": "IVAA"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "VIA (IVAA)",
+        "home.introdution": "IVAA"
+      }
+    }
+  },
+  "runScenario.HPV": {
+    "en": {
+      "translation": {
+        "welcome": "HPV",
+        "home.introdution": "VPH"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "HPV",
+        "home.introdution": "VPH"
+      }
+    }
+  },
+  "runScenario.HPV1618": {
+    "en": {
+      "translation": {
+        "welcome": "HPV16/18",
+        "home.introdution": "VPH16/18"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "HPV16/18",
+        "home.introdution": "VPH16/18"
+      }
+    }
+  },
+  "runScenario.impressionOfColposcopy": {
+    "en": {
+      "translation": {
+        "welcome": "Impression of colposcopy",
+        "home.introdution": "Impresión de colposcopia"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Impression of colposcopy",
+        "home.introdution": "Impresión de colposcopia"
+      }
+    }
+  },
+  "runScenario.colposcopyWithBiopsy": {
+    "en": {
+      "translation": {
+        "welcome": "Colposcopy with biopsy",
+        "home.introdution": "Colposcopia con biopsia"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Colposcopy with biopsy",
+        "home.introdution": "Colposcopia con biopsia"
+      }
+    }
+  },
+  "compareScenarios": {
+    "en": {
+      "translation": {
+        "welcome": "Compare Scenarios",
+        "home.introdution": "Comparar escenarios"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Compare Scenarios",
+        "home.introdution": "Comparar escenarios"
+      }
+    }
+  },
+  "compareScenarios.uploadScenariosInfo": {
+    "en": {
+      "translation": {
+        "welcome": "Upload up to 10 scenarios for comparison. Files must be of the “.scenario” file format. Click the title of the scenario to rename it.",
+        "home.introdution": "Cargue hasta 10 escenarios para comparar. Los archivos deben ser del formato de archivo \".scenerario\". Haga clic en el título del escenario para cambiar su nombre."
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Upload up to 10 scenarios for comparison. Files must be of the “.scenario” file format. Click the title of the scenario to rename it.",
+        "home.introdution": "Cargue hasta 10 escenarios para comparar. Los archivos deben ser del formato de archivo \".scenerario\". Haga clic en el título del escenario para cambiar su nombre."
+      }
+    }
+  },
+  "compareScenarios.addScenario": {
+    "en": {
+      "translation": {
+        "welcome": "Add Scenario",
+        "home.introdution": "Agregar escenario"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Add Scenario",
+        "home.introdution": "Agregar escenario"
+      }
+    }
+  },
+  "about.title": {
+    "en": {
+      "translation": {
+        "welcome": "Description and sources for simulation parameters",
+        "home.introdution": "Descripción y fuentes para parámetros de simulación"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Description and sources for simulation parameters",
+        "home.introdution": "Descripción y fuentes para parámetros de simulación"
+      }
+    }
+  },
+  "parameter": {
+    "en": {
+      "translation": {
+        "welcome": "Parameter",
+        "home.introdution": "Parámetro"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Parameter",
+        "home.introdution": "Parámetro"
+      }
+    }
+  },
+  "lowValue": {
+    "en": {
+      "translation": {
+        "welcome": "Low Value",
+        "home.introdution": "Valor bajo"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Low Value",
+        "home.introdution": "Valor bajo"
+      }
+    }
+  },
+  "highValue": {
+    "en": {
+      "translation": {
+        "welcome": "High Value",
+        "home.introdution": "Valor alto"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "High Value",
+        "home.introdution": "Valor alto"
+      }
+    }
+  },
+  "defaultValue": {
+    "en": {
+      "translation": {
+        "welcome": "Default Value",
+        "home.introdution": "Valor por defecto"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Default Value",
+        "home.introdution": "Valor por defecto"
+      }
+    }
+  },
+  "justification": {
+    "en": {
+      "translation": {
+        "welcome": "Justification",
+        "home.introdution": "Justificación"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Justification",
+        "home.introdution": "Justificación"
+      }
+    }
+  },
+  "sources": {
+    "en": {
+      "translation": {
+        "welcome": "Sources",
+        "home.introdution": "Fuentes"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Sources",
+        "home.introdution": "Fuentes"
+      }
+    }
+  },
+  "testName": {
+    "en": {
+      "translation": {
+        "welcome": "Test Name",
+        "home.introdution": "Nombre de la prueba"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Test Name",
+        "home.introdution": "Nombre de la prueba"
+      }
+    }
+  },
+  "defaultSensitivity": {
+    "en": {
+      "translation": {
+        "welcome": "Default Sensitivity",
+        "home.introdution": "Sensibilidad predeterminada"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Default Sensitivity",
+        "home.introdution": "Sensibilidad predeterminada"
+      }
+    }
+  },
+  "defaultSpecificity": {
+    "en": {
+      "translation": {
+        "welcome": "Default Specificity",
+        "home.introdution": "Especificidad predeterminada"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Default Specificity",
+        "home.introdution": "Especificidad predeterminada"
+      }
+    }
+  },
+  "justificationText": {
+    "en": {
+      "translation": {
+        "welcome": "Justification text",
+        "home.introdution": "Texto de justificación"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Justification text",
+        "home.introdution": "Texto de justificación"
+      }
+    }
+  },
+  "sourcesJustification": {
+    "en": {
+      "translation": {
+        "welcome": "Sources/justification",
+        "home.introdution": "Fuentes/justificación"
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "Sources/justification",
+        "home.introdution": "Fuentes/justificación"
+      }
+    }
+  },
+  "": {
+    "en": {
+      "translation": {
+        "welcome": "",
+        "home.introdution": ""
+      }
+    },
+    "es": {
+      "translation": {
+        "welcome": "",
+        "home.introdution": ""
+      }
+    }
+  }
+}

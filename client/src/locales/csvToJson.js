@@ -1,38 +1,42 @@
 const fs = require("fs");
-const csvParse = require("csv-parse");
+const csv = require("csv-parser");
 
-// Function to read CSV file and convert it to JSON
 function csvToJson(csvFilePath) {
-  const csvData = fs.readFileSync(csvFilePath, "utf-8");
-  const jsonData = {};
+  const enData = {
+    en: {
+      translation: {},
+    },
+  };
+  const esData = {
+    es: {
+      translation: {},
+    },
+  };
 
-  csvParse(
-    csvData,
-    { columns: true, skip_empty_lines: true },
-    (err, records) => {
-      if (err) throw err;
+  fs.createReadStream(csvFilePath)
+    .pipe(csv({ headers: ["Key", "English", "Spanish - Final"] }))
+    .on("data", (row) => {
+      const key = row["Key"];
 
-      records.forEach((record) => {
-        jsonData[record.Key] = {
-          translation: {
-            en: record.English,
-            es: record["Spanish - Final"],
-          },
-        };
+      // English Data
+      enData.en.translation[key] = row["English"];
+
+      // Spanish Data
+      esData.es.translation[key] = row["Spanish - Final"];
+    })
+    .on("end", () => {
+      fs.writeFile("en/en.json", JSON.stringify(enData, null, 2), (err) => {
+        if (err) throw err;
+        console.log("English JSON file has been created successfully!");
       });
 
-      // Create en.json and es.json files
-      fs.writeFileSync(
-        "en.json",
-        JSON.stringify({ en: { translation: jsonData } }, null, 2)
-      );
-      fs.writeFileSync(
-        "es.json",
-        JSON.stringify({ es: { translation: jsonData } }, null, 2)
-      );
-    }
-  );
+      fs.writeFile("es/es.json", JSON.stringify(esData, null, 2), (err) => {
+        if (err) throw err;
+        console.log("Spanish JSON file has been created successfully!");
+      });
+    });
 }
 
 // Usage example:
-csvToJson("path/to/your/csvfile.csv");
+const inputCSVFilePath = "CCP-English-Spanish.csv"; // Replace with your CSV file path
+csvToJson(inputCSVFilePath);
