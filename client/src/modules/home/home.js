@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
-import { ReactComponent as ScreeningImage } from "./images/screening.svg";
+import { ReactComponent as ScreeningImage } from "./images/CCP_transparent.svg";
 
 export default function Home() {
   return (
@@ -30,7 +30,7 @@ export default function Home() {
             </div>
           </Col>
           <Col md={6}>
-            <ScreeningImage className="d-none d-md-block my-5 w-100" />
+            <ScreeningImage className="d-none d-md-block my-0 w-80" />
           </Col>
         </Row>
       </Container>
