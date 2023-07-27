@@ -34,7 +34,7 @@ import { useTranslation, Trans } from "react-i18next";
 // NOTE: Do not conditionally render elements, as this will break after google translates the page.
 
 export default function RunScenarios() {
-  const { t } = useTranslation;
+  const { t } = useTranslation();
   const [form, setForm] = useRecoilState(formState);
   const resetForm = useResetRecoilState(formState);
   const setParams = useSetRecoilState(paramsState);
@@ -157,15 +157,14 @@ export default function RunScenarios() {
             <div>
               <Form onReset={handleReset}>
                 <div className="small text-end text-muted mb-2">
-                  All fields are required
+                  {t("runScenario.fieldRequired")}
                 </div>
                 <Row>
                   <Col md={6}>
                     <div>
-                      <h5>Epidemiological Context</h5>
+                      <h5> {t("runScenario.epidemiological")}</h5>
                       <div className="small text-muted">
-                        Please enter the best estimate of fixed epidemiological
-                        parameters for your setting
+                        {t("runScenario.epidemiologicalTitle")}
                       </div>
                     </div>
                     <div className="p-0">
@@ -173,15 +172,13 @@ export default function RunScenarios() {
                         <ListGroup.Item>
                           <Form.Group as={Row} controlId="populationSize">
                             <Form.Label column sm={12}>
-                              <span>
-                                Number of people in target population for
-                                cervical screening
-                              </span>
+                              <span>{t("runScenario.numPeople")}</span>
                               <OverlayTrigger
                                 overlay={
                                   <Tooltip id="populationSize-help">
-                                    Enter targeted number of people in the
-                                    population eligible for cervical screening{" "}
+                                    <span>
+                                      {t("runScenario.numPeopleInfo")}
+                                    </span>
                                   </Tooltip>
                                 }
                               >
@@ -209,16 +206,11 @@ export default function RunScenarios() {
                         <ListGroup.Item>
                           <Form.Group as={Row} controlId="cinPrevalence">
                             <Form.Label column sm={12}>
-                              <span>
-                                Prevalence of CIN2/3 in population for cervical
-                                screening
-                              </span>
+                              <span>{t("runScenario.prevelance")}</span>
                               <OverlayTrigger
                                 overlay={
                                   <Tooltip id="cinPrevalence-help">
-                                    Enter number of women with CIN2/3 per 100
-                                    people in the population eligible for
-                                    cervical screening
+                                    {t("runScenario.prevelanceInfo")}
                                   </Tooltip>
                                 }
                               >

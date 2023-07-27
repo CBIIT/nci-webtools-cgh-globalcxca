@@ -3,8 +3,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { ReactComponent as ScreeningImage } from "./images/CCP_transparent.svg";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+  const { t } = useTranslation();
   return (
     <>
       <Container>
@@ -13,18 +15,15 @@ export default function Home() {
             <div className="d-flex h-100 align-items-center">
               <div className="mb-4">
                 <h1 className="text-light display-4 mb-3 d-none d-md-block">
-                  Welcome
+                  {t("welcome")}
                 </h1>
                 <hr className="border-white" />
-                <p className="lead text-light">
-                  Explore epidemiological outcomes for target populations with
-                  our screening impact assessment tool.
-                </p>
+                <p className="lead text-light">{t("home.introdution")}</p>
                 <Link
                   className="btn btn-lg btn-outline-light text-decoration-none"
                   to="/run-scenario"
                 >
-                  Run Scenario
+                  {t("runScenario.title")}
                 </Link>
               </div>
             </div>

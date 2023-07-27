@@ -3,14 +3,14 @@ const csv = require("csv-parser");
 
 function csvToJson(csvFilePath) {
   const enData = {
-    en: {
-      translation: {},
-    },
+    // en: {
+    //   translation: {},
+    // },
   };
   const esData = {
-    es: {
-      translation: {},
-    },
+    // es: {
+    //   translation: {},
+    // },
   };
 
   fs.createReadStream(csvFilePath)
@@ -19,10 +19,12 @@ function csvToJson(csvFilePath) {
       const key = row["Key"];
 
       // English Data
-      enData.en.translation[key] = row["English"];
+      //enData.en.translation[key] = row["English"];
+      enData[key] = row["English"];
 
       // Spanish Data
-      esData.es.translation[key] = row["Spanish - Final"];
+      //esData.es.translation[key] = row["Spanish - Final"];
+      esData[key] = row["Spanish - Final"];
     })
     .on("end", () => {
       fs.writeFile("en/en.json", JSON.stringify(enData, null, 2), (err) => {

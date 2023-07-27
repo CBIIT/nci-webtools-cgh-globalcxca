@@ -25,6 +25,8 @@
       gtag("js", new Date());
       gtag("config", "G-6VGMFFG1G2");
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/2.4.0/i18next.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/4.0.3/i18nextBrowserLanguageDetector.min.js"></script>
   </head>
   <body>
     <header>
@@ -45,16 +47,19 @@
           <i class="bi bi-translate me-1 text-primary"></i>
           <!-- <span id="google_translate_element"></span> -->
           <div class="col-auto">
-            <select class="form-select form-select-sm">
-              <option>English</option>
-              <option>Espanol</option>
+            <select
+              class="form-select form-select-sm"
+              data-i18n="[html]header.languageSelect"
+            >
+              <option value="en" data-i18n="header.english">English</option>
+              <option value="es" data-i18n="header.spanish">Español</option>
             </select>
           </div>
         </div>
       </div>
       <div class="bg-primary text-white py-1 d-none d-lg-block">
         <div class="container">
-          <h1 class="h6 fw-semibold">
+          <h1 class="h6 fw-semibold" data-i18n="header.title">
             GlobalCxCa - Cervical Cancer Prevention Scenario Tool
           </h1>
         </div>
@@ -175,6 +180,22 @@
         <div class="text-center">NIH ... Turning Discovery Into Health ®</div>
       </div>
     </footer>
+
+    <script src="../src/locales/locales.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        i18next.on("languageChanged", () => {
+          // Translate elements with data-i18n attribute
+          document.body.querySelectorAll("[data-i18n]").forEach((el) => {
+            const key = el.getAttribute("data-i18n");
+            el.innerHTML = i18next.t(key);
+          });
+        });
+
+        // Call the translation function on page load
+        i18next.changeLanguage(i18next.language);
+      });
+    </script>
 
     <script>
       window.localeChangeListeners = [

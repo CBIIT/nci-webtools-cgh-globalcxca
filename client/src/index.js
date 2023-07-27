@@ -6,7 +6,7 @@ import { RecoilRoot } from "recoil";
 import { reportWebVitals } from "./reportWebVitals";
 import { routes } from "./routes";
 import "./styles/main.scss";
-import "./locales/en/en";
+import "./locales/locales.js"; // Import the locales.js file
 
 const root = createRoot(document.getElementById("root"));
 const router = createHashRouter(routes);
