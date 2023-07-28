@@ -27,12 +27,12 @@ function csvToJson(csvFilePath) {
       esData[key] = row["Spanish - Final"];
     })
     .on("end", () => {
-      fs.writeFile("en/en.json", JSON.stringify(enData, null, 2), (err) => {
+      fs.writeFile("en.json", JSON.stringify(enData, null, 2), (err) => {
         if (err) throw err;
         console.log("English JSON file has been created successfully!");
       });
 
-      fs.writeFile("es/es.json", JSON.stringify(esData, null, 2), (err) => {
+      fs.writeFile("es.json", JSON.stringify(esData, null, 2), (err) => {
         if (err) throw err;
         console.log("Spanish JSON file has been created successfully!");
       });

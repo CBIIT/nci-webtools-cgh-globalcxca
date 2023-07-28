@@ -26,8 +26,10 @@ import BarChart from "./bar-chart";
 import { exportSvg, saveChartAsPNG } from "../../services/plot-utils";
 import * as d3 from "d3";
 import { exportExcel } from "../../services/excel-utils";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function ScenarioResults() {
+  const { t } = useTranslation();
   const params = useRecoilValue(paramsState);
   const results = useRecoilValue(resultsState);
   const [activeTab, setActiveTab] = useState("results");
@@ -46,14 +48,14 @@ export default function ScenarioResults() {
     results.checkedValues &&
     results.checkedValues.length === 2 &&
     results.checkedValues[1] === "ScreenDiagnosticTestTreat"
-      ? "Screening → Diagnosis → Treatment"
+      ? t("results.screenDiagnosisTreatment")
       : results.checkedValues &&
         results.checkedValues.length === 2 &&
         results.checkedValues[1] === "ScreenTriageDiagnosticTestTreat"
-      ? "Screening → Triage → Treatment"
+      ? t("results.screenTriageTreatment")
       : results.checkedValues && results.checkedValues.length === 3
-      ? "Screening → Triage → Diagnosis → Treatment"
-      : "Screening → Treatment";
+      ? t("results.screenTriageDiagnosisTreatment")
+      : t("results.screenTreatment");
 
   const treatedIndex = results.totalNeeded.length - 1;
   let totalNeededToScreen,
@@ -171,26 +173,20 @@ export default function ScenarioResults() {
                 <Table hover responsive data-export>
                   <thead>
                     <tr className="bg-grey">
-                      <th>Epidemiological Context</th>
+                      <th>{t("runScenario.epidemiological")}</th>
                       {/* Placeholder th simplifies pdf export (consistent row lengths) */}
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th>
-                        Number of people in target population for cervical
-                        screening
-                      </th>
+                      <th>{t("runScenario.numPeople")}</th>
                       <td className="text-end text-nowrap">
                         {params.populationSize?.toLocaleString(locale) ?? "N/A"}
                       </td>
                     </tr>
                     <tr>
-                      <th>
-                        Prevalence of CIN2/3 in population for cervical
-                        screening
-                      </th>
+                      <th>{t("runScenario.prevelance")}</th>
                       <td className="text-end text-nowrap">
                         {asPercent(params.cinPrevalence, 0) ?? "N/A"}
                       </td>
@@ -201,20 +197,20 @@ export default function ScenarioResults() {
                 <Table hover responsive data-export>
                   <thead>
                     <tr className="bg-grey">
-                      <th>Participation in Health Services</th>
+                      <th> {t("runScenario.participationTitle")}</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th>Interval of cervical screening in years</th>
+                      <th> {t("runScenario.intervalofCervicalInYears")}</th>
                       <td className="text-end text-nowrap">
                         {params.screeningInterval?.toLocaleString(locale) ??
                           "N/A"}
                       </td>
                     </tr>
                     <tr>
-                      <th>Percent screening coverage</th>
+                      <th>{t("runScenario.percentScreeningCoverage")}</th>
                       <td className="text-end text-nowrap">
                         {asPercent(params.percentScreened, 0) ?? "N/A"}
                       </td>
@@ -223,7 +219,9 @@ export default function ScenarioResults() {
                       params.scenario
                     ) && (
                       <tr>
-                        <th>Percent of screen positives with triage test</th>
+                        <th>
+                          {t("runScenario.percentScreeningPositiveWithTriage")}
+                        </th>
                         <td className="text-end text-nowrap">
                           {asPercent(params.percentTriaged, 0) ?? "N/A"}
                         </td>
@@ -273,7 +271,7 @@ export default function ScenarioResults() {
                 <Table hover responsive data-export>
                   <thead>
                     <tr className="bg-grey">
-                      <th>Screening and Treatment Characteristics</th>
+                      <th>{t("runScenario.screeningAndTreatmentTitle")}</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -281,7 +279,10 @@ export default function ScenarioResults() {
                     {params.screeningTest && (
                       <>
                         <tr className="table-light">
-                          <th>Cervical screening test chosen</th>
+                          <th>
+                            {" "}
+                            {t("runScenario.cervicalScreeningTestChosen")}
+                          </th>
                           <td className="text-end text-nowrap">
                             {asLabel(params.screeningTest, screeningTests) ??
                               "N/A"}
@@ -289,7 +290,7 @@ export default function ScenarioResults() {
                         </tr>
                         <tr>
                           <th className="ps-3">
-                            Screening test sensitivity for CIN2/3 (NIC2/3)
+                            {t("runScenario.screeningTestSenvitivity")}
                           </th>
                           <td className="text-end text-nowrap">
                             {asPercent(params.screeningTestSensitivity, 0) ??
@@ -298,7 +299,7 @@ export default function ScenarioResults() {
                         </tr>
                         <tr>
                           <th className="ps-3">
-                            Screening test specificity for CIN2/3 (NIC2/3)
+                            {t("runScenario.screeningTestSpecificity")}
                           </th>
                           <td className="text-end text-nowrap">
                             {asPercent(params.screeningTestSpecificity, 0) ??
@@ -311,15 +312,16 @@ export default function ScenarioResults() {
                     {params.triageTest && (
                       <>
                         <tr className="table-light">
-                          <th>Triage or diagnostic test chosen</th>
+                          <th>
+                            {t("runScenario.triageOrDiagnosticTestChosen")}
+                          </th>
                           <td className="text-end text-nowrap">
                             {asLabel(params.triageTest, triageTests) ?? "N/A"}
                           </td>
                         </tr>
                         <tr>
                           <th className="ps-3">
-                            Triage or diagnostic test sensitivity for CIN2/3
-                            (NIC2/3)
+                            {t("runScenario.triageOrDiagnosticTestSensitivity")}
                           </th>
                           <td className="text-end text-nowrap">
                             {asPercent(params.triageTestSensitivity, 0) ??
@@ -328,8 +330,7 @@ export default function ScenarioResults() {
                         </tr>
                         <tr>
                           <th className="ps-3">
-                            Triage or diagnostic test specificity for CIN2/3
-                            (NIC2/3)
+                            {t("runScenario.triageOrDiagnosticTestSpecificity")}
                           </th>
                           <td className="text-end text-nowrap">
                             {asPercent(params.triageTestSpecificity, 0) ??
@@ -342,7 +343,7 @@ export default function ScenarioResults() {
                     {params.diagnosticTest && (
                       <>
                         <tr className="table-light">
-                          <th>Diagnostic test chosen</th>
+                          <th> {t("runScenario.diagnosticTestChosen")}</th>
                           <td className="text-end text-nowrap">
                             {asLabel(params.diagnosticTest, diagnosticTests) ??
                               "N/A"}
@@ -350,7 +351,7 @@ export default function ScenarioResults() {
                         </tr>
                         <tr>
                           <th className="ps-3">
-                            Diagnostic test sensitivity for CIN2/3 (NIC2/3)
+                            {t("runScenario.diagnosticTestSensitivity")}
                           </th>
                           <td className="text-end text-nowrap">
                             {asPercent(params.diagnosticTestSensitivity, 0) ??
@@ -359,7 +360,7 @@ export default function ScenarioResults() {
                         </tr>
                         <tr>
                           <th className="ps-3">
-                            Diagnostic test specificity for CIN2/3 (NIC2/3)
+                            {t("runScenario.diagnosticTestSpecificity")}
                           </th>
                           <td className="text-end text-nowrap">
                             {asPercent(params.diagnosticTestSpecificity, 0) ??
@@ -400,10 +401,10 @@ export default function ScenarioResults() {
                     variant="link"
                     onClick={() => handleExportSvg(ScreentestBarChartId)}
                   >
-                    Export SVG
+                    {t("general.exportSVG")}
                   </Button>
                   <Button variant="link" id="savePNG2" className="savePNG">
-                    Export PNG
+                    {t("general.exportPNG")}
                   </Button>
                 </Col>
               </Col>
@@ -438,10 +439,10 @@ export default function ScenarioResults() {
                     variant="link"
                     onClick={() => handleExportSvg(barChartId)}
                   >
-                    Export SVG
+                    {t("general.exportSVG")}
                   </Button>
                   <Button variant="link" id="savePNG1" className="savePNG">
-                    Export PNG
+                    {t("general.exportPNG")}
                   </Button>
                 </Col>
               </Col>
@@ -469,10 +470,10 @@ export default function ScenarioResults() {
                     variant="link"
                     onClick={() => handleExportSvg(pieChartId)}
                   >
-                    Export SVG
+                    {t("general.exportSVG")}
                   </Button>
                   <Button variant="link" id="savePNG0" className="savePNG">
-                    Export PNG
+                    {t("general.exportPNG")}
                   </Button>
                 </Col>
               </Col>
@@ -497,10 +498,10 @@ export default function ScenarioResults() {
                     variant="link"
                     onClick={() => handleExportSvg(pieChartId)}
                   >
-                    Export SVG
+                    {t("general.exportSVG")}
                   </Button>
                   <Button variant="link" id="savePNG0" className="savePNG">
-                    Export PNG
+                    {t("general.exportPNG")}
                   </Button>
                 </Col>
               </Col>
@@ -517,13 +518,13 @@ export default function ScenarioResults() {
             <Table hover responsive data-export>
               <thead>
                 <tr className="bg-info text-light">
-                  <th>Annual Targets</th>
+                  <th>{t("results.annualTargets")}</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="table-info">
-                  <th>Population targeted for screening with 100% coverage</th>
+                  <th>{t("results.populationTargetedWithCoverageTitle")}</th>
                   <td className="text-end text-nowrap">
                     {" "}
                     {results.populationTargeted !== undefined &&
@@ -536,7 +537,7 @@ export default function ScenarioResults() {
                 </tr>
                 <tr className="table-info">
                   <th className="ps-3">
-                    Population targeted for screening without Precancer
+                    {t("results.populationTargetedWithoutPrecancer")}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {results.healthyWomenTargetedForScreening?.toLocaleString(
@@ -552,7 +553,7 @@ export default function ScenarioResults() {
                 </tr>
                 <tr className="table-info">
                   <th className="ps-3">
-                    Population targeted for screening with Precancer
+                    {t("results.populationTargetedWithPrecancer")}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {results.precancersTargetedForScreening?.toLocaleString(
@@ -572,25 +573,19 @@ export default function ScenarioResults() {
             <Table hover responsive data-export>
               <thead>
                 <tr className="bg-warning text-light">
-                  <th>
-                    Impact on Cervical Precancer and Impact on the Population
-                    Targeted for Screening
-                  </th>
+                  <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="table-warning">
-                  <th>Percent precancers treated</th>
+                  <th>{t("results.percentPrecancersTreated")}</th>
                   <td className="text-end text-nowrap">
                     {asPercent(results.percentPrecancersTreated) ?? "N/A"}
                   </td>
                 </tr>
                 <tr className="table-warning">
-                  <th>
-                    Percent of population targeted for screening without
-                    precancer and possibly over-treated
-                  </th>
+                  <th>{t("results.percentPolulationTargetedOverTreated")}</th>
                   <td className="text-end text-nowrap">
                     {asPercent(results.percentHealthyOvertreated) ?? "N/A"}
                   </td>
@@ -601,14 +596,14 @@ export default function ScenarioResults() {
             <Table hover responsive data-export>
               <thead>
                 <tr className="bg-danger text-light">
-                  <th>Missed Precancers</th>
+                  <th>{t("results.missedPrecancersTitle")}</th>
                   <th></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="table-danger">
-                  <th>Total precancers missed (% of all precancers)</th>
+                  <th>{t("results.totalPrecancersMissed")}</th>
                   <td className="text-end text-nowrap">
                     {asPercent(results.percentPrecancersMissed) ?? "N/A"}
                   </td>
@@ -622,12 +617,14 @@ export default function ScenarioResults() {
                   </td>
                 </tr>
                 <tr className="table-danger">
-                  <th>Sources of missed precancers (% missed precancers)</th>
+                  <th>{t("results.sourcesMissedPrecancers")}</th>
                   <td></td>
                   <td></td>
                 </tr>
                 <tr className="table-light">
-                  <th className="ps-3">Did not have screening test</th>
+                  <th className="ps-3">
+                    {t("results.didNotHaveScreeningTest")}
+                  </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
                     {asPercent(results.percentMissed[0]) ?? "N/A"}
@@ -645,7 +642,9 @@ export default function ScenarioResults() {
                   </td>
                 </tr>
                 <tr className="table-light">
-                  <th className="ps-3">Sensitivity of screening test</th>
+                  <th className="ps-3">
+                    {t("results.sensitivityOfScreeningTest")}
+                  </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
                       results.percentMissedDueToSensitivityOfScreeningTest
@@ -667,7 +666,7 @@ export default function ScenarioResults() {
                 </tr>
 
                 <tr className="table-light">
-                  <th className="ps-3">Loss at triage test</th>
+                  <th className="ps-3">{t("results.lossAtTriageTest")}</th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
                     {/* {asPercent(results.percentMissed[1]) ?? "N/A"} */}
@@ -709,7 +708,9 @@ export default function ScenarioResults() {
                 </tr>
 
                 <tr className="table-light">
-                  <th className="ps-3">Sensitivity of triage test</th>
+                  <th className="ps-3">
+                    {t("results.sensitivityOfTriageTest")}
+                  </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
                       results.percentMissedDueToSensitivityOfTriageTest
@@ -771,7 +772,7 @@ export default function ScenarioResults() {
                 </tr>
 
                 <tr className="table-light">
-                  <th className="ps-3">Loss at diagnosis test</th>
+                  <th className="ps-3">{t("results.lossAtDiagnosis")}</th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
                       results.percentMissedDueToLossAtDiagnosticTriage
@@ -806,7 +807,9 @@ export default function ScenarioResults() {
                 </tr>
 
                 <tr className="table-light">
-                  <th className="ps-3">Sensitivity of diagnostic test</th>
+                  <th className="ps-3">
+                    {t("results.sensitivityOfDiagnosticTest")}
+                  </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
                       results.percentMissedDueToSensitivityOfDiagnosticTriageTest
@@ -851,7 +854,7 @@ export default function ScenarioResults() {
                 </tr>
 
                 <tr className="table-light">
-                  <th className="ps-3">Loss at treatment</th>
+                  <th className="ps-3">{t("results.lossAtTreatment")}</th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(results.percentMissedDueToLossAtTreatment) ??
                       "N/A"} */}
@@ -876,13 +879,13 @@ export default function ScenarioResults() {
             <Table hover responsive data-export>
               <thead>
                 <tr className="bg-success text-light">
-                  <th>Annual Impact on Resources</th>
+                  <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="table-light">
-                  <th>Total requiring screening test</th>
+                  <th>{t("results.totalRequiringScreeningTest")}</th>
                   <td className="text-end text-nowrap">
                     {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
                       "N/A"} */}
@@ -891,7 +894,7 @@ export default function ScenarioResults() {
                   </td>
                 </tr>
                 <tr className="table-light">
-                  <th>Total requiring triage/diagnostic test</th>
+                  <th>{t("results.totalRequiringTriageDiagnosticTest")}</th>
                   <td className="text-end text-nowrap">
                     {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
                       "N/A"} */}
@@ -900,7 +903,7 @@ export default function ScenarioResults() {
                   </td>
                 </tr>
                 <tr className="table-light">
-                  <th>Total requiring diagnostic test</th>
+                  <th>{t("results.totalRequiringDiagnosticTest")}</th>
                   <td className="text-end text-nowrap">
                     {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                       locale
@@ -910,7 +913,7 @@ export default function ScenarioResults() {
                   </td>
                 </tr>
                 <tr className="table-light">
-                  <th>Total requiring treatment</th>
+                  <th>{t("results.totalRequiringTreatment")}</th>
                   <td className="text-end text-nowrap">
                     {/* {results.totalNeededToTreat?.toLocaleString(locale) ??
                       "N/A"} */}
@@ -928,17 +931,17 @@ export default function ScenarioResults() {
             Back to Scenario
           </Link> */}
           <Button onClick={saveScenario} className="m-1" variant="primary">
-            Save Scenario
+            {t("results.saveScenario")}
           </Button>
           <Button onClick={exportResults} className="m-1" variant="primary">
-            Export Results to PDF
+            {t("results.exportResultsToPDF")}
           </Button>
           <Button
             onClick={exportResultsExcel}
             className="m-1"
             variant="primary"
           >
-            Export Results to Excel
+            {t("results.exportResultsToExcel")}
           </Button>
         </div>
       </Container>

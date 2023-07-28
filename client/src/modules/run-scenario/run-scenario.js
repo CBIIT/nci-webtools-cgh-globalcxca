@@ -34,7 +34,7 @@ import { useTranslation, Trans } from "react-i18next";
 // NOTE: Do not conditionally render elements, as this will break after google translates the page.
 
 export default function RunScenarios() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [form, setForm] = useRecoilState(formState);
   const resetForm = useResetRecoilState(formState);
   const setParams = useSetRecoilState(paramsState);
@@ -125,6 +125,16 @@ export default function RunScenarios() {
     // Set the initial checked value to "Screening Test"
     setCheckedValues(["ScreenTreat"]);
   }, []);
+
+  useEffect(() => {
+    // Set the initial checked value to "Screening Test"
+    setCheckedValues(["ScreenTreat"]);
+  }, []);
+
+  // Function to handle language change
+  function handleLanguageChange(newLanguage) {
+    i18n.changeLanguage(newLanguage);
+  }
 
   const results = runModel(form);
   const params = mapValues(form, asNumber);
@@ -243,10 +253,12 @@ export default function RunScenarios() {
                     </div>
 
                     <Card.Header>
-                      <Card.Title>Participation in Health Services</Card.Title>
+                      <Card.Title>
+                        {" "}
+                        {t("runScenario.participationTitle")}
+                      </Card.Title>
                       <Card.Text className="text-muted small">
-                        Please enter the observed or anticipated participation
-                        in the cervical cancer screening program in your setting
+                        {t("runScenario.participationWarning")}
                       </Card.Text>
                     </Card.Header>
                     <Card.Body className="p-0">
@@ -255,14 +267,12 @@ export default function RunScenarios() {
                           <Form.Group as={Row} controlId="screeningInterval">
                             <Form.Label column sm={12}>
                               <span>
-                                Interval of cervical screening in years
+                                {t("runScenario.intervalofCervicalInYears")}
                               </span>
                               <OverlayTrigger
                                 overlay={
                                   <Tooltip id="screeningInterval-help">
-                                    If people have one screening in a lifetime,
-                                    enter 20 years. For two cervical screenings
-                                    in a lifetime, enter 10 years.
+                                    {t("runScenario.intervalInformation")}
                                   </Tooltip>
                                 }
                               >
@@ -295,11 +305,14 @@ export default function RunScenarios() {
                         <ListGroup.Item>
                           <Form.Group as={Row} controlId="percentScreened">
                             <Form.Label column sm={12}>
-                              <span>Percent screening coverage</span>
+                              <span>
+                                {" "}
+                                {t("runScenario.percentScreeningCoverage")}
+                              </span>
                               <OverlayTrigger
                                 overlay={
                                   <Tooltip id="percentScreened-help">
-                                    Enter a value between 0 and 100.
+                                    {t("general.enterValue0t100HelpText")}
                                   </Tooltip>
                                 }
                               >
@@ -341,12 +354,14 @@ export default function RunScenarios() {
                             <Form.Group as={Row} controlId="percentTriaged">
                               <Form.Label column sm={12}>
                                 <span>
-                                  Percent of screen positives with triage test
+                                  {t(
+                                    "runScenario.percentScreeningPositiveWithTriage"
+                                  )}
                                 </span>
                                 <OverlayTrigger
                                   overlay={
                                     <Tooltip id="percentTriaged-help">
-                                      Enter a value between 0 and 100.
+                                      {t("general.enterValue0t100HelpText")}
                                     </Tooltip>
                                   }
                                 >
@@ -407,7 +422,7 @@ export default function RunScenarios() {
                                 <OverlayTrigger
                                   overlay={
                                     <Tooltip id="percentDiagnosticTriaged-help">
-                                      Enter a value between 0 and 100.
+                                      {t("general.enterValue0t100HelpText")}
                                     </Tooltip>
                                   }
                                 >
@@ -447,19 +462,20 @@ export default function RunScenarios() {
                               <span>
                                 {
                                   {
-                                    ScreenTreat:
-                                      "Percent of screen positives treated",
-                                    ScreenDiagnosticTestTreat:
-                                      "Percent of triage/diagnostic test positives treated",
-                                    ScreenTriageDiagnosticTestTreat:
-                                      "Percent of diagnostic test positives treated",
+                                    ScreenTreat: t("runScenario.ScreenTreat"),
+                                    ScreenDiagnosticTestTreat: t(
+                                      "runScenario.ScreenDiagnosticTestTreat"
+                                    ),
+                                    ScreenTriageDiagnosticTestTreat: t(
+                                      "runScenario.percentDiagnosticPositiveTreated"
+                                    ),
                                   }[form.scenario]
                                 }
                               </span>
                               <OverlayTrigger
                                 overlay={
                                   <Tooltip id="percentDiagnosticTriaged-help">
-                                    Enter a value between 0 and 100.
+                                    {t("general.enterValue0t100HelpText")}
                                   </Tooltip>
                                 }
                               >
@@ -494,9 +510,12 @@ export default function RunScenarios() {
 
                   <Col md={6}>
                     <Card.Header>
-                      <Card.Title>Strategy Selection</Card.Title>
+                      <Card.Title>
+                        {" "}
+                        {t("runScenario.strategySelectionTitle")}
+                      </Card.Title>
                       <Card.Text className="small text-muted">
-                        Please choose strategies to include in your scenario.
+                        {t("runScenario.strategyChoosen")}
                       </Card.Text>
                     </Card.Header>
                     <Card.Body className="pt-2 pb-2">
@@ -523,11 +542,12 @@ export default function RunScenarios() {
                       </Row>
                     </Card.Body>
                     <Card.Header>
-                      <Card.Title>Strategy Characteristics</Card.Title>
+                      <Card.Title>
+                        {" "}
+                        {t("runScenario.screeningAndTreatmentTitle")}
+                      </Card.Title>
                       <Card.Text className="small text-muted">
-                        Please select the screening, triage and diagnostic tests
-                        and treatment modality you will use and enter an
-                        estimate of their performance characteristics.
+                        {t("runScenario.screeningAndTreatmentWarning")}
                       </Card.Text>
                     </Card.Header>
                     <Card.Body className="p-0">
@@ -535,7 +555,10 @@ export default function RunScenarios() {
                         <ListGroup.Item>
                           <Form.Group as={Row} controlId="screeningTest">
                             <Form.Label column sm={12}>
-                              <span>Cervical screening test chosen</span>
+                              <span>
+                                {" "}
+                                {t("runScenario.cervicalScreeningTestChosen")}
+                              </span>
                             </Form.Label>
                             <Col sm={12}>
                               <Form.Select
@@ -565,12 +588,12 @@ export default function RunScenarios() {
                           >
                             <Form.Label column sm={12} className="">
                               <span>
-                                Screening test sensitivity for CIN2/3 (NIC2/3)
+                                {t("runScenario.screeningTestSenvitivity")}
                               </span>
                               <OverlayTrigger
                                 overlay={
                                   <Tooltip id="screeningTestSensitivity-help">
-                                    Enter a value between 0 and 100.
+                                    {t("general.enterValue0t100HelpText")}
                                   </Tooltip>
                                 }
                               >
@@ -607,12 +630,12 @@ export default function RunScenarios() {
                           >
                             <Form.Label column sm={12} className="">
                               <span>
-                                Screening test specificity for CIN2/3 (NIC2/3)
+                                {t("runScenario.screeningTestSpecificity")}
                               </span>
                               <OverlayTrigger
                                 overlay={
                                   <Tooltip id="screeningTestSpecificity-help">
-                                    Enter a value between 0 and 100.
+                                    {t("enterValue0t100HelpText")}
                                   </Tooltip>
                                 }
                               >
@@ -655,7 +678,12 @@ export default function RunScenarios() {
                           <ListGroup.Item>
                             <Form.Group as={Row} controlId="triageTest">
                               <Form.Label column sm={12}>
-                                <span>Triage or diagnostic test chosen</span>
+                                <span>
+                                  {" "}
+                                  {t(
+                                    "runScenario.triageOrDiagnosticTestChosen"
+                                  )}
+                                </span>
                               </Form.Label>
                               <Col sm={12}>
                                 <Form.Select
@@ -669,7 +697,7 @@ export default function RunScenarios() {
                                   ].includes(form.scenario)}
                                 >
                                   <option value="" hidden>
-                                    Select a test
+                                    {t("runScenario.selectTest")}
                                   </option>
                                   {triageTests.map((t) => (
                                     <option key={t.value} value={t.value}>
@@ -688,13 +716,14 @@ export default function RunScenarios() {
                             >
                               <Form.Label column sm={12} className="">
                                 <span>
-                                  Triage or diagnostic test sensitivity for
-                                  CIN2/3 (NIC2/3)
+                                  {t(
+                                    "runScenario.triageOrDiagnosticTestSensitivity"
+                                  )}
                                 </span>
                                 <OverlayTrigger
                                   overlay={
                                     <Tooltip id="screeningTestSpecificity-help">
-                                      Enter a value between 0 and 100.
+                                      {t("enterValue0t100HelpText")}
                                     </Tooltip>
                                   }
                                 >
@@ -734,13 +763,14 @@ export default function RunScenarios() {
                             >
                               <Form.Label column sm={12} className="">
                                 <span>
-                                  Triage or diagnostic test specificity for
-                                  CIN2/3 (NIC2/3)
+                                  {t(
+                                    "runScenario.triageOrDiagnosticTestSpecificity"
+                                  )}
                                 </span>
                                 <OverlayTrigger
                                   overlay={
                                     <Tooltip id="screeningTestSpecificity-help">
-                                      Enter a value between 0 and 100.
+                                      {t("general.enterValue0t100HelpText")}{" "}
                                     </Tooltip>
                                   }
                                 >
@@ -786,7 +816,10 @@ export default function RunScenarios() {
                           <ListGroup.Item>
                             <Form.Group as={Row} controlId="diagnosticTest">
                               <Form.Label column sm={12}>
-                                <span>Diagnostic test chosen</span>
+                                <span>
+                                  {" "}
+                                  {t("runScenario.diagnosticTestChosen")}
+                                </span>
                               </Form.Label>
                               <Col sm={12}>
                                 <Form.Select
@@ -818,13 +851,12 @@ export default function RunScenarios() {
                             >
                               <Form.Label column sm={12} className="">
                                 <span>
-                                  Diagnostic test sensitivity for CIN2/3
-                                  (NIC2/3)
+                                  {t("runScenario.diagnosticTestSensitivity")}
                                 </span>
                                 <OverlayTrigger
                                   overlay={
                                     <Tooltip id="diagnosticTestSensitivity-help">
-                                      Enter a value between 0 and 100.
+                                      {t("general.enterValue0t100HelpText")}
                                     </Tooltip>
                                   }
                                 >
@@ -863,13 +895,12 @@ export default function RunScenarios() {
                             >
                               <Form.Label column sm={12} className="">
                                 <span>
-                                  Diagnostic test specificity for CIN2/3
-                                  (NIC2/3)
+                                  {t("runScenario.diagnosticTestSpecificity")}
                                 </span>
                                 <OverlayTrigger
                                   overlay={
                                     <Tooltip id="diagnosticTestSpecificity-help">
-                                      Enter a value between 0 and 100.
+                                      {t("general.enterValue0t100HelpText")}
                                     </Tooltip>
                                   }
                                 >
@@ -912,7 +943,7 @@ export default function RunScenarios() {
                     className="shadow"
                     variant="outline-primary"
                   >
-                    Reset
+                    {t("general.reset")}
                   </Button>
                 </Form.Group>
               </Form>

@@ -44,19 +44,22 @@
           />
         </a>
         <div class="d-flex align-items-center justify-content-end">
-          <i class="bi bi-translate me-1 text-primary"></i>
+          <!-- <i class="bi bi-translate me-1 text-primary"></i> -->
           <!-- <span id="google_translate_element"></span> -->
-          <div class="col-auto">
+          <!-- <div class="col-auto">
             <select
               class="form-select form-select-sm"
               data-i18n="[html]header.languageSelect"
+              id="languageSelect"
             >
               <option value="en" data-i18n="header.english">English</option>
               <option value="es" data-i18n="header.spanish">Español</option>
             </select>
-          </div>
+          </div> -->
+          <div class="col-auto" id="languageSelectContainer"></div>
         </div>
       </div>
+
       <div class="bg-primary text-white py-1 d-none d-lg-block">
         <div class="container">
           <h1 class="h6 fw-semibold" data-i18n="header.title">
@@ -182,20 +185,6 @@
     </footer>
 
     <script src="../src/locales/locales.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        i18next.on("languageChanged", () => {
-          // Translate elements with data-i18n attribute
-          document.body.querySelectorAll("[data-i18n]").forEach((el) => {
-            const key = el.getAttribute("data-i18n");
-            el.innerHTML = i18next.t(key);
-          });
-        });
-
-        // Call the translation function on page load
-        i18next.changeLanguage(i18next.language);
-      });
-    </script>
 
     <script>
       window.localeChangeListeners = [
