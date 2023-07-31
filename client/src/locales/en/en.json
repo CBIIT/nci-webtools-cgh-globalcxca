@@ -135,6 +135,12 @@
     "asssumptions": "Assumptions"
   },
   "about": {
-    "title": "Description and sources for simulation parameters"
+    "title": "Description and sources for scenario parameters",
+    "parameter": "Parameter",
+    "lowValue": "Low Value",
+    "highValue": "High Value",
+    "defaultValue": "Default Value",
+    "justification": "Justification",
+    "source": "Source"
   }
 }

@@ -4,33 +4,34 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function About() {
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="bg-light py-4">
       <Container>
-        <h1 className="text-center h2">
-          Description and sources for scenario parameters
-        </h1>
+        <h1 className="text-center h2">{t("about.title")}</h1>
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
-            <h4 className="text-center mb-1">Epidemiological Context</h4>
+            <h4 className="text-center mb-1">
+              {t("runScenario.epidemiological")}
+            </h4>
             <Table bordered hover>
               <thead>
                 <tr>
-                  <th>Parameter</th>
-                  <th>Low Value</th>
-                  <th>High Value</th>
-                  <th>Default Value</th>
-                  <th>Justification</th>
-                  <th>Sources</th>
+                  <th>{t("about.parameter")}</th>
+                  <th>{t("about.lowValue")}</th>
+                  <th>{t("about.highValue")}</th>
+                  <th>{t("about.defaultValue")}</th>
+                  <th>{t("about.justification")}</th>
+                  <th>{t("about.source")}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>
-                    Prevalence of CIN2/3 in population for cervical screening
-                  </td>
+                  <td>{t("runScenario.prevelance")}</td>
                   <td>0%</td>
                   <td>5%</td>
                   <td>2%</td>
@@ -78,22 +79,22 @@ export default function About() {
         <Card>
           <Card.Body className="pt-2">
             <h4 className="text-center mb-1">
-              Participation in Health Services
+              {t("runScenario.participationTitle")}
             </h4>
             <Table bordered hover>
               <thead>
                 <tr>
-                  <th>Parameter</th>
-                  <th>Low Value</th>
-                  <th>High Value</th>
-                  <th>Default Value</th>
-                  <th>Justification</th>
-                  <th>Sources</th>
+                  <th>{t("about.parameter")}</th>
+                  <th>{t("about.lowValue")}</th>
+                  <th>{t("about.highValue")}</th>
+                  <th>{t("about.defaultValue")}</th>
+                  <th>{t("about.justification")}</th>
+                  <th>{t("about.source")}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Interval of cervical screening in years</td>
+                  <td>{t("about.source")}Interval of cervical screening in years</td>
                   <td>1</td>
                   <td>40</td>
                   <td>5</td>
