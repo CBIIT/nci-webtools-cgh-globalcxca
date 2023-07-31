@@ -20,7 +20,6 @@ root.render(
         <RouterProvider router={router} />
       </RecoilRoot>
     </LanguageProvider>
-    <LanguageSelect /> {/* Render LanguageSelect outside the Router */}
   </StrictMode>
 );
 ReactDOM.render(
