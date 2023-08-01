@@ -157,13 +157,28 @@ export default function RunScenarios() {
     window.scrollTo(0, 0);
     resetForm();
   }
+  useEffect(() => {
+    // Get the height of the header element (assuming you have it as "headerHeight")
+    const headerHeight = 310;
+
+    // Calculate the available height for the Col container
+    const availableHeight = window.innerHeight - headerHeight;
+
+    // Get the Col element by id
+    const colElement = document.getElementById("col-with-scroll");
+
+    // Set the calculated height as the maxHeight style property
+    if (colElement) {
+      colElement.style.maxHeight = `${availableHeight}px`;
+    }
+  }, []);
 
   return (
     <div className="bg-light py-4">
       {/* <Container> */}
       <div className="mx-3">
         <Row>
-          <Col md={5} style={{ overflow: "auto", maxHeight: "100vh" }}>
+          <Col md={5} id="col-with-scroll" style={{ overflowY: "auto" }}>
             <div>
               <Form onReset={handleReset}>
                 <div className="small text-end text-muted mb-2">
