@@ -310,7 +310,7 @@ export default function RunScenarios() {
                                   required
                                 />
                                 <span className="text-nowrap">
-                                  {form.screeningInterval} Year(s)
+                                  {form.screeningInterval} {t("general.years")}
                                 </span>
                               </InputGroup>
                             </Col>

@@ -67,7 +67,8 @@
     "results": "Results",
     "scenarioAssumption": "Scenario Assumptions",
     "search": "Search",
-    "noDataAvailable": "NO DATA AVAILABLE"
+    "noDataAvailable": "NO DATA AVAILABLE",
+    "years": "Year(s)"
   },
   "runScenario": {
     "title": "Run Scenario",
