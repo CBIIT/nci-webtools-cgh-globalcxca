@@ -166,7 +166,9 @@ export default function CompareScenarios() {
                   <Card.Header>
                     <Nav variant="tabs">
                       <Nav.Item>
-                        <Nav.Link eventKey="results">Results</Nav.Link>
+                        <Nav.Link eventKey="results">
+                          {t("general.results")}
+                        </Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
                         <Nav.Link eventKey="scenarioAssumptions">
@@ -1027,7 +1029,8 @@ export default function CompareScenarios() {
                   className="m-1"
                   variant="primary"
                 >
-                  Export Results to PDF
+                  {" "}
+                  {t("results.exportResultsToPDF")}
                 </Button>
               </div>
             </>

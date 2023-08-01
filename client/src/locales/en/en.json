@@ -13,9 +13,21 @@
     "title": "GlobalCxCa - Cervical Cancer Prevention Scenario Tool"
   },
   "footer": {
+    "centerForGlabalHealth": "Center for Global Health",
+    "atTheNationalCancerInstitute": "at the National Cancer Institute",
     "contactInformation": "CONTACT INFORMATION",
+    "contactUs": "Contact Us",
     "policies": "POLICIES",
-    "moreInformation": "MORE INFORMATION"
+    "accessibility": "Accessibility",
+    "disclaimer": "Disclaimer",
+    "FOIA": "FOIA",
+    "HHSVulnerabilityDisclosure": "HHS Vulnerability Disclosure",
+    "moreInformation": "MORE INFORMATION",
+    "usDepartmentOfHealthAndHumanServices": "U.S. Department of Health and Human Services",
+    "nationalInstitutesOfHealth": "National Institutes of Health",
+    "nationalCancerInstitude": "National Cancer Institute",
+    "usaGov": "USA.gov",
+    "nihSlogan": "NIH ... Turning Discovery Into Health "
   },
   "navbar": {
     "home": "Home",
@@ -32,8 +44,11 @@
     "welcome": "Welcome",
     "enterValue0t100HelpText": "Enter a value between 0 and 100.",
     "screening": "Sceening",
+    "screeningTestLabel": "Screening Test",
     "triage": "Triage",
+    "triageTestLabel": "Triage Test",
     "diagnosis": "Diagnosis",
+    "diagnosticTestLabel": "Diagnostic Test",
     "treatment": "Treatment",
     "parameter": "Parameter",
     "lowValue": "Low Value",
@@ -48,7 +63,11 @@
     "sourcesJustification": "Sources/justification",
     "reset": "Reset",
     "exportSVG": "Export SVG",
-    "exportPNG": "Export PNG"
+    "exportPNG": "Export PNG",
+    "results": "Results",
+    "scenarioAssumption": "Scenario Assumptions",
+    "search": "Search",
+    "noDataAvailable": "NO DATA AVAILABLE"
   },
   "runScenario": {
     "title": "Run Scenario",
@@ -101,7 +120,8 @@
     "screenTriageDiagnosisTreatment": "Screening → Triage → Diagnosis → Treatment",
     "screenTreatment": "Screening → Treatment",
     "interventionsRequired": "Interventions Required",
-    "noDataAvailable": "NO DATA AVAILABLE",
+    "populationWithPrecancer": "Population with Precancer",
+    "populationWithoutPrecancer": "Population without Precancer",
     "precancersTreated.": "Precancers Treated",
     "annualTargets": "Annual Targets",
     "populationTargetedWithCoverageTitle": "Population targeted for screening with 100% coverage",

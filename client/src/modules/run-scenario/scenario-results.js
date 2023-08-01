@@ -37,9 +37,9 @@ export default function ScenarioResults() {
   const ScreentestBarChartId = "screenTestBarChart";
   const barChartId = "barChart";
   const pieChartId = "pieChart";
-  const barChartTitle = "Interventions Required";
-  const pieChartTitle1 = "Population with Precancer";
-  const pieChartTitle2 = "Population Without Precancer";
+  const barChartTitle = t("results.interventionsRequired");
+  const pieChartTitle1 = t("results.populationWithPrecancer");
+  const pieChartTitle2 = t("results.populationWithoutPrecancer");
 
   // console.log("params", params);
   console.log("result", results);
