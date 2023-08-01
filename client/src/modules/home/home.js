@@ -29,7 +29,12 @@ export default function Home() {
             </div>
           </Col>
           <Col md={6}>
-            <ScreeningImage className="d-none d-md-block my-0 w-80" />
+            {/* Wrap the SVG with the container */}
+            <div className="svg-center-container">
+              <div className="svg-container">
+                <ScreeningImage className="d-none d-md-block my-0 w-80" />
+              </div>
+            </div>
           </Col>
         </Row>
       </Container>
