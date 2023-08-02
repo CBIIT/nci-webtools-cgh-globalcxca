@@ -109,7 +109,8 @@ export function runModel(params) {
     specificity[1] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
     sensitivity[2] = parseInt(params?.diagnosticTestSensitivity, 10) / 100 || 0;
     specificity[2] = parseInt(params?.diagnosticTestSpecificity, 10) / 100 || 0;
-    screentest[1] = params?.diagnosticTest;
+    screentest[1] = params?.triageTest || "N/A";
+    screentest[2] = params?.diagnosticTest;
   } else {
     coverage[2] = parseInt(params?.percentTreated, 10) / 100 || 0;
   }

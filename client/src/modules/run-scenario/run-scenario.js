@@ -45,6 +45,7 @@ export default function RunScenarios() {
   function handleChange(e) {
     const { name, value, checked } = e.target;
     console.log("checked", checked);
+    console.log("value", value);
 
     if (name === "ScreenTreat" && !checked) {
       // Ignore the unchecked action for "Screening Test" checkbox

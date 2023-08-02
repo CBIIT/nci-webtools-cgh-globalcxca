@@ -40,22 +40,146 @@ export default function ScenarioResults() {
   const barChartTitle = t("results.interventionsRequired");
   const pieChartTitle1 = t("results.populationWithPrecancer");
   const pieChartTitle2 = t("results.populationWithoutPrecancer");
+  let screenTest = "";
+  let triageTest = "";
+  let diagnosisTest = "";
+  let chartTiles = t("results.screenTreatment");
 
   // console.log("params", params);
   console.log("result", results);
 
-  const chartTiles =
+  // chartTiles =
+  //   results.checkedValues &&
+  //   results.checkedValues.length === 2 &&
+  //   results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+  //     ? t("results.screenDiagnosisTreatment")
+  //     : results.checkedValues &&
+  //       results.checkedValues.length === 2 &&
+  //       results.checkedValues[1] === "ScreenTriageDiagnosticTestTreat"
+  //     ? t("results.screenTriageTreatment")
+  //     : results.checkedValues && results.checkedValues.length === 3
+  //     ? t("results.screenTriageDiagnosisTreatment")
+  //     : t("results.screenTreatment");
+
+  if (
     results.checkedValues &&
     results.checkedValues.length === 2 &&
     results.checkedValues[1] === "ScreenDiagnosticTestTreat"
-      ? t("results.screenDiagnosisTreatment")
-      : results.checkedValues &&
-        results.checkedValues.length === 2 &&
-        results.checkedValues[1] === "ScreenTriageDiagnosticTestTreat"
-      ? t("results.screenTriageTreatment")
-      : results.checkedValues && results.checkedValues.length === 3
-      ? t("results.screenTriageDiagnosisTreatment")
-      : t("results.screenTreatment");
+  ) {
+    chartTiles = t("results.screenDiagnosisTreatment");
+    if (results.screentest[0] === "pap") {
+      screenTest = "(" + t("runScenario.PapTest") + ")";
+    } else if (results.screentest[0] === "ivaa") {
+      screenTest = "(" + t("runScenario.VIA") + ")";
+    } else if (results.screentest[0] === "hpv") {
+      screenTest = "(" + t("runScenario.HPV") + ")";
+    } else if (results.screentest[0] === "hpv16or18") {
+      screenTest = "(" + t("runScenario.HPV1618") + ")";
+    } else {
+      screenTest = "";
+    }
+
+    if (results.screentest[1] === "pap") {
+      diagnosisTest = "(" + t("runScenario.PapTest") + ")";
+    } else if (results.screentest[1] === "ivaa") {
+      diagnosisTest = "(" + t("runScenario.VIA") + ")";
+    } else if (results.screentest[1] === "hpv") {
+      diagnosisTest = "(" + t("runScenario.HPV") + ")";
+    } else if (results.screentest[1] === "hpv16or18") {
+      diagnosisTest = "(" + t("runScenario.HPV1618") + ")";
+    } else {
+      diagnosisTest = "";
+    }
+  } else if (
+    results.checkedValues &&
+    results.checkedValues.length === 2 &&
+    results.checkedValues[1] === "ScreenTriageDiagnosticTestTreat"
+  ) {
+    chartTiles = t("results.screenTriageTreatment");
+
+    if (results.screentest[0] === "pap") {
+      screenTest = "(" + t("runScenario.PapTest") + ")";
+    } else if (results.screentest[0] === "ivaa") {
+      screenTest = "(" + t("runScenario.VIA") + ")";
+    } else if (results.screentest[0] === "hpv") {
+      screenTest = "(" + t("runScenario.HPV") + ")";
+    } else if (results.screentest[0] === "hpv16or18") {
+      screenTest = "(" + t("runScenario.HPV1618") + ")";
+    } else {
+      screenTest = "";
+    }
+
+    if (results.screentest[1] === "pap") {
+      triageTest = "(" + t("runScenario.PapTest") + ")";
+    } else if (results.screentest[1] === "ivaa") {
+      triageTest = "(" + t("runScenario.VIA") + ")";
+    } else if (results.screentest[1] === "hpv") {
+      triageTest = "(" + t("runScenario.HPV") + ")";
+    } else if (results.screentest[1] === "hpv16or18") {
+      triageTest = "(" + t("runScenario.HPV1618") + ")";
+    } else {
+      triageTest = "";
+    }
+  } else if (results.checkedValues && results.checkedValues.length === 3) {
+    t("results.screenTriageDiagnosisTreatment");
+
+    if (results.screentest[0] === "pap") {
+      screenTest = "(" + t("runScenario.PapTest") + ")";
+    } else if (results.screentest[0] === "ivaa") {
+      screenTest = "(" + t("runScenario.VIA") + ")";
+    } else if (results.screentest[0] === "hpv") {
+      screenTest = "(" + t("runScenario.HPV") + ")";
+    } else if (results.screentest[0] === "hpv16or18") {
+      screenTest = "(" + t("runScenario.HPV1618") + ")";
+    } else {
+      screenTest = "";
+    }
+
+    if (results.screentest[1] === "pap") {
+      triageTest = "(" + t("runScenario.PapTest") + ")";
+    } else if (results.screentest[1] === "ivaa") {
+      triageTest = "(" + t("runScenario.VIA") + ")";
+    } else if (results.screentest[1] === "hpv") {
+      triageTest = "(" + t("runScenario.HPV") + ")";
+    } else if (results.screentest[1] === "hpv16or18") {
+      triageTest = "(" + t("runScenario.HPV1618") + ")";
+    } else if (results.screentest[1] === "colposcopicImpression") {
+      triageTest = "(" + t("runScenario.impressionOfColposcopy") + ")";
+    } else if (results.screentest[1] === "colposcopyWithBiopsy") {
+      triageTest = "(" + t("runScenario.colposcopyWithBiopsy") + ")";
+    } else {
+      triageTest = "";
+    }
+
+    if (results.screentest[2] === "pap") {
+      diagnosisTest = "(" + t("runScenario.PapTest") + ")";
+    } else if (results.screentest[2] === "ivaa") {
+      diagnosisTest = "(" + t("runScenario.VIA") + ")";
+    } else if (results.screentest[2] === "hpv") {
+      diagnosisTest = "(" + t("runScenario.HPV") + ")";
+    } else if (results.screentest[2] === "hpv16or18") {
+      diagnosisTest = "(" + t("runScenario.HPV1618") + ")";
+    } else if (results.screentest[2] === "colposcopicImpression") {
+      diagnosisTest = "(" + t("runScenario.impressionOfColposcopy") + ")";
+    } else if (results.screentest[2] === "colposcopyWithBiopsy") {
+      diagnosisTest = "(" + t("runScenario.colposcopyWithBiopsy") + ")";
+    } else {
+      diagnosisTest = "";
+    }
+  } else {
+    t("results.screenTreatment");
+    if (results.screentest[0] === "pap") {
+      screenTest = "(" + t("runScenario.PapTest") + ")";
+    } else if (results.screentest[0] === "ivaa") {
+      screenTest = "(" + t("runScenario.VIA") + ")";
+    } else if (results.screentest[0] === "hpv") {
+      screenTest = "(" + t("runScenario.HPV") + ")";
+    } else if (results.screentest[0] === "hpv16or18") {
+      screenTest = "(" + t("runScenario.HPV1618") + ")";
+    } else {
+      screenTest = "";
+    }
+  }
 
   const treatedIndex = results.totalNeeded.length - 1;
   let totalNeededToScreen,
@@ -280,7 +404,6 @@ export default function ScenarioResults() {
                       <>
                         <tr className="table-light">
                           <th>
-                            {" "}
                             {t("runScenario.cervicalScreeningTestChosen")}
                           </th>
                           <td className="text-end text-nowrap">
@@ -623,7 +746,7 @@ export default function ScenarioResults() {
                 </tr>
                 <tr className="table-light">
                   <th className="ps-3">
-                    {t("results.didNotHaveScreeningTest")}
+                    {t("results.didNotHaveScreeningTest")} {screenTest}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
@@ -643,7 +766,7 @@ export default function ScenarioResults() {
                 </tr>
                 <tr className="table-light">
                   <th className="ps-3">
-                    {t("results.sensitivityOfScreeningTest")}
+                    {t("results.sensitivityOfScreeningTest")} {screenTest}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
@@ -666,7 +789,9 @@ export default function ScenarioResults() {
                 </tr>
 
                 <tr className="table-light">
-                  <th className="ps-3">{t("results.lossAtTriageTest")}</th>
+                  <th className="ps-3">
+                    {t("results.lossAtTriageTest")} {triageTest}
+                  </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
                     {/* {asPercent(results.percentMissed[1]) ?? "N/A"} */}
@@ -709,7 +834,7 @@ export default function ScenarioResults() {
 
                 <tr className="table-light">
                   <th className="ps-3">
-                    {t("results.sensitivityOfTriageTest")}
+                    -- {t("results.sensitivityOfTriageTest")} {triageTest}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
@@ -772,7 +897,9 @@ export default function ScenarioResults() {
                 </tr>
 
                 <tr className="table-light">
-                  <th className="ps-3">{t("results.lossAtDiagnosis")}</th>
+                  <th className="ps-3">
+                    {t("results.lossAtDiagnosis")} {diagnosisTest}
+                  </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
                       results.percentMissedDueToLossAtDiagnosticTriage
@@ -808,7 +935,7 @@ export default function ScenarioResults() {
 
                 <tr className="table-light">
                   <th className="ps-3">
-                    {t("results.sensitivityOfDiagnosticTest")}
+                    {t("results.sensitivityOfDiagnosticTest")} {diagnosisTest}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
