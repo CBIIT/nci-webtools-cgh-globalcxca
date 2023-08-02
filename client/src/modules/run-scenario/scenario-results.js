@@ -798,6 +798,7 @@ export default function ScenarioResults() {
                     {results.scenario === "ScreenTreat"
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
+                        results.checkedValues &&
                         results.checkedValues.length === 2 &&
                         results.checkedValues[1] === "ScreenDiagnosticTestTreat"
                       ? "N/A"
@@ -820,6 +821,7 @@ export default function ScenarioResults() {
                     {results.scenario === "ScreenTreat"
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
+                        results.checkedValues &&
                         results.checkedValues.length === 2 &&
                         results.checkedValues[1] === "ScreenDiagnosticTestTreat"
                       ? "N/A"
@@ -851,6 +853,7 @@ export default function ScenarioResults() {
                     {results.scenario === "ScreenTreat"
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
+                        results.checkedValues &&
                         results.checkedValues.length === 2 &&
                         results.checkedValues[1] === "ScreenDiagnosticTestTreat"
                       ? "N/A"
@@ -891,6 +894,7 @@ export default function ScenarioResults() {
                     {results.scenario === "ScreenTreat"
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
+                        results.checkedValues &&
                         results.checkedValues.length === 2 &&
                         results.checkedValues[1] === "ScreenDiagnosticTestTreat"
                       ? "N/A"
@@ -932,6 +936,7 @@ export default function ScenarioResults() {
                     {results.scenario === "ScreenTreat"
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
+                        results.checkedValues &&
                         results.checkedValues.length === 2 &&
                         results.checkedValues[1] === "ScreenDiagnosticTestTreat"
                       ? results.percentMissed[treatedIndex - 1] !== undefined &&
@@ -954,6 +959,7 @@ export default function ScenarioResults() {
                     {results.scenario === "ScreenTreat"
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
+                        results.checkedValues &&
                         results.checkedValues.length === 2 &&
                         results.checkedValues[1] === "ScreenDiagnosticTestTreat"
                       ? Math.round(
@@ -982,6 +988,7 @@ export default function ScenarioResults() {
                     {results.scenario === "ScreenTreat"
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
+                        results.checkedValues &&
                         results.checkedValues.length === 2 &&
                         results.checkedValues[1] === "ScreenDiagnosticTestTreat"
                       ? asPercent(
@@ -1014,6 +1021,7 @@ export default function ScenarioResults() {
                     {results.scenario === "ScreenTreat"
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
+                        results.checkedValues &&
                         results.checkedValues.length === 2 &&
                         results.checkedValues[1] === "ScreenDiagnosticTestTreat"
                       ? Math.round(
