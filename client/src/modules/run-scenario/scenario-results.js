@@ -746,7 +746,8 @@ export default function ScenarioResults() {
                 </tr>
                 <tr className="table-light">
                   <th className="ps-3">
-                    {t("results.didNotHaveScreeningTest")} {screenTest}
+                    {t("results.didNotHaveScreeningTest")} {screenTest}{" "}
+                    {t("general.test")}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
@@ -766,7 +767,8 @@ export default function ScenarioResults() {
                 </tr>
                 <tr className="table-light">
                   <th className="ps-3">
-                    {t("results.sensitivityOfScreeningTest")} {screenTest}
+                    {t("results.sensitivityOfScreeningTest")} {screenTest}{" "}
+                    {t("general.test")}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
@@ -790,7 +792,8 @@ export default function ScenarioResults() {
 
                 <tr className="table-light">
                   <th className="ps-3">
-                    {t("results.lossAtTriageTest")} {triageTest}
+                    {t("results.lossAtTriageTest")} {triageTest}{" "}
+                    {t("general.test")}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
@@ -844,7 +847,8 @@ export default function ScenarioResults() {
 
                 <tr className="table-light">
                   <th className="ps-3">
-                    {t("results.sensitivityOfTriageTest")} {triageTest}
+                    {t("results.sensitivityOfTriageTest")} {triageTest}{" "}
+                    {t("general.test")}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
@@ -918,7 +922,8 @@ export default function ScenarioResults() {
 
                 <tr className="table-light">
                   <th className="ps-3">
-                    {t("results.lossAtDiagnosis")} {diagnosisTest}
+                    {t("results.lossAtDiagnosis")} {diagnosisTest}{" "}
+                    {t("general.test")}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(
@@ -978,7 +983,8 @@ export default function ScenarioResults() {
 
                 <tr className="table-light">
                   <th className="ps-3">
-                    {t("results.sensitivityOfDiagnosticTest")} {diagnosisTest}
+                    {t("results.sensitivityOfDiagnosticTest")} {diagnosisTest}{" "}
+                    {t("general.test")}
                   </th>
                   <td className="text-end text-nowrap">
                     {/* {asPercent(

@@ -48,7 +48,12 @@
     "sourcesJustification": "Fuentes/justificación",
     "reset": "Restablecer",
     "exportSVG": "Exportar SVG",
-    "exportPNG": "Exportar PNG"
+    "exportPNG": "Exportar PNG",
+    "scenarioAssumption": "Supuestos del Escenario",
+    "search": "Buscar",
+    "noDataAvailable": "NO HAY DATOS DISPONIBLES",
+    "years": "Año(s)",
+    "test": "prueba"
   },
   "runScenario": {
     "title": "Ejecutar escenario",
