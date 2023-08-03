@@ -43,7 +43,7 @@ export default function ScenarioResults() {
   let screenTest = "";
   let triageTest = "";
   let diagnosisTest = "";
-  let chartTiles = t("results.screenTreatment");
+  let chartTiles;
 
   // console.log("params", params);
   console.log("result", results);
@@ -121,7 +121,7 @@ export default function ScenarioResults() {
       triageTest = "";
     }
   } else if (results.checkedValues && results.checkedValues.length === 3) {
-    t("results.screenTriageDiagnosisTreatment");
+    chartTiles = t("results.screenTriageDiagnosisTreatment");
 
     if (results.screentest[0] === "pap") {
       screenTest = "(" + t("runScenario.PapTest") + ")";
@@ -167,7 +167,7 @@ export default function ScenarioResults() {
       diagnosisTest = "";
     }
   } else {
-    t("results.screenTreatment");
+    chartTiles = t("results.screenTreatment");
     if (results.screentest[0] === "pap") {
       screenTest = "(" + t("runScenario.PapTest") + ")";
     } else if (results.screentest[0] === "ivaa") {
@@ -182,6 +182,9 @@ export default function ScenarioResults() {
   }
 
   console.log("Chart title", chartTiles);
+  if (results.checkedValues) {
+    console.log("results.checkedValues.length", results.checkedValues.length);
+  }
 
   const treatedIndex = results.totalNeeded.length - 1;
   let totalNeededToScreen,
