@@ -10,6 +10,7 @@ import "./locales/locales.js"; // Import the locales.js file
 import { LanguageProvider } from "./locales/languageContext";
 import ReactDOM from "react-dom";
 import LanguageSelect from "./locales/languageSelect";
+import NavbarSearch from "./modules/navbar/navbar-search";
 const root = createRoot(document.getElementById("root"));
 const router = createHashRouter(routes);
 
@@ -26,6 +27,7 @@ ReactDOM.render(
   <LanguageSelect />,
   document.getElementById("languageSelectContainer")
 );
+ReactDOM.render(<NavbarSearch />, document.getElementById("navbarSearch"));
 
 // register();
 reportWebVitals(console.log);
