@@ -158,28 +158,29 @@ export default function RunScenarios() {
     window.scrollTo(0, 0);
     resetForm();
   }
-  useEffect(() => {
-    // Get the height of the header element (assuming you have it as "headerHeight")
-    const headerHeight = 310;
+  // useEffect(() => {
+  //   // Get the height of the header element (assuming you have it as "headerHeight")
+  //   const headerHeight = 310;
 
-    // Calculate the available height for the Col container
-    const availableHeight = window.innerHeight - headerHeight;
+  //   // Calculate the available height for the Col container
+  //   const availableHeight = window.innerHeight - headerHeight;
 
-    // Get the Col element by id
-    const colElement = document.getElementById("col-with-scroll");
+  //   // Get the Col element by id
+  //   const colElement = document.getElementById("col-with-scroll");
 
-    // Set the calculated height as the maxHeight style property
-    if (colElement) {
-      colElement.style.maxHeight = `${availableHeight}px`;
-    }
-  }, []);
+  //   // Set the calculated height as the maxHeight style property
+  //   if (colElement) {
+  //     colElement.style.maxHeight = `${availableHeight}px`;
+  //   }
+  // }, []);
 
   return (
     <div className="bg-light py-4">
       {/* <Container> */}
       <div className="mx-3">
         <Row>
-          <Col md={5} id="col-with-scroll" style={{ overflowY: "auto" }}>
+          {/* <Col md={5} id="col-with-scroll" style={{ overflowY: "auto" }}> */}
+          <Col md={5} style={{ overflow: "auto", maxHeight: "75vh" }}>
             <div>
               <Form onReset={handleReset}>
                 <div className="small text-end text-muted mb-2">
@@ -953,7 +954,7 @@ export default function RunScenarios() {
                   </Col>
                 </Row>
 
-                <Form.Group className="mb-4 text-center">
+                <Form.Group className="mb-4 mt-2 text-center">
                   <Button
                     type="reset"
                     className="shadow"

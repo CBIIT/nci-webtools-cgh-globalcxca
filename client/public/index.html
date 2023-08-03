@@ -44,18 +44,6 @@
           />
         </a>
         <div class="d-flex align-items-center justify-content-end">
-          <!-- <i class="bi bi-translate me-1 text-primary"></i> -->
-          <!-- <span id="google_translate_element"></span> -->
-          <!-- <div class="col-auto">
-            <select
-              class="form-select form-select-sm"
-              data-i18n="[html]header.languageSelect"
-              id="languageSelect"
-            >
-              <option value="en" data-i18n="header.english">English</option>
-              <option value="es" data-i18n="header.spanish">Español</option>
-            </select>
-          </div> -->
           <div class="col-auto" id="languageSelectContainer"></div>
         </div>
       </div>
@@ -205,32 +193,7 @@
       function emitLocaleChangeEvent(locale) {
         window.localeChangeListeners.forEach((c) => c(locale));
       }
-
-      function googleTranslateElementInit() {
-        const id = "google_translate_element";
-        const defaultLocale = "en";
-        new google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
-          },
-          id
-        );
-        // use observer instead of onchange since google translate re-renders this element
-        const observer = new MutationObserver(() => {
-          const node = document
-            .getElementById(":0.targetLanguage")
-            ?.querySelector("select");
-          emitLocaleChangeEvent(node?.value || defaultLocale);
-        });
-        observer.observe(document.getElementById(id), {
-          attributes: false,
-          childList: true,
-          subtree: true,
-        });
-      }
     </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
       _satellite && _satellite.pageBottom();
     </script>

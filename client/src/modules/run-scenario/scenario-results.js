@@ -181,6 +181,8 @@ export default function ScenarioResults() {
     }
   }
 
+  console.log("Chart title", chartTiles);
+
   const treatedIndex = results.totalNeeded.length - 1;
   let totalNeededToScreen,
     totalNeededToTriage,
