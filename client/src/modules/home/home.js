@@ -15,7 +15,7 @@ export default function Home() {
             <div className="d-flex h-100 align-items-center">
               <div className="mb-4">
                 <h1 className="text-light display-4 mb-3 d-none d-md-block">
-                  {t("welcome")}
+                  {t("general.welcome")}
                 </h1>
                 <hr className="border-white" />
                 <p className="lead text-light">{t("home.introdution")}</p>
@@ -44,19 +44,36 @@ export default function Home() {
           <Row>
             <Col md={{ offset: 2, span: 8 }}>
               <h2 className="display-6 mb-3 text-primary text-center">
-                What is GlobalCxCa?
+                {t("home.whatIsCC3S")}
               </h2>
+              <p>{t("home.whatIsCC3SDes")}</p>
+              <h5 className="mb-3 text-primary">
+                {t("home.beforeYouStartTitle")}
+              </h5>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                sodales odio ac neque gravida mattis. Nulla facilisi. Proin
-                velit purus, lacinia eu lacinia a, ultricies vitae urna. Quisque
-                congue semper libero, ac blandit ipsum iaculis vitae.
-                Suspendisse potenti. Orci varius natoque penatibus et magnis dis
-                parturient montes, nascetur ridiculus mus. Proin ac semper
-                massa, a bibendum magna. Vestibulum dictum orci mauris, at
-                rhoncus nisi vehicula at. Orci varius natoque penatibus et
-                magnis dis parturient montes, nascetur ridiculus mus. Cras sem
-                nisl, egestas at sagittis eu, imperdiet vel magna.
+                <b>{t("home.insight")}.</b> {t("home.insightDes")}
+              </p>
+              <p>
+                <b>{t("home.judgmentFree")}.</b> {t("home.jusdgementFreeDes")}
+              </p>
+              <p>
+                <b>{t("home.engage")}.</b> {t("home.engageDes")}
+              </p>
+              <p>
+                {t("home.des0")}{" "}
+                <Link to="/run-scenario">
+                  {" "}
+                  <b>{t("navbar.runScenario")}</b>
+                </Link>{" "}
+                {t("home.des0Continued")}
+              </p>
+              <p>
+                {t("home.des1")}{" "}
+                <Link to="/Contact Us">
+                  {" "}
+                  <b>{t("general.contactUs")}</b>
+                </Link>{" "}
+                {t("home.des1Continued")}
               </p>
             </Col>
           </Row>

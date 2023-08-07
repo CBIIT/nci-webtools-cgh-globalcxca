@@ -25,7 +25,20 @@
     "about": "Acerca de"
   },
   "home": {
-    "introdution": "Conocer los efectos epidemiológicos en una población objetivo con nuestra herramienta de evaluación de impacto de un programa de tamizaje."
+    "introdution": "Conocer los efectos epidemiológicos en una población objetivo con nuestra herramienta de evaluación de impacto de un programa de tamizaje.",
+    "whatIsCC3S": "¿Qué es CC3S?",
+    "whatIsCC3SDes": "El Simulador de escenarios de detección de cáncer de cuello uterino (CC3S) es una herramienta de escenario desarrollada por el Centro para la salud global del Instituto Nacional del Cáncer (NCI/CGH) para ayudar a los funcionarios y/o proveedores de salud locales a planificar y comprender su programa nacional de detección de cáncer de cuello uterino en diferentes niveles del Sistema de salud. Puede usar esta herramienta para visualizar qué tan efectivo podría ser un programa y qué recursos se requerirían según las opciones variables de cobertura de detección, frecuencia, pruebas utilizadas, precisión de las pruebas y seguimiento en su contexto local. Esta herramienta está destinada a facilitar las conversaciones entre los socios.",
+    "beforeYouStartTitle": "Antes de comenzar, recuerde:",
+    "insight": "Conocimiento",
+    "insightDes": "CC3S es una herramienta fácil de usar creada para informar y facilitar la toma de decisiones para crear programas viables de detección de cáncer de cuello uterino. Tenga en cuenta que las cifras y los números están simplificados y no pretenden reflejar con precisión la planificación del mundo real. Esta herramienta está destinada a comparar suposiciones y estrategias para los programas de detección del cáncer de cuello uterino. CC3S considera el recurso y el impacto de una sola ronda de selección.",
+    "judgmentFree": "Libre de juicios",
+    "jusdgementFreeDes": "No hay respuesta correcta o incorrecta. Siéntase libre de probar sus suposiciones y considerar las opciones de detección y clasificación que podrían ayudar a diseñar la estrategia de detección más adecuada y factible para su entorno único.",
+    "engage": "Comprometer",
+    "engageDes": "Es natural encontrar muchas preguntas sobre sus resultados. Lo alentamos a que use los hallazgos como material de discusión con su(s) equipo(s) y socios locales clave.",
+    "des0": "¿Estás listo para descubrir CC3S? Vaya a la pestaña ",
+    "des0Continued": " para comenzar a planificar su estrategia de prevención del cáncer de cuello uterino.",
+    "des1": "Si tiene alguna pregunta o problema técnico, seleccione ",
+    "des1Continued": " a continuación."
   },
   "general": {
     "﻿Key": "Spanish - Final",
@@ -53,7 +66,8 @@
     "search": "Buscar",
     "noDataAvailable": "NO HAY DATOS DISPONIBLES",
     "years": "Año(s)",
-    "test": "prueba"
+    "test": "prueba",
+    "contactUs": "Contáctenos"
   },
   "runScenario": {
     "title": "Ejecutar escenario",

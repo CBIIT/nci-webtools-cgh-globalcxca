@@ -48,19 +48,6 @@ export default function ScenarioResults() {
   // console.log("params", params);
   console.log("result", results);
 
-  // chartTiles =
-  //   results.checkedValues &&
-  //   results.checkedValues.length === 2 &&
-  //   results.checkedValues[1] === "ScreenDiagnosticTestTreat"
-  //     ? t("results.screenDiagnosisTreatment")
-  //     : results.checkedValues &&
-  //       results.checkedValues.length === 2 &&
-  //       results.checkedValues[1] === "ScreenTriageDiagnosticTestTreat"
-  //     ? t("results.screenTriageTreatment")
-  //     : results.checkedValues && results.checkedValues.length === 3
-  //     ? t("results.screenTriageDiagnosisTreatment")
-  //     : t("results.screenTreatment");
-
   if (
     results.checkedValues &&
     results.checkedValues.length === 2 &&
