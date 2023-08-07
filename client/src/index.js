@@ -11,6 +11,9 @@ import { LanguageProvider } from "./locales/languageContext";
 import ReactDOM from "react-dom";
 import LanguageSelect from "./locales/languageSelect";
 import NavbarSearch from "./modules/navbar/navbar-search";
+import Header from "./modules/header/header";
+import Footer from "./modules/footer/footer";
+import "./locales/locales.js";
 const root = createRoot(document.getElementById("root"));
 const router = createHashRouter(routes);
 
@@ -18,7 +21,8 @@ root.render(
   <StrictMode>
     <LanguageProvider>
       <RecoilRoot>
-        <RouterProvider router={router} />
+        <RouterProvider router={router}></RouterProvider>
+        <Footer /> {/* Add the Footer component here */}
       </RecoilRoot>
     </LanguageProvider>
   </StrictMode>

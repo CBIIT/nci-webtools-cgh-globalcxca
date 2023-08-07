@@ -13,9 +13,21 @@
     "title": "GlobalCxCa -- Cervical Cancer Prevention Scenario Tool"
   },
   "footer": {
+    "centerForGlabalHealth": "Center for Global Health",
+    "atTheNationalCancerInstitute": "at the National Cancer Institute",
     "contactInformation": "CONTACT INFORMATION",
+    "contactUs": "Contact Us",
     "policies": "POLICIES",
-    "moreInformation": "MORE INFORMATION"
+    "accessibility": "Accessibility",
+    "disclaimer": "Disclaimer",
+    "FOIA": "FOIA",
+    "HHSVulnerabilityDisclosure": "HHS Vulnerability Disclosure",
+    "moreInformation": "MORE INFORMATION",
+    "usDepartmentOfHealthAndHumanServices": "U.S. Department of Health and Human Services",
+    "nationalInstitutesOfHealth": "National Institutes of Health",
+    "nationalCancerInstitude": "National Cancer Institute",
+    "usaGov": "USA.gov",
+    "nihSlogan": "NIH ... Turning Discovery Into Health "
   },
   "navbar": {
     "home": "Inicio",
