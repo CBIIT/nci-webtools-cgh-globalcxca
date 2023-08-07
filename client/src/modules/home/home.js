@@ -69,7 +69,7 @@ export default function Home() {
               </p>
               <p>
                 {t("home.des1")}{" "}
-                <Link to="/Contact Us">
+                <Link to="mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov">
                   {" "}
                   <b>{t("general.contactUs")}</b>
                 </Link>{" "}
