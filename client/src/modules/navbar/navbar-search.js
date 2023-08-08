@@ -24,7 +24,7 @@ export default function NavbarSearch() {
         <Form.Control
           className="search-control"
           type="search"
-          placeholder="google search"
+          placeholder="Google Site Search"
           aria-label="search"
           name="search"
         />

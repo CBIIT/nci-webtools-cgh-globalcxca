@@ -9,6 +9,9 @@ const LanguageSelect = () => {
   const handleLanguageChange = (newLanguage) => {
     i18n.changeLanguage(newLanguage);
   };
+  const selectStyle = {
+    height: "40px", // Adjust the height value as needed
+  };
 
   return (
     <div className="d-flex align-items-center justify-content-end">
@@ -22,6 +25,7 @@ const LanguageSelect = () => {
           // Handle language change when the dropdown value changes
           onChange={(e) => handleLanguageChange(e.target.value)}
           value={i18n.language} // Set the value to the current language
+          style={selectStyle} // Apply the style object
         >
           <option value="en" data-i18n="header.english">
             English
