@@ -3,8 +3,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import NavbarSearch from "./navbar-search";
+import { useTranslation } from "react-i18next";
 
 export default function AppNavbar({ routes }) {
+  const { t } = useTranslation(); // Initialize the useTranslation hook
+
   return (
     <Navbar bg="transparent" variant="dark" className="font-title" expand="lg">
       <Container>
@@ -29,7 +32,7 @@ export default function AppNavbar({ routes }) {
                   to={route.path}
                   end={route.end}
                 >
-                  {route.title}
+                  {t(route.title)}
                 </NavLink>
               ))}
           </Nav>

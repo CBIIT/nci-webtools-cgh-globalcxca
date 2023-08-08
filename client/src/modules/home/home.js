@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Home() {
   const { t } = useTranslation();
+
   return (
     <>
       <Container>
@@ -69,8 +70,7 @@ export default function Home() {
               </p>
               <p>
                 {t("home.des1")}{" "}
-                <Link to="mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov">
-                  {" "}
+                <Link to={`mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov`}>
                   <b>{t("general.contactUs")}</b>
                 </Link>{" "}
                 {t("home.des1Continued")}
