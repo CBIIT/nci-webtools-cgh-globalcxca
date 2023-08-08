@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import * as d3 from "d3";
+import { useTranslation } from "react-i18next";
 
 export const defaultLayout = {
   width: 280,
@@ -8,6 +9,12 @@ export const defaultLayout = {
 };
 
 export default function PieChart({ id, data, layout = defaultLayout, colors }) {
+  const { t } = useTranslation(); // Add this line
+  const translatedLabels = {
+    noDataAvailable: t("general.noDataAvailable"),
+    // ... other labels you need ...
+  };
+
   const ref = useRef(null);
   useEffect(() => {
     if (ref.current && data && layout) {
@@ -17,7 +24,7 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
 
       if (isNaN(data[0].value) || data.every((item) => item.value === 0)) {
         const noDataText = document.createElement("p");
-        noDataText.textContent = "NO DATA AVAILABLE";
+        noDataText.textContent = t("general.noDataAvailable");
         noDataText.style.display = "flex";
         noDataText.style.justifyContent = "center";
         noDataText.style.alignItems = "center";
@@ -35,6 +42,7 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
             format: ".0f",
             //colors: ["#D13C4B", "#FD7E14"],
             colors: colors,
+            labels: translatedLabels,
           })
         );
       }
@@ -64,6 +72,7 @@ function d3PieChart(
     strokeWidth = 1, // width of stroke separating format
     strokeLinejoin = "round", // line join of stroke separating wedges
     padAngle = stroke === "none" ? 1 / outerRadius : 0, // angular separation between wedges
+    labels,
   } = {}
 ) {
   // Compute values.
@@ -111,7 +120,7 @@ function d3PieChart(
           1
         )}%) ${lastWord}`;
       } else {
-        return "NO DATA AVAILABLE";
+        return labels.noDataAvailable;
       }
     };
 
@@ -122,7 +131,7 @@ function d3PieChart(
           1
         )}%) ${label}\nTotal: ${formatTotal(totalValue)}`;
       } else {
-        return "NO DATA AVAILABLE";
+        return labels.noDataAvailable;
       }
     };
   } else {
@@ -137,7 +146,7 @@ function d3PieChart(
           data
         )}\n `;
       } else {
-        return "NO DATA AVAILABLE";
+        return labels.noDataAvailable;
       }
     };
 
@@ -150,7 +159,7 @@ function d3PieChart(
           data
         )}\n Total: ${formatTotal(totalValue)}`;
       } else {
-        return "NO DATA AVAILABLE";
+        return labels.noDataAvailable;
       }
     };
   }

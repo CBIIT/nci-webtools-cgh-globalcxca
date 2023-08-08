@@ -503,7 +503,7 @@ export default function ScenarioResults() {
                   id={ScreentestBarChartId}
                   data={[
                     {
-                      label: "Screening Test",
+                      label: t("general.screeningTestLabel"),
                       value:
                         parseInt(totalNeededToScreen.replace(/,/g, "")) || 0,
                     },
@@ -529,19 +529,19 @@ export default function ScenarioResults() {
                   id={barChartId}
                   data={[
                     {
-                      label: "Triage Test",
+                      label: t("general.triageTestLabel"),
                       value:
                         parseInt(totalNeededToTriage.replace(/,/g, "")) || 0,
                     },
                     {
-                      label: "Diagnostic Test",
+                      label: t("general.diagnosticTestLabel"),
                       value:
                         parseInt(
                           totalNeededToDiagnosticTriage.replace(/,/g, "")
                         ) || 0,
                     },
                     {
-                      label: "Treatment",
+                      label: t("general.treatment"),
                       value:
                         parseInt(totalNeededToTreat.replace(/,/g, "")) || 0,
                     },
@@ -570,11 +570,11 @@ export default function ScenarioResults() {
                   id={pieChartId}
                   data={[
                     {
-                      label: "% Precancers Missed",
+                      label: t("results.pPrecencersMissed"),
                       value: +results.numberPrecancersMissed,
                     },
                     {
-                      label: "% Precancers Treated",
+                      label: t("results.pPrecencersTreated"),
                       value: +results.testedPositives[treatedIndex + 1],
                     },
                   ]}
@@ -598,11 +598,11 @@ export default function ScenarioResults() {
                   id={pieChartId}
                   data={[
                     {
-                      label: "Population Not Not-Overtreated",
+                      label: t("results.populationNotOverTreated"),
                       value: +results.testedFalsePositives[0],
                     },
                     {
-                      label: "% Precancers Over-Treated",
+                      label: t("results.pPrecencersOverTreated"),
                       value: +results.healthyOvertreated,
                     },
                   ]}

@@ -73,7 +73,7 @@ function Footer() {
                     target="_blank"
                     href="https://www.cancer.gov/policies/foia"
                   >
-                    {t("footer.foia")}
+                    {t("footer.FOIA")}
                   </a>
                 </li>
                 <li>
@@ -82,7 +82,7 @@ function Footer() {
                     target="_blank"
                     href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html"
                   >
-                    {t("footer.hhsVulnerabilityDisclosure")}
+                    {t("footer.HHSVulnerabilityDisclosure")}
                   </a>
                 </li>
               </ul>

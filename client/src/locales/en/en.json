@@ -10,7 +10,7 @@
     "languageSelect": "Select Language",
     "english": "English",
     "spanish": "Español",
-    "title": "GlobalCxCa - Cervical Cancer Prevention Scenario Tool"
+    "title": "GlobalCxCa - Cervical Cancer Screening Scenario Simulator"
   },
   "footer": {
     "centerForGlabalHealth": "Center for Global Health",
@@ -55,7 +55,7 @@
   },
   "general": {
     "﻿Key": "English",
-    "welcome": "Welcome",
+    "welcome": "Welcome to CC3S!",
     "enterValue0t100HelpText": "Enter a value between 0 and 100.",
     "screening": "Sceening",
     "screeningTestLabel": "Screening Test",
@@ -166,7 +166,11 @@
     "totalRequiringTreatment": "Total requiring treatment",
     "saveScenario": "Save scenario",
     "exportResultsToPDF": "Export Results to PDF",
-    "exportResultsToExcel": "Export Results to Excel"
+    "exportResultsToExcel": "Export Results to Excel",
+    "pPrecencersMissed": "% Precancers Missed",
+    "pPrecencersTreated": "% Precancers Treated",
+    "pPrecencersOverTreated": "% Precancers Over-Treated",
+    "populationNotOverTreated": "Population Not-Overtreated"
   },
   "compareScenarios": {
     "uploadScenariosInfo": "Upload up to {{limit}} scenarios for comparison. Files must be of the “.scenario” file format. Click the title of the scenario to rename it.",

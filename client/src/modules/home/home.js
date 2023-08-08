@@ -12,10 +12,10 @@ export default function Home() {
     <>
       <Container>
         <Row>
-          <Col md={6}>
+          <Col md={9}>
             <div className="d-flex h-100 align-items-center">
               <div className="mb-4">
-                <h1 className="text-light display-4 mb-3 d-none d-md-block">
+                <h1 className="text-light d-none d-md-block">
                   {t("general.welcome")}
                 </h1>
                 <hr className="border-white" />
@@ -29,7 +29,7 @@ export default function Home() {
               </div>
             </div>
           </Col>
-          <Col md={6}>
+          <Col md={3}>
             {/* Wrap the SVG with the container */}
             <div className="svg-center-container">
               <div className="svg-container">
@@ -40,15 +40,15 @@ export default function Home() {
         </Row>
       </Container>
 
-      <div className="bg-light py-4">
+      <div className="bg-light py-3">
         <Container>
           <Row>
-            <Col md={{ offset: 2, span: 8 }}>
-              <h2 className="display-6 mb-3 text-primary text-center">
+            <Col md={{ span: 12 }}>
+              <h2 className="display-6 mb-2 text-primary text-center">
                 {t("home.whatIsCC3S")}
               </h2>
               <p>{t("home.whatIsCC3SDes")}</p>
-              <h5 className="mb-3 text-primary">
+              <h5 className="mb-1 text-primary">
                 {t("home.beforeYouStartTitle")}
               </h5>
               <p>
@@ -66,9 +66,7 @@ export default function Home() {
                   {" "}
                   <b>{t("navbar.runScenario")}</b>
                 </Link>{" "}
-                {t("home.des0Continued")}
-              </p>
-              <p>
+                {t("home.des0Continued")} <br></br>
                 {t("home.des1")}{" "}
                 <Link to={`mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov`}>
                   <b>{t("general.contactUs")}</b>

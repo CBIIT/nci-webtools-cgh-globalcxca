@@ -10,7 +10,7 @@
     "languageSelect": "Select Language",
     "english": "English",
     "spanish": "Español",
-    "title": "GlobalCxCa -- Cervical Cancer Prevention Scenario Tool"
+    "title": "GlobalCxCa: Simulador de Escenarios de Detección de Cáncer Cervical"
   },
   "footer": {
     "centerForGlabalHealth": "Center for Global Health",
@@ -55,11 +55,14 @@
   },
   "general": {
     "﻿Key": "Spanish - Final",
-    "welcome": "Bienvenidos",
+    "welcome": "¡Bienvenido a CC3S!",
     "enterValue0t100HelpText": "Ingrese un valor entre 0 y 100.",
     "screening": "Tamizaje",
+    "screeningTestLabel": "Prueba de Tamizaje",
     "triage": "Triaje",
+    "triageTestLabel": "Prueba de Triaje",
     "diagnosis": "Diagnóstico",
+    "diagnosticTestLabel": "Prueba de Diagnóstico",
     "treatment": "Tratamiento",
     "parameter": "Parámetro",
     "lowValue": "Valor bajo",
@@ -131,6 +134,8 @@
     "screenTriageDiagnosisTreatment": "Tamizaje → Triaje → Diagnóstico → Tratamiento",
     "screenTreatment": "Tamizaje → Tratamiento",
     "interventionsRequired": "Intervenciones requeridas",
+    "populationWithPrecancer": "Población con Precáncer",
+    "populationWithoutPrecancer": "Población sin Precáncer",
     "noDataAvailable": "DATOS NO DISPONIBLES",
     "precancersTreated.": "Precánceres tratados",
     "annualTargets": "Objetivos anuales",
@@ -160,7 +165,11 @@
     "saveScenario": "Guardar escenario",
     "exportResultsToPDF": "Exporte resultados a PDF",
     "exportResultsToExcel": "Exporte resultados a Excel",
-    "screeningCoverage": "Cobertura de detección"
+    "screeningCoverage": "Cobertura de detección",
+    "pPrecencersMissed": "% de Precánceres No Detectados",
+    "pPrecencersTreated": "% de Precánceres Tratados",
+    "pPrecencersOverTreated": "% de Precánceres Sobretratados",
+    "populationNotOverTreated": "Población No Sobretratada"
   },
 
   "compareScenarios": {

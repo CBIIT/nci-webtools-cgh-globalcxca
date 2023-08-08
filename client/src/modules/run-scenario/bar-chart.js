@@ -1,5 +1,7 @@
 import { useRef, useEffect } from "react";
 import * as d3 from "d3";
+import { useTranslation } from "react-i18next";
+
 
 export const defaultLayout = {
   width: 400,
@@ -8,6 +10,11 @@ export const defaultLayout = {
 
 export default function BarChart({ id, data, layout = defaultLayout, color }) {
   const ref = useRef(null);
+  const { t } = useTranslation(); // Add this line
+  const translatedLabels = {
+    noDataAvailable: t("general.noDataAvailable"),
+    // ... other labels you need ...
+  };
 
   useEffect(() => {
     if (ref.current && data && layout) {
@@ -16,7 +23,7 @@ export default function BarChart({ id, data, layout = defaultLayout, color }) {
       }
       if (data.every((item) => item.value === 0)) {
         const noDataText = document.createElement("p");
-        noDataText.textContent = "NO DATA AVAILABLE";
+        noDataText.textContent =  t("general.noDataAvailable");
         noDataText.style.display = "flex";
         noDataText.style.justifyContent = "center";
         noDataText.style.alignItems = "center";
@@ -33,6 +40,7 @@ export default function BarChart({ id, data, layout = defaultLayout, color }) {
             width: layout.width, // Use the width from the layout object
             height: layout.height, // Use the height from the layout object
             color: color || "#0DAB61", // Use the provided color or default to green
+            labels: translatedLabels,
           })
         );
       }
