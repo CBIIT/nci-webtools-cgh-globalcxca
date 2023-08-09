@@ -93,7 +93,7 @@ export default function CompareScenarios() {
         <Form>
           <Card className="mb-4">
             <Card.Header>
-              <Card.Title>Compare Scenarios</Card.Title>
+              <Card.Title>{t("navbar.compareScenarios")}</Card.Title>
               <Card.Text className="small text-muted">
                 {t("compareScenarios.uploadScenariosInfo", { limit })}
               </Card.Text>
