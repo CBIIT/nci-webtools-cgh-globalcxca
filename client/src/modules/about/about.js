@@ -41,6 +41,11 @@ export default function About() {
                     <p>{t("about.prevalenceSources1")}</p>
                     <p>{t("about.prevalenceSources2")}</p>
                     <p>{t("about.prevalenceSources3")}</p>
+                    <p>{t("about.prevalenceSources4")}</p>
+                    <p>{t("about.prevalenceSources5")}</p>
+                    <p>{t("about.prevalenceSources6")}</p>
+                    <p>{t("about.prevalenceSources7")}</p>
+                    <p>{t("about.prevalenceSources8")}</p>
                   </td>
                 </tr>
               </tbody>
@@ -69,8 +74,16 @@ export default function About() {
                   <td>1</td>
                   <td>40</td>
                   <td>5</td>
-                  <td>{t("about.intervalofCervicalInYearsJustification")}</td>
-                  <td>{t("about.prevalenceSources3")}</td>
+                  <td>
+                    <p>{t("about.intervalofCervicalInYearsJustification0")}</p>
+                    <p>{t("about.intervalofCervicalInYearsJustification1")}</p>
+                    <p>{t("about.intervalofCervicalInYearsJustification2")}</p>
+                    <p>{t("about.intervalofCervicalInYearsJustification3")}</p>
+                  </td>
+                  <td>
+                    <p>{t("about.prevalenceSources3")}</p>
+                    <p>{t("about.percentScreeningCoverageSource")}</p>
+                  </td>
                 </tr>
                 <tr>
                   <td>{t("runScenario.percentScreeningCoverage")}</td>
@@ -78,24 +91,9 @@ export default function About() {
                   <td>100%</td>
                   <td>None</td>
                   <td>{t("about.percentScreeningCoverageJustification")}</td>
-                  <td>
-                    {t("about.percentScreeningPositiveTriageDiagnosticsSource")}
-                  </td>
+                  <td></td>
                 </tr>
-                <tr>
-                  <td>{t("runScenario.ScreenTriageDiagnosticTestTreat")}</td>
-                  <td>0%</td>
-                  <td>100%</td>
-                  <td>None</td>
-                  <td>
-                    {t(
-                      "about.percentScreeningPositiveTriageDiagnosticsJustification"
-                    )}
-                  </td>
-                  <td>
-                    {t("about.percentTriageDiagnosticTestPositivesSource")}
-                  </td>
-                </tr>
+
                 <tr>
                   <td>{t("runScenario.ScreenDiagnosticTestTreat")}</td>
                   <td>0%</td>
@@ -107,45 +105,15 @@ export default function About() {
                     )}
                   </td>
                   <td>
-                    {t("about.percentTriageDiagnosticTestPositivesSource")}
-                  </td>
-                </tr>
-                <tr>
-                  <td>{t("runScenario.percentScreeningPositiveWithTriage")}</td>
-                  <td>0%</td>
-                  <td>100%</td>
-                  <td>None</td>
-                  <td>
-                    {t("about.percentScreeningPositivesTriageJustification")}
-                  </td>
-                  <td>
-                    {t("about.percentTriageDiagnosticTestPositivesSource")}
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    {t("runScenario.percentofScreenPositivesWithDiagnostic")}
-                  </td>
-                  <td>0%</td>
-                  <td>100%</td>
-                  <td>None</td>
-                  <td>
-                    {t("about.percentScreeningPositivesDiagnosisJustification")}
-                  </td>
-                  <td>
-                    {t("about.percentTriageDiagnosticTestPositivesSource")}
-                  </td>
-                </tr>
-                <tr>
-                  <td>{t("runScenario.percentDiagnosticPositiveTreated")}</td>
-                  <td>0%</td>
-                  <td>100%</td>
-                  <td>None</td>
-                  <td>
-                    {t("about.percentDiagnosticPositivesTreatedJustification")}
-                  </td>
-                  <td>
-                    {t("about.percentTriageDiagnosticTestPositivesSource")}
+                    <p>
+                      {t("about.percentTriageDiagnosticTestPositivesSource0")}
+                    </p>
+                    <p>
+                      {t("about.percentTriageDiagnosticTestPositivesSource1")}
+                    </p>
+                    <p>
+                      {t("about.percentTriageDiagnosticTestPositivesSource2")}
+                    </p>
                   </td>
                 </tr>
               </tbody>

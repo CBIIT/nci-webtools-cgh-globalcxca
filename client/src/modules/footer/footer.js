@@ -29,7 +29,7 @@ function Footer() {
           </div>
           <div className="row">
             <div className="col-lg-4 mb-4">
-              <div className="h5 mb-1 font-weight-light">
+              <div className="h5 mb-1 font-weight-light text-uppercase">
                 {t("footer.contactInformation")}
               </div>
               <ul className="list-unstyled mb-0">
@@ -45,7 +45,7 @@ function Footer() {
               </ul>
             </div>
             <div className="col-lg-4 mb-4">
-              <div className="h5 mb-1 font-weight-light">
+              <div className="h5 mb-1 font-weight-light text-uppercase">
                 {t("footer.policies")}
               </div>
               <ul className="list-unstyled mb-0">
@@ -88,7 +88,7 @@ function Footer() {
               </ul>
             </div>
             <div className="col-lg-4 mb-4">
-              <div className="h5 mb-1 font-weight-light">
+              <div className="h5 mb-1 font-weight-ligh text-uppercase">
                 {t("footer.moreInformation")}
               </div>
               <ul className="list-unstyled mb-0">
