@@ -9,7 +9,7 @@ export default function AppNavbar({ routes }) {
   const { t } = useTranslation(); // Initialize the useTranslation hook
 
   return (
-    <Navbar bg="light" variant="dark" className="p-0" expand="lg">
+    <Navbar bg="light" variant="dark" className="custom-navbar p-0" expand="lg">
       <Container>
         <Navbar.Brand className="font-title d-inline-block d-lg-none">
           GlobalCxCa
