@@ -23,10 +23,15 @@ import { exportPdf } from "../../services/pdf-utils";
 import { asLabel, asPercent } from "../../services/formatters";
 import PieChart from "./pie-chart";
 import BarChart from "./bar-chart";
-import { exportSvg, saveChartAsPNG } from "../../services/plot-utils";
+import {
+  exportSvg,
+  saveChartAsPNG,
+  saveChartAsPNGForZip,
+} from "../../services/plot-utils";
 import * as d3 from "d3";
 import { exportExcel } from "../../services/excel-utils";
 import { useTranslation, Trans } from "react-i18next";
+import JSZip from "jszip";
 
 export default function ScenarioResults() {
   const { t } = useTranslation();
@@ -36,8 +41,10 @@ export default function ScenarioResults() {
   const locale = useRecoilValue(localeState);
   const ScreentestBarChartId = "screenTestBarChart";
   const barChartId = "barChart";
-  const pieChartId = "pieChart";
-  const barChartTitle = t("results.interventionsRequired");
+  const pieChartId0 = "pieChart0";
+  const pieChartId1 = "pieChart1";
+  const barChartTitle1 = t("results.screeningBarChartTitle0");
+  const barChartTitle2 = t("results.interventionsRequired");
   const pieChartTitle1 = t("results.populationWithPrecancer");
   const pieChartTitle2 = t("results.populationWithoutPrecancer");
   let screenTest = "";
@@ -240,30 +247,90 @@ export default function ScenarioResults() {
     const fileName = `${results.scenario}_${id}.svg`;
     exportSvg(plotSelector, fileName);
   }
-
+  //pie1
   d3.select("#savePNG0").on("click", function () {
     saveChartAsPNG(
-      pieChartId,
-      `${results.scenario}_${pieChartId}`,
-      barChartTitle
+      pieChartId0,
+      `${results.scenario}_${pieChartId0}`,
+      pieChartTitle1
     );
   });
-
+  //bar2
   d3.select("#savePNG1").on("click", function () {
     saveChartAsPNG(
       barChartId,
       `${results.scenario}_${barChartId}`,
-      barChartTitle
+      barChartTitle2
     );
   });
-
+  //bar1
   d3.select("#savePNG2").on("click", function () {
     saveChartAsPNG(
       ScreentestBarChartId,
       `${results.scenario}_${ScreentestBarChartId}`,
-      pieChartTitle1
+      barChartTitle1
     );
   });
+
+  d3.select("#savePNG3").on("click", function () {
+    saveChartAsPNG(
+      pieChartId1,
+      `${results.scenario}_${pieChartId1}`,
+      pieChartTitle2
+    );
+  });
+
+  async function generateZipFile() {
+    const zip = new JSZip();
+
+    // Add each chart SVG to the zip
+    const svgCharts = [
+      { id: ScreentestBarChartId, title: barChartTitle1 },
+      { id: barChartId, title: barChartTitle2 },
+      { id: pieChartId0, title: pieChartTitle1 },
+      { id: pieChartId1, title: pieChartTitle2 },
+    ];
+
+    for (const chart of svgCharts) {
+      const svgElement = document.querySelector(`#${chart.id}`);
+      const svgString = new XMLSerializer().serializeToString(svgElement);
+
+      zip.file(`${results.scenario}_${chart.title}.svg`, svgString);
+    }
+
+    // Add each PNG chart to the zip
+    const pngCharts = [
+      { id: pieChartId0, title: pieChartTitle1 },
+      { id: barChartId, title: barChartTitle2 },
+      { id: ScreentestBarChartId, title: barChartTitle1 },
+      { id: pieChartId1, title: pieChartTitle2 },
+    ];
+
+    const pngPromises = pngCharts.map(async (chart) => {
+      const chartElement = document.querySelector(`#${chart.id}`);
+
+      const pngData = await saveChartAsPNGForZip(chart.id, chart.title);
+
+      // Return the PNG data with title as a resolved promise
+      return { title: chart.title, data: pngData };
+    });
+
+    // Wait for all promises to be resolved
+    const pngResults = await Promise.all(pngPromises);
+
+    // Add the PNG data to the zip
+    for (const pngResult of pngResults) {
+      zip.file(`${results.scenario}_${pngResult.title}.png`, pngResult.data, {
+        base64: true,
+      });
+    }
+
+    // Generate the zip file
+    const content = await zip.generateAsync({ type: "blob" });
+
+    // Save the zip file
+    saveAs(content, "charts.zip");
+  }
 
   if (!params || !results) {
     return null;
@@ -496,7 +563,7 @@ export default function ScenarioResults() {
             <Card.Title>{chartTiles}</Card.Title>
           </Card.Header>
           <Card.Body className="pt-1">
-            <h2 className="text-center h5">{barChartTitle}</h2>
+            <h2 className="text-center h5">{barChartTitle2}</h2>
             <Row>
               <Col md={6}>
                 <BarChart
@@ -511,7 +578,7 @@ export default function ScenarioResults() {
                   color="#95f4a2" // Set the color to blue
                   //layout={{ width: 450, height: 350 * 1.5 }} // Adjust the width and height as needed
                 />
-                <Col md={12} className="d-flex justify-content-center ">
+                {/* <Col md={12} className="d-flex justify-content-center ">
                   <Button
                     variant="link"
                     onClick={() => handleExportSvg(ScreentestBarChartId)}
@@ -521,7 +588,7 @@ export default function ScenarioResults() {
                   <Button variant="link" id="savePNG2" className="savePNG">
                     {t("general.exportPNG")}
                   </Button>
-                </Col>
+                </Col> */}
               </Col>
 
               <Col md={6}>
@@ -549,7 +616,7 @@ export default function ScenarioResults() {
                   color="#0DAB61"
                   //layout={{ width: 450, height: 350 - 50 }} // Adjust the width and height as needed
                 />
-                <Col md={12} className="d-flex justify-content-center ">
+                {/* <Col md={12} className="d-flex justify-content-center ">
                   <Button
                     variant="link"
                     onClick={() => handleExportSvg(barChartId)}
@@ -559,7 +626,7 @@ export default function ScenarioResults() {
                   <Button variant="link" id="savePNG1" className="savePNG">
                     {t("general.exportPNG")}
                   </Button>
-                </Col>
+                </Col> */}
               </Col>
             </Row>
 
@@ -567,7 +634,7 @@ export default function ScenarioResults() {
               <Col md={6}>
                 <h2 className="text-center h5">{pieChartTitle1}</h2>
                 <PieChart
-                  id={pieChartId}
+                  id={pieChartId0}
                   data={[
                     {
                       label: t("results.pPrecencersMissed"),
@@ -580,22 +647,22 @@ export default function ScenarioResults() {
                   ]}
                   colors={["#D13C4B", "#FD7E14"]} // Pass the custom color palette to the PieChart component
                 />
-                <Col md={12} className="d-flex justify-content-center">
+                {/* <Col md={12} className="d-flex justify-content-center">
                   <Button
                     variant="link"
-                    onClick={() => handleExportSvg(pieChartId)}
+                    onClick={() => handleExportSvg(pieChartId0)}
                   >
                     {t("general.exportSVG")}
                   </Button>
                   <Button variant="link" id="savePNG0" className="savePNG">
                     {t("general.exportPNG")}
                   </Button>
-                </Col>
+                </Col> */}
               </Col>
               <Col md={6}>
                 <h2 className="text-center h5">{pieChartTitle2}</h2>
                 <PieChart
-                  id={pieChartId}
+                  id={pieChartId1}
                   data={[
                     {
                       label: t("results.populationNotOverTreated"),
@@ -608,20 +675,31 @@ export default function ScenarioResults() {
                   ]}
                   colors={["#f7b885", "#FD7E14"]} // Pass the custom color palette to the PieChart component
                 />
-                <Col md={12} className="d-flex justify-content-center">
+                {/* <Col md={12} className="d-flex justify-content-center">
                   <Button
                     variant="link"
-                    onClick={() => handleExportSvg(pieChartId)}
+                    onClick={() => handleExportSvg(pieChartId1)}
                   >
                     {t("general.exportSVG")}
                   </Button>
-                  <Button variant="link" id="savePNG0" className="savePNG">
+                  <Button variant="link" id="savePNG3" className="savePNG">
                     {t("general.exportPNG")}
                   </Button>
-                </Col>
+                </Col> */}
               </Col>
             </Row>
-            <Row className="mt-3"></Row>
+
+            <Row className="justify-content-center">
+              {" "}
+              {/* Add justify-content-center here */}
+              <Button
+                variant="link"
+                onClick={generateZipFile}
+                className="d-flex justify-content-center"
+              >
+                Save All Charts as Zip
+              </Button>
+            </Row>
           </Card.Body>
         </Card>
 
