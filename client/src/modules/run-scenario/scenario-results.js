@@ -1107,27 +1107,26 @@ export default function ScenarioResults() {
                 </tr>
               </tbody>
             </Table>
-          </Card.Body>
-        </Card>
-
-        <div className="text-center">
-          {/* <Link className="btn btn-outline-primary text-decoration-none m-1" to="/run-scenario">
+            <div className="text-center">
+              {/* <Link className="btn btn-outline-primary text-decoration-none m-1" to="/run-scenario">
             Back to Scenario
           </Link> */}
-          <Button onClick={saveScenario} className="m-1" variant="primary">
-            {t("results.saveScenario")}
-          </Button>
-          <Button onClick={exportResults} className="m-1" variant="primary">
-            {t("results.exportResultsToPDF")}
-          </Button>
-          <Button
-            onClick={exportResultsExcel}
-            className="m-1"
-            variant="primary"
-          >
-            {t("results.exportResultsToExcel")}
-          </Button>
-        </div>
+              <Button onClick={saveScenario} className="m-1" variant="primary">
+                {t("results.saveScenario")}
+              </Button>
+              <Button onClick={exportResults} className="m-1" variant="primary">
+                {t("results.exportResultsToPDF")}
+              </Button>
+              <Button
+                onClick={exportResultsExcel}
+                className="m-1"
+                variant="primary"
+              >
+                {t("results.exportResultsToExcel")}
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
       </Container>
     </div>
   );
