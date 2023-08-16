@@ -9,7 +9,7 @@ export default function AppNavbar({ routes }) {
   const { t } = useTranslation(); // Initialize the useTranslation hook
 
   return (
-    <Navbar bg="transparent" variant="dark" className="font-title" expand="lg">
+    <Navbar bg="light" variant="dark" className="custom-navbar p-0" expand="lg">
       <Container>
         <Navbar.Brand className="font-title d-inline-block d-lg-none">
           GlobalCxCa
@@ -27,7 +27,8 @@ export default function AppNavbar({ routes }) {
               .filter((r) => r.navbar)
               .map((route) => (
                 <NavLink
-                  className="nav-link text-uppercase"
+                  className="nav-link text-uppercase text-primary"
+                  activeClassName="active text-primary" // Set active class and text-primary
                   key={route.path}
                   to={route.path}
                   end={route.end}

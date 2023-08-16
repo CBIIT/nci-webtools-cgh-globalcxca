@@ -73,6 +73,58 @@ export function saveChartAsPNG(chartId, filename, chartTitle) {
   }
 }
 
+export async function saveChartAsPNGForZip(chartId, chartTitle) {
+  var chartSVG = d3.select("#" + chartId).select("svg");
+
+  // Set the background color of the SVG element to white
+  chartSVG.style("background-color", "white");
+
+  // Create a new SVG element to hold the chart with the title
+  var svgWithTitle = d3
+    .create("svg")
+    .attr("xmlns", "http://www.w3.org/2000/svg")
+    .attr("width", chartSVG.attr("width"))
+    .attr("height", +chartSVG.attr("height") + 40); // Adjust height for title and spacing
+
+  // Append a white background rectangle to ensure the entire area is white
+  svgWithTitle
+    .append("rect")
+    .attr("width", chartSVG.attr("width"))
+    .attr("height", +chartSVG.attr("height") + 40)
+    .attr("fill", "white");
+
+  // Append a group element for applying the transform
+  var chartGroup = svgWithTitle
+    .append("g")
+    .attr("transform", "translate(0, 40)"); // Adjust vertical translation
+
+  // Append the original chart SVG to the new SVG, within the group element
+  chartGroup.append(() => chartSVG.node().cloneNode(true));
+
+  // Append the title to the new SVG
+  svgWithTitle
+    .append("text")
+    .attr("x", chartSVG.attr("width") / 2)
+    .attr("y", 30) // Adjust y-coordinate for title position
+    .style("text-anchor", "middle")
+    .style("font-size", "18px")
+    .text(chartTitle);
+
+  var svgString = getSVGString(svgWithTitle.node());
+
+  return new Promise((resolve) => {
+    svgString2Image(
+      svgString,
+      2 * defaultLayout.width,
+      2 * defaultLayout.height + 120, // Adjust height for title and spacing
+      "png",
+      (dataBlob) => {
+        resolve(dataBlob);
+      }
+    );
+  });
+}
+
 export function getSVGString(svgNode) {
   svgNode.setAttribute("xlink", "http://www.w3.org/1999/xlink");
   var cssStyleText = getCSSStyles(svgNode);

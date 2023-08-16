@@ -183,9 +183,6 @@ export default function RunScenarios() {
           <Col md={5} style={{ overflow: "auto", maxHeight: "75vh" }}>
             <div>
               <Form onReset={handleReset}>
-                <div className="small text-end text-muted mb-2">
-                  {t("runScenario.fieldRequired")}
-                </div>
                 <Row>
                   <Col md={6}>
                     <div>
@@ -199,7 +196,8 @@ export default function RunScenarios() {
                         <ListGroup.Item>
                           <Form.Group as={Row} controlId="populationSize">
                             <Form.Label column sm={12}>
-                              <span>{t("runScenario.numPeople")}</span>
+                              <span>{t("runScenario.numPeople")}</span>{" "}
+                              <span className="required"></span>
                               <OverlayTrigger
                                 overlay={
                                   <Tooltip id="populationSize-help">
@@ -551,7 +549,7 @@ export default function RunScenarios() {
                                 onWheel={(e) => e.target.blur()}
                               />
                               <Form.Check.Label htmlFor={scenario.value}>
-                                {scenario.strategy}
+                                {t(scenario.strategy)}
                               </Form.Check.Label>
                             </Form.Check>
                           </Col>

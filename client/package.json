@@ -12,6 +12,7 @@
     "fs": "^0.0.1-security",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
+    "jszip": "^3.10.1",
     "pdfmake": "^0.2.6",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",

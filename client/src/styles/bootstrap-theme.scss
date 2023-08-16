@@ -113,11 +113,13 @@ input[type="number"] {
     &.active {
       // background-color: white;
       border-bottom-color: rgba(255, 255, 255, 0.2);
-      color: white;
+      color: black;
     }
 
     &.active {
-      border-bottom-color: white;
+      //border-bottom-color: #297f94;
+      background-color: #69c9d2 !important;
+      color: black !important;
     }
   }
 
@@ -218,4 +220,8 @@ input[type="number"] {
 
 .tick {
   font-size: 1rem;
+}
+
+.custom-navbar {
+  border-bottom: 1px solid #297f94; /* Add a border to the bottom of the navbar */
 }
