@@ -563,9 +563,9 @@ export default function ScenarioResults() {
             <Card.Title>{chartTiles}</Card.Title>
           </Card.Header>
           <Card.Body className="pt-1">
-            <h2 className="text-center h5">{barChartTitle2}</h2>
             <Row>
               <Col md={6}>
+                <h2 className="text-center h5">{barChartTitle1}</h2>
                 <BarChart
                   id={ScreentestBarChartId}
                   data={[
@@ -592,6 +592,7 @@ export default function ScenarioResults() {
               </Col>
 
               <Col md={6}>
+                <h2 className="text-center h5">{barChartTitle2}</h2>
                 <BarChart
                   id={barChartId}
                   data={[

@@ -175,7 +175,7 @@ export default function RunScenarios() {
   // }, []);
 
   return (
-    <div className="bg-light py-4">
+    <div className="bg-light py-3">
       {/* <Container> */}
       <div className="mx-3">
         <Row>
