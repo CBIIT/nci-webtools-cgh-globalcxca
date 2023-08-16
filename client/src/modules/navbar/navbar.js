@@ -27,7 +27,7 @@ export default function AppNavbar({ routes }) {
               .filter((r) => r.navbar)
               .map((route) => (
                 <NavLink
-                  className="nav-link text-uppercase text-primary"
+                  className="nav-link text-uppercase text-primary py-0"
                   activeClassName="active text-primary" // Set active class and text-primary
                   key={route.path}
                   to={route.path}
