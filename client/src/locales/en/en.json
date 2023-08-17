@@ -85,7 +85,8 @@
     "noDataAvailable": "NO DATA AVAILABLE",
     "years": "Year(s)",
     "test": "test",
-    "contactUs": "Contact Us"
+    "contactUs": "Contact Us",
+    "numberFormat": "{{value}}"
   },
   "runScenario": {
     "title": "Run Scenario",

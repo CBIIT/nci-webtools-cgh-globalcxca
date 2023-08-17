@@ -573,9 +573,9 @@ export default function ScenarioResults() {
             <Card.Title>{chartTiles}</Card.Title>
           </Card.Header>
           <Card.Body className="pt-1">
-            <Row>
+            <Row className="my-1">
               <Col md={6}>
-                <h2 className="text-center h5">{barChartTitle1}</h2>
+                <h2 className="text-center h5 pb-2">{barChartTitle1}</h2>
                 <BarChart
                   id={ScreentestBarChartId}
                   data={[
@@ -602,7 +602,7 @@ export default function ScenarioResults() {
               </Col>
 
               <Col md={6}>
-                <h2 className="text-center h5">{barChartTitle2}</h2>
+                <h2 className="text-center h5 pb-2">{barChartTitle2}</h2>
                 <BarChart
                   id={barChartId}
                   data={[
@@ -641,9 +641,9 @@ export default function ScenarioResults() {
               </Col>
             </Row>
 
-            <Row>
+            <Row className="my-2">
               <Col md={6}>
-                <h2 className="text-center h5">{pieChartTitle1}</h2>
+                <h2 className="text-center h5 py-2">{pieChartTitle1}</h2>
                 <PieChart
                   id={pieChartId0}
                   data={[
@@ -671,7 +671,7 @@ export default function ScenarioResults() {
                 </Col> */}
               </Col>
               <Col md={6}>
-                <h2 className="text-center h5">{pieChartTitle2}</h2>
+                <h2 className="text-center h5 py-2">{pieChartTitle2}</h2>
                 <PieChart
                   id={pieChartId1}
                   data={[
