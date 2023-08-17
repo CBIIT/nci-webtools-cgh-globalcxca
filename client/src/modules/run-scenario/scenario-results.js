@@ -280,23 +280,8 @@ export default function ScenarioResults() {
     );
   });
 
-  async function generateZipFile() {
+  async function generateZipFilePNG() {
     const zip = new JSZip();
-
-    // Add each chart SVG to the zip
-    const svgCharts = [
-      { id: ScreentestBarChartId, title: barChartTitle1 },
-      { id: barChartId, title: barChartTitle2 },
-      { id: pieChartId0, title: pieChartTitle1 },
-      { id: pieChartId1, title: pieChartTitle2 },
-    ];
-
-    for (const chart of svgCharts) {
-      const svgElement = document.querySelector(`#${chart.id}`);
-      const svgString = new XMLSerializer().serializeToString(svgElement);
-
-      zip.file(`${results.scenario}_${chart.title}.svg`, svgString);
-    }
 
     // Add each PNG chart to the zip
     const pngCharts = [
@@ -329,7 +314,32 @@ export default function ScenarioResults() {
     const content = await zip.generateAsync({ type: "blob" });
 
     // Save the zip file
-    saveAs(content, "charts.zip");
+    saveAs(content, "chartsPNG.zip");
+  }
+
+  async function generateZipFileSVG() {
+    const zip = new JSZip();
+
+    // Add each chart SVG to the zip
+    const svgCharts = [
+      { id: ScreentestBarChartId, title: barChartTitle1 },
+      { id: barChartId, title: barChartTitle2 },
+      { id: pieChartId0, title: pieChartTitle1 },
+      { id: pieChartId1, title: pieChartTitle2 },
+    ];
+
+    for (const chart of svgCharts) {
+      const svgElement = document.querySelector(`#${chart.id}`);
+      const svgString = new XMLSerializer().serializeToString(svgElement);
+
+      zip.file(`${results.scenario}_${chart.title}.svg`, svgString);
+    }
+
+    // Generate the zip file
+    const content = await zip.generateAsync({ type: "blob" });
+
+    // Save the zip file
+    saveAs(content, "chartsSVG.zip");
   }
 
   if (!params || !results) {
@@ -563,9 +573,9 @@ export default function ScenarioResults() {
             <Card.Title>{chartTiles}</Card.Title>
           </Card.Header>
           <Card.Body className="pt-1">
-            <h2 className="text-center h5">{barChartTitle2}</h2>
-            <Row>
+            <Row className="my-1">
               <Col md={6}>
+                <h2 className="text-center h5 pb-2">{barChartTitle1}</h2>
                 <BarChart
                   id={ScreentestBarChartId}
                   data={[
@@ -592,6 +602,7 @@ export default function ScenarioResults() {
               </Col>
 
               <Col md={6}>
+                <h2 className="text-center h5 pb-2">{barChartTitle2}</h2>
                 <BarChart
                   id={barChartId}
                   data={[
@@ -630,9 +641,9 @@ export default function ScenarioResults() {
               </Col>
             </Row>
 
-            <Row>
+            <Row className="my-2">
               <Col md={6}>
-                <h2 className="text-center h5">{pieChartTitle1}</h2>
+                <h2 className="text-center h5 py-2">{pieChartTitle1}</h2>
                 <PieChart
                   id={pieChartId0}
                   data={[
@@ -660,7 +671,7 @@ export default function ScenarioResults() {
                 </Col> */}
               </Col>
               <Col md={6}>
-                <h2 className="text-center h5">{pieChartTitle2}</h2>
+                <h2 className="text-center h5 py-2">{pieChartTitle2}</h2>
                 <PieChart
                   id={pieChartId1}
                   data={[
@@ -690,15 +701,15 @@ export default function ScenarioResults() {
             </Row>
 
             <Row className="justify-content-center">
-              {" "}
+              <Col md={12} className="d-flex justify-content-center">
+                <Button variant="link" onClick={generateZipFileSVG}>
+                  {t("general.exportSVG")}
+                </Button>
+                <Button variant="link" onClick={generateZipFilePNG}>
+                  {t("general.exportPNG")}
+                </Button>
+              </Col>{" "}
               {/* Add justify-content-center here */}
-              <Button
-                variant="link"
-                onClick={generateZipFile}
-                className="d-flex justify-content-center"
-              >
-                Save All Charts as Zip
-              </Button>
             </Row>
           </Card.Body>
         </Card>

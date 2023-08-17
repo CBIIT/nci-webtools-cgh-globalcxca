@@ -14,7 +14,7 @@ export default function Home() {
         <Row>
           <Col md={9}>
             <div className="d-flex h-100 align-items-center">
-              <div className="mb-4">
+              <div className="my-2">
                 <h1 className="text-light d-none d-md-block">
                   {t("general.welcome")}
                 </h1>

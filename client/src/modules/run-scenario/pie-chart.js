@@ -3,13 +3,13 @@ import * as d3 from "d3";
 import { useTranslation } from "react-i18next";
 
 export const defaultLayout = {
-  width: 280,
-  height: 280,
+  width: 250,
+  height: 250,
   margin: 20,
 };
 
 export default function PieChart({ id, data, layout = defaultLayout, colors }) {
-  const { t } = useTranslation(); // Add this line
+  const { t, i18n } = useTranslation(); // Add this line
   const translatedLabels = {
     noDataAvailable: t("general.noDataAvailable"),
     // ... other labels you need ...
@@ -39,7 +39,7 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
             width: layout.width,
             height: layout.height,
             labelRadius: (Math.min(layout.width, layout.height) / 2) * 0.5,
-            format: ".0f",
+            format: ",.0f",
             //colors: ["#D13C4B", "#FD7E14"],
             colors: colors,
             labels: translatedLabels,
@@ -60,8 +60,8 @@ function d3PieChart(
     name = ([x]) => x, // given d in data, returns the (ordinal) label
     value = ([, y]) => y, // given d in data, returns the (quantitative) value
     title, // given d in data, returns the title text
-    width = 640, // outer width, in pixels
-    height = 400, // outer height, in pixels
+    width = 200, // outer width, in pixels
+    height = 200, // outer height, in pixels
     innerRadius = 0, // inner radius of pie, in pixels (non-zero for donut)
     outerRadius = Math.min(width, height) / 2, // outer radius of pie, in pixels
     labelRadius = innerRadius * 0.2 + outerRadius * 0.8, // center radius of labels
@@ -231,7 +231,7 @@ function d3PieChart(
     })
     .join("tspan")
     .attr("x", 0)
-    .attr("y", (_, i) => `${i * 1.1}em`)
+    .attr("y", (_, i) => `${i * 1}em`)
     .attr("font-weight", (_, i) => (i ? null : "bold"))
     .text((d) => d);
 

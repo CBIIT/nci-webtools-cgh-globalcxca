@@ -85,7 +85,8 @@
     "noDataAvailable": "NO DATA AVAILABLE",
     "years": "Year(s)",
     "test": "test",
-    "contactUs": "Contact Us"
+    "contactUs": "Contact Us",
+    "numberFormat": "{{value}}"
   },
   "runScenario": {
     "title": "Run Scenario",
@@ -138,7 +139,7 @@
     "screenTriageDiagnosisTreatment": "Screening → Triage → Diagnosis → Treatment",
     "screenTreatment": "Screening → Treatment",
     "interventionsRequired": "Interventions Required",
-    "screeningBarChartTitle0": "Screening Interventions",
+    "screeningBarChartTitle0": "Screening Required",
     "populationWithPrecancer": "Population with Precancer",
     "populationWithoutPrecancer": "Population without Precancer",
     "precancersTreated.": "Precancers Treated",

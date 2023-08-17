@@ -2,15 +2,14 @@ import { useRef, useEffect } from "react";
 import * as d3 from "d3";
 import { useTranslation } from "react-i18next";
 
-
 export const defaultLayout = {
   width: 400,
-  height: 300,
+  height: 250,
 };
 
 export default function BarChart({ id, data, layout = defaultLayout, color }) {
   const ref = useRef(null);
-  const { t } = useTranslation(); // Add this line
+  const { t, i18n } = useTranslation(); // Add this line
   const translatedLabels = {
     noDataAvailable: t("general.noDataAvailable"),
     // ... other labels you need ...
@@ -23,7 +22,7 @@ export default function BarChart({ id, data, layout = defaultLayout, color }) {
       }
       if (data.every((item) => item.value === 0)) {
         const noDataText = document.createElement("p");
-        noDataText.textContent =  t("general.noDataAvailable");
+        noDataText.textContent = t("general.noDataAvailable");
         noDataText.style.display = "flex";
         noDataText.style.justifyContent = "center";
         noDataText.style.alignItems = "center";
@@ -41,6 +40,8 @@ export default function BarChart({ id, data, layout = defaultLayout, color }) {
             height: layout.height, // Use the height from the layout object
             color: color || "#0DAB61", // Use the provided color or default to green
             labels: translatedLabels,
+            t: t,
+            language: i18n.language,
           })
         );
       }
@@ -58,7 +59,7 @@ function d3BarChart(
     marginTop = 30, // the top margin, in pixels
     marginRight = 0, // the right margin, in pixels
     marginBottom = 30, // the bottom margin, in pixels
-    marginLeft = 70, // the left margin, in pixels
+    marginLeft = 100, // the left margin, in pixels
     width = 640, // the outer width of the chart, in pixels
     height = 400, // the outer height of the chart, in pixels
     xDomain, // an array of (ordinal) x-values
@@ -70,7 +71,8 @@ function d3BarChart(
     yFormat, // a format specifier string for the y-axis
     yLabel, // a label for the y-axis
     color = "currentColor", // bar fill color
-    singleBarWidth = width / 4, // set a custom width for single data bar
+    singleBarWidth = width / 5, // set a custom width for single data bar
+    language,
   } = {}
 ) {
   // Compute values.
@@ -86,6 +88,9 @@ function d3BarChart(
   const I = d3.range(X.length).filter((i) => xDomain.has(X[i]));
 
   // Construct scales, axes, and formats.
+  // Compute formats based on language.
+  yFormat = language === "es" ? ".0f" : ",.0f";
+
   const xScale = d3.scaleBand(xDomain, xRange).padding(xPadding);
   const yScale = yType(yDomain, yRange);
   const xAxis = d3.axisBottom(xScale).tickSizeOuter(0);

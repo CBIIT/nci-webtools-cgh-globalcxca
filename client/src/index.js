@@ -21,6 +21,7 @@ root.render(
   <StrictMode>
     <LanguageProvider>
       <RecoilRoot>
+        <Header />
         <RouterProvider router={router}></RouterProvider>
         <Footer /> {/* Add the Footer component here */}
       </RecoilRoot>

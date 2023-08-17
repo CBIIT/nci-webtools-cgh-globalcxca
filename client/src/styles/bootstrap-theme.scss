@@ -223,5 +223,6 @@ input[type="number"] {
 }
 
 .custom-navbar {
-  border-bottom: 1px solid #297f94; /* Add a border to the bottom of the navbar */
+  // border-bottom: 2px solid #ccc; /* Add a border to the bottom of the navbar */
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
 }
