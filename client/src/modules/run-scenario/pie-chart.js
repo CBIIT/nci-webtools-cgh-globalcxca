@@ -222,7 +222,7 @@ function d3PieChart(
     .data(arcs)
     .join("text")
     .attr("transform", (d) => `translate(${arcLabel.centroid(d)})`)
-    .attr("font-size", "0.8rem")
+    .attr("font-size", "0.7rem")
     .attr("fill", "white")
     .selectAll("tspan")
     .data((d) => {
