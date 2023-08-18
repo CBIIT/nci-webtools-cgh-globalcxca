@@ -21,14 +21,26 @@ export default function BarChart({ id, data, layout = defaultLayout, color }) {
         ref.current.removeChild(ref.current.firstChild);
       }
       if (data.every((item) => item.value === 0)) {
+        // const noDataText = document.createElement("p");
+        // noDataText.textContent = t("general.noDataAvailable");
+        // noDataText.style.display = "flex";
+        // noDataText.style.justifyContent = "center";
+        // noDataText.style.alignItems = "center";
+        // noDataText.style.height = "100%";
+        // noDataText.style.color = "red"; // Set the text color to red
+        // ref.current.appendChild(noDataText);
+        const noDataContainer = document.createElement("div");
+        noDataContainer.style.display = "flex";
+        noDataContainer.style.justifyContent = "center";
+        noDataContainer.style.alignItems = "center";
+        noDataContainer.style.height = `${layout.height}px`; // Set the height from the layout object
+        ref.current.appendChild(noDataContainer);
+
         const noDataText = document.createElement("p");
         noDataText.textContent = t("general.noDataAvailable");
-        noDataText.style.display = "flex";
-        noDataText.style.justifyContent = "center";
-        noDataText.style.alignItems = "center";
-        noDataText.style.height = "100%";
-        noDataText.style.color = "red"; // Set the text color to red
-        ref.current.appendChild(noDataText);
+        noDataText.style.color = "gray"; // Set the text color to red
+        noDataText.style.fontWeight = "bold";
+        noDataContainer.appendChild(noDataText);
       } else {
         ref.current.appendChild(
           d3BarChart(data, {

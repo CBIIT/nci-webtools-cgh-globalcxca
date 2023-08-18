@@ -23,14 +23,25 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
       }
 
       if (isNaN(data[0].value) || data.every((item) => item.value === 0)) {
+        // const noDataText = document.createElement("p");
+        // noDataText.textContent = t("general.noDataAvailable");
+        // noDataText.style.display = "flex";
+        // noDataText.style.justifyContent = "center";
+        // noDataText.style.alignItems = "center";
+        // noDataText.style.height = "100%";
+        // noDataText.style.color = "red"; // Set the text color to red
+        const noDataContainer = document.createElement("div");
+        noDataContainer.style.display = "flex";
+        noDataContainer.style.justifyContent = "center";
+        noDataContainer.style.alignItems = "center";
+        noDataContainer.style.height = `${layout.height}px`; // Set the height from the layout object
+        ref.current.appendChild(noDataContainer);
+
         const noDataText = document.createElement("p");
         noDataText.textContent = t("general.noDataAvailable");
-        noDataText.style.display = "flex";
-        noDataText.style.justifyContent = "center";
-        noDataText.style.alignItems = "center";
-        noDataText.style.height = "100%";
-        noDataText.style.color = "red"; // Set the text color to red
-        ref.current.appendChild(noDataText);
+        noDataText.style.color = "gray";
+        noDataText.style.fontWeight = "bold";
+        noDataContainer.appendChild(noDataText);
       } else {
         ref.current.appendChild(
           d3PieChart(data, {
@@ -112,6 +123,16 @@ function d3PieChart(
     const formatValue = d3.format(format);
 
     title = (i) => {
+      // if (hasData) {
+      //   const label = N[i].replace("%", "").trim();
+      //   const words = label.split(" ");
+      //   const lastWord = words[words.length - 1];
+      //   return `${formatValue(V[i])} (${percentages[i].toFixed(
+      //     1
+      //   )}%) ${lastWord}`;
+      // } else {
+      //   return labels.noDataAvailable;
+      // }
       if (hasData) {
         const label = N[i].replace("%", "").trim();
         const words = label.split(" ");
@@ -120,7 +141,12 @@ function d3PieChart(
           1
         )}%) ${lastWord}`;
       } else {
-        return labels.noDataAvailable;
+        const label = N[i].replace("%", "").trim();
+        const words = label.split(" ");
+        const lastWord = words[words.length - 1];
+        return `${formatValue(V[i])} (${percentages[i].toFixed(
+          1
+        )}%) ${lastWord}`;
       }
     };
 
@@ -131,7 +157,11 @@ function d3PieChart(
           1
         )}%) ${label}\nTotal: ${formatTotal(totalValue)}`;
       } else {
-        return labels.noDataAvailable;
+        //return labels.noDataAvailable;
+        const label = N[i].replace("%", "").trim();
+        return `${formatValue(V[i])} (${percentages[i].toFixed(
+          1
+        )}%) ${label}\nTotal: ${formatTotal(totalValue)}`;
       }
     };
   } else {
@@ -146,7 +176,13 @@ function d3PieChart(
           data
         )}\n `;
       } else {
-        return labels.noDataAvailable;
+        //return labels.noDataAvailable;
+        const label = N[i].replace("%", "").trim();
+        return `% ${label}: ${percentages[i].toFixed(1)}%\n ${label}: ${T(
+          O[i],
+          i,
+          data
+        )}\n `;
       }
     };
 
@@ -159,7 +195,13 @@ function d3PieChart(
           data
         )}\n Total: ${formatTotal(totalValue)}`;
       } else {
-        return labels.noDataAvailable;
+        //return labels.noDataAvailable;
+        const label = N[i].replace("%", "").trim();
+        return `% ${label}: ${percentages[i].toFixed(1)}%\n ${label}: ${T(
+          O[i],
+          i,
+          data
+        )}\n Total: ${formatTotal(totalValue)}`;
       }
     };
   }
