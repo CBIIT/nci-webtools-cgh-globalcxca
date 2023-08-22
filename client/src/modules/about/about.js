@@ -131,7 +131,7 @@ export default function About() {
                   <th>{t("general.testName")}</th>
                   <th>{t("general.defaultSensitivity")}</th>
                   <th>{t("general.defaultSpecificity")}</th>
-                  <th>{t("general.justificationText")}t </th>
+                  <th>{t("general.justificationText")} </th>
                   <th>{t("general.sourcesJustification")}</th>
                 </tr>
               </thead>

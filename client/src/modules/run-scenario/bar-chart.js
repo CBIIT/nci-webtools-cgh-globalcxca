@@ -7,7 +7,13 @@ export const defaultLayout = {
   height: 250,
 };
 
-export default function BarChart({ id, data, layout = defaultLayout, color }) {
+export default function BarChart({
+  id,
+  data,
+  layout = defaultLayout,
+  color,
+  barWidth,
+}) {
   const ref = useRef(null);
   const { t, i18n } = useTranslation(); // Add this line
   const translatedLabels = {
@@ -54,11 +60,12 @@ export default function BarChart({ id, data, layout = defaultLayout, color }) {
             labels: translatedLabels,
             t: t,
             language: i18n.language,
+            barWidth: barWidth || 20, // Use the provided bar width or default to 20
           })
         );
       }
     }
-  }, [data, layout, color]);
+  }, [data, layout, color, barWidth]);
 
   return <div className="" ref={ref} id={id} />;
 }
@@ -85,6 +92,7 @@ function d3BarChart(
     color = "currentColor", // bar fill color
     singleBarWidth = width / 5, // set a custom width for single data bar
     language,
+    xLabelRotation = 0, // Default rotation angle
   } = {}
 ) {
   // Compute values.
@@ -107,6 +115,11 @@ function d3BarChart(
   const yScale = yType(yDomain, yRange);
   const xAxis = d3.axisBottom(xScale).tickSizeOuter(0);
   const yAxis = d3.axisLeft(yScale).ticks(height / 40, yFormat);
+
+  // Check if the language is Spanish and set the x-axis label rotation
+  if (language === "es" && xLabelRotation === 0) {
+    xLabelRotation = 30; // Rotate by 30 degrees for Spanish language
+  }
 
   // Compute titles.
   if (title === undefined) {
@@ -192,6 +205,11 @@ function d3BarChart(
     .append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
     .call(xAxis);
+  // .selectAll(".tick text") // Select all x-axis tick labels
+  // .style("text-anchor", "start")
+  // .attr("dx", "-0.8em")
+  // .attr("dy", "0.15em")
+  // .attr("transform", `rotate(${xLabelRotation})`); // Rotate the labels
 
   return svg.node();
 }
