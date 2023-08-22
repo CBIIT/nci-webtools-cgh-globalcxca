@@ -85,7 +85,8 @@
     "noDataAvailable": "NO HAY DATOS DISPONIBLES",
     "years": "Año(s)",
     "test": "prueba",
-    "contactUs": "Contáctenos"
+    "contactUs": "Contáctenos",
+    "enterValue": "Ingresar Valor"
   },
   "runScenario": {
     "title": "Ejecutar escenario",

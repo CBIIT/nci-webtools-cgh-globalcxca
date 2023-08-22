@@ -86,7 +86,8 @@
     "years": "Year(s)",
     "test": "test",
     "contactUs": "Contact Us",
-    "numberFormat": "{{value}}"
+    "numberFormat": "{{value}}", 
+    "enterValue":"Enter Value"
   },
   "runScenario": {
     "title": "Run Scenario",

@@ -224,7 +224,7 @@ export default function RunScenarios() {
                                     type="number"
                                     min="1"
                                     step="1"
-                                    placeholder="Enter value"
+                                    placeholder={t("general.enterValue")}
                                     name="populationSize"
                                     value={form.populationSize}
                                     onChange={handleChange}
@@ -595,7 +595,7 @@ export default function RunScenarios() {
                                   required
                                 >
                                   <option value="" hidden>
-                                    Select a test
+                                    {t("runScenario.selectTest")}
                                   </option>
                                   {screeningTests.map((t) => (
                                     <option key={t.value} value={t.value}>
@@ -858,7 +858,7 @@ export default function RunScenarios() {
                                     ].includes(form.scenario)}
                                   >
                                     <option value="" hidden>
-                                      Select a test
+                                      {t("runScenario.selectTest")}
                                     </option>
                                     {diagnosticTests.map((t) => (
                                       <option key={t.value} value={t.value}>
