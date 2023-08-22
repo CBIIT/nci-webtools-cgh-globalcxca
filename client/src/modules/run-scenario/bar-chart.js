@@ -77,7 +77,7 @@ function d3BarChart(
     title, // given d in data, returns the title text
     marginTop = 30, // the top margin, in pixels
     marginRight = 0, // the right margin, in pixels
-    marginBottom = 30, // the bottom margin, in pixels
+    marginBottom = 0, // the bottom margin, in pixels
     marginLeft = 100, // the left margin, in pixels
     width = 640, // the outer width of the chart, in pixels
     height = 400, // the outer height of the chart, in pixels
@@ -98,7 +98,7 @@ function d3BarChart(
   // Compute values.
   const X = d3.map(data, x);
   const Y = d3.map(data, y);
-
+  let xLabelMargin = 0;
   // Compute default domains, and unique the x-domain.
   if (xDomain === undefined) xDomain = X;
   if (yDomain === undefined) yDomain = [0, d3.max(Y)];
@@ -118,8 +118,12 @@ function d3BarChart(
 
   // Check if the language is Spanish and set the x-axis label rotation
   if (language === "es" && xLabelRotation === 0) {
-    xLabelRotation = 30; // Rotate by 30 degrees for Spanish language
+    xLabelRotation = -20; // Rotate by 30 degrees for Spanish language
+    // Calculate additional margin for rotated x-axis labels in Spanish
+    xLabelMargin = 50;
   }
+  // Update the margins based on the additional margin required
+  const marginBottomAdjusted = marginBottom + xLabelMargin;
 
   // Compute titles.
   if (title === undefined) {
@@ -135,7 +139,8 @@ function d3BarChart(
     .create("svg")
     .attr("width", width)
     .attr("height", height)
-    .attr("viewBox", [0, 0, width, height])
+    //.attr("viewBox", [0, 0, width, height])
+    .attr("height", height + marginTop + marginBottomAdjusted) // Adjust height
     .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
   svg
@@ -204,12 +209,17 @@ function d3BarChart(
   svg
     .append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
-    .call(xAxis);
-  // .selectAll(".tick text") // Select all x-axis tick labels
-  // .style("text-anchor", "start")
-  // .attr("dx", "-0.8em")
-  // .attr("dy", "0.15em")
-  // .attr("transform", `rotate(${xLabelRotation})`); // Rotate the labels
+    // .attr(
+    //   "transform",
+    //   `translate(${marginLeft},${height - marginTop - xLabelMargin})`
+    // )
+    .call(xAxis)
+    .selectAll(".tick text") // Select all x-axis tick labels
+    .style("text-anchor", language === "es" ? "end" : "center") // Conditionally set text-anchor style
+    //.style("text-anchor", "end")
+    //.attr("dx", "-0.8em")
+    //.attr("dy", "0.15em")
+    .attr("transform", `rotate(${xLabelRotation})`); // Rotate the labels
 
   return svg.node();
 }
