@@ -55,6 +55,11 @@ export default function ScenarioResults() {
   // console.log("params", params);
   console.log("result", results);
 
+  const layout = {
+    width: 400,
+    height: 250,
+  };
+
   if (
     results.checkedValues &&
     results.checkedValues.length === 2 &&
@@ -347,6 +352,15 @@ export default function ScenarioResults() {
     //return <Navigate to="/run-scenario" />;
   }
 
+  function hasNonZeroValues(data) {
+    if (!data) {
+      return false; // Data is undefined, return false
+    }
+    console.log(data);
+    console.log(data.some((item) => item.value !== 0));
+    return data.some((item) => item.value !== 0 || item.value !== "NaN"); // Check if any value is not zero
+  }
+
   return (
     <div>
       {/* <Container style={{ overflow: "auto", maxHeight: "100vh" }}> */}
@@ -603,6 +617,7 @@ export default function ScenarioResults() {
 
               <Col md={6}>
                 <h2 className="text-center h5 pb-2">{barChartTitle2}</h2>
+
                 <BarChart
                   id={barChartId}
                   data={[
@@ -627,6 +642,7 @@ export default function ScenarioResults() {
                   color="#0DAB61"
                   //layout={{ width: 450, height: 350 - 50 }} // Adjust the width and height as needed
                 />
+
                 {/* <Col md={12} className="d-flex justify-content-center ">
                   <Button
                     variant="link"
@@ -644,6 +660,7 @@ export default function ScenarioResults() {
             <Row className="my-2">
               <Col md={6}>
                 <h2 className="text-center h5 py-2">{pieChartTitle1}</h2>
+
                 <PieChart
                   id={pieChartId0}
                   data={[
@@ -658,6 +675,7 @@ export default function ScenarioResults() {
                   ]}
                   colors={["#D13C4B", "#FD7E14"]} // Pass the custom color palette to the PieChart component
                 />
+
                 {/* <Col md={12} className="d-flex justify-content-center">
                   <Button
                     variant="link"
@@ -672,6 +690,7 @@ export default function ScenarioResults() {
               </Col>
               <Col md={6}>
                 <h2 className="text-center h5 py-2">{pieChartTitle2}</h2>
+
                 <PieChart
                   id={pieChartId1}
                   data={[
@@ -686,6 +705,7 @@ export default function ScenarioResults() {
                   ]}
                   colors={["#f7b885", "#FD7E14"]} // Pass the custom color palette to the PieChart component
                 />
+
                 {/* <Col md={12} className="d-flex justify-content-center">
                   <Button
                     variant="link"

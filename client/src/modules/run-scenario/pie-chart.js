@@ -22,26 +22,36 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
         ref.current.removeChild(ref.current.firstChild);
       }
 
-      if (isNaN(data[0].value) || data.every((item) => item.value === 0)) {
-        // const noDataText = document.createElement("p");
-        // noDataText.textContent = t("general.noDataAvailable");
-        // noDataText.style.display = "flex";
-        // noDataText.style.justifyContent = "center";
-        // noDataText.style.alignItems = "center";
-        // noDataText.style.height = "100%";
-        // noDataText.style.color = "red"; // Set the text color to red
-        const noDataContainer = document.createElement("div");
-        noDataContainer.style.display = "flex";
-        noDataContainer.style.justifyContent = "center";
-        noDataContainer.style.alignItems = "center";
-        noDataContainer.style.height = `${layout.height}px`; // Set the height from the layout object
-        ref.current.appendChild(noDataContainer);
+      if (isNaN(data[0]?.value) || data.every((item) => item.value === 0)) {
+        let emptyData = [{ label: "Empty", value: 1 }];
 
-        const noDataText = document.createElement("p");
-        noDataText.textContent = t("general.noDataAvailable");
-        noDataText.style.color = "gray";
-        noDataText.style.fontWeight = "bold";
-        noDataContainer.appendChild(noDataText);
+        const emptySvg = d3
+          .create("svg")
+          .attr("width", layout.width)
+          .attr("height", layout.height);
+
+        // Draw an empty circle in the center of the SVG
+        emptySvg
+          .append("circle")
+          .attr("cx", layout.width / 2)
+          .attr("cy", layout.height / 2)
+          .attr("r", Math.min(layout.width, layout.height) / 2) // Adjust the radius as needed
+          .attr("fill", "none")
+          .attr("stroke", "gray")
+          .attr("stroke-width", 2);
+
+        emptySvg
+          .append("text")
+          .attr("text-anchor", "middle")
+          .attr("font-size", "1rem")
+          .attr("dy", "0.35em")
+          .attr("x", layout.width / 2)
+          .attr("y", layout.height / 2)
+          .text(translatedLabels.noDataAvailable)
+          .attr("fill", "gray")
+          .style("font-weight", "bold"); // Apply bold font weight;
+
+        ref.current.appendChild(emptySvg.node());
       } else {
         ref.current.appendChild(
           d3PieChart(data, {

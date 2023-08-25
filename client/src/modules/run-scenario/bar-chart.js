@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 import { useTranslation } from "react-i18next";
 
@@ -21,32 +21,68 @@ export default function BarChart({
     // ... other labels you need ...
   };
 
+  const [isDataZero, setIsDataZero] = useState(false); // New state variable
+
   useEffect(() => {
+    if (data) {
+      setIsDataZero(data.every((item) => item.value === 0)); // Update isDataZero state
+    }
+
+    console.log("isDataZero", isDataZero);
     if (ref.current && data && layout) {
       while (ref.current.firstChild) {
         ref.current.removeChild(ref.current.firstChild);
       }
       if (data.every((item) => item.value === 0)) {
-        // const noDataText = document.createElement("p");
-        // noDataText.textContent = t("general.noDataAvailable");
-        // noDataText.style.display = "flex";
-        // noDataText.style.justifyContent = "center";
-        // noDataText.style.alignItems = "center";
-        // noDataText.style.height = "100%";
-        // noDataText.style.color = "red"; // Set the text color to red
-        // ref.current.appendChild(noDataText);
-        const noDataContainer = document.createElement("div");
-        noDataContainer.style.display = "flex";
-        noDataContainer.style.justifyContent = "center";
-        noDataContainer.style.alignItems = "center";
-        noDataContainer.style.height = `${layout.height}px`; // Set the height from the layout object
-        ref.current.appendChild(noDataContainer);
+        const svg = d3
+          .create("svg")
+          .attr("width", layout.width)
+          .attr("height", layout.height);
 
-        const noDataText = document.createElement("p");
-        noDataText.textContent = t("general.noDataAvailable");
-        noDataText.style.color = "gray"; // Set the text color to red
-        noDataText.style.fontWeight = "bold";
-        noDataContainer.appendChild(noDataText);
+        // Append y axis line (vertical)
+        svg
+          .append("line")
+          .attr("x1", 40) // Adjust position from the left
+          .attr("y1", 0)
+          .attr("x2", 40)
+          .attr("y2", layout.height)
+          .attr("stroke", "black");
+
+        // Append x axis line (horizontal)
+        svg
+          .append("line")
+          .attr("x1", 0)
+          .attr("y1", layout.height - 40) // Adjust position from the bottom
+          .attr("x2", layout.width)
+          .attr("y2", layout.height - 40)
+          .attr("stroke", "black");
+
+        // Append axis labels
+        svg
+          .append("text")
+          .attr("x", layout.width / 2)
+          .attr("y", layout.height - 10)
+          .attr("text-anchor", "middle")
+          .text("");
+
+        svg
+          .append("text")
+          .attr("x", 10)
+          .attr("y", layout.height / 2)
+          .attr("text-anchor", "start")
+          .text("");
+
+        // Append a text element to indicate there is no data
+        svg
+          .append("text")
+          .attr("x", layout.width / 2)
+          .attr("y", layout.height / 2)
+          .attr("text-anchor", "middle")
+          .text("NO DATA AVAILABLE")
+          .style("font-weight", "bold") // Apply bold font weight
+          .style("fill", "gray"); // Apply gray color
+        // Append the SVG to the container
+        ref.current.appendChild(svg.node());
       } else {
         ref.current.appendChild(
           d3BarChart(data, {
