@@ -13,7 +13,7 @@ i18next
   .init({
     lng: "en", // Set the default language
     fallbackLng: "en", // Fallback language if translation is not available
-    debug: true, // Enable debug mode for development
+    debug: false, // Enable debug mode for development
 
     // Add your translation resources
     resources: {

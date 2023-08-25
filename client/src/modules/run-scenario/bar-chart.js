@@ -28,7 +28,6 @@ export default function BarChart({
       setIsDataZero(data.every((item) => item.value === 0)); // Update isDataZero state
     }
 
-    console.log("isDataZero", isDataZero);
     if (ref.current && data && layout) {
       while (ref.current.firstChild) {
         ref.current.removeChild(ref.current.firstChild);
@@ -78,7 +77,7 @@ export default function BarChart({
           .attr("x", layout.width / 2)
           .attr("y", layout.height / 2)
           .attr("text-anchor", "middle")
-          .text("NO DATA AVAILABLE")
+          .text(translatedLabels.noDataAvailable)
           .style("font-weight", "bold") // Apply bold font weight
           .style("fill", "gray"); // Apply gray color
         // Append the SVG to the container

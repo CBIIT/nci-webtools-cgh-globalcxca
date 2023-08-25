@@ -80,7 +80,7 @@ export const tests = {
 // }
 
 export function runModel(params) {
-  console.log("PARMS ---- ", params);
+  //console.log("PARMS ---- ", params);
   const scenario = params.scenario;
   const populationSize = parseInt(params.populationSize, 10);
   const screeningInterval = parseInt(params.screeningInterval, 10);

@@ -55,15 +55,15 @@ export function exportPdf(filename, nodes, config = {}) {
     content: nodes.map((node) => {
       if (node.tagName === "HR") {
         return { text: "", pageBreak: "after" };
-      }
-
-      else if (node.tagName === "TABLE") {
+      } else if (node.tagName === "TABLE") {
         return {
           layout: "lightHorizontalLines",
           margin: [0, 0, 0, 20],
           table: {
             headerRows: 1,
-            widths: Array.from(node.querySelector("tr").querySelectorAll("td, th")).map(v => "*"),
+            widths: Array.from(
+              node.querySelector("tr").querySelectorAll("td, th")
+            ).map((v) => "*"),
             body: Array.from(node.querySelectorAll("tr")).map((tr) =>
               Array.from(tr.querySelectorAll("td, th")).map((cell) => ({
                 text: cell.innerText,
@@ -73,20 +73,18 @@ export function exportPdf(filename, nodes, config = {}) {
             ),
           },
         };
-      }
-
-      else {
-        return { 
-          text: node.innerText, 
-          style: [...node.classList, node.tagName] 
+      } else {
+        return {
+          text: node.innerText,
+          style: [...node.classList, node.tagName],
         };
       }
     }),
     styles: pdfStyles,
-    ...config
+    ...config,
   };
 
-  console.log(doc);
+  //console.log(doc);
 
   return pdfMake.createPdf(doc).download(filename);
 }

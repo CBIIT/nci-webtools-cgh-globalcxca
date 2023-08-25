@@ -44,8 +44,8 @@ export default function RunScenarios() {
 
   function handleChange(e) {
     const { name, value, checked } = e.target;
-    console.log("checked", checked);
-    console.log("value", value);
+    // console.log("checked", checked);
+    // console.log("value", value);
 
     if (name === "ScreenTreat" && !checked) {
       // Ignore the unchecked action for "Screening Test" checkbox
@@ -60,7 +60,7 @@ export default function RunScenarios() {
       // Remove the unchecked value from the array
       updatedValues = checkedValues.filter((val) => val !== value);
     }
-    console.log("updatedValues -----", updatedValues);
+    //console.log("updatedValues -----", updatedValues);
     setCheckedValues(updatedValues);
 
     if (name === "scenario") {
@@ -139,7 +139,6 @@ export default function RunScenarios() {
 
   const results = runModel(form);
   const params = mapValues(form, asNumber);
-  console.log("paramsssss: , ", params);
   setParams(params);
   setResults(results);
 
@@ -661,7 +660,7 @@ export default function RunScenarios() {
                                 <OverlayTrigger
                                   overlay={
                                     <Tooltip id="screeningTestSpecificity-help">
-                                      {t("enterValue0t100HelpText")}
+                                      {t("general.enterValue0t100HelpText")}
                                     </Tooltip>
                                   }
                                 >
@@ -749,7 +748,7 @@ export default function RunScenarios() {
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip id="screeningTestSpecificity-help">
-                                        {t("enterValue0t100HelpText")}
+                                        {t("general.enterValue0t100HelpText")}
                                       </Tooltip>
                                     }
                                   >
