@@ -50,10 +50,10 @@ export default function BarChart({
         // Append x axis line (horizontal)
         svg
           .append("line")
-          .attr("x1", 0)
-          .attr("y1", layout.height - 40) // Adjust position from the bottom
+          .attr("x1", 40)
+          .attr("y1", layout.height) // Adjust position from the bottom
           .attr("x2", layout.width)
-          .attr("y2", layout.height - 40)
+          .attr("y2", layout.height)
           .attr("stroke", "black");
 
         // Append axis labels
