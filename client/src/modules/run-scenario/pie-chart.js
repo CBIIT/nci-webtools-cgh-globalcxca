@@ -11,7 +11,7 @@ export const defaultLayout = {
 export default function PieChart({ id, data, layout = defaultLayout, colors }) {
   const { t, i18n } = useTranslation(); // Add this line
   const translatedLabels = {
-    noDataAvailable: t("general.noDataAvailable"),
+    noDataAvailable: t("general.noData"),
     // ... other labels you need ...
   };
 
@@ -36,9 +36,18 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
           .attr("cx", layout.width / 2)
           .attr("cy", layout.height / 2)
           .attr("r", Math.min(layout.width, layout.height) / 2) // Adjust the radius as needed
-          .attr("fill", "none")
+          .attr("fill", "lightgray")
           .attr("stroke", "gray")
-          .attr("stroke-width", 2);
+          .attr("stroke-width", 1);
+
+        emptySvg
+          .append("circle")
+          .attr("cx", layout.width / 2)
+          .attr("cy", layout.height / 2)
+          .attr("r", Math.min(layout.width, layout.height) / 3.5) // Adjust the radius as needed
+          .attr("fill", "white")
+          .attr("stroke", "gray")
+          .attr("stroke-width", 1);
 
         emptySvg
           .append("text")
@@ -287,5 +296,5 @@ function d3PieChart(
     .attr("font-weight", (_, i) => (i ? null : "bold"))
     .text((d) => d);
 
-  return Object.assign(svg.node(), { scales: { color } });
+  return Object.assign(svg.node(), { scales: { color }, arc });
 }

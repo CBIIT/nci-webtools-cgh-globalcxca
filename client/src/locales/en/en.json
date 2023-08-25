@@ -83,11 +83,12 @@
     "scenarioAssumption": "Scenario Assumptions",
     "search": "Search",
     "noDataAvailable": "NO DATA AVAILABLE",
+    "noData": "No data",
     "years": "Year(s)",
     "test": "test",
     "contactUs": "Contact Us",
-    "numberFormat": "{{value}}", 
-    "enterValue":"Enter Value"
+    "numberFormat": "{{value}}",
+    "enterValue": "Enter Value"
   },
   "runScenario": {
     "title": "Run Scenario",

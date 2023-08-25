@@ -17,7 +17,7 @@ export default function BarChart({
   const ref = useRef(null);
   const { t, i18n } = useTranslation(); // Add this line
   const translatedLabels = {
-    noDataAvailable: t("general.noDataAvailable"),
+    noDataAvailable: t("general.noData"),
     // ... other labels you need ...
   };
 
