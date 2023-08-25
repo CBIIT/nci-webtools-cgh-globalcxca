@@ -53,12 +53,7 @@ export default function ScenarioResults() {
   let chartTiles;
 
   // console.log("params", params);
-  console.log("result", results);
-
-  const layout = {
-    width: 400,
-    height: 250,
-  };
+  //console.log("result", results);
 
   if (
     results.checkedValues &&
@@ -180,10 +175,10 @@ export default function ScenarioResults() {
     }
   }
 
-  console.log("Chart title", chartTiles);
-  if (results.checkedValues) {
-    console.log("results.checkedValues.length", results.checkedValues.length);
-  }
+  // console.log("Chart title", chartTiles);
+  // if (results.checkedValues) {
+  //   console.log("results.checkedValues.length", results.checkedValues.length);
+  // }
 
   const treatedIndex = results.totalNeeded.length - 1;
   let totalNeededToScreen,
@@ -350,15 +345,6 @@ export default function ScenarioResults() {
   if (!params || !results) {
     return null;
     //return <Navigate to="/run-scenario" />;
-  }
-
-  function hasNonZeroValues(data) {
-    if (!data) {
-      return false; // Data is undefined, return false
-    }
-    console.log(data);
-    console.log(data.some((item) => item.value !== 0));
-    return data.some((item) => item.value !== 0 || item.value !== "NaN"); // Check if any value is not zero
   }
 
   return (
