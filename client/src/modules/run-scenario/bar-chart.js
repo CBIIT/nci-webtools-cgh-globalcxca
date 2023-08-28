@@ -13,6 +13,7 @@ export default function BarChart({
   layout = defaultLayout,
   color,
   barWidth,
+  yTickValues = [0, 0.2, 0.4, 0.6, 0.8], // Array of y-axis tick values for "no data" mode
 }) {
   const ref = useRef(null);
   const { t, i18n } = useTranslation(); // Add this line
@@ -39,13 +40,13 @@ export default function BarChart({
           .attr("height", layout.height);
 
         // Append y axis line (vertical)
-        svg
-          .append("line")
-          .attr("x1", 40) // Adjust position from the left
-          .attr("y1", 0)
-          .attr("x2", 40)
-          .attr("y2", layout.height)
-          .attr("stroke", "black");
+        // svg
+        //   .append("line")
+        //   .attr("x1", 40) // Adjust position from the left
+        //   .attr("y1", 0)
+        //   .attr("x2", 40)
+        //   .attr("y2", layout.height)
+        //   .attr("stroke", "black");
 
         // Append x axis line (horizontal)
         svg
@@ -70,6 +71,28 @@ export default function BarChart({
           .attr("y", layout.height / 2)
           .attr("text-anchor", "start")
           .text("");
+
+        // Append y-axis ticks with labels and gray lines
+        if (yTickValues) {
+          yTickValues.forEach((tickValue) => {
+            const yPosition = layout.height * (1 - tickValue);
+            svg
+              .append("line") // Append gray line
+              .attr("x1", 40)
+              .attr("y1", yPosition)
+              .attr("x2", layout.width)
+              .attr("y2", yPosition)
+              .attr("stroke", "#E8E9E9")
+              .attr("stroke-array", "2,2"); // Dashed line style
+
+            svg
+              .append("text") // Append y-axis tick label
+              .attr("x", 30)
+              .attr("y", yPosition)
+              .attr("text-anchor", "end")
+              .text(tickValue);
+          });
+        }
 
         // Append a text element to indicate there is no data
         svg

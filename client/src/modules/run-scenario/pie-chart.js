@@ -36,18 +36,18 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
           .attr("cx", layout.width / 2)
           .attr("cy", layout.height / 2)
           .attr("r", Math.min(layout.width, layout.height) / 2) // Adjust the radius as needed
-          .attr("fill", "lightgray")
+          .attr("fill", "#E8E9E9")
           .attr("stroke", "gray")
           .attr("stroke-width", 1);
 
-        emptySvg
-          .append("circle")
-          .attr("cx", layout.width / 2)
-          .attr("cy", layout.height / 2)
-          .attr("r", Math.min(layout.width, layout.height) / 3.5) // Adjust the radius as needed
-          .attr("fill", "white")
-          .attr("stroke", "gray")
-          .attr("stroke-width", 1);
+        // emptySvg
+        //   .append("circle")
+        //   .attr("cx", layout.width / 2)
+        //   .attr("cy", layout.height / 2)
+        //   .attr("r", Math.min(layout.width, layout.height) / 3.5) // Adjust the radius as needed
+        //   .attr("fill", "white")
+        //   .attr("stroke", "gray")
+        //   .attr("stroke-width", 1);
 
         emptySvg
           .append("text")
