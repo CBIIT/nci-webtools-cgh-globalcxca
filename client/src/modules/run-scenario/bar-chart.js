@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 export const defaultLayout = {
   width: 400,
   height: 250,
+  margin: 20,
 };
 
 export default function BarChart({
@@ -135,7 +136,7 @@ function d3BarChart(
     title, // given d in data, returns the title text
     marginTop = 30, // the top margin, in pixels
     marginRight = 0, // the right margin, in pixels
-    marginBottom = 0, // the bottom margin, in pixels
+    marginBottom = 10, // the bottom margin, in pixels
     marginLeft = 100, // the left margin, in pixels
     width = 640, // the outer width of the chart, in pixels
     height = 400, // the outer height of the chart, in pixels

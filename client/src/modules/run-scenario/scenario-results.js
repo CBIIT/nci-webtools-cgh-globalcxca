@@ -573,22 +573,23 @@ export default function ScenarioResults() {
             <Card.Title>{chartTiles}</Card.Title>
           </Card.Header>
           <Card.Body className="pt-1">
-            <Row className="my-1">
-              <Col md={6}>
-                <h2 className="text-center h5 pb-2">{barChartTitle1}</h2>
-                <BarChart
-                  id={ScreentestBarChartId}
-                  data={[
-                    {
-                      label: t("general.screeningTestLabel"),
-                      value:
-                        parseInt(totalNeededToScreen.replace(/,/g, "")) || 0,
-                    },
-                  ]}
-                  color="#95f4a2" // Set the color to blue
-                  //layout={{ width: 450, height: 350 * 1.5 }} // Adjust the width and height as needed
-                />
-                {/* <Col md={12} className="d-flex justify-content-center ">
+            <Container fluid>
+              <Row className="my-2">
+                <Col md={6} xs={12}>
+                  <h2 className="text-center h5 pb-2">{barChartTitle1}</h2>
+                  <BarChart
+                    id={ScreentestBarChartId}
+                    data={[
+                      {
+                        label: t("general.screeningTestLabel"),
+                        value:
+                          parseInt(totalNeededToScreen.replace(/,/g, "")) || 0,
+                      },
+                    ]}
+                    color="#95f4a2" // Set the color to blue
+                    //layout={{ width: 450, height: 350 * 1.5 }} // Adjust the width and height as needed
+                  />
+                  {/* <Col md={12} className="d-flex justify-content-center ">
                   <Button
                     variant="link"
                     onClick={() => handleExportSvg(ScreentestBarChartId)}
@@ -599,37 +600,37 @@ export default function ScenarioResults() {
                     {t("general.exportPNG")}
                   </Button>
                 </Col> */}
-              </Col>
+                </Col>
 
-              <Col md={6}>
-                <h2 className="text-center h5 pb-2">{barChartTitle2}</h2>
+                <Col md={6} xs={12}>
+                  <h2 className="text-center h5 pb-2">{barChartTitle2}</h2>
 
-                <BarChart
-                  id={barChartId}
-                  data={[
-                    {
-                      label: t("general.triageTestLabel"),
-                      value:
-                        parseInt(totalNeededToTriage.replace(/,/g, "")) || 0,
-                    },
-                    {
-                      label: t("general.diagnosticTestLabel"),
-                      value:
-                        parseInt(
-                          totalNeededToDiagnosticTriage.replace(/,/g, "")
-                        ) || 0,
-                    },
-                    {
-                      label: t("general.treatment"),
-                      value:
-                        parseInt(totalNeededToTreat.replace(/,/g, "")) || 0,
-                    },
-                  ]}
-                  color="#0DAB61"
-                  //layout={{ width: 450, height: 350 - 50 }} // Adjust the width and height as needed
-                />
+                  <BarChart
+                    id={barChartId}
+                    data={[
+                      {
+                        label: t("general.triageTestLabel"),
+                        value:
+                          parseInt(totalNeededToTriage.replace(/,/g, "")) || 0,
+                      },
+                      {
+                        label: t("general.diagnosticTestLabel"),
+                        value:
+                          parseInt(
+                            totalNeededToDiagnosticTriage.replace(/,/g, "")
+                          ) || 0,
+                      },
+                      {
+                        label: t("general.treatment"),
+                        value:
+                          parseInt(totalNeededToTreat.replace(/,/g, "")) || 0,
+                      },
+                    ]}
+                    color="#0DAB61"
+                    //layout={{ width: 450, height: 350 - 50 }} // Adjust the width and height as needed
+                  />
 
-                {/* <Col md={12} className="d-flex justify-content-center ">
+                  {/* <Col md={12} className="d-flex justify-content-center ">
                   <Button
                     variant="link"
                     onClick={() => handleExportSvg(barChartId)}
@@ -640,29 +641,29 @@ export default function ScenarioResults() {
                     {t("general.exportPNG")}
                   </Button>
                 </Col> */}
-              </Col>
-            </Row>
+                </Col>
+              </Row>
 
-            <Row className="my-2">
-              <Col md={6}>
-                <h2 className="text-center h5 py-2">{pieChartTitle1}</h2>
+              <Row className="my-2">
+                <Col md={6} xs={12}>
+                  <h2 className="text-center h5 py-2">{pieChartTitle1}</h2>
 
-                <PieChart
-                  id={pieChartId0}
-                  data={[
-                    {
-                      label: t("results.pPrecencersMissed"),
-                      value: +results.numberPrecancersMissed,
-                    },
-                    {
-                      label: t("results.pPrecencersTreated"),
-                      value: +results.testedPositives[treatedIndex + 1],
-                    },
-                  ]}
-                  colors={["#D13C4B", "#FD7E14"]} // Pass the custom color palette to the PieChart component
-                />
+                  <PieChart
+                    id={pieChartId0}
+                    data={[
+                      {
+                        label: t("results.pPrecencersMissed"),
+                        value: +results.numberPrecancersMissed,
+                      },
+                      {
+                        label: t("results.pPrecencersTreated"),
+                        value: +results.testedPositives[treatedIndex + 1],
+                      },
+                    ]}
+                    colors={["#D13C4B", "#FD7E14"]} // Pass the custom color palette to the PieChart component
+                  />
 
-                {/* <Col md={12} className="d-flex justify-content-center">
+                  {/* <Col md={12} className="d-flex justify-content-center">
                   <Button
                     variant="link"
                     onClick={() => handleExportSvg(pieChartId0)}
@@ -673,26 +674,26 @@ export default function ScenarioResults() {
                     {t("general.exportPNG")}
                   </Button>
                 </Col> */}
-              </Col>
-              <Col md={6}>
-                <h2 className="text-center h5 py-2">{pieChartTitle2}</h2>
+                </Col>
+                <Col md={6} xs={12}>
+                  <h2 className="text-center h5 py-2">{pieChartTitle2}</h2>
 
-                <PieChart
-                  id={pieChartId1}
-                  data={[
-                    {
-                      label: t("results.populationNotOverTreated"),
-                      value: +results.testedFalsePositives[0],
-                    },
-                    {
-                      label: t("results.pPrecencersOverTreated"),
-                      value: +results.healthyOvertreated,
-                    },
-                  ]}
-                  colors={["#f7b885", "#FD7E14"]} // Pass the custom color palette to the PieChart component
-                />
+                  <PieChart
+                    id={pieChartId1}
+                    data={[
+                      {
+                        label: t("results.populationNotOverTreated"),
+                        value: +results.testedFalsePositives[0],
+                      },
+                      {
+                        label: t("results.pPrecencersOverTreated"),
+                        value: +results.healthyOvertreated,
+                      },
+                    ]}
+                    colors={["#f7b885", "#FD7E14"]} // Pass the custom color palette to the PieChart component
+                  />
 
-                {/* <Col md={12} className="d-flex justify-content-center">
+                  {/* <Col md={12} className="d-flex justify-content-center">
                   <Button
                     variant="link"
                     onClick={() => handleExportSvg(pieChartId1)}
@@ -703,20 +704,21 @@ export default function ScenarioResults() {
                     {t("general.exportPNG")}
                   </Button>
                 </Col> */}
-              </Col>
-            </Row>
+                </Col>
+              </Row>
 
-            <Row className="justify-content-center">
-              <Col md={12} className="d-flex justify-content-center">
-                <Button variant="link" onClick={generateZipFileSVG}>
-                  {t("general.exportSVG")}
-                </Button>
-                <Button variant="link" onClick={generateZipFilePNG}>
-                  {t("general.exportPNG")}
-                </Button>
-              </Col>{" "}
-              {/* Add justify-content-center here */}
-            </Row>
+              <Row className="justify-content-center">
+                <Col md={12} className="d-flex justify-content-center">
+                  <Button variant="link" onClick={generateZipFileSVG}>
+                    {t("general.exportSVG")}
+                  </Button>
+                  <Button variant="link" onClick={generateZipFilePNG}>
+                    {t("general.exportPNG")}
+                  </Button>
+                </Col>{" "}
+                {/* Add justify-content-center here */}
+              </Row>
+            </Container>
           </Card.Body>
         </Card>
 
