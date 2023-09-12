@@ -188,7 +188,7 @@ export default function RunScenarios() {
                       border: "1px solid #ccc",
                       padding: "10px",
                       overflow: "auto",
-                      maxHeight: "75vh",
+                      maxHeight: "80vh",
                     }}
                   >
                     <Col md={6}>

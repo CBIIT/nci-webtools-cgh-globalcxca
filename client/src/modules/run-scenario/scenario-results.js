@@ -575,8 +575,8 @@ export default function ScenarioResults() {
           <Card.Body className="pt-1">
             <Container fluid>
               <Row className="my-2">
-                <Col md={6} xs={12}>
-                  <h2 className="text-center h5 pb-2">{barChartTitle2}</h2>
+                <Col lg={6} md={12} sm={12} xs={12}>
+                  <h2 className="text-center h5 py-2">{barChartTitle1}</h2>
                   <BarChart
                     id={ScreentestBarChartId}
                     data={[
@@ -602,8 +602,8 @@ export default function ScenarioResults() {
                 </Col> */}
                 </Col>
 
-                <Col md={6} xs={12}>
-                  <h2 className="text-center h5 pb-2">{barChartTitle2}</h2>
+                <Col lg={6} md={12} sm={12} xs={12}>
+                  <h2 className="text-center h5 py-2">{barChartTitle2}</h2>
 
                   <BarChart
                     id={barChartId}
@@ -645,7 +645,7 @@ export default function ScenarioResults() {
               </Row>
 
               <Row className="my-2">
-                <Col md={6} xs={12}>
+                <Col lg={6} md={12} sm={12} xs={12}>
                   <h2 className="text-center h5 py-2">{pieChartTitle1}</h2>
 
                   <PieChart
@@ -675,7 +675,7 @@ export default function ScenarioResults() {
                   </Button>
                 </Col> */}
                 </Col>
-                <Col md={6} xs={12}>
+                <Col lg={6} md={12} sm={12} xs={12}>
                   <h2 className="text-center h5 py-2">{pieChartTitle2}</h2>
 
                   <PieChart
