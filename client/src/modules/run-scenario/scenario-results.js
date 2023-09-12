@@ -576,7 +576,7 @@ export default function ScenarioResults() {
             <Container fluid>
               <Row className="my-2">
                 <Col md={6} xs={12}>
-                  <h2 className="text-center h5 pb-2">{barChartTitle1}</h2>
+                  <h2 className="text-center h5 pb-2">{barChartTitle2}</h2>
                   <BarChart
                     id={ScreentestBarChartId}
                     data={[
