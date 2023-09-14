@@ -3,6 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { ReactComponent as ScreeningImage } from "./images/CCP_transparent.svg";
+
 import { useTranslation } from "react-i18next";
 
 export default function Home() {
@@ -51,15 +52,45 @@ export default function Home() {
               <h5 className="mb-1 text-primary">
                 {t("home.beforeYouStartTitle")}
               </h5>
-              <p>
-                <b>{t("home.insight")}.</b> {t("home.insightDes")}
-              </p>
-              <p>
-                <b>{t("home.judgmentFree")}.</b> {t("home.jusdgementFreeDes")}
-              </p>
-              <p>
-                <b>{t("home.engage")}.</b> {t("home.engageDes")}
-              </p>
+              <Row className="py-1">
+                <Col md={1}>
+                  <img
+                    src="../assets/images/insight.png"
+                    alt="insight"
+                    width="60"
+                    height="60"
+                  />
+                </Col>
+                <Col md={11}>
+                  <b>{t("home.insight")}.</b> {t("home.insightDes")}
+                </Col>
+              </Row>
+              <Row className="py-1">
+                <Col md={1}>
+                  <img
+                    src="../assets/images/judgementFree.png"
+                    alt=""
+                    width="60"
+                    height="60"
+                  />
+                </Col>
+                <Col md={11}>
+                  <b>{t("home.judgmentFree")}.</b> {t("home.jusdgementFreeDes")}
+                </Col>
+              </Row>
+              <Row className="py-1">
+                <Col md={1}>
+                  <img
+                    src="../assets/images/engage.png"
+                    alt=""
+                    width="60"
+                    height="60"
+                  />
+                </Col>
+                <Col md={11}>
+                  <b>{t("home.engage")}.</b> {t("home.engageDes")}
+                </Col>
+              </Row>
               <p>
                 {t("home.des0")}{" "}
                 <Link to="/run-scenario">

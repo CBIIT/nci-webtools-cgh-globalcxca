@@ -191,7 +191,7 @@ export default function RunScenarios() {
                       maxHeight: "80vh",
                     }}
                   >
-                    <Col md={6}>
+                    <Col lg={6} md={12} sm={12} xs={12}>
                       <div>
                         <h5> {t("runScenario.epidemiological")}</h5>
                         <div className="small text-muted">
@@ -531,7 +531,7 @@ export default function RunScenarios() {
                       </Card.Body>
                     </Col>
 
-                    <Col md={6}>
+                    <Col lg={6} md={12} sm={12} xs={12}>
                       <Card.Header>
                         <Card.Title>
                           {" "}
