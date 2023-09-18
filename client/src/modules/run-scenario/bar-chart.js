@@ -198,7 +198,8 @@ function d3BarChart(
     .create("svg")
     .attr("width", width)
     .attr("height", height)
-    //.attr("viewBox", [0, 0, width, height])
+    .attr("viewBox", [0, 0, width, height])
+    .attr("preserveAspectRatio", "xMinYMin meet")
     .attr("height", height + marginTop + marginBottomAdjusted) // Adjust height
     .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 

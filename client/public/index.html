@@ -11,7 +11,16 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
     <title data-i18n="header.title">GlobalCxCa</title>
+    <!-- Add these lines to your head section -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
     <script src="https://assets.adobedtm.com/f1bfa9f7170c81b1a9a9ecdcc6c5215ee0b03c84/satelliteLib-4b219b82c4737db0e1797b6c511cf10c802c95cb.js"></script>
 
     <!-- Google tag (gtag.js) -->
@@ -35,7 +44,7 @@
     <script src="../src/locales/locales.js"></script>
   </head>
   <body>
-    <header>
+    <!-- <header>
       <div
         class="container mt-md-2 mb-2 d-flex align-items-center justify-content-between"
       >
@@ -58,10 +67,72 @@
           </div>
         </div>
       </div>
+    </header> -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a
+            class="navbar-brand"
+            href="https://www.cancer.gov/about-nci/organization/cgh"
+            target="_blank"
+          >
+            <img
+              src="%PUBLIC_URL%/assets/images/nci-cgh-logo.svg"
+              height="55"
+              alt="National Cancer Institute Logo"
+              class="mw-100"
+            />
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div
+            class="collapse navbar-collapse justify-content-between"
+            id="navbarResponsive"
+          >
+            <div
+              class="d-flex align-items-center me-3 ms-auto"
+              id="navbarSearch"
+            ></div>
+            <div id="languageSelectContainer"></div>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <noscript>Please enable javascript to load this website.</noscript>
     <main id="root"></main>
+
+    <script>
+      // Toggle the collapse manually
+      document
+        .querySelector(".navbar-toggler")
+        .addEventListener("click", function () {
+          const target = document.querySelector(
+            this.getAttribute("data-target")
+          );
+          target.classList.toggle("show");
+        });
+    </script>
+    <script>
+      // Initialize Bootstrap's dropdowns
+      var dropdownElementList = [].slice.call(
+        document.querySelectorAll(".dropdown-toggle")
+      );
+      var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+        return new bootstrap.Dropdown(dropdownToggleEl);
+      });
+    </script>
 
     <script>
       window.localeChangeListeners = [
@@ -84,5 +155,11 @@
     <script>
       _satellite && _satellite.pageBottom();
     </script>
+    <!-- Link Bootstrap JavaScript (bundle includes Popper.js) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
