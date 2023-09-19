@@ -217,7 +217,7 @@ export default function RunScenarios() {
                                   <i className="ms-1 bi bi-question-circle"></i>
                                 </OverlayTrigger>
                               </Form.Label>
-                              <Col lg={6} md={12} sm={12} xs={12}>
+                              <Col sm={12}>
                                 <InputGroup>
                                   <Form.Control
                                     type="number"
@@ -249,7 +249,7 @@ export default function RunScenarios() {
                                   <i className="ms-1 bi bi-question-circle"></i>
                                 </OverlayTrigger>
                               </Form.Label>
-                              <Col lg={6} md={12} sm={12} xs={12}>
+                              <Col sm={12}>
                                 <InputGroup className="flex-nowrap">
                                   <Form.Range
                                     type="range"
@@ -301,7 +301,7 @@ export default function RunScenarios() {
                                   <i className="ms-1 bi bi-question-circle"></i>
                                 </OverlayTrigger>
                               </Form.Label>
-                              <Col lg={6} md={12} sm={12} xs={12}>
+                              <Col sm={12}>
                                 <InputGroup className="flex-nowrap">
                                   <Form.Range
                                     type="number"
@@ -452,7 +452,7 @@ export default function RunScenarios() {
                                     <i className="ms-1 bi bi-question-circle"></i>
                                   </OverlayTrigger>
                                 </Form.Label>
-                                <Col lg={6} md={12} sm={12} xs={12}>
+                                <Col sm={12}>
                                   <InputGroup className="flex-nowrap">
                                     <Form.Range
                                       type="number"
@@ -505,7 +505,7 @@ export default function RunScenarios() {
                                   <i className="ms-1 bi bi-question-circle"></i>
                                 </OverlayTrigger>
                               </Form.Label>
-                              <Col lg={6} md={12} sm={12} xs={12}>
+                              <Col sm={12}>
                                 <InputGroup className="flex-nowrap">
                                   <Form.Range
                                     type="number"
@@ -585,7 +585,7 @@ export default function RunScenarios() {
                                   {t("runScenario.cervicalScreeningTestChosen")}
                                 </span>
                               </Form.Label>
-                              <Col lg={6} md={12} sm={12} xs={12}>
+                              <Col sm={12}>
                                 <Form.Select
                                   name="screeningTest"
                                   value={form.screeningTest}
@@ -625,7 +625,7 @@ export default function RunScenarios() {
                                   <i className="ms-1 bi bi-question-circle"></i>
                                 </OverlayTrigger>
                               </Form.Label>
-                              <Col lg={6} md={12} sm={12} xs={12}>
+                              <Col sm={12}>
                                 <InputGroup className="flex-nowrap">
                                   <Form.Range
                                     type="number"
@@ -667,7 +667,7 @@ export default function RunScenarios() {
                                   <i className="ms-1 bi bi-question-circle"></i>
                                 </OverlayTrigger>
                               </Form.Label>
-                              <Col lg={6} md={12} sm={12} xs={12}>
+                              <Col sm={12}>
                                 <InputGroup className="flex-nowrap">
                                   <Form.Range
                                     type="number"
@@ -710,7 +710,7 @@ export default function RunScenarios() {
                                     )}
                                   </span>
                                 </Form.Label>
-                                <Col lg={6} md={12} sm={12} xs={12}>
+                                <Col sm={12}>
                                   <Form.Select
                                     name="triageTest"
                                     value={form.triageTest}
@@ -755,7 +755,7 @@ export default function RunScenarios() {
                                     <i className="ms-1 bi bi-question-circle"></i>
                                   </OverlayTrigger>
                                 </Form.Label>
-                                <Col lg={6} md={12} sm={12} xs={12}>
+                                <Col sm={12}>
                                   <InputGroup className="flex-nowrap">
                                     <Form.Range
                                       type="number"
@@ -802,7 +802,7 @@ export default function RunScenarios() {
                                     <i className="ms-1 bi bi-question-circle"></i>
                                   </OverlayTrigger>
                                 </Form.Label>
-                                <Col lg={6} md={12} sm={12} xs={12}>
+                                <Col sm={12}>
                                   <InputGroup className="flex-nowrap">
                                     <Form.Range
                                       type="number"
@@ -846,7 +846,7 @@ export default function RunScenarios() {
                                     {t("runScenario.diagnosticTestChosen")}
                                   </span>
                                 </Form.Label>
-                                <Col lg={6} md={12} sm={12} xs={12}>
+                                <Col sm={12}>
                                   <Form.Select
                                     name="diagnosticTest"
                                     value={form.diagnosticTest}
@@ -888,7 +888,7 @@ export default function RunScenarios() {
                                     <i className="ms-1 bi bi-question-circle"></i>
                                   </OverlayTrigger>
                                 </Form.Label>
-                                <Col lg={6} md={12} sm={12} xs={12}>
+                                <Col sm={12}>
                                   <InputGroup className="flex-nowrap">
                                     <Form.Range
                                       type="number"
@@ -932,7 +932,7 @@ export default function RunScenarios() {
                                     <i className="ms-1 bi bi-question-circle"></i>
                                   </OverlayTrigger>
                                 </Form.Label>
-                                <Col lg={6} md={12} sm={12} xs={12}>
+                                <Col sm={12}>
                                   <InputGroup className="flex-nowrap">
                                     <Form.Range
                                       type="number"

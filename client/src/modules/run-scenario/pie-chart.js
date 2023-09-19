@@ -1,9 +1,9 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import * as d3 from "d3";
 import { useTranslation } from "react-i18next";
 
 export const defaultLayout = {
-  width: 250,
+  //width: 250,
   height: 250,
   margin: 20,
 };
@@ -14,6 +14,29 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
     noDataAvailable: t("general.noData"),
     // ... other labels you need ...
   };
+
+  const [chartWidth, setChartWidth] = useState(layout.width); // New state variable for chart width
+
+  const updateChartWidth = useCallback(() => {
+    const containerWidth = ref.current.clientWidth; // Get the container width
+    const newChartWidth = containerWidth - layout.margin * 2; // Adjust for margins
+    setChartWidth(newChartWidth);
+  }, [layout.margin]);
+  useEffect(() => {
+    updateChartWidth(); // Update the chart width initially
+    console.log("Initial chart width:", chartWidth);
+
+    const handleResize = () => {
+      updateChartWidth(); // Update the chart width when the window is resized
+      console.log("Updated chart width:", chartWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Cleanup the event listener on component unmount
+    };
+  }, [updateChartWidth, chartWidth]);
 
   const ref = useRef(null);
   useEffect(() => {
@@ -27,15 +50,16 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
 
         const emptySvg = d3
           .create("svg")
-          .attr("width", layout.width)
+          //.attr("width", layout.width)
+          .attr("width", chartWidth)
           .attr("height", layout.height);
 
         // Draw an empty circle in the center of the SVG
         emptySvg
           .append("circle")
-          .attr("cx", layout.width / 2)
+          .attr("cx", chartWidth / 2)
           .attr("cy", layout.height / 2)
-          .attr("r", Math.min(layout.width, layout.height) / 2) // Adjust the radius as needed
+          .attr("r", Math.min(chartWidth, layout.height) / 2) // Adjust the radius as needed
           .attr("fill", "#E8E9E9")
           .attr("stroke", "gray")
           .attr("stroke-width", 1);
@@ -54,7 +78,7 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
           .attr("text-anchor", "middle")
           .attr("font-size", "1rem")
           .attr("dy", "0.35em")
-          .attr("x", layout.width / 2)
+          .attr("x", chartWidth / 2)
           .attr("y", layout.height / 2)
           .text(translatedLabels.noDataAvailable)
           .attr("fill", "gray")
@@ -66,9 +90,9 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
           d3PieChart(data, {
             name: (d) => d.label,
             value: (d) => d.value,
-            width: layout.width,
+            width: chartWidth,
             height: layout.height,
-            labelRadius: (Math.min(layout.width, layout.height) / 2) * 0.5,
+            labelRadius: (Math.min(chartWidth, layout.height) / 2) * 0.5,
             format: ",.0f",
             //colors: ["#D13C4B", "#FD7E14"],
             colors: colors,

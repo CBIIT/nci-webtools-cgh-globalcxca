@@ -347,6 +347,12 @@ export default function ScenarioResults() {
     //return <Navigate to="/run-scenario" />;
   }
 
+  const combinedTitleLength = (barChartTitle1 + " " + barChartTitle2).length;
+  console.log("combinedTitleLength", combinedTitleLength);
+
+  // Check if the combined title length is greater than a certain threshold
+  const shouldWrap = combinedTitleLength > 20; // Adjust the threshold as needed
+
   return (
     <div>
       {/* <Container style={{ overflow: "auto", maxHeight: "100vh" }}> */}
@@ -589,17 +595,6 @@ export default function ScenarioResults() {
                     color="#95f4a2" // Set the color to blue
                     //layout={{ width: 450, height: 350 * 1.5 }} // Adjust the width and height as needed
                   />
-                  {/* <Col md={12} className="d-flex justify-content-center ">
-                  <Button
-                    variant="link"
-                    onClick={() => handleExportSvg(ScreentestBarChartId)}
-                  >
-                    {t("general.exportSVG")}
-                  </Button>
-                  <Button variant="link" id="savePNG2" className="savePNG">
-                    {t("general.exportPNG")}
-                  </Button>
-                </Col> */}
                 </Col>
 
                 <Col lg={6} md={12} sm={12} xs={12}>
@@ -629,18 +624,6 @@ export default function ScenarioResults() {
                     color="#0DAB61"
                     //layout={{ width: 450, height: 350 - 50 }} // Adjust the width and height as needed
                   />
-
-                  {/* <Col md={12} className="d-flex justify-content-center ">
-                  <Button
-                    variant="link"
-                    onClick={() => handleExportSvg(barChartId)}
-                  >
-                    {t("general.exportSVG")}
-                  </Button>
-                  <Button variant="link" id="savePNG1" className="savePNG">
-                    {t("general.exportPNG")}
-                  </Button>
-                </Col> */}
                 </Col>
               </Row>
 

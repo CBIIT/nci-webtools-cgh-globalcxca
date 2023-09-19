@@ -1,11 +1,11 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import * as d3 from "d3";
 import { useTranslation } from "react-i18next";
 
 export const defaultLayout = {
-  width: 400,
+  //width: 400,
   height: 250,
-  margin: 20,
+  margin: 40,
 };
 
 export default function BarChart({
@@ -24,6 +24,29 @@ export default function BarChart({
   };
 
   const [isDataZero, setIsDataZero] = useState(false); // New state variable
+  const [chartWidth, setChartWidth] = useState(layout.width); // New state variable for chart width
+
+  const updateChartWidth = useCallback(() => {
+    const containerWidth = ref.current.clientWidth; // Get the container width
+    const newChartWidth = containerWidth - layout.margin * 2; // Adjust for margins
+    setChartWidth(newChartWidth);
+  }, [layout.margin]);
+
+  useEffect(() => {
+    updateChartWidth(); // Update the chart width initially
+    console.log("Initial chart width:", chartWidth);
+
+    const handleResize = () => {
+      updateChartWidth(); // Update the chart width when the window is resized
+      console.log("Updated chart width:", chartWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Cleanup the event listener on component unmount
+    };
+  }, [updateChartWidth, chartWidth]);
 
   useEffect(() => {
     if (data) {
@@ -37,7 +60,8 @@ export default function BarChart({
       if (data.every((item) => item.value === 0)) {
         const svg = d3
           .create("svg")
-          .attr("width", layout.width)
+          .attr("width", chartWidth)
+          //.attr("width", layout.width)
           .attr("height", layout.height);
 
         // Append y axis line (vertical)
@@ -54,13 +78,16 @@ export default function BarChart({
           .append("line")
           .attr("x1", 40)
           .attr("y1", layout.height) // Adjust position from the bottom
-          .attr("x2", layout.width)
+          // .attr("x2", layout.width)
+          .attr("x2", chartWidth)
           .attr("y2", layout.height)
           .attr("stroke", "black");
 
         // Append axis labels
         svg
           .append("text")
+          // .attr("x", layout.width / 2)
+          .attr("x", chartWidth / 2)
           .attr("x", layout.width / 2)
           .attr("y", layout.height - 10)
           .attr("text-anchor", "middle")
@@ -81,7 +108,8 @@ export default function BarChart({
               .append("line") // Append gray line
               .attr("x1", 40)
               .attr("y1", yPosition)
-              .attr("x2", layout.width)
+              // .attr("x2", layout.width)
+              .attr("x2", chartWidth)
               .attr("y2", yPosition)
               .attr("stroke", "#E8E9E9")
               .attr("stroke-array", "2,2"); // Dashed line style
@@ -98,7 +126,8 @@ export default function BarChart({
         // Append a text element to indicate there is no data
         svg
           .append("text")
-          .attr("x", layout.width / 2)
+          // .attr("x", layout.width / 2)
+          .attr("x", chartWidth / 2)
           .attr("y", layout.height / 2)
           .attr("text-anchor", "middle")
           .text(translatedLabels.noDataAvailable)
@@ -113,7 +142,8 @@ export default function BarChart({
             y: (d) => d.value,
             yFormat: ",.0f",
             yLabel: "Counts",
-            width: layout.width, // Use the width from the layout object
+            //width: layout.width, // Use the width from the layout object
+            with: chartWidth,
             height: layout.height, // Use the height from the layout object
             color: color || "#0DAB61", // Use the provided color or default to green
             labels: translatedLabels,
@@ -124,7 +154,7 @@ export default function BarChart({
         );
       }
     }
-  }, [data, layout, color, barWidth]);
+  }, [data, layout, color, barWidth, chartWidth]);
 
   return <div className="" ref={ref} id={id} />;
 }
@@ -138,7 +168,8 @@ function d3BarChart(
     marginRight = 0, // the right margin, in pixels
     marginBottom = 10, // the bottom margin, in pixels
     marginLeft = 100, // the left margin, in pixels
-    width = 640, // the outer width of the chart, in pixels
+    width = 440, // the outer width of the chart, in pixels
+    // width, // Add chartWidth as a parameter
     height = 400, // the outer height of the chart, in pixels
     xDomain, // an array of (ordinal) x-values
     xRange = [marginLeft, width - marginRight], // [left, right]
