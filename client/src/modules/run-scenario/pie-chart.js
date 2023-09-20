@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 export const defaultLayout = {
   //width: 250,
   height: 250,
-  margin: 20,
+  margin: 40,
 };
 
 export default function PieChart({ id, data, layout = defaultLayout, colors }) {
@@ -15,28 +15,25 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
     // ... other labels you need ...
   };
 
-  const [chartWidth, setChartWidth] = useState(layout.width); // New state variable for chart width
+  const [chartWidth, setChartWidth] = useState(0); // New state variable for chart width
 
   const updateChartWidth = useCallback(() => {
-    const containerWidth = ref.current.clientWidth; // Get the container width
-    const newChartWidth = containerWidth - layout.margin * 2; // Adjust for margins
+    const containerWidth = ref.current.clientWidth;
+    const newChartWidth = containerWidth - layout.margin * 4;
     setChartWidth(newChartWidth);
   }, [layout.margin]);
   useEffect(() => {
-    updateChartWidth(); // Update the chart width initially
-    console.log("Initial chart width:", chartWidth);
-
+    updateChartWidth();
     const handleResize = () => {
-      updateChartWidth(); // Update the chart width when the window is resized
-      console.log("Updated chart width:", chartWidth);
+      updateChartWidth();
     };
 
     window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize); // Cleanup the event listener on component unmount
+      window.removeEventListener("resize", handleResize);
     };
-  }, [updateChartWidth, chartWidth]);
+  }, [updateChartWidth]);
 
   const ref = useRef(null);
   useEffect(() => {
@@ -46,20 +43,18 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
       }
 
       if (isNaN(data[0]?.value) || data.every((item) => item.value === 0)) {
-        let emptyData = [{ label: "Empty", value: 1 }];
-
         const emptySvg = d3
           .create("svg")
           //.attr("width", layout.width)
           .attr("width", chartWidth)
-          .attr("height", layout.height);
+          .attr("height", chartWidth);
 
         // Draw an empty circle in the center of the SVG
         emptySvg
           .append("circle")
           .attr("cx", chartWidth / 2)
-          .attr("cy", layout.height / 2)
-          .attr("r", Math.min(chartWidth, layout.height) / 2) // Adjust the radius as needed
+          .attr("cy", chartWidth / 2)
+          .attr("r", Math.min(chartWidth, chartWidth) / 2) // Adjust the radius as needed
           .attr("fill", "#E8E9E9")
           .attr("stroke", "gray")
           .attr("stroke-width", 1);
@@ -79,7 +74,7 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
           .attr("font-size", "1rem")
           .attr("dy", "0.35em")
           .attr("x", chartWidth / 2)
-          .attr("y", layout.height / 2)
+          .attr("y", chartWidth / 2)
           .text(translatedLabels.noDataAvailable)
           .attr("fill", "gray")
           .style("font-weight", "bold"); // Apply bold font weight;
@@ -91,8 +86,8 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
             name: (d) => d.label,
             value: (d) => d.value,
             width: chartWidth,
-            height: layout.height,
-            labelRadius: (Math.min(chartWidth, layout.height) / 2) * 0.5,
+            height: chartWidth,
+            labelRadius: (Math.min(chartWidth, chartWidth) / 2) * 0.5,
             format: ",.0f",
             //colors: ["#D13C4B", "#FD7E14"],
             colors: colors,
@@ -101,7 +96,7 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
         );
       }
     }
-  }, [data, layout, colors]);
+  }, [data, layout, colors.chartWidth]);
 
   return (
     <div className="img-fluid p-2 pie-chart-container" ref={ref} id={id} />
@@ -114,8 +109,8 @@ function d3PieChart(
     name = ([x]) => x, // given d in data, returns the (ordinal) label
     value = ([, y]) => y, // given d in data, returns the (quantitative) value
     title, // given d in data, returns the title text
-    width = 200, // outer width, in pixels
-    height = 200, // outer height, in pixels
+    width = 100, // outer width, in pixels
+    height = 100, // outer height, in pixels
     innerRadius = 0, // inner radius of pie, in pixels (non-zero for donut)
     outerRadius = Math.min(width, height) / 2, // outer radius of pie, in pixels
     labelRadius = innerRadius * 0.2 + outerRadius * 0.8, // center radius of labels

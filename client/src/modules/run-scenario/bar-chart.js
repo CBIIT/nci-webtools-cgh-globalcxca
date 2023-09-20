@@ -34,11 +34,11 @@ export default function BarChart({
 
   useEffect(() => {
     updateChartWidth(); // Update the chart width initially
-    console.log("Initial chart width:", chartWidth);
+    //console.log("Initial chart width:", chartWidth);
 
     const handleResize = () => {
       updateChartWidth(); // Update the chart width when the window is resized
-      console.log("Updated chart width:", chartWidth);
+      // console.log("Updated chart width:", chartWidth);
     };
 
     window.addEventListener("resize", handleResize);

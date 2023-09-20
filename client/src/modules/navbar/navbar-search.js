@@ -16,7 +16,7 @@ export default function NavbarSearch() {
 
   return (
     <Form
-      className="d-flex align-items-stretch mb-4 mb-md-0"
+      className="d-flex align-items-stretch mb-0 mb-md-0"
       role="search"
       onSubmit={handleSubmit}
     >
