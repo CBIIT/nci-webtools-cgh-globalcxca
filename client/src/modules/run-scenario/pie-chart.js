@@ -36,51 +36,105 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
   }, [updateChartWidth]);
 
   const ref = useRef(null);
+  // useEffect(() => {
+  //   if (ref.current && data && layout) {
+  //     while (ref.current.firstChild) {
+  //       ref.current.removeChild(ref.current.firstChild);
+  //     }
+
+  //     if (isNaN(data[0]?.value) || data.every((item) => item.value === 0)) {
+  //       const emptySvg = d3
+  //         .create("svg")
+  //         //.attr("width", layout.width)
+  //         .attr("width", chartWidth)
+  //         .attr("height", chartWidth);
+
+  //       // Draw an empty circle in the center of the SVG
+  //       emptySvg
+  //         .append("circle")
+  //         .attr("cx", chartWidth / 2)
+  //         .attr("cy", chartWidth / 2)
+  //         .attr("r", Math.min(chartWidth, chartWidth) / 2) // Adjust the radius as needed
+  //         .attr("fill", "#E8E9E9")
+  //         .attr("stroke", "gray")
+  //         .attr("stroke-width", 1);
+
+  //       // emptySvg
+  //       //   .append("circle")
+  //       //   .attr("cx", layout.width / 2)
+  //       //   .attr("cy", layout.height / 2)
+  //       //   .attr("r", Math.min(layout.width, layout.height) / 3.5) // Adjust the radius as needed
+  //       //   .attr("fill", "white")
+  //       //   .attr("stroke", "gray")
+  //       //   .attr("stroke-width", 1);
+
+  //       emptySvg
+  //         .append("text")
+  //         .attr("text-anchor", "middle")
+  //         .attr("font-size", "1rem")
+  //         .attr("dy", "0.35em")
+  //         .attr("x", chartWidth / 2)
+  //         .attr("y", chartWidth / 2)
+  //         .text(translatedLabels.noDataAvailable)
+  //         .attr("fill", "gray")
+  //         .style("font-weight", "bold"); // Apply bold font weight;
+
+  //       ref.current.appendChild(emptySvg.node());
+  //     } else {
+  //       ref.current.appendChild(
+  //         d3PieChart(data, {
+  //           name: (d) => d.label,
+  //           value: (d) => d.value,
+  //           width: chartWidth,
+  //           height: chartWidth,
+  //           labelRadius: (Math.min(chartWidth, chartWidth) / 2) * 0.5,
+  //           format: ",.0f",
+  //           //colors: ["#D13C4B", "#FD7E14"],
+  //           colors: colors,
+  //           labels: translatedLabels,
+  //         })
+  //       );
+  //     }
+  //   }
+  // }, [data, layout, colors.chartWidth]);
+
   useEffect(() => {
     if (ref.current && data && layout) {
+      // Remove any existing chart content
       while (ref.current.firstChild) {
         ref.current.removeChild(ref.current.firstChild);
       }
 
       if (isNaN(data[0]?.value) || data.every((item) => item.value === 0)) {
+        // Create an empty pie chart
         const emptySvg = d3
           .create("svg")
-          //.attr("width", layout.width)
           .attr("width", chartWidth)
           .attr("height", chartWidth);
 
-        // Draw an empty circle in the center of the SVG
         emptySvg
           .append("circle")
           .attr("cx", chartWidth / 2)
           .attr("cy", chartWidth / 2)
-          .attr("r", Math.min(chartWidth, chartWidth) / 2) // Adjust the radius as needed
+          .attr("r", Math.min(chartWidth, chartWidth) / 2)
           .attr("fill", "#E8E9E9")
           .attr("stroke", "gray")
           .attr("stroke-width", 1);
 
-        // emptySvg
-        //   .append("circle")
-        //   .attr("cx", layout.width / 2)
-        //   .attr("cy", layout.height / 2)
-        //   .attr("r", Math.min(layout.width, layout.height) / 3.5) // Adjust the radius as needed
-        //   .attr("fill", "white")
-        //   .attr("stroke", "gray")
-        //   .attr("stroke-width", 1);
-
         emptySvg
           .append("text")
           .attr("text-anchor", "middle")
-          .attr("font-size", "1rem")
+          .attr("font-size", `${Math.min(chartWidth, chartWidth) * 0.075}px`) // Adjust font size based on chart width
           .attr("dy", "0.35em")
           .attr("x", chartWidth / 2)
           .attr("y", chartWidth / 2)
           .text(translatedLabels.noDataAvailable)
           .attr("fill", "gray")
-          .style("font-weight", "bold"); // Apply bold font weight;
+          .style("font-weight", "bold");
 
         ref.current.appendChild(emptySvg.node());
       } else {
+        // Draw the actual pie chart
         ref.current.appendChild(
           d3PieChart(data, {
             name: (d) => d.label,
@@ -89,14 +143,13 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
             height: chartWidth,
             labelRadius: (Math.min(chartWidth, chartWidth) / 2) * 0.5,
             format: ",.0f",
-            //colors: ["#D13C4B", "#FD7E14"],
             colors: colors,
             labels: translatedLabels,
           })
         );
       }
     }
-  }, [data, layout, colors.chartWidth]);
+  }, [data, chartWidth, colors, translatedLabels]);
 
   return (
     <div className="img-fluid p-2 pie-chart-container" ref={ref} id={id} />
