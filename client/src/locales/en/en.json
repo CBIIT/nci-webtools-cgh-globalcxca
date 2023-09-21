@@ -51,7 +51,9 @@
     "des0": "Are you ready to discover CC3S? Navigate to the ",
     "des0Continued": " tab to start planning your cervical cancer prevention strategy!",
     "des1": "If you have any questions or technical issues, please select ",
-    "des1Continued": "below."
+    "des1Continued": "below.",
+    "emphasize": "This tool is best used with a trained facilitator to guide you through the decision-making process, but you are welcome to use it on your own. Please",
+    "withQuestions": "with questions."
   },
   "general": {
     "ccpTitle": "CC3S - Cervical Cancer Screening Scenario Simulator",

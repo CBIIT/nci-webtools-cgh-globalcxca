@@ -104,6 +104,15 @@ export default function Home() {
                 </Link>{" "}
                 {t("home.des1Continued")}
               </p>
+              <p>
+                <b>
+                  {t("home.emphasize")}{" "}
+                  <Link to={`mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov`}>
+                    <b>{t("general.contactUs")}</b>
+                  </Link>{" "}
+                  {t("home.withQuestions")}
+                </b>
+              </p>
             </Col>
           </Row>
         </Container>
