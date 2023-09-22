@@ -228,6 +228,7 @@ export default function RunScenarios() {
                                     value={form.populationSize}
                                     onChange={handleChange}
                                     onWheel={(e) => e.target.blur()}
+                                    inputmode="numeric"
                                     required
                                   />
                                 </InputGroup>
