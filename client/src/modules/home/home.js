@@ -52,7 +52,7 @@ export default function Home() {
               <h5 className="mb-1 text-primary">
                 {t("home.beforeYouStartTitle")}
               </h5>
-              <Row className="py-1">
+              <Row className="py-2">
                 <Col md={1}>
                   <img
                     src="../assets/images/insight.png"
@@ -65,7 +65,7 @@ export default function Home() {
                   <b>{t("home.insight")}.</b> {t("home.insightDes")}
                 </Col>
               </Row>
-              <Row className="py-1">
+              <Row className="py-2">
                 <Col md={1}>
                   <img
                     src="../assets/images/judgementFree.png"
@@ -78,7 +78,7 @@ export default function Home() {
                   <b>{t("home.judgmentFree")}.</b> {t("home.jusdgementFreeDes")}
                 </Col>
               </Row>
-              <Row className="py-1">
+              <Row className="py-2">
                 <Col md={1}>
                   <img
                     src="../assets/images/engage.png"
@@ -91,7 +91,7 @@ export default function Home() {
                   <b>{t("home.engage")}.</b> {t("home.engageDes")}
                 </Col>
               </Row>
-              <p>
+              <div class="py-2">
                 {t("home.des0")}{" "}
                 <Link to="/run-scenario">
                   {" "}
@@ -103,8 +103,8 @@ export default function Home() {
                   <b>{t("general.contactus")}</b>
                 </Link>{" "}
                 {t("home.des1Continued")}
-              </p>
-              <p>
+              </div>
+              <div>
                 <b>
                   {t("home.emphasize")}{" "}
                   <Link to={`mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov`}>
@@ -112,7 +112,7 @@ export default function Home() {
                   </Link>{" "}
                   {t("home.withQuestions")}
                 </b>
-              </p>
+              </div>
             </Col>
           </Row>
         </Container>
