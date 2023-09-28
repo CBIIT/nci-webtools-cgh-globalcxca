@@ -100,7 +100,7 @@ export default function Home() {
                 {t("home.des0Continued")} <br></br>
                 {t("home.des1")}{" "}
                 <Link to={`mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov`}>
-                  <b>{t("general.contactUs")}</b>
+                  <b>{t("general.contactus")}</b>
                 </Link>{" "}
                 {t("home.des1Continued")}
               </p>
@@ -108,7 +108,7 @@ export default function Home() {
                 <b>
                   {t("home.emphasize")}{" "}
                   <Link to={`mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov`}>
-                    <b>{t("general.contactUs")}</b>
+                    <b>{t("general.contactus")}</b>
                   </Link>{" "}
                   {t("home.withQuestions")}
                 </b>
