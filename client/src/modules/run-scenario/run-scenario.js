@@ -180,7 +180,7 @@ export default function RunScenarios() {
         <Row>
           {/* <Col md={5} id="col-with-scroll" style={{ overflowY: "auto" }}> */}
           <Col md={5}>
-            <div className="">
+            <div className="container">
               <Form onReset={handleReset}>
                 <div style={{}}>
                   <Row

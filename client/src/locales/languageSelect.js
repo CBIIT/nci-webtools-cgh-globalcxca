@@ -14,7 +14,7 @@ const LanguageSelect = () => {
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-end">
+    <div className="d-flex align-items-center">
       <i className="bi bi-translate me-1 text-primary"></i>
       <div className="col-auto">
         {/* Add id attribute to the select element */}

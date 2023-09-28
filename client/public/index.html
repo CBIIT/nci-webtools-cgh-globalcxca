@@ -98,7 +98,7 @@
             />
           </a>
 
-          <button
+          <!-- <button
             class="navbar-toggler"
             type="button"
             data-toggle="collapse"
@@ -108,15 +108,18 @@
             aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
-          </button>
+          </button> -->
 
           <div
-            class="collapse navbar-collapse justify-content-between"
+            class="navbar-collapse justify-content-center"
             id="navbarResponsive"
           >
-            <div class="d-flex align-items-center me-3 ms-auto">
-              <div id="navbarSearch" class="p-1"></div>
-              <div id="languageSelectContainer"></div>
+            <div class="d-flex align-items-center ms-auto">
+              <div id="navbarSearch" class="flex-sm-grow-1 p-1"></div>
+              <div
+                id="languageSelectContainer"
+                class="flex-sm-grow-1 p-1"
+              ></div>
             </div>
           </div>
         </div>
@@ -126,7 +129,7 @@
     <noscript>Please enable javascript to load this website.</noscript>
     <main id="root"></main>
 
-    <script>
+    <!-- <script>
       // Toggle the collapse manually
       document
         .querySelector(".navbar-toggler")
@@ -136,7 +139,7 @@
           );
           target.classList.toggle("show");
         });
-    </script>
+    </script> -->
     <script>
       // Initialize Bootstrap's dropdowns
       var dropdownElementList = [].slice.call(
