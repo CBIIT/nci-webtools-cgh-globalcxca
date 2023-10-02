@@ -99,7 +99,7 @@
     "epidemiological": "Epidemiological Context",
     "epidemiologicalTitle": "Explore epidemiological outcomes for target populations with our screening impact assessment tool.",
     "numPeople": "Number of people in target population for cervical screening",
-    "numPeopleInfo": "Enter targeted number of people in the population eligible for cervical screening",
+    "numPeopleInfo": "Enter targeted number of people in the population eligible for cervical screening - Only numbers allowed as input, no commas or periods.",
     "prevelance": "Prevalence of CIN2/3 in population for cervical screening",
     "prevelanceInfo": "Enter number of women with CIN2/3 per 100 people in the population eligible for cervical screening",
     "numberWomenWithCin": "Enter number of women with CIN2/3 per 100 people in the population eligible for cervical screening",

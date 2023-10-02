@@ -97,7 +97,7 @@
     "fieldRequired": "Se necesita completar toda la información",
     "epidemiological": "Contexto Epidemiológico",
     "epidemiologicalTitle": "Conocer los efectos epidemiológicos en la población objetivo con nuestra herramienta de evaluación de impacto del tamizaje.",
-    "numPeople": "Número de personas en la población objetivo que requiere tamizaje cervical",
+    "numPeople": "Número de personas en la población objetivo que requiere tamizaje cervical - Solo se permiten números como entrada, sin comas ni puntos.",
     "numPeopleInfo": "Ingrese el número objetivo de personas en la población elegibles para el tamizaje cervical.",
     "prevelance": "Prevalencia de NIC2/3 en la población objetivo que requiere tamizaje cervical",
     "prevelanceInfo": "Ingrese el número de mujeres con CIN2/3 por cada 100 personas en la población elegible para el tamizaje cervical",
