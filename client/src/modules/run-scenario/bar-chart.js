@@ -200,6 +200,10 @@ function d3BarChart(
   // Construct scales, axes, and formats.
   // Compute formats based on language.
   yFormat = language === "es" ? ".0f" : ",.0f";
+  if (d3.max(Y) > 1000000000) {
+    yFormat = d3.format("~s");
+    marginLeft = 60;
+  }
 
   const xScale = d3.scaleBand(xDomain, xRange).padding(xPadding);
   const yScale = yType(yDomain, yRange);
