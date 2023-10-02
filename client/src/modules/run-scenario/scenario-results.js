@@ -348,7 +348,6 @@ export default function ScenarioResults() {
   }
 
   const combinedTitleLength = (barChartTitle1 + " " + barChartTitle2).length;
-  console.log("combinedTitleLength", combinedTitleLength);
 
   // Check if the combined title length is greater than a certain threshold
   const shouldWrap = combinedTitleLength > 20; // Adjust the threshold as needed
