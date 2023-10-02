@@ -167,7 +167,7 @@ function d3BarChart(
     marginTop = 30, // the top margin, in pixels
     marginRight = 0, // the right margin, in pixels
     marginBottom = 10, // the bottom margin, in pixels
-    marginLeft = 100, // the left margin, in pixels
+    marginLeft = 120, // the left margin, in pixels
     width = 440, // the outer width of the chart, in pixels
     // width, // Add chartWidth as a parameter
     height = 400, // the outer height of the chart, in pixels
@@ -200,8 +200,8 @@ function d3BarChart(
   // Construct scales, axes, and formats.
   // Compute formats based on language.
   yFormat = language === "es" ? ".0f" : ",.0f";
-  if (d3.max(Y) > 1000000000) {
-    yFormat = d3.format("~s");
+  if (d3.max(Y) > 10000000000) {
+    yFormat = d3.format("s");
     marginLeft = 60;
   }
 
