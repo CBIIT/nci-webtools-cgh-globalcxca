@@ -19,7 +19,12 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
 
   const updateChartWidth = useCallback(() => {
     const containerWidth = ref.current.clientWidth;
-    const newChartWidth = containerWidth - layout.margin * 4;
+    let newChartWidth = containerWidth - layout.margin * 4;
+    console.log("containerWidth--", containerWidth);
+    console.log("newChartWidth", newChartWidth);
+    if (newChartWidth < 240) {
+      newChartWidth = 240;
+    }
     setChartWidth(newChartWidth);
   }, [layout.margin]);
   useEffect(() => {
@@ -141,7 +146,7 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
             value: (d) => d.value,
             width: chartWidth,
             height: chartWidth,
-            labelRadius: (Math.min(chartWidth, chartWidth) / 2) * 0.5,
+            labelRadius: (Math.min(chartWidth, chartWidth) / 2) * 0.3,
             format: ",.0f",
             colors: colors,
             labels: translatedLabels,
@@ -162,8 +167,8 @@ function d3PieChart(
     name = ([x]) => x, // given d in data, returns the (ordinal) label
     value = ([, y]) => y, // given d in data, returns the (quantitative) value
     title, // given d in data, returns the title text
-    width = 100, // outer width, in pixels
-    height = 100, // outer height, in pixels
+    width = 150, // outer width, in pixels
+    height = 150, // outer height, in pixels
     innerRadius = 0, // inner radius of pie, in pixels (non-zero for donut)
     outerRadius = Math.min(width, height) / 2, // outer radius of pie, in pixels
     labelRadius = innerRadius * 0.2 + outerRadius * 0.8, // center radius of labels
