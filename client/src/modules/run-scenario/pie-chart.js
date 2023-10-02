@@ -116,7 +116,7 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
           .append("circle")
           .attr("cx", chartWidth / 2)
           .attr("cy", chartWidth / 2)
-          .attr("r", Math.min(chartWidth, chartWidth) / 2)
+          .attr("r", Math.min(chartWidth, chartWidth) / 2.1)
           .attr("fill", "#E8E9E9")
           .attr("stroke", "gray")
           .attr("stroke-width", 1);
