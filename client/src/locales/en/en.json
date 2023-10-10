@@ -144,7 +144,7 @@
     "screenTriageTreatment": "Screening → Triage → Treatment",
     "screenTriageDiagnosisTreatment": "Screening → Triage → Diagnosis → Treatment",
     "screenTreatment": "Screening → Treatment",
-    "interventionsRequired": "Interventions Required",
+    "interventionsRequired": "Other Interventions Required",
     "screeningBarChartTitle0": "Screening Interventions Required",
     "populationWithPrecancer": "Population with Precancer",
     "populationWithoutPrecancer": "Population without Precancer",
