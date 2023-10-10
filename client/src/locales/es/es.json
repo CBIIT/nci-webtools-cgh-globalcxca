@@ -90,7 +90,8 @@
     "test": "prueba",
     "contactUs": "Contáctenos",
     "contactus": "contáctenos",
-    "enterValue": "Ingresar Valor"
+    "enterValue": "Ingresar Valor",
+    "population": "Población"
   },
   "runScenario": {
     "title": "Ejecutar escenario",

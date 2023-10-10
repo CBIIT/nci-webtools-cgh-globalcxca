@@ -91,7 +91,8 @@
     "contactUs": "Contact Us",
     "contactus": "contact us",
     "numberFormat": "{{value}}",
-    "enterValue": "Enter Value"
+    "enterValue": "Enter Value",
+    "population": "Population"
   },
   "runScenario": {
     "title": "Run Scenario",

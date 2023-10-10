@@ -141,7 +141,7 @@ export default function BarChart({
             x: (d) => d.label,
             y: (d) => d.value,
             yFormat: ",.0f",
-            yLabel: "Counts",
+            yLabel: t("general.population"),
             //width: layout.width, // Use the width from the layout object
             with: chartWidth,
             height: layout.height, // Use the height from the layout object
