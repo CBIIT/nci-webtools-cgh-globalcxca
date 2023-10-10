@@ -156,13 +156,13 @@
   "screening": {
     "en": {
       "translation": {
-        "welcome": "Sceening",
+        "welcome": "Screening",
         "home.introdution": "Tamizaje"
       }
     },
     "es": {
       "translation": {
-        "welcome": "Sceening",
+        "welcome": "Screening",
         "home.introdution": "Tamizaje"
       }
     }
