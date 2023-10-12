@@ -19,6 +19,13 @@ export const routes = [
         end: true,
       },
       {
+        path: "about",
+        element: <About />,
+        title: "navbar.about",
+        navbar: true,
+        end: true,
+      },
+      {
         path: "run-scenario",
         element: <RunScenario />,
         title: "navbar.runScenario",
@@ -39,13 +46,7 @@ export const routes = [
         navbar: true,
         end: true,
       },
-      {
-        path: "about",
-        element: <About />,
-        title: "navbar.about",
-        navbar: true,
-        end: true,
-      },
+
       {
         path: "*",
         element: <Navigate to="/run-scenario" />,
