@@ -9,7 +9,7 @@ function Header() {
     <div>
       <div className="bg-primary text-white py-1 d-none d-lg-block">
         <div className="container">
-          <h1 className="h5 fw-semibold">{t("header.title")}</h1>
+          <h1 className="h6 fw-semibold">{t("header.title")}</h1>
         </div>
       </div>
     </div>
