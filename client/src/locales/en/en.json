@@ -58,7 +58,8 @@
   "general": {
     "ccpTitle": "CC3S - Cervical Cancer Screening Scenario Simulator",
     "﻿Key": "English",
-    "welcome": "Welcome to CC3S!",
+    "ccpLongDes": "Cervical Cancer Screening Scenario Simulator",
+    "welcome": "Welcome to CC3S",
     "enterValue0t100HelpText": "Enter a value between 0 and 100.",
     "screening": "Screening",
     "screeningTestLabel": "Screening Test",

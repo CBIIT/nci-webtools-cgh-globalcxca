@@ -57,8 +57,9 @@
   },
   "general": {
     "ccpTitle": "CC3S – Simulador de Escenarios de Tamizaje de Cancer de Cuello Uterino",
-    "﻿Key": "Spanish - Final",
-    "welcome": "¡Bienvenido a CC3S!",
+    "﻿Key": "Spanish",
+    "ccpLongDes": "Simulador de Escenarios de Tamizaje de Cancer de Cuello Uterino",
+    "welcome": "¡Bienvenido a CC3S",
     "enterValue0t100HelpText": "Ingrese un valor entre 0 y 100.",
     "screening": "Tamizaje",
     "screeningTestLabel": "Prueba de Tamizaje",

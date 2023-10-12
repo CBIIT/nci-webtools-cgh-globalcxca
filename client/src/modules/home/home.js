@@ -17,7 +17,7 @@ export default function Home() {
             <div className="d-flex h-100 align-items-center">
               <div className="my-2">
                 <h1 className="text-light d-none d-md-block">
-                  {t("general.welcome")}
+                  {t("general.welcome")}! <br />({t("general.ccpLongDes")})
                 </h1>
                 <hr className="border-white" />
                 <p className="lead text-light">{t("home.introdution")}</p>
