@@ -99,7 +99,12 @@ export default function Home() {
                 </Link>{" "}
                 {t("home.des0Continued")} <br></br>
                 {t("home.des1")}{" "}
-                <Link to={`mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov`}>
+                <Link
+                  onClick={() =>
+                    (window.location.href =
+                      "mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov")
+                  }
+                >
                   <b>{t("general.contactus")}</b>
                 </Link>{" "}
                 {t("home.des1Continued")}
@@ -107,7 +112,12 @@ export default function Home() {
               <div>
                 <b>
                   {t("home.emphasize")}{" "}
-                  <Link to={`mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov`}>
+                  <Link
+                    onClick={() =>
+                      (window.location.href =
+                        "mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov")
+                    }
+                  >
                     <b>{t("general.contactus")}</b>
                   </Link>{" "}
                   {t("home.withQuestions")}
