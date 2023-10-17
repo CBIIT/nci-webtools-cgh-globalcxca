@@ -98,28 +98,24 @@ export default function Home() {
                   <b>{t("navbar.runScenario")}</b>
                 </Link>{" "}
                 {t("home.des0Continued")} <br></br>
-                {t("home.des1")}{" "}
-                <Link
-                  onClick={() =>
-                    (window.location.href =
-                      "mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov")
-                  }
+                {t("home.des1")}
+                <a
+                  href="mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov"
+                  className="fw-bold"
                 >
-                  <b>{t("general.contactus")}</b>
-                </Link>{" "}
+                  <b>{t("general.contactus")}</b>{" "}
+                </a>
                 {t("home.des1Continued")}
               </div>
               <div>
                 <b>
-                  {t("home.emphasize")}{" "}
-                  <Link
-                    onClick={() =>
-                      (window.location.href =
-                        "mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov")
-                    }
+                  {t("home.emphasize")}
+                  <a
+                    href="mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov"
+                    className="fw-bold"
                   >
                     <b>{t("general.contactus")}</b>
-                  </Link>{" "}
+                  </a>
                   {t("home.withQuestions")}
                 </b>
               </div>

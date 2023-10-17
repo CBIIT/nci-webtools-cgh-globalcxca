@@ -256,7 +256,7 @@ export default function RunScenarios() {
                                     type="range"
                                     min="0"
                                     max="5"
-                                    step="1"
+                                    step="0.1"
                                     placeholder="Enter 0 - 5"
                                     name="cinPrevalence"
                                     className="border-end-0 me-2"
