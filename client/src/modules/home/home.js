@@ -114,7 +114,8 @@ export default function Home() {
                     href="mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov"
                     className="fw-bold"
                   >
-                    <b>{t("general.contactus")}</b>
+                    {" "}
+                    <b>{t("general.contactus")}</b>{" "}
                   </a>
                   {t("home.withQuestions")}
                 </b>
