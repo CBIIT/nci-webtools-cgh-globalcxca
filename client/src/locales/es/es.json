@@ -92,7 +92,11 @@
     "contactUs": "Contáctenos",
     "contactus": "contáctenos",
     "enterValue": "Ingresar Valor",
-    "population": "Población"
+    "population": "Población",
+    "sensitivity": "Sensibilidad",
+    "specificity": "Especificidad",
+    "term": "Término",
+    "definition": "Definición"
   },
   "runScenario": {
     "title": "Ejecutar escenario",
@@ -215,6 +219,8 @@
     "viaJustification": "Las estimaciones varían ampliamente y dependen de la capacitación y el control de calidad continuo. El promedio global es de alrededor de 65% de sensibilidad y 87% de especificidad. Los estimados de la precisión del PAP después de una prueba de VPH positiva también varían ampliamente.",
     "hpvJustification": "Las estimaciones del rendimiento de la prueba del VPH en los programas de detección son menos variables.",
     "impressionOfColposcopyJustification": "La precisión de la impresión colposcópica varía ampliamente y tienen sesgos significativos. La mayoría de los estimados de sensibilidad van del 50 al 80 %, mientras que los estimados de especificidad van del 70 al 95 %.",
+    "sensitivity": "El porcentaje de la población ** con precáncer/cáncer que tiene resultado positivo de la preuba.",
+    "specificity": "El porcentaje de la población sin precáncer/cáncer que tiene resultado negativo de la prueba.",
     "": ""
   }
 }

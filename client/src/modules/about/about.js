@@ -52,7 +52,7 @@ export default function About() {
             </Table>
           </Card.Body>
         </Card>
-        <Card>
+        <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
             <h4 className="text-center mb-1">
               {t("runScenario.participationTitle")}
@@ -120,7 +120,7 @@ export default function About() {
             </Table>
           </Card.Body>
         </Card>
-        <Card>
+        <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
             <h4 className="text-center mb-1">
               {t("runScenario.screeningAndTreatmentTitle")}
@@ -196,6 +196,46 @@ export default function About() {
                   <td></td>
                   <td>
                     <p>{t("about.impressionOfColposcopySource")}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          </Card.Body>
+        </Card>
+        <Card className="mb-2 mt-2">
+          <Card.Body className="pt-2">
+            <h4 className="text-center mb-1">{t("general.definition")}</h4>
+            <Table bordered hover>
+              <thead>
+                <tr>
+                  <th>{t("general.term")}</th>
+                  <th>{t("general.definition")}</th>
+                  <th>{t("general.sources")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{t("general.sensitivity")}</td>
+                  <td>{t("about.sensitivity")}</td>
+                  <td>
+                    <a
+                      href="https://www.cancer.gov/about-cancer/screening/hp-screening-overview-pdq#:~:text=Revised%20text%20to%20state%20that,value%20(PPV)%2C%20which%20is"
+                      target="_blank"
+                    >
+                      https://www.cancer.gov/about-cancer/screening/hp-screening-overview-pdq#:~:text=Revised%20text%20to%20state%20that,value%20(PPV)%2C%20which%20is
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{t("general.specificity")}</td>
+                  <td>{t("about.specificity")}</td>
+                  <td>
+                    <a
+                      href="https://www.cancer.gov/about-cancer/screening/hp-screening-overview-pdq#:~:text=Revised%20text%20to%20state%20that,value%20(PPV)%2C%20which%20is"
+                      target="_blank"
+                    >
+                      https://www.cancer.gov/about-cancer/screening/hp-screening-overview-pdq#:~:text=Revised%20text%20to%20state%20that,value%20(PPV)%2C%20which%20is
+                    </a>
                   </td>
                 </tr>
               </tbody>
