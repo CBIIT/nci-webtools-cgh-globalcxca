@@ -38,7 +38,7 @@
     "about": "Acerca de"
   },
   "home": {
-    "introdution": "Conocer los efectos epidemiológicos en una población objetivo con nuestra herramienta de evaluación de impacto de un programa de tamizaje.",
+    "introdution": "Conocer los efectos clínicos y epidemiológicos en una población objetivo con nuestra herramienta de evaluación de impacto de un programa de tamizaje.",
     "whatIsCC3S": "¿Qué es CC3S?",
     "whatIsCC3SDes": "El Simulador de escenarios de detección de cáncer de cuello uterino (CC3S) es una herramienta de escenario desarrollada por el Centro para la salud global del Instituto Nacional del Cáncer (NCI/CGH) para ayudar a los funcionarios y/o proveedores de salud locales a planificar y comprender su programa nacional de detección de cáncer de cuello uterino en diferentes niveles del Sistema de salud. Puede usar esta herramienta para visualizar qué tan efectivo podría ser un programa y qué recursos se requerirían según las opciones variables de cobertura de detección, frecuencia, pruebas utilizadas, precisión de las pruebas y seguimiento en su contexto local. Esta herramienta está destinada a facilitar las conversaciones entre los socios.",
     "beforeYouStartTitle": "Antes de comenzar, recuerde:",
