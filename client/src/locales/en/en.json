@@ -53,7 +53,10 @@
     "des1": "If you have any questions or technical issues, please select ",
     "des1Continued": "below.",
     "emphasize": "This tool is best used with a trained facilitator to guide you through the decision-making process, but you are welcome to use it on your own. Please",
-    "withQuestions": "with questions."
+    "withQuestions": "with questions.",
+    "desLink0": "For more information, navigate to the",
+    "resoucesLink": "Resources",
+    "desLink1": "tab for key definitions, descriptions, and evidence for scenario parameters in CC3S."
   },
   "general": {
     "ccpTitle": "CC3S - Cervical Cancer Screening Scenario Simulator",

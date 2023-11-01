@@ -53,7 +53,10 @@
     "des1": "Si tiene alguna pregunta o problema técnico, seleccione ",
     "des1Continued": " a continuación.",
     "emphasize": "Es mejor usar esta herramienta con un facilitador entrenado que le guie en el proceso de toma de decisiones, sin embargo, puede hacerlo usted solo. Por favor,",
-    "withQuestions": "si tiene preguntas."
+    "withQuestions": "si tiene preguntas.",
+    "desLink0": "Para más información, visita a la pestaña ",
+    "resourceLink": "Recursos",
+    "desLink1": "para obtener definiciones claves, descripciones y evidencia de los parámetros de los escenarios en CC3S."
   },
   "general": {
     "ccpTitle": "CC3S – Simulador de Escenarios de Tamizaje de Cancer de Cuello Uterino",

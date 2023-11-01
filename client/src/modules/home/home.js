@@ -92,18 +92,25 @@ export default function Home() {
                 </Col>
               </Row>
               <div class="py-2">
+                {t("home.desLink0")}
+                <Link to="/about">
+                  {" "}
+                  <b>{t("home.resoucesLink")}</b>
+                </Link>{" "}
+                {t("home.desLink1")}
+                <br />
                 {t("home.des0")}{" "}
                 <Link to="/run-scenario">
                   {" "}
                   <b>{t("navbar.runScenario")}</b>
                 </Link>{" "}
-                {t("home.des0Continued")} <br></br>
+                {t("home.des0Continued")} <br />
                 {t("home.des1")}
                 <a
                   href="mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov"
                   className="fw-bold"
                 >
-                  <b>{t("general.contactus")}</b>{" "}
+                  {t("general.contactus")}{" "}
                 </a>
                 {t("home.des1Continued")}
               </div>
