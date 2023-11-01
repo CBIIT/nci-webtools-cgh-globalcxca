@@ -100,7 +100,8 @@
     "sensitivity": "Sensitivity",
     "specificity": "Specificity",
     "term": "Term",
-    "definition": "Definition"
+    "definition": "Definition",
+    "and": "and"
   },
   "runScenario": {
     "title": "Run Scenario",
@@ -188,7 +189,13 @@
     "pPrecencersTreated": "% Precancers Treated",
     "pPrecencersOverTreated": "% Precancers Over-Treated",
     "populationNotOverTreated": "Population Not-Overtreated",
-    "resultGraphDefinition": "These results reflect the anticipated resources, people screened, and outcomes in a single year of a screening program. They do not reflect the overall screening program outcomes."
+    "resultGraphDefinition": "These results reflect the anticipated resources, people screened, and outcomes in a single year of a screening program. They do not reflect the overall screening program outcomes.",
+    "Approximately": "Approximately",
+    "screeningTests": "screening tests",
+    "triageTests": "triage tests",
+    "resultsDes0": "diagnostic tests will be required.",
+    "resultsDes1": "women will require treatment.",
+    "resultsDes2": "of women are possibly overtreated."
   },
   "compareScenarios": {
     "uploadScenariosInfo": "Upload up to {{limit}} scenarios for comparison. Files must be of the “.scenario” file format. Click the title of the scenario to rename it.",

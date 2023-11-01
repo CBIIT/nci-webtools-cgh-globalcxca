@@ -356,7 +356,7 @@ export default function ScenarioResults() {
     <div>
       {/* <Container style={{ overflow: "auto", maxHeight: "100vh" }}> */}
       <Container>
-        <Card className="mb-4 d-none">
+        <Card className="mb-3 d-none">
           <Card.Header>
             <Card.Title data-export>
               {asLabel(params.scenario, scenarios)}
@@ -573,7 +573,7 @@ export default function ScenarioResults() {
           </Card.Body>
         </Card>
 
-        <Card className="mb-4">
+        <Card className="mb-2">
           <Card.Header>
             <Card.Title>{chartTiles}</Card.Title>
           </Card.Header>
@@ -582,7 +582,7 @@ export default function ScenarioResults() {
               <Row>
                 <div>{t("results.resultGraphDefinition")}</div>
               </Row>
-            
+
               <Row className="my-2">
                 <Col xl={6} lg={12} md={12} sm={12} xs={12}>
                   <h2 className="text-center h5 py-2">{barChartTitle1}</h2>
@@ -710,6 +710,32 @@ export default function ScenarioResults() {
         {/* pdf page break */}
         <hr className="d-none" data-export />
 
+        <Card className="mb-2">
+          <Card.Body>
+            <div>
+              {t("results.Approximately")}{" "}
+              <b>
+                {totalNeededToScreen} {screenTest}
+              </b>{" "}
+              {t("results.screeningTests")},{" "}
+              <b>
+                {totalNeededToTriage} {triageTest}
+              </b>{" "}
+              {t("results.triageTests")}, {t("general.and")}
+              <b>
+                {" "}
+                {totalNeededToDiagnosticTriage} {diagnosisTest}
+              </b>{" "}
+              {t("results.resultsDes0")} <b>{totalNeededToTreat}</b>{" "}
+              {t("results.resultsDes1")}
+              <b>
+                {" "}
+                {asPercent(results.percentHealthyOvertreated) ?? "N/A"}
+              </b>{" "}
+              {t("results.resultsDes2")}
+            </div>
+          </Card.Body>
+        </Card>
         <Card className="mb-4">
           <Card.Body>
             <Table hover responsive data-export>

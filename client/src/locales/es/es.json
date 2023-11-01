@@ -99,7 +99,8 @@
     "sensitivity": "Sensibilidad",
     "specificity": "Especificidad",
     "term": "Término",
-    "definition": "Definición"
+    "definition": "Definición",
+    "and": "and"
   },
   "runScenario": {
     "title": "Ejecutar escenario",
@@ -188,7 +189,13 @@
     "pPrecencersTreated": "% de Precánceres Tratados",
     "pPrecencersOverTreated": "% de Precánceres Sobretratados",
     "populationNotOverTreated": "Población No Sobretratada",
-    "resultGraphDefinition": "Estos resultados reflejan los recursos previstos, las personas tamizadas y los resultados en un solo año de un programa de tamizaje. No reflejan los resultados generales del programa de tamizaje."
+    "resultGraphDefinition": "Estos resultados reflejan los recursos previstos, las personas tamizadas y los resultados en un solo año de un programa de tamizaje. No reflejan los resultados generales del programa de tamizaje.",
+    "Approximately": "Approximately",
+    "screeningTests": "screening tests",
+    "triageTests": "triage tests",
+    "resultsDes0": "diagnostic tests will be required.",
+    "resultsDes1": "women will require treatment.",
+    "resultsDes2": "of women are possibly overtreated."
   },
 
   "compareScenarios": {
