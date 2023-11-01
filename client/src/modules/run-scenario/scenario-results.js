@@ -579,6 +579,10 @@ export default function ScenarioResults() {
           </Card.Header>
           <Card.Body className="pt-1">
             <Container fluid>
+              <Row>
+                <div>{t("results.resultGraphDefinition")}</div>
+              </Row>
+            
               <Row className="my-2">
                 <Col xl={6} lg={12} md={12} sm={12} xs={12}>
                   <h2 className="text-center h5 py-2">{barChartTitle1}</h2>
@@ -598,7 +602,6 @@ export default function ScenarioResults() {
 
                 <Col xl={6} lg={12} md={12} sm={12} xs={12}>
                   <h2 className="text-center h5 py-2">{barChartTitle2}</h2>
-
                   <BarChart
                     id={barChartId}
                     data={[
