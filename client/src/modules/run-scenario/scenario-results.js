@@ -52,8 +52,8 @@ export default function ScenarioResults() {
   let diagnosisTest = "";
   let chartTiles;
 
-  console.log("params", params);
-  console.log("result", results);
+  // console.log("params", params);
+  // console.log("result", results);
 
   if (
     results.checkedValues &&
@@ -178,7 +178,6 @@ export default function ScenarioResults() {
       screenTest = "";
     }
   }
-  console.log("triageTest -- ", triageTest);
 
   // console.log("Chart title", chartTiles);
   // if (results.checkedValues) {
