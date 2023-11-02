@@ -20,8 +20,8 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
   const updateChartWidth = useCallback(() => {
     const containerWidth = ref.current.clientWidth;
     let newChartWidth = containerWidth - layout.margin * 4;
-    console.log("containerWidth--", containerWidth);
-    console.log("newChartWidth", newChartWidth);
+    // console.log("containerWidth--", containerWidth);
+    // console.log("newChartWidth", newChartWidth);
     if (newChartWidth < 240) {
       newChartWidth = 240;
     }

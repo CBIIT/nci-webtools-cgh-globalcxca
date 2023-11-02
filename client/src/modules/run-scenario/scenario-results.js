@@ -52,8 +52,8 @@ export default function ScenarioResults() {
   let diagnosisTest = "";
   let chartTiles;
 
-  // console.log("params", params);
-  //console.log("result", results);
+  console.log("params", params);
+  console.log("result", results);
 
   if (
     results.checkedValues &&
@@ -111,6 +111,10 @@ export default function ScenarioResults() {
       triageTest = "(" + t("runScenario.HPV") + ")";
     } else if (results.screentest[1] === "hpv16or18") {
       triageTest = "(" + t("runScenario.HPV1618") + ")";
+    } else if (results.screentest[1] === "colposcopicImpression") {
+      triageTest = "(" + t("runScenario.impressionOfColposcopy") + ")";
+    } else if (results.screentest[1] === "colposcopyWithBiopsy") {
+      triageTest = "(" + t("runScenario.colposcopyWithBiopsy") + ")";
     } else {
       triageTest = "";
     }
@@ -174,6 +178,7 @@ export default function ScenarioResults() {
       screenTest = "";
     }
   }
+  console.log("triageTest -- ", triageTest);
 
   // console.log("Chart title", chartTiles);
   // if (results.checkedValues) {
