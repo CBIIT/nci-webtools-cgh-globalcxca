@@ -61,7 +61,6 @@ export function saveChartAsPNG(chartId, filename, chartTitle) {
 
   var svgString = getSVGString(svgWithTitle.node());
 
-  console.log();
   svgString2Image(
     svgString,
     2 * defaultLayout.width,
@@ -77,7 +76,6 @@ export function saveChartAsPNG(chartId, filename, chartTitle) {
 
 export async function saveChartAsPNGForZip(chartId, chartTitle) {
   var chartSVG = d3.select("#" + chartId).select("svg");
-  console.log("chartSVG--", chartSVG);
 
   // Set the background color of the SVG element to white
   chartSVG.style("background-color", "white");
@@ -116,12 +114,9 @@ export async function saveChartAsPNGForZip(chartId, chartTitle) {
     .text(chartTitle);
 
   var svgString = getSVGString(svgWithTitle.node());
-  console.log("====svgString == ", svgString);
-  console.log("defaultLayout-- WIDTH ", defaultLayout.width);
-  console.log("defaultLayout-- HEIGHT ", defaultLayout.height);
+
 
   return new Promise((resolve) => {
-    console.log("defaultLayout", defaultLayout);
     svgString2Image(
       svgString,
       2 * defaultLayout.width,
@@ -214,13 +209,11 @@ function includes(str, arr) {
 
 export function svgString2Image(svgString, width, height, format, callback) {
   var format = format ? format : "png";
-  console.log("svgString", svgString);
 
   var imgsrc =
     "data:image/svg+xml;base64," +
     btoa(unescape(encodeURIComponent(svgString))); // Convert SVG string to data URL
 
-  console.log("imgsrc -- ", imgsrc);
   var canvas = document.createElement("canvas");
   var context = canvas.getContext("2d");
 
@@ -231,7 +224,6 @@ export function svgString2Image(svgString, width, height, format, callback) {
   image.onload = function () {
     context.clearRect(0, 0, width, height);
     context.drawImage(image, 0, 0, width, height);
-    console.log("canvas", canvas);
 
     canvas.toBlob(function (blob) {
       if (blob) {
