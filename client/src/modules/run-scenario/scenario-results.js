@@ -286,6 +286,7 @@ export default function ScenarioResults() {
 
   async function generateZipFilePNG() {
     const zip = new JSZip();
+    console.log("DOWNLOAD PNG");
 
     // Add each PNG chart to the zip
     const pngCharts = [
@@ -295,20 +296,36 @@ export default function ScenarioResults() {
       { id: pieChartId1, title: pieChartTitle2 },
     ];
 
+    console.log("pngCharts", pngCharts);
     const pngPromises = pngCharts.map(async (chart) => {
       const chartElement = document.querySelector(`#${chart.id}`);
+      console.log("chartElement", chartElement);
+
+      if (!chartElement) {
+        // Handle the case where the chart element is not found
+        console.error(`Chart element with ID ${chart.id} not found.`);
+        return null; // or handle the error in an appropriate way
+      }
 
       const pngData = await saveChartAsPNGForZip(chart.id, chart.title);
+      console.log("pngData", pngData);
 
       // Return the PNG data with title as a resolved promise
       return { title: chart.title, data: pngData };
     });
 
+    console.log("pngPromises", pngPromises);
+
     // Wait for all promises to be resolved
     const pngResults = await Promise.all(pngPromises);
 
-    // Add the PNG data to the zip
-    for (const pngResult of pngResults) {
+    console.log("pngResults", pngResults);
+
+    // Filter out any null results (charts not found)
+    const validPngResults = pngResults.filter((result) => result !== null);
+
+    // Add the PNG data to the zip for valid results
+    for (const pngResult of validPngResults) {
       zip.file(`${results.scenario}_${pngResult.title}.png`, pngResult.data, {
         base64: true,
       });

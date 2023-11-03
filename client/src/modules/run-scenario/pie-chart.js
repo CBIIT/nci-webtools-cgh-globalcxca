@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import { useTranslation } from "react-i18next";
 
 export const defaultLayout = {
-  //width: 250,
+  width: 250,
   height: 250,
   margin: 40,
 };
