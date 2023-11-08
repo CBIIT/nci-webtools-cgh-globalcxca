@@ -597,9 +597,9 @@ export default function RunScenarios() {
                                   <option value="" hidden>
                                     {t("runScenario.selectTest")}
                                   </option>
-                                  {screeningTests.map((t) => (
-                                    <option key={t.value} value={t.value}>
-                                      {t.label}
+                                  {screeningTests.map((m) => (
+                                    <option key={m.value} value={m.value}>
+                                      {t(m.label)}
                                     </option>
                                   ))}
                                 </Form.Select>
@@ -725,9 +725,9 @@ export default function RunScenarios() {
                                     <option value="" hidden>
                                       {t("runScenario.selectTest")}
                                     </option>
-                                    {triageTests.map((t) => (
-                                      <option key={t.value} value={t.value}>
-                                        {t.label}
+                                    {triageTests.map((m) => (
+                                      <option key={m.value} value={m.value}>
+                                        {t(m.label)}
                                       </option>
                                     ))}
                                   </Form.Select>
@@ -860,9 +860,9 @@ export default function RunScenarios() {
                                     <option value="" hidden>
                                       {t("runScenario.selectTest")}
                                     </option>
-                                    {diagnosticTests.map((t) => (
-                                      <option key={t.value} value={t.value}>
-                                        {t.label}
+                                    {diagnosticTests.map((m) => (
+                                      <option key={m.value} value={m.value}>
+                                        {t(m.label)}
                                       </option>
                                     ))}
                                   </Form.Select>
