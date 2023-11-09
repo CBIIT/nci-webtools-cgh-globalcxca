@@ -34,3 +34,9 @@ body {
   flex-wrap: wrap;
   margin-top: 10px; /* Adjust as needed for spacing */
 }
+
+.howTo {
+  text-decoration: underline;
+  color: $primary;
+  cursor: pointer;
+}

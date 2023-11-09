@@ -8,6 +8,7 @@ import Tab from "react-bootstrap/Tab";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Modal } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { paramsState, resultsState } from "./state";
@@ -51,6 +52,10 @@ export default function ScenarioResults() {
   let triageTest = "";
   let diagnosisTest = "";
   let chartTiles;
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalShow = () => setShowModal(true);
+  const handleModalClose = () => setShowModal(false);
 
   // console.log("params", params);
   // console.log("result", results);
@@ -310,10 +315,8 @@ export default function ScenarioResults() {
       return { title: chart.title, data: pngData };
     });
 
-
     // Wait for all promises to be resolved
     const pngResults = await Promise.all(pngPromises);
-
 
     // Filter out any null results (charts not found)
     const validPngResults = pngResults.filter((result) => result !== null);
@@ -590,7 +593,23 @@ export default function ScenarioResults() {
 
         <Card className="mb-2">
           <Card.Header>
-            <Card.Title>{chartTiles}</Card.Title>
+            <Row>
+              <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                <Card.Title>{chartTiles}</Card.Title>
+              </Col>
+              <Col
+                xl={6}
+                lg={12}
+                md={12}
+                sm={12}
+                xs={12}
+                className="d-flex justify-content-end"
+              >
+                <span className="howTo" onClick={handleModalShow}>
+                  How to / Help
+                </span>
+              </Col>
+            </Row>
           </Card.Header>
           <Card.Body className="pt-1">
             <Container fluid>
@@ -1250,6 +1269,19 @@ export default function ScenarioResults() {
             </div>
           </Card.Body>
         </Card>
+
+        <Modal show={showModal} onHide={handleModalClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>How to / Help</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {/* Add your help content here */}
+            {/* You can also include a button to close the modal */}
+            <Button variant="primary" onClick={handleModalClose}>
+              Close
+            </Button>
+          </Modal.Body>
+        </Modal>
       </Container>
     </div>
   );
