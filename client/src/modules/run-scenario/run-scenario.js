@@ -193,7 +193,10 @@ export default function RunScenarios() {
                   >
                     <Col lg={6} md={12} sm={12} xs={12}>
                       <div>
-                        <h5> {t("runScenario.epidemiological")}</h5>
+                        <h2 className="h5">
+                          {" "}
+                          {t("runScenario.epidemiological")}
+                        </h2>
                         <div className="small text-muted">
                           {t("runScenario.epidemiologicalTitle")}
                         </div>
@@ -967,7 +970,7 @@ export default function RunScenarios() {
                 <Form.Group className="mb-4 mt-2 text-end">
                   <Button
                     type="reset"
-                    className="shadow"
+                    className="shadow reset-button"
                     variant="outline-primary"
                   >
                     {t("general.reset")}

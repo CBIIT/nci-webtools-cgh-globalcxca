@@ -15,9 +15,9 @@ export default function About() {
         <h1 className="text-center h2">{t("about.title")}</h1>
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
-            <h4 className="text-center mb-1">
+            <h2 className="text-center mb-1 h4">
               {t("runScenario.epidemiological")}
-            </h4>
+            </h2>
             <Table bordered hover>
               <thead>
                 <tr>
@@ -54,9 +54,9 @@ export default function About() {
         </Card>
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
-            <h4 className="text-center mb-1">
+            <h2 className="text-center mb-1 h4">
               {t("runScenario.participationTitle")}
-            </h4>
+            </h2>
             <Table bordered hover>
               <thead>
                 <tr>
@@ -122,9 +122,9 @@ export default function About() {
         </Card>
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
-            <h4 className="text-center mb-1">
+            <h2 className="text-center mb-1 h4">
               {t("runScenario.screeningAndTreatmentTitle")}
-            </h4>
+            </h2>
             <Table bordered hover>
               <thead>
                 <tr>
@@ -204,7 +204,7 @@ export default function About() {
         </Card>
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
-            <h4 className="text-center mb-1">{t("general.definition")}</h4>
+            <h2 className="text-center mb-1 h4">{t("general.definition")}</h2>
             <Table bordered hover>
               <thead>
                 <tr>

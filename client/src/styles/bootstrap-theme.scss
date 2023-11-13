@@ -38,12 +38,15 @@ input[type="number"] {
 
 .bg-primary {
   //background-color: #20094b;
-  background-color: #37abc8;
+  //background-color: #37abc8;
+  //background-color: #20606f;
+  background-color: #43a1b6;
 }
 
 .bg-primary-dark {
   //background-color: #20094b;
-  background-color: #15687c;
+  //background-color: #15687c;
+  background-color: #136071;
 }
 
 .bg-dark-gradient {
@@ -238,4 +241,18 @@ input[type="number"] {
   .custom-navbar .navbar-nav .nav-link.active {
     color: black !important; /* Change text color to black for active link in mobile view */
   }
+}
+.bg-info-dark {
+  background-color: #0250c5;
+}
+
+.bg-warning-dark {
+  background-color: #8d4002;
+}
+.bg-danger-dark {
+  background-color: #a91e2c;
+}
+
+.bg-success-dark {
+  background-color: #076439;
 }

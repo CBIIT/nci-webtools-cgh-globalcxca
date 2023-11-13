@@ -40,3 +40,21 @@ body {
   color: $primary;
   cursor: pointer;
 }
+
+.text-primary {
+  color: #136071 !important;
+}
+
+.bg-orange {
+  background-color: #ffa500;
+}
+
+.reset-button {
+  color: #ffffff;
+  background-color: #136071;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+  background-color: #0c4e6e;
+}

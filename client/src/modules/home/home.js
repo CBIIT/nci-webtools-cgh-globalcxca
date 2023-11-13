@@ -49,14 +49,14 @@ export default function Home() {
                 {t("home.whatIsCC3S")}
               </h2>
               <p>{t("home.whatIsCC3SDes")}</p>
-              <h5 className="mb-1 text-primary">
+              <h3 className="mb-1 text-primary h5">
                 {t("home.beforeYouStartTitle")}
-              </h5>
+              </h3>
               <Row className="py-2">
                 <Col md={1}>
                   <img
                     src="../assets/images/insight.png"
-                    alt="insight"
+                    alt=""
                     width="60"
                     height="60"
                   />
@@ -93,14 +93,14 @@ export default function Home() {
               </Row>
               <div class="py-2">
                 {t("home.desLink0")}
-                <Link to="/about">
+                <Link to="/about" className="text-primary">
                   {" "}
                   <b>{t("home.resourceLink")}</b>
                 </Link>{" "}
                 {t("home.desLink1")}
                 <br />
                 {t("home.des0")}{" "}
-                <Link to="/run-scenario">
+                <Link to="/run-scenario" className="text-primary">
                   {" "}
                   <b>{t("navbar.runScenario")}</b>
                 </Link>{" "}
@@ -108,7 +108,7 @@ export default function Home() {
                 {t("home.des1")}
                 <a
                   href="mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov"
-                  className="fw-bold"
+                  className="fw-bold text-primary"
                 >
                   {t("general.contactus")}{" "}
                 </a>
@@ -119,7 +119,7 @@ export default function Home() {
                   {t("home.emphasize")}
                   <a
                     href="mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov"
-                    className="fw-bold"
+                    className="fw-bold text-primary"
                   >
                     {" "}
                     <b>{t("general.contactus")}</b>{" "}
