@@ -774,7 +774,7 @@ export default function ScenarioResults() {
           <Card.Body>
             <Table hover responsive data-export>
               <thead>
-                <tr className="bg-info-dark text-light">
+                <tr className="bg-info text-light">
                   <th>{t("results.annualTargets")}</th>
                   <th className="visually-hidden">Placeholder</th>
                 </tr>
@@ -829,7 +829,7 @@ export default function ScenarioResults() {
 
             <Table hover responsive data-export>
               <thead>
-                <tr className="bg-warning-dark text-light">
+                <tr className="bg-warning text-light">
                   <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
                   <th className="visually-hidden">Placeholder</th>
                 </tr>
@@ -852,7 +852,7 @@ export default function ScenarioResults() {
 
             <Table hover responsive data-export>
               <thead>
-                <tr className="bg-danger-dark text-light">
+                <tr className="bg-danger text-light">
                   <th>{t("results.missedPrecancersTitle")}</th>
                   <th className="visually-hidden">Placeholder</th>
                   <th className="visually-hidden">Placeholder</th>
@@ -1204,7 +1204,7 @@ export default function ScenarioResults() {
 
             <Table hover responsive data-export>
               <thead>
-                <tr className="bg-success-dark text-light">
+                <tr className="bg-success text-light">
                   <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
                   <th className="visually-hidden">Placeholder</th>
                 </tr>
