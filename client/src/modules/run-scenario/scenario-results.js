@@ -776,7 +776,7 @@ export default function ScenarioResults() {
               <thead>
                 <tr className="bg-info text-light">
                   <th>{t("results.annualTargets")}</th>
-                  <th className="visually-hidden">Placeholder</th>
+                  <th className="th-placeholder">Placeholder</th>
                 </tr>
               </thead>
               <tbody>
@@ -831,7 +831,7 @@ export default function ScenarioResults() {
               <thead>
                 <tr className="bg-warning text-light">
                   <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
-                  <th className="visually-hidden">Placeholder</th>
+                  <th className="th-placeholder">Placeholder</th>
                 </tr>
               </thead>
               <tbody>
@@ -854,8 +854,8 @@ export default function ScenarioResults() {
               <thead>
                 <tr className="bg-danger text-light">
                   <th>{t("results.missedPrecancersTitle")}</th>
-                  <th className="visually-hidden">Placeholder</th>
-                  <th className="visually-hidden">Placeholder</th>
+                  <th className="th-placeholder">Placeholder</th>
+                  <th className="th-placeholder">Placeholder</th>
                 </tr>
               </thead>
               <tbody>
@@ -1206,7 +1206,7 @@ export default function ScenarioResults() {
               <thead>
                 <tr className="bg-success text-light">
                   <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
-                  <th className="visually-hidden">Placeholder</th>
+                  <th className="th-placeholder">Placeholder</th>
                 </tr>
               </thead>
               <tbody>
