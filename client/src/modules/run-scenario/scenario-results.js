@@ -391,7 +391,7 @@ export default function ScenarioResults() {
                     <tr className="bg-grey">
                       <th>{t("runScenario.epidemiological")}</th>
                       {/* Placeholder th simplifies pdf export (consistent row lengths) */}
-                      <th></th>
+                      <th className="visually-hidden">Placeholder</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -414,7 +414,7 @@ export default function ScenarioResults() {
                   <thead>
                     <tr className="bg-grey">
                       <th> {t("runScenario.participationTitle")}</th>
-                      <th></th>
+                      <th className="visually-hidden">Placeholder</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -488,7 +488,7 @@ export default function ScenarioResults() {
                   <thead>
                     <tr className="bg-grey">
                       <th>{t("runScenario.screeningAndTreatmentTitle")}</th>
-                      <th></th>
+                      <th className="visually-hidden">Placeholder</th>
                     </tr>
                   </thead>
                   <tbody>
