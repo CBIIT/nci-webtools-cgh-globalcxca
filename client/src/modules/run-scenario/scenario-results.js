@@ -414,7 +414,7 @@ export default function ScenarioResults() {
                   <thead>
                     <tr className="bg-grey">
                       <th> {t("runScenario.participationTitle")}</th>
-                      <th className="visually-hidden">Placeholder</th>
+                      <th className="th-placeholder">Placeholder</th>
                     </tr>
                   </thead>
                   <tbody>
