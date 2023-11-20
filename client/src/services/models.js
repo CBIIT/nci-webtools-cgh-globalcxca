@@ -17,6 +17,12 @@ export const scenarios = [
     strategy: "general.diagnosis",
     name: "diagnosticTest",
   },
+  {
+    value: "Treatment",
+    label: "Treatment",
+    strategy: "general.treatment",
+    name: "treatmentTest",
+  },
 ];
 
 export const screeningTests = [

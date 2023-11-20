@@ -62,8 +62,8 @@ export default function ScenarioResults() {
 
   if (
     results.checkedValues &&
-    results.checkedValues.length === 2 &&
-    results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+    results.checkedValues.length === 3 &&
+    results.checkedValues[2] === "ScreenDiagnosticTestTreat"
   ) {
     chartTiles = t("results.screenDiagnosisTreatment");
     if (results.screentest[0] === "pap") {
@@ -91,8 +91,8 @@ export default function ScenarioResults() {
     }
   } else if (
     results.checkedValues &&
-    results.checkedValues.length === 2 &&
-    results.checkedValues[1] === "ScreenTriageDiagnosticTestTreat"
+    results.checkedValues.length === 3 &&
+    results.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
   ) {
     chartTiles = t("results.screenTriageTreatment");
 
@@ -123,7 +123,7 @@ export default function ScenarioResults() {
     } else {
       triageTest = "";
     }
-  } else if (results.checkedValues && results.checkedValues.length === 3) {
+  } else if (results.checkedValues && results.checkedValues.length === 4) {
     chartTiles = t("results.screenTriageDiagnosisTreatment");
 
     if (results.screentest[0] === "pap") {
