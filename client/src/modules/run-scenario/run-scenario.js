@@ -42,17 +42,23 @@ export default function RunScenarios() {
   const setResults = useSetRecoilState(resultsState);
   const navigate = useNavigate();
   const [checkedValues, setCheckedValues] = useState([]);
+  const [divVisibilities, setDivVisibilities] = useState(
+    Array(scenarios.length).fill(false)
+  );
 
-  function handleChange(e) {
+  function handleChange(e, index) {
     const { name, value, checked } = e.target;
     //console.log("checked", checked);
     //console.log("value", value);
-
+    const newDivVisibilities = [...divVisibilities];
+    newDivVisibilities[index] = checked;
+    setDivVisibilities(newDivVisibilities);
     // if (name === "ScreenTreat" && !checked) {
     //   // Ignore the unchecked action for "Screening Test" checkbox
     //   return;
     // }
     // Check if the checkbox is "Screening" or "Treatment"
+
     if (name === "ScreenTreat" || name === "Treatment") {
       // Always keep "Screening" and "Treatment" checked
       setCheckedValues(["ScreenTreat", "Treatment"]);
@@ -63,8 +69,7 @@ export default function RunScenarios() {
     if (checked) {
       // Add the checked value to the array
       updatedValues = [...checkedValues, value];
-      // console.log("updatedValues ", updatedValues);
-      // console.log("----- checkedValues --- ", checkedValues);
+      // open / close the div on checked
     } else {
       // Remove the unchecked value from the array
       updatedValues = checkedValues.filter((val) => val !== value);
@@ -135,6 +140,9 @@ export default function RunScenarios() {
   useEffect(() => {
     // Set the initial checked value to "Screening Test"
     setCheckedValues(["ScreenTreat", "Treatment"]);
+
+    const initialDivVisibilities = [true, false, false, true]; // Set index 1 and 3 to true
+    setDivVisibilities(initialDivVisibilities);
   }, []);
 
   // Function to handle language change
@@ -184,10 +192,6 @@ export default function RunScenarios() {
       `Dropdown item "${selectedItem}" clicked for scenario ${scenarioValue}`
     );
   }
-
-  const [divVisibilities, setDivVisibilities] = useState(
-    Array(scenarios.length).fill(false)
-  );
 
   const handleArrowClick = (index) => {
     const newDivVisibilities = [...divVisibilities];
@@ -326,7 +330,7 @@ export default function RunScenarios() {
                             name={scenario.value}
                             id={scenario.value}
                             value={scenario.value}
-                            onChange={handleChange}
+                            onChange={(e) => handleChange(e, idx)}
                             onWheel={(e) => e.target.blur()}
                           />
                           <Form.Check.Label
@@ -337,7 +341,12 @@ export default function RunScenarios() {
                           </Form.Check.Label>
                           <div
                             onClick={() => handleArrowClick(idx)}
-                            style={{ cursor: "pointer" }}
+                            style={{
+                              cursor: "pointer",
+                              transform: divVisibilities[idx]
+                                ? "rotate(180deg)"
+                                : "rotate(0deg)",
+                            }}
                             className="d-flex align-items-end"
                           >
                             &#9660;
@@ -1215,17 +1224,17 @@ export default function RunScenarios() {
                                           : "grayed-out"
                                       }
                                     >
-                                      <Row>
-                                        <div
-                                          className={
-                                            [
-                                              "ScreenDiagnosticTestTreat",
-                                              "ScreenTriageDiagnosticTestTreat",
-                                            ].includes(form.scenario)
-                                              ? "d-block"
-                                              : "d-none"
-                                          }
-                                        >
+                                      <div
+                                        className={
+                                          [
+                                            "ScreenDiagnosticTestTreat",
+                                            "ScreenTriageDiagnosticTestTreat",
+                                          ].includes(form.scenario)
+                                            ? "d-block"
+                                            : "d-none"
+                                        }
+                                      >
+                                        <Row>
                                           <Form.Group
                                             as={Row}
                                             controlId="percentDiagnosticTriaged"
@@ -1303,8 +1312,8 @@ export default function RunScenarios() {
                                               </InputGroup>
                                             </Col>
                                           </Form.Group>
-                                        </div>
-                                      </Row>
+                                        </Row>
+                                      </div>
                                       <div
                                         className={
                                           checkedValues.length === 3 ||
