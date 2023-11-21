@@ -45,8 +45,8 @@ export default function RunScenarios() {
 
   function handleChange(e) {
     const { name, value, checked } = e.target;
-    console.log("checked", checked);
-    console.log("value", value);
+    //console.log("checked", checked);
+    //console.log("value", value);
 
     // if (name === "ScreenTreat" && !checked) {
     //   // Ignore the unchecked action for "Screening Test" checkbox
@@ -59,16 +59,15 @@ export default function RunScenarios() {
       return;
     }
     let updatedValues = [];
-    console.log("----- checkedValues --- ", checkedValues);
 
     if (checked) {
       // Add the checked value to the array
       updatedValues = [...checkedValues, value];
-      console.log("updatedValues ", updatedValues);
+      // console.log("updatedValues ", updatedValues);
+      // console.log("----- checkedValues --- ", checkedValues);
     } else {
       // Remove the unchecked value from the array
       updatedValues = checkedValues.filter((val) => val !== value);
-      console.log("updatedValues -- remove", updatedValues);
     }
     //console.log("updatedValues -----", updatedValues);
     setCheckedValues(updatedValues);
@@ -80,8 +79,6 @@ export default function RunScenarios() {
       });
       return;
     }
-
-    console.log("name ----- ", name);
 
     if (name === "screeningTest") {
       setForm((prevForm) => ({
@@ -113,15 +110,14 @@ export default function RunScenarios() {
     }));
   }
 
-  console.log("checkedValues.length -- ", checkedValues.length);
   useEffect(() => {
-    if (checkedValues.length === 1) {
+    if (checkedValues.length <= 2) {
       setForm((prevForm) => ({
         ...prevForm,
         scenario: "ScreenTreat",
         checkedValues: checkedValues,
       }));
-    } else if (checkedValues.length === 2) {
+    } else if (checkedValues.length === 3) {
       setForm((prevForm) => ({
         ...prevForm,
         scenario: "ScreenDiagnosticTestTreat",
@@ -678,17 +674,27 @@ export default function RunScenarios() {
                                   </div>
                                 )}
                                 {idx === 1 && (
-                                  <div>
+                                  <div
+                                    className={
+                                      checkedValues.length === 4 ||
+                                      (checkedValues.length === 3 &&
+                                        checkedValues.includes(
+                                          "ScreenTriageDiagnosticTestTreat"
+                                        ))
+                                        ? ""
+                                        : "grayed-out"
+                                    }
+                                  >
                                     <Row>
                                       <div
-                                        className={
-                                          [
-                                            "ScreenDiagnosticTestTreat",
-                                            "ScreenTriageDiagnosticTestTreat",
-                                          ].includes(form.scenario)
-                                            ? "d-block"
-                                            : "d-none"
-                                        }
+                                      // className={
+                                      //   [
+                                      //     "ScreenDiagnosticTestTreat",
+                                      //     "ScreenTriageDiagnosticTestTreat",
+                                      //   ].includes(form.scenario)
+                                      //     ? "d-block"
+                                      //     : "d-none"
+                                      // }
                                       >
                                         <Form.Group
                                           as={Row}
@@ -750,87 +756,7 @@ export default function RunScenarios() {
                                         </Form.Group>
                                       </div>
                                     </Row>
-                                    <Row>
-                                      <div
-                                        className={
-                                          [
-                                            "ScreenTriageDiagnosticTestTreat",
-                                          ].includes(form.scenario)
-                                            ? "d-block"
-                                            : "d-none"
-                                        }
-                                      >
-                                        <Form.Group
-                                          as={Row}
-                                          controlId="percentDiagnosticTriaged"
-                                        >
-                                          {" "}
-                                          <Col
-                                            lg={6}
-                                            md={12}
-                                            sm={12}
-                                            xs={12}
-                                            className="d-flex flex-column"
-                                          >
-                                            <Form.Label column sm={12}>
-                                              <span>
-                                                {
-                                                  {
-                                                    ScreenDiagnosticTestTreat:
-                                                      "Percent of screen positives with triage/diagnostic test",
-                                                    ScreenTriageDiagnosticTestTreat:
-                                                      "Percent of triage positives with diagnostic test",
-                                                  }[form.scenario]
-                                                }
-                                              </span>
-                                              <OverlayTrigger
-                                                overlay={
-                                                  <Tooltip id="percentDiagnosticTriaged-help">
-                                                    {t(
-                                                      "general.enterValue0t100HelpText"
-                                                    )}
-                                                  </Tooltip>
-                                                }
-                                              >
-                                                <i className="ms-1 bi bi-question-circle"></i>
-                                              </OverlayTrigger>
-                                            </Form.Label>
-                                          </Col>
-                                          <Col
-                                            lg={6}
-                                            md={12}
-                                            sm={12}
-                                            xs={12}
-                                            className="d-flex flex-column"
-                                          >
-                                            <InputGroup className="flex-nowrap">
-                                              <Form.Range
-                                                type="number"
-                                                min="0"
-                                                max="100"
-                                                step="1"
-                                                className="border-end-0 me-2"
-                                                placeholder="Enter 0 - 100"
-                                                name="percentDiagnosticTriaged"
-                                                value={
-                                                  form.percentDiagnosticTriaged
-                                                }
-                                                onChange={handleChange}
-                                                onWheel={(e) => e.target.blur()}
-                                                required={[
-                                                  "ScreenDiagnosticTestTreat",
-                                                  "ScreenTriageDiagnosticTestTreat",
-                                                ].includes(form.scenario)}
-                                              />
-                                              <span className="text-nowrap">
-                                                {form.percentDiagnosticTriaged}{" "}
-                                                %
-                                              </span>
-                                            </InputGroup>
-                                          </Col>
-                                        </Form.Group>
-                                      </div>
-                                    </Row>
+
                                     <Row>
                                       <Form.Group
                                         as={Row}
@@ -847,7 +773,7 @@ export default function RunScenarios() {
                                             <span>
                                               {" "}
                                               {t(
-                                                "runScenario.triageOrDiagnosticTestChosen"
+                                                "runScenario.triageTestChosen"
                                               )}
                                             </span>
                                           </Form.Label>
@@ -903,7 +829,7 @@ export default function RunScenarios() {
                                           >
                                             <span>
                                               {t(
-                                                "runScenario.triageOrDiagnosticTestSensitivity"
+                                                "runScenario.triageTestSensitivity"
                                               )}
                                             </span>
                                             <OverlayTrigger
@@ -969,7 +895,7 @@ export default function RunScenarios() {
                                           >
                                             <span>
                                               {t(
-                                                "runScenario.triageOrDiagnosticTestSpecificity"
+                                                "runScenario.triageTestSpecificity"
                                               )}
                                             </span>
                                             <OverlayTrigger
@@ -1020,20 +946,17 @@ export default function RunScenarios() {
                                 )}
                                 {idx === 2 && (
                                   <div>
-                                    <Row>
-                                      <div
-                                        className={
-                                          [
-                                            "ScreenDiagnosticTestTreat",
-                                            "ScreenTriageDiagnosticTestTreat",
-                                          ].includes(form.scenario)
-                                            ? "d-block"
-                                            : "d-none"
-                                        }
-                                      >
+                                    <div
+                                      className={
+                                        checkedValues.length === 2
+                                          ? "grayed-out"
+                                          : "d-none"
+                                      }
+                                    >
+                                      <Row>
                                         <Form.Group
                                           as={Row}
-                                          controlId="percentDiagnosticTriaged"
+                                          controlId="percentTriaged"
                                         >
                                           <Col
                                             lg={6}
@@ -1044,18 +967,131 @@ export default function RunScenarios() {
                                           >
                                             <Form.Label column sm={12}>
                                               <span>
-                                                {
-                                                  {
-                                                    ScreenDiagnosticTestTreat:
-                                                      "Percent of screen positives with triage/diagnostic test",
-                                                    ScreenTriageDiagnosticTestTreat:
-                                                      "Percent of triage positives with diagnostic test",
-                                                  }[form.scenario]
-                                                }
+                                                {t(
+                                                  "runScenario.percentofScreenPositivesWithDiagnostic"
+                                                )}
                                               </span>
                                               <OverlayTrigger
                                                 overlay={
-                                                  <Tooltip id="percentDiagnosticTriaged-help">
+                                                  <Tooltip id="percentTriaged-help">
+                                                    {t(
+                                                      "general.enterValue0t100HelpText"
+                                                    )}
+                                                  </Tooltip>
+                                                }
+                                              >
+                                                <i className="ms-1 bi bi-question-circle"></i>
+                                              </OverlayTrigger>
+                                            </Form.Label>
+                                          </Col>
+                                          <Col
+                                            lg={6}
+                                            md={12}
+                                            sm={12}
+                                            xs={12}
+                                            className="d-flex flex-column"
+                                          >
+                                            <InputGroup className="flex-nowrap">
+                                              <Form.Range
+                                                min="0"
+                                                max="100"
+                                                step="1"
+                                                className="border-end-0 me-2"
+                                                placeholder="Enter 0 - 100"
+                                                name="percentTriaged"
+                                                value={form.percentTriaged}
+                                                onChange={handleChange}
+                                                onWheel={(e) => e.target.blur()}
+                                                required={[
+                                                  "ScreenTriageDiagnosticTestTreat",
+                                                ].includes(form.scenario)}
+                                              />
+                                              <span className="text-nowrap">
+                                                {form.percentTriaged} %
+                                              </span>
+                                            </InputGroup>
+                                          </Col>
+                                        </Form.Group>
+                                      </Row>
+
+                                      <Row>
+                                        <Form.Group
+                                          as={Row}
+                                          controlId="triageTest"
+                                        >
+                                          <Col
+                                            lg={6}
+                                            md={12}
+                                            sm={12}
+                                            xs={12}
+                                            className="d-flex flex-column"
+                                          >
+                                            <Form.Label column sm={12}>
+                                              <span>
+                                                {" "}
+                                                {t(
+                                                  "runScenario.diagnosticTestChosen"
+                                                )}
+                                              </span>
+                                            </Form.Label>
+                                          </Col>
+                                          <Col
+                                            lg={6}
+                                            md={12}
+                                            sm={12}
+                                            xs={12}
+                                            className="d-flex flex-column"
+                                          >
+                                            <Form.Select
+                                              name="triageTest"
+                                              value={form.triageTest}
+                                              onChange={handleChange}
+                                              onWheel={(e) => e.target.blur()}
+                                              required={[
+                                                "ScreenDiagnosticTestTreat",
+                                                "ScreenTriageDiagnosticTestTreat",
+                                              ].includes(form.scenario)}
+                                            >
+                                              <option value="" hidden>
+                                                {t("runScenario.selectTest")}
+                                              </option>
+                                              {triageTests.map((m) => (
+                                                <option
+                                                  key={m.value}
+                                                  value={m.value}
+                                                >
+                                                  {t(m.label)}
+                                                </option>
+                                              ))}
+                                            </Form.Select>
+                                          </Col>
+                                        </Form.Group>
+                                      </Row>
+                                      <Row>
+                                        <Form.Group
+                                          as={Row}
+                                          controlId="triageTestSensitivity"
+                                        >
+                                          <Col
+                                            lg={6}
+                                            md={12}
+                                            sm={12}
+                                            xs={12}
+                                            className="d-flex flex-column"
+                                          >
+                                            <Form.Label
+                                              column
+                                              sm={12}
+                                              className=""
+                                            >
+                                              <span>
+                                                {t(
+                                                  "runScenario.diagnosticTestSensitivity"
+                                                )}
+                                              </span>
+                                              <OverlayTrigger
+                                                overlay={
+                                                  <Tooltip id="screeningTestSpecificity-help">
                                                     {t(
                                                       "general.enterValue0t100HelpText"
                                                     )}
@@ -1081,9 +1117,9 @@ export default function RunScenarios() {
                                                 step="1"
                                                 className="border-end-0 me-2"
                                                 placeholder="Enter 0 - 100"
-                                                name="percentDiagnosticTriaged"
+                                                name="triageTestSensitivity"
                                                 value={
-                                                  form.percentDiagnosticTriaged
+                                                  form.triageTestSensitivity
                                                 }
                                                 onChange={handleChange}
                                                 onWheel={(e) => e.target.blur()}
@@ -1093,29 +1129,16 @@ export default function RunScenarios() {
                                                 ].includes(form.scenario)}
                                               />
                                               <span className="text-nowrap">
-                                                {form.percentDiagnosticTriaged}{" "}
-                                                %
+                                                {form.triageTestSensitivity} %
                                               </span>
                                             </InputGroup>
                                           </Col>
                                         </Form.Group>
-                                      </div>
-                                    </Row>
-                                    <Row>
-                                      {" "}
-                                      <div
-                                        className={
-                                          [
-                                            "ScreenTriageDiagnosticTestTreat",
-                                          ].includes(form.scenario)
-                                            ? "d-block"
-                                            : "d-none"
-                                        }
-                                      >
-                                        {" "}
+                                      </Row>
+                                      <Row>
                                         <Form.Group
                                           as={Row}
-                                          controlId="diagnosticTest"
+                                          controlId="triageTestSpecificity"
                                         >
                                           <Col
                                             lg={6}
@@ -1124,14 +1147,27 @@ export default function RunScenarios() {
                                             xs={12}
                                             className="d-flex flex-column"
                                           >
-                                            {" "}
-                                            <Form.Label column sm={12}>
+                                            <Form.Label
+                                              column
+                                              sm={12}
+                                              className=""
+                                            >
                                               <span>
-                                                {" "}
                                                 {t(
-                                                  "runScenario.diagnosticTestChosen"
+                                                  "runScenario.diagnosticTestSpecificity"
                                                 )}
                                               </span>
+                                              <OverlayTrigger
+                                                overlay={
+                                                  <Tooltip id="screeningTestSpecificity-help">
+                                                    {t(
+                                                      "general.enterValue0t100HelpText"
+                                                    )}{" "}
+                                                  </Tooltip>
+                                                }
+                                              >
+                                                <i className="ms-1 bi bi-question-circle"></i>
+                                              </OverlayTrigger>
                                             </Form.Label>
                                           </Col>
                                           <Col
@@ -1141,168 +1177,551 @@ export default function RunScenarios() {
                                             xs={12}
                                             className="d-flex flex-column"
                                           >
-                                            {" "}
-                                            <Form.Select
-                                              name="diagnosticTest"
-                                              value={form.diagnosticTest}
-                                              onChange={handleChange}
-                                              onWheel={(e) => e.target.blur()}
-                                              required={[
-                                                "ScreenTriageDiagnosticTestTreat",
-                                              ].includes(form.scenario)}
-                                            >
-                                              <option value="" hidden>
-                                                {t("runScenario.selectTest")}
-                                              </option>
-                                              {diagnosticTests.map((m) => (
-                                                <option
-                                                  key={m.value}
-                                                  value={m.value}
-                                                >
-                                                  {t(m.label)}
-                                                </option>
-                                              ))}
-                                            </Form.Select>
+                                            <InputGroup className="flex-nowrap">
+                                              <Form.Range
+                                                type="number"
+                                                min="0"
+                                                max="100"
+                                                step="1"
+                                                className="border-end-0 me-2"
+                                                placeholder="Enter 0 - 100"
+                                                name="triageTestSpecificity"
+                                                value={
+                                                  form.triageTestSpecificity
+                                                }
+                                                onChange={handleChange}
+                                                onWheel={(e) => e.target.blur()}
+                                                required={[
+                                                  "ScreenDiagnosticTestTreat",
+                                                  "ScreenTriageDiagnosticTestTreat",
+                                                ].includes(form.scenario)}
+                                              />
+                                              <span className="text-nowrap">
+                                                {form.triageTestSpecificity} %
+                                              </span>
+                                            </InputGroup>
                                           </Col>
                                         </Form.Group>
+                                      </Row>
+                                    </div>
+                                    <div
+                                      className={
+                                        checkedValues.length === 4 ||
+                                        (checkedValues.length === 3 &&
+                                          checkedValues.includes(
+                                            "ScreenDiagnosticTestTreat"
+                                          ))
+                                          ? ""
+                                          : "grayed-out"
+                                      }
+                                    >
+                                      <Row>
+                                        <div
+                                          className={
+                                            [
+                                              "ScreenDiagnosticTestTreat",
+                                              "ScreenTriageDiagnosticTestTreat",
+                                            ].includes(form.scenario)
+                                              ? "d-block"
+                                              : "d-none"
+                                          }
+                                        >
+                                          <Form.Group
+                                            as={Row}
+                                            controlId="percentDiagnosticTriaged"
+                                          >
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <Form.Label column sm={12}>
+                                                <span>
+                                                  {
+                                                    {
+                                                      ScreenDiagnosticTestTreat:
+                                                        t(
+                                                          "runScenario.percentofScreenPositivesWithDiagnostic"
+                                                        ),
+                                                      ScreenTriageDiagnosticTestTreat:
+                                                        t(
+                                                          "runScenario.percentTriagePositiveWithDiagnostic"
+                                                        ),
+                                                    }[form.scenario]
+                                                  }
+                                                </span>
+
+                                                <OverlayTrigger
+                                                  overlay={
+                                                    <Tooltip id="percentDiagnosticTriaged-help">
+                                                      {t(
+                                                        "general.enterValue0t100HelpText"
+                                                      )}
+                                                    </Tooltip>
+                                                  }
+                                                >
+                                                  <i className="ms-1 bi bi-question-circle"></i>
+                                                </OverlayTrigger>
+                                              </Form.Label>
+                                            </Col>
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <InputGroup className="flex-nowrap">
+                                                <Form.Range
+                                                  type="number"
+                                                  min="0"
+                                                  max="100"
+                                                  step="1"
+                                                  className="border-end-0 me-2"
+                                                  placeholder="Enter 0 - 100"
+                                                  name="percentDiagnosticTriaged"
+                                                  value={
+                                                    form.percentDiagnosticTriaged
+                                                  }
+                                                  onChange={handleChange}
+                                                  onWheel={(e) =>
+                                                    e.target.blur()
+                                                  }
+                                                  required={[
+                                                    "ScreenDiagnosticTestTreat",
+                                                    "ScreenTriageDiagnosticTestTreat",
+                                                  ].includes(form.scenario)}
+                                                />
+                                                <span className="text-nowrap">
+                                                  {
+                                                    form.percentDiagnosticTriaged
+                                                  }{" "}
+                                                  %
+                                                </span>
+                                              </InputGroup>
+                                            </Col>
+                                          </Form.Group>
+                                        </div>
+                                      </Row>
+                                      <div
+                                        className={
+                                          checkedValues.length === 3 ||
+                                          [
+                                            "ScreenDiagnosticTestTreat",
+                                          ].includes(form.scenario)
+                                            ? "d-block"
+                                            : "d-none"
+                                        }
+                                      >
+                                        <Row>
+                                          <Form.Group
+                                            as={Row}
+                                            controlId="triageTest"
+                                          >
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <Form.Label column sm={12}>
+                                                <span>
+                                                  {" "}
+                                                  {t(
+                                                    "runScenario.diagnosticTestChosen"
+                                                  )}
+                                                </span>
+                                              </Form.Label>
+                                            </Col>
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <Form.Select
+                                                name="triageTest"
+                                                value={form.triageTest}
+                                                onChange={handleChange}
+                                                onWheel={(e) => e.target.blur()}
+                                                required={[
+                                                  "ScreenDiagnosticTestTreat",
+                                                  "ScreenTriageDiagnosticTestTreat",
+                                                ].includes(form.scenario)}
+                                              >
+                                                <option value="" hidden>
+                                                  {t("runScenario.selectTest")}
+                                                </option>
+                                                {triageTests.map((m) => (
+                                                  <option
+                                                    key={m.value}
+                                                    value={m.value}
+                                                  >
+                                                    {t(m.label)}
+                                                  </option>
+                                                ))}
+                                              </Form.Select>
+                                            </Col>
+                                          </Form.Group>
+                                        </Row>
+                                        <Row>
+                                          <Form.Group
+                                            as={Row}
+                                            controlId="triageTestSensitivity"
+                                          >
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <Form.Label
+                                                column
+                                                sm={12}
+                                                className=""
+                                              >
+                                                <span>
+                                                  {t(
+                                                    "runScenario.diagnosticTestSensitivity"
+                                                  )}
+                                                </span>
+                                                <OverlayTrigger
+                                                  overlay={
+                                                    <Tooltip id="screeningTestSpecificity-help">
+                                                      {t(
+                                                        "general.enterValue0t100HelpText"
+                                                      )}
+                                                    </Tooltip>
+                                                  }
+                                                >
+                                                  <i className="ms-1 bi bi-question-circle"></i>
+                                                </OverlayTrigger>
+                                              </Form.Label>
+                                            </Col>
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <InputGroup className="flex-nowrap">
+                                                <Form.Range
+                                                  type="number"
+                                                  min="0"
+                                                  max="100"
+                                                  step="1"
+                                                  className="border-end-0 me-2"
+                                                  placeholder="Enter 0 - 100"
+                                                  name="triageTestSensitivity"
+                                                  value={
+                                                    form.triageTestSensitivity
+                                                  }
+                                                  onChange={handleChange}
+                                                  onWheel={(e) =>
+                                                    e.target.blur()
+                                                  }
+                                                  required={[
+                                                    "ScreenDiagnosticTestTreat",
+                                                    "ScreenTriageDiagnosticTestTreat",
+                                                  ].includes(form.scenario)}
+                                                />
+                                                <span className="text-nowrap">
+                                                  {form.triageTestSensitivity} %
+                                                </span>
+                                              </InputGroup>
+                                            </Col>
+                                          </Form.Group>
+                                        </Row>
+                                        <Row>
+                                          <Form.Group
+                                            as={Row}
+                                            controlId="triageTestSpecificity"
+                                          >
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <Form.Label
+                                                column
+                                                sm={12}
+                                                className=""
+                                              >
+                                                <span>
+                                                  {t(
+                                                    "runScenario.diagnosticTestSpecificity"
+                                                  )}
+                                                </span>
+                                                <OverlayTrigger
+                                                  overlay={
+                                                    <Tooltip id="screeningTestSpecificity-help">
+                                                      {t(
+                                                        "general.enterValue0t100HelpText"
+                                                      )}{" "}
+                                                    </Tooltip>
+                                                  }
+                                                >
+                                                  <i className="ms-1 bi bi-question-circle"></i>
+                                                </OverlayTrigger>
+                                              </Form.Label>
+                                            </Col>
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <InputGroup className="flex-nowrap">
+                                                <Form.Range
+                                                  type="number"
+                                                  min="0"
+                                                  max="100"
+                                                  step="1"
+                                                  className="border-end-0 me-2"
+                                                  placeholder="Enter 0 - 100"
+                                                  name="triageTestSpecificity"
+                                                  value={
+                                                    form.triageTestSpecificity
+                                                  }
+                                                  onChange={handleChange}
+                                                  onWheel={(e) =>
+                                                    e.target.blur()
+                                                  }
+                                                  required={[
+                                                    "ScreenDiagnosticTestTreat",
+                                                    "ScreenTriageDiagnosticTestTreat",
+                                                  ].includes(form.scenario)}
+                                                />
+                                                <span className="text-nowrap">
+                                                  {form.triageTestSpecificity} %
+                                                </span>
+                                              </InputGroup>
+                                            </Col>
+                                          </Form.Group>
+                                        </Row>
                                       </div>
-                                    </Row>
-                                    <Row>
-                                      <Form.Group
-                                        as={Row}
-                                        controlId="diagnosticTestSensitivity"
+                                      <div
+                                        className={
+                                          checkedValues.length === 4 ||
+                                          [
+                                            "ScreenTriageDiagnosticTestTreat",
+                                          ].includes(form.scenario)
+                                            ? "d-block"
+                                            : "d-none"
+                                        }
                                       >
-                                        {" "}
-                                        <Col
-                                          lg={6}
-                                          md={12}
-                                          sm={12}
-                                          xs={12}
-                                          className="d-flex flex-column"
-                                        >
-                                          <Form.Label
-                                            column
-                                            sm={12}
-                                            className=""
+                                        <Row>
+                                          {" "}
+                                          <Form.Group
+                                            as={Row}
+                                            controlId="diagnosticTest"
                                           >
-                                            <span>
-                                              {t(
-                                                "runScenario.diagnosticTestSensitivity"
-                                              )}
-                                            </span>
-                                            <OverlayTrigger
-                                              overlay={
-                                                <Tooltip id="diagnosticTestSensitivity-help">
-                                                  {t(
-                                                    "general.enterValue0t100HelpText"
-                                                  )}
-                                                </Tooltip>
-                                              }
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
                                             >
-                                              <i className="ms-1 bi bi-question-circle"></i>
-                                            </OverlayTrigger>
-                                          </Form.Label>
-                                        </Col>
-                                        <Col
-                                          lg={6}
-                                          md={12}
-                                          sm={12}
-                                          xs={12}
-                                          className="d-flex flex-column"
-                                        >
-                                          <InputGroup className="flex-nowrap">
-                                            <Form.Range
-                                              type="number"
-                                              min="0"
-                                              max="100"
-                                              step="1"
-                                              className="border-end-0 me-2"
-                                              placeholder="Enter 0 - 100"
-                                              name="diagnosticTestSensitivity"
-                                              value={
-                                                form.diagnosticTestSensitivity
-                                              }
-                                              onChange={handleChange}
-                                              onWheel={(e) => e.target.blur()}
-                                              required={[
-                                                "ScreenTriageDiagnosticTestTreat",
-                                              ].includes(form.scenario)}
-                                            />
-                                            <span className="text-nowrap">
-                                              {form.diagnosticTestSensitivity} %
-                                            </span>
-                                          </InputGroup>
-                                        </Col>
-                                      </Form.Group>
-                                    </Row>
-                                    <Row>
-                                      <Form.Group
-                                        as={Row}
-                                        controlId="diagnosticTestSpecificity"
-                                      >
-                                        {" "}
-                                        <Col
-                                          lg={6}
-                                          md={12}
-                                          sm={12}
-                                          xs={12}
-                                          className="d-flex flex-column"
-                                        >
-                                          <Form.Label
-                                            column
-                                            sm={12}
-                                            className=""
+                                              {" "}
+                                              <Form.Label column sm={12}>
+                                                <span>
+                                                  {" "}
+                                                  {t(
+                                                    "runScenario.diagnosticTestChosen"
+                                                  )}
+                                                </span>
+                                              </Form.Label>
+                                            </Col>
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              {" "}
+                                              <Form.Select
+                                                name="diagnosticTest"
+                                                value={form.diagnosticTest}
+                                                onChange={handleChange}
+                                                onWheel={(e) => e.target.blur()}
+                                                required={[
+                                                  "ScreenTriageDiagnosticTestTreat",
+                                                ].includes(form.scenario)}
+                                              >
+                                                <option value="" hidden>
+                                                  {t("runScenario.selectTest")}
+                                                </option>
+                                                {diagnosticTests.map((m) => (
+                                                  <option
+                                                    key={m.value}
+                                                    value={m.value}
+                                                  >
+                                                    {t(m.label)}
+                                                  </option>
+                                                ))}
+                                              </Form.Select>
+                                            </Col>
+                                          </Form.Group>
+                                        </Row>
+                                        <Row>
+                                          <Form.Group
+                                            as={Row}
+                                            controlId="diagnosticTestSensitivity"
                                           >
-                                            <span>
-                                              {t(
-                                                "runScenario.diagnosticTestSpecificity"
-                                              )}
-                                            </span>
-                                            <OverlayTrigger
-                                              overlay={
-                                                <Tooltip id="diagnosticTestSpecificity-help">
-                                                  {t(
-                                                    "general.enterValue0t100HelpText"
-                                                  )}
-                                                </Tooltip>
-                                              }
+                                            {" "}
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
                                             >
-                                              <i className="ms-1 bi bi-question-circle"></i>
-                                            </OverlayTrigger>
-                                          </Form.Label>
-                                        </Col>
-                                        <Col
-                                          lg={6}
-                                          md={12}
-                                          sm={12}
-                                          xs={12}
-                                          className="d-flex flex-column"
-                                        >
-                                          <InputGroup className="flex-nowrap">
-                                            <Form.Range
-                                              type="number"
-                                              min="0"
-                                              max="100"
-                                              step="1"
-                                              className="border-end-0 me-2"
-                                              placeholder="Enter 0 - 100"
-                                              name="diagnosticTestSpecificity"
-                                              value={
-                                                form.diagnosticTestSpecificity
-                                              }
-                                              onChange={handleChange}
-                                              onWheel={(e) => e.target.blur()}
-                                              required={[
-                                                "ScreenTriageDiagnosticTestTreat",
-                                              ].includes(form.scenario)}
-                                            />
-                                            <span className="text-nowrap">
-                                              {form.diagnosticTestSpecificity} %
-                                            </span>
-                                          </InputGroup>
-                                        </Col>
-                                      </Form.Group>
-                                    </Row>
+                                              <Form.Label
+                                                column
+                                                sm={12}
+                                                className=""
+                                              >
+                                                <span>
+                                                  {t(
+                                                    "runScenario.diagnosticTestSensitivity"
+                                                  )}
+                                                </span>
+                                                <OverlayTrigger
+                                                  overlay={
+                                                    <Tooltip id="diagnosticTestSensitivity-help">
+                                                      {t(
+                                                        "general.enterValue0t100HelpText"
+                                                      )}
+                                                    </Tooltip>
+                                                  }
+                                                >
+                                                  <i className="ms-1 bi bi-question-circle"></i>
+                                                </OverlayTrigger>
+                                              </Form.Label>
+                                            </Col>
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <InputGroup className="flex-nowrap">
+                                                <Form.Range
+                                                  type="number"
+                                                  min="0"
+                                                  max="100"
+                                                  step="1"
+                                                  className="border-end-0 me-2"
+                                                  placeholder="Enter 0 - 100"
+                                                  name="diagnosticTestSensitivity"
+                                                  value={
+                                                    form.diagnosticTestSensitivity
+                                                  }
+                                                  onChange={handleChange}
+                                                  onWheel={(e) =>
+                                                    e.target.blur()
+                                                  }
+                                                  required={[
+                                                    "ScreenTriageDiagnosticTestTreat",
+                                                  ].includes(form.scenario)}
+                                                />
+                                                <span className="text-nowrap">
+                                                  {
+                                                    form.diagnosticTestSensitivity
+                                                  }{" "}
+                                                  %
+                                                </span>
+                                              </InputGroup>
+                                            </Col>
+                                          </Form.Group>
+                                        </Row>
+                                        <Row>
+                                          <Form.Group
+                                            as={Row}
+                                            controlId="diagnosticTestSpecificity"
+                                          >
+                                            {" "}
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <Form.Label
+                                                column
+                                                sm={12}
+                                                className=""
+                                              >
+                                                <span>
+                                                  {t(
+                                                    "runScenario.diagnosticTestSpecificity"
+                                                  )}
+                                                </span>
+                                                <OverlayTrigger
+                                                  overlay={
+                                                    <Tooltip id="diagnosticTestSpecificity-help">
+                                                      {t(
+                                                        "general.enterValue0t100HelpText"
+                                                      )}
+                                                    </Tooltip>
+                                                  }
+                                                >
+                                                  <i className="ms-1 bi bi-question-circle"></i>
+                                                </OverlayTrigger>
+                                              </Form.Label>
+                                            </Col>
+                                            <Col
+                                              lg={6}
+                                              md={12}
+                                              sm={12}
+                                              xs={12}
+                                              className="d-flex flex-column"
+                                            >
+                                              <InputGroup className="flex-nowrap">
+                                                <Form.Range
+                                                  type="number"
+                                                  min="0"
+                                                  max="100"
+                                                  step="1"
+                                                  className="border-end-0 me-2"
+                                                  placeholder="Enter 0 - 100"
+                                                  name="diagnosticTestSpecificity"
+                                                  value={
+                                                    form.diagnosticTestSpecificity
+                                                  }
+                                                  onChange={handleChange}
+                                                  onWheel={(e) =>
+                                                    e.target.blur()
+                                                  }
+                                                  required={[
+                                                    "ScreenTriageDiagnosticTestTreat",
+                                                  ].includes(form.scenario)}
+                                                />
+                                                <span className="text-nowrap">
+                                                  {
+                                                    form.diagnosticTestSpecificity
+                                                  }{" "}
+                                                  %
+                                                </span>
+                                              </InputGroup>
+                                            </Col>
+                                          </Form.Group>
+                                        </Row>
+                                      </div>
+                                    </div>
                                   </div>
                                 )}
                                 {idx === 3 && (

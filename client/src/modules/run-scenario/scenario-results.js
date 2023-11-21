@@ -57,8 +57,8 @@ export default function ScenarioResults() {
   const handleModalShow = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
 
-  // console.log("params", params);
-  // console.log("result", results);
+  console.log("params", params);
+  console.log("result", results);
 
   if (
     results.checkedValues &&
@@ -86,6 +86,10 @@ export default function ScenarioResults() {
       diagnosisTest = "(" + t("runScenario.HPV") + ")";
     } else if (results.screentest[1] === "hpv16or18") {
       diagnosisTest = "(" + t("runScenario.HPV1618") + ")";
+    } else if (results.screentest[1] === "colposcopicImpression") {
+      diagnosisTest = "(" + t("runScenario.impressionOfColposcopy") + ")";
+    } else if (results.screentest[1] === "colposcopyWithBiopsy") {
+      diagnosisTest = "(" + t("runScenario.colposcopyWithBiopsy") + ")";
     } else {
       diagnosisTest = "";
     }
@@ -936,8 +940,8 @@ export default function ScenarioResults() {
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
                         results.checkedValues &&
-                        results.checkedValues.length === 2 &&
-                        results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+                        results.checkedValues.length === 3 &&
+                        results.checkedValues[2] === "ScreenDiagnosticTestTreat"
                       ? "N/A"
                       : results.scenario === "ScreenTriageDiagnosticTestTreat"
                       ? results.percentMissed[treatedIndex - 2] !== undefined &&
@@ -959,8 +963,8 @@ export default function ScenarioResults() {
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
                         results.checkedValues &&
-                        results.checkedValues.length === 2 &&
-                        results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+                        results.checkedValues.length === 3 &&
+                        results.checkedValues[2] === "ScreenDiagnosticTestTreat"
                       ? "N/A"
                       : results.scenario === "ScreenTriageDiagnosticTestTreat"
                       ? results.untestedPositives[treatedIndex - 1] !==
@@ -992,8 +996,8 @@ export default function ScenarioResults() {
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
                         results.checkedValues &&
-                        results.checkedValues.length === 2 &&
-                        results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+                        results.checkedValues.length === 3 &&
+                        results.checkedValues[2] === "ScreenDiagnosticTestTreat"
                       ? "N/A"
                       : results.scenario === "ScreenTriageDiagnosticTestTreat"
                       ? results.percentMissedDueToSensitivity[
@@ -1033,8 +1037,8 @@ export default function ScenarioResults() {
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
                         results.checkedValues &&
-                        results.checkedValues.length === 2 &&
-                        results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+                        results.checkedValues.length === 3 &&
+                        results.checkedValues[2] === "ScreenDiagnosticTestTreat"
                       ? "N/A"
                       : results.scenario === "ScreenTriageDiagnosticTestTreat"
                       ? results.testedFalseNegatives[treatedIndex - 1] !==
@@ -1076,8 +1080,8 @@ export default function ScenarioResults() {
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
                         results.checkedValues &&
-                        results.checkedValues.length === 2 &&
-                        results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+                        results.checkedValues.length === 3 &&
+                        results.checkedValues[2] === "ScreenDiagnosticTestTreat"
                       ? results.percentMissed[treatedIndex - 1] !== undefined &&
                         !isNaN(results.percentMissed[treatedIndex - 1])
                         ? asPercent(results.percentMissed[treatedIndex - 1])
@@ -1099,8 +1103,8 @@ export default function ScenarioResults() {
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
                         results.checkedValues &&
-                        results.checkedValues.length === 2 &&
-                        results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+                        results.checkedValues.length === 3 &&
+                        results.checkedValues[2] === "ScreenDiagnosticTestTreat"
                       ? Math.round(
                           results.untestedPositives[treatedIndex]
                         ).toLocaleString(locale)
@@ -1129,8 +1133,8 @@ export default function ScenarioResults() {
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
                         results.checkedValues &&
-                        results.checkedValues.length === 2 &&
-                        results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+                        results.checkedValues.length === 3 &&
+                        results.checkedValues[2] === "ScreenDiagnosticTestTreat"
                       ? asPercent(
                           results.percentMissedDueToSensitivity[
                             treatedIndex - 1
@@ -1162,8 +1166,8 @@ export default function ScenarioResults() {
                       ? "N/A"
                       : results.scenario === "ScreenDiagnosticTestTreat" &&
                         results.checkedValues &&
-                        results.checkedValues.length === 2 &&
-                        results.checkedValues[1] === "ScreenDiagnosticTestTreat"
+                        results.checkedValues.length === 3 &&
+                        results.checkedValues[2] === "ScreenDiagnosticTestTreat"
                       ? Math.round(
                           results.testedFalseNegatives[treatedIndex]
                         ).toLocaleString(locale)

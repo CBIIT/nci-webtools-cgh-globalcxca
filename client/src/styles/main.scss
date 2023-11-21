@@ -62,3 +62,8 @@ body {
 .th-placeholder {
   color: transparent;
 }
+
+.grayed-out {
+  opacity: 0.5; /* Adjust the opacity value as needed */
+  pointer-events: none; /* Disable pointer events to make the content unclickable */
+}
