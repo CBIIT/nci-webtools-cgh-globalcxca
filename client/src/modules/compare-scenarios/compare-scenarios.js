@@ -29,7 +29,7 @@ export default function CompareScenarios() {
   const [activeTab, setActiveTab] = useState("results");
   const locale = useRecoilValue(localeState);
   const limit = 10;
-  console.log("scenarios", scenarios);
+  //console.log("scenarios", scenarios);
 
   async function addScenario(event) {
     const maxFiles = limit - scenarios.length;
@@ -41,7 +41,7 @@ export default function CompareScenarios() {
           let scenario = JSON.parse(await readFile(file));
           scenario.name = file.name.replace(/.scenario$/i, "");
           scenario.results = runModel(scenario);
-          //console.log(scenario);
+          console.log(scenario);
           setScenarios((scenarios) => [...scenarios, scenario]);
         }
       } catch (error) {
@@ -383,7 +383,7 @@ export default function CompareScenarios() {
 
                             <tr className="table-light">
                               <th className="ps-3">
-                                {t("results.lossAtTriageTesttt")}
+                                {t("results.lossAtTriageTest")}
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td
@@ -393,10 +393,18 @@ export default function CompareScenarios() {
                                   //   locale
                                   // )}
                                   title={
-                                    results.scenario === "ScreenTreat"
+                                    results.scenario === "ScreenTreat" ||
+                                    (results.scenario ===
+                                      "ScreenDiagnosticTestTreat" &&
+                                      results.checkedValues[2] ===
+                                        "ScreenDiagnosticTestTreat")
                                       ? "N/A"
                                       : results.scenario ===
-                                        "ScreenTriageDiagnosticTestTreat"
+                                          "ScreenTriageDiagnosticTestTreat" ||
+                                        (results.scenario ===
+                                          "ScreenDiagnosticTestTreat" &&
+                                          results.checkedValues[2] ===
+                                            "ScreenTriageDiagnosticTestTreat")
                                       ? results.untestedPositives[
                                           results.totalNeeded.length - 1 - 1
                                         ] !== undefined &&
@@ -430,7 +438,11 @@ export default function CompareScenarios() {
                                   {/* {asPercent(
                                     results.percentMissedDueToLossAtTriage
                                   ) ?? "N/A"} */}
-                                  {results.scenario === "ScreenTreat"
+                                  {results.scenario === "ScreenTreat" ||
+                                  (results.scenario ===
+                                    "ScreenDiagnosticTestTreat" &&
+                                    results.checkedValues[2] ===
+                                      "ScreenDiagnosticTestTreat")
                                     ? "N/A"
                                     : results.scenario ===
                                         "ScreenTriageDiagnosticTestTreat" ||
@@ -482,7 +494,11 @@ export default function CompareScenarios() {
                                   //   locale
                                   // )}
                                   title={
-                                    results.scenario === "ScreenTreat"
+                                    results.scenario === "ScreenTreat" ||
+                                    (results.scenario ===
+                                      "ScreenDiagnosticTestTreat" &&
+                                      results.checkedValues[2] ===
+                                        "ScreenDiagnosticTestTreat")
                                       ? "N/A"
                                       : results.scenario ===
                                           "ScreenTriageDiagnosticTestTreat" ||
@@ -523,7 +539,11 @@ export default function CompareScenarios() {
                                   {/* {asPercent(
                                     results.percentMissedDueToSensitivityOfTriageTest
                                   ) ?? "N/A"} */}
-                                  {results.scenario === "ScreenTreat"
+                                  {results.scenario === "ScreenTreat" ||
+                                  (results.scenario ===
+                                    "ScreenDiagnosticTestTreat" &&
+                                    results.checkedValues[2] ===
+                                      "ScreenDiagnosticTestTreat")
                                     ? "N/A"
                                     : results.scenario ===
                                         "ScreenTriageDiagnosticTestTreat" ||
