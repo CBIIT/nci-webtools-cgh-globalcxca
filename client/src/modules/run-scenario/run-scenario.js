@@ -114,6 +114,11 @@ export default function RunScenarios() {
       [name]: value,
     }));
   }
+  function initStates() {
+    setCheckedValues(["ScreenTreat", "Treatment"]);
+    const initialDivVisibilities = [true, false, false, true]; // Set index 1 and 3 to true
+    setDivVisibilities(initialDivVisibilities);
+  }
 
   useEffect(() => {
     if (checkedValues.length <= 2) {
@@ -139,10 +144,7 @@ export default function RunScenarios() {
 
   useEffect(() => {
     // Set the initial checked value to "Screening Test"
-    setCheckedValues(["ScreenTreat", "Treatment"]);
-
-    const initialDivVisibilities = [true, false, false, true]; // Set index 1 and 3 to true
-    setDivVisibilities(initialDivVisibilities);
+    initStates();
   }, []);
 
   // Function to handle language change
@@ -167,6 +169,7 @@ export default function RunScenarios() {
 
   function handleReset(event) {
     event.preventDefault();
+    initStates();
     window.scrollTo(0, 0);
     resetForm();
   }
