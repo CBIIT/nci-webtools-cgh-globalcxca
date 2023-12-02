@@ -69,6 +69,14 @@ export default function RunScenarios() {
     if (checked) {
       // Add the checked value to the array
       updatedValues = [...checkedValues, value];
+      //console.log(updatedValues);
+      // Update visibility of the div corresponding to the checked checkbox
+      const newDivVisibilities = divVisibilities.map((_, i) =>
+        i === index || i === scenarios.length - 1 ? true : false
+      );
+      //console.log(newDivVisibilities);
+      setDivVisibilities(newDivVisibilities);
+
       // open / close the div on checked
     } else {
       // Remove the unchecked value from the array
