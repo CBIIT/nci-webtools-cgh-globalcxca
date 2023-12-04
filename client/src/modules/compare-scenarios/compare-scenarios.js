@@ -187,7 +187,7 @@ export default function CompareScenarios() {
                       >
                         <Table responsive data-export>
                           <thead>
-                            <tr className="bg-info text-light">
+                            <tr className="bg-info-dark text-light">
                               <th className="table-header">
                                 {t("results.annualTargets")}
                               </th>
@@ -264,7 +264,7 @@ export default function CompareScenarios() {
                               ))}
                             </tr>
 
-                            <tr className="bg-warning text-light">
+                            <tr className="bg-warning-dark text-light">
                               <th colSpan={1 + scenarios.length}>
                                 {t("results.impactOnCervicalPrecancerTitle")}
                               </th>
@@ -294,7 +294,7 @@ export default function CompareScenarios() {
                               ))}
                             </tr>
 
-                            <tr className="bg-danger text-light">
+                            <tr className="bg-danger-dark text-light">
                               <th colSpan={1 + scenarios.length}>
                                 {t("results.missedPrecancersTitle")}
                               </th>
@@ -757,7 +757,7 @@ export default function CompareScenarios() {
                               ))}
                             </tr>
 
-                            <tr className="bg-success text-light">
+                            <tr className="bg-success-dark text-light">
                               <th colSpan={1 + scenarios.length}>
                                 {t("results.AnnualImpactOnResourcesTitle")}
                               </th>
@@ -893,7 +893,7 @@ export default function CompareScenarios() {
                       >
                         <Table hover responsive data-export>
                           <thead>
-                            <tr className="bg-info text-light">
+                            <tr className="bg-info-dark text-light">
                               <th>{t("compareScenarios.asssumptions")}</th>
                               {scenarios.map((scenario, index) => (
                                 <th key={index} className="text-end">
