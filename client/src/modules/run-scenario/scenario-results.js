@@ -211,24 +211,39 @@ export default function ScenarioResults() {
   totalNeededToTriage =
     results.scenario === "ScreenTreat"
       ? "N/A"
-      : results.scenario === "ScreenTriageDiagnosticTestTreat"
+      : results.checkedValues && results.checkedValues.length === 4
       ? results.totalNeeded[treatedIndex - 2] !== undefined &&
         !isNaN(results.totalNeeded[treatedIndex - 2])
         ? Math.round(results.totalNeeded[treatedIndex - 2]).toLocaleString(
             locale
           )
         : "N/A"
-      : results.totalNeeded[treatedIndex - 1] !== undefined &&
+      : results.checkedValues &&
+        results.checkedValues.length === 3 &&
+        results.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
+      ? results.totalNeeded[treatedIndex - 1] !== undefined &&
         !isNaN(results.totalNeeded[treatedIndex - 1])
-      ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(locale)
+        ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
+            locale
+          )
+        : "N/A"
       : "N/A";
   console.log("totalNeededToTriage", totalNeededToTriage);
   totalNeededToDiagnosticTriage =
     results.scenario === "ScreenTreat"
       ? "N/A"
-      : results.scenario === "ScreenTriageDiagnosticTestTreat"
+      : results.checkedValues && results.checkedValues.length === 4
       ? results.totalNeeded[treatedIndex - 1] !== undefined &&
         !isNaN(results.totalNeeded[treatedIndex - 1])
+        ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
+            locale
+          )
+        : "N/A"
+      : results.checkedValues &&
+        results.checkedValues.length === 3 &&
+        results.checkedValues[2] === "ScreenDiagnosticTestTreat"
+      ? results.totalNeeded[treatedIndex - 2] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex - 2])
         ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
             locale
           )
@@ -1328,9 +1343,6 @@ export default function ScenarioResults() {
                   </tbody>
                 </Table>
                 <div className="text-center">
-                  {/* <Link className="btn btn-outline-primary text-decoration-none m-1" to="/run-scenario">
-            Back to Scenario
-          </Link> */}
                   <Button
                     onClick={saveScenario}
                     className="m-1"
