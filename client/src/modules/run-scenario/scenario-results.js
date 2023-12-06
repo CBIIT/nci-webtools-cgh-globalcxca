@@ -786,8 +786,15 @@ export default function ScenarioResults() {
 
             {/* pdf page break */}
             <hr className="d-none" data-export />
-
+          </Tab>
+          <Tab eventKey="tab2" title="Table">
             <Card className="mb-2">
+              <Card.Header>
+                <Card.Title data-export>
+                  {t("results.resultsInterpretation")}
+                </Card.Title>
+              </Card.Header>
+
               <Card.Body>
                 <div>
                   {t("results.Approximately")}{" "}
@@ -813,8 +820,6 @@ export default function ScenarioResults() {
                 </div>
               </Card.Body>
             </Card>
-          </Tab>
-          <Tab eventKey="tab2" title="Table">
             <Card className="mb-4">
               <Card.Body>
                 <Table hover responsive data-export>

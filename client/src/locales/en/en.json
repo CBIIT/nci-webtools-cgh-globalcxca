@@ -198,7 +198,8 @@
     "triageTests": "triage tests",
     "resultsDes0": "diagnostic tests will be required.",
     "resultsDes1": "women will require treatment.",
-    "resultsDes2": "of women are possibly overtreated."
+    "resultsDes2": "of women are possibly overtreated.",
+    "resultsInterpretation": "Results Interpretation"
   },
   "compareScenarios": {
     "uploadScenariosInfo": "Upload up to {{limit}} scenarios for comparison. Files must be of the “.scenario” file format. Click the title of the scenario to rename it.",
