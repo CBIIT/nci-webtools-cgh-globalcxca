@@ -810,7 +810,7 @@ export default function ScenarioResults() {
                 </Card.Title>
               </Card.Header>
 
-              <Card.Body>
+              <Card.Body className="pt-2 pb-2">
                 <div>
                   {t("results.Approximately")}{" "}
                   <b>
