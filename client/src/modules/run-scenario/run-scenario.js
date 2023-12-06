@@ -816,9 +816,9 @@ export default function RunScenarios() {
                                                         step="1"
                                                         className="border-end-0 me-2"
                                                         placeholder="Enter 0 - 100"
-                                                        name="percentTriaged"
+                                                        name="percentDiagnosticTriaged"
                                                         value={
-                                                          form.percentTriaged
+                                                          form.percentDiagnosticTriaged
                                                         }
                                                         onChange={handleChange}
                                                         onWheel={(e) =>
@@ -831,7 +831,10 @@ export default function RunScenarios() {
                                                         )}
                                                       />
                                                       <span className="text-nowrap">
-                                                        {form.percentTriaged} %
+                                                        {
+                                                          form.percentDiagnosticTriaged
+                                                        }{" "}
+                                                        %
                                                       </span>
                                                     </InputGroup>
                                                   </Col>
@@ -1696,7 +1699,7 @@ export default function RunScenarios() {
                                           <Row>
                                             <Form.Group
                                               as={Row}
-                                              controlId="triageTest"
+                                              controlId="diagnosticTest"
                                             >
                                               <Col
                                                 lg={6}
@@ -1722,8 +1725,8 @@ export default function RunScenarios() {
                                                 className="d-flex flex-column m-auto"
                                               >
                                                 <Form.Select
-                                                  name="triageTest"
-                                                  value={form.triageTest}
+                                                  name="diagnosticTest"
+                                                  value={form.diagnosticTest}
                                                   onChange={handleChange}
                                                   onWheel={(e) =>
                                                     e.target.blur()
@@ -1753,7 +1756,7 @@ export default function RunScenarios() {
                                           <Row>
                                             <Form.Group
                                               as={Row}
-                                              controlId="triageTestSensitivity"
+                                              controlId="diagnosticTestSensitivity"
                                             >
                                               <Col
                                                 lg={6}
@@ -1800,9 +1803,9 @@ export default function RunScenarios() {
                                                     step="1"
                                                     className="border-end-0 me-2"
                                                     placeholder="Enter 0 - 100"
-                                                    name="triageTestSensitivity"
+                                                    name="diagnosticTestSensitivity"
                                                     value={
-                                                      form.triageTestSensitivity
+                                                      form.diagnosticTestSensitivity
                                                     }
                                                     onChange={handleChange}
                                                     onWheel={(e) =>
@@ -1814,7 +1817,9 @@ export default function RunScenarios() {
                                                     ].includes(form.scenario)}
                                                   />
                                                   <span className="text-nowrap">
-                                                    {form.triageTestSensitivity}{" "}
+                                                    {
+                                                      form.diagnosticTestSensitivity
+                                                    }{" "}
                                                     %
                                                   </span>
                                                 </InputGroup>
@@ -1824,7 +1829,7 @@ export default function RunScenarios() {
                                           <Row>
                                             <Form.Group
                                               as={Row}
-                                              controlId="triageTestSpecificity"
+                                              controlId="diagnosticTestSpecificity"
                                             >
                                               <Col
                                                 lg={6}
@@ -1871,9 +1876,9 @@ export default function RunScenarios() {
                                                     step="1"
                                                     className="border-end-0 me-2"
                                                     placeholder="Enter 0 - 100"
-                                                    name="triageTestSpecificity"
+                                                    name="diagnosticTestSpecificity"
                                                     value={
-                                                      form.triageTestSpecificity
+                                                      form.diagnosticTestSpecificity
                                                     }
                                                     onChange={handleChange}
                                                     onWheel={(e) =>
@@ -1885,7 +1890,9 @@ export default function RunScenarios() {
                                                     ].includes(form.scenario)}
                                                   />
                                                   <span className="text-nowrap">
-                                                    {form.triageTestSpecificity}{" "}
+                                                    {
+                                                      form.diagnosticTestSpecificity
+                                                    }{" "}
                                                     %
                                                   </span>
                                                 </InputGroup>
