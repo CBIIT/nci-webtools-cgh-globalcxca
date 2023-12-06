@@ -1047,6 +1047,16 @@ export default function RunScenarios() {
                                             </Row>
                                           </div>
                                         </div>
+                                        <div
+                                          className={
+                                            checkedValues.length === 3 &&
+                                            checkedValues.includes(
+                                              "ScreenDiagnosticTestTreat"
+                                            )
+                                              ? "grayed-out"
+                                              : "d-none"
+                                          }
+                                        ></div>
 
                                         <div
                                           className={
@@ -1337,10 +1347,16 @@ export default function RunScenarios() {
                                             </Form.Group>
                                           </Row>
                                         </div>
+
                                         <div
                                           className={
                                             checkedValues.length === 4
                                               ? "d-block"
+                                              : checkedValues.length === 3 &&
+                                                checkedValues.includes(
+                                                  "ScreenDiagnosticTestTreat"
+                                                )
+                                              ? "grayed-out"
                                               : "d-none"
                                           }
                                         >
