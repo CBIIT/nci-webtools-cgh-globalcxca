@@ -51,16 +51,6 @@ export default function RunScenarios() {
     //console.log("checked", checked);
     //console.log("value", value);
 
-    // const newDivVisibilities = [...divVisibilities];
-    // newDivVisibilities[index] = checked;
-    // setDivVisibilities(newDivVisibilities);
-
-    // if (name === "ScreenTreat" || name === "Treatment") {
-    //   // Always keep "Screening" and "Treatment" checked
-    //   setCheckedValues(["ScreenTreat", "Treatment"]);
-    //   return;
-    // }
-
     let updatedValues = [];
 
     if (name === "ScreenTreat" || name === "Treatment") {
