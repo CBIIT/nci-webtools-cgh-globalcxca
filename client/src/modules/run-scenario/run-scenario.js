@@ -51,37 +51,47 @@ export default function RunScenarios() {
     //console.log("checked", checked);
     //console.log("value", value);
 
-    const newDivVisibilities = [...divVisibilities];
-    newDivVisibilities[index] = checked;
-    setDivVisibilities(newDivVisibilities);
+    // const newDivVisibilities = [...divVisibilities];
+    // newDivVisibilities[index] = checked;
+    // setDivVisibilities(newDivVisibilities);
 
-    if (name === "ScreenTreat" || name === "Treatment") {
-      // Always keep "Screening" and "Treatment" checked
-      setCheckedValues(["ScreenTreat", "Treatment"]);
-      return;
-    }
+    // if (name === "ScreenTreat" || name === "Treatment") {
+    //   // Always keep "Screening" and "Treatment" checked
+    //   setCheckedValues(["ScreenTreat", "Treatment"]);
+    //   return;
+    // }
 
     let updatedValues = [];
 
-    if (checked) {
-      // Add the checked value to the array
-      updatedValues = [...checkedValues, value];
-      //console.log(updatedValues);
-
-      // Update visibility of the div corresponding to the checked checkbox
-      const newDivVisibilities = divVisibilities.map((_, i) =>
-        i === index || i === scenarios.length - 1 ? true : false
-      );
-      console.log(newDivVisibilities);
-      setDivVisibilities(newDivVisibilities);
-
-      // open / close the div on checked
+    if (name === "ScreenTreat" || name === "Treatment") {
+      // Toggle visibility of "ScreenTreat" or "Treatment" and keep "Treatment" always open
+      setDivVisibilities((prevDivVisibilities) => {
+        const newDivVisibilities = [...prevDivVisibilities];
+        newDivVisibilities[index] = !newDivVisibilities[index];
+        newDivVisibilities[scenarios.length - 1] = true; // Keep "Treatment" always open
+        return newDivVisibilities;
+      });
     } else {
-      // Remove the unchecked value from the array
-      updatedValues = checkedValues.filter((val) => val !== value);
+      if (checked) {
+        // Add the checked value to the array
+        updatedValues = [...checkedValues, value];
+        //console.log(updatedValues);
+
+        // Update visibility of the div corresponding to the checked checkbox
+        const newDivVisibilities = divVisibilities.map((_, i) =>
+          i === index || i === scenarios.length - 1 ? true : false
+        );
+        console.log(newDivVisibilities);
+        setDivVisibilities(newDivVisibilities);
+
+        // open / close the div on checked
+      } else {
+        // Remove the unchecked value from the array
+        updatedValues = checkedValues.filter((val) => val !== value);
+      }
+      console.log("updatedValues -----", updatedValues);
+      setCheckedValues(updatedValues);
     }
-    console.log("updatedValues -----", updatedValues);
-    setCheckedValues(updatedValues);
 
     if (name === "scenario") {
       setForm({
