@@ -81,7 +81,6 @@ export default function RunScenarios() {
         const newDivVisibilities = divVisibilities.map((_, i) =>
           i === index || i === scenarios.length - 1 ? true : false
         );
-        console.log(newDivVisibilities);
         setDivVisibilities(newDivVisibilities);
 
         // open / close the div on checked
@@ -89,7 +88,7 @@ export default function RunScenarios() {
         // Remove the unchecked value from the array
         updatedValues = checkedValues.filter((val) => val !== value);
       }
-      console.log("updatedValues -----", updatedValues);
+      //console.log("updatedValues -----", updatedValues);
       setCheckedValues(updatedValues);
     }
 
