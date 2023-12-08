@@ -50,31 +50,29 @@ export default function RunScenarios() {
     const { name, value, checked } = e.target;
     //console.log("checked", checked);
     //console.log("value", value);
+
     const newDivVisibilities = [...divVisibilities];
     newDivVisibilities[index] = checked;
     setDivVisibilities(newDivVisibilities);
-    // if (name === "ScreenTreat" && !checked) {
-    //   // Ignore the unchecked action for "Screening Test" checkbox
-    //   return;
-    // }
-    // Check if the checkbox is "Screening" or "Treatment"
 
     if (name === "ScreenTreat" || name === "Treatment") {
       // Always keep "Screening" and "Treatment" checked
       setCheckedValues(["ScreenTreat", "Treatment"]);
       return;
     }
+
     let updatedValues = [];
 
     if (checked) {
       // Add the checked value to the array
       updatedValues = [...checkedValues, value];
       //console.log(updatedValues);
+
       // Update visibility of the div corresponding to the checked checkbox
       const newDivVisibilities = divVisibilities.map((_, i) =>
         i === index || i === scenarios.length - 1 ? true : false
       );
-      //console.log(newDivVisibilities);
+      console.log(newDivVisibilities);
       setDivVisibilities(newDivVisibilities);
 
       // open / close the div on checked
@@ -82,7 +80,7 @@ export default function RunScenarios() {
       // Remove the unchecked value from the array
       updatedValues = checkedValues.filter((val) => val !== value);
     }
-    //console.log("updatedValues -----", updatedValues);
+    console.log("updatedValues -----", updatedValues);
     setCheckedValues(updatedValues);
 
     if (name === "scenario") {
@@ -208,6 +206,13 @@ export default function RunScenarios() {
     const newDivVisibilities = [...divVisibilities];
     newDivVisibilities[index] = !newDivVisibilities[index];
     setDivVisibilities(newDivVisibilities);
+  };
+
+  const handleKeyDown = (event, idx) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault(); // Prevent the default action for the spacebar
+      handleArrowClick(idx);
+    }
   };
 
   return (
@@ -352,10 +357,10 @@ export default function RunScenarios() {
                             <div className="bg-gray ">
                               <Row className="p-1">
                                 <Col
-                                  lg={9}
-                                  md={9}
-                                  sm={9}
-                                  xs={9}
+                                  lg={10}
+                                  md={10}
+                                  sm={10}
+                                  xs={10}
                                   className="col-auto me-auto"
                                 >
                                   <div>
@@ -385,14 +390,18 @@ export default function RunScenarios() {
                                   </div>
                                 </Col>
                                 <Col
-                                  lg={3}
-                                  md={3}
-                                  sm={3}
-                                  xs={3}
+                                  lg={2}
+                                  md={2}
+                                  sm={2}
+                                  xs={2}
                                   className="col-auto"
                                 >
                                   <div
                                     onClick={() => handleArrowClick(idx)}
+                                    onKeyDown={(e) => handleKeyDown(e, idx)}
+                                    tabIndex={0} // Make the element focusable
+                                    role="button" // Define the role for screen readers
+                                    aria-expanded={divVisibilities[idx]} // Indicate the expanded state
                                     style={{
                                       cursor: "pointer",
                                       textAlign: "right",

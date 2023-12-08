@@ -58,8 +58,8 @@ export default function ScenarioResults() {
   const handleModalShow = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
 
-  console.log("params", params);
-  console.log("result", results);
+  //console.log("params", params);
+  //console.log("result", results);
 
   if (
     results.checkedValues &&
@@ -195,7 +195,7 @@ export default function ScenarioResults() {
   // }
 
   const treatedIndex = results.totalNeeded.length - 1;
-  console.log("treatedIndex --- ", treatedIndex);
+  //console.log("treatedIndex --- ", treatedIndex);
   let totalNeededToScreen,
     totalNeededToTriage,
     totalNeededToDiagnosticTriage,
@@ -206,7 +206,7 @@ export default function ScenarioResults() {
       ? Math.round(results.totalNeeded[0]).toLocaleString(locale)
       : "N/A";
 
-  console.log("totalNeededToScreen", totalNeededToScreen);
+  //console.log("totalNeededToScreen", totalNeededToScreen);
 
   totalNeededToTriage =
     results.scenario === "ScreenTreat"
@@ -228,7 +228,7 @@ export default function ScenarioResults() {
           )
         : "N/A"
       : "N/A";
-  console.log("totalNeededToTriage", totalNeededToTriage);
+  //console.log("totalNeededToTriage", totalNeededToTriage);
   totalNeededToDiagnosticTriage =
     results.scenario === "ScreenTreat"
       ? "N/A"
@@ -249,14 +249,14 @@ export default function ScenarioResults() {
           )
         : "N/A"
       : "N/A";
-  console.log("totalNeededToDiagnosticTriage", totalNeededToDiagnosticTriage);
+  //console.log("totalNeededToDiagnosticTriage", totalNeededToDiagnosticTriage);
   totalNeededToTreat =
     results.totalNeeded[treatedIndex] !== undefined &&
     !isNaN(results.totalNeeded[treatedIndex])
       ? Math.round(results.totalNeeded[treatedIndex]).toLocaleString(locale)
       : "N/A";
 
-  console.log("totalNeededToTreat", totalNeededToTreat);
+  //console.log("totalNeededToTreat", totalNeededToTreat);
   function saveScenario() {
     const filename = `${params.scenario} ${getTimestamp()}.scenario`;
     const type = "text/plain;charset=utf-8";
