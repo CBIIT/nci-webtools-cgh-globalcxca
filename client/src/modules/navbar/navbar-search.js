@@ -34,7 +34,9 @@ export default function NavbarSearch() {
           type="submit"
         >
           <i className="bi bi-search"></i>
-          <span className="visually-hidden">submit</span>
+          <span className="visually-hidden" style={{ color: "#000" }}>
+            submit
+          </span>
         </Button>
       </InputGroup>
     </Form>

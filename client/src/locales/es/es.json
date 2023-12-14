@@ -100,7 +100,11 @@
     "specificity": "Especificidad",
     "term": "Término",
     "definition": "Definición",
-    "and": "and"
+    "and": "y",
+    "graphs": "Graficos",
+    "tables": "Tablas",
+    "El": "El ",
+    "NA": "NA"
   },
   "runScenario": {
     "title": "Ejecutar escenario",
@@ -127,6 +131,9 @@
     "selectTest": "Seleccione una prueba",
     "screeningTestSenvitivity": "Sensibilidad de prueba de tamizaje para NIC2/3",
     "screeningTestSpecificity": "Especificidad de prueba de tamizaje para NIC2/3",
+    "triageTestChosen": "Prueba de triage elegida",
+    "triageTestSensitivity": "Sensibilidad de la prueba de triaje para NIC2/3",
+    "triageTestSpecificity": "Especificidad de la prueba de triaje para NIC2/3",
     "triageOrDiagnosticTestChosen": "Prueba de triage o diagnóstico elegida",
     "triageOrDiagnosticTestSensitivity": "Sensibilidad de la prueba de triaje o diagnóstico para NIC2/3",
     "triageOrDiagnosticTestSpecificity": "Especificidad de la prueba de triaje o diagnóstico para NIC2/3",
@@ -135,7 +142,7 @@
     "diagnosticTestSpecificity": "Especificidad de la prueba diagnóstica para NIC2/3",
     "ScreenTreat": "Porcentaje de resultados positivos en las pruebas de detección tratados.",
     "ScreenDiagnosticTestTreat": "Porcentaje de resultados positivos en las pruebas de triaje/diagnóstico tratados.",
-    "percentDiagnosticPositiveTreated": "Porcentaje de mujeres con tamizaje positivo que completan un examen de triaje o de diagnóstico. ",
+    "percentDiagnosticPositiveTreated": "Porcentaje de personas con diagnóstico positivo que reciben tratamiento. ",
     "ScreenTriageDiagnosticTestTreat": "Percent of screen positives with triage/diagnostic test",
     "percentofScreenPositivesWithDiagnostic": "Porcentaje de mujeres con tamizaje positivo que completan un examen diagnóstico.",
     "PapTest": "Citología or Pap",
@@ -190,12 +197,13 @@
     "pPrecencersOverTreated": "% de Precánceres Sobretratados",
     "populationNotOverTreated": "Población No Sobretratada",
     "resultGraphDefinition": "Estos resultados reflejan los recursos previstos, las personas tamizadas y los resultados en un solo año de un programa de tamizaje. No reflejan los resultados generales del programa de tamizaje.",
-    "Approximately": "Approximately",
-    "screeningTests": "screening tests",
-    "triageTests": "triage tests",
-    "resultsDes0": "diagnostic tests will be required.",
-    "resultsDes1": "women will require treatment.",
-    "resultsDes2": "of women are possibly overtreated."
+    "Approximately": "Se requerirán aproximadamente",
+    "screeningTests": "pruebas de tamizaje",
+    "triageTests": "pruebas de triaje",
+    "resultsDes0": "pruebas diagnósticas.",
+    "resultsDes1": "mujeres requerirán tratamiento.",
+    "resultsDes2": "de las mujeres posiblemente reciben un tratamiento excesivo.",
+    "resultsInterpretation": "Interpretación de resultados"
   },
 
   "compareScenarios": {

@@ -63,3 +63,21 @@ body {
   line-height: 0;
   color: transparent;
 }
+
+.th-placeholder {
+  color: transparent;
+}
+
+.grayed-out {
+  opacity: 0.5; /* Adjust the opacity value as needed */
+  pointer-events: none; /* Disable pointer events to make the content unclickable */
+}
+
+.bg-gray {
+  background-color: #e8e9e9;
+}
+
+.border-gray {
+  border: 4px solid #e8e9e9;
+  border-radius: 10px;
+}

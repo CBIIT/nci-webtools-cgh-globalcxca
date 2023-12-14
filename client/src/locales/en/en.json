@@ -101,7 +101,11 @@
     "specificity": "Specificity",
     "term": "Term",
     "definition": "Definition",
-    "and": "and"
+    "and": "and",
+    "graphs": "Graphs",
+    "tables": "Tables",
+    "El": "",
+    "NA": "NA"
   },
   "runScenario": {
     "title": "Run Scenario",
@@ -129,6 +133,9 @@
     "selectTest": "Select a test",
     "screeningTestSenvitivity": "Screening test sensitivity for CIN2/3",
     "screeningTestSpecificity": "Screening test specificity for CIN2/3",
+    "triageTestChosen": "Triage test chosen",
+    "triageTestSensitivity": "Triage test sensitivity for CIN2/3",
+    "triageTestSpecificity": "Triage test specificity for CIN2/3",
     "triageOrDiagnosticTestChosen": "Triage or diagnostic test chosen",
     "triageOrDiagnosticTestSensitivity": "Triage or diagnostic test sensitivity for CIN2/3",
     "triageOrDiagnosticTestSpecificity": "Triage or diagnostic test specificity for CIN2/3",
@@ -195,7 +202,8 @@
     "triageTests": "triage tests",
     "resultsDes0": "diagnostic tests will be required.",
     "resultsDes1": "women will require treatment.",
-    "resultsDes2": "of women are possibly overtreated."
+    "resultsDes2": "of women are possibly overtreated.",
+    "resultsInterpretation": "Results Interpretation"
   },
   "compareScenarios": {
     "uploadScenariosInfo": "Upload up to {{limit}} scenarios for comparison. Files must be of the “.scenario” file format. Click the title of the scenario to rename it.",
