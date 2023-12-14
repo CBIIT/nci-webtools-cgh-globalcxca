@@ -101,7 +101,10 @@
     "specificity": "Specificity",
     "term": "Term",
     "definition": "Definition",
-    "and": "and"
+    "and": "and",
+    "graphs": "Graphs",
+    "tables": "Tables",
+    "El": ""
   },
   "runScenario": {
     "title": "Run Scenario",

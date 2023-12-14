@@ -407,7 +407,39 @@ export default function ScenarioResults() {
           onSelect={handleTabSelect}
           className="mb-3"
         >
-          <Tab eventKey="tab1" title="Graph">
+          <Tab eventKey="tab1" title={t("general.graphs")}>
+            <Card className="mb-2">
+              <Card.Header>
+                <Card.Title data-export>
+                  {t("results.resultsInterpretation")}
+                </Card.Title>
+              </Card.Header>
+
+              <Card.Body className="pt-2 pb-2">
+                <div>
+                  {t("results.Approximately")}{" "}
+                  <b>
+                    {totalNeededToScreen} {screenTest}
+                  </b>{" "}
+                  {t("results.screeningTests")},{" "}
+                  <b>
+                    {totalNeededToTriage} {triageTest}
+                  </b>{" "}
+                  {t("results.triageTests")}, {t("general.and")}
+                  <b>
+                    {" "}
+                    {totalNeededToDiagnosticTriage} {diagnosisTest}
+                  </b>{" "}
+                  {t("results.resultsDes0")} <b>{totalNeededToTreat}</b>{" "}
+                  {t("results.resultsDes1")} {t("general.El")}
+                  <b>
+                    {" "}
+                    {asPercent(results.percentHealthyOvertreated) ?? "N/A"}
+                  </b>{" "}
+                  {t("results.resultsDes2")}
+                </div>
+              </Card.Body>
+            </Card>
             <Card className="mb-3 d-none">
               <Card.Header>
                 <Card.Title data-export>
@@ -802,7 +834,7 @@ export default function ScenarioResults() {
             {/* pdf page break */}
             <hr className="d-none" data-export />
           </Tab>
-          <Tab eventKey="tab2" title="Table">
+          <Tab eventKey="tab2" title={t("general.tables")}>
             <Card className="mb-2">
               <Card.Header>
                 <Card.Title data-export>
@@ -826,7 +858,7 @@ export default function ScenarioResults() {
                     {totalNeededToDiagnosticTriage} {diagnosisTest}
                   </b>{" "}
                   {t("results.resultsDes0")} <b>{totalNeededToTreat}</b>{" "}
-                  {t("results.resultsDes1")}
+                  {t("results.resultsDes1")} {t("general.El")}
                   <b>
                     {" "}
                     {asPercent(results.percentHealthyOvertreated) ?? "N/A"}
