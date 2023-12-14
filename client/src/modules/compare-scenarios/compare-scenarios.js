@@ -219,7 +219,7 @@ export default function CompareScenarios() {
                                     ? Math.round(
                                         results.populationTargeted
                                       ).toLocaleString(locale)
-                                    : "N/A"}
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -240,7 +240,7 @@ export default function CompareScenarios() {
                                     ? Math.round(
                                         results.testedFalsePositives[0]
                                       ).toLocaleString(locale)
-                                    : "N/A"}
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -259,7 +259,7 @@ export default function CompareScenarios() {
                                     ? Math.round(
                                         results.testedTruePositives[0]
                                       ).toLocaleString(locale)
-                                    : "N/A"}
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -275,7 +275,7 @@ export default function CompareScenarios() {
                                 <td className="text-end" key={index}>
                                   {asPercent(
                                     results.percentPrecancersTreated
-                                  ) ?? "N/A"}
+                                  ) ?? t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -289,7 +289,7 @@ export default function CompareScenarios() {
                                 <td className="text-end" key={index}>
                                   {asPercent(
                                     results.percentHealthyOvertreated
-                                  ) ?? "N/A"}
+                                  ) ?? t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -311,7 +311,7 @@ export default function CompareScenarios() {
                                   )}
                                 >
                                   {asPercent(results.percentPrecancersMissed) ??
-                                    "N/A"}
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -340,13 +340,14 @@ export default function CompareScenarios() {
                                       ? Math.round(
                                           results.untestedPositives[1]
                                         ).toLocaleString(locale)
-                                      : "N/A"
+                                      : t("general.NA")
                                   }
                                 >
                                   {/* {asPercent(
                                     results.percentMissedDueToNoScreening
                                   ) ?? "N/A"} */}
-                                  {asPercent(results.percentMissed[0]) ?? "N/A"}
+                                  {asPercent(results.percentMissed[0]) ??
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -368,7 +369,7 @@ export default function CompareScenarios() {
                                       ? Math.round(
                                           results.testedFalseNegatives[1]
                                         ).toLocaleString(locale)
-                                      : "N/A"
+                                      : t("general.NA")
                                   }
                                 >
                                   {/* {asPercent(
@@ -376,7 +377,7 @@ export default function CompareScenarios() {
                                   ) ?? "N/A"} */}
                                   {asPercent(
                                     results.percentMissedDueToSensitivity[0]
-                                  ) ?? "N/A"}
+                                  ) ?? t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -398,7 +399,7 @@ export default function CompareScenarios() {
                                       "ScreenDiagnosticTestTreat" &&
                                       results.checkedValues[2] ===
                                         "ScreenDiagnosticTestTreat")
-                                      ? "N/A"
+                                      ? t("general.NA")
                                       : results.scenario ===
                                           "ScreenTriageDiagnosticTestTreat" ||
                                         (results.scenario ===
@@ -418,7 +419,7 @@ export default function CompareScenarios() {
                                               results.totalNeeded.length - 1 - 1
                                             ]
                                           ).toLocaleString(locale)
-                                        : "N/A"
+                                        : t("general.NA")
                                       : results.untestedPositives[
                                           results.totalNeeded.length - 1
                                         ] !== undefined &&
@@ -432,7 +433,7 @@ export default function CompareScenarios() {
                                             results.totalNeeded.length - 1
                                           ]
                                         ).toLocaleString(locale)
-                                      : "N/A"
+                                      : t("general.NA")
                                   }
                                 >
                                   {/* {asPercent(
@@ -443,7 +444,7 @@ export default function CompareScenarios() {
                                     "ScreenDiagnosticTestTreat" &&
                                     results.checkedValues[2] ===
                                       "ScreenDiagnosticTestTreat")
-                                    ? "N/A"
+                                    ? t("general.NA")
                                     : results.scenario ===
                                         "ScreenTriageDiagnosticTestTreat" ||
                                       (results.scenario ===
@@ -463,7 +464,7 @@ export default function CompareScenarios() {
                                             results.totalNeeded.length - 1 - 2
                                           ]
                                         )
-                                      : "N/A"
+                                      : t("general.NA")
                                     : results.percentMissed[
                                         results.totalNeeded.length - 1 - 1
                                       ] !== undefined &&
@@ -477,7 +478,7 @@ export default function CompareScenarios() {
                                           results.totalNeeded.length - 1 - 1
                                         ]
                                       )
-                                    : "N/A"}
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -499,7 +500,7 @@ export default function CompareScenarios() {
                                       "ScreenDiagnosticTestTreat" &&
                                       results.checkedValues[2] ===
                                         "ScreenDiagnosticTestTreat")
-                                      ? "N/A"
+                                      ? t("general.NA")
                                       : results.scenario ===
                                           "ScreenTriageDiagnosticTestTreat" ||
                                         (results.scenario ===
@@ -519,7 +520,7 @@ export default function CompareScenarios() {
                                               results.totalNeeded.length - 1 - 1
                                             ]
                                           ).toLocaleString(locale)
-                                        : "N/A"
+                                        : t("general.NA")
                                       : results.testedFalseNegatives[
                                           results.totalNeeded.length - 1
                                         ] !== undefined &&
@@ -533,7 +534,7 @@ export default function CompareScenarios() {
                                             results.totalNeeded.length - 1
                                           ]
                                         ).toLocaleString(locale)
-                                      : "N/A"
+                                      : t("general.NA")
                                   }
                                 >
                                   {/* {asPercent(
@@ -544,7 +545,7 @@ export default function CompareScenarios() {
                                     "ScreenDiagnosticTestTreat" &&
                                     results.checkedValues[2] ===
                                       "ScreenDiagnosticTestTreat")
-                                    ? "N/A"
+                                    ? t("general.NA")
                                     : results.scenario ===
                                         "ScreenTriageDiagnosticTestTreat" ||
                                       (results.scenario ===
@@ -578,7 +579,7 @@ export default function CompareScenarios() {
                                           results.totalNeeded.length - 1 - 1
                                         ]
                                       )
-                                    : "N/A"}
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -596,7 +597,7 @@ export default function CompareScenarios() {
                                   // )}
                                   title={
                                     results.scenario === "ScreenTreat"
-                                      ? "N/A"
+                                      ? t("general.NA")
                                       : results.scenario ===
                                           "ScreenTriageDiagnosticTestTreat" ||
                                         (results.scenario ===
@@ -616,15 +617,15 @@ export default function CompareScenarios() {
                                               results.totalNeeded.length - 1
                                             ]
                                           ).toLocaleString(locale)
-                                        : "N/A"
-                                      : "N/A"
+                                        : t("general.NA")
+                                      : t("general.NA")
                                   }
                                 >
                                   {/* {asPercent(
                                     results.percentMissedDueToLossAtDiagnosticTriage
                                   ) ?? "N/A"} */}
                                   {results.scenario === "ScreenTreat"
-                                    ? "N/A"
+                                    ? t("general.NA")
                                     : results.scenario ===
                                         "ScreenTriageDiagnosticTestTreat" ||
                                       (results.scenario ===
@@ -644,8 +645,8 @@ export default function CompareScenarios() {
                                             results.totalNeeded.length - 1 - 1
                                           ]
                                         )
-                                      : "N/A"
-                                    : "N/A"}
+                                      : t("general.NA")
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -663,7 +664,7 @@ export default function CompareScenarios() {
                                   // )}
                                   title={
                                     results.scenario === "ScreenTreat"
-                                      ? "N/A"
+                                      ? t("general.NA")
                                       : results.scenario ===
                                           "ScreenTriageDiagnosticTestTreat" ||
                                         (results.scenario ===
@@ -683,15 +684,15 @@ export default function CompareScenarios() {
                                               results.totalNeeded.length - 1
                                             ]
                                           ).toLocaleString(locale)
-                                        : "N/A"
-                                      : "N/A"
+                                        : t("general.NA")
+                                      : t("general.NA")
                                   }
                                 >
                                   {/* {asPercent(
                                     results.percentMissedDueToSensitivityOfDiagnosticTriageTest
                                   ) ?? "N/A"} */}
                                   {results.scenario === "ScreenTreat"
-                                    ? "N/A"
+                                    ? t("general.NA")
                                     : results.scenario ===
                                         "ScreenTriageDiagnosticTestTreat" ||
                                       (results.scenario ===
@@ -711,8 +712,8 @@ export default function CompareScenarios() {
                                             results.totalNeeded.length - 1 - 1
                                           ]
                                         )
-                                      : "N/A"
-                                    : "N/A"}
+                                      : t("general.NA")
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -742,7 +743,7 @@ export default function CompareScenarios() {
                                             results.totalNeeded.length - 1 + 1
                                           ]
                                         ).toLocaleString(locale)
-                                      : "N/A"
+                                      : t("general.NA")
                                   }
                                 >
                                   {/* {asPercent(
@@ -752,7 +753,7 @@ export default function CompareScenarios() {
                                     results.percentMissed[
                                       results.totalNeeded.length - 1
                                     ]
-                                  ) ?? "N/A"}
+                                  ) ?? t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -777,7 +778,7 @@ export default function CompareScenarios() {
                                     ? Math.round(
                                         results.totalNeeded[0]
                                       ).toLocaleString(locale)
-                                    : "N/A"}
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -793,7 +794,7 @@ export default function CompareScenarios() {
                                     locale
                                   ) ?? "N/A"} */}
                                   {results.scenario === "ScreenTreat"
-                                    ? "N/A"
+                                    ? t("general.NA")
                                     : results.scenario ===
                                       "ScreenTriageDiagnosticTestTreat"
                                     ? results.totalNeeded[
@@ -809,7 +810,7 @@ export default function CompareScenarios() {
                                             results.totalNeeded.length - 1 - 2
                                           ]
                                         ).toLocaleString(locale)
-                                      : "N/A"
+                                      : t("general.NA")
                                     : results.totalNeeded[
                                         results.totalNeeded.length - 1 - 1
                                       ] !== undefined &&
@@ -823,7 +824,7 @@ export default function CompareScenarios() {
                                           results.totalNeeded.length - 1 - 1
                                         ]
                                       ).toLocaleString(locale)
-                                    : "N/A"}
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -837,7 +838,7 @@ export default function CompareScenarios() {
                                     locale
                                   ) ?? "N/A"} */}
                                   {results.scenario === "ScreenTreat"
-                                    ? "N/A"
+                                    ? t("general.NA")
                                     : results.scenario ===
                                       "ScreenTriageDiagnosticTestTreat"
                                     ? results.totalNeeded[
@@ -853,8 +854,8 @@ export default function CompareScenarios() {
                                             results.totalNeeded.length - 1 - 1
                                           ]
                                         ).toLocaleString(locale)
-                                      : "N/A"
-                                    : "N/A"}
+                                      : t("general.NA")
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -878,7 +879,7 @@ export default function CompareScenarios() {
                                           results.totalNeeded.length - 1
                                         ]
                                       ).toLocaleString(locale)
-                                    : "N/A"}
+                                    : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -910,7 +911,7 @@ export default function CompareScenarios() {
                                 <td className="text-end" key={index}>
                                   {params.populationSize?.toLocaleString(
                                     locale
-                                  ) ?? "N/A"}
+                                  ) ?? t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -918,7 +919,8 @@ export default function CompareScenarios() {
                               <th>{t("runScenario.prevelance")}</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.cinPrevalence) ?? "N/A"}
+                                  {asPercent(params.cinPrevalence) ??
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -930,7 +932,7 @@ export default function CompareScenarios() {
                                   {asLabel(
                                     params.screeningTest,
                                     screeningTests
-                                  ) ?? "N/A"}
+                                  ) ?? t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -941,7 +943,8 @@ export default function CompareScenarios() {
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.percentScreened) ?? "N/A"}
+                                  {asPercent(params.percentScreened) ??
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -952,7 +955,7 @@ export default function CompareScenarios() {
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
                                   {asPercent(params.screeningTestSensitivity) ??
-                                    "N/A"}
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -963,7 +966,7 @@ export default function CompareScenarios() {
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
                                   {asPercent(params.screeningTestSpecificity) ??
-                                    "N/A"}
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -973,7 +976,7 @@ export default function CompareScenarios() {
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
                                   {asLabel(params.triageTest, triageTests) ??
-                                    "N/A"}
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -983,7 +986,8 @@ export default function CompareScenarios() {
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.percentTriaged) ?? "N/A"}
+                                  {asPercent(params.percentTriaged) ??
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -994,7 +998,7 @@ export default function CompareScenarios() {
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
                                   {asPercent(params.triageTestSensitivity) ??
-                                    "N/A"}
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1005,7 +1009,7 @@ export default function CompareScenarios() {
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
                                   {asPercent(params.triageTestSpecificity) ??
-                                    "N/A"}
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1017,7 +1021,7 @@ export default function CompareScenarios() {
                                   {asLabel(
                                     params.diagnosticTest,
                                     diagnosticTests
-                                  ) ?? "N/A"}
+                                  ) ?? t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1028,7 +1032,7 @@ export default function CompareScenarios() {
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
                                   {asPercent(params.percentDiagnosticTriaged) ??
-                                    "N/A"}
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1040,7 +1044,7 @@ export default function CompareScenarios() {
                                 <td className="text-end" key={index}>
                                   {asPercent(
                                     params.diagnosticTestSensitivity
-                                  ) ?? "N/A"}
+                                  ) ?? t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1052,7 +1056,7 @@ export default function CompareScenarios() {
                                 <td className="text-end" key={index}>
                                   {asPercent(
                                     params.diagnosticTestSpecificity
-                                  ) ?? "N/A"}
+                                  ) ?? t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1061,7 +1065,8 @@ export default function CompareScenarios() {
                               <th>Treatment attendance</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.percentTreated) ?? "N/A"}
+                                  {asPercent(params.percentTreated) ??
+                                    t("general.NA")}
                                 </td>
                               ))}
                             </tr>

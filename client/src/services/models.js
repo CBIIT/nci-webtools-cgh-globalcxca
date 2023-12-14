@@ -1,3 +1,5 @@
+import i18n from "i18next";
+
 export const scenarios = [
   {
     value: "ScreenTreat",
@@ -93,6 +95,8 @@ export const tests = {
 
 export function runModel(params) {
   //console.log("PARMS ---- ", params);
+  const t = i18n.t;
+
   const scenario = params.scenario;
   const populationSize = parseInt(params.populationSize, 10);
   const screeningInterval = parseInt(params.screeningInterval, 10);
@@ -106,13 +110,13 @@ export function runModel(params) {
   coverage[1] = parseInt(params?.percentScreened, 10) / 100 || 0;
   sensitivity[0] = parseInt(params?.screeningTestSensitivity, 10) / 100 || 0;
   specificity[0] = parseInt(params?.screeningTestSpecificity, 10) / 100 || 0;
-  screentest[0] = params?.screeningTest || "N/A";
+  screentest[0] = params?.screeningTest || t("general.NA");
   if (params.scenario === "ScreenDiagnosticTestTreat") {
     coverage[2] = parseInt(params?.percentDiagnosticTriaged, 10) / 100 || 0;
     coverage[3] = parseInt(params?.percentTreated, 10) / 100 || 0;
     sensitivity[1] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
     specificity[1] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
-    screentest[1] = params?.triageTest || "N/A";
+    screentest[1] = params?.triageTest || t("general.NA");
   } else if (params.scenario === "ScreenTriageDiagnosticTestTreat") {
     coverage[2] = parseInt(params?.percentTriaged, 10) / 100 || 0;
     coverage[3] = parseInt(params?.percentDiagnosticTriaged, 10) / 100 || 0;
@@ -121,7 +125,7 @@ export function runModel(params) {
     specificity[1] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
     sensitivity[2] = parseInt(params?.diagnosticTestSensitivity, 10) / 100 || 0;
     specificity[2] = parseInt(params?.diagnosticTestSpecificity, 10) / 100 || 0;
-    screentest[1] = params?.triageTest || "N/A";
+    screentest[1] = params?.triageTest || t("general.NA");
     screentest[2] = params?.diagnosticTest;
   } else {
     coverage[2] = parseInt(params?.percentTreated, 10) / 100 || 0;

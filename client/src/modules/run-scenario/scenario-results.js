@@ -204,20 +204,20 @@ export default function ScenarioResults() {
   totalNeededToScreen =
     results.totalNeeded[0] !== undefined && !isNaN(results.totalNeeded[0])
       ? Math.round(results.totalNeeded[0]).toLocaleString(locale)
-      : "N/A";
+      : t("general.NA");
 
   //console.log("totalNeededToScreen", totalNeededToScreen);
 
   totalNeededToTriage =
     results.scenario === "ScreenTreat"
-      ? "N/A"
+      ? t("general.NA")
       : results.checkedValues && results.checkedValues.length === 4
       ? results.totalNeeded[treatedIndex - 2] !== undefined &&
         !isNaN(results.totalNeeded[treatedIndex - 2])
         ? Math.round(results.totalNeeded[treatedIndex - 2]).toLocaleString(
             locale
           )
-        : "N/A"
+        : t("general.NA")
       : results.checkedValues &&
         results.checkedValues.length === 3 &&
         results.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
@@ -226,19 +226,19 @@ export default function ScenarioResults() {
         ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
             locale
           )
-        : "N/A"
-      : "N/A";
+        : t("general.NA")
+      : t("general.NA");
   //console.log("totalNeededToTriage", totalNeededToTriage);
   totalNeededToDiagnosticTriage =
     results.scenario === "ScreenTreat"
-      ? "N/A"
+      ? t("general.NA")
       : results.checkedValues && results.checkedValues.length === 4
       ? results.totalNeeded[treatedIndex - 1] !== undefined &&
         !isNaN(results.totalNeeded[treatedIndex - 1])
         ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
             locale
           )
-        : "N/A"
+        : t("general.NA")
       : results.checkedValues &&
         results.checkedValues.length === 3 &&
         results.checkedValues[2] === "ScreenDiagnosticTestTreat"
@@ -247,14 +247,14 @@ export default function ScenarioResults() {
         ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
             locale
           )
-        : "N/A"
-      : "N/A";
+        : t("general.NA")
+      : t("general.NA");
   //console.log("totalNeededToDiagnosticTriage", totalNeededToDiagnosticTriage);
   totalNeededToTreat =
     results.totalNeeded[treatedIndex] !== undefined &&
     !isNaN(results.totalNeeded[treatedIndex])
       ? Math.round(results.totalNeeded[treatedIndex]).toLocaleString(locale)
-      : "N/A";
+      : t("general.NA");
 
   //console.log("totalNeededToTreat", totalNeededToTreat);
   function saveScenario() {
@@ -434,7 +434,8 @@ export default function ScenarioResults() {
                   {t("results.resultsDes1")} {t("general.El")}
                   <b>
                     {" "}
-                    {asPercent(results.percentHealthyOvertreated) ?? "N/A"}
+                    {asPercent(results.percentHealthyOvertreated) ??
+                      t("general.NA")}
                   </b>{" "}
                   {t("results.resultsDes2")}
                 </div>
@@ -465,13 +466,14 @@ export default function ScenarioResults() {
                           <th>{t("runScenario.numPeople")}</th>
                           <td className="text-end text-nowrap">
                             {params.populationSize?.toLocaleString(locale) ??
-                              "N/A"}
+                              t("general.NA")}
                           </td>
                         </tr>
                         <tr>
                           <th>{t("runScenario.prevelance")}</th>
                           <td className="text-end text-nowrap">
-                            {asPercent(params.cinPrevalence, 0) ?? "N/A"}
+                            {asPercent(params.cinPrevalence, 0) ??
+                              t("general.NA")}
                           </td>
                         </tr>
                       </tbody>
@@ -489,13 +491,14 @@ export default function ScenarioResults() {
                           <th> {t("runScenario.intervalofCervicalInYears")}</th>
                           <td className="text-end text-nowrap">
                             {params.screeningInterval?.toLocaleString(locale) ??
-                              "N/A"}
+                              t("general.NA")}
                           </td>
                         </tr>
                         <tr>
                           <th>{t("runScenario.percentScreeningCoverage")}</th>
                           <td className="text-end text-nowrap">
-                            {asPercent(params.percentScreened, 0) ?? "N/A"}
+                            {asPercent(params.percentScreened, 0) ??
+                              t("general.NA")}
                           </td>
                         </tr>
                         {["ScreenTriageDiagnosticTestTreat"].includes(
@@ -508,7 +511,8 @@ export default function ScenarioResults() {
                               )}
                             </th>
                             <td className="text-end text-nowrap">
-                              {asPercent(params.percentTriaged, 0) ?? "N/A"}
+                              {asPercent(params.percentTriaged, 0) ??
+                                t("general.NA")}
                             </td>
                           </tr>
                         )}
@@ -529,7 +533,7 @@ export default function ScenarioResults() {
                             </th>
                             <td className="text-end text-nowrap">
                               {asPercent(params.percentDiagnosticTriaged, 0) ??
-                                "N/A"}
+                                t("general.NA")}
                             </td>
                           </tr>
                         )}
@@ -547,7 +551,8 @@ export default function ScenarioResults() {
                             }
                           </th>
                           <td className="text-end text-nowrap">
-                            {asPercent(params.percentTreated, 0) ?? "N/A"}
+                            {asPercent(params.percentTreated, 0) ??
+                              t("general.NA")}
                           </td>
                         </tr>
                       </tbody>
@@ -572,7 +577,7 @@ export default function ScenarioResults() {
                                 {asLabel(
                                   params.screeningTest,
                                   screeningTests
-                                ) ?? "N/A"}
+                                ) ?? t("general.NA")}
                               </td>
                             </tr>
                             <tr>
@@ -583,7 +588,7 @@ export default function ScenarioResults() {
                                 {asPercent(
                                   params.screeningTestSensitivity,
                                   0
-                                ) ?? "N/A"}
+                                ) ?? t("general.NA")}
                               </td>
                             </tr>
                             <tr>
@@ -594,7 +599,7 @@ export default function ScenarioResults() {
                                 {asPercent(
                                   params.screeningTestSpecificity,
                                   0
-                                ) ?? "N/A"}
+                                ) ?? t("general.NA")}
                               </td>
                             </tr>
                           </>
@@ -608,7 +613,7 @@ export default function ScenarioResults() {
                               </th>
                               <td className="text-end text-nowrap">
                                 {asLabel(params.triageTest, triageTests) ??
-                                  "N/A"}
+                                  t("general.NA")}
                               </td>
                             </tr>
                             <tr>
@@ -619,7 +624,7 @@ export default function ScenarioResults() {
                               </th>
                               <td className="text-end text-nowrap">
                                 {asPercent(params.triageTestSensitivity, 0) ??
-                                  "N/A"}
+                                  t("general.NA")}
                               </td>
                             </tr>
                             <tr>
@@ -630,7 +635,7 @@ export default function ScenarioResults() {
                               </th>
                               <td className="text-end text-nowrap">
                                 {asPercent(params.triageTestSpecificity, 0) ??
-                                  "N/A"}
+                                  t("general.NA")}
                               </td>
                             </tr>
                           </>
@@ -644,7 +649,7 @@ export default function ScenarioResults() {
                                 {asLabel(
                                   params.diagnosticTest,
                                   diagnosticTests
-                                ) ?? "N/A"}
+                                ) ?? t("general.NA")}
                               </td>
                             </tr>
                             <tr>
@@ -655,7 +660,7 @@ export default function ScenarioResults() {
                                 {asPercent(
                                   params.diagnosticTestSensitivity,
                                   0
-                                ) ?? "N/A"}
+                                ) ?? t("general.NA")}
                               </td>
                             </tr>
                             <tr>
@@ -666,7 +671,7 @@ export default function ScenarioResults() {
                                 {asPercent(
                                   params.diagnosticTestSpecificity,
                                   0
-                                ) ?? "N/A"}
+                                ) ?? t("general.NA")}
                               </td>
                             </tr>
                           </>
@@ -861,7 +866,8 @@ export default function ScenarioResults() {
                   {t("results.resultsDes1")} {t("general.El")}
                   <b>
                     {" "}
-                    {asPercent(results.percentHealthyOvertreated) ?? "N/A"}
+                    {asPercent(results.percentHealthyOvertreated) ??
+                      t("general.NA")}
                   </b>{" "}
                   {t("results.resultsDes2")}
                 </div>
@@ -888,7 +894,7 @@ export default function ScenarioResults() {
                           ? Math.round(
                               results.populationTargeted
                             ).toLocaleString(locale)
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                     </tr>
                     <tr className="table-info">
@@ -904,7 +910,7 @@ export default function ScenarioResults() {
                           ? Math.round(
                               results.testedFalsePositives[0]
                             ).toLocaleString(locale)
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                     </tr>
                     <tr className="table-info">
@@ -920,7 +926,7 @@ export default function ScenarioResults() {
                           ? Math.round(
                               results.testedTruePositives[0]
                             ).toLocaleString(locale)
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                     </tr>
                   </tbody>
@@ -937,7 +943,8 @@ export default function ScenarioResults() {
                     <tr className="table-warning">
                       <th>{t("results.percentPrecancersTreated")}</th>
                       <td className="text-end text-nowrap">
-                        {asPercent(results.percentPrecancersTreated) ?? "N/A"}
+                        {asPercent(results.percentPrecancersTreated) ??
+                          t("general.NA")}
                       </td>
                     </tr>
                     <tr className="table-warning">
@@ -945,7 +952,8 @@ export default function ScenarioResults() {
                         {t("results.percentPolulationTargetedOverTreated")}
                       </th>
                       <td className="text-end text-nowrap">
-                        {asPercent(results.percentHealthyOvertreated) ?? "N/A"}
+                        {asPercent(results.percentHealthyOvertreated) ??
+                          t("general.NA")}
                       </td>
                     </tr>
                   </tbody>
@@ -963,7 +971,8 @@ export default function ScenarioResults() {
                     <tr className="table-danger">
                       <th>{t("results.totalPrecancersMissed")}</th>
                       <td className="text-end text-nowrap">
-                        {asPercent(results.percentPrecancersMissed) ?? "N/A"}
+                        {asPercent(results.percentPrecancersMissed) ??
+                          t("general.NA")}
                       </td>
                       <td className="text-end text-nowrap">
                         {results.numberPrecancersMissed !== undefined &&
@@ -971,7 +980,7 @@ export default function ScenarioResults() {
                           ? Math.round(
                               results.numberPrecancersMissed
                             ).toLocaleString(locale)
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                     </tr>
                     <tr className="table-danger">
@@ -986,7 +995,7 @@ export default function ScenarioResults() {
                       </th>
                       <td className="text-end text-nowrap">
                         {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
-                        {asPercent(results.percentMissed[0]) ?? "N/A"}
+                        {asPercent(results.percentMissed[0]) ?? t("general.NA")}
                       </td>
                       <td className="text-end text-nowrap">
                         {/* {results.numberMissedDueToNoScreening?.toLocaleString(
@@ -997,7 +1006,7 @@ export default function ScenarioResults() {
                           ? Math.round(
                               results.untestedPositives[1]
                             ).toLocaleString(locale)
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                     </tr>
                     <tr className="table-light">
@@ -1010,7 +1019,7 @@ export default function ScenarioResults() {
                       results.percentMissedDueToSensitivityOfScreeningTest
                     ) ?? "N/A"} */}
                         {asPercent(results.percentMissedDueToSensitivity[0]) ??
-                          "N/A"}
+                          t("general.NA")}
                       </td>
                       <td className="text-end text-nowrap">
                         {/* {results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(
@@ -1021,7 +1030,7 @@ export default function ScenarioResults() {
                           ? Math.round(
                               results.testedFalseNegatives[1]
                             ).toLocaleString(locale)
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                     </tr>
 
@@ -1034,25 +1043,25 @@ export default function ScenarioResults() {
                         {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
                         {/* {asPercent(results.percentMissed[1]) ?? "N/A"} */}
                         {results.scenario === "ScreenTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario === "ScreenDiagnosticTestTreat" &&
                             results.checkedValues &&
                             results.checkedValues.length === 3 &&
                             results.checkedValues[2] ===
                               "ScreenDiagnosticTestTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario ===
                             "ScreenTriageDiagnosticTestTreat"
                           ? results.percentMissed[treatedIndex - 2] !==
                               undefined &&
                             !isNaN(results.percentMissed[treatedIndex - 2])
                             ? asPercent(results.percentMissed[treatedIndex - 2])
-                            : "N/A"
+                            : t("general.NA")
                           : results.percentMissed[treatedIndex - 1] !==
                               undefined &&
                             !isNaN(results.percentMissed[treatedIndex - 1])
                           ? asPercent(results.percentMissed[treatedIndex - 1])
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                       <td className="text-end text-nowrap">
                         {/* {results.numberMissedDueToLossAtTriage?.toLocaleString(
@@ -1061,13 +1070,13 @@ export default function ScenarioResults() {
                         {/* {results.untestedPositives[2]?.toLocaleString(locale) ??
                       "N/A"} */}
                         {results.scenario === "ScreenTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario === "ScreenDiagnosticTestTreat" &&
                             results.checkedValues &&
                             results.checkedValues.length === 3 &&
                             results.checkedValues[2] ===
                               "ScreenDiagnosticTestTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario ===
                             "ScreenTriageDiagnosticTestTreat"
                           ? results.untestedPositives[treatedIndex - 1] !==
@@ -1076,14 +1085,14 @@ export default function ScenarioResults() {
                             ? Math.round(
                                 results.untestedPositives[treatedIndex - 1]
                               ).toLocaleString(locale)
-                            : "N/A"
+                            : t("general.NA")
                           : results.untestedPositives[treatedIndex] !==
                               undefined &&
                             !isNaN(results.untestedPositives[treatedIndex])
                           ? Math.round(
                               results.untestedPositives[treatedIndex]
                             ).toLocaleString(locale)
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                     </tr>
 
@@ -1097,13 +1106,13 @@ export default function ScenarioResults() {
                       results.percentMissedDueToSensitivityOfTriageTest
                     ) ?? "N/A"} */}
                         {results.scenario === "ScreenTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario === "ScreenDiagnosticTestTreat" &&
                             results.checkedValues &&
                             results.checkedValues.length === 3 &&
                             results.checkedValues[2] ===
                               "ScreenDiagnosticTestTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario ===
                             "ScreenTriageDiagnosticTestTreat"
                           ? results.percentMissedDueToSensitivity[
@@ -1119,7 +1128,7 @@ export default function ScenarioResults() {
                                   treatedIndex - 2
                                 ]
                               )
-                            : "NA"
+                            : t("general.NA")
                           : results.percentMissedDueToSensitivity[
                               treatedIndex - 1
                             ] !== undefined &&
@@ -1133,20 +1142,20 @@ export default function ScenarioResults() {
                                 treatedIndex - 1
                               ]
                             )
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                       <td className="text-end text-nowrap">
                         {/* {results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(
                       locale
                     ) ?? "N/A"} */}
                         {results.scenario === "ScreenTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario === "ScreenDiagnosticTestTreat" &&
                             results.checkedValues &&
                             results.checkedValues.length === 3 &&
                             results.checkedValues[2] ===
                               "ScreenDiagnosticTestTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario ===
                             "ScreenTriageDiagnosticTestTreat"
                           ? results.testedFalseNegatives[treatedIndex - 1] !==
@@ -1157,14 +1166,14 @@ export default function ScenarioResults() {
                             ? Math.round(
                                 results.testedFalseNegatives[treatedIndex - 1]
                               ).toLocaleString(locale)
-                            : "N/A"
+                            : t("general.NA")
                           : results.testedFalseNegatives[treatedIndex] !==
                               undefined &&
                             !isNaN(results.testedFalseNegatives[treatedIndex])
                           ? Math.round(
                               results.testedFalseNegatives[treatedIndex]
                             ).toLocaleString(locale)
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                     </tr>
 
@@ -1187,7 +1196,7 @@ export default function ScenarioResults() {
                         : "N/A"
                       : "N/A"} */}
                         {results.scenario === "ScreenTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario === "ScreenDiagnosticTestTreat" &&
                             results.checkedValues &&
                             results.checkedValues.length === 3 &&
@@ -1197,14 +1206,14 @@ export default function ScenarioResults() {
                               undefined &&
                             !isNaN(results.percentMissed[treatedIndex - 1])
                             ? asPercent(results.percentMissed[treatedIndex - 1])
-                            : "N/A"
+                            : t("general.NA")
                           : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat" &&
                             results.percentMissed[treatedIndex - 1] !==
                               undefined &&
                             !isNaN(results.percentMissed[treatedIndex - 1])
                           ? asPercent(results.percentMissed[treatedIndex - 1])
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                       <td className="text-end text-nowrap">
                         {/* {results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(
@@ -1213,7 +1222,7 @@ export default function ScenarioResults() {
                         {/* {results.untestedPositives[4]?.toLocaleString(locale) ??
                       "N/A"} */}
                         {results.scenario === "ScreenTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario === "ScreenDiagnosticTestTreat" &&
                             results.checkedValues &&
                             results.checkedValues.length === 3 &&
@@ -1230,8 +1239,8 @@ export default function ScenarioResults() {
                             ? Math.round(
                                 results.untestedPositives[treatedIndex]
                               ).toLocaleString(locale)
-                            : "N/A"
-                          : "N/A"}
+                            : t("general.NA")
+                          : t("general.NA")}
                       </td>
                     </tr>
 
@@ -1246,7 +1255,7 @@ export default function ScenarioResults() {
                     ) ?? "N/A"} */}
 
                         {results.scenario === "ScreenTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario === "ScreenDiagnosticTestTreat" &&
                             results.checkedValues &&
                             results.checkedValues.length === 3 &&
@@ -1272,8 +1281,8 @@ export default function ScenarioResults() {
                                   treatedIndex - 1
                                 ]
                               )
-                            : "N/A"
-                          : "N/A"}
+                            : t("general.NA")
+                          : t("general.NA")}
                       </td>
                       <td className="text-end text-nowrap">
                         {/* {results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(
@@ -1281,7 +1290,7 @@ export default function ScenarioResults() {
                     ) ?? "N/A"} */}
 
                         {results.scenario === "ScreenTreat"
-                          ? "N/A"
+                          ? t("general.NA")
                           : results.scenario === "ScreenDiagnosticTestTreat" &&
                             results.checkedValues &&
                             results.checkedValues.length === 3 &&
@@ -1298,8 +1307,8 @@ export default function ScenarioResults() {
                             ? Math.round(
                                 results.testedFalseNegatives[treatedIndex]
                               ).toLocaleString(locale)
-                            : "N/A"
-                          : "N/A"}
+                            : t("general.NA")
+                          : t("general.NA")}
                       </td>
                     </tr>
 
@@ -1309,7 +1318,7 @@ export default function ScenarioResults() {
                         {/* {asPercent(results.percentMissedDueToLossAtTreatment) ??
                       "N/A"} */}
                         {asPercent(results.percentMissed[treatedIndex]) ??
-                          "N/A"}
+                          t("general.NA")}
                       </td>
                       <td className="text-end text-nowrap">
                         {/* {results.numberMissedDueToLossAtTreatment?.toLocaleString(
@@ -1321,7 +1330,7 @@ export default function ScenarioResults() {
                           ? Math.round(
                               results.untestedPositives[treatedIndex + 1]
                             ).toLocaleString(locale)
-                          : "N/A"}
+                          : t("general.NA")}
                       </td>
                     </tr>
                   </tbody>
