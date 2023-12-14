@@ -904,7 +904,7 @@ export default function ScenarioResults() {
                       <td className="text-end text-nowrap">
                         {/* {results.healthyWomenTargetedForScreening?.toLocaleString(
                       locale
-                    ) ?? "N/A"} */}
+                    ) ?? t("general.NA")} */}
                         {results.testedFalsePositives[0] !== undefined &&
                         !isNaN(results.testedFalsePositives[0])
                           ? Math.round(
@@ -920,7 +920,7 @@ export default function ScenarioResults() {
                       <td className="text-end text-nowrap">
                         {/* {results.precancersTargetedForScreening?.toLocaleString(
                       locale
-                    ) ?? "N/A"} */}
+                    ) ?? t("general.NA")} */}
                         {results.testedTruePositives[0] !== undefined &&
                         !isNaN(results.testedTruePositives[0])
                           ? Math.round(
@@ -932,68 +932,73 @@ export default function ScenarioResults() {
                   </tbody>
                 </Table>
 
-            <Table hover responsive data-export>
-              <thead>
-                <tr className="bg-warning-dark text-light">
-                  <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
-                  <th className="visually-hidden">Placeholder</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="table-warning">
-                  <th>{t("results.percentPrecancersTreated")}</th>
-                  <td className="text-end text-nowrap">
-                    {asPercent(results.percentPrecancersTreated) ?? "N/A"}
-                  </td>
-                </tr>
-                <tr className="table-warning">
-                  <th>{t("results.percentPolulationTargetedOverTreated")}</th>
-                  <td className="text-end text-nowrap">
-                    {asPercent(results.percentHealthyOvertreated) ?? "N/A"}
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
+                <Table hover responsive data-export>
+                  <thead>
+                    <tr className="bg-warning-dark text-light">
+                      <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
+                      <th className="visually-hidden">Placeholder</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="table-warning">
+                      <th>{t("results.percentPrecancersTreated")}</th>
+                      <td className="text-end text-nowrap">
+                        {asPercent(results.percentPrecancersTreated) ??
+                          t("general.NA")}
+                      </td>
+                    </tr>
+                    <tr className="table-warning">
+                      <th>
+                        {t("results.percentPolulationTargetedOverTreated")}
+                      </th>
+                      <td className="text-end text-nowrap">
+                        {asPercent(results.percentHealthyOvertreated) ??
+                          t("general.NA")}
+                      </td>
+                    </tr>
+                  </tbody>
+                </Table>
 
-            <Table hover responsive data-export>
-              <thead>
-                <tr className="bg-danger-dark text-light">
-                  <th>{t("results.missedPrecancersTitle")}</th>
-                  <th className="visually-hidden">Placeholder</th>
-                  <th className="visually-hidden">Placeholder</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="table-danger">
-                  <th>{t("results.totalPrecancersMissed")}</th>
-                  <td className="text-end text-nowrap">
-                    {asPercent(results.percentPrecancersMissed) ?? "N/A"}
-                  </td>
-                  <td className="text-end text-nowrap">
-                    {results.numberPrecancersMissed !== undefined &&
-                    !isNaN(results.numberPrecancersMissed)
-                      ? Math.round(
-                          results.numberPrecancersMissed
-                        ).toLocaleString(locale)
-                      : "N/A"}
-                  </td>
-                </tr>
-                <tr className="table-danger">
-                  <th>{t("results.sourcesMissedPrecancers")}</th>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr className="table-light">
-                  <th className="ps-3">
-                    {t("results.didNotHaveScreeningTest")} {screenTest}{" "}
-                    {t("general.test")}
-                  </th>
-                  <td className="text-end text-nowrap">
-                    {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
-                    {asPercent(results.percentMissed[0]) ?? "N/A"}
-                  </td>
-                  <td className="text-end text-nowrap">
-                    {/* {results.numberMissedDueToNoScreening?.toLocaleString(
+                <Table hover responsive data-export>
+                  <thead>
+                    <tr className="bg-danger-dark text-light">
+                      <th>{t("results.missedPrecancersTitle")}</th>
+                      <th className="visually-hidden">Placeholder</th>
+                      <th className="visually-hidden">Placeholder</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="table-danger">
+                      <th>{t("results.totalPrecancersMissed")}</th>
+                      <td className="text-end text-nowrap">
+                        {asPercent(results.percentPrecancersMissed) ??
+                          t("general.NA")}
+                      </td>
+                      <td className="text-end text-nowrap">
+                        {results.numberPrecancersMissed !== undefined &&
+                        !isNaN(results.numberPrecancersMissed)
+                          ? Math.round(
+                              results.numberPrecancersMissed
+                            ).toLocaleString(locale)
+                          : t("general.NA")}
+                      </td>
+                    </tr>
+                    <tr className="table-danger">
+                      <th>{t("results.sourcesMissedPrecancers")}</th>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr className="table-light">
+                      <th className="ps-3">
+                        {t("results.didNotHaveScreeningTest")} {screenTest}{" "}
+                        {t("general.test")}
+                      </th>
+                      <td className="text-end text-nowrap">
+                        {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
+                        {asPercent(results.percentMissed[0]) ?? t("general.NA")}
+                      </td>
+                      <td className="text-end text-nowrap">
+                        {/* {results.numberMissedDueToNoScreening?.toLocaleString(
                       locale
                     ) ?? "N/A"} */}
                         {results.untestedPositives[1] !== undefined &&
@@ -1331,18 +1336,18 @@ export default function ScenarioResults() {
                   </tbody>
                 </Table>
 
-            <Table hover responsive data-export>
-              <thead>
-                <tr className="bg-success-dark text-light">
-                  <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
-                  <th className="visually-hidden">Placeholder</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="table-light">
-                  <th>{t("results.totalRequiringScreeningTest")}</th>
-                  <td className="text-end text-nowrap">
-                    {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
+                <Table hover responsive data-export>
+                  <thead>
+                    <tr className="bg-success-dark text-light">
+                      <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
+                      <th className="visually-hidden">Placeholder</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="table-light">
+                      <th>{t("results.totalRequiringScreeningTest")}</th>
+                      <td className="text-end text-nowrap">
+                        {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
                       "N/A"} */}
 
                         {totalNeededToScreen}
