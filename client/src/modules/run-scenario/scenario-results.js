@@ -458,7 +458,7 @@ export default function ScenarioResults() {
                         <tr className="bg-grey">
                           <th>{t("runScenario.epidemiological")}</th>
                           {/* Placeholder th simplifies pdf export (consistent row lengths) */}
-                          <th className="visually-hidden">Placeholder</th>
+                          <th className="th-placeholder">Placeholder</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -563,7 +563,7 @@ export default function ScenarioResults() {
                       <thead>
                         <tr className="bg-grey">
                           <th>{t("runScenario.screeningAndTreatmentTitle")}</th>
-                          <th className="visually-hidden">Placeholder</th>
+                          <th className="th-placeholder">Placeholder</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -936,7 +936,7 @@ export default function ScenarioResults() {
                   <thead>
                     <tr className="bg-warning-dark text-light">
                       <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
-                      <th className="visually-hidden">Placeholder</th>
+                      <th className="th-placeholder">Placeholder</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -964,7 +964,7 @@ export default function ScenarioResults() {
                     <tr className="bg-danger-dark text-light">
                       <th>{t("results.missedPrecancersTitle")}</th>
                       <th className="th-placeholder">Placeholder</th>
-                      <th className="visually-hidden">Placeholder</th>
+                      <th className="th-placeholder">Placeholder</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1340,7 +1340,7 @@ export default function ScenarioResults() {
                   <thead>
                     <tr className="bg-success-dark text-light">
                       <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
-                      <th className="visually-hidden">Placeholder</th>
+                      <th className="th-placeholder">Placeholder</th>
                     </tr>
                   </thead>
                   <tbody>
