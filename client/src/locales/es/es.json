@@ -103,7 +103,8 @@
     "and": "y",
     "graphs": "Graficos",
     "tables": "Tablas",
-    "El": "El "
+    "El": "El ",
+    "NA": "NA"
   },
   "runScenario": {
     "title": "Ejecutar escenario",

@@ -104,7 +104,8 @@
     "and": "and",
     "graphs": "Graphs",
     "tables": "Tables",
-    "El": ""
+    "El": "",
+    "NA": "N/A"
   },
   "runScenario": {
     "title": "Run Scenario",
