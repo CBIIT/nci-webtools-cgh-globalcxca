@@ -963,7 +963,7 @@ export default function ScenarioResults() {
                   <thead>
                     <tr className="bg-danger-dark text-light">
                       <th>{t("results.missedPrecancersTitle")}</th>
-                      <th className="visually-hidden">Placeholder</th>
+                      <th className="th-placeholder">Placeholder</th>
                       <th className="visually-hidden">Placeholder</th>
                     </tr>
                   </thead>
