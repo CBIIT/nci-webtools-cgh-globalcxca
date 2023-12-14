@@ -1,5 +1,5 @@
 import i18n from "i18next";
-
+const t = i18n.t;
 export const scenarios = [
   {
     value: "ScreenTreat",
@@ -28,21 +28,24 @@ export const scenarios = [
 ];
 
 export const screeningTests = [
-  { value: "pap", label: "runScenario.PapTest" },
-  { value: "ivaa", label: "runScenario.VIA" },
-  { value: "hpv", label: "runScenario.HPV" },
-  { value: "hpv16or18", label: "runScenario.HPV1618" },
+  { value: "pap", label: t("runScenario.PapTest") },
+  { value: "ivaa", label: t("runScenario.VIA") },
+  { value: "hpv", label: t("runScenario.HPV") },
+  { value: "hpv16or18", label: t("runScenario.HPV1618") },
 ];
 
 export const triageTests = [
-  { value: "pap", label: "runScenario.PapTest" },
-  { value: "ivaa", label: "runScenario.VIA" },
-  { value: "hpv16or18", label: "runScenario.HPV1618" },
+  { value: "pap", label: t("runScenario.PapTest") },
+  { value: "ivaa", label: t("runScenario.VIA") },
+  { value: "hpv16or18", label: t("runScenario.HPV1618") },
   {
     value: "colposcopicImpression",
     label: "runScenario.impressionOfColposcopy",
   },
-  { value: "colposcopyWithBiopsy", label: "runScenario.colposcopyWithBiopsy" },
+  {
+    value: "colposcopyWithBiopsy",
+    label: t("runScenario.colposcopyWithBiopsy"),
+  },
 ];
 
 export const diagnosticTests = [
@@ -50,7 +53,10 @@ export const diagnosticTests = [
     value: "colposcopicImpression",
     label: "runScenario.impressionOfColposcopy",
   },
-  { value: "colposcopyWithBiopsy", label: "runScenario.colposcopyWithBiopsy" },
+  {
+    value: "colposcopyWithBiopsy",
+    label: t("runScenario.colposcopyWithBiopsy"),
+  },
 ];
 
 export const tests = {
