@@ -402,6 +402,7 @@ export default function RunScenarios() {
                                       textAlign: "right",
                                     }}
                                     className="mr-auto"
+                                    aria-label="Expand"
                                   >
                                     {divVisibilities[idx] ? (
                                       <i className="fas fa-chevron-up"></i>
