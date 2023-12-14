@@ -697,9 +697,9 @@ export default function ScenarioResults() {
                     xs={12}
                     className="d-flex justify-content-end"
                   >
-                    <span className="howTo" onClick={handleModalShow}>
+                    {/* <span className="howTo" onClick={handleModalShow}>
                       How to / Help
-                    </span>
+                    </span> */}
                   </Col>
                 </Row>
               </Card.Header>
