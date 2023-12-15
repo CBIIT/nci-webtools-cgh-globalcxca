@@ -34,6 +34,13 @@ export const screeningTests = [
   { value: "hpv16or18", label: "runScenario.HPV1618" },
 ];
 
+export const screeningTests_t = [
+  { value: "pap", label: t("runScenario.PapTest") },
+  { value: "ivaa", label: t("runScenario.VIA") },
+  { value: "hpv", label: t("runScenario.HPV") },
+  { value: "hpv16or18", label: t("runScenario.HPV1618") },
+];
+
 export const triageTests = [
   { value: "pap", label: "runScenario.PapTest" },
   { value: "ivaa", label: "runScenario.VIA" },
@@ -47,11 +54,34 @@ export const triageTests = [
     label: "runScenario.colposcopyWithBiopsy",
   },
 ];
+export const triageTests_t = [
+  { value: "pap", label: t("runScenario.PapTest") },
+  { value: "ivaa", label: t("runScenario.VIA") },
+  { value: "hpv16or18", label: t("runScenario.HPV1618") },
+  {
+    value: "colposcopicImpression",
+    label: t("runScenario.impressionOfColposcopy"),
+  },
+  {
+    value: "colposcopyWithBiopsy",
+    label: t("runScenario.colposcopyWithBiopsy"),
+  },
+];
 
 export const diagnosticTests = [
   {
     value: "colposcopicImpression",
     label: "runScenario.impressionOfColposcopy",
+  },
+  {
+    value: "colposcopyWithBiopsy",
+    label: "runScenario.colposcopyWithBiopsy",
+  },
+];
+export const diagnosticTests_t = [
+  {
+    value: "colposcopicImpression",
+    label: t("runScenario.impressionOfColposcopy"),
   },
   {
     value: "colposcopyWithBiopsy",

@@ -14,9 +14,9 @@ import { scenariosState } from "./state";
 import { getTimestamp, readFile } from "../../services/file-utils";
 import { asLabel, asPercent } from "../../services/formatters";
 import {
-  screeningTests,
-  triageTests,
-  diagnosticTests,
+  screeningTests_t,
+  triageTests_t,
+  diagnosticTests_t,
   runModel,
 } from "../../services/models";
 import { exportPdf } from "../../services/pdf-utils";
@@ -931,7 +931,7 @@ export default function CompareScenarios() {
                                 <td className="text-end" key={index}>
                                   {asLabel(
                                     params.screeningTest,
-                                    screeningTests
+                                    screeningTests_t
                                   ) ?? t("general.NA")}
                                 </td>
                               ))}
@@ -975,7 +975,7 @@ export default function CompareScenarios() {
                               <th>Triage or diagnostic test chosen</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asLabel(params.triageTest, triageTests) ??
+                                  {asLabel(params.triageTest, triageTests_t) ??
                                     t("general.NA")}
                                 </td>
                               ))}
@@ -1020,7 +1020,7 @@ export default function CompareScenarios() {
                                 <td className="text-end" key={index}>
                                   {asLabel(
                                     params.diagnosticTest,
-                                    diagnosticTests
+                                    diagnosticTests_t
                                   ) ?? t("general.NA")}
                                 </td>
                               ))}
