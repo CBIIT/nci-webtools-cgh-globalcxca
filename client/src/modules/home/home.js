@@ -91,7 +91,7 @@ export default function Home() {
                   <b>{t("home.engage")}.</b> {t("home.engageDes")}
                 </Col>
               </Row>
-              <div class="py-2">
+              <div className="py-2">
                 {t("home.desLink0")}
                 <Link to="/about" className="text-primary">
                   {" "}
