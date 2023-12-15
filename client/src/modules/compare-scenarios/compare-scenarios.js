@@ -75,10 +75,7 @@ export default function CompareScenarios() {
     } else {
       diagnosisTest[index] = t("general.NA");
     }
-
-    console.log(params.diagnosticTest);
   }
-  console.log(diagnosisTest);
 
   async function addScenario(event) {
     const maxFiles = limit - scenarios.length;
@@ -90,7 +87,7 @@ export default function CompareScenarios() {
           let scenario = JSON.parse(await readFile(file));
           scenario.name = file.name.replace(/.scenario$/i, "");
           scenario.results = runModel(scenario);
-          console.log(scenario);
+          // console.log(scenario);
           setScenarios((scenarios) => [...scenarios, scenario]);
         }
       } catch (error) {
