@@ -223,7 +223,7 @@ export default function CompareScenarios() {
                       </Nav.Item>
                       <Nav.Item>
                         <Nav.Link eventKey="scenarioAssumptions">
-                          Scenario Assumptions
+                          {t("general.scenarioAssumption")}
                         </Nav.Link>
                       </Nav.Item>
                     </Nav>
