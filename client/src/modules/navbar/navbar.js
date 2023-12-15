@@ -34,7 +34,7 @@ export default function AppNavbar({ routes }) {
               .map((route) => (
                 <NavLink
                   className="nav-link text-uppercase text-primary py-0"
-                  activeClassName="active text-primary" // Set active class and text-primary
+                  //activeClassName="active text-primary" // Set active class and text-primary
                   key={route.path}
                   to={route.path}
                   end={route.end}
