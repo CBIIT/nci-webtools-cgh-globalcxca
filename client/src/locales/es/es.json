@@ -86,7 +86,7 @@
     "exportSVG": "Exportar SVG",
     "exportPNG": "Exportar PNG",
     "results": "Resultados",
-    "scenarioAssumption": "Parámetros supuestos de los escenarios",
+    "scenarioAssumption": "Supuestos del escenario",
     "search": "Buscar",
     "noDataAvailable": "NO HAY DATOS DISPONIBLES",
     "noData": "Sin datos",
@@ -151,7 +151,8 @@
     "HPV1618": "VPH16/18",
     "impressionOfColposcopy": "Impresión de colposcopia",
     "colposcopyWithBiopsy": "Colposcopia con biopsia",
-    "cervicalTestChosen": "Prueba de detección cervical elegida"
+    "cervicalTestChosen": "Prueba de detección cervical elegida",
+    "screeningCoverage": "Cobertura de tamizaje"
   },
   "results": {
     "screenDiagnosisTreatment": "Tamizaje → Diagnóstico → Tratamiento",
@@ -209,7 +210,10 @@
   "compareScenarios": {
     "uploadScenariosInfo": "Cargue hasta {{limit}} escenarios para comparar. Los archivos deben ser del formato de archivo \".scenerario\". Haga clic en el título del escenario para cambiar su nombre.",
     "addScenario": "Agregar escenario",
-    "asssumptions": "Supuestos"
+    "asssumptions": "Supuestos",
+    "triageorDiagnosticTestAttendance": "Asistencia a prueba de triaje o diagnóstico",
+    "diagnosticTestAttendance": "Asistencia a prueba diagnóstica",
+    "treatmentAttendance": "Asistencia al tratamiento"
   },
   "about": {
     "title": "Descripción y fuentes para parámetros de simulación",

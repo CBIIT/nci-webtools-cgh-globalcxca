@@ -13,12 +13,7 @@ import Tab from "react-bootstrap/Tab";
 import { scenariosState } from "./state";
 import { getTimestamp, readFile } from "../../services/file-utils";
 import { asLabel, asPercent } from "../../services/formatters";
-import {
-  screeningTests_t,
-  triageTests_t,
-  diagnosticTests_t,
-  runModel,
-} from "../../services/models";
+import { runModel } from "../../services/models";
 import { exportPdf } from "../../services/pdf-utils";
 import { localeState } from "../../app.state";
 import { useTranslation, Trans } from "react-i18next";
@@ -30,6 +25,60 @@ export default function CompareScenarios() {
   const locale = useRecoilValue(localeState);
   const limit = 10;
   //console.log("scenarios", scenarios);
+
+  let screenTest = [];
+  let triageTest = [];
+  let diagnosisTest = [];
+
+  for (let index = 0; index < scenarios.length; index++) {
+    const params = scenarios[index];
+    if (params.screeningTest === "pap") {
+      screenTest[index] = t("runScenario.PapTest");
+    } else if (params.screeningTest === "ivaa") {
+      screenTest[index] = t("runScenario.VIA");
+    } else if (params.screeningTest === "hpv") {
+      screenTest[index] = t("runScenario.HPV");
+    } else if (params.screeningTest === "hpv16or18") {
+      screenTest[index] = t("runScenario.HPV1618");
+    } else {
+      screenTest[index] = t("general.NA");
+    }
+
+    if (params.triageTest === "pap") {
+      triageTest[index] = t("runScenario.PapTest");
+    } else if (params.triageTest === "ivaa") {
+      triageTest[index] = t("runScenario.VIA");
+    } else if (params.triageTest === "hpv") {
+      triageTest[index] = t("runScenario.HPV");
+    } else if (params.triageTest === "hpv16or18") {
+      triageTest[index] = t("runScenario.HPV1618");
+    } else if (params.triageTest === "colposcopicImpression") {
+      triageTest[index] = t("runScenario.impressionOfColposcopy");
+    } else if (params.triageTest === "colposcopyWithBiopsy") {
+      triageTest[index] = t("runScenario.colposcopyWithBiopsy");
+    } else {
+      triageTest[index] = t("general.NA");
+    }
+
+    if (params.diagnosticTest === "pap") {
+      diagnosisTest[index] = t("runScenario.PapTest");
+    } else if (params.diagnosticTest === "ivaa") {
+      diagnosisTest[index] = t("runScenario.VIA");
+    } else if (params.diagnosticTest === "hpv") {
+      diagnosisTest[index] = t("runScenario.HPV");
+    } else if (params.diagnosticTest === "hpv16or18") {
+      diagnosisTest[index] = t("runScenario.HPV1618");
+    } else if (params.diagnosticTest === "colposcopicImpression") {
+      diagnosisTest[index] = t("runScenario.impressionOfColposcopy");
+    } else if (params.diagnosticTest === "colposcopyWithBiopsy") {
+      diagnosisTest[index] = t("runScenario.colposcopyWithBiopsy");
+    } else {
+      diagnosisTest[index] = t("general.NA");
+    }
+
+    console.log(params.diagnosticTest);
+  }
+  console.log(diagnosisTest);
 
   async function addScenario(event) {
     const maxFiles = limit - scenarios.length;
@@ -173,7 +222,7 @@ export default function CompareScenarios() {
                       </Nav.Item>
                       <Nav.Item>
                         <Nav.Link eventKey="scenarioAssumptions">
-                          Scenario Assumptions
+                          {t("general.scenarioAssumption")}
                         </Nav.Link>
                       </Nav.Item>
                     </Nav>
@@ -929,10 +978,11 @@ export default function CompareScenarios() {
                               <th>{t("runScenario.cervicalTestChosen")}</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asLabel(
+                                  {/* {asLabel(
                                     params.screeningTest,
-                                    screeningTests_t
-                                  ) ?? t("general.NA")}
+                                    screeningTests
+                                  ) ?? t("general.NA")} */}
+                                  {screenTest[index]}
                                 </td>
                               ))}
                             </tr>
@@ -950,7 +1000,7 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                Screening test sensitivity for CIN2/3
+                                {t("runScenario.screeningTestSenvitivity")}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -961,7 +1011,7 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                Screening test specificity for CIN2/3
+                                {t("runScenario.screeningTestSpecificity")}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -972,17 +1022,22 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr className="table-info">
-                              <th>Triage or diagnostic test chosen</th>
+                              <th>
+                                {t("runScenario.triageOrDiagnosticTestChosen")}
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asLabel(params.triageTest, triageTests_t) ??
-                                    t("general.NA")}
+                                  {/* {asLabel(params.triageTest, triageTests_t) ??
+                                    t("general.NA")} */}
+                                  {triageTest[index]}
                                 </td>
                               ))}
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                Triage or diagnostic test attendance
+                                {t(
+                                  "compareScenarios.triageorDiagnosticTestAttendance"
+                                )}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -993,7 +1048,9 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                Triage or diagnostic test sensitivity for CIN2/3
+                                {t(
+                                  "runScenario.triageOrDiagnosticTestSensitivity"
+                                )}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1004,7 +1061,9 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                Triage or diagnostic test specificity for CIN2/3
+                                {t(
+                                  "runScenario.triageOrDiagnosticTestSpecificity"
+                                )}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1015,19 +1074,20 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr className="table-info">
-                              <th>Diagnostic test chosen</th>
+                              <th>{t("runScenario.diagnosticTestChosen")}</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asLabel(
+                                  {/* {asLabel(
                                     params.diagnosticTest,
                                     diagnosticTests_t
-                                  ) ?? t("general.NA")}
+                                  ) ?? t("general.NA")} */}
+                                  {diagnosisTest[index]}
                                 </td>
                               ))}
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                Diagnostic test attendance
+                                {t("compareScenarios.diagnosticTestAttendance")}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1038,7 +1098,7 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                Diagnostic test sensitivity for CIN2/3
+                                {t("runScenario.diagnosticTestSensitivity")}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1050,7 +1110,7 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                Diagnostic test specificity for CIN2/3
+                                {t("runScenario.diagnosticTestSpecificity")}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1062,7 +1122,9 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr className="table-info">
-                              <th>Treatment attendance</th>
+                              <th>
+                                {t("compareScenarios.treatmentAttendance")}
+                              </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
                                   {asPercent(params.percentTreated) ??

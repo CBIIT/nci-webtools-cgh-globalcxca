@@ -208,7 +208,10 @@
   "compareScenarios": {
     "uploadScenariosInfo": "Upload up to {{limit}} scenarios for comparison. Files must be of the “.scenario” file format. Click the title of the scenario to rename it.",
     "addScenario": "Add Scenario",
-    "asssumptions": "Assumptions"
+    "asssumptions": "Assumptions",
+    "triageorDiagnosticTestAttendance": "Triage or diagnostic test attendance",
+    "diagnosticTestAttendance": "Diagnostic test attendance",
+    "treatmentAttendance": "Treatment attendance"
   },
   "about": {
     "title": "Description and sources for scenario parameters",

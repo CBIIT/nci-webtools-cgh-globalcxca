@@ -447,7 +447,7 @@ export default function ScenarioResults() {
                   {asLabel(params.scenario, scenarios)}
                 </Card.Title>
                 <Card.Text className="small text-muted">
-                  Scenario Assumptions
+                  {t("general.scenarioAssumption")}
                 </Card.Text>
               </Card.Header>
               <Card.Body>
