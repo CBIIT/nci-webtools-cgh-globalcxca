@@ -403,7 +403,7 @@ export default function ScenarioResults() {
       {/* <Container style={{ overflow: "auto", maxHeight: "100vh" }}> */}
       <Container>
         <div className="d-flex justify-content-end mb-2">
-          <Button onClick={saveScenario} className="m-1" variant="primary">
+          <Button onClick={saveScenario} variant="primary">
             {t("results.saveScenario")}
           </Button>
         </div>
