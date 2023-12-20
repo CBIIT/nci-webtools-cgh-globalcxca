@@ -45,6 +45,18 @@ body {
   color: #136071 !important;
 }
 
+.nav-tabs .nav-item .nav-link.active {
+  border: 0px;
+}
+/* Create a shorter underline using ::after */
+.nav-tabs .nav-item .nav-link.active::after {
+  content: "";
+  display: block;
+  border-bottom: 3px solid #136071; /* Adjust the color as needed */
+  width: 95%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the underline */
+}
+
 // .nav-tabs .nav-item .nav-link {
 //   color: #136071 !important;
 // }
@@ -52,6 +64,7 @@ body {
 .nav-link {
   color: #136071 !important;
 }
+
 .btn-outline-primary {
   color: #136071 !important;
 }

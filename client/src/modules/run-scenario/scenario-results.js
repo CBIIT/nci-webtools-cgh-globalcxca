@@ -402,7 +402,7 @@ export default function ScenarioResults() {
     <div>
       {/* <Container style={{ overflow: "auto", maxHeight: "100vh" }}> */}
       <Container>
-        <Card className="mb-1">
+        <Card className="mb-2">
           <Card.Header className="d-flex justify-content-between align-items-center">
             <Card.Title data-export>
               {t("results.resultsInterpretation")}
