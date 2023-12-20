@@ -402,382 +402,414 @@ export default function ScenarioResults() {
     <div>
       {/* <Container style={{ overflow: "auto", maxHeight: "100vh" }}> */}
       <Container>
-        <Tabs
-          activeKey={activeTabResult}
-          onSelect={handleTabSelect}
-          className="mb-3"
-        >
-          <Tab eventKey="tab1" title={t("general.graphs")}>
-            <Card className="mb-2">
-              <Card.Header>
-                <Card.Title data-export>
-                  {t("results.resultsInterpretation")}
-                </Card.Title>
-              </Card.Header>
+        <div className="d-flex justify-content-end mb-2">
+          <Button onClick={saveScenario} className="m-1" variant="primary">
+            {t("results.saveScenario")}
+          </Button>
+        </div>
+        <Card className="mb-2">
+          <Card.Header>
+            <Card.Title data-export>
+              {t("results.resultsInterpretation")}
+            </Card.Title>
+          </Card.Header>
 
-              <Card.Body className="pt-2 pb-2">
-                <div>
-                  {t("results.Approximately")}{" "}
-                  <b>
-                    {totalNeededToScreen} {screenTest}
-                  </b>{" "}
-                  {t("results.screeningTests")},{" "}
-                  <b>
-                    {totalNeededToTriage} {triageTest}
-                  </b>{" "}
-                  {t("results.triageTests")}, {t("general.and")}
-                  <b>
-                    {" "}
-                    {totalNeededToDiagnosticTriage} {diagnosisTest}
-                  </b>{" "}
-                  {t("results.resultsDes0")} <b>{totalNeededToTreat}</b>{" "}
-                  {t("results.resultsDes1")} {t("general.El")}
-                  <b>
-                    {" "}
-                    {asPercent(results.percentHealthyOvertreated) ??
-                      t("general.NA")}
-                  </b>{" "}
-                  {t("results.resultsDes2")}
-                </div>
-              </Card.Body>
-            </Card>
-            <Card className="mb-3 d-none">
-              <Card.Header>
-                <Card.Title data-export>
-                  {asLabel(params.scenario, scenarios)}
-                </Card.Title>
-                <Card.Text className="small text-muted">
-                  {t("general.scenarioAssumption")}
-                </Card.Text>
-              </Card.Header>
-              <Card.Body>
-                <Row>
-                  <Col lg={6}>
-                    <Table hover responsive data-export>
-                      <thead>
-                        <tr className="bg-grey">
-                          <th>{t("runScenario.epidemiological")}</th>
-                          {/* Placeholder th simplifies pdf export (consistent row lengths) */}
-                          <th className="th-placeholder">Placeholder</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th>{t("runScenario.numPeople")}</th>
-                          <td className="text-end text-nowrap">
-                            {params.populationSize?.toLocaleString(locale) ??
-                              t("general.NA")}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{t("runScenario.prevelance")}</th>
-                          <td className="text-end text-nowrap">
-                            {asPercent(params.cinPrevalence, 0) ??
-                              t("general.NA")}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </Table>
+          <Card.Body className="pt-2 pb-2">
+            <div>
+              {t("results.Approximately")}{" "}
+              <b>
+                {totalNeededToScreen} {screenTest}
+              </b>{" "}
+              {t("results.screeningTests")},{" "}
+              <b>
+                {totalNeededToTriage} {triageTest}
+              </b>{" "}
+              {t("results.triageTests")}, {t("general.and")}
+              <b>
+                {" "}
+                {totalNeededToDiagnosticTriage} {diagnosisTest}
+              </b>{" "}
+              {t("results.resultsDes0")} <b>{totalNeededToTreat}</b>{" "}
+              {t("results.resultsDes1")} {t("general.El")}
+              <b>
+                {" "}
+                {asPercent(results.percentHealthyOvertreated) ??
+                  t("general.NA")}
+              </b>{" "}
+              {t("results.resultsDes2")}
+            </div>
+          </Card.Body>
+        </Card>
 
-                    <Table hover responsive data-export>
-                      <thead>
-                        <tr className="bg-grey">
-                          <th> {t("runScenario.participationTitle")}</th>
-                          <th className="th-placeholder">Placeholder</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th> {t("runScenario.intervalofCervicalInYears")}</th>
-                          <td className="text-end text-nowrap">
-                            {params.screeningInterval?.toLocaleString(locale) ??
-                              t("general.NA")}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{t("runScenario.percentScreeningCoverage")}</th>
-                          <td className="text-end text-nowrap">
-                            {asPercent(params.percentScreened, 0) ??
-                              t("general.NA")}
-                          </td>
-                        </tr>
-                        {["ScreenTriageDiagnosticTestTreat"].includes(
-                          params.scenario
-                        ) && (
+        <div>
+          <Tabs
+            activeKey={activeTabResult}
+            onSelect={handleTabSelect}
+            className="mb-3"
+          >
+            <Tab eventKey="tab1" title={t("general.graphs")}>
+              <Card className="mb-3 d-none">
+                <Card.Header>
+                  <Card.Title data-export>
+                    {asLabel(params.scenario, scenarios)}
+                  </Card.Title>
+                  <Card.Text className="small text-muted">
+                    {t("general.scenarioAssumption")}
+                  </Card.Text>
+                </Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col lg={6}>
+                      <Table hover responsive data-export>
+                        <thead>
+                          <tr className="bg-grey">
+                            <th>{t("runScenario.epidemiological")}</th>
+                            {/* Placeholder th simplifies pdf export (consistent row lengths) */}
+                            <th className="th-placeholder">Placeholder</th>
+                          </tr>
+                        </thead>
+                        <tbody>
                           <tr>
-                            <th>
-                              {t(
-                                "runScenario.percentScreeningPositiveWithTriage"
-                              )}
-                            </th>
+                            <th>{t("runScenario.numPeople")}</th>
                             <td className="text-end text-nowrap">
-                              {asPercent(params.percentTriaged, 0) ??
+                              {params.populationSize?.toLocaleString(locale) ??
                                 t("general.NA")}
                             </td>
                           </tr>
-                        )}
-                        {[
-                          "ScreenDiagnosticTestTreat",
-                          "ScreenTriageDiagnosticTestTreat",
-                        ].includes(params.scenario) && (
+                          <tr>
+                            <th>{t("runScenario.prevelance")}</th>
+                            <td className="text-end text-nowrap">
+                              {asPercent(params.cinPrevalence, 0) ??
+                                t("general.NA")}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </Table>
+
+                      <Table hover responsive data-export>
+                        <thead>
+                          <tr className="bg-grey">
+                            <th> {t("runScenario.participationTitle")}</th>
+                            <th className="th-placeholder">Placeholder</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>
+                              {" "}
+                              {t("runScenario.intervalofCervicalInYears")}
+                            </th>
+                            <td className="text-end text-nowrap">
+                              {params.screeningInterval?.toLocaleString(
+                                locale
+                              ) ?? t("general.NA")}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{t("runScenario.percentScreeningCoverage")}</th>
+                            <td className="text-end text-nowrap">
+                              {asPercent(params.percentScreened, 0) ??
+                                t("general.NA")}
+                            </td>
+                          </tr>
+                          {["ScreenTriageDiagnosticTestTreat"].includes(
+                            params.scenario
+                          ) && (
+                            <tr>
+                              <th>
+                                {t(
+                                  "runScenario.percentScreeningPositiveWithTriage"
+                                )}
+                              </th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(params.percentTriaged, 0) ??
+                                  t("general.NA")}
+                              </td>
+                            </tr>
+                          )}
+                          {[
+                            "ScreenDiagnosticTestTreat",
+                            "ScreenTriageDiagnosticTestTreat",
+                          ].includes(params.scenario) && (
+                            <tr>
+                              <th>
+                                {
+                                  {
+                                    ScreenDiagnosticTestTreat:
+                                      "Percent of screen positives with triage/diagnostic test",
+                                    ScreenTriageDiagnosticTestTreat:
+                                      "Percent of triage positives with diagnostic test",
+                                  }[params.scenario]
+                                }
+                              </th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(
+                                  params.percentDiagnosticTriaged,
+                                  0
+                                ) ?? t("general.NA")}
+                              </td>
+                            </tr>
+                          )}
                           <tr>
                             <th>
                               {
                                 {
+                                  ScreenTreat:
+                                    "Percent of screen positives treated",
                                   ScreenDiagnosticTestTreat:
-                                    "Percent of screen positives with triage/diagnostic test",
+                                    "Percent of triage/diagnostic test positives treated",
                                   ScreenTriageDiagnosticTestTreat:
-                                    "Percent of triage positives with diagnostic test",
+                                    "Percent of diagnostic test positives treated",
                                 }[params.scenario]
                               }
                             </th>
                             <td className="text-end text-nowrap">
-                              {asPercent(params.percentDiagnosticTriaged, 0) ??
+                              {asPercent(params.percentTreated, 0) ??
                                 t("general.NA")}
                             </td>
                           </tr>
-                        )}
-                        <tr>
-                          <th>
-                            {
-                              {
-                                ScreenTreat:
-                                  "Percent of screen positives treated",
-                                ScreenDiagnosticTestTreat:
-                                  "Percent of triage/diagnostic test positives treated",
-                                ScreenTriageDiagnosticTestTreat:
-                                  "Percent of diagnostic test positives treated",
-                              }[params.scenario]
-                            }
-                          </th>
-                          <td className="text-end text-nowrap">
-                            {asPercent(params.percentTreated, 0) ??
-                              t("general.NA")}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-                  <Col lg={6}>
-                    <Table hover responsive data-export>
-                      <thead>
-                        <tr className="bg-grey">
-                          <th>{t("runScenario.screeningAndTreatmentTitle")}</th>
-                          <th className="th-placeholder">Placeholder</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {params.screeningTest && (
-                          <>
-                            <tr className="table-light">
-                              <th>
-                                {t("runScenario.cervicalScreeningTestChosen")}
-                              </th>
-                              <td className="text-end text-nowrap">
-                                {asLabel(
-                                  params.screeningTest,
-                                  screeningTests
-                                ) ?? t("general.NA")}
-                              </td>
-                            </tr>
-                            <tr>
-                              <th className="ps-3">
-                                {t("runScenario.screeningTestSenvitivity")}
-                              </th>
-                              <td className="text-end text-nowrap">
-                                {asPercent(
-                                  params.screeningTestSensitivity,
-                                  0
-                                ) ?? t("general.NA")}
-                              </td>
-                            </tr>
-                            <tr>
-                              <th className="ps-3">
-                                {t("runScenario.screeningTestSpecificity")}
-                              </th>
-                              <td className="text-end text-nowrap">
-                                {asPercent(
-                                  params.screeningTestSpecificity,
-                                  0
-                                ) ?? t("general.NA")}
-                              </td>
-                            </tr>
-                          </>
-                        )}
+                        </tbody>
+                      </Table>
+                    </Col>
+                    <Col lg={6}>
+                      <Table hover responsive data-export>
+                        <thead>
+                          <tr className="bg-grey">
+                            <th>
+                              {t("runScenario.screeningAndTreatmentTitle")}
+                            </th>
+                            <th className="th-placeholder">Placeholder</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {params.screeningTest && (
+                            <>
+                              <tr className="table-light">
+                                <th>
+                                  {t("runScenario.cervicalScreeningTestChosen")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asLabel(
+                                    params.screeningTest,
+                                    screeningTests
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t("runScenario.screeningTestSenvitivity")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(
+                                    params.screeningTestSensitivity,
+                                    0
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t("runScenario.screeningTestSpecificity")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(
+                                    params.screeningTestSpecificity,
+                                    0
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                            </>
+                          )}
 
-                        {params.triageTest && (
-                          <>
-                            <tr className="table-light">
-                              <th>
-                                {t("runScenario.triageOrDiagnosticTestChosen")}
-                              </th>
-                              <td className="text-end text-nowrap">
-                                {asLabel(params.triageTest, triageTests) ??
-                                  t("general.NA")}
-                              </td>
-                            </tr>
-                            <tr>
-                              <th className="ps-3">
-                                {t(
-                                  "runScenario.triageOrDiagnosticTestSensitivity"
-                                )}
-                              </th>
-                              <td className="text-end text-nowrap">
-                                {asPercent(params.triageTestSensitivity, 0) ??
-                                  t("general.NA")}
-                              </td>
-                            </tr>
-                            <tr>
-                              <th className="ps-3">
-                                {t(
-                                  "runScenario.triageOrDiagnosticTestSpecificity"
-                                )}
-                              </th>
-                              <td className="text-end text-nowrap">
-                                {asPercent(params.triageTestSpecificity, 0) ??
-                                  t("general.NA")}
-                              </td>
-                            </tr>
-                          </>
-                        )}
+                          {params.triageTest && (
+                            <>
+                              <tr className="table-light">
+                                <th>
+                                  {t(
+                                    "runScenario.triageOrDiagnosticTestChosen"
+                                  )}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asLabel(params.triageTest, triageTests) ??
+                                    t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t(
+                                    "runScenario.triageOrDiagnosticTestSensitivity"
+                                  )}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(params.triageTestSensitivity, 0) ??
+                                    t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t(
+                                    "runScenario.triageOrDiagnosticTestSpecificity"
+                                  )}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(params.triageTestSpecificity, 0) ??
+                                    t("general.NA")}
+                                </td>
+                              </tr>
+                            </>
+                          )}
 
-                        {params.diagnosticTest && (
-                          <>
-                            <tr className="table-light">
-                              <th> {t("runScenario.diagnosticTestChosen")}</th>
-                              <td className="text-end text-nowrap">
-                                {asLabel(
-                                  params.diagnosticTest,
-                                  diagnosticTests
-                                ) ?? t("general.NA")}
-                              </td>
-                            </tr>
-                            <tr>
-                              <th className="ps-3">
-                                {t("runScenario.diagnosticTestSensitivity")}
-                              </th>
-                              <td className="text-end text-nowrap">
-                                {asPercent(
-                                  params.diagnosticTestSensitivity,
-                                  0
-                                ) ?? t("general.NA")}
-                              </td>
-                            </tr>
-                            <tr>
-                              <th className="ps-3">
-                                {t("runScenario.diagnosticTestSpecificity")}
-                              </th>
-                              <td className="text-end text-nowrap">
-                                {asPercent(
-                                  params.diagnosticTestSpecificity,
-                                  0
-                                ) ?? t("general.NA")}
-                              </td>
-                            </tr>
-                          </>
-                        )}
-                      </tbody>
-                    </Table>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
+                          {params.diagnosticTest && (
+                            <>
+                              <tr className="table-light">
+                                <th>
+                                  {" "}
+                                  {t("runScenario.diagnosticTestChosen")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asLabel(
+                                    params.diagnosticTest,
+                                    diagnosticTests
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t("runScenario.diagnosticTestSensitivity")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(
+                                    params.diagnosticTestSensitivity,
+                                    0
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t("runScenario.diagnosticTestSpecificity")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(
+                                    params.diagnosticTestSpecificity,
+                                    0
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                            </>
+                          )}
+                        </tbody>
+                      </Table>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
 
-            <Card className="mb-2">
-              <Card.Header>
-                <Row>
-                  <Col xl={6} lg={12} md={12} sm={12} xs={12}>
-                    <Card.Title>{chartTiles}</Card.Title>
-                  </Col>
-                  <Col
-                    xl={6}
-                    lg={12}
-                    md={12}
-                    sm={12}
-                    xs={12}
-                    className="d-flex justify-content-end"
-                  >
-                    {/* <span className="howTo" onClick={handleModalShow}>
+              <Card className="mb-2">
+                <Card.Header>
+                  <Row>
+                    <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                      <Card.Title>{chartTiles}</Card.Title>
+                    </Col>
+                    <Col
+                      xl={6}
+                      lg={12}
+                      md={12}
+                      sm={12}
+                      xs={12}
+                      className="d-flex justify-content-end"
+                    >
+                      {/* <span className="howTo" onClick={handleModalShow}>
                       How to / Help
                     </span> */}
-                  </Col>
-                </Row>
-              </Card.Header>
-              <Card.Body className="pt-1">
-                <Container fluid>
-                  <Row>
-                    <div>{t("results.resultGraphDefinition")}</div>
-                  </Row>
-
-                  <Row className="my-2">
-                    <Col xl={6} lg={12} md={12} sm={12} xs={12}>
-                      <h2 className="text-center h5 py-2">{barChartTitle1}</h2>
-                      <BarChart
-                        id={ScreentestBarChartId}
-                        data={[
-                          {
-                            label: t("general.screeningTestLabel"),
-                            value:
-                              parseInt(totalNeededToScreen.replace(/,/g, "")) ||
-                              0,
-                          },
-                        ]}
-                        color="#95f4a2" // Set the color to blue
-                        //layout={{ width: 450, height: 350 * 1.5 }} // Adjust the width and height as needed
-                      />
-                    </Col>
-
-                    <Col xl={6} lg={12} md={12} sm={12} xs={12}>
-                      <h2 className="text-center h5 py-2">{barChartTitle2}</h2>
-                      <BarChart
-                        id={barChartId}
-                        data={[
-                          {
-                            label: t("general.triageTestLabel"),
-                            value:
-                              parseInt(totalNeededToTriage.replace(/,/g, "")) ||
-                              0,
-                          },
-                          {
-                            label: t("general.diagnosticTestLabel"),
-                            value:
-                              parseInt(
-                                totalNeededToDiagnosticTriage.replace(/,/g, "")
-                              ) || 0,
-                          },
-                          {
-                            label: t("general.treatment"),
-                            value:
-                              parseInt(totalNeededToTreat.replace(/,/g, "")) ||
-                              0,
-                          },
-                        ]}
-                        color="#0DAB61"
-                        //layout={{ width: 450, height: 350 - 50 }} // Adjust the width and height as needed
-                      />
                     </Col>
                   </Row>
+                </Card.Header>
+                <Card.Body className="pt-1">
+                  <Container fluid>
+                    <Row>
+                      <div>{t("results.resultGraphDefinition")}</div>
+                    </Row>
 
-                  <Row className="my-2">
-                    <Col xl={6} lg={12} md={12} sm={12} xs={12}>
-                      <h2 className="text-center h5 py-2">{pieChartTitle1}</h2>
+                    <Row className="my-2">
+                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                        <h2 className="text-center h5 py-2">
+                          {barChartTitle1}
+                        </h2>
+                        <BarChart
+                          id={ScreentestBarChartId}
+                          data={[
+                            {
+                              label: t("general.screeningTestLabel"),
+                              value:
+                                parseInt(
+                                  totalNeededToScreen.replace(/,/g, "")
+                                ) || 0,
+                            },
+                          ]}
+                          color="#95f4a2" // Set the color to blue
+                          //layout={{ width: 450, height: 350 * 1.5 }} // Adjust the width and height as needed
+                        />
+                      </Col>
 
-                      <PieChart
-                        id={pieChartId0}
-                        data={[
-                          {
-                            label: t("results.pPrecencersMissed"),
-                            value: +results.numberPrecancersMissed,
-                          },
-                          {
-                            label: t("results.pPrecencersTreated"),
-                            value: +results.testedPositives[treatedIndex + 1],
-                          },
-                        ]}
-                        colors={["#D13C4B", "#FD7E14"]} // Pass the custom color palette to the PieChart component
-                      />
+                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                        <h2 className="text-center h5 py-2">
+                          {barChartTitle2}
+                        </h2>
+                        <BarChart
+                          id={barChartId}
+                          data={[
+                            {
+                              label: t("general.triageTestLabel"),
+                              value:
+                                parseInt(
+                                  totalNeededToTriage.replace(/,/g, "")
+                                ) || 0,
+                            },
+                            {
+                              label: t("general.diagnosticTestLabel"),
+                              value:
+                                parseInt(
+                                  totalNeededToDiagnosticTriage.replace(
+                                    /,/g,
+                                    ""
+                                  )
+                                ) || 0,
+                            },
+                            {
+                              label: t("general.treatment"),
+                              value:
+                                parseInt(
+                                  totalNeededToTreat.replace(/,/g, "")
+                                ) || 0,
+                            },
+                          ]}
+                          color="#0DAB61"
+                          //layout={{ width: 450, height: 350 - 50 }} // Adjust the width and height as needed
+                        />
+                      </Col>
+                    </Row>
 
-                      {/* <Col md={12} className="d-flex justify-content-center">
+                    <Row className="my-2">
+                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                        <h2 className="text-center h5 py-2">
+                          {pieChartTitle1}
+                        </h2>
+
+                        <PieChart
+                          id={pieChartId0}
+                          data={[
+                            {
+                              label: t("results.pPrecencersMissed"),
+                              value: +results.numberPrecancersMissed,
+                            },
+                            {
+                              label: t("results.pPrecencersTreated"),
+                              value: +results.testedPositives[treatedIndex + 1],
+                            },
+                          ]}
+                          colors={["#D13C4B", "#FD7E14"]} // Pass the custom color palette to the PieChart component
+                        />
+
+                        {/* <Col md={12} className="d-flex justify-content-center">
                   <Button
                     variant="link"
                     onClick={() => handleExportSvg(pieChartId0)}
@@ -788,406 +820,390 @@ export default function ScenarioResults() {
                     {t("general.exportPNG")}
                   </Button>
                 </Col> */}
-                    </Col>
-                    <Col xl={6} lg={12} md={12} sm={12} xs={12}>
-                      <h2 className="text-center h5 py-2">{pieChartTitle2}</h2>
+                      </Col>
+                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                        <h2 className="text-center h5 py-2">
+                          {pieChartTitle2}
+                        </h2>
 
-                      <PieChart
-                        id={pieChartId1}
-                        data={[
-                          {
-                            label: t("results.populationNotOverTreated"),
-                            value: +results.testedFalsePositives[0],
-                          },
-                          {
-                            label: t("results.pPrecencersOverTreated"),
-                            value: +results.healthyOvertreated,
-                          },
-                        ]}
-                        colors={["#f7b885", "#FD7E14"]} // Pass the custom color palette to the PieChart component
-                      />
+                        <PieChart
+                          id={pieChartId1}
+                          data={[
+                            {
+                              label: t("results.populationNotOverTreated"),
+                              value: +results.testedFalsePositives[0],
+                            },
+                            {
+                              label: t("results.pPrecencersOverTreated"),
+                              value: +results.healthyOvertreated,
+                            },
+                          ]}
+                          colors={["#f7b885", "#FD7E14"]} // Pass the custom color palette to the PieChart component
+                        />
+                      </Col>
+                    </Row>
 
-                      {/* <Col md={12} className="d-flex justify-content-center">
-                  <Button
-                    variant="link"
-                    onClick={() => handleExportSvg(pieChartId1)}
-                  >
-                    {t("general.exportSVG")}
-                  </Button>
-                  <Button variant="link" id="savePNG3" className="savePNG">
-                    {t("general.exportPNG")}
-                  </Button>
-                </Col> */}
-                    </Col>
-                  </Row>
+                    {/* <Row className="justify-content-center">
+                      <Col md={12} className="d-flex justify-content-center">
+                        <Button variant="link" onClick={generateZipFileSVG}>
+                          {t("general.exportSVG")}
+                        </Button>
+                        <Button variant="link" onClick={generateZipFilePNG}>
+                          {t("general.exportPNG")}
+                        </Button>
+                      </Col>{" "}
+                    </Row> */}
+                    <Row className="justify-content-center">
+                      <Col md={12} className="d-flex justify-content-center">
+                        <Button
+                          variant="primary"
+                          onClick={generateZipFileSVG}
+                          className="mx-2"
+                        >
+                          {t("general.exportSVG")}
+                        </Button>
+                        <Button
+                          variant="primary"
+                          onClick={generateZipFilePNG}
+                          className="mx-2"
+                        >
+                          {t("general.exportPNG")}
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Container>
+                </Card.Body>
+              </Card>
 
-                  <Row className="justify-content-center">
-                    <Col md={12} className="d-flex justify-content-center">
-                      <Button variant="link" onClick={generateZipFileSVG}>
-                        {t("general.exportSVG")}
-                      </Button>
-                      <Button variant="link" onClick={generateZipFilePNG}>
-                        {t("general.exportPNG")}
-                      </Button>
-                    </Col>{" "}
-                    {/* Add justify-content-center here */}
-                  </Row>
-                </Container>
-              </Card.Body>
-            </Card>
-
-            {/* pdf page break */}
-            <hr className="d-none" data-export />
-          </Tab>
-          <Tab eventKey="tab2" title={t("general.tables")}>
-            <Card className="mb-2">
-              <Card.Header>
-                <Card.Title data-export>
-                  {t("results.resultsInterpretation")}
-                </Card.Title>
-              </Card.Header>
-
-              <Card.Body className="pt-2 pb-2">
-                <div>
-                  {t("results.Approximately")}{" "}
-                  <b>
-                    {totalNeededToScreen} {screenTest}
-                  </b>{" "}
-                  {t("results.screeningTests")},{" "}
-                  <b>
-                    {totalNeededToTriage} {triageTest}
-                  </b>{" "}
-                  {t("results.triageTests")}, {t("general.and")}
-                  <b>
-                    {" "}
-                    {totalNeededToDiagnosticTriage} {diagnosisTest}
-                  </b>{" "}
-                  {t("results.resultsDes0")} <b>{totalNeededToTreat}</b>{" "}
-                  {t("results.resultsDes1")} {t("general.El")}
-                  <b>
-                    {" "}
-                    {asPercent(results.percentHealthyOvertreated) ??
-                      t("general.NA")}
-                  </b>{" "}
-                  {t("results.resultsDes2")}
-                </div>
-              </Card.Body>
-            </Card>
-            <Card className="mb-4">
-              <Card.Body>
-                <Table hover responsive data-export>
-                  <thead>
-                    <tr className="bg-info-dark text-light">
-                      <th>{t("results.annualTargets")}</th>
-                      <th className="th-placeholder">Placeholder</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="table-info">
-                      <th>
-                        {t("results.populationTargetedWithCoverageTitle")}
-                      </th>
-                      <td className="text-end text-nowrap">
-                        {" "}
-                        {results.populationTargeted !== undefined &&
-                        !isNaN(results.populationTargeted)
-                          ? Math.round(
-                              results.populationTargeted
-                            ).toLocaleString(locale)
-                          : t("general.NA")}
-                      </td>
-                    </tr>
-                    <tr className="table-info">
-                      <th className="ps-3">
-                        {t("results.populationTargetedWithoutPrecancer")}
-                      </th>
-                      <td className="text-end text-nowrap">
-                        {/* {results.healthyWomenTargetedForScreening?.toLocaleString(
+              {/* pdf page break */}
+              <hr className="d-none" data-export />
+            </Tab>
+            <Tab eventKey="tab2" title={t("general.tables")}>
+              <Card className="mb-4">
+                <Card.Body>
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-info-dark text-light">
+                        <th>{t("results.annualTargets")}</th>
+                        <th className="th-placeholder">Placeholder</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="table-info">
+                        <th>
+                          {t("results.populationTargetedWithCoverageTitle")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {" "}
+                          {results.populationTargeted !== undefined &&
+                          !isNaN(results.populationTargeted)
+                            ? Math.round(
+                                results.populationTargeted
+                              ).toLocaleString(locale)
+                            : t("general.NA")}
+                        </td>
+                      </tr>
+                      <tr className="table-info">
+                        <th className="ps-3">
+                          {t("results.populationTargetedWithoutPrecancer")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {/* {results.healthyWomenTargetedForScreening?.toLocaleString(
                       locale
                     ) ?? t("general.NA")} */}
-                        {results.testedFalsePositives[0] !== undefined &&
-                        !isNaN(results.testedFalsePositives[0])
-                          ? Math.round(
-                              results.testedFalsePositives[0]
-                            ).toLocaleString(locale)
-                          : t("general.NA")}
-                      </td>
-                    </tr>
-                    <tr className="table-info">
-                      <th className="ps-3">
-                        {t("results.populationTargetedWithPrecancer")}
-                      </th>
-                      <td className="text-end text-nowrap">
-                        {/* {results.precancersTargetedForScreening?.toLocaleString(
+                          {results.testedFalsePositives[0] !== undefined &&
+                          !isNaN(results.testedFalsePositives[0])
+                            ? Math.round(
+                                results.testedFalsePositives[0]
+                              ).toLocaleString(locale)
+                            : t("general.NA")}
+                        </td>
+                      </tr>
+                      <tr className="table-info">
+                        <th className="ps-3">
+                          {t("results.populationTargetedWithPrecancer")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {/* {results.precancersTargetedForScreening?.toLocaleString(
                       locale
                     ) ?? t("general.NA")} */}
-                        {results.testedTruePositives[0] !== undefined &&
-                        !isNaN(results.testedTruePositives[0])
-                          ? Math.round(
-                              results.testedTruePositives[0]
-                            ).toLocaleString(locale)
-                          : t("general.NA")}
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
+                          {results.testedTruePositives[0] !== undefined &&
+                          !isNaN(results.testedTruePositives[0])
+                            ? Math.round(
+                                results.testedTruePositives[0]
+                              ).toLocaleString(locale)
+                            : t("general.NA")}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </Table>
 
-                <Table hover responsive data-export>
-                  <thead>
-                    <tr className="bg-warning-dark text-light">
-                      <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
-                      <th className="th-placeholder">Placeholder</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="table-warning">
-                      <th>{t("results.percentPrecancersTreated")}</th>
-                      <td className="text-end text-nowrap">
-                        {asPercent(results.percentPrecancersTreated) ??
-                          t("general.NA")}
-                      </td>
-                    </tr>
-                    <tr className="table-warning">
-                      <th>
-                        {t("results.percentPolulationTargetedOverTreated")}
-                      </th>
-                      <td className="text-end text-nowrap">
-                        {asPercent(results.percentHealthyOvertreated) ??
-                          t("general.NA")}
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-warning-dark text-light">
+                        <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
+                        <th className="th-placeholder">Placeholder</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="table-warning">
+                        <th>{t("results.percentPrecancersTreated")}</th>
+                        <td className="text-end text-nowrap">
+                          {asPercent(results.percentPrecancersTreated) ??
+                            t("general.NA")}
+                        </td>
+                      </tr>
+                      <tr className="table-warning">
+                        <th>
+                          {t("results.percentPolulationTargetedOverTreated")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {asPercent(results.percentHealthyOvertreated) ??
+                            t("general.NA")}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </Table>
 
-                <Table hover responsive data-export>
-                  <thead>
-                    <tr className="bg-danger-dark text-light">
-                      <th>{t("results.missedPrecancersTitle")}</th>
-                      <th className="th-placeholder">Placeholder</th>
-                      <th className="th-placeholder">Placeholder</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="table-danger">
-                      <th>{t("results.totalPrecancersMissed")}</th>
-                      <td className="text-end text-nowrap">
-                        {asPercent(results.percentPrecancersMissed) ??
-                          t("general.NA")}
-                      </td>
-                      <td className="text-end text-nowrap">
-                        {results.numberPrecancersMissed !== undefined &&
-                        !isNaN(results.numberPrecancersMissed)
-                          ? Math.round(
-                              results.numberPrecancersMissed
-                            ).toLocaleString(locale)
-                          : t("general.NA")}
-                      </td>
-                    </tr>
-                    <tr className="table-danger">
-                      <th>{t("results.sourcesMissedPrecancers")}</th>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr className="table-light">
-                      <th className="ps-3">
-                        {t("results.didNotHaveScreeningTest")} {screenTest}{" "}
-                        {t("general.test")}
-                      </th>
-                      <td className="text-end text-nowrap">
-                        {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
-                        {asPercent(results.percentMissed[0]) ?? t("general.NA")}
-                      </td>
-                      <td className="text-end text-nowrap">
-                        {/* {results.numberMissedDueToNoScreening?.toLocaleString(
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-danger-dark text-light">
+                        <th>{t("results.missedPrecancersTitle")}</th>
+                        <th className="th-placeholder">Placeholder</th>
+                        <th className="th-placeholder">Placeholder</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="table-danger">
+                        <th>{t("results.totalPrecancersMissed")}</th>
+                        <td className="text-end text-nowrap">
+                          {asPercent(results.percentPrecancersMissed) ??
+                            t("general.NA")}
+                        </td>
+                        <td className="text-end text-nowrap">
+                          {results.numberPrecancersMissed !== undefined &&
+                          !isNaN(results.numberPrecancersMissed)
+                            ? Math.round(
+                                results.numberPrecancersMissed
+                              ).toLocaleString(locale)
+                            : t("general.NA")}
+                        </td>
+                      </tr>
+                      <tr className="table-danger">
+                        <th>{t("results.sourcesMissedPrecancers")}</th>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr className="table-light">
+                        <th className="ps-3">
+                          {t("results.didNotHaveScreeningTest")} {screenTest}{" "}
+                          {t("general.test")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
+                          {asPercent(results.percentMissed[0]) ??
+                            t("general.NA")}
+                        </td>
+                        <td className="text-end text-nowrap">
+                          {/* {results.numberMissedDueToNoScreening?.toLocaleString(
                       locale
                     ) ?? "N/A"} */}
-                        {results.untestedPositives[1] !== undefined &&
-                        !isNaN(results.untestedPositives[1])
-                          ? Math.round(
-                              results.untestedPositives[1]
-                            ).toLocaleString(locale)
-                          : t("general.NA")}
-                      </td>
-                    </tr>
-                    <tr className="table-light">
-                      <th className="ps-3">
-                        {t("results.sensitivityOfScreeningTest")} {screenTest}{" "}
-                        {t("general.test")}
-                      </th>
-                      <td className="text-end text-nowrap">
-                        {/* {asPercent(
+                          {results.untestedPositives[1] !== undefined &&
+                          !isNaN(results.untestedPositives[1])
+                            ? Math.round(
+                                results.untestedPositives[1]
+                              ).toLocaleString(locale)
+                            : t("general.NA")}
+                        </td>
+                      </tr>
+                      <tr className="table-light">
+                        <th className="ps-3">
+                          {t("results.sensitivityOfScreeningTest")} {screenTest}{" "}
+                          {t("general.test")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {/* {asPercent(
                       results.percentMissedDueToSensitivityOfScreeningTest
                     ) ?? "N/A"} */}
-                        {asPercent(results.percentMissedDueToSensitivity[0]) ??
-                          t("general.NA")}
-                      </td>
-                      <td className="text-end text-nowrap">
-                        {/* {results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(
+                          {asPercent(
+                            results.percentMissedDueToSensitivity[0]
+                          ) ?? t("general.NA")}
+                        </td>
+                        <td className="text-end text-nowrap">
+                          {/* {results.numberMissedDueToSensitivityOfScreeningTest?.toLocaleString(
                       locale
                     ) ?? "N/A"} */}
-                        {results.testedFalseNegatives[1] !== undefined &&
-                        !isNaN(results.testedFalseNegatives[1])
-                          ? Math.round(
-                              results.testedFalseNegatives[1]
-                            ).toLocaleString(locale)
-                          : t("general.NA")}
-                      </td>
-                    </tr>
-
-                    <tr className="table-light">
-                      <th className="ps-3">
-                        {t("results.lossAtTriageTest")} {triageTest}{" "}
-                        {t("general.test")}
-                      </th>
-                      <td className="text-end text-nowrap">
-                        {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
-                        {/* {asPercent(results.percentMissed[1]) ?? "N/A"} */}
-                        {results.scenario === "ScreenTreat"
-                          ? t("general.NA")
-                          : results.scenario === "ScreenDiagnosticTestTreat" &&
-                            results.checkedValues &&
-                            results.checkedValues.length === 3 &&
-                            results.checkedValues[2] ===
-                              "ScreenDiagnosticTestTreat"
-                          ? t("general.NA")
-                          : results.scenario ===
-                            "ScreenTriageDiagnosticTestTreat"
-                          ? results.percentMissed[treatedIndex - 2] !==
-                              undefined &&
-                            !isNaN(results.percentMissed[treatedIndex - 2])
-                            ? asPercent(results.percentMissed[treatedIndex - 2])
-                            : t("general.NA")
-                          : results.percentMissed[treatedIndex - 1] !==
-                              undefined &&
-                            !isNaN(results.percentMissed[treatedIndex - 1])
-                          ? asPercent(results.percentMissed[treatedIndex - 1])
-                          : t("general.NA")}
-                      </td>
-                      <td className="text-end text-nowrap">
-                        {/* {results.numberMissedDueToLossAtTriage?.toLocaleString(
-                      locale
-                    ) ?? "N/A"} */}
-                        {/* {results.untestedPositives[2]?.toLocaleString(locale) ??
-                      "N/A"} */}
-                        {results.scenario === "ScreenTreat"
-                          ? t("general.NA")
-                          : results.scenario === "ScreenDiagnosticTestTreat" &&
-                            results.checkedValues &&
-                            results.checkedValues.length === 3 &&
-                            results.checkedValues[2] ===
-                              "ScreenDiagnosticTestTreat"
-                          ? t("general.NA")
-                          : results.scenario ===
-                            "ScreenTriageDiagnosticTestTreat"
-                          ? results.untestedPositives[treatedIndex - 1] !==
-                              undefined &&
-                            !isNaN(results.untestedPositives[treatedIndex - 1])
+                          {results.testedFalseNegatives[1] !== undefined &&
+                          !isNaN(results.testedFalseNegatives[1])
                             ? Math.round(
-                                results.untestedPositives[treatedIndex - 1]
+                                results.testedFalseNegatives[1]
                               ).toLocaleString(locale)
-                            : t("general.NA")
-                          : results.untestedPositives[treatedIndex] !==
-                              undefined &&
-                            !isNaN(results.untestedPositives[treatedIndex])
-                          ? Math.round(
-                              results.untestedPositives[treatedIndex]
-                            ).toLocaleString(locale)
-                          : t("general.NA")}
-                      </td>
-                    </tr>
+                            : t("general.NA")}
+                        </td>
+                      </tr>
 
-                    <tr className="table-light">
-                      <th className="ps-3">
-                        {t("results.sensitivityOfTriageTest")} {triageTest}{" "}
-                        {t("general.test")}
-                      </th>
-                      <td className="text-end text-nowrap">
-                        {/* {asPercent(
+                      <tr className="table-light">
+                        <th className="ps-3">
+                          {t("results.lossAtTriageTest")} {triageTest}{" "}
+                          {t("general.test")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
+                          {/* {asPercent(results.percentMissed[1]) ?? "N/A"} */}
+                          {results.scenario === "ScreenTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenDiagnosticTestTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissed[treatedIndex - 2] !==
+                                undefined &&
+                              !isNaN(results.percentMissed[treatedIndex - 2])
+                              ? asPercent(
+                                  results.percentMissed[treatedIndex - 2]
+                                )
+                              : t("general.NA")
+                            : results.percentMissed[treatedIndex - 1] !==
+                                undefined &&
+                              !isNaN(results.percentMissed[treatedIndex - 1])
+                            ? asPercent(results.percentMissed[treatedIndex - 1])
+                            : t("general.NA")}
+                        </td>
+                        <td className="text-end text-nowrap">
+                          {/* {results.numberMissedDueToLossAtTriage?.toLocaleString(
+                      locale
+                    ) ?? "N/A"} */}
+                          {/* {results.untestedPositives[2]?.toLocaleString(locale) ??
+                      "N/A"} */}
+                          {results.scenario === "ScreenTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenDiagnosticTestTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.untestedPositives[treatedIndex - 1] !==
+                                undefined &&
+                              !isNaN(
+                                results.untestedPositives[treatedIndex - 1]
+                              )
+                              ? Math.round(
+                                  results.untestedPositives[treatedIndex - 1]
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.untestedPositives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.untestedPositives[treatedIndex])
+                            ? Math.round(
+                                results.untestedPositives[treatedIndex]
+                              ).toLocaleString(locale)
+                            : t("general.NA")}
+                        </td>
+                      </tr>
+
+                      <tr className="table-light">
+                        <th className="ps-3">
+                          {t("results.sensitivityOfTriageTest")} {triageTest}{" "}
+                          {t("general.test")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {/* {asPercent(
                       results.percentMissedDueToSensitivityOfTriageTest
                     ) ?? "N/A"} */}
-                        {results.scenario === "ScreenTreat"
-                          ? t("general.NA")
-                          : results.scenario === "ScreenDiagnosticTestTreat" &&
-                            results.checkedValues &&
-                            results.checkedValues.length === 3 &&
-                            results.checkedValues[2] ===
-                              "ScreenDiagnosticTestTreat"
-                          ? t("general.NA")
-                          : results.scenario ===
-                            "ScreenTriageDiagnosticTestTreat"
-                          ? results.percentMissedDueToSensitivity[
-                              treatedIndex - 2
-                            ] !== undefined &&
-                            !isNaN(
-                              results.percentMissedDueToSensitivity[
+                          {results.scenario === "ScreenTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenDiagnosticTestTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissedDueToSensitivity[
                                 treatedIndex - 2
-                              ]
-                            )
-                            ? asPercent(
+                              ] !== undefined &&
+                              !isNaN(
                                 results.percentMissedDueToSensitivity[
                                   treatedIndex - 2
                                 ]
                               )
-                            : t("general.NA")
-                          : results.percentMissedDueToSensitivity[
-                              treatedIndex - 1
-                            ] !== undefined &&
-                            !isNaN(
-                              results.percentMissedDueToSensitivity[
+                              ? asPercent(
+                                  results.percentMissedDueToSensitivity[
+                                    treatedIndex - 2
+                                  ]
+                                )
+                              : t("general.NA")
+                            : results.percentMissedDueToSensitivity[
                                 treatedIndex - 1
-                              ]
-                            )
-                          ? asPercent(
-                              results.percentMissedDueToSensitivity[
-                                treatedIndex - 1
-                              ]
-                            )
-                          : t("general.NA")}
-                      </td>
-                      <td className="text-end text-nowrap">
-                        {/* {results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(
+                              ] !== undefined &&
+                              !isNaN(
+                                results.percentMissedDueToSensitivity[
+                                  treatedIndex - 1
+                                ]
+                              )
+                            ? asPercent(
+                                results.percentMissedDueToSensitivity[
+                                  treatedIndex - 1
+                                ]
+                              )
+                            : t("general.NA")}
+                        </td>
+                        <td className="text-end text-nowrap">
+                          {/* {results.numberMissedDueToSensitivityOfTriageTest?.toLocaleString(
                       locale
                     ) ?? "N/A"} */}
-                        {results.scenario === "ScreenTreat"
-                          ? t("general.NA")
-                          : results.scenario === "ScreenDiagnosticTestTreat" &&
-                            results.checkedValues &&
-                            results.checkedValues.length === 3 &&
-                            results.checkedValues[2] ===
-                              "ScreenDiagnosticTestTreat"
-                          ? t("general.NA")
-                          : results.scenario ===
-                            "ScreenTriageDiagnosticTestTreat"
-                          ? results.testedFalseNegatives[treatedIndex - 1] !==
-                              undefined &&
-                            !isNaN(
-                              results.testedFalseNegatives[treatedIndex - 1]
-                            )
-                            ? Math.round(
+                          {results.scenario === "ScreenTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenDiagnosticTestTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.testedFalseNegatives[treatedIndex - 1] !==
+                                undefined &&
+                              !isNaN(
                                 results.testedFalseNegatives[treatedIndex - 1]
+                              )
+                              ? Math.round(
+                                  results.testedFalseNegatives[treatedIndex - 1]
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.testedFalseNegatives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.testedFalseNegatives[treatedIndex])
+                            ? Math.round(
+                                results.testedFalseNegatives[treatedIndex]
                               ).toLocaleString(locale)
-                            : t("general.NA")
-                          : results.testedFalseNegatives[treatedIndex] !==
-                              undefined &&
-                            !isNaN(results.testedFalseNegatives[treatedIndex])
-                          ? Math.round(
-                              results.testedFalseNegatives[treatedIndex]
-                            ).toLocaleString(locale)
-                          : t("general.NA")}
-                      </td>
-                    </tr>
+                            : t("general.NA")}
+                        </td>
+                      </tr>
 
-                    <tr className="table-light">
-                      <th className="ps-3">
-                        {t("results.lossAtDiagnosis")} {diagnosisTest}{" "}
-                        {t("general.test")}
-                      </th>
-                      <td className="text-end text-nowrap">
-                        {/* {asPercent(
+                      <tr className="table-light">
+                        <th className="ps-3">
+                          {t("results.lossAtDiagnosis")} {diagnosisTest}{" "}
+                          {t("general.test")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {/* {asPercent(
                       results.percentMissedDueToLossAtDiagnosticTriage
                     ) ?? "N/A"} */}
-                        {/* {asPercent(results.percentMissed[3]) ?? "N/A"} */}
-                        {/* {results.scenario === "ScreenTreat"
+                          {/* {asPercent(results.percentMissed[3]) ?? "N/A"} */}
+                          {/* {results.scenario === "ScreenTreat"
                       ? "N/A"
                       : results.scenario === "ScreenTriageDiagnosticTestTreat"
                       ? results.percentMissed[treatedIndex - 1] !== undefined &&
@@ -1195,221 +1211,223 @@ export default function ScenarioResults() {
                         ? asPercent(results.percentMissed[treatedIndex - 1])
                         : "N/A"
                       : "N/A"} */}
-                        {results.scenario === "ScreenTreat"
-                          ? t("general.NA")
-                          : results.scenario === "ScreenDiagnosticTestTreat" &&
-                            results.checkedValues &&
-                            results.checkedValues.length === 3 &&
-                            results.checkedValues[2] ===
-                              "ScreenDiagnosticTestTreat"
-                          ? results.percentMissed[treatedIndex - 1] !==
-                              undefined &&
-                            !isNaN(results.percentMissed[treatedIndex - 1])
+                          {results.scenario === "ScreenTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenDiagnosticTestTreat"
+                            ? results.percentMissed[treatedIndex - 1] !==
+                                undefined &&
+                              !isNaN(results.percentMissed[treatedIndex - 1])
+                              ? asPercent(
+                                  results.percentMissed[treatedIndex - 1]
+                                )
+                              : t("general.NA")
+                            : results.scenario ===
+                                "ScreenTriageDiagnosticTestTreat" &&
+                              results.percentMissed[treatedIndex - 1] !==
+                                undefined &&
+                              !isNaN(results.percentMissed[treatedIndex - 1])
                             ? asPercent(results.percentMissed[treatedIndex - 1])
-                            : t("general.NA")
-                          : results.scenario ===
-                              "ScreenTriageDiagnosticTestTreat" &&
-                            results.percentMissed[treatedIndex - 1] !==
-                              undefined &&
-                            !isNaN(results.percentMissed[treatedIndex - 1])
-                          ? asPercent(results.percentMissed[treatedIndex - 1])
-                          : t("general.NA")}
-                      </td>
-                      <td className="text-end text-nowrap">
-                        {/* {results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(
+                            : t("general.NA")}
+                        </td>
+                        <td className="text-end text-nowrap">
+                          {/* {results.numberMissedDueToLossAtDiagnosticTriage?.toLocaleString(
                       locale
                     ) ?? "N/A"} */}
-                        {/* {results.untestedPositives[4]?.toLocaleString(locale) ??
+                          {/* {results.untestedPositives[4]?.toLocaleString(locale) ??
                       "N/A"} */}
-                        {results.scenario === "ScreenTreat"
-                          ? t("general.NA")
-                          : results.scenario === "ScreenDiagnosticTestTreat" &&
-                            results.checkedValues &&
-                            results.checkedValues.length === 3 &&
-                            results.checkedValues[2] ===
-                              "ScreenDiagnosticTestTreat"
-                          ? Math.round(
-                              results.untestedPositives[treatedIndex]
-                            ).toLocaleString(locale)
-                          : results.scenario ===
-                            "ScreenTriageDiagnosticTestTreat"
-                          ? results.untestedPositives[treatedIndex] !==
-                              undefined &&
-                            !isNaN(results.untestedPositives[treatedIndex])
+                          {results.scenario === "ScreenTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenDiagnosticTestTreat"
                             ? Math.round(
                                 results.untestedPositives[treatedIndex]
                               ).toLocaleString(locale)
-                            : t("general.NA")
-                          : t("general.NA")}
-                      </td>
-                    </tr>
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.untestedPositives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.untestedPositives[treatedIndex])
+                              ? Math.round(
+                                  results.untestedPositives[treatedIndex]
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : t("general.NA")}
+                        </td>
+                      </tr>
 
-                    <tr className="table-light">
-                      <th className="ps-3">
-                        {t("results.sensitivityOfDiagnosticTest")}{" "}
-                        {diagnosisTest} {t("general.test")}
-                      </th>
-                      <td className="text-end text-nowrap">
-                        {/* {asPercent(
+                      <tr className="table-light">
+                        <th className="ps-3">
+                          {t("results.sensitivityOfDiagnosticTest")}{" "}
+                          {diagnosisTest} {t("general.test")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {/* {asPercent(
                       results.percentMissedDueToSensitivityOfDiagnosticTriageTest
                     ) ?? "N/A"} */}
 
-                        {results.scenario === "ScreenTreat"
-                          ? t("general.NA")
-                          : results.scenario === "ScreenDiagnosticTestTreat" &&
-                            results.checkedValues &&
-                            results.checkedValues.length === 3 &&
-                            results.checkedValues[2] ===
-                              "ScreenDiagnosticTestTreat"
-                          ? asPercent(
-                              results.percentMissedDueToSensitivity[
-                                treatedIndex - 1
-                              ]
-                            )
-                          : results.scenario ===
-                            "ScreenTriageDiagnosticTestTreat"
-                          ? results.percentMissedDueToSensitivity[
-                              treatedIndex - 1
-                            ] !== undefined &&
-                            !isNaN(
-                              results.percentMissedDueToSensitivity[
-                                treatedIndex - 1
-                              ]
-                            )
+                          {results.scenario === "ScreenTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenDiagnosticTestTreat"
                             ? asPercent(
                                 results.percentMissedDueToSensitivity[
                                   treatedIndex - 1
                                 ]
                               )
-                            : t("general.NA")
-                          : t("general.NA")}
-                      </td>
-                      <td className="text-end text-nowrap">
-                        {/* {results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissedDueToSensitivity[
+                                treatedIndex - 1
+                              ] !== undefined &&
+                              !isNaN(
+                                results.percentMissedDueToSensitivity[
+                                  treatedIndex - 1
+                                ]
+                              )
+                              ? asPercent(
+                                  results.percentMissedDueToSensitivity[
+                                    treatedIndex - 1
+                                  ]
+                                )
+                              : t("general.NA")
+                            : t("general.NA")}
+                        </td>
+                        <td className="text-end text-nowrap">
+                          {/* {results.numberMissedDueToSensitivityOfDiagnosticTriageTest?.toLocaleString(
                       locale
                     ) ?? "N/A"} */}
 
-                        {results.scenario === "ScreenTreat"
-                          ? t("general.NA")
-                          : results.scenario === "ScreenDiagnosticTestTreat" &&
-                            results.checkedValues &&
-                            results.checkedValues.length === 3 &&
-                            results.checkedValues[2] ===
-                              "ScreenDiagnosticTestTreat"
-                          ? Math.round(
-                              results.testedFalseNegatives[treatedIndex]
-                            ).toLocaleString(locale)
-                          : results.scenario ===
-                            "ScreenTriageDiagnosticTestTreat"
-                          ? results.testedFalseNegatives[treatedIndex] !==
-                              undefined &&
-                            !isNaN(results.testedFalseNegatives[treatedIndex])
+                          {results.scenario === "ScreenTreat"
+                            ? t("general.NA")
+                            : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenDiagnosticTestTreat"
                             ? Math.round(
                                 results.testedFalseNegatives[treatedIndex]
                               ).toLocaleString(locale)
-                            : t("general.NA")
-                          : t("general.NA")}
-                      </td>
-                    </tr>
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.testedFalseNegatives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.testedFalseNegatives[treatedIndex])
+                              ? Math.round(
+                                  results.testedFalseNegatives[treatedIndex]
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : t("general.NA")}
+                        </td>
+                      </tr>
 
-                    <tr className="table-light">
-                      <th className="ps-3">{t("results.lossAtTreatment")}</th>
-                      <td className="text-end text-nowrap">
-                        {/* {asPercent(results.percentMissedDueToLossAtTreatment) ??
+                      <tr className="table-light">
+                        <th className="ps-3">{t("results.lossAtTreatment")}</th>
+                        <td className="text-end text-nowrap">
+                          {/* {asPercent(results.percentMissedDueToLossAtTreatment) ??
                       "N/A"} */}
-                        {asPercent(results.percentMissed[treatedIndex]) ??
-                          t("general.NA")}
-                      </td>
-                      <td className="text-end text-nowrap">
-                        {/* {results.numberMissedDueToLossAtTreatment?.toLocaleString(
+                          {asPercent(results.percentMissed[treatedIndex]) ??
+                            t("general.NA")}
+                        </td>
+                        <td className="text-end text-nowrap">
+                          {/* {results.numberMissedDueToLossAtTreatment?.toLocaleString(
                       locale
                     ) ?? "N/A"} */}
-                        {results.untestedPositives[treatedIndex + 1] !==
-                          undefined &&
-                        !isNaN(results.untestedPositives[treatedIndex + 1])
-                          ? Math.round(
-                              results.untestedPositives[treatedIndex + 1]
-                            ).toLocaleString(locale)
-                          : t("general.NA")}
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
+                          {results.untestedPositives[treatedIndex + 1] !==
+                            undefined &&
+                          !isNaN(results.untestedPositives[treatedIndex + 1])
+                            ? Math.round(
+                                results.untestedPositives[treatedIndex + 1]
+                              ).toLocaleString(locale)
+                            : t("general.NA")}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </Table>
 
-                <Table hover responsive data-export>
-                  <thead>
-                    <tr className="bg-success-dark text-light">
-                      <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
-                      <th className="th-placeholder">Placeholder</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="table-light">
-                      <th>{t("results.totalRequiringScreeningTest")}</th>
-                      <td className="text-end text-nowrap">
-                        {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
+                  <Table hover responsive data-export>
+                    <thead>
+                      <tr className="bg-success-dark text-light">
+                        <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
+                        <th className="th-placeholder">Placeholder</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="table-light">
+                        <th>{t("results.totalRequiringScreeningTest")}</th>
+                        <td className="text-end text-nowrap">
+                          {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
                       "N/A"} */}
 
-                        {totalNeededToScreen}
-                      </td>
-                    </tr>
-                    <tr className="table-light">
-                      <th>{t("results.totalRequiringTriageDiagnosticTest")}</th>
-                      <td className="text-end text-nowrap">
-                        {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
+                          {totalNeededToScreen}
+                        </td>
+                      </tr>
+                      <tr className="table-light">
+                        <th>
+                          {t("results.totalRequiringTriageDiagnosticTest")}
+                        </th>
+                        <td className="text-end text-nowrap">
+                          {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
                       "N/A"} */}
 
-                        {totalNeededToTriage}
-                      </td>
-                    </tr>
-                    <tr className="table-light">
-                      <th>{t("results.totalRequiringDiagnosticTest")}</th>
-                      <td className="text-end text-nowrap">
-                        {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
+                          {totalNeededToTriage}
+                        </td>
+                      </tr>
+                      <tr className="table-light">
+                        <th>{t("results.totalRequiringDiagnosticTest")}</th>
+                        <td className="text-end text-nowrap">
+                          {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                       locale
                     ) ?? "N/A"} */}
 
-                        {totalNeededToDiagnosticTriage}
-                      </td>
-                    </tr>
-                    <tr className="table-light">
-                      <th>{t("results.totalRequiringTreatment")}</th>
-                      <td className="text-end text-nowrap">
-                        {/* {results.totalNeededToTreat?.toLocaleString(locale) ??
+                          {totalNeededToDiagnosticTriage}
+                        </td>
+                      </tr>
+                      <tr className="table-light">
+                        <th>{t("results.totalRequiringTreatment")}</th>
+                        <td className="text-end text-nowrap">
+                          {/* {results.totalNeededToTreat?.toLocaleString(locale) ??
                       "N/A"} */}
 
-                        {totalNeededToTreat}
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
-                <div className="text-center">
-                  <Button
-                    onClick={saveScenario}
-                    className="m-1"
-                    variant="primary"
-                  >
-                    {t("results.saveScenario")}
-                  </Button>
-                  <Button
-                    onClick={exportResults}
-                    className="m-1"
-                    variant="primary"
-                  >
-                    {t("results.exportResultsToPDF")}
-                  </Button>
-                  <Button
-                    onClick={exportResultsExcel}
-                    className="m-1"
-                    variant="primary"
-                  >
-                    {t("results.exportResultsToExcel")}
-                  </Button>
-                </div>
-              </Card.Body>
-            </Card>
-          </Tab>
-        </Tabs>
+                          {totalNeededToTreat}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                  <div className="text-center">
+                    <Button
+                      onClick={exportResults}
+                      className="m-1"
+                      variant="primary"
+                    >
+                      {t("results.exportResultsToPDF")}
+                    </Button>
+                    <Button
+                      onClick={exportResultsExcel}
+                      className="m-1"
+                      variant="primary"
+                    >
+                      {t("results.exportResultsToExcel")}
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Tab>
+          </Tabs>
+        </div>
 
         <Modal show={showModal} onHide={handleModalClose}>
           <Modal.Header closeButton>
