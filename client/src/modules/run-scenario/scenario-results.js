@@ -402,7 +402,7 @@ export default function ScenarioResults() {
     <div>
       {/* <Container style={{ overflow: "auto", maxHeight: "100vh" }}> */}
       <Container>
-        <Card className="mb-2">
+        <Card className="mb-1">
           <Card.Header className="d-flex justify-content-between align-items-center">
             <Card.Title data-export>
               {t("results.resultsInterpretation")}
@@ -443,7 +443,7 @@ export default function ScenarioResults() {
           <Tabs
             activeKey={activeTabResult}
             onSelect={handleTabSelect}
-            className="mb-1"
+            style={{ position: "relative", zIndex: 2 }}
           >
             <Tab eventKey="tab1" title={t("general.graphs")}>
               <Card className="mb-3 d-none">
