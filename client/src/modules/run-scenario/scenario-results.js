@@ -402,16 +402,14 @@ export default function ScenarioResults() {
     <div>
       {/* <Container style={{ overflow: "auto", maxHeight: "100vh" }}> */}
       <Container>
-        <div className="d-flex justify-content-end mb-2">
-          <Button onClick={saveScenario} variant="primary">
-            {t("results.saveScenario")}
-          </Button>
-        </div>
         <Card className="mb-2">
-          <Card.Header>
+          <Card.Header className="d-flex justify-content-between align-items-center">
             <Card.Title data-export>
               {t("results.resultsInterpretation")}
             </Card.Title>
+            <Button onClick={saveScenario} variant="primary">
+              {t("results.saveScenario")}
+            </Button>
           </Card.Header>
 
           <Card.Body className="pt-2 pb-2">
@@ -445,7 +443,7 @@ export default function ScenarioResults() {
           <Tabs
             activeKey={activeTabResult}
             onSelect={handleTabSelect}
-            className="mb-3"
+            className="mb-1"
           >
             <Tab eventKey="tab1" title={t("general.graphs")}>
               <Card className="mb-3 d-none">
