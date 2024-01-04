@@ -208,7 +208,7 @@
   },
 
   "compareScenarios": {
-    "uploadScenariosInfo": "Cargue hasta {{limit}} escenarios para comparar. Los archivos deben ser del formato de archivo \".scenerario\". Haga clic en el título del escenario para cambiar su nombre.",
+    "uploadScenariosInfo": "Cargue hasta {{limit}} escenarios para comparar. Los archivos deben ser del formato de archivo \".scenario\". Haga clic en el título del escenario para cambiar su nombre.",
     "addScenario": "Agregar escenario",
     "asssumptions": "Supuestos",
     "triageorDiagnosticTestAttendance": "Asistencia a prueba de triaje o diagnóstico",
