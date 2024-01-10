@@ -94,7 +94,7 @@ export async function saveChartAsPNGForZip(chartId, chartTitle) {
     .attr("height", +chartSVG.attr("height") + 40)
     .attr("fill", "white");
 
-  console.log("svgWithTitle", svgWithTitle);
+  // console.log("svgWithTitle", svgWithTitle);
 
   // Append a group element for applying the transform
   var chartGroup = svgWithTitle
@@ -114,7 +114,6 @@ export async function saveChartAsPNGForZip(chartId, chartTitle) {
     .text(chartTitle);
 
   var svgString = getSVGString(svgWithTitle.node());
-
 
   return new Promise((resolve) => {
     svgString2Image(
