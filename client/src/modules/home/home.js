@@ -95,7 +95,7 @@ export default function Home() {
                 {t("home.desLink0")}
                 <Link to="/about" className="text-primary">
                   {" "}
-                  <b>{t("home.resourceLink")}</b>
+                  <b>{t("navbar.about")}</b>
                 </Link>{" "}
                 {t("home.desLink1")}
                 <br />
