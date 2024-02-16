@@ -56,6 +56,14 @@ export default function About() {
               </thead>
               <tbody>
                 <tr>
+                  <td>{t("about.hpvPrevelence")}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
                   <td>{t("runScenario.prevelance")}</td>
                   <td>0%</td>
                   <td>5%</td>
@@ -260,6 +268,18 @@ export default function About() {
                       target="_blank"
                     >
                       https://www.cancer.gov/about-cancer/screening/hp-screening-overview-pdq#:~:text=Revised%20text%20to%20state%20that,value%20(PPV)%2C%20which%20is
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{t("about.overTreated")}</td>
+                  <td>{t("about.overTreatedDef")}</td>
+                  <td>
+                    <a
+                      href="https://iris.who.int/bitstream/handle/10665/342365/9789240030824-eng.pdf?sequence=1"
+                      target="_blank"
+                    >
+                      https://iris.who.int/bitstream/handle/10665/342365/9789240030824-eng.pdf?sequence=1
                     </a>
                   </td>
                 </tr>

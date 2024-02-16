@@ -263,6 +263,9 @@
     "aboutDes5": "Each country should meet the 90\u201370\u201390 targets by 2030 to get on the path to eliminate cervical cancer within the next century.",
     "aboutDes6": "Link to: ",
     "aboutDes7": " https://www.who.int/initiatives/cervical-cancer-elimination-initiative",
+    "hpvPrevelence": "HPV Prevalence",
+    "overTreated": "Overtreated",
+    "overTreatedDef": "Overtreatment is defined by the WHO as treatment for CIN, but no CIN or AIS detected on histopathology. Overtreatment can result in side effects and complications of biopsy and treatment, including psychological harms and resource implications. This tool uses the term in a simplified sense and recognizes that the importance and implications of overtreatment may vary by context;",
     "": ""
   }
 }
