@@ -15,6 +15,32 @@ export default function About() {
         <h1 className="text-center h2">{t("about.title")}</h1>
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
+            <div>
+              <h2 className="text-center mb-1 h4">{t("about.aboutWhoTile")}</h2>
+              <div>
+                <p>{t("about.aboutDes0")}</p>
+                <div>
+                  <p>{t("about.aboutDes1")}</p>
+                  <ul>
+                    <li>{t("about.aboutDes2")}</li>
+                    <li>{t("about.aboutDes3")}</li>
+                    <li>{t("about.aboutDes4")}</li>
+                  </ul>
+                </div>
+                <p>{t("about.aboutDes5")}</p>
+                <p>
+                  {t("about.aboutDes6")}{" "}
+                  <a
+                    href="https://www.who.int/initiatives/cervical-cancer-elimination-initiative"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t("about.aboutDes7")}
+                  </a>
+                </p>
+              </div>
+            </div>
+
             <h2 className="text-center mb-1 h4">
               {t("runScenario.epidemiological")}
             </h2>

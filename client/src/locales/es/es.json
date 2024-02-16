@@ -244,6 +244,15 @@
     "impressionOfColposcopyJustification": "La precisión de la impresión colposcópica varía ampliamente y tienen sesgos significativos. La mayoría de los estimados de sensibilidad van del 50 al 80 %, mientras que los estimados de especificidad van del 70 al 95 %.",
     "sensitivity": "El porcentaje de la población con precáncer/cáncer que tiene resultado positivo de la preuba.",
     "specificity": "El porcentaje de la población sin precáncer/cáncer que tiene resultado negativo de la prueba.",
+    "aboutWhoTile": "WHO Cervical Cancer Elimination Initiative Guidance",
+    "aboutDes0": "The WHO Cervical Cancer Elimination Initiative is an aspiration goal and countries are note expected to achieve these goals all at once. The purpose of this tool is to understand what you can do now with the resources that you have, or what you could do with additional resources.",
+    "aboutDes1": "To eliminate cervical cancer, all countries must reach and maintain an incidence rate of below 4 per 100 000 women. Achieving that goal rests on three key pillars and their corresponding targets:",
+    "aboutDes2": "vaccination: 90% of girls fully vaccinated with the HPV vaccine by the age of 15;",
+    "aboutDes3": "screening: 70% of women screened using a high-performance test by the age of 35, and again by the age of 45;",
+    "aboutDes4": "treatment: 90% of women with pre-cancer treated and 90% of women with invasive cancer managed.",
+    "aboutDes5": "Each country should meet the 90\u201470\u201490 targets by 2030 to get on the path to eliminate cervical cancer within the next century.",
+    "aboutDes6": "Link to: ",
+    "aboutDes7": " https://www.who.int/initiatives/cervical-cancer-elimination-initiative",
     "": ""
   }
 }
