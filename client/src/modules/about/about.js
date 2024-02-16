@@ -29,7 +29,6 @@ export default function About() {
                 </div>
                 <p>{t("about.aboutDes5")}</p>
                 <p>
-                  {t("about.aboutDes6")}{" "}
                   <a
                     href="https://www.who.int/initiatives/cervical-cancer-elimination-initiative"
                     target="_blank"
