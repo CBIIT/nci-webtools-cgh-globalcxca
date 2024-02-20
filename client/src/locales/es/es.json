@@ -152,7 +152,8 @@
     "impressionOfColposcopy": "Impresión de colposcopia",
     "colposcopyWithBiopsy": "Colposcopia con biopsia",
     "cervicalTestChosen": "Prueba de detección cervical elegida",
-    "screeningCoverage": "Cobertura de tamizaje"
+    "screeningCoverage": "Cobertura de tamizaje",
+    "pleaseRefer": "Please refer to the About tab for more information about the below parameters before entering a scenario."
   },
   "results": {
     "screenDiagnosisTreatment": "Tamizaje → Diagnóstico → Tratamiento",
@@ -250,7 +251,7 @@
     "aboutDes2": "vaccination: 90% of girls fully vaccinated with the HPV vaccine by the age of 15;",
     "aboutDes3": "screening: 70% of women screened using a high-performance test by the age of 35, and again by the age of 45;",
     "aboutDes4": "treatment: 90% of women with pre-cancer treated and 90% of women with invasive cancer managed.",
-    "aboutDes5": "Each country should meet the 90\u201470\u201490 targets by 2030 to get on the path to eliminate cervical cancer within the next century.",
+    "aboutDes5": "Each country should meet the 90\u201370\u201390 targets by 2030 to get on the path to eliminate cervical cancer within the next century.",
     "aboutDes6": "Link to: ",
     "aboutDes7": " https://www.who.int/initiatives/cervical-cancer-elimination-initiative",
     "hpvPrevelence": "HPV Prevalence",

@@ -214,6 +214,9 @@ export default function RunScenarios() {
     <div className="bg-light py-3">
       {/* <Container> */}
       <div className="mx-3">
+        <Row className="mb-1">
+          <Col md={12}> {t("runScenario.pleaseRefer")}</Col>
+        </Row>
         <Row>
           {/* <Col md={5} id="col-with-scroll" style={{ overflowY: "auto" }}> */}
           <Col md={5}>
