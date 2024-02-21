@@ -9,10 +9,17 @@ import { useState, useEffect } from "react";
 
 export default function About() {
   const { t, i18n } = useTranslation();
+  console.log("window.location.hash: ", window.location.hash);
 
   useEffect(() => {
-    if (window.location.hash === "#sst") {
-      const element = document.getElementById("sst");
+    if (window.location.hash.includes("#sensitivity")) {
+      const element = document.getElementById("sensitivity");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+    if (window.location.hash.includes("#specificity")) {
+      const element = document.getElementById("specificity");
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
@@ -257,7 +264,7 @@ export default function About() {
                 </tr>
               </thead>
               <tbody>
-                <tr id="sst">
+                <tr id="sensitivity">
                   <td>{t("general.sensitivity")}</td>
                   <td>{t("about.sensitivity")}</td>
                   <td>
@@ -269,7 +276,7 @@ export default function About() {
                     </a>
                   </td>
                 </tr>
-                <tr>
+                <tr id="specificity">
                   <td>{t("general.specificity")}</td>
                   <td>{t("about.specificity")}</td>
                   <td>

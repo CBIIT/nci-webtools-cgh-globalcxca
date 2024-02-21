@@ -726,11 +726,18 @@ export default function RunScenarios() {
                                                   sm={12}
                                                   className=""
                                                 >
-                                                  <span>
+                                                  {/* <span>
                                                     {t(
                                                       "runScenario.screeningTestSpecificity"
                                                     )}
-                                                  </span>
+                                                  </span> */}
+                                                  <span
+                                                    dangerouslySetInnerHTML={{
+                                                      __html: t(
+                                                        "runScenario.screeningTestSpecificity"
+                                                      ),
+                                                    }}
+                                                  />
                                                   <OverlayTrigger
                                                     overlay={
                                                       <Tooltip id="screeningTestSpecificity-help">
@@ -939,11 +946,18 @@ export default function RunScenarios() {
                                                     sm={12}
                                                     className=""
                                                   >
-                                                    <span>
+                                                    {/* <span>
                                                       {t(
                                                         "runScenario.triageTestSensitivity"
                                                       )}
-                                                    </span>
+                                                    </span> */}
+                                                    <span
+                                                      dangerouslySetInnerHTML={{
+                                                        __html: t(
+                                                          "runScenario.triageTestSensitivity"
+                                                        ),
+                                                      }}
+                                                    />
                                                     <OverlayTrigger
                                                       overlay={
                                                         <Tooltip id="screeningTestSpecificity-help">
@@ -1012,11 +1026,18 @@ export default function RunScenarios() {
                                                     sm={12}
                                                     className=""
                                                   >
-                                                    <span>
+                                                    {/* <span>
                                                       {t(
                                                         "runScenario.triageTestSpecificity"
                                                       )}
-                                                    </span>
+                                                    </span> */}
+                                                    <span
+                                                      dangerouslySetInnerHTML={{
+                                                        __html: t(
+                                                          "runScenario.triageTestSpecificity"
+                                                        ),
+                                                      }}
+                                                    />
                                                     <OverlayTrigger
                                                       overlay={
                                                         <Tooltip id="screeningTestSpecificity-help">
@@ -1223,11 +1244,18 @@ export default function RunScenarios() {
                                                     sm={12}
                                                     className=""
                                                   >
-                                                    <span>
+                                                    {/* <span>
                                                       {t(
                                                         "runScenario.triageTestSensitivity"
                                                       )}
-                                                    </span>
+                                                    </span> */}
+                                                    <span
+                                                      dangerouslySetInnerHTML={{
+                                                        __html: t(
+                                                          "runScenario.triageTestSensitivity"
+                                                        ),
+                                                      }}
+                                                    />
                                                     <OverlayTrigger
                                                       overlay={
                                                         <Tooltip id="screeningTestSpecificity-help">
@@ -1295,11 +1323,18 @@ export default function RunScenarios() {
                                                     sm={12}
                                                     className=""
                                                   >
-                                                    <span>
+                                                    {/* <span>
                                                       {t(
                                                         "runScenario.triageTestSpecificity"
                                                       )}
-                                                    </span>
+                                                    </span> */}
+                                                    <span
+                                                      dangerouslySetInnerHTML={{
+                                                        __html: t(
+                                                          "runScenario.triageTestSpecificity"
+                                                        ),
+                                                      }}
+                                                    />
                                                     <OverlayTrigger
                                                       overlay={
                                                         <Tooltip id="screeningTestSpecificity-help">
@@ -1508,11 +1543,18 @@ export default function RunScenarios() {
                                                     sm={12}
                                                     className=""
                                                   >
-                                                    <span>
+                                                    {/* <span>
                                                       {t(
                                                         "runScenario.triageTestSensitivity"
                                                       )}
-                                                    </span>
+                                                    </span> */}
+                                                    <span
+                                                      dangerouslySetInnerHTML={{
+                                                        __html: t(
+                                                          "runScenario.triageTestSensitivity"
+                                                        ),
+                                                      }}
+                                                    />
                                                     <OverlayTrigger
                                                       overlay={
                                                         <Tooltip id="screeningTestSpecificity-help">
@@ -1581,11 +1623,18 @@ export default function RunScenarios() {
                                                     sm={12}
                                                     className=""
                                                   >
-                                                    <span>
+                                                    {/* <span>
                                                       {t(
                                                         "runScenario.triageTestSpecificity"
                                                       )}
-                                                    </span>
+                                                    </span> */}
+                                                    <span
+                                                      dangerouslySetInnerHTML={{
+                                                        __html: t(
+                                                          "runScenario.triageTestSpecificity"
+                                                        ),
+                                                      }}
+                                                    />
                                                     <OverlayTrigger
                                                       overlay={
                                                         <Tooltip id="screeningTestSpecificity-help">
@@ -1794,11 +1843,18 @@ export default function RunScenarios() {
                                                     sm={12}
                                                     className=""
                                                   >
-                                                    <span>
+                                                    {/* <span>
                                                       {t(
                                                         "runScenario.triageTestSensitivity"
                                                       )}
-                                                    </span>
+                                                    </span> */}
+                                                    <span
+                                                      dangerouslySetInnerHTML={{
+                                                        __html: t(
+                                                          "runScenario.triageTestSensitivity"
+                                                        ),
+                                                      }}
+                                                    />
                                                     <OverlayTrigger
                                                       overlay={
                                                         <Tooltip id="screeningTestSpecificity-help">
@@ -1867,11 +1923,18 @@ export default function RunScenarios() {
                                                     sm={12}
                                                     className=""
                                                   >
-                                                    <span>
+                                                    {/* <span>
                                                       {t(
                                                         "runScenario.triageTestSpecificity"
                                                       )}
-                                                    </span>
+                                                    </span> */}
+                                                    <span
+                                                      dangerouslySetInnerHTML={{
+                                                        __html: t(
+                                                          "runScenario.triageTestSpecificity"
+                                                        ),
+                                                      }}
+                                                    />
                                                     <OverlayTrigger
                                                       overlay={
                                                         <Tooltip id="screeningTestSpecificity-help">
@@ -2073,11 +2136,18 @@ export default function RunScenarios() {
                                                   sm={12}
                                                   className=""
                                                 >
-                                                  <span>
+                                                  {/* <span>
                                                     {t(
                                                       "runScenario.diagnosticTestSensitivity"
                                                     )}
-                                                  </span>
+                                                  </span> */}
+                                                  <span
+                                                    dangerouslySetInnerHTML={{
+                                                      __html: t(
+                                                        "runScenario.diagnosticTestSensitivity"
+                                                      ),
+                                                    }}
+                                                  />
                                                   <OverlayTrigger
                                                     overlay={
                                                       <Tooltip id="screeningTestSpecificity-help">
@@ -2146,11 +2216,18 @@ export default function RunScenarios() {
                                                   sm={12}
                                                   className=""
                                                 >
-                                                  <span>
+                                                  {/* <span>
                                                     {t(
                                                       "runScenario.diagnosticTestSpecificity"
                                                     )}
-                                                  </span>
+                                                  </span> */}
+                                                  <span
+                                                    dangerouslySetInnerHTML={{
+                                                      __html: t(
+                                                        "runScenario.diagnosticTestSpecificity"
+                                                      ),
+                                                    }}
+                                                  />
                                                   <OverlayTrigger
                                                     overlay={
                                                       <Tooltip id="screeningTestSpecificity-help">
@@ -2351,11 +2428,18 @@ export default function RunScenarios() {
                                                   sm={12}
                                                   className=""
                                                 >
-                                                  <span>
+                                                  {/* <span>
                                                     {t(
                                                       "runScenario.diagnosticTestSensitivity"
                                                     )}
-                                                  </span>
+                                                  </span> */}
+                                                  <span
+                                                    dangerouslySetInnerHTML={{
+                                                      __html: t(
+                                                        "runScenario.diagnosticTestSensitivity"
+                                                      ),
+                                                    }}
+                                                  />
                                                   <OverlayTrigger
                                                     overlay={
                                                       <Tooltip id="screeningTestSpecificity-help">
@@ -2423,11 +2507,18 @@ export default function RunScenarios() {
                                                   sm={12}
                                                   className=""
                                                 >
-                                                  <span>
+                                                  {/* <span>
                                                     {t(
                                                       "runScenario.diagnosticTestSpecificity"
                                                     )}
-                                                  </span>
+                                                  </span> */}
+                                                  <span
+                                                    dangerouslySetInnerHTML={{
+                                                      __html: t(
+                                                        "runScenario.diagnosticTestSpecificity"
+                                                      ),
+                                                    }}
+                                                  />
                                                   <OverlayTrigger
                                                     overlay={
                                                       <Tooltip id="screeningTestSpecificity-help">
@@ -2643,11 +2734,18 @@ export default function RunScenarios() {
                                                   sm={12}
                                                   className=""
                                                 >
-                                                  <span>
+                                                  {/* <span>
                                                     {t(
                                                       "runScenario.diagnosticTestSensitivity"
                                                     )}
-                                                  </span>
+                                                  </span> */}
+                                                  <span
+                                                    dangerouslySetInnerHTML={{
+                                                      __html: t(
+                                                        "runScenario.diagnosticTestSensitivity"
+                                                      ),
+                                                    }}
+                                                  />
                                                   <OverlayTrigger
                                                     overlay={
                                                       <Tooltip id="screeningTestSpecificity-help">
@@ -2714,11 +2812,18 @@ export default function RunScenarios() {
                                                   sm={12}
                                                   className=""
                                                 >
-                                                  <span>
+                                                  {/* <span>
                                                     {t(
                                                       "runScenario.diagnosticTestSpecificity"
                                                     )}
-                                                  </span>
+                                                  </span> */}
+                                                  <span
+                                                    dangerouslySetInnerHTML={{
+                                                      __html: t(
+                                                        "runScenario.diagnosticTestSpecificity"
+                                                      ),
+                                                    }}
+                                                  />
                                                   <OverlayTrigger
                                                     overlay={
                                                       <Tooltip id="screeningTestSpecificity-help">
@@ -2926,11 +3031,18 @@ export default function RunScenarios() {
                                                   sm={12}
                                                   className=""
                                                 >
-                                                  <span>
+                                                  {/* <span>
                                                     {t(
                                                       "runScenario.diagnosticTestSensitivity"
                                                     )}
-                                                  </span>
+                                                  </span> */}
+                                                  <span
+                                                    dangerouslySetInnerHTML={{
+                                                      __html: t(
+                                                        "runScenario.diagnosticTestSensitivity"
+                                                      ),
+                                                    }}
+                                                  />
                                                   <OverlayTrigger
                                                     overlay={
                                                       <Tooltip id="diagnosticTestSensitivity-help">
@@ -2999,11 +3111,18 @@ export default function RunScenarios() {
                                                   sm={12}
                                                   className=""
                                                 >
-                                                  <span>
+                                                  {/* <span>
                                                     {t(
                                                       "runScenario.diagnosticTestSpecificity"
                                                     )}
-                                                  </span>
+                                                  </span> */}
+                                                  <span
+                                                    dangerouslySetInnerHTML={{
+                                                      __html: t(
+                                                        "runScenario.diagnosticTestSpecificity"
+                                                      ),
+                                                    }}
+                                                  />
                                                   <OverlayTrigger
                                                     overlay={
                                                       <Tooltip id="diagnosticTestSpecificity-help">
