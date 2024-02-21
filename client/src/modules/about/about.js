@@ -5,9 +5,19 @@ import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
 import { useTranslation, Trans } from "react-i18next";
+import { useState, useEffect } from "react";
 
 export default function About() {
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    if (window.location.hash === "#sst") {
+      const element = document.getElementById("sst");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }, []);
 
   return (
     <div className="bg-light py-4">
@@ -247,7 +257,7 @@ export default function About() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr id="sst">
                   <td>{t("general.sensitivity")}</td>
                   <td>{t("about.sensitivity")}</td>
                   <td>

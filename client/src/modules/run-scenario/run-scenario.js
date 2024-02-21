@@ -1,6 +1,6 @@
 import { useRecoilState, useSetRecoilState, useResetRecoilState } from "recoil";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import mapValues from "lodash/mapValues";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
@@ -640,11 +640,26 @@ export default function RunScenarios() {
                                                   sm={12}
                                                   className=""
                                                 >
-                                                  <span>
+                                                  <span
+                                                    dangerouslySetInnerHTML={{
+                                                      __html: t(
+                                                        "runScenario.screeningTestSenvitivity"
+                                                      ),
+                                                    }}
+                                                  />
+                                                  {/* <span>
                                                     {t(
-                                                      "runScenario.screeningTestSenvitivity"
+                                                      "runScenario.screeningTestSenvitivity0"
+                                                    )}{" "}
+                                                    <Link to="/about#sst">
+                                                      {t(
+                                                        "runScenario.sensitivity"
+                                                      )}
+                                                    </Link>{" "}
+                                                    {t(
+                                                      "runScenario.screeningTestSenvitivity1"
                                                     )}
-                                                  </span>
+                                                  </span> */}
                                                   <OverlayTrigger
                                                     overlay={
                                                       <Tooltip id="screeningTestSensitivity-help">
