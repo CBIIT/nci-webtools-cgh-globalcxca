@@ -31,7 +31,7 @@ export const screeningTests = [
   { value: "pap", label: "runScenario.PapTest" },
   { value: "ivaa", label: "runScenario.VIA" },
   { value: "hpv", label: "runScenario.HPV" },
-  { value: "hpv16or18", label: "runScenario.HPV1618" },
+  { value: "hpv16or18", label: "runScenario.HPV1618Genotyping" },
 ];
 
 export const screeningTests_t = [

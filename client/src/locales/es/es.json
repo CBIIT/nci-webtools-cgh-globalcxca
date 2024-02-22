@@ -151,6 +151,7 @@
     "VIA": "IVAA",
     "HPV": "VPH",
     "HPV1618": "VPH16/18",
+    "HPV1618Genotyping": "HPV16/18 genotyping",
     "impressionOfColposcopy": "Impresión de colposcopia",
     "colposcopyWithBiopsy": "Colposcopia con biopsia",
     "cervicalTestChosen": "Prueba de detección cervical elegida",

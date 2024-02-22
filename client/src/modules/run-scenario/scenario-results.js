@@ -58,7 +58,7 @@ export default function ScenarioResults() {
   const handleModalShow = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
 
-  //console.log("params", params);
+  console.log("params", params);
   //console.log("result", results);
 
   if (
