@@ -307,7 +307,7 @@ export default function RunScenarios() {
                             <InputGroup className="flex-nowrap">
                               <Form.Range
                                 type="range"
-                                min="0"
+                                min="1"
                                 max="5"
                                 step="0.1"
                                 placeholder="Enter 0 - 5"
