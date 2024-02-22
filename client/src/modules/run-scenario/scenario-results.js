@@ -59,7 +59,7 @@ export default function ScenarioResults() {
   const handleModalClose = () => setShowModal(false);
 
   //console.log("params", params);
-  console.log("result", results);
+  //console.log("result", results);
 
   if (
     results.checkedValues &&
@@ -952,9 +952,15 @@ export default function ScenarioResults() {
                             t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
-                          {Math.round(
-                            results.testedPositives[treatedIndex + 1]
-                          ) ?? t("general.NA")}
+                          {!isNaN(
+                            Math.round(
+                              results.testedPositives[treatedIndex + 1]
+                            )
+                          )
+                            ? Math.round(
+                                results.testedPositives[treatedIndex + 1]
+                              )
+                            : t("general.NA")}
                         </td>
                       </tr>
                       <tr className="table-warning">
@@ -966,8 +972,9 @@ export default function ScenarioResults() {
                             t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
-                          {Math.round(results.healthyOvertreated) ??
-                            t("general.NA")}
+                          {!isNaN(Math.round(results.healthyOvertreated))
+                            ? Math.round(results.healthyOvertreated)
+                            : t("general.NA")}
                         </td>
                       </tr>
                     </tbody>
