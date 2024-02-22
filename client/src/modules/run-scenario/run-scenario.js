@@ -337,6 +337,7 @@ export default function RunScenarios() {
                           </Card.Title>
                           <Card.Text className="small text-muted">
                             {t("runScenario.strategyChoosen")}
+                            {t("runScenario.byCheckingTheStrategyCheckbox")}
                           </Card.Text>
                         </Card.Header>
                       </Col>
