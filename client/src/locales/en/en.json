@@ -103,7 +103,9 @@
     "definition": "Definition",
     "and": "and",
     "graphs": "Graphs",
-    "tables": "Tables",
+    "tables": "Annual Tables",
+    "monthlyTables": "Monthly Tables",
+    "programTables": "Program Tables",
     "El": "",
     "NA": "NA"
   },
