@@ -325,6 +325,50 @@ export default function RunScenarios() {
                           </Col>
                         </Form.Group>
                       </Row>
+                      <Row className="ps-3">
+                        <Form.Group as={Row} controlId="hpvPrevalence">
+                          <Col lg={6} md={12} sm={12} xs={12}>
+                            <Form.Label column sm={12}>
+                              <span>{t("about.hpvPrevelence")}</span>
+                              <OverlayTrigger
+                                overlay={
+                                  <Tooltip id="hpvPrevalence-help">
+                                    {t("runScenario.prevelanceInfo")}
+                                  </Tooltip>
+                                }
+                              >
+                                <i className="ms-1 bi bi-question-circle"></i>
+                              </OverlayTrigger>
+                            </Form.Label>
+                          </Col>
+                          <Col
+                            lg={6}
+                            md={12}
+                            sm={12}
+                            xs={12}
+                            className="m-auto"
+                          >
+                            <InputGroup className="flex-nowrap">
+                              <Form.Range
+                                type="range"
+                                min="1"
+                                max="30"
+                                step="1"
+                                placeholder="Enter 0 - 30"
+                                name="hpvPrevalence"
+                                className="border-end-0 me-2"
+                                value={form.hpvPrevalence}
+                                onChange={handleChange}
+                                onWheel={(e) => e.target.blur()}
+                                required
+                              />
+                              <span className="text-nowrap">
+                                {form.hpvPrevalence}%
+                              </span>
+                            </InputGroup>
+                          </Col>
+                        </Form.Group>
+                      </Row>
                     </div>
                   </div>
                   <div>

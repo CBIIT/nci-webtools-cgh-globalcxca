@@ -22,42 +22,42 @@ export const exampleFormState = {
   diagnosticTest: "colposcopyWithBiopsy",
   diagnosticTestSensitivity: 80,
   diagnosticTestSpecificity: 85,
-}
+};
 
 export const defaultFormState = {
-	scenario: "ScreenDiagnosticTestTreat",
-	populationSize: "",
-	hpvCancerPrevalence: "",
-	hpvPrevalence: "",
-	cinPrevalence: 2,
-	screeningInterval: 5,
-	percentScreened: 0,
-	percentTriaged: 0,
-	percentDiagnosticTriaged: 0,
-	percentTreated: 0,
-	screeningTest: "",
-	screeningTestSensitivity: 0,
-	screeningTestSpecificity: 0,
-	triageTest: "",
-	triageTestSensitivity: 0,
-	triageTestSpecificity: 0,
-	diagnosticTest: "",
-	diagnosticTestSensitivity: 0,
-	diagnosticTestSpecificity: 0,
-	...(useExample && exampleFormState)
-}
+  scenario: "ScreenDiagnosticTestTreat",
+  populationSize: "",
+  hpvCancerPrevalence: "",
+  hpvPrevalence: 0,
+  cinPrevalence: 2,
+  screeningInterval: 5,
+  percentScreened: 0,
+  percentTriaged: 0,
+  percentDiagnosticTriaged: 0,
+  percentTreated: 0,
+  screeningTest: "",
+  screeningTestSensitivity: 0,
+  screeningTestSpecificity: 0,
+  triageTest: "",
+  triageTestSensitivity: 0,
+  triageTestSpecificity: 0,
+  diagnosticTest: "",
+  diagnosticTestSensitivity: 0,
+  diagnosticTestSpecificity: 0,
+  ...(useExample && exampleFormState),
+};
 
 export const formState = atom({
-	key: "runScenarios.formState",
-	default:  defaultFormState
+  key: "runScenarios.formState",
+  default: defaultFormState,
 });
 
 export const paramsState = atom({
-	key: "runScenarios.paramsState",
-	default: null,
-})
+  key: "runScenarios.paramsState",
+  default: null,
+});
 
 export const resultsState = atom({
-	key: "runScenarios.resultsState",
-	default: null
+  key: "runScenarios.resultsState",
+  default: null,
 });
