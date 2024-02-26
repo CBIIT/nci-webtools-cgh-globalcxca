@@ -130,7 +130,7 @@ export const tests = {
 // }
 
 export function runModel(params) {
-  //console.log("PARMS ---- ", params);
+  console.log("PARMS ****---- ", params);
   const t = i18n.t;
 
   const scenario = params.scenario;
@@ -171,6 +171,9 @@ export function runModel(params) {
   console.log("sensitivity ", sensitivity);
   console.log("specificity ", specificity);
   console.log("screentest", screentest);
+  if (params.screeningTest === "hpv" && params.triageTest === "hpv16or18") {
+    console.log("HPV IN SCREENING, HPV1618 for triag");
+  }
   return calculateValues(
     scenario,
     screentest,
