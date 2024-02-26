@@ -939,7 +939,9 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-warning-dark text-light">
-                        <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
+                        <th>
+                          {t("results.annualImpactOnCervicalPrecancerTitle")}
+                        </th>
                         <th className="th-placeholder">Placeholder</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
@@ -983,7 +985,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-danger-dark text-light">
-                        <th>{t("results.missedPrecancersTitle")}</th>
+                        <th>{t("results.AnnualMissedPrecancersTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
@@ -1448,7 +1450,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-info-dark text-light">
-                        <th>{t("results.annualTargets")}</th>
+                        <th>{t("results.monthlyTargets")}</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
                     </thead>
@@ -1505,7 +1507,9 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-warning-dark text-light">
-                        <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
+                        <th>
+                          {t("results.monthlyImpactOnCervicalPrecancerTitle")}
+                        </th>
                         <th className="th-placeholder">Placeholder</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
@@ -1549,7 +1553,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-danger-dark text-light">
-                        <th>{t("results.missedPrecancersTitle")}</th>
+                        <th>{t("results.monthlyMissedPrecancersTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
@@ -1946,7 +1950,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-success-dark text-light">
-                        <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
+                        <th>{t("results.monthlyImpactOnResourcesTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
                     </thead>
@@ -2029,7 +2033,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-info-dark text-light">
-                        <th>{t("results.annualTargets")}</th>
+                        <th>{t("results.targets")}</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
                     </thead>
@@ -2543,7 +2547,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-success-dark text-light">
-                        <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
+                        <th>{t("results.impactOnResourcesTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
                     </thead>
