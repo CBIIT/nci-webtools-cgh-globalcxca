@@ -1035,8 +1035,13 @@ export default function ScenarioResults() {
                       </tr>
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.sensitivityOfScreeningTest")} {screenTest}{" "}
-                          {t("general.test")}
+                          {/* {t("results.sensitivityOfScreeningTest")}{" "} */}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: t("results.sensitivityOfScreeningTest"),
+                            }}
+                          />{" "}
+                          {screenTest} {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -1129,8 +1134,13 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.sensitivityOfTriageTest")} {triageTest}{" "}
-                          {t("general.test")}
+                          {/* {t("results.sensitivityOfTriageTest")} */}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: t("results.sensitivityOfTriageTest"),
+                            }}
+                          />{" "}
+                          {triageTest} {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -1283,7 +1293,12 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.sensitivityOfDiagnosticTest")}{" "}
+                          {/* {t("results.sensitivityOfDiagnosticTest")} */}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: t("results.sensitivityOfDiagnosticTest"),
+                            }}
+                          />{" "}
                           {diagnosisTest} {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
@@ -1603,8 +1618,13 @@ export default function ScenarioResults() {
                       </tr>
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.sensitivityOfScreeningTest")} {screenTest}{" "}
-                          {t("general.test")}
+                          {/* {t("results.sensitivityOfScreeningTest")} */}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: t("results.sensitivityOfScreeningTest"),
+                            }}
+                          />{" "}
+                          {screenTest} {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -1698,8 +1718,13 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.sensitivityOfTriageTest")} {triageTest}{" "}
-                          {t("general.test")}
+                          {/* {t("results.sensitivityOfTriageTest")} */}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: t("results.sensitivityOfTriageTest"),
+                            }}
+                          />{" "}
+                          {triageTest} {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -1854,7 +1879,12 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.sensitivityOfDiagnosticTest")}{" "}
+                          {/* {t("results.sensitivityOfDiagnosticTest")}{" "} */}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: t("results.sensitivityOfDiagnosticTest"),
+                            }}
+                          />{" "}
                           {diagnosisTest} {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
@@ -2193,8 +2223,13 @@ export default function ScenarioResults() {
                       </tr>
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.sensitivityOfScreeningTest")} {screenTest}{" "}
-                          {t("general.test")}
+                          {/* {t("results.sensitivityOfScreeningTest")} */}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: t("results.sensitivityOfScreeningTest"),
+                            }}
+                          />{" "}
+                          {screenTest} {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -2290,8 +2325,13 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.sensitivityOfTriageTest")} {triageTest}{" "}
-                          {t("general.test")}
+                          {/* {t("results.sensitivityOfTriageTest")} */}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: t("results.sensitivityOfTriageTest"),
+                            }}
+                          />{" "}
+                          {triageTest} {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -2449,7 +2489,12 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.sensitivityOfDiagnosticTest")}{" "}
+                          {/* {t("results.sensitivityOfDiagnosticTest")}{" "} */}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: t("results.sensitivityOfDiagnosticTest"),
+                            }}
+                          />
                           {diagnosisTest} {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">

@@ -312,7 +312,9 @@ export default function CompareScenarios() {
 
                             <tr className="bg-warning-dark text-light">
                               <th colSpan={1 + scenarios.length}>
-                                {t("results.impactOnCervicalPrecancerTitle")}
+                                {t(
+                                  "results.annualImpactOnCervicalPrecancerTitle"
+                                )}
                               </th>
                             </tr>
                             <tr className="table-warning">
@@ -342,7 +344,7 @@ export default function CompareScenarios() {
 
                             <tr className="bg-danger-dark text-light">
                               <th colSpan={1 + scenarios.length}>
-                                {t("results.missedPrecancersTitle")}
+                                {t("results.AnnualMissedPrecancersTitle")}
                               </th>
                             </tr>
 
@@ -399,7 +401,14 @@ export default function CompareScenarios() {
                             </tr>
                             <tr className="table-light">
                               <th className="ps-3">
-                                {t("results.sensitivityOfScreeningTest")}
+                                {/* {t("results.sensitivityOfScreeningTest")} */}
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: t(
+                                      "results.sensitivityOfScreeningTest"
+                                    ),
+                                  }}
+                                />
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td
@@ -531,7 +540,14 @@ export default function CompareScenarios() {
 
                             <tr className="table-light">
                               <th className="ps-3">
-                                {t("results.sensitivityOfTriageTest")}
+                                {/* {t("results.sensitivityOfTriageTest")} */}
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: t(
+                                      "results.sensitivityOfTriageTest"
+                                    ),
+                                  }}
+                                />
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td
@@ -699,7 +715,14 @@ export default function CompareScenarios() {
 
                             <tr className="table-light">
                               <th className="ps-3">
-                                {t("results.sensitivityOfDiagnosticTest")}
+                                {/* {t("results.sensitivityOfDiagnosticTest")} */}
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: t(
+                                      "results.sensitivityOfDiagnosticTest"
+                                    ),
+                                  }}
+                                />
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td
@@ -997,7 +1020,14 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                {t("runScenario.screeningTestSenvitivity")}
+                                {/* {t("runScenario.screeningTestSenvitivity")} */}
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: t(
+                                      "runScenario.screeningTestSenvitivity"
+                                    ),
+                                  }}
+                                />
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1008,7 +1038,14 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                {t("runScenario.screeningTestSpecificity")}
+                                {/* {t("runScenario.screeningTestSpecificity")} */}
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: t(
+                                      "runScenario.screeningTestSpecificity"
+                                    ),
+                                  }}
+                                />
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1045,9 +1082,16 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                {t(
+                                {/* {t(
                                   "runScenario.triageOrDiagnosticTestSensitivity"
-                                )}
+                                )} */}
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: t(
+                                      "runScenario.triageOrDiagnosticTestSensitivity"
+                                    ),
+                                  }}
+                                />
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1058,9 +1102,16 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                {t(
+                                {/* {t(
                                   "runScenario.triageOrDiagnosticTestSpecificity"
-                                )}
+                                )} */}
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: t(
+                                      "runScenario.triageOrDiagnosticTestSpecificity"
+                                    ),
+                                  }}
+                                />
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1095,7 +1146,14 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                {t("runScenario.diagnosticTestSensitivity")}
+                                {/* {t("runScenario.diagnosticTestSensitivity")} */}
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: t(
+                                      "runScenario.diagnosticTestSensitivity"
+                                    ),
+                                  }}
+                                />
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1107,7 +1165,14 @@ export default function CompareScenarios() {
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                {t("runScenario.diagnosticTestSpecificity")}
+                                {/* {t("runScenario.diagnosticTestSpecificity")} */}
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: t(
+                                      "runScenario.diagnosticTestSpecificity"
+                                    ),
+                                  }}
+                                />
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
