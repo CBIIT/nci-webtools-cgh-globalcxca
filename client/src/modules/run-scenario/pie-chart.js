@@ -307,8 +307,8 @@ function d3PieChart(
   // Calculate labelRadius based on the percentage of the pie chart
   const maxPercentage = Math.max(...percentages);
   const minPercentage = Math.min(...percentages);
-  const maxLabelRadius = outerRadius * 0.1; // Adjust as needed
-  const minLabelRadius = outerRadius * -0.1; // Adjust as needed
+  const maxLabelRadius = outerRadius * 0.2; // Adjust as needed
+  const minLabelRadius = outerRadius * -0.2; // Adjust as needed
   const adjustedLabelRadius = d3
     .scaleLinear()
     .domain([minPercentage, maxPercentage])
@@ -375,16 +375,12 @@ function d3PieChart(
       const pos = arcLabel.centroid(d);
       const isLeftHalf =
         d.startAngle + (d.endAngle - d.startAngle) / 2 < Math.PI;
-      const labelRadius = (Math.min(chartWidth, chartWidth) / 2) * 0.3;
-      const distanceFromCenter = Math.sqrt(pos[0] ** 2 + pos[1] ** 2);
-      const maxAllowedDistance = labelRadius + 1; // Adjust this value as needed
-      const scaleFactor = maxAllowedDistance / distanceFromCenter;
-      console.log("scaleFactor ", scaleFactor);
+
+      // Adjust label position based on whether it's in the left or right half of the pie chart
       if (isLeftHalf) {
-        pos[0] *= scaleFactor;
-      } else {
-        pos[0] *= -scaleFactor;
+        pos[1] += 10;
       }
+
       return `translate(${pos})`;
     })
     .attr("fill", "white")
@@ -402,7 +398,6 @@ function d3PieChart(
             percentages[d3.select(nodes[i].parentNode).datum().index]
           )}px`
     ) // Use adjustedLabelRadius based on percentage
-
     .attr("font-weight", (_, i) => (i ? null : "bold"))
     .text((d) => d);
 
