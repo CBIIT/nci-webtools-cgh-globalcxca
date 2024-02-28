@@ -150,6 +150,7 @@ export default function PieChart({ id, data, layout = defaultLayout, colors }) {
             format: ",.0f",
             colors: colors,
             labels: translatedLabels,
+            chartWidth: chartWidth, // Pass chartWidth as a parameter
           })
         );
       }
@@ -180,6 +181,7 @@ function d3PieChart(
     strokeLinejoin = "round", // line join of stroke separating wedges
     padAngle = stroke === "none" ? 1 / outerRadius : 0, // angular separation between wedges
     labels,
+    chartWidth, // Accept chartWidth as a parameter
   } = {}
 ) {
   // Compute values.
@@ -302,6 +304,16 @@ function d3PieChart(
     };
   }
 
+  // Calculate labelRadius based on the percentage of the pie chart
+  const maxPercentage = Math.max(...percentages);
+  const minPercentage = Math.min(...percentages);
+  const maxLabelRadius = outerRadius * 0.1; // Adjust as needed
+  const minLabelRadius = outerRadius * -0.1; // Adjust as needed
+  const adjustedLabelRadius = d3
+    .scaleLinear()
+    .domain([minPercentage, maxPercentage])
+    .range([minLabelRadius, maxLabelRadius]);
+
   // Construct arcs.
   const arcs = d3
     .pie()
@@ -359,8 +371,22 @@ function d3PieChart(
     .selectAll("text")
     .data(arcs)
     .join("text")
-    .attr("transform", (d) => `translate(${arcLabel.centroid(d)})`)
-    .attr("font-size", "0.7rem")
+    .attr("transform", (d) => {
+      const pos = arcLabel.centroid(d);
+      const isLeftHalf =
+        d.startAngle + (d.endAngle - d.startAngle) / 2 < Math.PI;
+      const labelRadius = (Math.min(chartWidth, chartWidth) / 2) * 0.3;
+      const distanceFromCenter = Math.sqrt(pos[0] ** 2 + pos[1] ** 2);
+      const maxAllowedDistance = labelRadius + 1; // Adjust this value as needed
+      const scaleFactor = maxAllowedDistance / distanceFromCenter;
+      console.log("scaleFactor ", scaleFactor);
+      if (isLeftHalf) {
+        pos[0] *= scaleFactor;
+      } else {
+        pos[0] *= -scaleFactor;
+      }
+      return `translate(${pos})`;
+    })
     .attr("fill", "white")
     .selectAll("tspan")
     .data((d) => {
@@ -369,7 +395,14 @@ function d3PieChart(
     })
     .join("tspan")
     .attr("x", 0)
-    .attr("y", (_, i) => `${i * 1}em`)
+    .attr("y", (_, i, nodes) =>
+      i
+        ? `${i * 1}em`
+        : `${adjustedLabelRadius(
+            percentages[d3.select(nodes[i].parentNode).datum().index]
+          )}px`
+    ) // Use adjustedLabelRadius based on percentage
+
     .attr("font-weight", (_, i) => (i ? null : "bold"))
     .text((d) => d);
 
