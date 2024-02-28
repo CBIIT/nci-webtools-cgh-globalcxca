@@ -797,9 +797,14 @@ export function calculateValues(
 
   // const healthyOvertreated =
   //   (percentHealthyOvertreated * testedFalsePositives[0]) / 100;
+  // const healthyOvertreated =
+  //   (testedFalsePositives[0] * percentHealthyOvertreated) /
+  //   (100 - Math.round(percentHealthyOvertreated));
+  const denominator = 100 - Math.round(percentHealthyOvertreated);
+  const epsilon = 0.00000001; // Small non-zero value
+  const adjustedDenominator = denominator !== 0 ? denominator : epsilon;
   const healthyOvertreated =
-    (testedFalsePositives[0] * percentHealthyOvertreated) /
-    (100 - Math.round(percentHealthyOvertreated));
+    (testedFalsePositives[0] * percentHealthyOvertreated) / adjustedDenominator;
 
   let numberPrecancersMissed = 0;
 
