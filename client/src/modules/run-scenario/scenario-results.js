@@ -829,7 +829,9 @@ export default function ScenarioResults() {
                           data={[
                             {
                               label: t("results.populationNotOverTreated"),
-                              value: +results.testedFalsePositives[0],
+                              value:
+                                +results.testedFalsePositives[0] -
+                                +results.healthyOvertreated,
                             },
                             {
                               label: t("results.pPrecencersOverTreated"),
