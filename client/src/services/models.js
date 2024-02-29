@@ -124,6 +124,10 @@ export const tests = {
     sensitivity: 60,
     specificity: 75,
   },
+  hpv16or18genotyping: {
+    sensitivity: 60,
+    specificity: 75,
+  },
   colposcopicImpression: {
     sensitivity: 70,
     specificity: 75,
@@ -185,7 +189,10 @@ export function runModel(params) {
   console.log("sensitivity ", sensitivity);
   console.log("specificity ", specificity);
   console.log("screentest", screentest);
-  if (params.screeningTest === "hpv" && params.triageTest === "hpv16or18") {
+  if (
+    params.screeningTest === "hpv" &&
+    params.triageTest === "hpv16or18genotyping"
+  ) {
     console.log("HPV IN SCREENING, HPV1618 for triag");
     sensitivity[0] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
     specificity[0] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;

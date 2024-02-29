@@ -166,14 +166,14 @@ export default function RunScenarios() {
   setResults(results);
   if (
     params.screeningTest === "hpv" &&
-    params.triageTest === "hpv16or18genotyping" &&
-    Array.isArray(params.checkedValues) &&
-    params.checkedValues.length === 3 &&
-    params.checkedValues.every((item) =>
-      ["ScreenTreat", "Treatment", "ScreenTriageDiagnosticTestTreat"].includes(
-        item
-      )
-    )
+    params.triageTest === "hpv16or18genotyping"
+    //Array.isArray(params.checkedValues) &&
+    //params.checkedValues.length === 3 &&
+    //params.checkedValues.every((item) =>
+    // ["ScreenTreat", "Treatment", "ScreenTriageDiagnosticTestTreat"].includes(
+    //    item
+    //  )
+    //)
   ) {
     console.log("BINGOOOOO");
     hpv16or18Used = true;
