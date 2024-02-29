@@ -173,7 +173,11 @@ export function runModel(params) {
   console.log("screentest", screentest);
   if (params.screeningTest === "hpv" && params.triageTest === "hpv16or18") {
     console.log("HPV IN SCREENING, HPV1618 for triag");
+    sensitivity[0] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
+    specificity[0] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
   }
+  console.log("sensitivity-after ", sensitivity);
+  console.log("specificity-after ", specificity);
   return calculateValues(
     scenario,
     screentest,

@@ -45,6 +45,7 @@ export default function RunScenarios() {
   const [divVisibilities, setDivVisibilities] = useState(
     Array(scenarios.length).fill(false)
   );
+  let hpv16or18Used;
 
   function handleChange(e, index) {
     const { name, value, checked } = e.target;
@@ -155,9 +156,31 @@ export default function RunScenarios() {
 
   const results = runModel(form);
   const params = mapValues(form, asNumber);
+  console.log("run params", params);
+  console.log("params.checkedValues ,", params.checkedValues);
+  console.log("params.screeningTest  ", params.screeningTest);
+  console.log("params.triageTest ", params.triageTest);
+
   setParams(params);
   setResults(results);
+  if (
+    params.screeningTest === "hpv" &&
+    params.triageTest === "hpv16or18" &&
+    Array.isArray(params.checkedValues) &&
+    params.checkedValues.length === 3 &&
+    params.checkedValues.every((item) =>
+      ["ScreenTreat", "Treatment", "ScreenTriageDiagnosticTestTreat"].includes(
+        item
+      )
+    )
+  ) {
+    console.log("BINGOOOOO");
+    hpv16or18Used = true;
+  } else {
+    hpv16or18Used = false;
+  }
 
+  console.log("hpv16or18Used -- ", hpv16or18Used);
   function handleSubmit(event) {
     event?.preventDefault();
     const params = mapValues(form, asNumber);
@@ -691,6 +714,7 @@ export default function RunScenarios() {
                                                         "runScenario.screeningTestSenvitivity"
                                                       ),
                                                     }}
+                                                    HH
                                                   />
                                                   {/* <span>
                                                     {t(
@@ -726,7 +750,13 @@ export default function RunScenarios() {
                                                 className="d-flex flex-column m-auto"
                                               >
                                                 {" "}
-                                                <InputGroup className="flex-nowrap">
+                                                <InputGroup
+                                                  className={`flex-nowrap ${
+                                                    hpv16or18Used
+                                                      ? "grayed-out"
+                                                      : ""
+                                                  }`}
+                                                >
                                                   <Form.Range
                                                     type="number"
                                                     min="0"
@@ -804,7 +834,13 @@ export default function RunScenarios() {
                                                 className="d-flex flex-column m-auto"
                                               >
                                                 {" "}
-                                                <InputGroup className="flex-nowrap">
+                                                <InputGroup
+                                                  className={`flex-nowrap ${
+                                                    hpv16or18Used
+                                                      ? "grayed-out"
+                                                      : ""
+                                                  }`}
+                                                >
                                                   <Form.Range
                                                     type="number"
                                                     min="0"
