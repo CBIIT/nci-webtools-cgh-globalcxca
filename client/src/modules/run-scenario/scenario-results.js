@@ -17,6 +17,7 @@ import {
   scenarios,
   screeningTests,
   triageTests,
+  triageTests_t,
   diagnosticTests,
 } from "../../services/models";
 import { getTimestamp } from "../../services/file-utils";
@@ -121,6 +122,8 @@ export default function ScenarioResults() {
       triageTest = "(" + t("runScenario.HPV") + ")";
     } else if (results.screentest[1] === "hpv16or18") {
       triageTest = "(" + t("runScenario.HPV1618") + ")";
+    } else if (results.screentest[1] === "hpv16or18genotyping") {
+      triageTest = "(" + t("runScenario.HPV1618Genotyping") + ")";
     } else if (results.screentest[1] === "colposcopicImpression") {
       triageTest = "(" + t("runScenario.impressionOfColposcopy") + ")";
     } else if (results.screentest[1] === "colposcopyWithBiopsy") {

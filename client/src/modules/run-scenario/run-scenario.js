@@ -25,6 +25,7 @@ import {
   tests,
   screeningTests,
   triageTests,
+  triageTests_nogynotype,
   diagnosticTests,
   calculateValues,
 } from "../../services/models";
@@ -165,7 +166,7 @@ export default function RunScenarios() {
   setResults(results);
   if (
     params.screeningTest === "hpv" &&
-    params.triageTest === "hpv16or18" &&
+    params.triageTest === "hpv16or18genotyping" &&
     Array.isArray(params.checkedValues) &&
     params.checkedValues.length === 3 &&
     params.checkedValues.every((item) =>
@@ -2786,14 +2787,16 @@ export default function RunScenarios() {
                                                       "runScenario.selectTest"
                                                     )}
                                                   </option>
-                                                  {triageTests.map((m) => (
-                                                    <option
-                                                      key={m.value}
-                                                      value={m.value}
-                                                    >
-                                                      {t(m.label)}
-                                                    </option>
-                                                  ))}
+                                                  {triageTests_nogynotype.map(
+                                                    (m) => (
+                                                      <option
+                                                        key={m.value}
+                                                        value={m.value}
+                                                      >
+                                                        {t(m.label)}
+                                                      </option>
+                                                    )
+                                                  )}
                                                 </Form.Select>
                                               </Col>
                                             </Form.Group>
