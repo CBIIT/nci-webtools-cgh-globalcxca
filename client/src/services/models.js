@@ -45,24 +45,12 @@ export const triageTests = [
   { value: "pap", label: "runScenario.PapTest" },
   { value: "ivaa", label: "runScenario.VIA" },
   { value: "hpv16or18genotyping", label: "runScenario.HPV1618Genotyping" },
-  {
-    value: "colposcopicImpression",
-    label: "runScenario.impressionOfColposcopy",
-  },
-  {
-    value: "colposcopyWithBiopsy",
-    label: "runScenario.colposcopyWithBiopsy",
-  },
 ];
 
 export const triageTests_nogynotype = [
   { value: "pap", label: "runScenario.PapTest" },
   { value: "ivaa", label: "runScenario.VIA" },
   { value: "hpv16or18", label: "runScenario.HPV1618" },
-  {
-    value: "colposcopicImpression",
-    label: "runScenario.impressionOfColposcopy",
-  },
   {
     value: "colposcopyWithBiopsy",
     label: "runScenario.colposcopyWithBiopsy",
@@ -83,10 +71,6 @@ export const triageTests_t = [
 ];
 
 export const diagnosticTests = [
-  {
-    value: "colposcopicImpression",
-    label: "runScenario.impressionOfColposcopy",
-  },
   {
     value: "colposcopyWithBiopsy",
     label: "runScenario.colposcopyWithBiopsy",
