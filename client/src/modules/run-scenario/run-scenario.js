@@ -393,6 +393,52 @@ export default function RunScenarios() {
                           </Col>
                         </Form.Group>
                       </Row>
+                      <Row className="ps-3">
+                        <Form.Group as={Row} controlId="proportionOfPositives">
+                          <Col lg={6} md={12} sm={12} xs={12}>
+                            <Form.Label column sm={12}>
+                              <span>
+                                {t("runScenario.proportionOfPositives")}
+                              </span>
+                              <OverlayTrigger
+                                overlay={
+                                  <Tooltip id="proportionOfPositives-help">
+                                    {t("runScenario.proportionOfPositivesInfo")}
+                                  </Tooltip>
+                                }
+                              >
+                                <i className="ms-1 bi bi-question-circle"></i>
+                              </OverlayTrigger>
+                            </Form.Label>
+                          </Col>
+                          <Col
+                            lg={6}
+                            md={12}
+                            sm={12}
+                            xs={12}
+                            className="m-auto"
+                          >
+                            <InputGroup className="flex-nowrap">
+                              <Form.Range
+                                type="range"
+                                min="1"
+                                max="30"
+                                step="1"
+                                placeholder="Enter 0 - 30"
+                                name="proportionOfPositives"
+                                className="border-end-0 me-2"
+                                value={form.proportionOfPositives}
+                                onChange={handleChange}
+                                onWheel={(e) => e.target.blur()}
+                                required
+                              />
+                              <span className="text-nowrap">
+                                {form.proportionOfPositives}%
+                              </span>
+                            </InputGroup>
+                          </Col>
+                        </Form.Group>
+                      </Row>
                     </div>
                   </div>
                   <div>

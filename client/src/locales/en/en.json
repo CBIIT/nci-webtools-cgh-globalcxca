@@ -162,7 +162,9 @@
     "colposcopyWithBiopsy": "Colposcopy with biopsy",
     "cervicalTestChosen": "Cervical screening test chosen",
     "screeningCoverage": "Screening coverage",
-    "pleaseRefer": "Please refer to the About tab for more information about the below parameters before entering a scenario."
+    "pleaseRefer": "Please refer to the About tab for more information about the below parameters before entering a scenario.",
+    "proportionOfPositives": "Proportion of Positives Including HPV 16/18",
+    "proportionOfPositivesInfo": ""
   },
   "results": {
     "screenDiagnosisTreatment": "Screening → Diagnosis → Treatment",
