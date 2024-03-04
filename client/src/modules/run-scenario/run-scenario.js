@@ -47,11 +47,15 @@ export default function RunScenarios() {
     Array(scenarios.length).fill(false)
   );
   let hpv16or18Used;
+  let hpvScreeningUsed;
 
   function handleChange(e, index) {
     const { name, value, checked } = e.target;
     //console.log("checked", checked);
-    //console.log("value", value);
+    console.log("value +++++++", value);
+    console.log("name ++++++++", name);
+    console.log("PARAMS ++++ ", params);
+    console.log("hpvPrevalence ", params.hpvPrevalence);
 
     let updatedValues = [...checkedValues];
     let newDivVisibilities = [...divVisibilities];
@@ -76,6 +80,8 @@ export default function RunScenarios() {
       }
     }
 
+    console.log("FORM ---- ", form);
+
     // Update the state
     setDivVisibilities(newDivVisibilities);
     setCheckedValues(updatedValues);
@@ -89,11 +95,23 @@ export default function RunScenarios() {
     }
 
     if (name === "screeningTest") {
-      setForm((prevForm) => ({
-        ...prevForm,
-        screeningTestSensitivity: tests[value]?.sensitivity || "",
-        screeningTestSpecificity: tests[value]?.specificity || "",
-      }));
+      if (value === "hpv") {
+        console.log(
+          "HPV IS SELECTED FOR SCREENING TEST !!!!!!!!!! -----------------"
+        );
+        const updatedSpecificity = 100 - params.hpvPrevalence;
+        console.log("updatedSpecificity ", updatedSpecificity);
+        setForm((prevForm) => ({
+          ...prevForm,
+          screeningTestSpecificity: updatedSpecificity,
+        }));
+      } else {
+        setForm((prevForm) => ({
+          ...prevForm,
+          screeningTestSensitivity: tests[value]?.sensitivity || "",
+          screeningTestSpecificity: tests[value]?.specificity || "",
+        }));
+      }
     }
 
     if (name === "triageTest") {
@@ -157,10 +175,10 @@ export default function RunScenarios() {
 
   const results = runModel(form);
   const params = mapValues(form, asNumber);
-  console.log("run params", params);
-  console.log("params.checkedValues ,", params.checkedValues);
-  console.log("params.screeningTest  ", params.screeningTest);
-  console.log("params.triageTest ", params.triageTest);
+  //console.log("run params", params);
+  //console.log("params.checkedValues ,", params.checkedValues);
+  //console.log("params.screeningTest  ", params.screeningTest);
+  //console.log("params.triageTest ", params.triageTest);
 
   setParams(params);
   setResults(results);
@@ -175,13 +193,13 @@ export default function RunScenarios() {
     //  )
     //)
   ) {
-    console.log("BINGOOOOO");
+    //console.log("BINGOOOOO");
     hpv16or18Used = true;
   } else {
     hpv16or18Used = false;
   }
 
-  console.log("hpv16or18Used -- ", hpv16or18Used);
+  //console.log("hpv16or18Used -- ", hpv16or18Used);
   function handleSubmit(event) {
     event?.preventDefault();
     const params = mapValues(form, asNumber);
