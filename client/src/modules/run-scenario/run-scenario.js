@@ -375,7 +375,7 @@ export default function RunScenarios() {
                             <InputGroup className="flex-nowrap">
                               <Form.Range
                                 type="range"
-                                min="1"
+                                min="0"
                                 max="30"
                                 step="1"
                                 placeholder="Enter 0 - 30"
@@ -421,10 +421,10 @@ export default function RunScenarios() {
                             <InputGroup className="flex-nowrap">
                               <Form.Range
                                 type="range"
-                                min="1"
-                                max="30"
+                                min="0"
+                                max="10"
                                 step="1"
-                                placeholder="Enter 0 - 30"
+                                placeholder="Enter 0 - 10"
                                 name="proportionOfPositives"
                                 className="border-end-0 me-2"
                                 value={form.proportionOfPositives}
