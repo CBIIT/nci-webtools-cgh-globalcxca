@@ -74,11 +74,14 @@ export default function About() {
               <tbody>
                 <tr>
                   <td>{t("about.hpvPrevelence")}</td>
+                  <td>5%</td>
+                  <td>20%</td>
+                  <td>12%</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>
+                    <p>{t("about.prevalenceSources9")}</p>
+                    <p>{t("about.prevalenceSources10")}</p>
+                  </td>
                 </tr>
                 <tr>
                   <td>{t("runScenario.prevelance")}</td>
