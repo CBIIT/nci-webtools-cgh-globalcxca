@@ -117,6 +117,7 @@
     "numPeopleInfo": "Ingrese el número objetivo de personas en la población elegibles para el tamizaje cervical - Solo se permiten números como entrada, sin comas ni puntos.",
     "prevelance": "Prevalencia de NIC2/3 en la población objetivo que requiere tamizaje cervical",
     "prevelanceInfo": "Ingrese el número de mujeres con CIN2/3 por cada 100 personas en la población elegible para el tamizaje cervical",
+    "hpvPrevelanceInfo": "Enter number of HPV prevelance",
     "numberWomenWithCin": "Ingrese el número de mujeres con NIC2/3 por cada 100 personas en la población objetivo que requiere tamizaje cervical",
     "strategySelectionTitle": "Selección de la estrategia",
     "strategyChoosen": "Elija estrategias a incluir en su escenario ",

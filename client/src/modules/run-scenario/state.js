@@ -29,7 +29,7 @@ export const defaultFormState = {
   scenario: "ScreenDiagnosticTestTreat",
   populationSize: "",
   hpvCancerPrevalence: "",
-  hpvPrevalence: 0,
+  hpvPrevalence: 12,
   cinPrevalence: 2,
   screeningInterval: 5,
   percentScreened: 0,

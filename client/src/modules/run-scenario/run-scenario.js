@@ -103,6 +103,7 @@ export default function RunScenarios() {
         console.log("updatedSpecificity ", updatedSpecificity);
         setForm((prevForm) => ({
           ...prevForm,
+          screeningTestSensitivity: tests[value]?.sensitivity || "",
           screeningTestSpecificity: updatedSpecificity,
         }));
       } else {
@@ -349,10 +350,10 @@ export default function RunScenarios() {
                             <InputGroup className="flex-nowrap">
                               <Form.Range
                                 type="range"
-                                min="0"
-                                max="30"
+                                min="5"
+                                max="20"
                                 step="1"
-                                placeholder="Enter 0 - 30"
+                                placeholder="Enter 5 - 20"
                                 name="hpvPrevalence"
                                 className="border-end-0 me-2"
                                 value={form.hpvPrevalence}

@@ -860,7 +860,7 @@ export function calculateValues(
       percentMissedDueToSensitivityOfScreeningTest
     );
     totalNeeded.push(totalNeededToScreen);
-    //totalNeed = 
+    //totalNeed =
   }
 
   const percentMissedDueToLossAtTreatment =
