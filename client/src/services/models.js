@@ -132,7 +132,7 @@ export const tests = {
 // }
 
 export function runModel(params) {
-  console.log("PARMS ****---- ", params);
+  //console.log("PARMS ****---- ", params);
   const t = i18n.t;
 
   const scenario = params.scenario;
@@ -140,6 +140,7 @@ export function runModel(params) {
   const screeningInterval = parseInt(params.screeningInterval, 10);
   const cinPrevalence = parseInt(params.cinPrevalence, 10) / 100;
   const checkedValues = params.checkedValues;
+  const hpvPrevalence = params.hpvPrevalence;
   let coverage = [];
   let sensitivity = [];
   let specificity = [];
@@ -177,7 +178,7 @@ export function runModel(params) {
     params.screeningTest === "hpv" &&
     params.triageTest === "hpv16or18genotyping"
   ) {
-    console.log("HPV IN SCREENING, HPV1618 for triag");
+    //console.log("HPV IN SCREENING, HPV1618 for triag");
     sensitivity[0] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
     specificity[0] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
   }
@@ -192,7 +193,8 @@ export function runModel(params) {
     coverage,
     sensitivity,
     specificity,
-    checkedValues
+    checkedValues,
+    hpvPrevalence
   );
 }
 
@@ -742,7 +744,8 @@ export function calculateValues(
   coverage,
   sensitivity,
   specificity,
-  checkedValues
+  checkedValues,
+  hpvPrevalence
 ) {
   const stages = sensitivity.length;
   const testedFalsePositives = [];
@@ -857,6 +860,7 @@ export function calculateValues(
       percentMissedDueToSensitivityOfScreeningTest
     );
     totalNeeded.push(totalNeededToScreen);
+    //totalNeed = 
   }
 
   const percentMissedDueToLossAtTreatment =

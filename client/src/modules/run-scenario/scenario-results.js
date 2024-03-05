@@ -1417,7 +1417,7 @@ export default function ScenarioResults() {
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
                       "N/A"} */}
-
+                          {/* {totalNeededToTriage} --- */}
                           {totalNeededToTriage}
                         </td>
                       </tr>
@@ -2007,11 +2007,10 @@ export default function ScenarioResults() {
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
                       "N/A"} */}
-
                           {Math.round(
                             parseInt(totalNeededToTriage.replace(/\D/g, "")) /
                               12
-                          )}
+                          )}{" "}
                         </td>
                       </tr>
                       <tr className="table-light">
@@ -2619,11 +2618,10 @@ export default function ScenarioResults() {
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
                       "N/A"} */}
-
                           {Math.round(
                             parseInt(totalNeededToTriage.replace(/\D/g, "")) *
                               parseInt(params.screeningInterval)
-                          )}
+                          )}{" "}
                         </td>
                       </tr>
                       <tr className="table-light">
