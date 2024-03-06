@@ -292,7 +292,7 @@ export default function About() {
                   </td>
                 </tr>
                 <tr>
-                  <td>{t("about.overTreated")}</td>
+                  <td>{t("about.overTreatment")}</td>
                   <td>{t("about.overTreatedDef")}</td>
                   <td>
                     <a

@@ -287,6 +287,7 @@
     "aboutDes7": " https://www.who.int/initiatives/cervical-cancer-elimination-initiative",
     "hpvPrevelence": "HPV Prevalence",
     "overTreated": "Overtreated",
+    "overTreatment": "Overtreatment",
     "overTreatedDef": "Overtreatment is defined by the WHO as treatment for CIN, but no CIN or AIS detected on histopathology. Overtreatment can result in side effects and complications of biopsy and treatment, including psychological harms and resource implications. This tool uses the term in a simplified sense and recognizes that the importance and implications of overtreatment may vary by context;",
     "prevalenceSources9": "de Sanjosé S, Diaz M, Castellsagué X, Clifford G, Bruni L, Muñoz N, Bosch FX. Worldwide prevalence and genotype distribution of cervical human papillomavirus DNA in women with normal cytology: a meta-analysis. Lancet Infect Dis.2007 Jul;7(7):453-9. doi: 10.1016/S1473-3099(07)70158-5.PMID: 17597569.",
     "prevalenceSources10": "Guan P, Howell-Jones R, Li N, Bruni L, de Sanjosé S, Franceschi S, Clifford GM. Human papillomavirus types in 115,789 HPV-positive women: a meta-analysis from cervical infection to cancer. Int J Cancer. 2012 Nov 15;131(10):2349-59. doi: 10.1002/ijc.27485. Epub 2012 Mar 20. PMID: 22323075.",

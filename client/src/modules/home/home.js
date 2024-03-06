@@ -92,9 +92,8 @@ export default function Home() {
                 </Col>
               </Row>
               <div className="py-2">
-                {t("home.desLink0")}
+                {t("home.desLink0")}{" "}
                 <Link to="/about" className="text-primary">
-                  {" "}
                   <b>{t("navbar.about")}</b>
                 </Link>{" "}
                 {t("home.desLink1")}
