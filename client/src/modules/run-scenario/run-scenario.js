@@ -254,11 +254,19 @@ export default function RunScenarios() {
   };
 
   return (
-    <div className="bg-light py-3">
+    <div className="bg-light py-2">
       {/* <Container> */}
       <div className="mx-3">
-        <Row className="mb-1">
-          <Col md={12}> {t("runScenario.pleaseRefer")}</Col>
+        <Row className="mb-2 mt-0">
+          <Col md={12}>
+            {" "}
+            <span
+              className="text-danger"
+              dangerouslySetInnerHTML={{
+                __html: t("runScenario.pleaseRefer"),
+              }}
+            />
+          </Col>
         </Row>
         <Row>
           {/* <Col md={5} id="col-with-scroll" style={{ overflowY: "auto" }}> */}
@@ -781,7 +789,6 @@ export default function RunScenarios() {
                                                         "runScenario.screeningTestSenvitivity"
                                                       ),
                                                     }}
-                                                    HH
                                                   />
                                                   {/* <span>
                                                     {t(
