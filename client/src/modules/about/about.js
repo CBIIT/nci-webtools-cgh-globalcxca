@@ -77,7 +77,9 @@ export default function About() {
                   <td>5%</td>
                   <td>20%</td>
                   <td>12%</td>
-                  <td></td>
+                  <td>
+                    <p>{t("about.prevalenceSourcesJustification")}</p>
+                  </td>
                   <td>
                     <p>{t("about.prevalenceSources9")}</p>
                     <p>{t("about.prevalenceSources10")}</p>
