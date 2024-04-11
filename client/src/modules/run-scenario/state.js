@@ -22,7 +22,7 @@ export const exampleFormState = {
   diagnosticTest: "colposcopyWithBiopsy",
   diagnosticTestSensitivity: 80,
   diagnosticTestSpecificity: 85,
-  proportionOfPositives: 0,
+  proportionOfPositives: 25,
 };
 
 export const defaultFormState = {
@@ -45,7 +45,7 @@ export const defaultFormState = {
   diagnosticTest: "",
   diagnosticTestSensitivity: 0,
   diagnosticTestSpecificity: 0,
-  proportionOfPositives: 0,
+  proportionOfPositives: 25,
   ...(useExample && exampleFormState),
 };
 
