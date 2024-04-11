@@ -162,7 +162,7 @@
     "cervicalTestChosen": "Prueba de detección cervical elegida",
     "screeningCoverage": "Cobertura de tamizaje",
     "pleaseRefer": "Consulte la pestaña <a href='/#/about'  target='_blank'>Acerca de</a> para obtener más información sobre los siguientes parámetros antes de ingresar a un escenario.",
-    "proportionOfPositives": "Proportion of Positives Including HPV 16/18",
+    "proportionOfPositives": "Proporción de positivos que tienen VPH16/18",
     "proportionOfPositivesInfo": ""
   },
   "results": {
@@ -277,7 +277,7 @@
     "aboutDes5": "Cada país alcanzará los objetivos de eliminación a su propio paso y de acuerdo con sus prioridades, disponibilidad de recursos, y planificación.",
     "aboutDes6": "Link to: ",
     "aboutDes7": " https://www.who.int/initiatives/cervical-cancer-elimination-initiative",
-    "hpvPrevelence": "HPV Prevalence",
+    "hpvPrevelence": "Prevalencia de VPH",
     "overTreated": "Overtreated",
     "overTreatment": "Overtreatment",
     "overTreatedDef": "En los programas de detección del cáncer de cuello uterino, se incurre en sobretratamiento porque una proporción de las personas con precáncer* tratadas no son destinado a progresar, o cuando se brinda tratamiento a personas que tienen un diagnóstico falso positivo de precáncer. El sobretratamiento puede resultar en efectos secundarios y complicaciones, incluidos daños psicológicos e implicaciones relativas al uso de los recursos. Esta herramienta utiliza el término \"sobretratamiento\" en un sentido simplificado y reconoce que la importancia y las implicaciones del sobretratamiento pueden variar según el contexto.",
