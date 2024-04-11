@@ -2182,7 +2182,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-danger-dark text-light">
-                        <th>{t("results.missedPrecancersTitle")}</th>
+                        <th>{t("results.programMissedPrecancersTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
