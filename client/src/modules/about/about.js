@@ -60,7 +60,15 @@ export default function About() {
             <h2 className="text-center mb-1 h4">
               {t("runScenario.epidemiological")}
             </h2>
-            <Table bordered hover>
+            <Table bordered hover id="epidemiologicalTable">
+              <colgroup>
+                <col style={{ width: "10%" }} />
+                <col style={{ width: "8%" }} />
+                <col style={{ width: "8%" }} />
+                <col style={{ width: "8%" }} />
+                <col style={{ width: "40%" }} />
+                <col style={{ width: "50%" }} />
+              </colgroup>
               <thead>
                 <tr>
                   <th>{t("general.parameter")}</th>
@@ -112,7 +120,7 @@ export default function About() {
             <h2 className="text-center mb-1 h4">
               {t("runScenario.participationTitle")}
             </h2>
-            <Table bordered hover>
+            <Table responsive="sm" bordered hover>
               <thead>
                 <tr>
                   <th>{t("general.parameter")}</th>
@@ -180,7 +188,7 @@ export default function About() {
             <h2 className="text-center mb-1 h4">
               {t("runScenario.screeningAndTreatmentTitle")}
             </h2>
-            <Table bordered hover>
+            <Table responsive="sm" bordered hover>
               <thead>
                 <tr>
                   <th>{t("general.testName")}</th>
@@ -260,7 +268,14 @@ export default function About() {
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
             <h2 className="text-center mb-1 h4">{t("general.definition")}</h2>
-            <Table bordered hover>
+            <div className="table-responsive-sm"></div>
+            <Table bordered hover id="defTable">
+              <colgroup>
+                <col style={{ width: "15%" }} />
+                <col style={{ width: "55%" }} />
+                <col style={{ width: "30%" }} />
+              </colgroup>
+
               <thead>
                 <tr>
                   <th>{t("general.term")}</th>
@@ -295,7 +310,10 @@ export default function About() {
                 </tr>
                 <tr>
                   <td>{t("about.overTreatment")}</td>
-                  <td>{t("about.overTreatedDef")}</td>
+                  <td>
+                    <p>{t("about.overTreatedDef")} </p>
+                    <p> {t("about.overTreatmentStar")}</p>
+                  </td>
                   <td>
                     <a
                       href="https://iris.who.int/bitstream/handle/10665/342365/9789240030824-eng.pdf?sequence=1"

@@ -104,3 +104,8 @@ body {
   border: 4px solid #e8e9e9;
   border-radius: 10px;
 }
+
+#defTable,
+#epidemiologicalTable {
+  table-layout: fixed;
+}
