@@ -173,7 +173,7 @@
     "screenTriageTreatment": "Screening → Triage → Treatment",
     "screenTriageDiagnosisTreatment": "Screening → Triage → Diagnosis → Treatment",
     "screenTreatment": "Screening → Treatment",
-    "interventionsRequired": "Other interventions required in on year",
+    "interventionsRequired": "Other interventions required in one year",
     "screeningBarChartTitle0": "Screening interventions required in one year",
     "populationWithPrecancer": "Population with precancer in one year",
     "populationWithoutPrecancer": "Population without precancer in one year",
