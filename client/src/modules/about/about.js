@@ -32,43 +32,34 @@ export default function About() {
         <h1 className="text-center h2">{t("about.title")}</h1>
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
+            <h2 className="text-center mb-1 h4">{t("about.aboutWhoTile")}</h2>
             <div>
-              <h2 className="text-center mb-1 h4">{t("about.aboutWhoTile")}</h2>
+              <p>{t("about.aboutDes0")}</p>
               <div>
-                <p>{t("about.aboutDes0")}</p>
-                <div>
-                  <p>{t("about.aboutDes1")}</p>
-                  <ul>
-                    <li>{t("about.aboutDes2")}</li>
-                    <li>{t("about.aboutDes3")}</li>
-                    <li>{t("about.aboutDes4")}</li>
-                  </ul>
-                </div>
-                <p>{t("about.aboutDes5")}</p>
-                <p>
-                  <a
-                    href="https://www.who.int/initiatives/cervical-cancer-elimination-initiative"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {t("about.aboutDes7")}
-                  </a>
-                </p>
+                <p>{t("about.aboutDes1")}</p>
+                <ul>
+                  <li>{t("about.aboutDes2")}</li>
+                  <li>{t("about.aboutDes3")}</li>
+                  <li>{t("about.aboutDes4")}</li>
+                </ul>
               </div>
+              <p>{t("about.aboutDes5")}</p>
+              <p>
+                <a
+                  href="https://www.who.int/initiatives/cervical-cancer-elimination-initiative"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t("about.aboutDes7")}
+                </a>
+              </p>
             </div>
 
             <h2 className="text-center mb-1 h4">
               {t("runScenario.epidemiological")}
             </h2>
-            <Table bordered hover id="epidemiologicalTable">
-              <colgroup>
-                <col style={{ width: "10%" }} />
-                <col style={{ width: "8%" }} />
-                <col style={{ width: "8%" }} />
-                <col style={{ width: "8%" }} />
-                <col style={{ width: "40%" }} />
-                <col style={{ width: "50%" }} />
-              </colgroup>
+
+            <Table responsive bordered hover id="epidemiologicalTable">
               <thead>
                 <tr>
                   <th>{t("general.parameter")}</th>
@@ -120,67 +111,77 @@ export default function About() {
             <h2 className="text-center mb-1 h4">
               {t("runScenario.participationTitle")}
             </h2>
-            <Table responsive="sm" bordered hover>
-              <thead>
-                <tr>
-                  <th>{t("general.parameter")}</th>
-                  <th>{t("general.lowValue")}</th>
-                  <th>{t("general.highValue")}</th>
-                  <th>{t("general.defaultValue")}</th>
-                  <th>{t("general.justification")}</th>
-                  <th>{t("general.sourcesJustification")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{t("runScenario.intervalofCervicalInYears")}</td>
-                  <td>1</td>
-                  <td>40</td>
-                  <td>5</td>
-                  <td>
-                    <p>{t("about.intervalofCervicalInYearsJustification0")}</p>
-                    <p>{t("about.intervalofCervicalInYearsJustification1")}</p>
-                    <p>{t("about.intervalofCervicalInYearsJustification2")}</p>
-                    <p>{t("about.intervalofCervicalInYearsJustification3")}</p>
-                  </td>
-                  <td>
-                    <p>{t("about.prevalenceSources3")}</p>
-                    <p>{t("about.percentScreeningCoverageSource")}</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{t("runScenario.percentScreeningCoverage")}</td>
-                  <td>0%</td>
-                  <td>100%</td>
-                  <td>None</td>
-                  <td>{t("about.percentScreeningCoverageJustification")}</td>
-                  <td></td>
-                </tr>
+            <div>
+              <Table responsive bordered hover id="participationInHealthTable">
+                <thead>
+                  <tr>
+                    <th>{t("general.parameter")}</th>
+                    <th>{t("general.lowValue")}</th>
+                    <th>{t("general.highValue")}</th>
+                    <th>{t("general.defaultValue")}</th>
+                    <th>{t("general.justification")}</th>
+                    <th>{t("general.sourcesJustification")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{t("runScenario.intervalofCervicalInYears")}</td>
+                    <td>1</td>
+                    <td>40</td>
+                    <td>5</td>
+                    <td>
+                      <p>
+                        {t("about.intervalofCervicalInYearsJustification0")}
+                      </p>
+                      <p>
+                        {t("about.intervalofCervicalInYearsJustification1")}
+                      </p>
+                      <p>
+                        {t("about.intervalofCervicalInYearsJustification2")}
+                      </p>
+                      <p>
+                        {t("about.intervalofCervicalInYearsJustification3")}
+                      </p>
+                    </td>
+                    <td>
+                      <p>{t("about.prevalenceSources3")}</p>
+                      <p>{t("about.percentScreeningCoverageSource")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.percentScreeningCoverage")}</td>
+                    <td>0%</td>
+                    <td>100%</td>
+                    <td>None</td>
+                    <td>{t("about.percentScreeningCoverageJustification")}</td>
+                    <td></td>
+                  </tr>
 
-                <tr>
-                  <td>{t("runScenario.ScreenDiagnosticTestTreat")}</td>
-                  <td>0%</td>
-                  <td>100%</td>
-                  <td>None</td>
-                  <td>
-                    {t(
-                      "about.percentTriageDiagnosticTestPositivesJustification"
-                    )}
-                  </td>
-                  <td>
-                    <p>
-                      {t("about.percentTriageDiagnosticTestPositivesSource0")}
-                    </p>
-                    <p>
-                      {t("about.percentTriageDiagnosticTestPositivesSource1")}
-                    </p>
-                    <p>
-                      {t("about.percentTriageDiagnosticTestPositivesSource2")}
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
+                  <tr>
+                    <td>{t("runScenario.ScreenDiagnosticTestTreat")}</td>
+                    <td>0%</td>
+                    <td>100%</td>
+                    <td>None</td>
+                    <td>
+                      {t(
+                        "about.percentTriageDiagnosticTestPositivesJustification"
+                      )}
+                    </td>
+                    <td>
+                      <p>
+                        {t("about.percentTriageDiagnosticTestPositivesSource0")}
+                      </p>
+                      <p>
+                        {t("about.percentTriageDiagnosticTestPositivesSource1")}
+                      </p>
+                      <p>
+                        {t("about.percentTriageDiagnosticTestPositivesSource2")}
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
           </Card.Body>
         </Card>
         <Card className="mb-2 mt-2">
@@ -188,87 +189,172 @@ export default function About() {
             <h2 className="text-center mb-1 h4">
               {t("runScenario.screeningAndTreatmentTitle")}
             </h2>
-            <Table responsive="sm" bordered hover>
-              <thead>
-                <tr>
-                  <th>{t("general.testName")}</th>
-                  <th>{t("general.defaultSensitivity")}</th>
-                  <th>{t("general.defaultSpecificity")}</th>
-                  <th>{t("general.justificationText")} </th>
-                  <th>{t("general.sourcesJustification")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{t("runScenario.PapTest")}</td>
-                  <td>61</td>
-                  <td>90</td>
-                  <td>{t("about.papTestJustification")}</td>
-                  <td>
-                    <p>{t("about.papTestSource0")}</p>
-                    <p>{t("about.papTestSource1")}</p>
-                    <p>{t("about.papTestSource2")}</p>
-                    <p>{t("about.papTestSource3")}</p>
-                    <p>{t("about.papTestSource4")}</p>
-                    <p>{t("about.papTestSource5")}</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{t("runScenario.VIA")} </td>
-                  <td>60</td>
-                  <td>84</td>
-                  <td>{t("about.viaJustification")}</td>
-                  <td>
-                    <p>{t("about.papTestSource5")}</p>
-                    <p>{t("about.papTestSource3")}</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{t("runScenario.HPV")}</td>
-                  <td>90</td>
-                  <td>89</td>
-                  <td>{t("about.hpvJustification")}</td>
-                  <td>
-                    <p>{t("about.papTestSource5")}</p>
-                    <p>{t("about.papTestSource1")}</p>
-                    <p>{t("about.papTestSource3")}</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{t("runScenario.HPV1618")} </td>
-                  <td>60</td>
-                  <td>75</td>
-                  <td></td>
-                  <td>
-                    <p>{t("about.papTestSource5")}</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{t("runScenario.impressionOfColposcopy")}</td>
-                  <td>70</td>
-                  <td>75</td>
-                  <td>{t("about.impressionOfColposcopyJustification")}</td>
-                  <td>
-                    <p>{t("about.impressionOfColposcopySource")}</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{t("runScenario.colposcopyWithBiopsy")}</td>
-                  <td>65</td>
-                  <td>85</td>
-                  <td></td>
-                  <td>
-                    <p>{t("about.impressionOfColposcopySource")}</p>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
+            <div className="d-none d-md-block">
+              <Table responsive bordered hover id="screeningStrategyTable">
+                <colgroup>
+                  <col style={{ width: "8%" }} />
+                  <col style={{ width: "8%" }} />
+                  <col style={{ width: "8%" }} />
+                  <col style={{ width: "25%" }} />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>{t("general.testName")}</th>
+                    <th>{t("general.defaultSensitivity")}</th>
+                    <th>{t("general.defaultSpecificity")}</th>
+                    <th>{t("general.justificationText")} </th>
+                    <th>{t("general.sourcesJustification")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{t("runScenario.PapTest")}</td>
+                    <td>61</td>
+                    <td>90</td>
+                    <td>{t("about.papTestJustification")}</td>
+                    <td>
+                      <p>{t("about.papTestSource0")}</p>
+                      <p>{t("about.papTestSource1")}</p>
+                      <p>{t("about.papTestSource2")}</p>
+                      <p>{t("about.papTestSource3")}</p>
+                      <p>{t("about.papTestSource4")}</p>
+                      <p>{t("about.papTestSource5")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.VIA")} </td>
+                    <td>60</td>
+                    <td>84</td>
+                    <td>{t("about.viaJustification")}</td>
+                    <td>
+                      <p>{t("about.papTestSource5")}</p>
+                      <p>{t("about.papTestSource3")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.HPV")}</td>
+                    <td>90</td>
+                    <td>89</td>
+                    <td>{t("about.hpvJustification")}</td>
+                    <td>
+                      <p>{t("about.papTestSource5")}</p>
+                      <p>{t("about.papTestSource1")}</p>
+                      <p>{t("about.papTestSource3")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.HPV1618")} </td>
+                    <td>60</td>
+                    <td>75</td>
+                    <td></td>
+                    <td>
+                      <p>{t("about.papTestSource5")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.impressionOfColposcopy")}</td>
+                    <td>70</td>
+                    <td>75</td>
+                    <td>{t("about.impressionOfColposcopyJustification")}</td>
+                    <td>
+                      <p>{t("about.impressionOfColposcopySource")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.colposcopyWithBiopsy")}</td>
+                    <td>65</td>
+                    <td>85</td>
+                    <td></td>
+                    <td>
+                      <p>{t("about.impressionOfColposcopySource")}</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
+
+            <div className="d-block d-md-none">
+              <Table responsive bordered hover className="table">
+                <thead>
+                  <tr>
+                    <th>{t("general.testName")}</th>
+                    <th>{t("general.defaultSensitivity")}</th>
+                    <th>{t("general.defaultSpecificity")}</th>
+                    <th>{t("general.justificationText")} </th>
+                    <th>{t("general.sourcesJustification")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{t("runScenario.PapTest")}</td>
+                    <td>61</td>
+                    <td>90</td>
+                    <td>{t("about.papTestJustification")}</td>
+                    <td>
+                      <p>{t("about.papTestSource0")}</p>
+                      <p>{t("about.papTestSource1")}</p>
+                      <p>{t("about.papTestSource2")}</p>
+                      <p>{t("about.papTestSource3")}</p>
+                      <p>{t("about.papTestSource4")}</p>
+                      <p>{t("about.papTestSource5")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.VIA")} </td>
+                    <td>60</td>
+                    <td>84</td>
+                    <td>{t("about.viaJustification")}</td>
+                    <td>
+                      <p>{t("about.papTestSource5")}</p>
+                      <p>{t("about.papTestSource3")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.HPV")}</td>
+                    <td>90</td>
+                    <td>89</td>
+                    <td>{t("about.hpvJustification")}</td>
+                    <td>
+                      <p>{t("about.papTestSource5")}</p>
+                      <p>{t("about.papTestSource1")}</p>
+                      <p>{t("about.papTestSource3")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.HPV1618")} </td>
+                    <td>60</td>
+                    <td>75</td>
+                    <td></td>
+                    <td>
+                      <p>{t("about.papTestSource5")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.impressionOfColposcopy")}</td>
+                    <td>70</td>
+                    <td>75</td>
+                    <td>{t("about.impressionOfColposcopyJustification")}</td>
+                    <td>
+                      <p>{t("about.impressionOfColposcopySource")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.colposcopyWithBiopsy")}</td>
+                    <td>65</td>
+                    <td>85</td>
+                    <td></td>
+                    <td>
+                      <p>{t("about.impressionOfColposcopySource")}</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
           </Card.Body>
         </Card>
         <Card className="mb-2 mt-2">
           <Card.Body className="pt-2">
             <h2 className="text-center mb-1 h4">{t("general.definition")}</h2>
-            <div className="table-responsive-sm"></div>
             <Table bordered hover id="defTable">
               <colgroup>
                 <col style={{ width: "15%" }} />
