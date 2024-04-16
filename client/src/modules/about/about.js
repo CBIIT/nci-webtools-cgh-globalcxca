@@ -58,52 +58,107 @@ export default function About() {
             <h2 className="text-center mb-1 h4">
               {t("runScenario.epidemiological")}
             </h2>
-
-            <Table responsive bordered hover id="epidemiologicalTable">
-              <thead>
-                <tr>
-                  <th>{t("general.parameter")}</th>
-                  <th>{t("general.lowValue")}</th>
-                  <th>{t("general.highValue")}</th>
-                  <th>{t("general.defaultValue")}</th>
-                  <th>{t("general.justification")}</th>
-                  <th>{t("general.sources")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{t("about.hpvPrevelence")}</td>
-                  <td>5%</td>
-                  <td>20%</td>
-                  <td>12%</td>
-                  <td>
-                    <p>{t("about.prevalenceSourcesJustification")}</p>
-                  </td>
-                  <td>
-                    <p>{t("about.prevalenceSources9")}</p>
-                    <p>{t("about.prevalenceSources10")}</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{t("runScenario.prevelance")}</td>
-                  <td>0%</td>
-                  <td>5%</td>
-                  <td>2%</td>
-                  <td>{t("about.prevalenceJustitication")}</td>
-                  <td>
-                    <p>{t("about.prevalenceSources0")}</p>
-                    <p>{t("about.prevalenceSources1")}</p>
-                    <p>{t("about.prevalenceSources2")}</p>
-                    <p>{t("about.prevalenceSources3")}</p>
-                    <p>{t("about.prevalenceSources4")}</p>
-                    <p>{t("about.prevalenceSources5")}</p>
-                    <p>{t("about.prevalenceSources6")}</p>
-                    <p>{t("about.prevalenceSources7")}</p>
-                    <p>{t("about.prevalenceSources8")}</p>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
+            <div className="d-none d-md-block">
+              <Table responsive bordered hover id="epidemiologicalTable">
+                <colgroup>
+                  <col style={{ width: "7%" }} />
+                  <col style={{ width: "7%" }} />
+                  <col style={{ width: "7%" }} />
+                  <col style={{ width: "7%" }} />
+                  <col style={{ width: "23%" }} />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>{t("general.parameter")}</th>
+                    <th>{t("general.lowValue")}</th>
+                    <th>{t("general.highValue")}</th>
+                    <th>{t("general.defaultValue")}</th>
+                    <th>{t("general.justification")}</th>
+                    <th>{t("general.sources")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{t("about.hpvPrevelence")}</td>
+                    <td>5%</td>
+                    <td>20%</td>
+                    <td>12%</td>
+                    <td>
+                      <p>{t("about.prevalenceSourcesJustification")}</p>
+                    </td>
+                    <td>
+                      <p>{t("about.prevalenceSources9")}</p>
+                      <p>{t("about.prevalenceSources10")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.prevelance")}</td>
+                    <td>0%</td>
+                    <td>5%</td>
+                    <td>2%</td>
+                    <td>{t("about.prevalenceJustitication")}</td>
+                    <td>
+                      <p>{t("about.prevalenceSources0")}</p>
+                      <p>{t("about.prevalenceSources1")}</p>
+                      <p>{t("about.prevalenceSources2")}</p>
+                      <p>{t("about.prevalenceSources3")}</p>
+                      <p>{t("about.prevalenceSources4")}</p>
+                      <p>{t("about.prevalenceSources5")}</p>
+                      <p>{t("about.prevalenceSources6")}</p>
+                      <p>{t("about.prevalenceSources7")}</p>
+                      <p>{t("about.prevalenceSources8")}</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
+            <div className="d-block d-md-none">
+              <Table responsive bordered hover>
+                <thead>
+                  <tr>
+                    <th>{t("general.parameter")}</th>
+                    <th>{t("general.lowValue")}</th>
+                    <th>{t("general.highValue")}</th>
+                    <th>{t("general.defaultValue")}</th>
+                    <th>{t("general.justification")}</th>
+                    <th>{t("general.sources")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{t("about.hpvPrevelence")}</td>
+                    <td>5%</td>
+                    <td>20%</td>
+                    <td>12%</td>
+                    <td>
+                      <p>{t("about.prevalenceSourcesJustification")}</p>
+                    </td>
+                    <td>
+                      <p>{t("about.prevalenceSources9")}</p>
+                      <p>{t("about.prevalenceSources10")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.prevelance")}</td>
+                    <td>0%</td>
+                    <td>5%</td>
+                    <td>2%</td>
+                    <td>{t("about.prevalenceJustitication")}</td>
+                    <td>
+                      <p>{t("about.prevalenceSources0")}</p>
+                      <p>{t("about.prevalenceSources1")}</p>
+                      <p>{t("about.prevalenceSources2")}</p>
+                      <p>{t("about.prevalenceSources3")}</p>
+                      <p>{t("about.prevalenceSources4")}</p>
+                      <p>{t("about.prevalenceSources5")}</p>
+                      <p>{t("about.prevalenceSources6")}</p>
+                      <p>{t("about.prevalenceSources7")}</p>
+                      <p>{t("about.prevalenceSources8")}</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
           </Card.Body>
         </Card>
         <Card className="mb-2 mt-2">
