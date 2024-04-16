@@ -9,6 +9,8 @@ import { useState, useEffect } from "react";
 
 export default function About() {
   const { t, i18n } = useTranslation();
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
   console.log("window.location.hash: ", window.location.hash);
 
   useEffect(() => {
@@ -25,6 +27,23 @@ export default function About() {
       }
     }
   }, []);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (window.pageYOffset > 50) {
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="bg-light py-4">
@@ -468,6 +487,11 @@ export default function About() {
             </Table>
           </Card.Body>
         </Card>
+        {showScrollButton && (
+          <div className="move-to-top" onClick={scrollToTop}>
+            Move to Top
+          </div>
+        )}
       </Container>
     </div>
   );

@@ -109,3 +109,17 @@ body {
 #screeningStrategyTable #epidemiologicalTable {
   table-layout: fixed;
 }
+.move-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #37abc8;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.move-to-top:hover {
+  background-color: #15687c;
+}
