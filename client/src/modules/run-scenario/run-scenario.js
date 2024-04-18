@@ -46,8 +46,41 @@ export default function RunScenarios() {
   const [divVisibilities, setDivVisibilities] = useState(
     Array(scenarios.length).fill(false)
   );
-  let hpv16or18Used;
   let hpvScreeningUsed;
+  const results = runModel(form);
+  const params = mapValues(form, asNumber);
+  //console.log("run params", params);
+  //console.log("params.checkedValues ,", params.checkedValues);
+  //console.log("params.screeningTest  ", params.screeningTest);
+  //console.log("params.triageTest ", params.triageTest);
+
+  setParams(params);
+  setResults(results);
+  const [hpv16or18Used, setHpv16or18Used] = useState(false); // Initialize with false
+
+  useEffect(() => {
+    if (
+      params.screeningTest === "hpv" &&
+      params.triageTest === "hpv16or18genotyping"
+    ) {
+      setHpv16or18Used(true);
+    } else {
+      setHpv16or18Used(false);
+    }
+  }, [params.screeningTest, params.triageTest]);
+
+  console.log("hpv16or18Used -- ", hpv16or18Used);
+
+  //console.log("hpv16or18Used -- ", hpv16or18Used);
+  function handleSubmit(event) {
+    event?.preventDefault();
+    const params = mapValues(form, asNumber);
+    const results = runModel(params);
+    setParams(params);
+    setResults(results);
+    // window.scrollTo(0, 0);
+    // navigate("results");
+  }
 
   function handleChange(e, index) {
     const { name, value, checked } = e.target;
@@ -172,43 +205,6 @@ export default function RunScenarios() {
   // Function to handle language change
   function handleLanguageChange(newLanguage) {
     i18n.changeLanguage(newLanguage);
-  }
-
-  const results = runModel(form);
-  const params = mapValues(form, asNumber);
-  //console.log("run params", params);
-  //console.log("params.checkedValues ,", params.checkedValues);
-  //console.log("params.screeningTest  ", params.screeningTest);
-  //console.log("params.triageTest ", params.triageTest);
-
-  setParams(params);
-  setResults(results);
-  if (
-    params.screeningTest === "hpv" &&
-    params.triageTest === "hpv16or18genotyping"
-    //Array.isArray(params.checkedValues) &&
-    //params.checkedValues.length === 3 &&
-    //params.checkedValues.every((item) =>
-    // ["ScreenTreat", "Treatment", "ScreenTriageDiagnosticTestTreat"].includes(
-    //    item
-    //  )
-    //)
-  ) {
-    //console.log("BINGOOOOO");
-    hpv16or18Used = true;
-  } else {
-    hpv16or18Used = false;
-  }
-
-  //console.log("hpv16or18Used -- ", hpv16or18Used);
-  function handleSubmit(event) {
-    event?.preventDefault();
-    const params = mapValues(form, asNumber);
-    const results = runModel(params);
-    setParams(params);
-    setResults(results);
-    // window.scrollTo(0, 0);
-    // navigate("results");
   }
 
   function handleReset(event) {
