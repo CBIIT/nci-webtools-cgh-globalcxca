@@ -439,6 +439,16 @@ export default function ScenarioResults() {
               </b>{" "}
               {t("results.resultsDes2")}
             </div>
+            <div className="mt-2">
+              {t("results.resultGraphDefinition")}
+              <ol>
+                <li>{t("results.resultGraphDefinition1")}</li>
+                <li>{t("results.resultGraphDefinition2")}</li>
+                <li>{t("results.resultGraphDefinition3")}</li>
+                <li>{t("results.resultGraphDefinition4")}</li>
+              </ol>
+              <i>{t("results.resultGraphDefinition5")}</i>
+            </div>
           </Card.Body>
         </Card>
 
@@ -726,19 +736,6 @@ export default function ScenarioResults() {
                 </Card.Header>
                 <Card.Body className="pt-1">
                   <Container fluid>
-                    <Row>
-                      <div>
-                        {t("results.resultGraphDefinition")}
-                        <ol>
-                          <li>{t("results.resultGraphDefinition1")}</li>
-                          <li>{t("results.resultGraphDefinition2")}</li>
-                          <li>{t("results.resultGraphDefinition3")}</li>
-                          <li>{t("results.resultGraphDefinition4")}</li>
-                        </ol>
-                        <i>{t("results.resultGraphDefinition5")}</i>
-                      </div>
-                    </Row>
-
                     <Row className="my-2">
                       <Col xl={6} lg={12} md={12} sm={12} xs={12}>
                         <h2 className="text-center h5 py-2">
