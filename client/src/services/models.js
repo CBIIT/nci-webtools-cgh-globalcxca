@@ -170,10 +170,10 @@ export function runModel(params) {
     coverage[2] = parseInt(params?.percentTreated, 10) / 100 || 0;
   }
 
-  console.log("coverage ", coverage);
-  console.log("sensitivity ", sensitivity);
-  console.log("specificity ", specificity);
-  console.log("screentest", screentest);
+  // console.log("coverage ", coverage);
+  // console.log("sensitivity ", sensitivity);
+  // console.log("specificity ", specificity);
+  // console.log("screentest", screentest);
   if (
     params.screeningTest === "hpv" &&
     params.triageTest === "hpv16or18genotyping"
@@ -182,8 +182,8 @@ export function runModel(params) {
     sensitivity[0] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
     specificity[0] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
   }
-  console.log("sensitivity-after ", sensitivity);
-  console.log("specificity-after ", specificity);
+  // console.log("sensitivity-after ", sensitivity);
+  // console.log("specificity-after ", specificity);
   return calculateValues(
     scenario,
     screentest,

@@ -69,7 +69,7 @@ export default function RunScenarios() {
     }
   }, [params.screeningTest, params.triageTest]);
 
-  console.log("hpv16or18Used -- ", hpv16or18Used);
+  //console.log("hpv16or18Used -- ", hpv16or18Used);
   if (hpv16or18Used) {
     setParams((prevParams) => ({
       ...prevParams,
@@ -90,10 +90,10 @@ export default function RunScenarios() {
   function handleChange(e, index) {
     const { name, value, checked } = e.target;
     //console.log("checked", checked);
-    console.log("value +++++++", value);
-    console.log("name ++++++++", name);
-    console.log("PARAMS ++++ ", params);
-    console.log("hpvPrevalence ", params.hpvPrevalence);
+    // console.log("value +++++++", value);
+    // console.log("name ++++++++", name);
+    // console.log("PARAMS ++++ ", params);
+    // console.log("hpvPrevalence ", params.hpvPrevalence);
 
     let updatedValues = [...checkedValues];
     let newDivVisibilities = [...divVisibilities];
@@ -118,7 +118,7 @@ export default function RunScenarios() {
       }
     }
 
-    console.log("FORM ---- ", form);
+    //console.log("FORM ---- ", form);
 
     // Update the state
     setDivVisibilities(newDivVisibilities);
