@@ -366,7 +366,7 @@ function d3PieChart(
   svg
     .append("g")
     .attr("font-family", "system-ui, sans-serif")
-    .attr("font-size", 10)
+    .attr("font-size", 11)
     .attr("text-anchor", "middle")
     .selectAll("text")
     .data(arcs)
@@ -375,22 +375,59 @@ function d3PieChart(
       const pos = arcLabel.centroid(d);
       const isLeftHalf =
         d.startAngle + (d.endAngle - d.startAngle) / 2 < Math.PI;
+      let xAdjustment = 0;
 
-      // Adjust label position based on whether it's in the left or right half of the pie chart
-      if (isLeftHalf) {
-        pos[1] += 10;
+      // // Adjust label position based on whether it's in the left or right half of the pie chart
+      // if (isLeftHalf) {
+      //   pos[1] += 10;
+      // }
+      const label = title(d.data);
+      //if (d.endAngle - d.startAngle === Math.PI) {
+      if (label.includes("(50.0%)") || d.endAngle - d.startAngle === Math.PI) {
+        // When the arc is at 50%/50%, adjust the position to align labels horizontally
+        if (isLeftHalf) {
+          xAdjustment = 15; // Move the left half pie's label to the left
+        } else {
+          xAdjustment = -15; // Move the right half pie's label to the right
+        }
+        pos[1] = 0; // Adjust y-coordinate for horizontal alignment
+      } else {
+        pos[1] += 10; // Adjust y-coordinate for horizontal alignment
       }
+
+      pos[0] += xAdjustment;
+
+      pos[0] += xAdjustment;
 
       return `translate(${pos})`;
     })
     .attr("fill", "white")
     .selectAll("tspan")
-    .data((d) => {
-      const lines = `${title(d.data)}`.split(/\n/);
-      return d.endAngle - d.startAngle > 0.5 ? lines : lines.slice(0, 1);
+    // .data((d) => {
+    //   const lines = `${title(d.data)}`.split(/\n/);
+    //   return d.endAngle - d.startAngle > 0.5 ? lines : lines.slice(0, 1);
+    // })
+    .data((d, i, nodes) => {
+      const label = title(d.data);
+      const lines = [];
+
+      console.log("label ", label);
+      // Check if label contains "(50%)" and split it into three lines
+      if (label.includes("(50.0%)")) {
+        console.log("LABLE 50.0% ", label);
+        lines.push(label.split(" ")[0]);
+        lines.push(label.split(" ")[1]);
+        lines.push(label.split(" ")[2]);
+      } else {
+        lines.push(label);
+      }
+      console.log("lines ", lines);
+
+      return lines;
     })
     .join("tspan")
     .attr("x", 0)
+    .attr("dy", "1.2em") // Add padding/margin between each label line
     .attr("y", (_, i, nodes) =>
       i
         ? `${i * 1}em`
@@ -402,4 +439,20 @@ function d3PieChart(
     .text((d) => d);
 
   return Object.assign(svg.node(), { scales: { color }, arc });
+}
+
+// Function to wrap text
+function wrapText(text, width = 12) {
+  const words = text.split(/\s+/);
+  let line = "";
+  let lines = [];
+  words.forEach((word) => {
+    if ((line + word).length > width) {
+      lines.push(line);
+      line = "";
+    }
+    line += `${word} `;
+  });
+  lines.push(line);
+  return lines;
 }
