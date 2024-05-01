@@ -181,15 +181,15 @@ export default function RunScenarios() {
       const updatedSpecificity = 100 - form.hpvPrevalence;
       setForm((prevForm) => ({
         ...prevForm,
-        screeningTestSensitivity: tests.hpv?.sensitivity || "",
+        screeningTestSensitivity: tests.hpv?.sensitivity || 0,
         screeningTestSpecificity: updatedSpecificity,
       }));
     } else {
       // Set specificity based on the selected screening test
       setForm((prevForm) => ({
         ...prevForm,
-        screeningTestSensitivity: tests[form.screeningTest]?.sensitivity || "",
-        screeningTestSpecificity: tests[form.screeningTest]?.specificity || "",
+        screeningTestSensitivity: tests[form.screeningTest]?.sensitivity || 0,
+        screeningTestSpecificity: tests[form.screeningTest]?.specificity || 0,
       }));
     }
   }, [form.hpvPrevalence, form.screeningTest, setForm]);
