@@ -44,6 +44,19 @@ export default function Home() {
       <div className="bg-light py-3">
         <Container>
           <Row>
+            <div>
+              <b>
+                {t("home.emphasize")}
+                <a
+                  href="mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov"
+                  className="fw-bold text-primary"
+                >
+                  {" "}
+                  <b>{t("general.contactus")}</b>{" "}
+                </a>
+                {t("home.withQuestions")}
+              </b>
+            </div>
             <Col md={{ span: 12 }}>
               <h2 className="display-6 mb-2 text-primary text-center">
                 {t("home.whatIsCC3S")}
@@ -112,19 +125,6 @@ export default function Home() {
                   {t("general.contactus")}{" "}
                 </a>
                 {t("home.des1Continued")}
-              </div>
-              <div>
-                <b>
-                  {t("home.emphasize")}
-                  <a
-                    href="mailto:NCIGlobalCxCaWebAdmin@mail.nih.gov"
-                    className="fw-bold text-primary"
-                  >
-                    {" "}
-                    <b>{t("general.contactus")}</b>{" "}
-                  </a>
-                  {t("home.withQuestions")}
-                </b>
               </div>
             </Col>
           </Row>
