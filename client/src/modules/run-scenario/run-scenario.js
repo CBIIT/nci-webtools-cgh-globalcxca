@@ -174,6 +174,26 @@ export default function RunScenarios() {
       [name]: value,
     }));
   }
+
+  useEffect(() => {
+    // Calculate updated specificity when HPV is selected as screening test
+    if (form.screeningTest === "hpv") {
+      const updatedSpecificity = 100 - form.hpvPrevalence;
+      setForm((prevForm) => ({
+        ...prevForm,
+        screeningTestSensitivity: tests.hpv?.sensitivity || "",
+        screeningTestSpecificity: updatedSpecificity,
+      }));
+    } else {
+      // Set specificity based on the selected screening test
+      setForm((prevForm) => ({
+        ...prevForm,
+        screeningTestSensitivity: tests[form.screeningTest]?.sensitivity || "",
+        screeningTestSpecificity: tests[form.screeningTest]?.specificity || "",
+      }));
+    }
+  }, [form.hpvPrevalence, form.screeningTest, setForm]);
+
   function initStates() {
     setCheckedValues(["ScreenTreat", "Treatment"]);
     const initialDivVisibilities = [true, false, false, true]; // Set index 1 and 3 to true
