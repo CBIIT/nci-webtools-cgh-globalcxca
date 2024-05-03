@@ -475,12 +475,22 @@ export default function About() {
                     <p> {t("about.overTreatmentStar")}</p>
                   </td>
                   <td>
-                    <a
-                      href="https://iris.who.int/bitstream/handle/10665/342365/9789240030824-eng.pdf?sequence=1"
-                      target="_blank"
-                    >
-                      https://iris.who.int/bitstream/handle/10665/342365/9789240030824-eng.pdf?sequence=1
-                    </a>
+                    <div className="pb-1">
+                      <a
+                        href="https://iris.who.int/bitstream/handle/10665/342365/9789240030824-eng.pdf?sequence=1"
+                        target="_blank"
+                      >
+                        https://iris.who.int/bitstream/handle/10665/342365/9789240030824-eng.pdf?sequence=1
+                      </a>
+                    </div>
+                    <div>
+                      <a
+                        href="https://www.cancer.gov/publications/dictionaries/cancer-terms/def/overtreatment"
+                        target="_blank"
+                      >
+                        https://www.cancer.gov/publications/dictionaries/cancer-terms/def/overtreatment
+                      </a>
+                    </div>
                   </td>
                 </tr>
               </tbody>
