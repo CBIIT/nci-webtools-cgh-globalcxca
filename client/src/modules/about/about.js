@@ -499,7 +499,7 @@ export default function About() {
         </Card>
         {showScrollButton && (
           <div className="move-to-top" onClick={scrollToTop}>
-            Move to Top
+            <span>Back to Top</span>
           </div>
         )}
       </Container>

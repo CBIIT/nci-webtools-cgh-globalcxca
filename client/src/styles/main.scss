@@ -109,17 +109,33 @@ body {
 #screeningStrategyTable #epidemiologicalTable {
   table-layout: fixed;
 }
+
 .move-to-top {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 0; /* Adjust this value as needed */
+  right: 0; /* Adjust this value as needed */
+  width: 75px;
+  height: 75px;
   background-color: #37abc8;
+  border-top-left-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease-in-out;
+  z-index: 10;
 }
 
 .move-to-top:hover {
-  background-color: #15687c;
+  cursor: pointer;
+}
+
+.move-to-top span {
+  //transform: rotate(-45deg); /* Rotate the text */
+  margin-left: 20px; /* Adjust this value as needed */
+  margin-top: 20px;
 }
