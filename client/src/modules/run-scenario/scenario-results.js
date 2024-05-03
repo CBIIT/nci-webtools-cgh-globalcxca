@@ -249,6 +249,15 @@ export default function ScenarioResults() {
         : t("general.NA")
       : results.checkedValues &&
         results.checkedValues.length === 3 &&
+        results.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
+      ? results.totalNeeded[treatedIndex - 2] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex - 2])
+        ? Math.round(results.totalNeeded[treatedIndex] * 0.1).toLocaleString(
+            locale
+          )
+        : t("general.NA")
+      : results.checkedValues &&
+        results.checkedValues.length === 3 &&
         results.checkedValues[2] === "ScreenDiagnosticTestTreat"
       ? results.totalNeeded[treatedIndex - 2] !== undefined &&
         !isNaN(results.totalNeeded[treatedIndex - 2])
