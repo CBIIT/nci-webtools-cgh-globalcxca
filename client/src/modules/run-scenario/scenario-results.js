@@ -234,13 +234,14 @@ export default function ScenarioResults() {
   //console.log("totalNeededToTriage", totalNeededToTriage);
   totalNeededToDiagnosticTriage =
     results.scenario === "ScreenTreat"
-      ? results.totalNeeded[treatedIndex] !== undefined &&
-        !isNaN(results.totalNeeded[treatedIndex])
-        ? Math.round(results.totalNeeded[treatedIndex] * 0.1).toLocaleString(
-            locale
-          )
-        : t("general.NA")
-      : results.checkedValues && results.checkedValues.length === 4
+      ? t("general.NA")
+      : // ? results.totalNeeded[treatedIndex] !== undefined &&
+      //   !isNaN(results.totalNeeded[treatedIndex])
+      //   ? Math.round(results.totalNeeded[treatedIndex] * 0.1).toLocaleString(
+      //       locale
+      //     )
+      //   : t("general.NA")
+      results.checkedValues && results.checkedValues.length === 4
       ? results.totalNeeded[treatedIndex - 1] !== undefined &&
         !isNaN(results.totalNeeded[treatedIndex - 1])
         ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
