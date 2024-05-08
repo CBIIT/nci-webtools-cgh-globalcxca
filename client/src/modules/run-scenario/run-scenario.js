@@ -206,18 +206,21 @@ export default function RunScenarios() {
         ...prevForm,
         scenario: "ScreenTreat",
         checkedValues: checkedValues,
+        percentTriaged: 10,
       }));
     } else if (checkedValues.length === 3) {
       setForm((prevForm) => ({
         ...prevForm,
         scenario: "ScreenDiagnosticTestTreat",
         checkedValues: checkedValues,
+        percentTriaged: 0,
       }));
     } else {
       setForm((prevForm) => ({
         ...prevForm,
         scenario: "ScreenTriageDiagnosticTestTreat",
         checkedValues: checkedValues,
+        percentTriaged: 0,
       }));
     }
   }, [checkedValues, setForm]);
@@ -2297,6 +2300,7 @@ export default function RunScenarios() {
                                                     placeholder="Enter 0 - 100"
                                                     name="percentTriaged"
                                                     value={form.percentTriaged}
+                                                    //value={10}
                                                     onChange={handleChange}
                                                     onWheel={(e) =>
                                                       e.target.blur()
@@ -2956,16 +2960,14 @@ export default function RunScenarios() {
                                                       "runScenario.selectTest"
                                                     )}
                                                   </option>
-                                                  {triageTests_nogynotype.map(
-                                                    (m) => (
-                                                      <option
-                                                        key={m.value}
-                                                        value={m.value}
-                                                      >
-                                                        {t(m.label)}
-                                                      </option>
-                                                    )
-                                                  )}
+                                                  {diagnosticTests.map((m) => (
+                                                    <option
+                                                      key={m.value}
+                                                      value={m.value}
+                                                    >
+                                                      {t(m.label)}
+                                                    </option>
+                                                  ))}
                                                 </Form.Select>
                                               </Col>
                                             </Form.Group>
