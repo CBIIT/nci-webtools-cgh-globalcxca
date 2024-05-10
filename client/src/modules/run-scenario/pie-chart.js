@@ -411,17 +411,17 @@ function d3PieChart(
       const label = title(d.data);
       const lines = [];
 
-      console.log("label ", label);
+      //console.log("label ", label);
       // Check if label contains "(50%)" and split it into three lines
       if (label.includes("(50.0%)")) {
-        console.log("LABLE 50.0% ", label);
+        //console.log("LABLE 50.0% ", label);
         lines.push(label.split(" ")[0]);
         lines.push(label.split(" ")[1]);
         lines.push(label.split(" ")[2]);
       } else {
         lines.push(label);
       }
-      console.log("lines ", lines);
+      //console.log("lines ", lines);
 
       return lines;
     })
