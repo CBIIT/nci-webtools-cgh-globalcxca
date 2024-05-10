@@ -266,11 +266,27 @@ export default function ScenarioResults() {
           )
         : t("general.NA")
       : t("general.NA");
+  console.log(
+    "results.totalNeeded[treatedIndex] = ",
+    results.totalNeeded[treatedIndex]
+  );
+  console.log(
+    "results.totalNeeded[treatedIndex] * 0.1 = ",
+    results.totalNeeded[treatedIndex] * 0.1
+  );
+  console.log(
+    "Math.round(results.totalNeeded[treatedIndex] * 0.1) = ",
+    Math.round(results.totalNeeded[treatedIndex] * 0.1)
+  );
+  console.log(
+    "Math.ceil(results.totalNeeded[treatedIndex] * 0.1) = ",
+    Math.ceil(results.totalNeeded[treatedIndex] * 0.1)
+  );
   console.log("totalNeededToDiagnosticTriage", totalNeededToDiagnosticTriage);
   totalNeededToTreat =
     results.totalNeeded[treatedIndex] !== undefined &&
     !isNaN(results.totalNeeded[treatedIndex])
-      ? Math.round(results.totalNeeded[treatedIndex]).toLocaleString(locale)
+      ? Math.ceil(results.totalNeeded[treatedIndex]).toLocaleString(locale)
       : t("general.NA");
 
   //console.log("totalNeededToTreat", totalNeededToTreat);
