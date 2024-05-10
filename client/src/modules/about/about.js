@@ -11,7 +11,7 @@ export default function About() {
   const { t, i18n } = useTranslation();
   const [showScrollButton, setShowScrollButton] = useState(false);
 
-  console.log("window.location.hash: ", window.location.hash);
+  //console.log("window.location.hash: ", window.location.hash);
 
   useEffect(() => {
     if (window.location.hash.includes("#sensitivity")) {

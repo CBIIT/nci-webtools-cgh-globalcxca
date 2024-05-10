@@ -59,8 +59,8 @@ export default function ScenarioResults() {
   const handleModalShow = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
 
-  console.log("params", params);
-  console.log("result ------ ", results);
+  // console.log("params", params);
+  // console.log("result ------ ", results);
 
   if (
     results.checkedValues &&
@@ -266,23 +266,23 @@ export default function ScenarioResults() {
           )
         : t("general.NA")
       : t("general.NA");
-  console.log(
-    "results.totalNeeded[treatedIndex] = ",
-    results.totalNeeded[treatedIndex]
-  );
-  console.log(
-    "results.totalNeeded[treatedIndex] * 0.1 = ",
-    results.totalNeeded[treatedIndex] * 0.1
-  );
-  console.log(
-    "Math.round(results.totalNeeded[treatedIndex] * 0.1) = ",
-    Math.round(results.totalNeeded[treatedIndex] * 0.1)
-  );
-  console.log(
-    "Math.ceil(results.totalNeeded[treatedIndex] * 0.1) = ",
-    Math.ceil(results.totalNeeded[treatedIndex] * 0.1)
-  );
-  console.log("totalNeededToDiagnosticTriage", totalNeededToDiagnosticTriage);
+  // console.log(
+  //   "results.totalNeeded[treatedIndex] = ",
+  //   results.totalNeeded[treatedIndex]
+  // );
+  // console.log(
+  //   "results.totalNeeded[treatedIndex] * 0.1 = ",
+  //   results.totalNeeded[treatedIndex] * 0.1
+  // );
+  // console.log(
+  //   "Math.round(results.totalNeeded[treatedIndex] * 0.1) = ",
+  //   Math.round(results.totalNeeded[treatedIndex] * 0.1)
+  // );
+  // console.log(
+  //   "Math.ceil(results.totalNeeded[treatedIndex] * 0.1) = ",
+  //   Math.ceil(results.totalNeeded[treatedIndex] * 0.1)
+  // );
+  // console.log("totalNeededToDiagnosticTriage", totalNeededToDiagnosticTriage);
   totalNeededToTreat =
     results.totalNeeded[treatedIndex] !== undefined &&
     !isNaN(results.totalNeeded[treatedIndex])

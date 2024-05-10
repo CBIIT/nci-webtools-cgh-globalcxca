@@ -207,7 +207,7 @@
     "lossAtTreatment": "Loss at treatment",
     "AnnualImpactOnResourcesTitle": "Annual Impact on Resources",
     "impactOnResourcesTitle": "Program Impact on Resources",
-    "monthlyImpactOnResourcesTitle": "Monthly Impact on Resources",
+    "monthlyImpactOnResourcesTitle": "Average Monthly Impact on Resources",
     "totalRequiringScreeningTest": "Total requiring screening test",
     "totalRequiringTriageDiagnosticTest": "Total requiring triage/diagnosis test",
     "totalRequiringDiagnosticTest": "Total requiring diagnosis test",
