@@ -220,7 +220,6 @@ export default function RunScenarios() {
         ...prevForm,
         scenario: "ScreenTriageDiagnosticTestTreat",
         checkedValues: checkedValues,
-        percentTriaged: 0,
       }));
     }
   }, [checkedValues, setForm]);
