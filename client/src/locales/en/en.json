@@ -276,7 +276,7 @@
     "papTestSource4": "Nanda K et al. Ann Intern Med 2000",
     "papTestSource5": "Web Annex A. Syntheses of evidence. In: WHO guideline for screening and treatment of cervical pre-cancer lesions for cervical cancer prevention, second edition. Geneva: World Health Organization",
     "viaJustification": "Estimates vary wide and depend on training and continued quality control. Global average about 65% sensitivity and 87% specificity. Estimates of test performance following a positive HPV test are similarly wide.",
-    "hpvJustification": "Estimates of HPV test performance in screening programs are less variable.",
+    "hpvJustification": "Estimates of HPV test performance in screening programs are less variable. Also, the test specificity can vary depending on the prevalence of HPV in the population.",
     "hpvSource1": "Cuzick J, et al. Overview of the European and North American studies on HPV testing in primary cervical cancer screening. IJC.2006;119:1095–1101.",
     "impressionOfColposcopyJustification": "Accuracy of colposcopic impression varies widely with significant bias. Most estimates of sensitivity are 50-80% while estimates of specificity are 70-95%.",
     "impressionOfColposcopySource": "Brown BH, Tidy JA. The diagnostic accuracy of colposcopy - A review of research methodology and impact on the outcomes of quality assurance. Eur J Obstet Gynecol Reprod Biol. 2019 Sep;240:182-186. doi: 10.1016/j.ejogrb.2019.07.003. Epub 2019 Jul 3. PMID: 31302386.",
