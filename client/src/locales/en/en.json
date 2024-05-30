@@ -166,7 +166,7 @@
     "screeningCoverage": "Screening coverage",
     "pleaseRefer": "Please refer to the <a href='/#/about'  target='_blank'>About</a> tab for more information about the below parameters before entering a scenario.",
     "proportionOfPositives": "Proportion of Positives Including HPV 16/18",
-    "proportionOfPositivesInfo": ""
+    "proportionOfPositivesInfo": "Proportion of those who test HPV+ that also test positive for either HPV16 or HPV18"
   },
   "results": {
     "screenDiagnosisTreatment": "Screening → Diagnosis → Treatment",
