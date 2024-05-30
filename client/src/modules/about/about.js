@@ -301,7 +301,7 @@ export default function About() {
                     <td>84</td>
                     <td>{t("about.viaJustification")}</td>
                     <td>
-                      <p>{t("about.papTestSource5")}</p>
+                      <p>{t("about.viaTestSource1")}</p>
                       <p>{t("about.papTestSource3")}</p>
                     </td>
                   </tr>
@@ -322,7 +322,7 @@ export default function About() {
                     <td>75</td>
                     <td></td>
                     <td>
-                      <p>{t("about.papTestSource5")}</p>
+                      <p>{t("about.viaTestSource1")}</p>
                     </td>
                   </tr>
                   <tr>
