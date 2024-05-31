@@ -276,6 +276,10 @@ export default function RunScenarios() {
     }
   };
 
+  // const filteredTriageTests = triageTests.filter(
+  //   (test) => test.value !== form.screeningTest
+  // );
+
   return (
     <div className="bg-light py-2">
       {/* <Container> */}
@@ -1732,6 +1736,10 @@ export default function RunScenarios() {
                                                       <option
                                                         key={m.value}
                                                         value={m.value}
+                                                        disabled={
+                                                          m.value ===
+                                                          form.screeningTest
+                                                        }
                                                       >
                                                         {t(m.label)}
                                                       </option>
@@ -2071,6 +2079,10 @@ export default function RunScenarios() {
                                                       <option
                                                         key={m.value}
                                                         value={m.value}
+                                                        disabled={
+                                                          m.value ===
+                                                          form.screeningTest
+                                                        }
                                                       >
                                                         {t(m.label)}
                                                       </option>
