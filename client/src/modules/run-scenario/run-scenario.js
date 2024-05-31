@@ -276,9 +276,9 @@ export default function RunScenarios() {
     }
   };
 
-  // const filteredTriageTests = triageTests.filter(
-  //   (test) => test.value !== form.screeningTest
-  // );
+  const filteredTriageTests = triageTests.filter(
+    (test) => test.value !== form.screeningTest
+  );
 
   return (
     <div className="bg-light py-2">
