@@ -60,7 +60,7 @@ export default function ScenarioResults() {
   const handleModalClose = () => setShowModal(false);
 
   // console.log("params", params);
-  // console.log("result ------ ", results);
+  console.log("result ------ ", results);
 
   if (
     results.checkedValues &&
@@ -198,7 +198,7 @@ export default function ScenarioResults() {
   // }
 
   const treatedIndex = results.totalNeeded.length - 1;
-  //console.log("treatedIndex --- ", treatedIndex);
+  console.log("treatedIndex --- ", treatedIndex);
   let totalNeededToScreen,
     totalNeededToTriage,
     totalNeededToDiagnosticTriage,
@@ -1121,18 +1121,31 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
-                              "ScreenTriageDiagnosticTestTreat"
-                            ? results.percentMissed[treatedIndex - 2] !==
-                                undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 2])
-                              ? asPercent(
-                                  results.percentMissed[treatedIndex - 2]
-                                )
-                              : t("general.NA")
-                            : results.percentMissed[treatedIndex - 1] !==
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissed[treatedIndex - 1] !==
                                 undefined &&
                               !isNaN(results.percentMissed[treatedIndex - 1])
-                            ? asPercent(results.percentMissed[treatedIndex - 1])
+                              ? asPercent(
+                                  results.percentMissed[treatedIndex - 1]
+                                )
+                              : t("general.NA")
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissed[treatedIndex - 1] !==
+                                undefined &&
+                              !isNaN(results.percentMissed[treatedIndex - 1])
+                              ? asPercent(
+                                  results.percentMissed[treatedIndex - 1]
+                                )
+                              : t("general.NA")
+                            : results.percentMissed[treatedIndex - 2] !==
+                                undefined &&
+                              !isNaN(results.percentMissed[treatedIndex - 2])
+                            ? asPercent(results.percentMissed[treatedIndex - 2])
                             : t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
@@ -1151,21 +1164,34 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
+                            ? results.untestedPositives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.untestedPositives[treatedIndex])
+                              ? Math.round(
+                                  results.untestedPositives[treatedIndex]
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex - 1] !==
+                            ? results.untestedPositives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.untestedPositives[treatedIndex])
+                              ? Math.round(
+                                  results.untestedPositives[treatedIndex]
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.untestedPositives[treatedIndex - 1] !==
                                 undefined &&
                               !isNaN(
                                 results.untestedPositives[treatedIndex - 1]
                               )
-                              ? Math.round(
-                                  results.untestedPositives[treatedIndex - 1]
-                                ).toLocaleString(locale)
-                              : t("general.NA")
-                            : results.untestedPositives[treatedIndex] !==
-                                undefined &&
-                              !isNaN(results.untestedPositives[treatedIndex])
                             ? Math.round(
-                                results.untestedPositives[treatedIndex]
+                                results.untestedPositives[treatedIndex - 1]
                               ).toLocaleString(locale)
                             : t("general.NA")}
                         </td>
@@ -1195,22 +1221,12 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
-                              "ScreenTriageDiagnosticTestTreat"
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
                             ? results.percentMissedDueToSensitivity[
-                                treatedIndex - 2
-                              ] !== undefined &&
-                              !isNaN(
-                                results.percentMissedDueToSensitivity[
-                                  treatedIndex - 2
-                                ]
-                              )
-                              ? asPercent(
-                                  results.percentMissedDueToSensitivity[
-                                    treatedIndex - 2
-                                  ]
-                                )
-                              : t("general.NA")
-                            : results.percentMissedDueToSensitivity[
                                 treatedIndex - 1
                               ] !== undefined &&
                               !isNaN(
@@ -1218,9 +1234,39 @@ export default function ScenarioResults() {
                                   treatedIndex - 1
                                 ]
                               )
-                            ? asPercent(
+                              ? asPercent(
+                                  results.percentMissedDueToSensitivity[
+                                    treatedIndex - 1
+                                  ]
+                                )
+                              : t("general.NA")
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissedDueToSensitivity[
+                                treatedIndex - 1
+                              ] !== undefined &&
+                              !isNaN(
                                 results.percentMissedDueToSensitivity[
                                   treatedIndex - 1
+                                ]
+                              )
+                              ? asPercent(
+                                  results.percentMissedDueToSensitivity[
+                                    treatedIndex - 1
+                                  ]
+                                )
+                              : t("general.NA")
+                            : results.percentMissedDueToSensitivity[
+                                treatedIndex - 2
+                              ] !== undefined &&
+                              !isNaN(
+                                results.percentMissedDueToSensitivity[
+                                  treatedIndex - 2
+                                ]
+                              )
+                            ? asPercent(
+                                results.percentMissedDueToSensitivity[
+                                  treatedIndex - 2
                                 ]
                               )
                             : t("general.NA")}
@@ -1239,21 +1285,34 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
+                            ? results.testedFalseNegatives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.testedFalseNegatives[treatedIndex])
+                              ? Math.round(
+                                  results.testedFalseNegatives[treatedIndex]
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.testedFalseNegatives[treatedIndex - 1] !==
+                            ? results.testedFalseNegatives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.testedFalseNegatives[treatedIndex])
+                              ? Math.round(
+                                  results.testedFalseNegatives[treatedIndex]
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.testedFalseNegatives[treatedIndex - 1] !==
                                 undefined &&
                               !isNaN(
                                 results.testedFalseNegatives[treatedIndex - 1]
                               )
-                              ? Math.round(
-                                  results.testedFalseNegatives[treatedIndex - 1]
-                                ).toLocaleString(locale)
-                              : t("general.NA")
-                            : results.testedFalseNegatives[treatedIndex] !==
-                                undefined &&
-                              !isNaN(results.testedFalseNegatives[treatedIndex])
                             ? Math.round(
-                                results.testedFalseNegatives[treatedIndex]
+                                results.testedFalseNegatives[treatedIndex - 1]
                               ).toLocaleString(locale)
                             : t("general.NA")}
                         </td>
@@ -1294,10 +1353,10 @@ export default function ScenarioResults() {
                               : t("general.NA")
                             : results.scenario ===
                                 "ScreenTriageDiagnosticTestTreat" &&
-                              results.percentMissed[treatedIndex - 1] !==
+                              results.percentMissed[treatedIndex - 2] !==
                                 undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 1])
-                            ? asPercent(results.percentMissed[treatedIndex - 1])
+                              !isNaN(results.percentMissed[treatedIndex - 2])
+                            ? asPercent(results.percentMissed[treatedIndex - 2])
                             : t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
@@ -1319,11 +1378,13 @@ export default function ScenarioResults() {
                               ).toLocaleString(locale)
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex] !==
+                            ? results.untestedPositives[treatedIndex - 1] !==
                                 undefined &&
-                              !isNaN(results.untestedPositives[treatedIndex])
+                              !isNaN(
+                                results.untestedPositives[treatedIndex - 1]
+                              )
                               ? Math.round(
-                                  results.untestedPositives[treatedIndex]
+                                  results.untestedPositives[treatedIndex - 1]
                                 ).toLocaleString(locale)
                               : t("general.NA")
                             : t("general.NA")}
@@ -1361,16 +1422,16 @@ export default function ScenarioResults() {
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
                             ? results.percentMissedDueToSensitivity[
-                                treatedIndex - 1
+                                treatedIndex - 2
                               ] !== undefined &&
                               !isNaN(
                                 results.percentMissedDueToSensitivity[
-                                  treatedIndex - 1
+                                  treatedIndex - 2
                                 ]
                               )
                               ? asPercent(
                                   results.percentMissedDueToSensitivity[
-                                    treatedIndex - 1
+                                    treatedIndex - 2
                                   ]
                                 )
                               : t("general.NA")
@@ -1394,11 +1455,13 @@ export default function ScenarioResults() {
                               ).toLocaleString(locale)
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.testedFalseNegatives[treatedIndex] !==
+                            ? results.testedFalseNegatives[treatedIndex - 1] !==
                                 undefined &&
-                              !isNaN(results.testedFalseNegatives[treatedIndex])
+                              !isNaN(
+                                results.testedFalseNegatives[treatedIndex - 1]
+                              )
                               ? Math.round(
-                                  results.testedFalseNegatives[treatedIndex]
+                                  results.testedFalseNegatives[treatedIndex - 1]
                                 ).toLocaleString(locale)
                               : t("general.NA")
                             : t("general.NA")}
@@ -1704,18 +1767,31 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
-                              "ScreenTriageDiagnosticTestTreat"
-                            ? results.percentMissed[treatedIndex - 2] !==
-                                undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 2])
-                              ? asPercent(
-                                  results.percentMissed[treatedIndex - 2]
-                                )
-                              : t("general.NA")
-                            : results.percentMissed[treatedIndex - 1] !==
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissed[treatedIndex - 1] !==
                                 undefined &&
                               !isNaN(results.percentMissed[treatedIndex - 1])
-                            ? asPercent(results.percentMissed[treatedIndex - 1])
+                              ? asPercent(
+                                  results.percentMissed[treatedIndex - 1]
+                                )
+                              : t("general.NA")
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissed[treatedIndex - 1] !==
+                                undefined &&
+                              !isNaN(results.percentMissed[treatedIndex - 1])
+                              ? asPercent(
+                                  results.percentMissed[treatedIndex - 1]
+                                )
+                              : t("general.NA")
+                            : results.percentMissed[treatedIndex - 2] !==
+                                undefined &&
+                              !isNaN(results.percentMissed[treatedIndex - 2])
+                            ? asPercent(results.percentMissed[treatedIndex - 2])
                             : t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
@@ -1734,22 +1810,34 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
+                            ? results.untestedPositives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.untestedPositives[treatedIndex])
+                              ? Math.round(
+                                  results.untestedPositives[treatedIndex] / 12
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex - 1] !==
+                            ? results.untestedPositives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.untestedPositives[treatedIndex])
+                              ? Math.round(
+                                  results.untestedPositives[treatedIndex] / 12
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.untestedPositives[treatedIndex - 1] !==
                                 undefined &&
                               !isNaN(
                                 results.untestedPositives[treatedIndex - 1]
                               )
-                              ? Math.round(
-                                  results.untestedPositives[treatedIndex - 1] /
-                                    12
-                                ).toLocaleString(locale)
-                              : t("general.NA")
-                            : results.untestedPositives[treatedIndex] !==
-                                undefined &&
-                              !isNaN(results.untestedPositives[treatedIndex])
                             ? Math.round(
-                                results.untestedPositives[treatedIndex] / 12
+                                results.untestedPositives[treatedIndex - 1] / 12
                               ).toLocaleString(locale)
                             : t("general.NA")}
                         </td>
@@ -1779,22 +1867,12 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
-                              "ScreenTriageDiagnosticTestTreat"
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
                             ? results.percentMissedDueToSensitivity[
-                                treatedIndex - 2
-                              ] !== undefined &&
-                              !isNaN(
-                                results.percentMissedDueToSensitivity[
-                                  treatedIndex - 2
-                                ]
-                              )
-                              ? asPercent(
-                                  results.percentMissedDueToSensitivity[
-                                    treatedIndex - 2
-                                  ]
-                                )
-                              : t("general.NA")
-                            : results.percentMissedDueToSensitivity[
                                 treatedIndex - 1
                               ] !== undefined &&
                               !isNaN(
@@ -1802,9 +1880,39 @@ export default function ScenarioResults() {
                                   treatedIndex - 1
                                 ]
                               )
-                            ? asPercent(
+                              ? asPercent(
+                                  results.percentMissedDueToSensitivity[
+                                    treatedIndex - 1
+                                  ]
+                                )
+                              : t("general.NA")
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissedDueToSensitivity[
+                                treatedIndex - 1
+                              ] !== undefined &&
+                              !isNaN(
                                 results.percentMissedDueToSensitivity[
                                   treatedIndex - 1
+                                ]
+                              )
+                              ? asPercent(
+                                  results.percentMissedDueToSensitivity[
+                                    treatedIndex - 1
+                                  ]
+                                )
+                              : t("general.NA")
+                            : results.percentMissedDueToSensitivity[
+                                treatedIndex - 2
+                              ] !== undefined &&
+                              !isNaN(
+                                results.percentMissedDueToSensitivity[
+                                  treatedIndex - 2
+                                ]
+                              )
+                            ? asPercent(
+                                results.percentMissedDueToSensitivity[
+                                  treatedIndex - 2
                                 ]
                               )
                             : t("general.NA")}
@@ -1823,23 +1931,37 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
+                            ? results.testedFalseNegatives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.testedFalseNegatives[treatedIndex])
+                              ? Math.round(
+                                  results.testedFalseNegatives[treatedIndex] /
+                                    12
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.testedFalseNegatives[treatedIndex - 1] !==
+                            ? results.testedFalseNegatives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.testedFalseNegatives[treatedIndex])
+                              ? Math.round(
+                                  results.testedFalseNegatives[treatedIndex] /
+                                    12
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.testedFalseNegatives[treatedIndex - 1] !==
                                 undefined &&
                               !isNaN(
                                 results.testedFalseNegatives[treatedIndex - 1]
                               )
-                              ? Math.round(
-                                  results.testedFalseNegatives[
-                                    treatedIndex - 1
-                                  ] / 12
-                                ).toLocaleString(locale)
-                              : t("general.NA")
-                            : results.testedFalseNegatives[treatedIndex] !==
-                                undefined &&
-                              !isNaN(results.testedFalseNegatives[treatedIndex])
                             ? Math.round(
-                                results.testedFalseNegatives[treatedIndex] / 12
+                                results.testedFalseNegatives[treatedIndex - 1] /
+                                  12
                               ).toLocaleString(locale)
                             : t("general.NA")}
                         </td>
@@ -1880,10 +2002,10 @@ export default function ScenarioResults() {
                               : t("general.NA")
                             : results.scenario ===
                                 "ScreenTriageDiagnosticTestTreat" &&
-                              results.percentMissed[treatedIndex - 1] !==
+                              results.percentMissed[treatedIndex - 2] !==
                                 undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 1])
-                            ? asPercent(results.percentMissed[treatedIndex - 1])
+                              !isNaN(results.percentMissed[treatedIndex - 2])
+                            ? asPercent(results.percentMissed[treatedIndex - 2])
                             : t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
@@ -1905,11 +2027,14 @@ export default function ScenarioResults() {
                               ).toLocaleString(locale)
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex] !==
+                            ? results.untestedPositives[treatedIndex - 1] !==
                                 undefined &&
-                              !isNaN(results.untestedPositives[treatedIndex])
+                              !isNaN(
+                                results.untestedPositives[treatedIndex - 1]
+                              )
                               ? Math.round(
-                                  results.untestedPositives[treatedIndex] / 12
+                                  results.untestedPositives[treatedIndex - 1] /
+                                    12
                                 ).toLocaleString(locale)
                               : t("general.NA")
                             : t("general.NA")}
@@ -2309,18 +2434,31 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
-                              "ScreenTriageDiagnosticTestTreat"
-                            ? results.percentMissed[treatedIndex - 2] !==
-                                undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 2])
-                              ? asPercent(
-                                  results.percentMissed[treatedIndex - 2]
-                                )
-                              : t("general.NA")
-                            : results.percentMissed[treatedIndex - 1] !==
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissed[treatedIndex - 1] !==
                                 undefined &&
                               !isNaN(results.percentMissed[treatedIndex - 1])
-                            ? asPercent(results.percentMissed[treatedIndex - 1])
+                              ? asPercent(
+                                  results.percentMissed[treatedIndex - 1]
+                                )
+                              : t("general.NA")
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissed[treatedIndex - 1] !==
+                                undefined &&
+                              !isNaN(results.percentMissed[treatedIndex - 1])
+                              ? asPercent(
+                                  results.percentMissed[treatedIndex - 1]
+                                )
+                              : t("general.NA")
+                            : results.percentMissed[treatedIndex - 2] !==
+                                undefined &&
+                              !isNaN(results.percentMissed[treatedIndex - 2])
+                            ? asPercent(results.percentMissed[treatedIndex - 2])
                             : t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
@@ -2339,6 +2477,20 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
+                            ? results.untestedPositives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.untestedPositives[treatedIndex])
+                              ? Math.round(
+                                  results.untestedPositives[treatedIndex] *
+                                    parseInt(params.screeningInterval)
+                                ).toLocaleString(locale)
+                              : t("general.NA")
+                            : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
                             ? results.untestedPositives[treatedIndex - 1] !==
                                 undefined &&
@@ -2346,8 +2498,8 @@ export default function ScenarioResults() {
                                 results.untestedPositives[treatedIndex - 1]
                               )
                               ? Math.round(
-                                  results.untestedPositives[treatedIndex - 1] /
-                                    12
+                                  results.untestedPositives[treatedIndex - 1] *
+                                    parseInt(params.screeningInterval)
                                 ).toLocaleString(locale)
                               : t("general.NA")
                             : results.untestedPositives[treatedIndex] !==
@@ -2385,22 +2537,12 @@ export default function ScenarioResults() {
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
                             : results.scenario ===
-                              "ScreenTriageDiagnosticTestTreat"
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
                             ? results.percentMissedDueToSensitivity[
-                                treatedIndex - 2
-                              ] !== undefined &&
-                              !isNaN(
-                                results.percentMissedDueToSensitivity[
-                                  treatedIndex - 2
-                                ]
-                              )
-                              ? asPercent(
-                                  results.percentMissedDueToSensitivity[
-                                    treatedIndex - 2
-                                  ]
-                                )
-                              : t("general.NA")
-                            : results.percentMissedDueToSensitivity[
                                 treatedIndex - 1
                               ] !== undefined &&
                               !isNaN(
@@ -2408,9 +2550,39 @@ export default function ScenarioResults() {
                                   treatedIndex - 1
                                 ]
                               )
-                            ? asPercent(
+                              ? asPercent(
+                                  results.percentMissedDueToSensitivity[
+                                    treatedIndex - 1
+                                  ]
+                                )
+                              : t("general.NA")
+                            : results.scenario ===
+                              "ScreenTriageDiagnosticTestTreat"
+                            ? results.percentMissedDueToSensitivity[
+                                treatedIndex - 1
+                              ] !== undefined &&
+                              !isNaN(
                                 results.percentMissedDueToSensitivity[
                                   treatedIndex - 1
+                                ]
+                              )
+                              ? asPercent(
+                                  results.percentMissedDueToSensitivity[
+                                    treatedIndex - 1
+                                  ]
+                                )
+                              : t("general.NA")
+                            : results.percentMissedDueToSensitivity[
+                                treatedIndex - 2
+                              ] !== undefined &&
+                              !isNaN(
+                                results.percentMissedDueToSensitivity[
+                                  treatedIndex - 2
+                                ]
+                              )
+                            ? asPercent(
+                                results.percentMissedDueToSensitivity[
+                                  treatedIndex - 2
                                 ]
                               )
                             : t("general.NA")}
@@ -2428,6 +2600,20 @@ export default function ScenarioResults() {
                               results.checkedValues[2] ===
                                 "ScreenDiagnosticTestTreat"
                             ? t("general.NA")
+                            : results.scenario ===
+                                "ScreenDiagnosticTestTreat" &&
+                              results.checkedValues &&
+                              results.checkedValues.length === 3 &&
+                              results.checkedValues[2] ===
+                                "ScreenTriageDiagnosticTestTreat"
+                            ? results.testedFalseNegatives[treatedIndex] !==
+                                undefined &&
+                              !isNaN(results.testedFalseNegatives[treatedIndex])
+                              ? Math.round(
+                                  results.testedFalseNegatives[treatedIndex] *
+                                    parseInt(params.screeningInterval)
+                                ).toLocaleString(locale)
+                              : t("general.NA")
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
                             ? results.testedFalseNegatives[treatedIndex - 1] !==
@@ -2487,10 +2673,10 @@ export default function ScenarioResults() {
                               : t("general.NA")
                             : results.scenario ===
                                 "ScreenTriageDiagnosticTestTreat" &&
-                              results.percentMissed[treatedIndex - 1] !==
+                              results.percentMissed[treatedIndex - 2] !==
                                 undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 1])
-                            ? asPercent(results.percentMissed[treatedIndex - 1])
+                              !isNaN(results.percentMissed[treatedIndex - 2])
+                            ? asPercent(results.percentMissed[treatedIndex - 2])
                             : t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
@@ -2513,12 +2699,14 @@ export default function ScenarioResults() {
                               ).toLocaleString(locale)
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex] !==
+                            ? results.untestedPositives[treatedIndex - 1] !==
                                 undefined &&
-                              !isNaN(results.untestedPositives[treatedIndex])
+                              !isNaN(
+                                results.untestedPositives[treatedIndex - 1]
+                              )
                               ? Math.round(
-                                  results.untestedPositives[treatedIndex] *
-                                    parseInt(params.screeningInterval)
+                                  results.untestedPositives[treatedIndex - 1] -
+                                    1 * parseInt(params.screeningInterval)
                                 ).toLocaleString(locale)
                               : t("general.NA")
                             : t("general.NA")}
@@ -2556,16 +2744,16 @@ export default function ScenarioResults() {
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
                             ? results.percentMissedDueToSensitivity[
-                                treatedIndex - 1
+                                treatedIndex - 2
                               ] !== undefined &&
                               !isNaN(
                                 results.percentMissedDueToSensitivity[
-                                  treatedIndex - 1
+                                  treatedIndex - 2
                                 ]
                               )
                               ? asPercent(
                                   results.percentMissedDueToSensitivity[
-                                    treatedIndex - 1
+                                    treatedIndex - 2
                                   ]
                                 )
                               : t("general.NA")
@@ -2590,12 +2778,15 @@ export default function ScenarioResults() {
                               ).toLocaleString(locale)
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.testedFalseNegatives[treatedIndex] !==
+                            ? results.testedFalseNegatives[treatedIndex - 1] !==
                                 undefined &&
-                              !isNaN(results.testedFalseNegatives[treatedIndex])
+                              !isNaN(
+                                results.testedFalseNegatives[treatedIndex - 1]
+                              )
                               ? Math.round(
-                                  results.testedFalseNegatives[treatedIndex] /
-                                    12
+                                  results.testedFalseNegatives[
+                                    treatedIndex - 1
+                                  ] / 12
                                 ).toLocaleString(locale)
                               : t("general.NA")
                             : t("general.NA")}
