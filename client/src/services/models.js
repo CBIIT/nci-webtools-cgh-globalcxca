@@ -175,6 +175,8 @@ export function runModel(params) {
   // console.log("specificity ", specificity);
   // console.log("screentest", screentest);
   if (
+    params.checkedValues &&
+    params.checkedValues.length === 3 &&
     params.screeningTest === "hpv" &&
     params.triageTest === "hpv16or18genotyping"
   ) {

@@ -57,9 +57,12 @@ export default function RunScenarios() {
   setParams(params);
   setResults(results);
   const [hpv16or18Used, setHpv16or18Used] = useState(false); // Initialize with false
+  const [hpvUsed, setHpvUsed] = useState(false); // Initialize with false
 
   useEffect(() => {
     if (
+      params.checkedValues &&
+      params.checkedValues.length === 3 &&
       params.screeningTest === "hpv" &&
       params.triageTest === "hpv16or18genotyping"
     ) {
@@ -67,9 +70,19 @@ export default function RunScenarios() {
     } else {
       setHpv16or18Used(false);
     }
+
+    if (
+      params.screeningTest === "hpv" ||
+      params.screeningTest === "hpv16or18"
+    ) {
+      setHpvUsed(true);
+    } else {
+      setHpvUsed(false);
+    }
   }, [params.screeningTest, params.triageTest]);
 
   //console.log("hpv16or18Used -- ", hpv16or18Used);
+  //console.log("hpvUsed -- ", hpvUsed);
   if (hpv16or18Used) {
     setParams((prevParams) => ({
       ...prevParams,
@@ -133,11 +146,16 @@ export default function RunScenarios() {
     }
 
     if (name === "screeningTest") {
-      if (value === "hpv") {
+      if (value === "hpv" || value === "hpv16or18") {
         console.log(
           "HPV IS SELECTED FOR SCREENING TEST !!!!!!!!!! -----------------"
         );
-        const updatedSpecificity = 100 - params.hpvPrevalence;
+        //const updatedSpecificity = 100 - params.hpvPrevalence;
+        const updatedSpecificity = (
+          (1 -
+            (form.hpvPrevalence / 100) * (form.proportionOfPositives / 100)) *
+          100
+        ).toFixed(1);
         console.log("updatedSpecificity ", updatedSpecificity);
         setForm((prevForm) => ({
           ...prevForm,
@@ -177,8 +195,11 @@ export default function RunScenarios() {
 
   useEffect(() => {
     // Calculate updated specificity when HPV is selected as screening test
-    if (form.screeningTest === "hpv") {
-      const updatedSpecificity = 100 - form.hpvPrevalence;
+    if (form.screeningTest === "hpv" || form.screeningTest === "hpv16or18") {
+      const updatedSpecificity = (
+        (1 - (form.hpvPrevalence / 100) * (form.proportionOfPositives / 100)) *
+        100
+      ).toFixed(1);
       setForm((prevForm) => ({
         ...prevForm,
         screeningTestSensitivity: tests.hpv?.sensitivity || 0,
@@ -192,7 +213,12 @@ export default function RunScenarios() {
         screeningTestSpecificity: tests[form.screeningTest]?.specificity || 0,
       }));
     }
-  }, [form.hpvPrevalence, form.screeningTest, setForm]);
+  }, [
+    form.hpvPrevalence,
+    form.proportionOfPositives,
+    form.screeningTest,
+    setForm,
+  ]);
 
   function initStates() {
     setCheckedValues(["ScreenTreat", "Treatment"]);
@@ -279,6 +305,16 @@ export default function RunScenarios() {
   const filteredTriageTests = triageTests.filter(
     (test) => test.value !== form.screeningTest
   );
+
+  const isTriageTestDisabled = (value) => {
+    if (form.screeningTest === "pap" && value === "pap") return true;
+    if (form.screeningTest === "ivaa" && value === "ivaa") return true;
+    if (form.screeningTest === "hpv" && value === "hpv16or18genotyping")
+      return true;
+    if (form.screeningTest === "hpv16or18" && value === "hpv16or18genotyping")
+      return true;
+    return false;
+  };
 
   return (
     <div className="bg-light py-2">
@@ -851,11 +887,7 @@ export default function RunScenarios() {
                                               >
                                                 {" "}
                                                 <InputGroup
-                                                  className={`flex-nowrap ${
-                                                    hpv16or18Used
-                                                      ? "grayed-out"
-                                                      : ""
-                                                  }`}
+                                                  className={`flex-nowrap`}
                                                 >
                                                   <Form.Range
                                                     type="number"
@@ -936,7 +968,7 @@ export default function RunScenarios() {
                                                 {" "}
                                                 <InputGroup
                                                   className={`flex-nowrap ${
-                                                    hpv16or18Used
+                                                    hpv16or18Used || hpvUsed
                                                       ? "grayed-out"
                                                       : ""
                                                   }`}
@@ -1736,10 +1768,13 @@ export default function RunScenarios() {
                                                       <option
                                                         key={m.value}
                                                         value={m.value}
-                                                        disabled={
-                                                          m.value ===
-                                                          form.screeningTest
-                                                        }
+                                                        // disabled={
+                                                        //   m.value ===
+                                                        //   form.screeningTest
+                                                        // }
+                                                        disabled={isTriageTestDisabled(
+                                                          m.value
+                                                        )}
                                                       >
                                                         {t(m.label)}
                                                       </option>
@@ -2079,10 +2114,13 @@ export default function RunScenarios() {
                                                       <option
                                                         key={m.value}
                                                         value={m.value}
-                                                        disabled={
-                                                          m.value ===
-                                                          form.screeningTest
-                                                        }
+                                                        // disabled={
+                                                        //   m.value ===
+                                                        //   form.screeningTest
+                                                        // }
+                                                        disabled={isTriageTestDisabled(
+                                                          m.value
+                                                        )}
                                                       >
                                                         {t(m.label)}
                                                       </option>
