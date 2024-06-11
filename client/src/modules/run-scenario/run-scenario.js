@@ -131,7 +131,7 @@ export default function RunScenarios() {
       }
     }
 
-    console.log("FORM ---- ", form);
+    //console.log("FORM ---- ", form);
 
     // Update the state
     setDivVisibilities(newDivVisibilities);
