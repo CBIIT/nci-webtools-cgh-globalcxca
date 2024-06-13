@@ -327,6 +327,7 @@ export default function RunScenarios() {
   const isScreeningTestDisabled = (value) => {
     if (form.triageTest === 'pap' && value === 'pap') return true;
     if (form.triageTest === 'ivaa' && value === 'ivaa') return true;
+    if (form.triageTest === 'hpv16or18genotyping' && (value === 'hpv' || value === 'hpv16or18')) return true;
     return false;
   };
 
