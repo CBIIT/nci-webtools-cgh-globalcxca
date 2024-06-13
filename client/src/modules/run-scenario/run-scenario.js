@@ -177,6 +177,14 @@ export default function RunScenarios() {
         triageTestSensitivity: tests[value]?.sensitivity || "",
         triageTestSpecificity: tests[value]?.specificity || "",
       }));
+
+      if (value === "pap" || value === "ivaa") {
+        setForm((prevForm) => ({
+          ...prevForm,
+          screeningTest: '',
+        }));
+      }
+
     }
 
     if (name === "diagnosticTest") {
@@ -313,6 +321,12 @@ export default function RunScenarios() {
       return true;
     if (form.screeningTest === "hpv16or18" && value === "hpv16or18genotyping")
       return true;
+    return false;
+  };
+
+  const isScreeningTestDisabled = (value) => {
+    if (form.triageTest === 'pap' && value === 'pap') return true;
+    if (form.triageTest === 'ivaa' && value === 'ivaa') return true;
     return false;
   };
 
@@ -820,6 +834,7 @@ export default function RunScenarios() {
                                                     <option
                                                       key={m.value}
                                                       value={m.value}
+                                                      disabled={isScreeningTestDisabled(m.value)}
                                                     >
                                                       {t(m.label)}
                                                     </option>
