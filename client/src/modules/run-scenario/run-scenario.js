@@ -53,11 +53,12 @@ export default function RunScenarios() {
   //console.log("params.checkedValues ,", params.checkedValues);
   //console.log("params.screeningTest  ", params.screeningTest);
   //console.log("params.triageTest ", params.triageTest);
-
+  console.log("tests ", tests);
   setParams(params);
   setResults(results);
   const [hpv16or18Used, setHpv16or18Used] = useState(false); // Initialize with false
   const [hpvUsed, setHpvUsed] = useState(false); // Initialize with false
+  const [hpv16or18GenotypingTriageUsed, setHpv16or18GenotypingTriageUsed] = useState(false); // Initialize with false
 
   useEffect(() => {
     if (
@@ -69,6 +70,16 @@ export default function RunScenarios() {
       setHpv16or18Used(true);
     } else {
       setHpv16or18Used(false);
+    }
+
+    if (
+      params.checkedValues &&
+      (params.checkedValues.length === 3 ||  params.checkedValues.length === 4 )&&
+      params.triageTest === "hpv16or18genotyping"
+    ) {
+      setHpv16or18GenotypingTriageUsed(true);
+    } else {
+      setHpv16or18GenotypingTriageUsed(false);
     }
 
     if (
@@ -90,6 +101,7 @@ export default function RunScenarios() {
     }));
   }
   //console.log("hpv16or18Used -- ", hpv16or18Used);
+  console.log("hpv16or18GenotypingTriageUsed ", hpv16or18GenotypingTriageUsed);
   function handleSubmit(event) {
     event?.preventDefault();
     const params = mapValues(form, asNumber);
@@ -103,8 +115,8 @@ export default function RunScenarios() {
   function handleChange(e, index) {
     const { name, value, checked } = e.target;
     //console.log("checked", checked);
-    // console.log("value +++++++", value);
-    // console.log("name ++++++++", name);
+     console.log("value +++++++", value);
+     console.log("name ++++++++", name);
     // console.log("PARAMS ++++ ", params);
     // console.log("hpvPrevalence ", params.hpvPrevalence);
 
@@ -172,11 +184,27 @@ export default function RunScenarios() {
     }
 
     if (name === "triageTest") {
-      setForm((prevForm) => ({
-        ...prevForm,
-        triageTestSensitivity: tests[value]?.sensitivity || "",
-        triageTestSpecificity: tests[value]?.specificity || "",
-      }));
+      console.log("TRIAGE SELECTED");
+      if(value === "hpv16or18genotyping"){
+        console.log("tests[value] ", tests[value]);
+        const updatedSpecificity = (
+          (1 -
+            (form.hpvPrevalence / 100) * (form.proportionOfPositives / 100)) *
+          100
+        ).toFixed(1);
+        setForm((prevForm) => ({
+          ...prevForm,
+          triageTestSensitivity: tests[value]?.sensitivity || "",
+          triageTestSpecificity: updatedSpecificity,
+        }));
+      } else {
+        setForm((prevForm) => ({
+          ...prevForm,
+          triageTestSensitivity: tests[value]?.sensitivity || "",
+          triageTestSpecificity: tests[value]?.specificity || "",
+        }));
+      }
+      
 
       if (value === "pap" || value === "ivaa") {
         setForm((prevForm) => ({
@@ -221,10 +249,30 @@ export default function RunScenarios() {
         screeningTestSpecificity: tests[form.screeningTest]?.specificity || 0,
       }));
     }
+    if (hpv16or18GenotypingTriageUsed) {
+      const updatedSpecificity = (
+        (1 - (form.hpvPrevalence / 100) * (form.proportionOfPositives / 100)) *
+        100
+      ).toFixed(1);
+      setForm((prevForm) => ({
+        ...prevForm,
+        triageTestSensitivity: tests.hpv16or18genotyping?.sensitivity || 10,
+        triageTestSpecificity: updatedSpecificity,
+      }));
+    } else {
+      // Set specificity based on the selected screening test
+      setForm((prevForm) => ({
+        ...prevForm,
+        triageTestSensitivity: tests[form.triageTest]?.sensitivity || 0,
+        triageTestSpecificity: tests[form.triageTest]?.specificity || 0,
+      }));
+    }
   }, [
     form.hpvPrevalence,
     form.proportionOfPositives,
     form.screeningTest,
+    form.triageTest,
+    hpv16or18GenotypingTriageUsed,
     setForm,
   ]);
 
@@ -1287,7 +1335,14 @@ export default function RunScenarios() {
                                                   xs={12}
                                                   className="d-flex flex-column m-auto"
                                                 >
-                                                  <InputGroup className="flex-nowrap">
+                                                  {/* <InputGroup className="flex-nowrap"> */}
+                                                  <InputGroup
+                                                  className={`flex-nowrap ${
+                                                    hpv16or18GenotypingTriageUsed
+                                                      ? "grayed-out"
+                                                      : ""
+                                                  }`}
+                                                >
                                                     <Form.Range
                                                       type="number"
                                                       min="0"
@@ -1928,7 +1983,14 @@ export default function RunScenarios() {
                                                   xs={12}
                                                   className="d-flex flex-column m-auto"
                                                 >
-                                                  <InputGroup className="flex-nowrap">
+                                                  {/* <InputGroup className="flex-nowrap"> */}
+                                                  <InputGroup
+                                                  className={`flex-nowrap ${
+                                                    hpv16or18GenotypingTriageUsed
+                                                      ? "grayed-out"
+                                                      : ""
+                                                  }`}
+                                                >
                                                     <Form.Range
                                                       type="number"
                                                       min="0"
@@ -2274,7 +2336,14 @@ export default function RunScenarios() {
                                                   xs={12}
                                                   className="d-flex flex-column m-auto"
                                                 >
-                                                  <InputGroup className="flex-nowrap">
+                                                  {/* <InputGroup className="flex-nowrap"> */}
+                                                  <InputGroup
+                                                  className={`flex-nowrap ${
+                                                    hpv16or18GenotypingTriageUsed
+                                                      ? "grayed-out"
+                                                      : ""
+                                                  }`}
+                                                >
                                                     <Form.Range
                                                       type="number"
                                                       min="0"
@@ -3164,7 +3233,14 @@ export default function RunScenarios() {
                                                 xs={12}
                                                 className="d-flex flex-column m-auto"
                                               >
-                                                <InputGroup className="flex-nowrap">
+                                                {/* <InputGroup className="flex-nowrap"> */}
+                                                <InputGroup
+                                                  className={`flex-nowrap ${
+                                                    hpv16or18GenotypingTriageUsed
+                                                      ? "grayed-out"
+                                                      : ""
+                                                  }`}
+                                                >
                                                   <Form.Range
                                                     type="number"
                                                     min="0"
