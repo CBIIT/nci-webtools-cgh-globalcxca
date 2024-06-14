@@ -206,12 +206,19 @@ export default function RunScenarios() {
       }
       
 
-      if (value === "pap" || value === "ivaa") {
+     // If VIA or PAP is selected in triageTest and screeningTest is the same, reset screeningTest
+     if (value === "ivaa" && form.screeningTest === "ivaa") {
+        setForm((prevForm) => ({
+          ...prevForm,
+          screeningTest: '',
+        }));
+      } else if (value === "pap" && form.screeningTest === "pap") {
         setForm((prevForm) => ({
           ...prevForm,
           screeningTest: '',
         }));
       }
+  
 
     }
 
