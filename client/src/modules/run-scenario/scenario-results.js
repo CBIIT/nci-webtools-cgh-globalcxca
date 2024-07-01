@@ -920,8 +920,8 @@ export default function ScenarioResults() {
                 <Card.Body>
                   <Table hover responsive data-export>
                     <thead>
-                      <tr className="bg-info-dark text-light">
-                        <th>{t("results.annualTargets")}</th>
+                      <tr className="bg-info-dark">
+                        <th className="bg-info-dark text-light">{t("results.annualTargets")}</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
                     </thead>
@@ -978,7 +978,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-warning-dark text-light">
-                        <th>
+                        <th className="bg-warning-dark text-light">
                           {t("results.annualImpactOnCervicalPrecancerTitle")}
                         </th>
                         <th className="th-placeholder">Placeholder</th>
@@ -1024,7 +1024,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-danger-dark text-light">
-                        <th>{t("results.AnnualMissedPrecancersTitle")}</th>
+                        <th className="bg-danger-dark text-light">{t("results.AnnualMissedPrecancersTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
@@ -1495,7 +1495,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-success-dark text-light">
-                        <th>{t("results.AnnualImpactOnResourcesTitle")}</th>
+                        <th className="bg-success-dark text-light">{t("results.AnnualImpactOnResourcesTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
                     </thead>
@@ -1567,7 +1567,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-info-dark text-light">
-                        <th>{t("results.monthlyTargets")}</th>
+                        <th className="bg-info-dark text-light">{t("results.monthlyTargets")}</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
                     </thead>
@@ -1624,7 +1624,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-warning-dark text-light">
-                        <th>
+                        <th className="bg-warning-dark text-light">
                           {t("results.monthlyImpactOnCervicalPrecancerTitle")}
                         </th>
                         <th className="th-placeholder">Placeholder</th>
@@ -1670,7 +1670,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-danger-dark text-light">
-                        <th>{t("results.monthlyMissedPrecancersTitle")}</th>
+                        <th className="bg-danger-dark text-light">{t("results.monthlyMissedPrecancersTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
@@ -2144,7 +2144,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-success-dark text-light">
-                        <th>{t("results.monthlyImpactOnResourcesTitle")}</th>
+                        <th className="bg-success-dark text-light">{t("results.monthlyImpactOnResourcesTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
                     </thead>
@@ -2226,7 +2226,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-info-dark text-light">
-                        <th>{t("results.targets")}</th>
+                        <th className="bg-info-dark text-light">{t("results.targets")}</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
                     </thead>
@@ -2286,7 +2286,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-warning-dark text-light">
-                        <th>{t("results.impactOnCervicalPrecancerTitle")}</th>
+                        <th className="bg-warning-dark text-light">{t("results.impactOnCervicalPrecancerTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
@@ -2334,7 +2334,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-danger-dark text-light">
-                        <th>{t("results.programMissedPrecancersTitle")}</th>
+                        <th className="bg-danger-dark text-light">{t("results.programMissedPrecancersTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
@@ -2821,7 +2821,7 @@ export default function ScenarioResults() {
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-success-dark text-light">
-                        <th>{t("results.impactOnResourcesTitle")}</th>
+                        <th className="bg-success-dark text-light">{t("results.impactOnResourcesTitle")}</th>
                         <th className="th-placeholder">Placeholder</th>
                       </tr>
                     </thead>

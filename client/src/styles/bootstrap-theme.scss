@@ -243,16 +243,25 @@ input[type="number"] {
   }
 }
 .bg-info-dark {
-  background-color: #0250c5;
+  background-color: #0250c5 !important;
+}
+
+.txt-info-dark{
+  color: #0250c5 !important;
 }
 
 .bg-warning-dark {
-  background-color: #8d4002;
+  background-color: #8d4002 !important;
 }
 .bg-danger-dark {
-  background-color: #a91e2c;
+  background-color: #a91e2c !important;
 }
 
 .bg-success-dark {
-  background-color: #076439;
+  background-color: #076439 !important;
 }
+
+.th-placeholder {
+  opacity: 0; /* Hide the text while keeping the background color */
+}
+
