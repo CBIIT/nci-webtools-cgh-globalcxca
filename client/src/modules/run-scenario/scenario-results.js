@@ -488,434 +488,8 @@ export default function ScenarioResults() {
             onSelect={handleTabSelect}
             style={{ position: "relative", zIndex: 2 }}
           >
-            <Tab eventKey="tab1" title={t("general.graphs")}>
-              <Card className="mb-3 d-none">
-                <Card.Header>
-                  <Card.Title data-export>
-                    {asLabel(params.scenario, scenarios)}
-                  </Card.Title>
-                  <Card.Text className="small text-muted">
-                    {t("general.scenarioAssumption")}
-                  </Card.Text>
-                </Card.Header>
-                <Card.Body>
-                  <Row>
-                    <Col lg={6}>
-                      <Table hover responsive data-export>
-                        <thead>
-                          <tr className="bg-grey">
-                            <th>{t("runScenario.epidemiological")}</th>
-                            {/* Placeholder th simplifies pdf export (consistent row lengths) */}
-                            <th className="th-placeholder">Placeholder</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>{t("runScenario.numPeople")}</th>
-                            <td className="text-end text-nowrap">
-                              {params.populationSize?.toLocaleString(locale) ??
-                                t("general.NA")}
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{t("runScenario.prevelance")}</th>
-                            <td className="text-end text-nowrap">
-                              {asPercent(params.cinPrevalence, 0) ??
-                                t("general.NA")}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </Table>
-
-                      <Table hover responsive data-export>
-                        <thead>
-                          <tr className="bg-grey">
-                            <th> {t("runScenario.participationTitle")}</th>
-                            <th className="th-placeholder">Placeholder</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>
-                              {" "}
-                              {t("runScenario.intervalofCervicalInYears")}
-                            </th>
-                            <td className="text-end text-nowrap">
-                              {params.screeningInterval?.toLocaleString(
-                                locale
-                              ) ?? t("general.NA")}
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{t("runScenario.percentScreeningCoverage")}</th>
-                            <td className="text-end text-nowrap">
-                              {asPercent(params.percentScreened, 0) ??
-                                t("general.NA")}
-                            </td>
-                          </tr>
-                          {["ScreenTriageDiagnosticTestTreat"].includes(
-                            params.scenario
-                          ) && (
-                            <tr>
-                              <th>
-                                {t(
-                                  "runScenario.percentScreeningPositiveWithTriage"
-                                )}
-                              </th>
-                              <td className="text-end text-nowrap">
-                                {asPercent(params.percentTriaged, 0) ??
-                                  t("general.NA")}
-                              </td>
-                            </tr>
-                          )}
-                          {[
-                            "ScreenDiagnosticTestTreat",
-                            "ScreenTriageDiagnosticTestTreat",
-                          ].includes(params.scenario) && (
-                            <tr>
-                              <th>
-                                {
-                                  {
-                                    ScreenDiagnosticTestTreat:
-                                      "Percent of screen positives with triage/diagnostic test",
-                                    ScreenTriageDiagnosticTestTreat:
-                                      "Percent of triage positives with diagnostic test",
-                                  }[params.scenario]
-                                }
-                              </th>
-                              <td className="text-end text-nowrap">
-                                {asPercent(
-                                  params.percentDiagnosticTriaged,
-                                  0
-                                ) ?? t("general.NA")}
-                              </td>
-                            </tr>
-                          )}
-                          <tr>
-                            <th>
-                              {
-                                {
-                                  ScreenTreat:
-                                    "Percent of screen positives treated",
-                                  ScreenDiagnosticTestTreat:
-                                    "Percent of triage/diagnostic test positives treated",
-                                  ScreenTriageDiagnosticTestTreat:
-                                    "Percent of diagnostic test positives treated",
-                                }[params.scenario]
-                              }
-                            </th>
-                            <td className="text-end text-nowrap">
-                              {asPercent(params.percentTreated, 0) ??
-                                t("general.NA")}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </Table>
-                    </Col>
-                    <Col lg={6}>
-                      <Table hover responsive data-export>
-                        <thead>
-                          <tr className="bg-grey">
-                            <th>
-                              {t("runScenario.screeningAndTreatmentTitle")}
-                            </th>
-                            <th className="th-placeholder">Placeholder</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {params.screeningTest && (
-                            <>
-                              <tr className="table-light">
-                                <th>
-                                  {t("runScenario.cervicalScreeningTestChosen")}
-                                </th>
-                                <td className="text-end text-nowrap">
-                                  {asLabel(
-                                    params.screeningTest,
-                                    screeningTests
-                                  ) ?? t("general.NA")}
-                                </td>
-                              </tr>
-                              <tr>
-                                <th className="ps-3">
-                                  {t("runScenario.screeningTestSenvitivity")}
-                                </th>
-                                <td className="text-end text-nowrap">
-                                  {asPercent(
-                                    params.screeningTestSensitivity,
-                                    0
-                                  ) ?? t("general.NA")}
-                                </td>
-                              </tr>
-                              <tr>
-                                <th className="ps-3">
-                                  {t("runScenario.screeningTestSpecificity")}
-                                </th>
-                                <td className="text-end text-nowrap">
-                                  {asPercent(
-                                    params.screeningTestSpecificity,
-                                    0
-                                  ) ?? t("general.NA")}
-                                </td>
-                              </tr>
-                            </>
-                          )}
-
-                          {params.triageTest && (
-                            <>
-                              <tr className="table-light">
-                                <th>
-                                  {t(
-                                    "runScenario.triageOrDiagnosticTestChosen"
-                                  )}
-                                </th>
-                                <td className="text-end text-nowrap">
-                                  {asLabel(params.triageTest, triageTests) ??
-                                    t("general.NA")}
-                                </td>
-                              </tr>
-                              <tr>
-                                <th className="ps-3">
-                                  {t(
-                                    "runScenario.triageOrDiagnosticTestSensitivity"
-                                  )}
-                                </th>
-                                <td className="text-end text-nowrap">
-                                  {asPercent(params.triageTestSensitivity, 0) ??
-                                    t("general.NA")}
-                                </td>
-                              </tr>
-                              <tr>
-                                <th className="ps-3">
-                                  {t(
-                                    "runScenario.triageOrDiagnosticTestSpecificity"
-                                  )}
-                                </th>
-                                <td className="text-end text-nowrap">
-                                  {asPercent(params.triageTestSpecificity, 0) ??
-                                    t("general.NA")}
-                                </td>
-                              </tr>
-                            </>
-                          )}
-
-                          {params.diagnosticTest && (
-                            <>
-                              <tr className="table-light">
-                                <th>
-                                  {" "}
-                                  {t("runScenario.diagnosticTestChosen")}
-                                </th>
-                                <td className="text-end text-nowrap">
-                                  {asLabel(
-                                    params.diagnosticTest,
-                                    diagnosticTests
-                                  ) ?? t("general.NA")}
-                                </td>
-                              </tr>
-                              <tr>
-                                <th className="ps-3">
-                                  {t("runScenario.diagnosticTestSensitivity")}
-                                </th>
-                                <td className="text-end text-nowrap">
-                                  {asPercent(
-                                    params.diagnosticTestSensitivity,
-                                    0
-                                  ) ?? t("general.NA")}
-                                </td>
-                              </tr>
-                              <tr>
-                                <th className="ps-3">
-                                  {t("runScenario.diagnosticTestSpecificity")}
-                                </th>
-                                <td className="text-end text-nowrap">
-                                  {asPercent(
-                                    params.diagnosticTestSpecificity,
-                                    0
-                                  ) ?? t("general.NA")}
-                                </td>
-                              </tr>
-                            </>
-                          )}
-                        </tbody>
-                      </Table>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-
-              <Card className="mb-2">
-                <Card.Header>
-                  <Row>
-                    <Col xl={6} lg={12} md={12} sm={12} xs={12}>
-                      <Card.Title>{chartTiles}</Card.Title>
-                    </Col>
-                    <Col
-                      xl={6}
-                      lg={12}
-                      md={12}
-                      sm={12}
-                      xs={12}
-                      className="d-flex justify-content-end"
-                    >
-                      {/* <span className="howTo" onClick={handleModalShow}>
-                      How to / Help
-                    </span> */}
-                    </Col>
-                  </Row>
-                </Card.Header>
-                <Card.Body className="pt-1">
-                  <Container fluid>
-                    <Row className="my-2">
-                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
-                        <h2 className="text-center h5 py-2">
-                          {barChartTitle1}
-                        </h2>
-                        <BarChart
-                          id={ScreentestBarChartId}
-                          data={[
-                            {
-                              label: t("general.screeningTestLabel"),
-                              value:
-                                parseInt(
-                                  totalNeededToScreen.replace(/,/g, "")
-                                ) || 0,
-                            },
-                          ]}
-                          color="#95f4a2" // Set the color to blue
-                          //layout={{ width: 450, height: 350 * 1.5 }} // Adjust the width and height as needed
-                        />
-                      </Col>
-
-                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
-                        <h2 className="text-center h5 py-2">
-                          {barChartTitle2}
-                        </h2>
-                        <BarChart
-                          id={barChartId}
-                          data={[
-                            {
-                              label: t("general.triageTestLabel"),
-                              value:
-                                parseInt(
-                                  totalNeededToTriage.replace(/,/g, "")
-                                ) || 0,
-                            },
-                            {
-                              label: t("general.diagnosticTestLabel"),
-                              value:
-                                parseInt(
-                                  totalNeededToDiagnosticTriage.replace(
-                                    /,/g,
-                                    ""
-                                  )
-                                ) || 0,
-                            },
-                            {
-                              label: t("general.treatment"),
-                              value:
-                                parseInt(
-                                  totalNeededToTreat.replace(/,/g, "")
-                                ) || 0,
-                            },
-                          ]}
-                          color="#0DAB61"
-                          //layout={{ width: 450, height: 350 - 50 }} // Adjust the width and height as needed
-                        />
-                      </Col>
-                    </Row>
-
-                    <Row className="my-2">
-                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
-                        <h2 className="text-center h5 py-2">
-                          {pieChartTitle1}
-                        </h2>
-
-                        <PieChart
-                          id={pieChartId0}
-                          data={[
-                            {
-                              label: t("results.pPrecencersMissed"),
-                              value: +results.numberPrecancersMissed,
-                            },
-                            {
-                              label: t("results.pPrecencersTreated"),
-                              value: +results.testedPositives[treatedIndex + 1],
-                            },
-                          ]}
-                          colors={["#D13C4B", "#FD7E14"]} // Pass the custom color palette to the PieChart component
-                        />
-
-                        {/* <Col md={12} className="d-flex justify-content-center">
-                  <Button
-                    variant="link"
-                    onClick={() => handleExportSvg(pieChartId0)}
-                  >
-                    {t("general.exportSVG")}
-                  </Button>
-                  <Button variant="link" id="savePNG0" className="savePNG">
-                    {t("general.exportPNG")}
-                  </Button>
-                </Col> */}
-                      </Col>
-                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
-                        <h2 className="text-center h5 py-2">
-                          {pieChartTitle2}
-                        </h2>
-
-                        <PieChart
-                          id={pieChartId1}
-                          data={[
-                            {
-                              label: t("results.populationNotOverTreated"),
-                              value: +results.testedFalsePositives[0],
-                            },
-                            {
-                              label: t("results.pPrecencersOverTreated"),
-                              value: +results.healthyOvertreated,
-                            },
-                          ]}
-                          colors={["#f7b885", "#FD7E14"]} // Pass the custom color palette to the PieChart component
-                        />
-                      </Col>
-                    </Row>
-
-                    {/* <Row className="justify-content-center">
-                      <Col md={12} className="d-flex justify-content-center">
-                        <Button variant="link" onClick={generateZipFileSVG}>
-                          {t("general.exportSVG")}
-                        </Button>
-                        <Button variant="link" onClick={generateZipFilePNG}>
-                          {t("general.exportPNG")}
-                        </Button>
-                      </Col>{" "}
-                    </Row> */}
-                    <Row className="justify-content-center">
-                      <Col md={12} className="d-flex justify-content-center">
-                        <Button
-                          variant="primary"
-                          onClick={generateZipFileSVG}
-                          className="mx-2"
-                        >
-                          {t("general.exportSVG")}
-                        </Button>
-                        <Button
-                          variant="primary"
-                          onClick={generateZipFilePNG}
-                          className="mx-2"
-                        >
-                          {t("general.exportPNG")}
-                        </Button>
-                      </Col>
-                    </Row>
-                  </Container>
-                </Card.Body>
-              </Card>
-
-              {/* pdf page break */}
-              <hr className="d-none" data-export />
-            </Tab>
-            <Tab eventKey="tab2" title={t("general.tables")}>
+            
+            <Tab eventKey="tab1" title={t("general.tables")}>
               <Card className="mb-4">
                 <Card.Body>
                   <Table hover responsive data-export>
@@ -1561,7 +1135,7 @@ export default function ScenarioResults() {
               </Card>
             </Tab>
 
-            <Tab eventKey="tab3" title={t("general.monthlyTables")}>
+            <Tab eventKey="tab2" title={t("general.monthlyTables")}>
               <Card className="mb-4">
                 <Card.Body>
                   <Table hover responsive data-export>
@@ -2220,7 +1794,7 @@ export default function ScenarioResults() {
                 </Card.Body>
               </Card>
             </Tab>
-            <Tab eventKey="tab4" title={t("general.programTables")}>
+            <Tab eventKey="tab3" title={t("general.programTables")}>
               <Card className="mb-4">
                 <Card.Body>
                   <Table hover responsive data-export>
@@ -2897,6 +2471,433 @@ export default function ScenarioResults() {
                   </div>
                 </Card.Body>
               </Card>
+            </Tab>
+            <Tab eventKey="tab4" title={t("general.graphs")}>
+              <Card className="mb-3 d-none">
+                <Card.Header>
+                  <Card.Title data-export>
+                    {asLabel(params.scenario, scenarios)}
+                  </Card.Title>
+                  <Card.Text className="small text-muted">
+                    {t("general.scenarioAssumption")}
+                  </Card.Text>
+                </Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col lg={6}>
+                      <Table hover responsive data-export>
+                        <thead>
+                          <tr className="bg-grey">
+                            <th>{t("runScenario.epidemiological")}</th>
+                            {/* Placeholder th simplifies pdf export (consistent row lengths) */}
+                            <th className="th-placeholder">Placeholder</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>{t("runScenario.numPeople")}</th>
+                            <td className="text-end text-nowrap">
+                              {params.populationSize?.toLocaleString(locale) ??
+                                t("general.NA")}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{t("runScenario.prevelance")}</th>
+                            <td className="text-end text-nowrap">
+                              {asPercent(params.cinPrevalence, 0) ??
+                                t("general.NA")}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </Table>
+
+                      <Table hover responsive data-export>
+                        <thead>
+                          <tr className="bg-grey">
+                            <th> {t("runScenario.participationTitle")}</th>
+                            <th className="th-placeholder">Placeholder</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>
+                              {" "}
+                              {t("runScenario.intervalofCervicalInYears")}
+                            </th>
+                            <td className="text-end text-nowrap">
+                              {params.screeningInterval?.toLocaleString(
+                                locale
+                              ) ?? t("general.NA")}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{t("runScenario.percentScreeningCoverage")}</th>
+                            <td className="text-end text-nowrap">
+                              {asPercent(params.percentScreened, 0) ??
+                                t("general.NA")}
+                            </td>
+                          </tr>
+                          {["ScreenTriageDiagnosticTestTreat"].includes(
+                            params.scenario
+                          ) && (
+                            <tr>
+                              <th>
+                                {t(
+                                  "runScenario.percentScreeningPositiveWithTriage"
+                                )}
+                              </th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(params.percentTriaged, 0) ??
+                                  t("general.NA")}
+                              </td>
+                            </tr>
+                          )}
+                          {[
+                            "ScreenDiagnosticTestTreat",
+                            "ScreenTriageDiagnosticTestTreat",
+                          ].includes(params.scenario) && (
+                            <tr>
+                              <th>
+                                {
+                                  {
+                                    ScreenDiagnosticTestTreat:
+                                      "Percent of screen positives with triage/diagnostic test",
+                                    ScreenTriageDiagnosticTestTreat:
+                                      "Percent of triage positives with diagnostic test",
+                                  }[params.scenario]
+                                }
+                              </th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(
+                                  params.percentDiagnosticTriaged,
+                                  0
+                                ) ?? t("general.NA")}
+                              </td>
+                            </tr>
+                          )}
+                          <tr>
+                            <th>
+                              {
+                                {
+                                  ScreenTreat:
+                                    "Percent of screen positives treated",
+                                  ScreenDiagnosticTestTreat:
+                                    "Percent of triage/diagnostic test positives treated",
+                                  ScreenTriageDiagnosticTestTreat:
+                                    "Percent of diagnostic test positives treated",
+                                }[params.scenario]
+                              }
+                            </th>
+                            <td className="text-end text-nowrap">
+                              {asPercent(params.percentTreated, 0) ??
+                                t("general.NA")}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </Col>
+                    <Col lg={6}>
+                      <Table hover responsive data-export>
+                        <thead>
+                          <tr className="bg-grey">
+                            <th>
+                              {t("runScenario.screeningAndTreatmentTitle")}
+                            </th>
+                            <th className="th-placeholder">Placeholder</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {params.screeningTest && (
+                            <>
+                              <tr className="table-light">
+                                <th>
+                                  {t("runScenario.cervicalScreeningTestChosen")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asLabel(
+                                    params.screeningTest,
+                                    screeningTests
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t("runScenario.screeningTestSenvitivity")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(
+                                    params.screeningTestSensitivity,
+                                    0
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t("runScenario.screeningTestSpecificity")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(
+                                    params.screeningTestSpecificity,
+                                    0
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                            </>
+                          )}
+
+                          {params.triageTest && (
+                            <>
+                              <tr className="table-light">
+                                <th>
+                                  {t(
+                                    "runScenario.triageOrDiagnosticTestChosen"
+                                  )}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asLabel(params.triageTest, triageTests) ??
+                                    t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t(
+                                    "runScenario.triageOrDiagnosticTestSensitivity"
+                                  )}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(params.triageTestSensitivity, 0) ??
+                                    t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t(
+                                    "runScenario.triageOrDiagnosticTestSpecificity"
+                                  )}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(params.triageTestSpecificity, 0) ??
+                                    t("general.NA")}
+                                </td>
+                              </tr>
+                            </>
+                          )}
+
+                          {params.diagnosticTest && (
+                            <>
+                              <tr className="table-light">
+                                <th>
+                                  {" "}
+                                  {t("runScenario.diagnosticTestChosen")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asLabel(
+                                    params.diagnosticTest,
+                                    diagnosticTests
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t("runScenario.diagnosticTestSensitivity")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(
+                                    params.diagnosticTestSensitivity,
+                                    0
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th className="ps-3">
+                                  {t("runScenario.diagnosticTestSpecificity")}
+                                </th>
+                                <td className="text-end text-nowrap">
+                                  {asPercent(
+                                    params.diagnosticTestSpecificity,
+                                    0
+                                  ) ?? t("general.NA")}
+                                </td>
+                              </tr>
+                            </>
+                          )}
+                        </tbody>
+                      </Table>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+
+              <Card className="mb-2">
+                <Card.Header>
+                  <Row>
+                    <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                      <Card.Title>{chartTiles}</Card.Title>
+                    </Col>
+                    <Col
+                      xl={6}
+                      lg={12}
+                      md={12}
+                      sm={12}
+                      xs={12}
+                      className="d-flex justify-content-end"
+                    >
+                      {/* <span className="howTo" onClick={handleModalShow}>
+                      How to / Help
+                    </span> */}
+                    </Col>
+                  </Row>
+                </Card.Header>
+                <Card.Body className="pt-1">
+                  <Container fluid>
+                    <Row className="my-2">
+                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                        <h2 className="text-center h5 py-2">
+                          {barChartTitle1}
+                        </h2>
+                        <BarChart
+                          id={ScreentestBarChartId}
+                          data={[
+                            {
+                              label: t("general.screeningTestLabel"),
+                              value:
+                                parseInt(
+                                  totalNeededToScreen.replace(/,/g, "")
+                                ) || 0,
+                            },
+                          ]}
+                          color="#95f4a2" // Set the color to blue
+                          //layout={{ width: 450, height: 350 * 1.5 }} // Adjust the width and height as needed
+                        />
+                      </Col>
+
+                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                        <h2 className="text-center h5 py-2">
+                          {barChartTitle2}
+                        </h2>
+                        <BarChart
+                          id={barChartId}
+                          data={[
+                            {
+                              label: t("general.triageTestLabel"),
+                              value:
+                                parseInt(
+                                  totalNeededToTriage.replace(/,/g, "")
+                                ) || 0,
+                            },
+                            {
+                              label: t("general.diagnosticTestLabel"),
+                              value:
+                                parseInt(
+                                  totalNeededToDiagnosticTriage.replace(
+                                    /,/g,
+                                    ""
+                                  )
+                                ) || 0,
+                            },
+                            {
+                              label: t("general.treatment"),
+                              value:
+                                parseInt(
+                                  totalNeededToTreat.replace(/,/g, "")
+                                ) || 0,
+                            },
+                          ]}
+                          color="#0DAB61"
+                          //layout={{ width: 450, height: 350 - 50 }} // Adjust the width and height as needed
+                        />
+                      </Col>
+                    </Row>
+
+                    <Row className="my-2">
+                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                        <h2 className="text-center h5 py-2">
+                          {pieChartTitle1}
+                        </h2>
+
+                        <PieChart
+                          id={pieChartId0}
+                          data={[
+                            {
+                              label: t("results.pPrecencersMissed"),
+                              value: +results.numberPrecancersMissed,
+                            },
+                            {
+                              label: t("results.pPrecencersTreated"),
+                              value: +results.testedPositives[treatedIndex + 1],
+                            },
+                          ]}
+                          colors={["#D13C4B", "#FD7E14"]} // Pass the custom color palette to the PieChart component
+                        />
+
+                        {/* <Col md={12} className="d-flex justify-content-center">
+                  <Button
+                    variant="link"
+                    onClick={() => handleExportSvg(pieChartId0)}
+                  >
+                    {t("general.exportSVG")}
+                  </Button>
+                  <Button variant="link" id="savePNG0" className="savePNG">
+                    {t("general.exportPNG")}
+                  </Button>
+                </Col> */}
+                      </Col>
+                      <Col xl={6} lg={12} md={12} sm={12} xs={12}>
+                        <h2 className="text-center h5 py-2">
+                          {pieChartTitle2}
+                        </h2>
+
+                        <PieChart
+                          id={pieChartId1}
+                          data={[
+                            {
+                              label: t("results.populationNotOverTreated"),
+                              value: +results.testedFalsePositives[0],
+                            },
+                            {
+                              label: t("results.pPrecencersOverTreated"),
+                              value: +results.healthyOvertreated,
+                            },
+                          ]}
+                          colors={["#f7b885", "#FD7E14"]} // Pass the custom color palette to the PieChart component
+                        />
+                      </Col>
+                    </Row>
+
+                    {/* <Row className="justify-content-center">
+                      <Col md={12} className="d-flex justify-content-center">
+                        <Button variant="link" onClick={generateZipFileSVG}>
+                          {t("general.exportSVG")}
+                        </Button>
+                        <Button variant="link" onClick={generateZipFilePNG}>
+                          {t("general.exportPNG")}
+                        </Button>
+                      </Col>{" "}
+                    </Row> */}
+                    <Row className="justify-content-center">
+                      <Col md={12} className="d-flex justify-content-center">
+                        <Button
+                          variant="primary"
+                          onClick={generateZipFileSVG}
+                          className="mx-2"
+                        >
+                          {t("general.exportSVG")}
+                        </Button>
+                        <Button
+                          variant="primary"
+                          onClick={generateZipFilePNG}
+                          className="mx-2"
+                        >
+                          {t("general.exportPNG")}
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Container>
+                </Card.Body>
+              </Card>
+
+              {/* pdf page break */}
+              <hr className="d-none" data-export />
             </Tab>
           </Tabs>
         </div>
