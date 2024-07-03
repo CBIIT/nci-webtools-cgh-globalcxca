@@ -107,7 +107,8 @@
     "monthlyTables": "Monthly Tables",
     "programTables": "Program Tables",
     "El": "",
-    "NA": "NA"
+    "NA": "NaN",
+    "colposcopy":"Colposcopy"
   },
   "runScenario": {
     "title": "Run Scenario",
@@ -131,6 +132,7 @@
     "percentScreeningCoverage": "Percent screening coverage",
     "percentScreeningPositiveWithTriage": "Percent of screen positives with triage test",
     "percentTriagePositiveWithDiagnostic": "Percent of triage positives with diagnostic test",
+    "percentTriagePositiveWithColposcopy": "Percent of triage positives with colposcopy test",
     "percentDiagnosticPositiveTreated": "Percent of diagnostic test positives treated",
     "screeningAndTreatmentTitle": "Screening Strategy Characteristics",
     "screeningAndTreatmentWarning": "Please select the screening, triage and diagnostic tests and treatment modality you will use and enter an estimate of their performance characteristics.",
@@ -151,10 +153,13 @@
     "diagnosticTestChosen": "Diagnostic test chosen",
     "diagnosticTestSensitivity": "Diagnostic test <a href='/#/about#sensitivity' target='_blank'>sensitivity</a> for CIN2/3",
     "diagnosticTestSpecificity": "Diagnostic test <a href='/#/about#specificity' target='_blank'>specificity</a> for CIN2/3",
+    "colposcopyTestSensitivity": "Colposcopy test <a href='/#/about#sensitivity' target='_blank'>sensitivity</a> for CIN2/3",
+    "colposcopyTestSpecificity": "Colposcopy test <a href='/#/about#specificity' target='_blank'>specificity</a> for CIN2/3",
     "ScreenTreat": "Percent of screen positives treated",
     "ScreenDiagnosticTestTreat": "Percent of screening or triage/diagnostic test positives treated",
     "ScreenTriageDiagnosticTestTreat": "Percent of screen positives with triage/diagnostic test",
     "percentofScreenPositivesWithDiagnostic": "Percent of screen positives with diagnostic test",
+    "percentofScreenPositivesWithColposcopy": "Percent of screen positives with colposcopy test",
     "PapTest": "Pap test",
     "VIA": "VIA",
     "HPV": "HPV",
@@ -167,6 +172,7 @@
     "pleaseRefer": "Please refer to the <a href='/#/about'  target='_blank'>About</a> tab for more information about the below parameters before entering a scenario.",
     "proportionOfPositives": "Proportion of Positives Including HPV 16/18",
     "proportionOfPositivesInfo": "Proportion of those who test HPV+ that also test positive for either HPV16 or HPV18"
+    
   },
   "results": {
     "screenDiagnosisTreatment": "Screening → Diagnosis → Treatment",

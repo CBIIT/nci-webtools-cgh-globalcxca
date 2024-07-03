@@ -16,7 +16,7 @@ export const scenarios = [
   {
     value: "ScreenDiagnosticTestTreat",
     label: "Diagnostic Test",
-    strategy: "general.diagnosis",
+    strategy: "general.colposcopy",
     name: "diagnosticTest",
   },
   {

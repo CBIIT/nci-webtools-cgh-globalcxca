@@ -2409,7 +2409,7 @@ export default function RunScenarios() {
                                                 <Form.Label column sm={12}>
                                                   <span>
                                                     {t(
-                                                      "runScenario.percentofScreenPositivesWithDiagnostic"
+                                                      "runScenario.percentofScreenPositivesWithColposcopy"
                                                     )}
                                                   </span>
                                                   <OverlayTrigger
@@ -2458,7 +2458,7 @@ export default function RunScenarios() {
                                             </Form.Group>
                                           </Row>
 
-                                          <Row>
+                                          {/* <Row>
                                             <Form.Group
                                               as={Row}
                                               controlId="diagnosticTest"
@@ -2514,7 +2514,7 @@ export default function RunScenarios() {
                                                 </Form.Select>
                                               </Col>
                                             </Form.Group>
-                                          </Row>
+                                          </Row> */}
                                           <Row>
                                             <Form.Group
                                               as={Row}
@@ -2540,7 +2540,7 @@ export default function RunScenarios() {
                                                   <span
                                                     dangerouslySetInnerHTML={{
                                                       __html: t(
-                                                        "runScenario.diagnosticTestSensitivity"
+                                                        "runScenario.colposcopyTestSensitivity"
                                                       ),
                                                     }}
                                                   />
@@ -2620,7 +2620,7 @@ export default function RunScenarios() {
                                                   <span
                                                     dangerouslySetInnerHTML={{
                                                       __html: t(
-                                                        "runScenario.diagnosticTestSpecificity"
+                                                        "runScenario.colposcopyTestSpecificity"
                                                       ),
                                                     }}
                                                   />
@@ -2701,7 +2701,7 @@ export default function RunScenarios() {
                                                 <Form.Label column sm={12}>
                                                   <span>
                                                     {t(
-                                                      "runScenario.percentTriagePositiveWithDiagnostic"
+                                                      "runScenario.percentTriagePositiveWithColposcopy"
                                                     )}
                                                   </span>
 
@@ -2751,7 +2751,7 @@ export default function RunScenarios() {
                                             </Form.Group>
                                           </Row>
 
-                                          <Row>
+                                          {/* <Row>
                                             <Form.Group
                                               as={Row}
                                               controlId="diagnosticTest"
@@ -2767,7 +2767,7 @@ export default function RunScenarios() {
                                                   <span>
                                                     {" "}
                                                     {t(
-                                                      "runScenario.percentTriagePositiveWithDiagnostic"
+                                                      "runScenario.diagnosticTestChosen"
                                                     )}
                                                   </span>
                                                 </Form.Label>
@@ -2806,7 +2806,7 @@ export default function RunScenarios() {
                                                 </Form.Select>
                                               </Col>
                                             </Form.Group>
-                                          </Row>
+                                          </Row> */}
                                           <Row>
                                             <Form.Group
                                               as={Row}
@@ -2832,7 +2832,7 @@ export default function RunScenarios() {
                                                   <span
                                                     dangerouslySetInnerHTML={{
                                                       __html: t(
-                                                        "runScenario.diagnosticTestSensitivity"
+                                                        "runScenario.colposcopyTestSensitivity"
                                                       ),
                                                     }}
                                                   />
@@ -2911,7 +2911,7 @@ export default function RunScenarios() {
                                                   <span
                                                     dangerouslySetInnerHTML={{
                                                       __html: t(
-                                                        "runScenario.diagnosticTestSpecificity"
+                                                        "runScenario.colposcopyTestSpecificity"
                                                       ),
                                                     }}
                                                   />
@@ -2994,7 +2994,7 @@ export default function RunScenarios() {
                                                       {
                                                         ScreenDiagnosticTestTreat:
                                                           t(
-                                                            "runScenario.percentofScreenPositivesWithDiagnostic"
+                                                            "runScenario.percentofScreenPositivesWithColposcopy"
                                                           ),
                                                         ScreenTriageDiagnosticTestTreat:
                                                           t(
@@ -3138,7 +3138,7 @@ export default function RunScenarios() {
                                                   <span
                                                     dangerouslySetInnerHTML={{
                                                       __html: t(
-                                                        "runScenario.diagnosticTestSensitivity"
+                                                        "runScenario.colposcopyTestSensitivity"
                                                       ),
                                                     }}
                                                   />
@@ -3216,7 +3216,7 @@ export default function RunScenarios() {
                                                   <span
                                                     dangerouslySetInnerHTML={{
                                                       __html: t(
-                                                        "runScenario.diagnosticTestSpecificity"
+                                                        "runScenario.colposcopyTestSpecificity"
                                                       ),
                                                     }}
                                                   />
@@ -3302,11 +3302,11 @@ export default function RunScenarios() {
                                                       {
                                                         ScreenDiagnosticTestTreat:
                                                           t(
-                                                            "runScenario.percentofScreenPositivesWithDiagnostic"
+                                                            "runScenario.percentofScreenPositivesWithColposcopy"
                                                           ),
                                                         ScreenTriageDiagnosticTestTreat:
                                                           t(
-                                                            "runScenario.percentTriagePositiveWithDiagnostic"
+                                                            "runScenario.percentTriagePositiveWithColposcopy"
                                                           ),
                                                       }[form.scenario]
                                                     }
@@ -3442,7 +3442,7 @@ export default function RunScenarios() {
                                                   <span
                                                     dangerouslySetInnerHTML={{
                                                       __html: t(
-                                                        "runScenario.diagnosticTestSensitivity"
+                                                        "runScenario.colposcopyTestSensitivity"
                                                       ),
                                                     }}
                                                   />
@@ -3522,7 +3522,7 @@ export default function RunScenarios() {
                                                   <span
                                                     dangerouslySetInnerHTML={{
                                                       __html: t(
-                                                        "runScenario.diagnosticTestSpecificity"
+                                                        "runScenario.colposcopyTestSpecificity"
                                                       ),
                                                     }}
                                                   />

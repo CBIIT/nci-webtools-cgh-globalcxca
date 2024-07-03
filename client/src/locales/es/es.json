@@ -106,7 +106,8 @@
     "monthlyTables": "Tablas mensuales",
     "programTables": "Tablas de programas",
     "El": "El ",
-    "NA": "NA"
+    "NA": "NaN",
+    "colposcopy":"Colposcopy"
   },
   "runScenario": {
     "title": "Ejecutar escenario",
@@ -130,6 +131,7 @@
     "percentScreeningCoverage": "Porcentaje de cobertura de tamizaje",
     "percentScreeningPositiveWithTriage": "Porcentaje de personas con tamizaje positivo que reciben una prueba de triaje",
     "percentTriagePositiveWithDiagnostic": "Porcentaje de personas con triaje positivo que reciben una prueba diagnóstica",
+    "percentTriagePositiveWithColposcopy": "Percent of triage positives with colposcopy test",
     "screeningAndTreatmentTitle": "Características de la estrategia de tamizaje ",
     "screeningAndTreatmentWarning": "Seleccione las pruebas de tamizaje, triaje y diagnóstico y modalidad de tratamiento que usará e ingrese un estimado de sus características de rendimiento.",
     "cervicalScreeningTestChosen": "Prueba de tamizaje cervical elegida",
@@ -147,11 +149,14 @@
     "diagnosticTestChosen": "Prueba diagnóstica elegida",
     "diagnosticTestSensitivity": "<a href='/#/about#sensitivity'>Sensibilidad</a> de la prueba diagnóstica para NIC2/3",
     "diagnosticTestSpecificity": "<a href='/#/about#specificity'>Especificidad</a> de la prueba diagnóstica para NIC2/3",
+    "colposcopyTestSensitivity": "Colposcopy test <a href='/#/about#sensitivity' target='_blank'>sensitivity</a> for CIN2/3",
+    "colposcopyTestSpecificity": "Colposcopy test <a href='/#/about#specificity' target='_blank'>specificity</a> for CIN2/3",
     "ScreenTreat": "Porcentaje de resultados positivos en las pruebas de detección tratados.",
     "ScreenDiagnosticTestTreat": "Porcentaje de resultados positivos en las pruebas de triaje/diagnóstico tratados.",
     "percentDiagnosticPositiveTreated": "Porcentaje de personas con diagnóstico positivo que reciben tratamiento. ",
     "ScreenTriageDiagnosticTestTreat": "Percent of screen positives with triage/diagnostic test",
     "percentofScreenPositivesWithDiagnostic": "Porcentaje de mujeres con tamizaje positivo que completan un examen diagnóstico.",
+    "percentofScreenPositivesWithColposcopy": "Percent of screen positives with colposcopy test",
     "PapTest": "Citología or Pap",
     "VIA": "IVAA",
     "HPV": "VPH",
@@ -163,8 +168,7 @@
     "screeningCoverage": "Cobertura de tamizaje",
     "pleaseRefer": "Consulte la pestaña <a href='/#/about'  target='_blank'>Acerca de</a> para obtener más información sobre los siguientes parámetros antes de ingresar a un escenario.",
     "proportionOfPositives": "Proporción de positivos que tienen VPH16/18",
-    "proportionOfPositivesInfo": "Proporción de las que tienen resultado de VPH positiva que también tienen resultado positiva a VPH16 o VPH18"
-  },
+    "proportionOfPositivesInfo": "Proporción de las que tienen resultado de VPH positiva que también tienen resultado positiva a VPH16 o VPH18"  },
   "results": {
     "screenDiagnosisTreatment": "Tamizaje → Diagnóstico → Tratamiento",
     "screenTriageTreatment": "Tamizaje → Triaje → Tratamiento",
