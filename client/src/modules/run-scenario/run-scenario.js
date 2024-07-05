@@ -3615,7 +3615,7 @@ export default function RunScenarios() {
                                                   overlay={
                                                     <Tooltip id="percentDiagnosticTriaged-help">
                                                       {t(
-                                                        "general.enterValue0t100HelpText"
+                                                        "runScenario.screenTreatHelpText"
                                                       )}
                                                     </Tooltip>
                                                   }

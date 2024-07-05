@@ -108,7 +108,7 @@
     "programTables": "Program Tables",
     "El": "",
     "NA": "NaN",
-    "colposcopy":"Colposcopy"
+    "colposcopy":"Colposcopy"    
   },
   "runScenario": {
     "title": "Run Scenario",
@@ -155,7 +155,8 @@
     "diagnosticTestSpecificity": "Diagnostic test <a href='/#/about#specificity' target='_blank'>specificity</a> for CIN2/3",
     "colposcopyTestSensitivity": "Colposcopy test <a href='/#/about#sensitivity' target='_blank'>sensitivity</a> for CIN2/3",
     "colposcopyTestSpecificity": "Colposcopy test <a href='/#/about#specificity' target='_blank'>specificity</a> for CIN2/3",
-    "ScreenTreat": "Percent of screen positives treated",
+    "ScreenTreat": "Percent of positives treated",
+    "screenTreatHelpText":"Percent of those indicated for treatment based on positive result (screening, triage, or colposcopy) that actually receive treatment",
     "ScreenDiagnosticTestTreat": "Percent of screening or triage/diagnostic test positives treated",
     "ScreenTriageDiagnosticTestTreat": "Percent of screen positives with triage/diagnostic test",
     "percentofScreenPositivesWithDiagnostic": "Percent of screen positives with diagnostic test",
