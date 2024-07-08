@@ -73,7 +73,7 @@ export default function ScenarioResults() {
   ) {
     chartTiles = t("results.screenDiagnosisTreatment");
     if (results.screentest[0] === "pap") {
-      screenTest = "(" + t("runScenario.PapTest") + ")";
+      screenTest = "(" + t("runScenario.Pap") + ")";
     } else if (results.screentest[0] === "ivaa") {
       screenTest = "(" + t("runScenario.VIA") + ")";
     } else if (results.screentest[0] === "hpv") {
@@ -85,7 +85,7 @@ export default function ScenarioResults() {
     }
 
     if (results.screentest[1] === "pap") {
-      diagnosisTest = "(" + t("runScenario.PapTest") + ")";
+      diagnosisTest = "(" + t("runScenario.Pap") + ")";
     } else if (results.screentest[1] === "ivaa") {
       diagnosisTest = "(" + t("runScenario.VIA") + ")";
     } else if (results.screentest[1] === "hpv") {
@@ -107,7 +107,7 @@ export default function ScenarioResults() {
     chartTiles = t("results.screenTriageTreatment");
 
     if (results.screentest[0] === "pap") {
-      screenTest = "(" + t("runScenario.PapTest") + ")";
+      screenTest = "(" + t("runScenario.Pap") + ")";
     } else if (results.screentest[0] === "ivaa") {
       screenTest = "(" + t("runScenario.VIA") + ")";
     } else if (results.screentest[0] === "hpv") {
@@ -119,7 +119,7 @@ export default function ScenarioResults() {
     }
 
     if (results.screentest[1] === "pap") {
-      triageTest = "(" + t("runScenario.PapTest") + ")";
+      triageTest = "(" + t("runScenario.Pap") + ")";
     } else if (results.screentest[1] === "ivaa") {
       triageTest = "(" + t("runScenario.VIA") + ")";
     } else if (results.screentest[1] === "hpv") {
@@ -139,7 +139,7 @@ export default function ScenarioResults() {
     chartTiles = t("results.screenTriageDiagnosisTreatment");
 
     if (results.screentest[0] === "pap") {
-      screenTest = "(" + t("runScenario.PapTest") + ")";
+      screenTest = "(" + t("runScenario.Pap") + ")";
     } else if (results.screentest[0] === "ivaa") {
       screenTest = "(" + t("runScenario.VIA") + ")";
     } else if (results.screentest[0] === "hpv") {
@@ -151,7 +151,7 @@ export default function ScenarioResults() {
     }
 
     if (results.screentest[1] === "pap") {
-      triageTest = "(" + t("runScenario.PapTest") + ")";
+      triageTest = "(" + t("runScenario.Pap") + ")";
     } else if (results.screentest[1] === "ivaa") {
       triageTest = "(" + t("runScenario.VIA") + ")";
     } else if (results.screentest[1] === "hpv") {
@@ -167,7 +167,7 @@ export default function ScenarioResults() {
     }
 
     if (results.screentest[2] === "pap") {
-      diagnosisTest = "(" + t("runScenario.PapTest") + ")";
+      diagnosisTest = "(" + t("runScenario.Pap") + ")";
     } else if (results.screentest[2] === "ivaa") {
       diagnosisTest = "(" + t("runScenario.VIA") + ")";
     } else if (results.screentest[2] === "hpv") {
@@ -184,7 +184,7 @@ export default function ScenarioResults() {
   } else {
     chartTiles = t("results.screenTreatment");
     if (results.screentest[0] === "pap") {
-      screenTest = "(" + t("runScenario.PapTest") + ")";
+      screenTest = "(" + t("runScenario.Pap") + ")";
     } else if (results.screentest[0] === "ivaa") {
       screenTest = "(" + t("runScenario.VIA") + ")";
     } else if (results.screentest[0] === "hpv") {
@@ -1078,7 +1078,7 @@ export default function ScenarioResults() {
                     </thead>
                     <tbody>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringScreeningTest")}</th>
+                        <th>{t("results.totalRequiringScreening")} {screenTest}{" "} {t("general.test")}</th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
                       "N/A"} */}
@@ -1088,7 +1088,8 @@ export default function ScenarioResults() {
                       </tr>
                       <tr className="table-light">
                         <th>
-                          {t("results.totalRequiringTriageDiagnosticTest")}
+                          {t("results.totalRequiringTriageDiagnostic")} {triageTest}{" "}
+                          {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
