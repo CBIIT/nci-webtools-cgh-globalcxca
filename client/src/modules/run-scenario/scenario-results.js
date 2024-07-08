@@ -462,7 +462,7 @@ export default function ScenarioResults() {
               {t("results.triageTests")}, {t("general.and")}
               <b>
                 {" "}
-                {totalNeededToDiagnosticTriage} {diagnosisTest}
+                {totalNeededToDiagnosticTriage}
               </b>{" "}
               {t("results.resultsDes0")} <b>{totalNeededToTreat}</b>{" "}
               {t("results.resultsDes1")} {t("general.El")}
