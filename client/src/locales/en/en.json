@@ -220,7 +220,7 @@
     "totalRequiringScreeningTest": "Total requiring screening test",
     "totalRequiringTriageDiagnosticTest": "Total requiring triage test",
     "totalRequiringDiagnosticTest": "Total requiring diagnosis test",
-    "totalRequiringColposcopyTest": "Total requiring colposcopy test",
+    "totalRequiringColposcopyTest": "Total requiring colposcopy",
     "totalRequiringTreatment": "Total requiring treatment",
     "saveScenario": "Save scenario",
     "exportResultsToPDF": "Export Results to PDF",
@@ -241,7 +241,8 @@
     "resultsDes0": "diagnostic tests will be required.",
     "resultsDes1": "women will require treatment.",
     "resultsDes2": "of women are possibly overtreated.",
-    "resultsInterpretation": "Results Interpretation"
+    "resultsInterpretation": "Results Interpretation",
+    "screeningColposcopyHelpText":"Screening programs without colposcopy assume that 4% of women treated will not be eligible for immediate ablation and will require colposcopy."
   },
   "compareScenarios": {
     "uploadScenariosInfo": "Upload up to {{limit}} scenarios for comparison. Files must be of the “.scenario” file format. Click the title of the scenario to rename it.",

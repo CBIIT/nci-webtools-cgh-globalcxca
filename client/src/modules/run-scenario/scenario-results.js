@@ -34,6 +34,10 @@ import * as d3 from "d3";
 import { exportExcel } from "../../services/excel-utils";
 import { useTranslation, Trans } from "react-i18next";
 import JSZip from "jszip";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+
+
 
 export default function ScenarioResults() {
   const { t } = useTranslation();
@@ -475,7 +479,6 @@ export default function ScenarioResults() {
                 <li>{t("results.resultGraphDefinition1")}</li>
                 <li>{t("results.resultGraphDefinition2")}</li>
                 <li>{t("results.resultGraphDefinition3")}</li>
-                <li>{t("results.resultGraphDefinition4")}</li>
               </ol>
               <i>{t("results.resultGraphDefinition5")}</i>
             </div>
@@ -1095,7 +1098,19 @@ export default function ScenarioResults() {
                         </td>
                       </tr>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringColposcopyTest")}</th>
+                        <th>{t("results.totalRequiringColposcopyTest")} 
+                          <OverlayTrigger
+                              overlay={
+                                <Tooltip id="totalRequiringColposcopy-help">
+                                  <span>{t("results.screeningColposcopyHelpText")}</span>
+                                </Tooltip>
+                              }
+                            >
+                              <span className="d-inline-block">
+                                <i className="ms-1 bi bi-question-circle"></i>
+                              </span>
+                            </OverlayTrigger>                              
+                        </th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                       locale
@@ -1749,7 +1764,19 @@ export default function ScenarioResults() {
                         </td>
                       </tr>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringColposcopyTest")}</th>
+                        <th>{t("results.totalRequiringColposcopyTest")}
+                          <OverlayTrigger
+                              overlay={
+                                <Tooltip id="totalRequiringColposcopy-help">
+                                  <span>{t("results.screeningColposcopyHelpText")}</span>
+                                </Tooltip>
+                              }
+                            >
+                              <span className="d-inline-block">
+                                <i className="ms-1 bi bi-question-circle"></i>
+                              </span>
+                            </OverlayTrigger>
+                        </th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                       locale
@@ -2426,7 +2453,19 @@ export default function ScenarioResults() {
                         </td>
                       </tr>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringColposcopyTest")}</th>
+                        <th>{t("results.totalRequiringColposcopyTest")}
+                          <OverlayTrigger
+                              overlay={
+                                <Tooltip id="totalRequiringColposcopy-help">
+                                  <span>{t("results.screeningColposcopyHelpText")}</span>
+                                </Tooltip>
+                              }
+                            >
+                              <span className="d-inline-block">
+                                <i className="ms-1 bi bi-question-circle"></i>
+                              </span>
+                            </OverlayTrigger>
+                        </th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                       locale
