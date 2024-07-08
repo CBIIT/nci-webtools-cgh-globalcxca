@@ -308,7 +308,7 @@ export default function About() {
                   <tr>
                     <td>{t("runScenario.HPV")}</td>
                     <td>90</td>
-                    <td>89</td>
+                    <td>Fixed at 100-HPV prevalence/</td>
                     <td>{t("about.hpvJustification")}</td>
                     <td>
                       <p>{t("about.papTestSource5")}</p>
@@ -319,7 +319,7 @@ export default function About() {
                   <tr>
                     <td>{t("runScenario.HPV1618")} </td>
                     <td>60</td>
-                    <td>75</td>
+                    <td>Fixed at 100-(HPV prevalence x percent of HPV+ that are HPV 16/18+/)</td>
                     <td></td>
                     <td>
                       <p>{t("about.viaTestSource1")}</p>
