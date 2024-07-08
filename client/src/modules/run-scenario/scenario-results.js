@@ -897,7 +897,7 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.lossAtColposcopy")} {diagnosisTest}{" "}
+                          {t("results.lossAtColposcopy")} {" "}
                           {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
@@ -976,7 +976,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfColposcopy"),
                             }}
                           />{" "}
-                          {diagnosisTest} {t("general.test")}
+                           {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -1559,7 +1559,7 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.lossAtColposcopy")} {diagnosisTest}{" "}
+                          {t("results.lossAtColposcopy")} {" "}
                           {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
@@ -1639,7 +1639,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfColposcopy"),
                             }}
                           />{" "}
-                          {diagnosisTest} {t("general.test")}
+                           {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -2242,7 +2242,7 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.lossAtColposcopy")} {diagnosisTest}{" "}
+                          {t("results.lossAtColposcopy")} {" "}
                           {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
@@ -2323,7 +2323,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfColposcopy"),
                             }}
                           />
-                          {diagnosisTest} {t("general.test")}
+                           {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
