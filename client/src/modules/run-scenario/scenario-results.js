@@ -894,7 +894,7 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.lossAtDiagnosis")} {diagnosisTest}{" "}
+                          {t("results.lossAtColposcopy")} {diagnosisTest}{" "}
                           {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
@@ -970,7 +970,7 @@ export default function ScenarioResults() {
                           {/* {t("results.sensitivityOfDiagnosticTest")} */}
                           <span
                             dangerouslySetInnerHTML={{
-                              __html: t("results.sensitivityOfDiagnosticTest"),
+                              __html: t("results.sensitivityOfColposcopy"),
                             }}
                           />{" "}
                           {diagnosisTest} {t("general.test")}
@@ -1095,7 +1095,7 @@ export default function ScenarioResults() {
                         </td>
                       </tr>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringDiagnosticTest")}</th>
+                        <th>{t("results.totalRequiringColposcopyTest")}</th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                       locale
@@ -1543,7 +1543,7 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.lossAtDiagnosis")} {diagnosisTest}{" "}
+                          {t("results.lossAtColposcopy")} {diagnosisTest}{" "}
                           {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
@@ -1620,7 +1620,7 @@ export default function ScenarioResults() {
                           {/* {t("results.sensitivityOfDiagnosticTest")}{" "} */}
                           <span
                             dangerouslySetInnerHTML={{
-                              __html: t("results.sensitivityOfDiagnosticTest"),
+                              __html: t("results.sensitivityOfColposcopy"),
                             }}
                           />{" "}
                           {diagnosisTest} {t("general.test")}
@@ -1749,7 +1749,7 @@ export default function ScenarioResults() {
                         </td>
                       </tr>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringDiagnosticTest")}</th>
+                        <th>{t("results.totalRequiringColposcopyTest")}</th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                       locale
@@ -2214,7 +2214,7 @@ export default function ScenarioResults() {
 
                       <tr className="table-light">
                         <th className="ps-3">
-                          {t("results.lossAtDiagnosis")} {diagnosisTest}{" "}
+                          {t("results.lossAtColposcopy")} {diagnosisTest}{" "}
                           {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
@@ -2292,7 +2292,7 @@ export default function ScenarioResults() {
                           {/* {t("results.sensitivityOfDiagnosticTest")}{" "} */}
                           <span
                             dangerouslySetInnerHTML={{
-                              __html: t("results.sensitivityOfDiagnosticTest"),
+                              __html: t("results.sensitivityOfColposcopy"),
                             }}
                           />
                           {diagnosisTest} {t("general.test")}
@@ -2426,7 +2426,7 @@ export default function ScenarioResults() {
                         </td>
                       </tr>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringDiagnosticTest")}</th>
+                        <th>{t("results.totalRequiringColposcopyTest")}</th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                       locale
