@@ -1740,7 +1740,7 @@ export default function ScenarioResults() {
                     </thead>
                     <tbody>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringScreeningTest")}</th>
+                        <th>{t("results.totalRequiringScreening")} {screenTest}{" "} {t("general.test")}</th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
                       "N/A"} */}
@@ -1753,7 +1753,8 @@ export default function ScenarioResults() {
                       </tr>
                       <tr className="table-light">
                         <th>
-                          {t("results.totalRequiringTriageDiagnosticTest")}
+                        {t("results.totalRequiringTriageDiagnostic")} {triageTest}{" "}
+                        {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
@@ -1761,7 +1762,10 @@ export default function ScenarioResults() {
                           {Math.round(
                             parseInt(totalNeededToTriage.replace(/\D/g, "")) /
                               12
-                          )}{" "}
+                          ) ? (Math.round(
+                            parseInt(totalNeededToTriage.replace(/\D/g, "")) /
+                              12
+                          )) : t("general.NA")}{" "}
                         </td>
                       </tr>
                       <tr className="table-light">
@@ -2429,7 +2433,7 @@ export default function ScenarioResults() {
                     </thead>
                     <tbody>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringScreeningTest")}</th>
+                        <th>{t("results.totalRequiringScreening")} {screenTest}{" "} {t("general.test")}</th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
                       "N/A"} */}
@@ -2442,7 +2446,8 @@ export default function ScenarioResults() {
                       </tr>
                       <tr className="table-light">
                         <th>
-                          {t("results.totalRequiringTriageDiagnosticTest")}
+                        {t("results.totalRequiringTriageDiagnostic")} {triageTest}{" "}
+                        {t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
@@ -2450,7 +2455,10 @@ export default function ScenarioResults() {
                           {Math.round(
                             parseInt(totalNeededToTriage.replace(/\D/g, "")) *
                               parseInt(params.screeningInterval)
-                          )}{" "}
+                          ) ? Math.round(
+                            parseInt(totalNeededToTriage.replace(/\D/g, "")) *
+                              parseInt(params.screeningInterval)
+                          ) : t("general.NA") }{" "}
                         </td>
                       </tr>
                       <tr className="table-light">
