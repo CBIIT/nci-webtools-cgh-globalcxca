@@ -53,7 +53,7 @@ export default function RunScenarios() {
   //console.log("params.checkedValues ,", params.checkedValues);
   //console.log("params.screeningTest  ", params.screeningTest);
   //console.log("params.triageTest ", params.triageTest);
-  console.log("tests ", tests);
+  //console.log("tests ", tests);
   setParams(params);
   setResults(results);
   const [hpv16or18Used, setHpv16or18Used] = useState(false); // Initialize with false
@@ -101,7 +101,7 @@ export default function RunScenarios() {
     }));
   }
   //console.log("hpv16or18Used -- ", hpv16or18Used);
-  console.log("hpv16or18GenotypingTriageUsed ", hpv16or18GenotypingTriageUsed);
+  //console.log("hpv16or18GenotypingTriageUsed ", hpv16or18GenotypingTriageUsed);
   function handleSubmit(event) {
     event?.preventDefault();
     const params = mapValues(form, asNumber);
@@ -115,9 +115,10 @@ export default function RunScenarios() {
   function handleChange(e, index) {
     const { name, value, checked } = e.target;
     //console.log("checked", checked);
-     console.log("value +++++++", value);
-     console.log("name ++++++++", name);
+    //console.log("value +++++++", value);
+    // console.log("name ++++++++", name);
     // console.log("PARAMS ++++ ", params);
+    // console.log("params.checkedValues ", params.checkedValues)
     // console.log("hpvPrevalence ", params.hpvPrevalence);
 
     let updatedValues = [...checkedValues];
@@ -129,17 +130,60 @@ export default function RunScenarios() {
       newDivVisibilities[scenarios.length - 1] = true; // Keep "Treatment" always open
     } else {
       if (checked) {
+        console.log("CHECKED VALUE ", value);
+      
+        
         // Add the checked value to the array
         updatedValues.push(value);
+        
+        console.log("updatedValues--------- ", updatedValues)
+
+        if (updatedValues.length == 3 && value === "ScreenDiagnosticTestTreat") {
+          setForm((prevForm) => ({
+            ...prevForm,
+            triageTest: "colposcopyWithBiopsy",
+            triageTestSensitivity: 80,
+            triageTestSpecificity: 85,
+          }));
+        }
+
+        if (updatedValues.length == 4) {
+          setForm((prevForm) => ({
+            ...prevForm,
+            diagnosticTest: "colposcopyWithBiopsy",
+            diagnosticTestSensitivity: 80,
+            diagnosticTestSpecificity: 85,
+          }));
+        }
         // Update visibility of the div corresponding to the checked checkbox
         newDivVisibilities = newDivVisibilities.map((_, i) =>
           i === index || i === scenarios.length - 1 ? true : false
         );
+        console.log("newDivVisibilities ", newDivVisibilities)
       } else {
         // Remove the unchecked value from the array
         updatedValues = updatedValues.filter((val) => val !== value);
         // Hide the div of the unchecked checkbox
         newDivVisibilities[index] = false;
+
+        if (value === "ScreenDiagnosticTestTreat") {
+          setForm((prevForm) => ({
+            ...prevForm,
+            triageTest: "",
+            triageTestSensitivity: 0,
+            triageTestSpecificity: 0,
+          }));
+        }
+
+        if (value === "ScreenTriageDiagnosticTestTreat" || updatedValues.length < 4) {
+          setForm((prevForm) => ({
+            ...prevForm,
+            diagnosticTest: "",
+            diagnosticTestSensitivity: 0,
+            diagnosticTestSpecificity: 0,
+          }));
+        }
+
       }
     }
 
@@ -159,16 +203,16 @@ export default function RunScenarios() {
 
     if (name === "screeningTest") {
       if (value === "hpv" || value === "hpv16or18") {
-        console.log(
-          "HPV IS SELECTED FOR SCREENING TEST !!!!!!!!!! -----------------"
-        );
+        // console.log(
+        //   "HPV IS SELECTED FOR SCREENING TEST !!!!!!!!!! -----------------"
+        // );
         //const updatedSpecificity = 100 - params.hpvPrevalence;
         const updatedSpecificity = (
           (1 -
             (form.hpvPrevalence / 100) * (form.proportionOfPositives / 100)) *
           100
         ).toFixed(1);
-        console.log("updatedSpecificity ", updatedSpecificity);
+        //console.log("updatedSpecificity ", updatedSpecificity);
         setForm((prevForm) => ({
           ...prevForm,
           screeningTestSensitivity: tests[value]?.sensitivity || "",
@@ -184,9 +228,9 @@ export default function RunScenarios() {
     }
 
     if (name === "triageTest") {
-      console.log("TRIAGE SELECTED");
+      //console.log("TRIAGE SELECTED");
       if(value === "hpv16or18genotyping"){
-        console.log("tests[value] ", tests[value]);
+        //console.log("tests[value] ", tests[value]);
         const updatedSpecificity = (
           (1 -
             (form.hpvPrevalence / 100) * (form.proportionOfPositives / 100)) *
@@ -230,6 +274,8 @@ export default function RunScenarios() {
       }));
     }
 
+
+    
     setForm((prevForm) => ({
       ...prevForm,
       [name]: value,
@@ -329,7 +375,8 @@ export default function RunScenarios() {
     window.scrollTo(0, 0);
     resetForm();
   }
-  // useEffect(() => {
+
+    // useEffect(() => {
   //   // Get the height of the header element (assuming you have it as "headerHeight")
   //   const headerHeight = 310;
 
@@ -385,6 +432,7 @@ export default function RunScenarios() {
     if (form.triageTest === 'hpv16or18genotyping' && (value === 'hpv' || value === 'hpv16or18')) return true;
     return false;
   };
+
 
   return (
     <div className="bg-light py-2">
@@ -3056,7 +3104,7 @@ export default function RunScenarios() {
                                             </Form.Group>
                                           </Row>
 
-                                          <Row>
+                                          {/* <Row>
                                             <Form.Group
                                               as={Row}
                                               controlId="triageTest"
@@ -3112,7 +3160,7 @@ export default function RunScenarios() {
                                                 </Form.Select>
                                               </Col>
                                             </Form.Group>
-                                          </Row>
+                                          </Row> */}
                                           <Row>
                                             <Form.Group
                                               as={Row}
@@ -3357,7 +3405,7 @@ export default function RunScenarios() {
                                               </Col>
                                             </Form.Group>
                                           </Row>
-                                          <Row>
+                                          {/* <Row>
                                             {" "}
                                             <Form.Group
                                               as={Row}
@@ -3415,7 +3463,7 @@ export default function RunScenarios() {
                                                 </Form.Select>
                                               </Col>
                                             </Form.Group>
-                                          </Row>
+                                          </Row> */}
                                           <Row>
                                             <Form.Group
                                               as={Row}
