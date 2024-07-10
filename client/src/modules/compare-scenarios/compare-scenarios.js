@@ -234,13 +234,13 @@ export default function CompareScenarios() {
                         <Table responsive data-export>
                           <thead>
                             <tr className="bg-info-dark text-light">
-                              <th className="table-header">
+                              <th className="table-header bg-info-dark text-light">
                                 {t("results.annualTargets")}
                               </th>
                               {scenarios.map((scenario, index) => (
                                 <th
                                   key={index}
-                                  className="text-end table-header"
+                                  className="text-end table-header bg-info-dark text-light"
                                   title={scenario.name}
                                 >
                                   {scenario.name}
@@ -311,14 +311,14 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr className="bg-warning-dark text-light">
-                              <th colSpan={1 + scenarios.length}>
+                              <th className="bg-warning-dark text-light" colSpan={1 + scenarios.length}>
                                 {t(
                                   "results.annualImpactOnCervicalPrecancerTitle"
                                 )}
                               </th>
                             </tr>
                             <tr className="table-warning">
-                              <th>{t("results.percentPrecancersTreated")}</th>
+                              <th >{t("results.percentPrecancersTreated")}</th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
                                   {asPercent(
@@ -343,7 +343,7 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr className="bg-danger-dark text-light">
-                              <th colSpan={1 + scenarios.length}>
+                              <th className="bg-danger-dark text-light" colSpan={1 + scenarios.length}>
                                 {t("results.AnnualMissedPrecancersTitle")}
                               </th>
                             </tr>
@@ -828,7 +828,7 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr className="bg-success-dark text-light">
-                              <th colSpan={1 + scenarios.length}>
+                              <th className="bg-success-dark text-light" colSpan={1 + scenarios.length}>
                                 {t("results.AnnualImpactOnResourcesTitle")}
                               </th>
                             </tr>
@@ -964,9 +964,9 @@ export default function CompareScenarios() {
                         <Table hover responsive data-export>
                           <thead>
                             <tr className="bg-info-dark text-light">
-                              <th>{t("compareScenarios.asssumptions")}</th>
+                              <th className="bg-info-dark text-light">{t("compareScenarios.asssumptions")}</th>
                               {scenarios.map((scenario, index) => (
-                                <th key={index} className="text-end">
+                                <th key={index} className="text-end bg-info-dark text-light">
                                   {scenario.name} <br />
                                   {asLabel(scenario.scenario, scenarios)}
                                 </th>
