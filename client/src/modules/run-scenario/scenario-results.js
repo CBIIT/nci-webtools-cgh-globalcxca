@@ -475,12 +475,7 @@ export default function ScenarioResults() {
             </div>
             <div className="mt-2">
               {t("results.resultGraphDefinition")}
-              <ol>
-                <li>{t("results.resultGraphDefinition1")}</li>
-                <li>{t("results.resultGraphDefinition2")}</li>
-                <li>{t("results.resultGraphDefinition3")}</li>
-              </ol>
-              <i>{t("results.resultGraphDefinition5")}</i>
+              
             </div>
           </Card.Body>
         </Card>
