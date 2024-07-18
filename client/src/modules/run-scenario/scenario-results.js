@@ -2829,7 +2829,7 @@ export default function ScenarioResults() {
                                 ) || 0,
                             },
                             {
-                              label: t("general.diagnosticTestLabel"),
+                              label: t("general.colposcopy"),
                               value:
                                 parseInt(
                                   totalNeededToDiagnosticTriage.replace(
