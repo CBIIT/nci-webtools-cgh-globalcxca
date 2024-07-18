@@ -314,7 +314,8 @@
     "prevalenceSources9": "de Sanjosé S, Diaz M, Castellsagué X, Clifford G, Bruni L, Muñoz N, Bosch FX. Worldwide prevalence and genotype distribution of cervical human papillomavirus DNA in women with normal cytology: a meta-analysis. Lancet Infect Dis. 2007 Jul;7(7):453-9. doi: 10.1016/S1473-3099(07)70158-5. PMID: 17597569.",
     "prevalenceSources10": "Guan P, Howell-Jones R, Li N, Bruni L, de Sanjosé S, Franceschi S, Clifford GM. Human papillomavirus types in 115,789 HPV-positive women: a meta-analysis from cervical infection to cancer. Int J Cancer. 2012 Nov 15;131(10):2349-59. doi: 10.1002/ijc.27485. Epub 2012 Mar 20. PMID: 22323075.",
     "prevalenceSourcesJustification": "The prevalence of HPV is highly variable by age, immune status and geography. For women age 30-49, the prevalence is generally around 11-12%. For women under age 25, HPV prevalence is typically much higher, and infections usually resolve within one year. Given geographic variations, we encourage users who do not know the HPV prevalence in their setting to use prevalence estimates based upon observed results among women of similar age in local screening programs or neighboring countries. This tool is not meant for HIV-endemic populations due to variations in HPV epidemiology.",
-
+    "fixedAt100HPV":"Fixed at 100-HPV prevalence/",
+    "fixedAt100HPV1618" :"Fixed at 100-(HPV prevalence x percent of HPV+ that are HPV 16/18+/)",
     "": ""
   }
 }

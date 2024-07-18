@@ -40,7 +40,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 
 
 export default function ScenarioResults() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const params = useRecoilValue(paramsState);
   const results = useRecoilValue(resultsState);
   const [activeTab, setActiveTab] = useState("results");
@@ -66,6 +66,8 @@ export default function ScenarioResults() {
   //console.log("params", params);
   //console.log("result ------ ", results);
 
+  const isSpanish = i18n.language === 'es';
+ //console.log("LANGUAGE ", i18n.language)
   if (
     results.checkedValues &&
     results.checkedValues.length === 3 &&
@@ -625,7 +627,7 @@ export default function ScenarioResults() {
                       <tr className="table-light">
                         <th className="ps-3">
                           {t("results.didNotHaveScreeningTest")} {screenTest}{" "}
-                          {t("general.test")}
+                          {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
@@ -652,7 +654,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfScreeningTest"),
                             }}
                           />{" "}
-                          {screenTest} {t("general.test")}
+                          {screenTest} {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -678,7 +680,7 @@ export default function ScenarioResults() {
                       <tr className="table-light">
                         <th className="ps-3">
                           {t("results.lossAtTriageTest")} {triageTest}{" "}
-                          {t("general.test")}
+                          {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
@@ -777,7 +779,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfTriageTest"),
                             }}
                           />{" "}
-                          {triageTest} {t("general.test")}
+                          {triageTest} {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -893,7 +895,7 @@ export default function ScenarioResults() {
                       <tr className="table-light">
                         <th className="ps-3">
                           {t("results.lossAtColposcopy")} {" "}
-                          {t("general.test")}
+                          {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -971,7 +973,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfColposcopy"),
                             }}
                           />{" "}
-                           {t("general.test")}
+                           {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -1073,7 +1075,7 @@ export default function ScenarioResults() {
                     </thead>
                     <tbody>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringScreening")} {screenTest}{" "} {t("general.test")}</th>
+                        <th>{t("results.totalRequiringScreening")} {screenTest}{" "} {!isSpanish && t("general.test")}</th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
                       "N/A"} */}
@@ -1084,7 +1086,7 @@ export default function ScenarioResults() {
                       <tr className="table-light">
                         <th>
                           {t("results.totalRequiringTriageDiagnostic")} {triageTest}{" "}
-                          {t("general.test")}
+                          {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
@@ -1284,7 +1286,7 @@ export default function ScenarioResults() {
                       <tr className="table-light">
                         <th className="ps-3">
                           {t("results.didNotHaveScreeningTest")} {screenTest}{" "}
-                          {t("general.test")}
+                          {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
@@ -1311,7 +1313,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfScreeningTest"),
                             }}
                           />{" "}
-                          {screenTest} {t("general.test")}
+                          {screenTest} {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -1337,7 +1339,7 @@ export default function ScenarioResults() {
                       <tr className="table-light">
                         <th className="ps-3">
                           {t("results.lossAtTriageTest")} {triageTest}{" "}
-                          {t("general.test")}
+                          {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
@@ -1436,7 +1438,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfTriageTest"),
                             }}
                           />{" "}
-                          {triageTest} {t("general.test")}
+                          {triageTest} {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -1555,7 +1557,7 @@ export default function ScenarioResults() {
                       <tr className="table-light">
                         <th className="ps-3">
                           {t("results.lossAtColposcopy")} {" "}
-                          {t("general.test")}
+                          {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -1634,7 +1636,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfColposcopy"),
                             }}
                           />{" "}
-                           {t("general.test")}
+                           {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -1735,7 +1737,7 @@ export default function ScenarioResults() {
                     </thead>
                     <tbody>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringScreening")} {screenTest}{" "} {t("general.test")}</th>
+                        <th>{t("results.totalRequiringScreening")} {screenTest}{" "} {!isSpanish && t("general.test")}</th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
                       "N/A"} */}
@@ -1743,13 +1745,16 @@ export default function ScenarioResults() {
                           {Math.round(
                             parseInt(totalNeededToScreen.replace(/\D/g, "")) /
                               12
-                          )}
+                          ) ? Math.round(
+                            parseInt(totalNeededToScreen.replace(/\D/g, "")) /
+                              12
+                          ) :  t("general.NA")}{" "}
                         </td>
                       </tr>
                       <tr className="table-light">
                         <th>
                         {t("results.totalRequiringTriageDiagnostic")} {triageTest}{" "}
-                        {t("general.test")}
+                        {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
@@ -1786,7 +1791,11 @@ export default function ScenarioResults() {
                             parseInt(
                               totalNeededToDiagnosticTriage.replace(/\D/g, "")
                             ) / 12
-                          )}
+                          ) ? Math.round(
+                            parseInt(
+                              totalNeededToDiagnosticTriage.replace(/\D/g, "")
+                            ) / 12
+                          ) : t("general.NA")}{" "}
                         </td>
                       </tr>
                       <tr className="table-light">
@@ -1797,7 +1806,9 @@ export default function ScenarioResults() {
 
                           {Math.round(
                             parseInt(totalNeededToTreat.replace(/\D/g, "")) / 12
-                          )}
+                          )?Math.round(
+                            parseInt(totalNeededToTreat.replace(/\D/g, "")) / 12
+                          ) : t("general.NA")}{" "}
                         </td>
                       </tr>
                     </tbody>
@@ -1965,7 +1976,7 @@ export default function ScenarioResults() {
                       <tr className="table-light">
                         <th className="ps-3">
                           {t("results.didNotHaveScreeningTest")} {screenTest}{" "}
-                          {t("general.test")}
+                          {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(results.percentMissedDueToNoScreening) ?? "N/A"} */}
@@ -1993,7 +2004,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfScreeningTest"),
                             }}
                           />{" "}
-                          {screenTest} {t("general.test")}
+                          {screenTest} {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -2020,7 +2031,7 @@ export default function ScenarioResults() {
                       <tr className="table-light">
                         <th className="ps-3">
                           {t("results.lossAtTriageTest")} {triageTest}{" "}
-                          {t("general.test")}
+                          {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(results.percentMissedDueToLossAtTriage) ?? "N/A"} */}
@@ -2122,7 +2133,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfTriageTest"),
                             }}
                           />{" "}
-                          {triageTest} {t("general.test")}
+                          {triageTest} {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -2242,7 +2253,7 @@ export default function ScenarioResults() {
                       <tr className="table-light">
                         <th className="ps-3">
                           {t("results.lossAtColposcopy")} {" "}
-                          {t("general.test")}
+                          {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -2322,7 +2333,7 @@ export default function ScenarioResults() {
                               __html: t("results.sensitivityOfColposcopy"),
                             }}
                           />
-                           {t("general.test")}
+                           {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {asPercent(
@@ -2428,7 +2439,7 @@ export default function ScenarioResults() {
                     </thead>
                     <tbody>
                       <tr className="table-light">
-                        <th>{t("results.totalRequiringScreening")} {screenTest}{" "} {t("general.test")}</th>
+                        <th>{t("results.totalRequiringScreening")} {screenTest}{" "} {!isSpanish && t("general.test")}</th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToScreen?.toLocaleString(locale) ??
                       "N/A"} */}
@@ -2436,13 +2447,16 @@ export default function ScenarioResults() {
                           {Math.round(
                             parseInt(totalNeededToScreen.replace(/\D/g, "")) *
                               parseInt(params.screeningInterval)
-                          )}
+                          ) ? Math.round(
+                            parseInt(totalNeededToScreen.replace(/\D/g, "")) *
+                              parseInt(params.screeningInterval)
+                          ) :  t("general.NA")}{" "}
                         </td>
                       </tr>
                       <tr className="table-light">
                         <th>
                         {t("results.totalRequiringTriageDiagnostic")} {triageTest}{" "}
-                        {t("general.test")}
+                        {!isSpanish && t("general.test")}
                         </th>
                         <td className="text-end text-nowrap">
                           {/* {results.totalNeededToTriage?.toLocaleString(locale) ??
@@ -2479,7 +2493,11 @@ export default function ScenarioResults() {
                             parseInt(
                               totalNeededToDiagnosticTriage.replace(/\D/g, "")
                             ) * parseInt(params.screeningInterval)
-                          )}
+                          ) ? Math.round(
+                            parseInt(
+                              totalNeededToDiagnosticTriage.replace(/\D/g, "")
+                            ) * parseInt(params.screeningInterval)
+                          ) : t("general.NA")}
                         </td>
                       </tr>
                       <tr className="table-light">
@@ -2491,7 +2509,10 @@ export default function ScenarioResults() {
                           {Math.round(
                             parseInt(totalNeededToTreat.replace(/\D/g, "")) *
                               parseInt(params.screeningInterval)
-                          )}
+                          )? Math.round(
+                            parseInt(totalNeededToTreat.replace(/\D/g, "")) *
+                              parseInt(params.screeningInterval)
+                          ) : t("general.NA")}{" "}
                         </td>
                       </tr>
                     </tbody>
