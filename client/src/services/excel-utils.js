@@ -24,8 +24,13 @@ export function exportExcelCard(filename) {
       rows.forEach((row) => {
         const rowData = [];
         const cells = row.querySelectorAll("th, td");
+        // cells.forEach((cell) => {
+        //   rowData.push(cell.innerText);
+        // });
         cells.forEach((cell) => {
-          rowData.push(cell.innerText);
+          if (cell.innerText !== 'Placeholder') { // Exclude "Placeholder"
+            rowData.push(cell.innerText);
+          }
         });
         // Check if it's the header row
         if (row.closest("thead")) {
@@ -95,7 +100,9 @@ export function exportExcel(filename) {
       const cells = row.querySelectorAll("th, td");
 
       cells.forEach((cell) => {
-        rowData.push(cell.innerText);
+        if (cell.innerText !== 'Placeholder') { // Exclude "Placeholder"
+          rowData.push(cell.innerText);
+        }
       });
 
       tableRows.push(rowData);
