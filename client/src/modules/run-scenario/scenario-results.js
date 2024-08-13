@@ -2571,7 +2571,8 @@ export default function ScenarioResults() {
               <Card className="mb-3 d-none">
                 <Card.Header>
                   <Card.Title data-export>
-                    {asLabel(params.scenario, scenarios)}
+                    {/* {asLabel(params.scenario, scenarios)} */}
+                    {t("general.scenarioParameters")}
                   </Card.Title>
                   <Card.Text className="small text-muted">
                     {t("general.scenarioAssumption")}

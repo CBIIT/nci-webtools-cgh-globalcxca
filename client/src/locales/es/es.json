@@ -107,7 +107,8 @@
     "programTables": "Tablas de programas",
     "El": "El ",
     "NA": "NA",
-    "colposcopy":"Colposcopia"
+    "colposcopy":"Colposcopia",
+    "scenarioParameters": "Parámetros del escenario"
   },
   "runScenario": {
     "title": "Ejecutar escenario",

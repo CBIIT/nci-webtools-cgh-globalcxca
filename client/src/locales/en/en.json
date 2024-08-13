@@ -108,7 +108,8 @@
     "programTables": "Program Tables",
     "El": "",
     "NA": "NA",
-    "colposcopy":"Colposcopy"    
+    "colposcopy":"Colposcopy",
+    "scenarioParameters": "Scenario Parameters"
   },
   "runScenario": {
     "title": "Run Scenario",
