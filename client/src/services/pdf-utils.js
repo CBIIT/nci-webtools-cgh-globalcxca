@@ -11,11 +11,11 @@ export const pdfStyles = {
     bold: true,
     margin: [0, 0, 0, 15],
   },
-  TH: {
+  th: {
     bold: true,
     margin: [4, 4, 4, 4],
   },
-  TD: {
+  td: {
     margin: [4, 4, 4, 4],
   },
   "table-info": {
@@ -63,10 +63,10 @@ export function exportPdf(filename, nodes, config = {}) {
             headerRows: 1,
             widths: Array.from(
               node.querySelector("tr").querySelectorAll("td, th")
-            ).map((v) => "*"),
+            ).map(() => "*"),
             body: Array.from(node.querySelectorAll("tr")).map((tr) =>
               Array.from(tr.querySelectorAll("td, th")).map((cell) => ({
-                text: cell.innerText,
+                text: cell.innerText === "Placeholder" ? "" : cell.innerText, // Replace "Placeholder" with an empty string
                 colSpan: cell.colSpan || 1,
                 style: [...tr.classList, ...cell.classList, cell.tagName],
               }))
@@ -84,7 +84,7 @@ export function exportPdf(filename, nodes, config = {}) {
     ...config,
   };
 
-  //console.log(doc);
-
   return pdfMake.createPdf(doc).download(filename);
 }
+
+
