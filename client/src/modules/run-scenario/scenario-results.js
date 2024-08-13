@@ -443,7 +443,7 @@ export default function ScenarioResults() {
       <Container>
         <Card className="mb-2">
           <Card.Header className="d-flex justify-content-between align-items-center">
-            <Card.Title data-export>
+            <Card.Title>
               {t("results.resultsInterpretation")}
             </Card.Title>
             <Button onClick={saveScenario} variant="primary">
