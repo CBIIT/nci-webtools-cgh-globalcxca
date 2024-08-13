@@ -66,7 +66,8 @@ export function exportPdf(filename, nodes, config = {}) {
           layout: "lightHorizontalLines",
           margin: [0, 0, 0, 20],
           table: {
-            headerRows: 1,
+            headerRows: 0, // This controls how many rows are treated as header rows
+            dontBreakRows: true, // Prevents rows from splitting across pages
             widths: Array.from(
               node.querySelector("tr").querySelectorAll("td, th")
             ).map(() => "*"),
@@ -82,6 +83,8 @@ export function exportPdf(filename, nodes, config = {}) {
               })
             ),
           },
+          // Add custom style to handle the non-repeating header
+          headerRows: 0 // Set headerRows to 0 to prevent repeating the header
         };
       } else {
         const textContent = node.innerText.trim(); // Trim any whitespace

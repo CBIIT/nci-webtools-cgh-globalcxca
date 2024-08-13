@@ -303,11 +303,32 @@ export default function ScenarioResults() {
     saveAs(new Blob([contents]), filename, { type });
   }
 
-  async function exportResults() {
+  // async function exportResults() {
+  //   const filename = `${params.scenario} ${getTimestamp()}.pdf`;
+  //   const nodes = Array.from(document.querySelectorAll("[data-export]"));
+  //   exportPdf(filename, nodes);
+  // }
+
+  async function exportResults(tabContentId) {
     const filename = `${params.scenario} ${getTimestamp()}.pdf`;
-    const nodes = Array.from(document.querySelectorAll("[data-export]"));
+
+    // Select all elements with the data-export attribute in the specified tab content and #tab4Content
+    const activeTabContent = document.querySelectorAll(`#${tabContentId} [data-export]`);
+    const tab4Content = document.querySelectorAll(`#tab4Content [data-export]`);
+
+    // Combine the nodes from the active tab and tab4
+    const nodes = [];
+    activeTabContent.forEach(node => nodes.push(node));
+    tab4Content.forEach(node => nodes.push(node));
+
+    // Log the selected nodes for debugging
+    console.log("Nodes to be exported:", nodes);
+
     exportPdf(filename, nodes);
-  }
+}
+
+
+
 
   function exportResultsExcel() {
     const filename = `${params.scenario} ${getTimestamp()}.xlsx`;
@@ -490,7 +511,8 @@ export default function ScenarioResults() {
           >
             
             <Tab eventKey="tab1" title={t("general.tables")}>
-              <Card className="mb-4">
+            <div id="tab1Content">
+             <Card className="mb-4">
                 <Card.Body>
                   <Table hover responsive data-export>
                     <thead>
@@ -1147,7 +1169,7 @@ export default function ScenarioResults() {
                   </Table>
                   <div className="text-center">
                     <Button
-                      onClick={exportResults}
+                      onClick={() => exportResults('tab1Content')}
                       className="m-1"
                       variant="primary"
                     >
@@ -1163,9 +1185,11 @@ export default function ScenarioResults() {
                   </div>
                 </Card.Body>
               </Card>
+              </div>
             </Tab>
 
             <Tab eventKey="tab2" title={t("general.monthlyTables")}>
+            <div id="tab2Content">
               <Card className="mb-4">
                 <Card.Body>
                   <Table hover responsive data-export>
@@ -1832,7 +1856,7 @@ export default function ScenarioResults() {
                   </Table>
                   <div className="text-center">
                     <Button
-                      onClick={exportResults}
+                      onClick={() => exportResults('tab2Content')}
                       className="m-1"
                       variant="primary"
                     >
@@ -1848,8 +1872,10 @@ export default function ScenarioResults() {
                   </div>
                 </Card.Body>
               </Card>
+              </div>
             </Tab>
             <Tab eventKey="tab3" title={t("general.programTables")}>
+            <div id="tab3Content">
               <Card className="mb-4">
                 <Card.Body>
                   <Table hover responsive data-export>
@@ -2550,7 +2576,7 @@ export default function ScenarioResults() {
                   </Table>
                   <div className="text-center">
                     <Button
-                      onClick={exportResults}
+                      onClick={() => exportResults('tab3Content')}
                       className="m-1"
                       variant="primary"
                     >
@@ -2566,8 +2592,10 @@ export default function ScenarioResults() {
                   </div>
                 </Card.Body>
               </Card>
+              </div>
             </Tab>
             <Tab eventKey="tab4" title={t("general.graphs")}>
+            <div id="tab4Content">
               <Card className="mb-3 d-none">
                 <Card.Header>
                   <Card.Title data-export>
@@ -2994,6 +3022,7 @@ export default function ScenarioResults() {
 
               {/* pdf page break */}
               <hr className="d-none" data-export />
+              </div>
             </Tab>
           </Tabs>
         </div>
