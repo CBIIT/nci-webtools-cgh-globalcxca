@@ -11,11 +11,11 @@ export const pdfStyles = {
     bold: true,
     margin: [0, 0, 0, 15],
   },
-  th: {
+  TH: {
     bold: true,
     margin: [4, 4, 4, 4],
   },
-  td: {
+  TD: {
     margin: [4, 4, 4, 4],
   },
   "table-info": {
