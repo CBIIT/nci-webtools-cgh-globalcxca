@@ -24,20 +24,26 @@ export const pdfStyles = {
   "bg-grey": {
     fillColor: "#ebebeb",
   },
+  "bg-info-dark": {
+    fillColor: "#0250c5",
+  },
   "bg-info": {
     fillColor: "#0d6efd",
   },
-  "bg-warning": {
-    fillColor: "#fd7e14",
+  "bg-warning-dark": {
+    fillColor: "#8d4002",
   },
   "table-warning": {
     fillColor: "#ffe5d0",
   },
-  "bg-danger": {
-    fillColor: "#dc3545",
+  "bg-danger-dark": {
+    fillColor: "#a91e2c",
   },
   "table-danger": {
     fillColor: "#f8d7da",
+  },
+  "bg-success-dark": {
+    fillColor: "#076439",
   },
   "bg-success": {
     fillColor: "#0dab61",
@@ -65,17 +71,22 @@ export function exportPdf(filename, nodes, config = {}) {
               node.querySelector("tr").querySelectorAll("td, th")
             ).map(() => "*"),
             body: Array.from(node.querySelectorAll("tr")).map((tr) =>
-              Array.from(tr.querySelectorAll("td, th")).map((cell) => ({
-                text: cell.innerText === "Placeholder" ? "" : cell.innerText, // Replace "Placeholder" with an empty string
-                colSpan: cell.colSpan || 1,
-                style: [...tr.classList, ...cell.classList, cell.tagName],
-              }))
+              Array.from(tr.querySelectorAll("td, th")).map((cell) => {
+                console.log("cell.innerText ", cell.innerText)
+                const textContent = cell.innerText.trim(); // Trim any whitespace
+                return {
+                  text: textContent === "Placeholder" ? "" : textContent, // Replace "Placeholder" with an empty string
+                  colSpan: cell.colSpan || 1,
+                  style: [...tr.classList, ...cell.classList, cell.tagName],
+                };
+              })
             ),
           },
         };
       } else {
+        const textContent = node.innerText.trim(); // Trim any whitespace
         return {
-          text: node.innerText,
+          text: textContent,
           style: [...node.classList, node.tagName],
         };
       }
@@ -86,5 +97,6 @@ export function exportPdf(filename, nodes, config = {}) {
 
   return pdfMake.createPdf(doc).download(filename);
 }
+
 
 
