@@ -62,32 +62,39 @@ export function exportPdf(filename, nodes, config = {}) {
       if (node.tagName === "HR") {
         return { text: "", pageBreak: "after" };
       } else if (node.tagName === "TABLE") {
+        // Determine the number of columns in the table
+        const columnCount = node.querySelector("tr").querySelectorAll("td, th").length;
+
+        // Set widths based on the number of columns
+        const widths = Array.from({ length: columnCount }).map((_, index) => {
+          if (index === 0) {
+            return "70%"; // Set the width of the first column to 70%
+          } else {
+            return `${30 / (columnCount - 1)}%`; // Distribute the remaining 30% among the other columns
+          }
+        });
+
         return {
           layout: "lightHorizontalLines",
-          margin: [0, 0, 0, 20],
+          margin: [0, 0, 0, 20], //margin between tables
           table: {
-            headerRows: 0, // This controls how many rows are treated as header rows
-            dontBreakRows: true, // Prevents rows from splitting across pages
-            widths: Array.from(
-              node.querySelector("tr").querySelectorAll("td, th")
-            ).map(() => "*"),
+            headerRows: 0,
+            dontBreakRows: true,
+            widths: widths,
             body: Array.from(node.querySelectorAll("tr")).map((tr) =>
               Array.from(tr.querySelectorAll("td, th")).map((cell) => {
-                console.log("cell.innerText ", cell.innerText)
-                const textContent = cell.innerText.trim(); // Trim any whitespace
+                const textContent = cell.innerText.trim();
                 return {
-                  text: textContent === "Placeholder" ? "" : textContent, // Replace "Placeholder" with an empty string
+                  text: textContent === "Placeholder" ? "" : textContent,
                   colSpan: cell.colSpan || 1,
                   style: [...tr.classList, ...cell.classList, cell.tagName],
                 };
               })
             ),
           },
-          // Add custom style to handle the non-repeating header
-          headerRows: 0 // Set headerRows to 0 to prevent repeating the header
         };
       } else {
-        const textContent = node.innerText.trim(); // Trim any whitespace
+        const textContent = node.innerText.trim();
         return {
           text: textContent,
           style: [...node.classList, node.tagName],
@@ -100,6 +107,8 @@ export function exportPdf(filename, nodes, config = {}) {
 
   return pdfMake.createPdf(doc).download(filename);
 }
+
+
 
 
 
