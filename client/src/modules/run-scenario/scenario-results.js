@@ -2608,7 +2608,7 @@ export default function ScenarioResults() {
                 </Card.Header>
                 <Card.Body>
                   <Row>
-                    <Col lg={6}>
+                    <Col lg={12}>
                       <Table hover responsive data-export>
                         <thead>
                           <tr className="bg-grey">
@@ -2647,91 +2647,187 @@ export default function ScenarioResults() {
                             </td>
                           </tr>
                         </tbody>
-                      </Table>
-
+                      </Table>                      
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col lg={12}>
                       <Table hover responsive data-export>
-                        <thead>
-                          <tr className="bg-grey">
-                            <th> {t("general.screening")}</th>
-                            <th className="th-placeholder">Placeholder</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>
-                              {" "}
-                              {t("runScenario.intervalofCervicalInYears")}
-                            </th>
-                            <td className="text-end text-nowrap">
-                              {params.screeningInterval?.toLocaleString(
-                                locale
-                              ) ?? t("general.NA")}
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{t("runScenario.percentScreeningCoverage")}</th>
-                            <td className="text-end text-nowrap">
-                              {asPercent(params.percentScreened, 0) ??
+                          <thead>
+                            <tr className="bg-grey">
+                              <th> {t("general.screening")}</th>
+                              <th className="th-placeholder">Placeholder</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th>
+                                {" "}
+                                {t("runScenario.intervalofCervicalInYears")}
+                              </th>
+                              <td className="text-end text-nowrap">
+                                {params.screeningInterval?.toLocaleString(
+                                  locale
+                                ) ?? t("general.NA")}
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{t("runScenario.percentScreeningCoverage")}</th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(params.percentScreened, 0) ??
+                                  t("general.NA")}
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{t("runScenario.cervicalScreeningTestChosen")}</th>
+                              <td className="text-end text-nowrap">                          
+                                {params.screeningTest === "pap" && t("runScenario.PapTest")}
+                                {params.screeningTest === "ivaa" && t("runScenario.VIA")}
+                                {params.screeningTest === "hpv" && t("runScenario.HPV")}
+                                {params.screeningTest === "hpv16or18" && t("runScenario.HPV1618")}
+                                {!["pap", "ivaa", "hpv", "hpv16or18"].includes(params.screeningTest) && t("general.NA")}                            
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{t("runScenario.screeningTestSenvitivity_norm")}</th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(params.screeningTestSensitivity, 0) ??
+                                  t("general.NA")}
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{t("runScenario.screeningTestSpecificity_norm")}</th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(params.screeningTestSpecificity, 0) ??
+                                  t("general.NA")}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </Table>                      
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col lg={12}>
+                      <Table hover responsive data-export>
+                          <thead>
+                            <tr className="bg-grey">
+                              <th> {t("general.triage")}</th>
+                              <th className="th-placeholder">Placeholder</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th>
+                                  {" "}
+                                  {t("runScenario.percentScreeningPositiveWithTriage")}
+                              </th>
+                              <td className="text-end text-nowrap">
+                              {asPercent(params.percentDiagnosticTriaged, 0) ??
                                 t("general.NA")}
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{t("runScenario.cervicalScreeningTestChosen")}</th>
-                            <td className="text-end text-nowrap">                          
-                              {params.screeningTest === "pap" && t("runScenario.PapTest")}
-                              {params.screeningTest === "ivaa" && t("runScenario.VIA")}
-                              {params.screeningTest === "hpv" && t("runScenario.HPV")}
-                              {params.screeningTest === "hpv16or18" && t("runScenario.HPV1618")}
-                              {!["pap", "ivaa", "hpv", "hpv16or18"].includes(params.screeningTest) && t("general.NA")}                            
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{t("runScenario.screeningTestSenvitivity_norm")}</th>
-                            <td className="text-end text-nowrap">
-                              {asPercent(params.screeningTestSensitivity, 0) ??
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{t("runScenario.triageTestChosen")}</th>
+                              <td className="text-end text-nowrap">                          
+                                {params.triageTest === "pap" && t("runScenario.PapTest")}
+                                {params.triageTest === "ivaa" && t("runScenario.VIA")}
+                                {params.triageTest === "hpv" && t("runScenario.HPV")}
+                                {params.triageTest === "hpv16or18" && t("runScenario.HPV1618")}
+                                {params.triageTest === "colposcopicImpression" && t("runScenario.impressionOfColposcopy")}
+                                {params.triageTest === "colposcopyWithBiopsy" && t("runScenario.colposcopyWithBiopsy")}
+                                {!["pap", "ivaa", "hpv", "hpv16or18", "colposcopicImpression", "colposcopyWithBiopsy"].includes(params.triageTest) && t("general.NA")}                            
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{t("runScenario.triageTestSensitivity_norm")}</th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(params.triageTestSensitivity, 0) ??
+                                  t("general.NA")}
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{t("runScenario.screeningTestSpecificity_norm")}</th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(params.triageTestSpecificity, 0) ??
+                                  t("general.NA")}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col lg={12}>
+                      <Table hover responsive data-export>
+                      <thead>
+                            <tr className="bg-grey">
+                              <th> {t("general.colposcopy")}</th>
+                              <th className="th-placeholder">Placeholder</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th>
+                                  {" "}
+                                  {t("runScenario.percentofScreenPositivesWithColposcopy")}
+                              </th>
+                              <td className="text-end text-nowrap">
+                              {asPercent(params.percentTriaged, 0) ??
                                 t("general.NA")}
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{t("runScenario.screeningTestSpecificity_norm")}</th>
-                            <td className="text-end text-nowrap">
-                              {asPercent(params.screeningTestSpecificity, 0) ??
-                                t("general.NA")}
-                            </td>
-                          </tr>
-                        </tbody>
+                              </td>
+                            </tr>                            
+                            <tr>
+                              <th>{t("runScenario.colposcopyTestSensitivity_norm")}</th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(params.diagnosticTestSensitivity, 0) ??
+                                  t("general.NA")}
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{t("runScenario.colposcopyTestSpecificity_norm")}</th>
+                              <td className="text-end text-nowrap">
+                                {asPercent(params.diagnosticTestSpecificity, 0) ??
+                                  t("general.NA")}
+                              </td>
+                            </tr>
+                          </tbody>
                       </Table>
                     </Col>
-                    <Col lg={6}>
+                  </Row>
+                  <Row>
+                    <Col lg={12}>
                       <Table hover responsive data-export>
                         <thead>
                           <tr className="bg-grey">
-                            <th> {t("general.triage")}</th>
+                            <th> {t("general.treatment")}</th>
                             <th className="th-placeholder">Placeholder</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <th>
-                                {" "}
-                                {t("runScenario.percentScreeningPositiveWithTriage")}
+                            {
+                              {
+                                ScreenTreat: t(
+                                  "runScenario.ScreenTreat"
+                                ),
+                                ScreenDiagnosticTestTreat:
+                                  t(
+                                    "runScenario.ScreenDiagnosticTestTreat"
+                                  ),
+                                ScreenTriageDiagnosticTestTreat:
+                                  t(
+                                    "runScenario.percentDiagnosticPositiveTreated"
+                                  ),
+                              }[params.scenario]
+                            }  
                             </th>
                             <td className="text-end text-nowrap">
-                            {asPercent(params.percentDiagnosticTriaged, 0) ??
+                            {asPercent(params.percentTreated, 0) ??
                               t("general.NA")}
                             </td>
-                          </tr>
-                          <tr>
-                            <th>{t("runScenario.triageTestChosen")}</th>
-                            <td className="text-end text-nowrap">                          
-                              {params.triageTest === "pap" && t("runScenario.PapTest")}
-                              {params.triageTest === "ivaa" && t("runScenario.VIA")}
-                              {params.triageTest === "hpv" && t("runScenario.HPV")}
-                              {params.triageTest === "hpv16or18" && t("runScenario.HPV1618")}
-                              {params.triageTest === "colposcopicImpression" && t("runScenario.impressionOfColposcopy")}
-                              {!["pap", "ivaa", "hpv", "hpv16or18", "colposcopicImpression"].includes(params.screeningTest) && t("general.NA")}                            
-                            </td>
-                          </tr>
+                          </tr>                       
+                          
                         </tbody>
                       </Table>
                     </Col>
