@@ -1057,7 +1057,7 @@ export default function CompareScenarios() {
 
                             <tr className="table-info">
                               <th>
-                                {t("runScenario.triageOrDiagnosticTestChosen")}
+                                {t("runScenario.triageTestChosen")}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1122,20 +1122,20 @@ export default function CompareScenarios() {
                             </tr>
 
                             <tr className="table-info">
-                              <th>{t("runScenario.diagnosticTestChosen")}</th>
+                              <th>{t("general.colposcopy")}</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
                                   {/* {asLabel(
                                     params.diagnosticTest,
                                     diagnosticTests_t
                                   ) ?? t("general.NA")} */}
-                                  {diagnosisTest[index]}
+                                  {/* {diagnosisTest[index]} */}
                                 </td>
                               ))}
                             </tr>
                             <tr>
                               <th className="ps-3">
-                                {t("compareScenarios.diagnosticTestAttendance")}
+                                {t("runScenario.percentofScreenPositivesWithColposcopy")}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1150,7 +1150,7 @@ export default function CompareScenarios() {
                                 <span
                                   dangerouslySetInnerHTML={{
                                     __html: t(
-                                      "runScenario.diagnosticTestSensitivity"
+                                      "runScenario.colposcopyTestSensitivity"
                                     ),
                                   }}
                                 />
@@ -1169,7 +1169,7 @@ export default function CompareScenarios() {
                                 <span
                                   dangerouslySetInnerHTML={{
                                     __html: t(
-                                      "runScenario.diagnosticTestSpecificity"
+                                      "runScenario.colposcopyTestSpecificity"
                                     ),
                                   }}
                                 />
@@ -1185,7 +1185,7 @@ export default function CompareScenarios() {
 
                             <tr className="table-info">
                               <th>
-                                {t("compareScenarios.treatmentAttendance")}
+                              {t("compareScenarios.treatmentAttendance")}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -1193,7 +1193,30 @@ export default function CompareScenarios() {
                                     t("general.NA")}
                                 </td>
                               ))}
-                            </tr>
+                            </tr>                           
+                 
+                            {/* <tr>
+                              <th>
+                                {(() => {
+                                  // Assuming you're dealing with the first scenario in the array to determine the header
+                                  const params = scenarios[0]; // Use the first scenario to determine the label
+                                  return {
+                                    ScreenTreat: t("runScenario.ScreenTreat"),
+                                    ScreenDiagnosticTestTreat: t("runScenario.ScreenDiagnosticTestTreat"),
+                                    ScreenTriageDiagnosticTestTreat: t(
+                                      "runScenario.percentDiagnosticPositiveTreated"
+                                    ),
+                                  }[params.scenario];
+                                })()}
+                              </th>
+                              {scenarios.map((params, index) => (
+                                <td className="text-end" key={index}>
+                                  {asPercent(params.percentTreated) ?? t("general.NA")}
+                                </td>
+                              ))}
+                            </tr> */}
+
+
                           </tbody>
                         </Table>
                       </Tab.Pane>
