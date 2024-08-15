@@ -328,12 +328,11 @@ export default function ScenarioResults() {
 }
 
 
+function exportResultsExcel(tabContentId) {
+  const filename = `${params.scenario} ${getTimestamp()}.xlsx`;
+  exportExcel(filename, tabContentId, t); // Pass the t function here
+}
 
-
-  function exportResultsExcel() {
-    const filename = `${params.scenario} ${getTimestamp()}.xlsx`;
-    exportExcel(filename);
-  }
   //export chart to SVG
   function handleExportSvg(id) {
     const plotSelector = `#${id}`;
@@ -1176,12 +1175,13 @@ export default function ScenarioResults() {
                       {t("results.exportResultsToPDF")}
                     </Button>
                     <Button
-                      onClick={exportResultsExcel}
+                      onClick={() => exportResultsExcel('tab1Content')}
                       className="m-1"
                       variant="primary"
                     >
                       {t("results.exportResultsToExcel")}
                     </Button>
+
                   </div>
                 </Card.Body>
               </Card>
@@ -1863,7 +1863,7 @@ export default function ScenarioResults() {
                       {t("results.exportResultsToPDF")}
                     </Button>
                     <Button
-                      onClick={exportResultsExcel}
+                      onClick={() => exportResultsExcel('tab2Content')}
                       className="m-1"
                       variant="primary"
                     >
@@ -2583,7 +2583,7 @@ export default function ScenarioResults() {
                       {t("results.exportResultsToPDF")}
                     </Button>
                     <Button
-                      onClick={exportResultsExcel}
+                      onClick={() => exportResultsExcel('tab3Content')}
                       className="m-1"
                       variant="primary"
                     >

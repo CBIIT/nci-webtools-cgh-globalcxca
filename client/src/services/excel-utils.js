@@ -1,5 +1,6 @@
 import * as XLSX from "xlsx";
 
+
 export function exportExcelCard(filename) {
   // Create a new workbook
   const wb = XLSX.utils.book_new();
@@ -79,74 +80,64 @@ export function exportExcelCard(filename) {
   link.click();
 }
 
-export function exportExcel(filename) {
+export function exportExcel(filename, tabContentId, t) {
   // Create a new workbook
   const wb = XLSX.utils.book_new();
 
-  // Get the HTML elements containing the data to export
-  const tables = document.querySelectorAll("table[data-export]");
+  // Select the tables from the specified tab content and tab4Content
+  const activeTabTables = document.querySelectorAll(`#${tabContentId} table[data-export]`);
+  const tab4Tables = document.querySelectorAll(`#tab4Content table[data-export]`);
 
-  // Create an array to store the table data
-  const firstThreeTablesData = [];
-  const remainingTablesData = [];
-
-  // Iterate over the tables and extract the table data
-  tables.forEach((table, index) => {
-    const rows = table.querySelectorAll("tr");
-    const tableRows = [];
-
-    rows.forEach((row) => {
-      const rowData = [];
-      const cells = row.querySelectorAll("th, td");
-
-      cells.forEach((cell) => {
-        if (cell.innerText !== 'Placeholder') { // Exclude "Placeholder"
-          rowData.push(cell.innerText);
-        }
+  // Helper function to convert tables to worksheet data
+  function tablesToSheetData(tables) {
+      const sheetData = [];
+      tables.forEach((table) => {
+          const rows = table.querySelectorAll("tr");
+          rows.forEach((row) => {
+              const rowData = [];
+              const cells = row.querySelectorAll("th, td");
+              cells.forEach((cell) => {
+                  if (cell.innerText !== 'Placeholder') { // Exclude "Placeholder"
+                      rowData.push(cell.innerText);
+                  }
+              });
+              sheetData.push(rowData);
+          });
       });
+      return sheetData;
+  }
 
-      tableRows.push(rowData);
-    });
+  // Map tabContentId to localized sheet names using t function
+  const sheetNames = {
+      tab1Content: t("general.tables"),
+      tab2Content: t("general.monthlyTables"),
+      tab3Content: t("general.programTables"),
+      // tab4Content: t("general.scenarioParameters"),
+      tab4Content: "Inputs"
+  };
 
-    if (index < 3) {
-      // Store the table data for the first three tables
-      firstThreeTablesData.push(...tableRows);
-    } else {
-      // Store the table data for the remaining tables separately
-      const headers = table.querySelectorAll("th");
-      let sheetName =
-        headers.length > 0 ? headers[0].innerText : `Table ${index + 1}`;
-      sheetName = sheetName.substring(0, 31); // Truncate sheet name if it exceeds 31 characters
-      remainingTablesData.push({ data: tableRows, sheetName });
-    }
-  });
+  // Get the sheet names based on tabContentId and tab4Content
+  const activeTabSheetName = sheetNames[tabContentId] || "Active Tab";
+  const tab4SheetName = sheetNames.tab4Content;
 
-  // Create a worksheet for the first three tables
-  const firstThreeTablesSheet = XLSX.utils.aoa_to_sheet(firstThreeTablesData);
+  // Convert tables to sheet data
+  const activeTabSheetData = tablesToSheetData(activeTabTables);
+  const tab4SheetData = tablesToSheetData(tab4Tables);
 
-  // Set the worksheet name
-  const firstThreeTablesSheetName = "Inputs";
-  XLSX.utils.book_append_sheet(
-    wb,
-    firstThreeTablesSheet,
-    firstThreeTablesSheetName
-  );
+  // Create worksheets for both the active tab and tab4 content
+  const activeTabSheet = XLSX.utils.aoa_to_sheet(activeTabSheetData);
+  const tab4Sheet = XLSX.utils.aoa_to_sheet(tab4SheetData);
 
-  // Create worksheets for the remaining tables
-  remainingTablesData.forEach(({ data, sheetName }) => {
-    const ws = XLSX.utils.aoa_to_sheet(data);
-
-    // Set the worksheet name as the table header
-    XLSX.utils.book_append_sheet(wb, ws, sheetName);
-  });
+  // Append the worksheets to the workbook with localized names
+  XLSX.utils.book_append_sheet(wb, activeTabSheet, activeTabSheetName);
+  XLSX.utils.book_append_sheet(wb, tab4Sheet, tab4SheetName);
 
   // Generate the Excel file
   const excelFile = XLSX.write(wb, { type: "binary", bookType: "xlsx" });
 
-  // Save the file or do whatever you want with it
-  // For example, you can create a download link
+  // Save the file
   const blob = new Blob([s2ab(excelFile)], {
-    type: "application/octet-stream",
+      type: "application/octet-stream",
   });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
