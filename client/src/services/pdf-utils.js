@@ -74,6 +74,11 @@ export function exportPdf(filename, nodes, config = {}) {
       content.push(mapNodeToPdfContent(node));
   });
 
+  // Remove any trailing blank pages by checking the content length and page breaks
+  if (content[content.length - 1]?.pageBreak) {
+    content.pop(); // Remove the last item if it's an unnecessary page break
+}
+
   const doc = {
       content: content,
       styles: pdfStyles,
