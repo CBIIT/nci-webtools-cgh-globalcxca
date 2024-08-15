@@ -112,8 +112,8 @@ export function exportExcel(filename, tabContentId, t) {
       tab1Content: t("general.tables"),
       tab2Content: t("general.monthlyTables"),
       tab3Content: t("general.programTables"),
-      // tab4Content: t("general.scenarioParameters"),
-      tab4Content: "Inputs"
+      tab4Content: t("general.scenarioParameters"),
+      //tab4Content: "Inputs"
   };
 
   // Get the sheet names based on tabContentId and tab4Content
