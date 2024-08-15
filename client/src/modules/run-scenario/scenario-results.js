@@ -2706,7 +2706,7 @@ export default function ScenarioResults() {
                         </Table>                      
                     </Col>
                   </Row>
-                  {params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat" && (
+                  {params.checkedValues?.length === 3 && params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat" && (
                     <Row>
                       <Col lg={12}>
                         <Table hover responsive data-export>
@@ -2758,7 +2758,7 @@ export default function ScenarioResults() {
                       </Col>
                     </Row>
                   )}
-                  {params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenDiagnosticTestTreat" &&(<Row>
+                  {params.checkedValues?.length === 3 && params.checkedValues[2] === "ScreenDiagnosticTestTreat" &&(<Row>
                     <Col lg={12}>
                       <Table hover responsive data-export>
                       <thead>
@@ -2796,7 +2796,7 @@ export default function ScenarioResults() {
                       </Table>
                     </Col>
                   </Row>)}
-                  {params.checkedValues.length === 4 &&(
+                  {params.checkedValues?.length === 4 &&(
                     <Row>
                     <Col lg={12}>
                         <Table hover responsive data-export>
