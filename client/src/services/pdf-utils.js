@@ -57,56 +57,75 @@ export const pdfStyles = {
 };
 
 export function exportPdf(filename, nodes, config = {}) {
-  const doc = {
-    content: nodes.map((node) => {
-      if (node.tagName === "HR") {
-        return { text: "", pageBreak: "after" };
-      } else if (node.tagName === "TABLE") {
-        // Determine the number of columns in the table
-        const columnCount = node.querySelector("tr").querySelectorAll("td, th").length;
+  const content = [];
+  let pageBreakAdded = false; // Flag to track if the page break has been added
 
-        // Set widths based on the number of columns
-        const widths = Array.from({ length: columnCount }).map((_, index) => {
-          if (index === 0) {
-            return "70%"; // Set the width of the first column to 70%
-          } else {
-            return `${30 / (columnCount - 1)}%`; // Distribute the remaining 30% among the other columns
-          }
-        });
+  nodes.forEach((node) => {
+      // Check if the node belongs to tab4Content
+      const dataTab = node.closest('[data-tab]')?.getAttribute('data-tab');
 
-        return {
-          layout: "lightHorizontalLines",
-          margin: [0, 0, 0, 20], //margin between tables
-          table: {
-            headerRows: 0,
-            dontBreakRows: true,
-            widths: widths,
-            body: Array.from(node.querySelectorAll("tr")).map((tr) =>
-              Array.from(tr.querySelectorAll("td, th")).map((cell) => {
-                const textContent = cell.innerText.trim();
-                return {
-                  text: textContent === "Placeholder" ? "" : textContent,
-                  colSpan: cell.colSpan || 1,
-                  style: [...tr.classList, ...cell.classList, cell.tagName],
-                };
-              })
-            ),
-          },
-        };
-      } else {
-        const textContent = node.innerText.trim();
-        return {
-          text: textContent,
-          style: [...node.classList, node.tagName],
-        };
+      // Add a page break before the first tab4Content
+      if (dataTab === "tab4Content" && !pageBreakAdded) {
+          content.push({ text: "", pageBreak: "before" });
+          pageBreakAdded = true;
       }
-    }),
-    styles: pdfStyles,
-    ...config,
+
+      // Add the node's content
+      content.push(mapNodeToPdfContent(node));
+  });
+
+  const doc = {
+      content: content,
+      styles: pdfStyles,
+      ...config,
   };
 
   return pdfMake.createPdf(doc).download(filename);
 }
+
+
+// Helper function to map a DOM node to PDF content
+function mapNodeToPdfContent(node) {
+  if (node.tagName === "HR") {
+      return { text: "", pageBreak: "after" };
+  } else if (node.tagName === "TABLE") {
+      const columnCount = node.querySelector("tr").querySelectorAll("td, th").length;
+      const widths = Array.from({ length: columnCount }).map((_, index) => {
+          if (index === 0) {
+              return "70%";
+          } else {
+              return `${30 / (columnCount - 1)}%`;
+          }
+      });
+
+      return {
+          layout: "lightHorizontalLines",
+          margin: [0, 0, 0, 20],
+          table: {
+              headerRows: 0,
+              dontBreakRows: true,
+              widths: widths,
+              body: Array.from(node.querySelectorAll("tr")).map((tr) =>
+                  Array.from(tr.querySelectorAll("td, th")).map((cell) => {
+                      const textContent = cell.innerText.trim();
+                      return {
+                          text: textContent === "Placeholder" ? "" : textContent,
+                          colSpan: cell.colSpan || 1,
+                          style: [...tr.classList, ...cell.classList, cell.tagName],
+                      };
+                  })
+              ),
+          },
+      };
+  } else {
+      const textContent = node.innerText.trim();
+      return {
+          text: textContent,
+          style: [...node.classList, node.tagName],
+      };
+  }
+}
+
 
 
 
