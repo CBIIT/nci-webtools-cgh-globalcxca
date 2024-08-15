@@ -648,7 +648,7 @@ export default function CompareScenarios() {
 
                             <tr className="table-light">
                               <th className="ps-3">
-                                {t("results.lossAtDiagnosis")}
+                                {t("results.lossAtColposcopy")}
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td
@@ -719,7 +719,7 @@ export default function CompareScenarios() {
                                 <span
                                   dangerouslySetInnerHTML={{
                                     __html: t(
-                                      "results.sensitivityOfDiagnosticTest"
+                                      "results.sensitivityOfColposcopy"
                                     ),
                                   }}
                                 />
@@ -899,7 +899,7 @@ export default function CompareScenarios() {
                             </tr>
                             <tr className="table-light">
                               <th>
-                                {t("results.totalRequiringDiagnosticTest")}
+                                {t("results.totalRequiringColposcopyTest")}
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
