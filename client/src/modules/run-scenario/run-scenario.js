@@ -166,14 +166,14 @@ export default function RunScenarios() {
         // Hide the div of the unchecked checkbox
         newDivVisibilities[index] = false;
 
-        if (value === "ScreenDiagnosticTestTreat") {
-          setForm((prevForm) => ({
-            ...prevForm,
-            triageTest: "",
-            triageTestSensitivity: 0,
-            triageTestSpecificity: 0,
-          }));
-        }
+        // if (value === "ScreenDiagnosticTestTreat") {
+        //   setForm((prevForm) => ({
+        //     ...prevForm,
+        //     triageTest: "",
+        //     triageTestSensitivity: 0,
+        //     triageTestSpecificity: 0,
+        //   }));
+        // }
 
         if (value === "ScreenTriageDiagnosticTestTreat" || updatedValues.length < 4) {
           setForm((prevForm) => ({
