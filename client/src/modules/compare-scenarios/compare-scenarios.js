@@ -1063,20 +1063,29 @@ export default function CompareScenarios() {
                                 <td className="text-end" key={index}>
                                   {/* {asLabel(params.triageTest, triageTests_t) ??
                                     t("general.NA")} */}
-                                  {triageTest[index]}
+                                  
+                                    {params.checkedValues?.length === 2 || (params.checkedValues?.length === 3 && params.checkedValues[2] === "ScreenDiagnosticTestTreat")
+                                      ? t("general.NA")
+                                      : triageTest[index] 
+                                    }
                                 </td>
                               ))}
                             </tr>
                             <tr>
                               <th className="ps-3">
                                 {t(
-                                  "compareScenarios.triageorDiagnosticTestAttendance"
+                                  "runScenario.percentScreeningPositiveWithTriage"
                                 )}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.percentTriaged) ??
-                                    t("general.NA")}
+                                {params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
+                                  ? asPercent(params.percentDiagnosticTriaged) ?? t("general.NA")
+                                  : params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenDiagnosticTestTreat"
+                                  ?  t("general.NA")
+                                  : params.checkedValues.length === 4
+                                  ? asPercent(params.percentDiagnosticTriaged) ?? t("general.NA")
+                                  : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1095,8 +1104,13 @@ export default function CompareScenarios() {
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.triageTestSensitivity) ??
-                                    t("general.NA")}
+                                {params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
+                                  ? asPercent(params.triageTestSensitivity) ?? t("general.NA")
+                                  : params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenDiagnosticTestTreat"
+                                  ? t("general.NA")
+                                  : params.checkedValues.length === 4
+                                  ? asPercent(params.triageTestSensitivity) ?? t("general.NA")
+                                  : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1115,8 +1129,13 @@ export default function CompareScenarios() {
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.triageTestSpecificity) ??
-                                    t("general.NA")}
+                                {params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
+                                  ? asPercent(params.triageTestSpecificity) ?? t("general.NA")
+                                  : params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenDiagnosticTestTreat"
+                                  ? t("general.NA")
+                                  : params.checkedValues.length === 4
+                                  ? asPercent(params.triageTestSpecificity) ?? t("general.NA")
+                                  : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1139,8 +1158,13 @@ export default function CompareScenarios() {
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(params.percentDiagnosticTriaged) ??
-                                    t("general.NA")}
+                                {params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
+                                  ?  t("general.NA")
+                                  : params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenDiagnosticTestTreat"
+                                  ?  asPercent(params.percentDiagnosticTriaged) ??t("general.NA")
+                                  : params.checkedValues.length === 4
+                                  ? asPercent(params.percentTriaged) ?? t("general.NA")
+                                  : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1157,9 +1181,13 @@ export default function CompareScenarios() {
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(
-                                    params.diagnosticTestSensitivity
-                                  ) ?? t("general.NA")}
+                                {params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
+                                  ?  t("general.NA")
+                                  : params.checkedValues.length === 3 && params.checkedValues[2] === "ScreenDiagnosticTestTreat"
+                                  ?  asPercent(params.triageTestSensitivity) ??t("general.NA")
+                                  : params.checkedValues.length === 4
+                                  ? asPercent(params.diagnosticTestSensitivity) ?? t("general.NA")
+                                  : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
@@ -1176,9 +1204,13 @@ export default function CompareScenarios() {
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
-                                  {asPercent(
-                                    params.diagnosticTestSpecificity
-                                  ) ?? t("general.NA")}
+                                {params.checkedValues?.length === 3 && params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
+                                  ?  t("general.NA")
+                                  : params.checkedValues?.length === 3 && params.checkedValues[2] === "ScreenDiagnosticTestTreat"
+                                  ?  asPercent(params.triageTestSpecificity) ??t("general.NA")
+                                  : params.checkedValues?.length === 4
+                                  ? asPercent(params.diagnosticTestSpecificity) ?? t("general.NA")
+                                  : t("general.NA")}
                                 </td>
                               ))}
                             </tr>
