@@ -985,6 +985,15 @@ export default function CompareScenarios() {
                               ))}
                             </tr>
                             <tr>
+                              <th>{t("about.hpvPrevelence")}</th>
+                              {scenarios.map((params, index) => (
+                                <td className="text-end" key={index}>
+                                {asPercent(params.hpvPrevalence, 0) ??
+                                  t("general.NA")}
+                                </td>
+                              ))}
+                            </tr>
+                            <tr>
                               <th>{t("runScenario.prevelance")}</th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -993,7 +1002,15 @@ export default function CompareScenarios() {
                                 </td>
                               ))}
                             </tr>
-
+                            <tr>
+                              <th>{t("runScenario.proportionOfPositives")}</th>
+                              {scenarios.map((params, index) => (
+                                <td className="text-end" key={index}>
+                                {asPercent(params.proportionOfPositives, 0) ??
+                                  t("general.NA")}
+                                </td>
+                              ))}
+                            </tr>
                             <tr className="table-info">
                               <th>{t("runScenario.cervicalTestChosen")}</th>
                               {scenarios.map((params, index) => (
@@ -1009,7 +1026,20 @@ export default function CompareScenarios() {
                             <tr>
                               <th className="ps-3">
                                 {" "}
-                                {t("runScenario.screeningCoverage")}
+                                {t("runScenario.intervalofCervicalInYears")}
+                              </th>
+                              {scenarios.map((params, index) => (
+                                <td className="text-end" key={index}>
+                                {params.screeningInterval?.toLocaleString(
+                                  locale
+                                ) ?? t("general.NA")}
+                                </td>
+                              ))}
+                            </tr>
+                            <tr>
+                              <th className="ps-3">
+                                {" "}
+                                {t("runScenario.percentScreeningCoverage")}
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
