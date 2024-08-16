@@ -272,23 +272,7 @@ export default function ScenarioResults() {
           )
         : t("general.NA")
       : t("general.NA");
-  // console.log(
-  //   "results.totalNeeded[treatedIndex] = ",
-  //   results.totalNeeded[treatedIndex]
-  // );
-  // console.log(
-  //   "results.totalNeeded[treatedIndex] * 0.1 = ",
-  //   results.totalNeeded[treatedIndex] * 0.1
-  // );
-  // console.log(
-  //   "Math.round(results.totalNeeded[treatedIndex] * 0.1) = ",
-  //   Math.round(results.totalNeeded[treatedIndex] * 0.1)
-  // );
-  // console.log(
-  //   "Math.ceil(results.totalNeeded[treatedIndex] * 0.1) = ",
-  //   Math.ceil(results.totalNeeded[treatedIndex] * 0.1)
-  // );
-  // console.log("totalNeededToDiagnosticTriage", totalNeededToDiagnosticTriage);
+  
   totalNeededToTreat =
     results.totalNeeded[treatedIndex] !== undefined &&
     !isNaN(results.totalNeeded[treatedIndex])
@@ -310,7 +294,21 @@ export default function ScenarioResults() {
   // }
 
   async function exportResults(tabContentId) {
-    const filename = `${params.scenario} ${getTimestamp()}.pdf`;
+    let filename;
+
+    if (params.checkedValues && params.checkedValues.length === 4) {
+        filename = `${t("results.screenTriageColposcopyTreatmentFilename")}_${getTimestamp()}.pdf`;
+    } else if (params.checkedValues && params.checkedValues.length === 3) {
+        if (params.checkedValues[2] === "ScreenDiagnosticTestTreat") {
+            filename = `${t("results.screenColposcopyTreatmentFilename")}_${getTimestamp()}.pdf`;
+        } else if (params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat") {
+            filename = `${t("results.screenTriageTreatmentFilename")}_${getTimestamp()}.pdf`;
+        } else {
+            filename = `${t("results.screenTreatmentFilename")}_${getTimestamp()}.pdf`;
+        }
+    } else {
+        filename = `${t("results.screenTreatmentFilename")}_${getTimestamp()}.pdf`;
+    }
 
     // Select all elements with the data-export attribute in the specified tab content and #tab4Content
     const activeTabContent = document.querySelectorAll(`#${tabContentId} [data-export]`);
@@ -329,7 +327,21 @@ export default function ScenarioResults() {
 
 
 function exportResultsExcel(tabContentId) {
-  const filename = `${params.scenario} ${getTimestamp()}.xlsx`;
+  let filename;
+
+    if (params.checkedValues && params.checkedValues.length === 4) {
+        filename = `${t("results.screenTriageColposcopyTreatmentFilename")}_${getTimestamp()}.xlsx`;
+    } else if (params.checkedValues && params.checkedValues.length === 3) {
+        if (params.checkedValues[2] === "ScreenDiagnosticTestTreat") {
+            filename = `${t("results.screenColposcopyTreatmentFilename")}_${getTimestamp()}.xlsx`;
+        } else if (params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat") {
+            filename = `${t("results.screenTriageTreatmentFilename")}_${getTimestamp()}.xlsx`;
+        } else {
+            filename = `${t("results.screenTreatmentFilename")}_${getTimestamp()}.xlsx`;
+        }
+    } else {
+        filename = `${t("results.screenTreatmentFilename")}_${getTimestamp()}.xlsx`;
+    }
   exportExcel(filename, tabContentId, t); // Pass the t function here
 }
 
