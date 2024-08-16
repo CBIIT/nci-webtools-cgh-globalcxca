@@ -17,6 +17,8 @@ import { runModel } from "../../services/models";
 import { exportPdf } from "../../services/pdf-utils";
 import { localeState } from "../../app.state";
 import { useTranslation, Trans } from "react-i18next";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { lossAtTriageTestPercent, 
   sensitivityOfTriageTestPercent, 
   lossAtColposcopyPercent, 
@@ -747,6 +749,17 @@ export default function CompareScenarios() {
                             <tr className="table-light">
                               <th>
                                 {t("results.totalRequiringColposcopyTest")}
+                                <OverlayTrigger
+                              overlay={
+                                <Tooltip id="totalRequiringColposcopy-help">
+                                  <span>{t("results.screeningColposcopyHelpText")}</span>
+                                </Tooltip>
+                              }
+                            >
+                              <span className="d-inline-block">
+                                <i className="ms-1 bi bi-question-circle"></i>
+                              </span>
+                            </OverlayTrigger>  
                               </th>
                               {scenarios.map(({ results }, index) => (
                                 <td className="text-end" key={index}>
@@ -943,10 +956,11 @@ export default function CompareScenarios() {
                                 <span
                                   dangerouslySetInnerHTML={{
                                     __html: t(
-                                      "runScenario.triageOrDiagnosticTestSensitivity"
+                                      "runScenario.triageTestSensitivity"
                                     ),
                                   }}
                                 />
+                      
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>
@@ -968,10 +982,11 @@ export default function CompareScenarios() {
                                 <span
                                   dangerouslySetInnerHTML={{
                                     __html: t(
-                                      "runScenario.triageOrDiagnosticTestSpecificity"
+                                      "runScenario.triageTestSpecificity"
                                     ),
                                   }}
                                 />
+                                
                               </th>
                               {scenarios.map((params, index) => (
                                 <td className="text-end" key={index}>

@@ -130,13 +130,13 @@ export default function RunScenarios() {
       newDivVisibilities[scenarios.length - 1] = true; // Keep "Treatment" always open
     } else {
       if (checked) {
-        console.log("CHECKED VALUE ", value);
+        //console.log("CHECKED VALUE ", value);
       
         
         // Add the checked value to the array
         updatedValues.push(value);
         
-        console.log("updatedValues--------- ", updatedValues)
+        //console.log("updatedValues--------- ", updatedValues)
 
         if (updatedValues.length == 3 && value === "ScreenDiagnosticTestTreat") {
           setForm((prevForm) => ({
@@ -159,7 +159,7 @@ export default function RunScenarios() {
         newDivVisibilities = newDivVisibilities.map((_, i) =>
           i === index || i === scenarios.length - 1 ? true : false
         );
-        console.log("newDivVisibilities ", newDivVisibilities)
+        //console.log("newDivVisibilities ", newDivVisibilities)
       } else {
         // Remove the unchecked value from the array
         updatedValues = updatedValues.filter((val) => val !== value);

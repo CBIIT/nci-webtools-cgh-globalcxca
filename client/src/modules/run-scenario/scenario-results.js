@@ -281,7 +281,21 @@ export default function ScenarioResults() {
 
   //console.log("totalNeededToTreat", totalNeededToTreat);
   function saveScenario() {
-    const filename = `${params.scenario} ${getTimestamp()}.scenario`;
+    let filename;
+
+    if (params.checkedValues && params.checkedValues.length === 4) {
+        filename = `${t("results.screenTriageColposcopyTreatmentFilename")}_${getTimestamp()}.scenario`;
+    } else if (params.checkedValues && params.checkedValues.length === 3) {
+        if (params.checkedValues[2] === "ScreenDiagnosticTestTreat") {
+            filename = `${t("results.screenColposcopyTreatmentFilename")}_${getTimestamp()}.scenario`;
+        } else if (params.checkedValues[2] === "ScreenTriageDiagnosticTestTreat") {
+            filename = `${t("results.screenTriageTreatmentFilename")}_${getTimestamp()}.scenario`;
+        } else {
+            filename = `${t("results.screenTreatmentFilename")}_${getTimestamp()}.scenario`;
+        }
+    } else {
+        filename = `${t("results.screenTreatmentFilename")}_${getTimestamp()}.scenario`;
+    }
     const type = "text/plain;charset=utf-8";
     const contents = JSON.stringify(params);
     saveAs(new Blob([contents]), filename, { type });
