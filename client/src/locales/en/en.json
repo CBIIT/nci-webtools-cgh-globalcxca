@@ -185,8 +185,10 @@
   },
   "results": {
     "screenDiagnosisTreatment": "Screening → Diagnosis → Treatment",
+    "screenColposcopyTreatment": "Screening → Colposcopy → Treatment",
     "screenTriageTreatment": "Screening → Triage → Treatment",
     "screenTriageDiagnosisTreatment": "Screening → Triage → Diagnosis → Treatment",
+    "screenTriageColposcopyTreatment": "Screening → Triage → Colposcopy → Treatment",
     "screenTreatment": "Screening → Treatment",
     "interventionsRequired": "Other interventions required in one year",
     "screeningBarChartTitle0": "Screening interventions required in one year",

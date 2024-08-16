@@ -155,5 +155,101 @@ export function lossAtTreatmentPercent(results, t, asPercent) {
       : t("general.NA");
   }
   
+export function calculateTotalRequiringScreen(results, t, locale) {
+    return results.totalNeeded[0] !== undefined && !isNaN(results.totalNeeded[0])
+      ? Math.round(results.totalNeeded[0]).toLocaleString(locale)
+      : t("general.NA");
+  }
+  
+  export function calculateTotalRequiringTriage(results, t, locale) {
+    const treatedIndex = results.totalNeeded.length - 1;
+  
+    if (results.scenario === "ScreenTreat") {
+      return t("general.NA");
+    }
+  
+    if (results.checkedValues && results.checkedValues.length === 4) {
+      return results.totalNeeded[treatedIndex - 2] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex - 2])
+        ? Math.round(results.totalNeeded[treatedIndex - 2]).toLocaleString(
+            locale
+          )
+        : t("general.NA");
+    }
+  
+    if (
+      results.checkedValues &&
+      results.checkedValues.length === 3 &&
+      results.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
+    ) {
+      return results.totalNeeded[treatedIndex - 1] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex - 1])
+        ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
+            locale
+          )
+        : t("general.NA");
+    }
+  
+    return t("general.NA");
+  }
+  
+  export function calculateTotalRequiringColposcopy(results, t, locale) {
+    const treatedIndex = results.totalNeeded.length - 1;
+  
+    if (results.scenario === "ScreenTreat") {
+      return results.totalNeeded[treatedIndex] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex])
+        ? Math.ceil(results.totalNeeded[treatedIndex] * 0.1).toLocaleString(
+            locale
+          )
+        : t("general.NA");
+    }
+  
+    if (results.checkedValues && results.checkedValues.length === 4) {
+      return results.totalNeeded[treatedIndex - 1] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex - 1])
+        ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
+            locale
+          )
+        : t("general.NA");
+    }
+  
+    if (
+      results.checkedValues &&
+      results.checkedValues.length === 3 &&
+      results.checkedValues[2] === "ScreenTriageDiagnosticTestTreat"
+    ) {
+      return results.totalNeeded[treatedIndex - 2] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex - 2])
+        ? Math.ceil(results.totalNeeded[treatedIndex] * 0.1).toLocaleString(
+            locale
+          )
+        : t("general.NA");
+    }
+  
+    if (
+      results.checkedValues &&
+      results.checkedValues.length === 3 &&
+      results.checkedValues[2] === "ScreenDiagnosticTestTreat"
+    ) {
+      return results.totalNeeded[treatedIndex - 2] !== undefined &&
+        !isNaN(results.totalNeeded[treatedIndex - 2])
+        ? Math.round(results.totalNeeded[treatedIndex - 1]).toLocaleString(
+            locale
+          )
+        : t("general.NA");
+    }
+  
+    return t("general.NA");
+  }
+  
+  export function calculateTotalRequiringTreat(results, t, locale) {
+    const treatedIndex = results.totalNeeded.length - 1;
+  
+    return results.totalNeeded[treatedIndex] !== undefined &&
+      !isNaN(results.totalNeeded[treatedIndex])
+      ? Math.ceil(results.totalNeeded[treatedIndex]).toLocaleString(locale)
+      : t("general.NA");
+  }
   
   

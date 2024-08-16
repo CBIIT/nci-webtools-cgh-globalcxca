@@ -63,7 +63,7 @@ export default function ScenarioResults() {
   const handleModalShow = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
 
-  console.log("params", params);
+  //åconsole.log("params", params);
   // console.log("result ------ ", results);
 
   const isSpanish = i18n.language === 'es';
@@ -73,7 +73,7 @@ export default function ScenarioResults() {
     results.checkedValues.length === 3 &&
     results.checkedValues[2] === "ScreenDiagnosticTestTreat"
   ) {
-    chartTiles = t("results.screenDiagnosisTreatment");
+    chartTiles = t("results.screenColposcopyTreatment");
     if (results.screentest[0] === "pap") {
       screenTest = "(" + t("runScenario.Pap") + ")";
     } else if (results.screentest[0] === "ivaa") {
@@ -138,7 +138,7 @@ export default function ScenarioResults() {
       triageTest = "";
     }
   } else if (results.checkedValues && results.checkedValues.length === 4) {
-    chartTiles = t("results.screenTriageDiagnosisTreatment");
+    chartTiles = t("results.screenTriageColposcopyTreatment");
 
     if (results.screentest[0] === "pap") {
       screenTest = "(" + t("runScenario.Pap") + ")";

@@ -17,7 +17,15 @@ import { runModel } from "../../services/models";
 import { exportPdf } from "../../services/pdf-utils";
 import { localeState } from "../../app.state";
 import { useTranslation, Trans } from "react-i18next";
-import { lossAtTriageTestPercent, sensitivityOfTriageTestPercent, lossAtColposcopyPercent, sensitivityOfColposcopyPercent, lossAtTreatmentPercent } from "../../services/calculateResult";
+import { lossAtTriageTestPercent, 
+  sensitivityOfTriageTestPercent, 
+  lossAtColposcopyPercent, 
+  sensitivityOfColposcopyPercent, 
+  lossAtTreatmentPercent,
+calculateTotalRequiringScreen,
+calculateTotalRequiringTriage,
+calculateTotalRequiringColposcopy,
+calculateTotalRequiringTreat } from "../../services/calculateResult";
 
 export default function CompareScenarios() {
   const { t } = useTranslation();
@@ -717,12 +725,7 @@ export default function CompareScenarios() {
                                   {/* {results.totalNeededToScreen?.toLocaleString(
                                     locale
                                   ) ?? "N/A"} */}
-                                  {results.totalNeeded[0] !== undefined &&
-                                  !isNaN(results.totalNeeded[0])
-                                    ? Math.round(
-                                        results.totalNeeded[0]
-                                      ).toLocaleString(locale)
-                                    : t("general.NA")}
+                                  {calculateTotalRequiringScreen(results, t, locale)}
                                 </td>
                               ))}
                             </tr>
@@ -737,38 +740,7 @@ export default function CompareScenarios() {
                                   {/* {results.totalNeededToTriage?.toLocaleString(
                                     locale
                                   ) ?? "N/A"} */}
-                                  {results.scenario === "ScreenTreat"
-                                    ? t("general.NA")
-                                    : results.scenario ===
-                                      "ScreenTriageDiagnosticTestTreat"
-                                    ? results.totalNeeded[
-                                        results.totalNeeded.length - 1 - 2
-                                      ] !== undefined &&
-                                      !isNaN(
-                                        results.totalNeeded[
-                                          results.totalNeeded.length - 1 - 2
-                                        ]
-                                      )
-                                      ? Math.round(
-                                          results.totalNeeded[
-                                            results.totalNeeded.length - 1 - 2
-                                          ]
-                                        ).toLocaleString(locale)
-                                      : t("general.NA")
-                                    : results.totalNeeded[
-                                        results.totalNeeded.length - 1 - 1
-                                      ] !== undefined &&
-                                      !isNaN(
-                                        results.totalNeeded[
-                                          results.totalNeeded.length - 1 - 1
-                                        ]
-                                      )
-                                    ? Math.round(
-                                        results.totalNeeded[
-                                          results.totalNeeded.length - 1 - 1
-                                        ]
-                                      ).toLocaleString(locale)
-                                    : t("general.NA")}
+                                  {calculateTotalRequiringTriage(results, t, locale)}
                                 </td>
                               ))}
                             </tr>
@@ -781,25 +753,7 @@ export default function CompareScenarios() {
                                   {/* {results.totalNeededToDiagnosticTriage?.toLocaleString(
                                     locale
                                   ) ?? "N/A"} */}
-                                  {results.scenario === "ScreenTreat"
-                                    ? t("general.NA")
-                                    : results.scenario ===
-                                      "ScreenTriageDiagnosticTestTreat"
-                                    ? results.totalNeeded[
-                                        results.totalNeeded.length - 1 - 1
-                                      ] !== undefined &&
-                                      !isNaN(
-                                        results.totalNeeded[
-                                          results.totalNeeded.length - 1 - 1
-                                        ]
-                                      )
-                                      ? Math.round(
-                                          results.totalNeeded[
-                                            results.totalNeeded.length - 1 - 1
-                                          ]
-                                        ).toLocaleString(locale)
-                                      : t("general.NA")
-                                    : t("general.NA")}
+                                  {calculateTotalRequiringColposcopy(results, t, locale)}
                                 </td>
                               ))}
                             </tr>
@@ -810,20 +764,7 @@ export default function CompareScenarios() {
                                   {/* {results.totalNeededToTreat?.toLocaleString(
                                     locale
                                   ) ?? "N/A"} */}
-                                  {results.totalNeeded[
-                                    results.totalNeeded.length - 1
-                                  ] !== undefined &&
-                                  !isNaN(
-                                    results.totalNeeded[
-                                      results.totalNeeded.length - 1
-                                    ]
-                                  )
-                                    ? Math.round(
-                                        results.totalNeeded[
-                                          results.totalNeeded.length - 1
-                                        ]
-                                      ).toLocaleString(locale)
-                                    : t("general.NA")}
+                                  {calculateTotalRequiringTreat(results, t, locale)}
                                 </td>
                               ))}
                             </tr>

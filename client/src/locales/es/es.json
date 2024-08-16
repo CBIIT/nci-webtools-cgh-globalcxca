@@ -180,8 +180,10 @@
     "proportionOfPositivesInfo": "Proporción de las que tienen resultado de VPH positiva que también tienen resultado positiva a VPH16 o VPH18"  },
   "results": {
     "screenDiagnosisTreatment": "Tamizaje → Diagnóstico → Tratamiento",
+    "screenColposcopyTreatment": "Screening → Colposcopia → Treatment",
     "screenTriageTreatment": "Tamizaje → Triaje → Tratamiento",
     "screenTriageDiagnosisTreatment": "Tamizaje → Triaje → Diagnóstico → Tratamiento",
+    "screenTriageColposcopyTreatment": "Screening → Triage → Colposcopia → Treatment",
     "screenTreatment": "Tamizaje → Tratamiento",
     "interventionsRequired": "Otras intervenciones requeridas en un año",
     "screeningBarChartTitle0": "Tamizaje requeridas en un año",
