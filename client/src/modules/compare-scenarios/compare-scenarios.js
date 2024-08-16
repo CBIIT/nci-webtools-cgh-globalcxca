@@ -131,7 +131,7 @@ export default function CompareScenarios() {
     await new Promise((resolve) => setTimeout(resolve, 500));
     setActiveTab(defaultTab);
 
-    const filename = `ScenarioComparison ${getTimestamp()}.pdf`;
+    const filename = `ScenarioComparison_${getTimestamp()}.pdf`;
     const nodes = Array.from(document.querySelectorAll("[data-export]"));
     const maxWidth = Math.max(...nodes.map((n) => n.offsetWidth));
 
