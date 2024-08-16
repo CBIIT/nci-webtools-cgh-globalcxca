@@ -17,6 +17,7 @@ import { runModel } from "../../services/models";
 import { exportPdf } from "../../services/pdf-utils";
 import { localeState } from "../../app.state";
 import { useTranslation, Trans } from "react-i18next";
+import { lossAtTriageTestPercent, sensitivityOfTriageTestPercent, lossAtColposcopyPercent, sensitivityOfColposcopyPercent, lossAtTreatmentPercent } from "../../services/calculateResult";
 
 export default function CompareScenarios() {
   const { t } = useTranslation();
@@ -494,46 +495,7 @@ export default function CompareScenarios() {
                                   {/* {asPercent(
                                     results.percentMissedDueToLossAtTriage
                                   ) ?? "N/A"} */}
-                                  {results.scenario === "ScreenTreat" ||
-                                  (results.scenario ===
-                                    "ScreenDiagnosticTestTreat" &&
-                                    results.checkedValues[2] ===
-                                      "ScreenDiagnosticTestTreat")
-                                    ? t("general.NA")
-                                    : results.scenario ===
-                                        "ScreenTriageDiagnosticTestTreat" ||
-                                      (results.scenario ===
-                                        "ScreenDiagnosticTestTreat" &&
-                                        results.checkedValues[2] ===
-                                          "ScreenTriageDiagnosticTestTreat")
-                                    ? results.percentMissed[
-                                        results.totalNeeded.length - 1 - 2
-                                      ] !== undefined &&
-                                      !isNaN(
-                                        results.percentMissed[
-                                          results.totalNeeded.length - 1 - 2
-                                        ]
-                                      )
-                                      ? asPercent(
-                                          results.percentMissed[
-                                            results.totalNeeded.length - 1 - 2
-                                          ]
-                                        )
-                                      : t("general.NA")
-                                    : results.percentMissed[
-                                        results.totalNeeded.length - 1 - 1
-                                      ] !== undefined &&
-                                      !isNaN(
-                                        results.percentMissed[
-                                          results.totalNeeded.length - 1 - 1
-                                        ]
-                                      )
-                                    ? asPercent(
-                                        results.percentMissed[
-                                          results.totalNeeded.length - 1 - 1
-                                        ]
-                                      )
-                                    : t("general.NA")}
+                                  {lossAtTriageTestPercent(results, t, asPercent)}
                                 </td>
                               ))}
                             </tr>
@@ -602,46 +564,7 @@ export default function CompareScenarios() {
                                   {/* {asPercent(
                                     results.percentMissedDueToSensitivityOfTriageTest
                                   ) ?? "N/A"} */}
-                                  {results.scenario === "ScreenTreat" ||
-                                  (results.scenario ===
-                                    "ScreenDiagnosticTestTreat" &&
-                                    results.checkedValues[2] ===
-                                      "ScreenDiagnosticTestTreat")
-                                    ? t("general.NA")
-                                    : results.scenario ===
-                                        "ScreenTriageDiagnosticTestTreat" ||
-                                      (results.scenario ===
-                                        "ScreenDiagnosticTestTreat" &&
-                                        results.checkedValues[2] ===
-                                          "ScreenTriageDiagnosticTestTreat")
-                                    ? results.percentMissedDueToSensitivity[
-                                        results.totalNeeded.length - 1 - 2
-                                      ] !== undefined &&
-                                      !isNaN(
-                                        results.percentMissedDueToSensitivity[
-                                          results.totalNeeded.length - 1 - 2
-                                        ]
-                                      )
-                                      ? asPercent(
-                                          results.percentMissedDueToSensitivity[
-                                            results.totalNeeded.length - 1 - 2
-                                          ]
-                                        )
-                                      : "NA"
-                                    : results.percentMissedDueToSensitivity[
-                                        results.totalNeeded.length - 1 - 1
-                                      ] !== undefined &&
-                                      !isNaN(
-                                        results.percentMissedDueToSensitivity[
-                                          results.totalNeeded.length - 1 - 1
-                                        ]
-                                      )
-                                    ? asPercent(
-                                        results.percentMissedDueToSensitivity[
-                                          results.totalNeeded.length - 1 - 1
-                                        ]
-                                      )
-                                    : t("general.NA")}
+                                  {sensitivityOfTriageTestPercent(results, t, asPercent)}
                                 </td>
                               ))}
                             </tr>
@@ -686,29 +609,7 @@ export default function CompareScenarios() {
                                   {/* {asPercent(
                                     results.percentMissedDueToLossAtDiagnosticTriage
                                   ) ?? "N/A"} */}
-                                  {results.scenario === "ScreenTreat"
-                                    ? t("general.NA")
-                                    : results.scenario ===
-                                        "ScreenTriageDiagnosticTestTreat" ||
-                                      (results.scenario ===
-                                        "ScreenDiagnosticTestTreat" &&
-                                        results.checkedValues[2] ===
-                                          "ScreenDiagnosticTestTreat")
-                                    ? results.percentMissed[
-                                        results.totalNeeded.length - 1 - 1
-                                      ] !== undefined &&
-                                      !isNaN(
-                                        results.percentMissed[
-                                          results.totalNeeded.length - 1 - 1
-                                        ]
-                                      )
-                                      ? asPercent(
-                                          results.percentMissed[
-                                            results.totalNeeded.length - 1 - 1
-                                          ]
-                                        )
-                                      : t("general.NA")
-                                    : t("general.NA")}
+                                  {lossAtColposcopyPercent(results, t, asPercent)}
                                 </td>
                               ))}
                             </tr>
@@ -760,29 +661,7 @@ export default function CompareScenarios() {
                                   {/* {asPercent(
                                     results.percentMissedDueToSensitivityOfDiagnosticTriageTest
                                   ) ?? "N/A"} */}
-                                  {results.scenario === "ScreenTreat"
-                                    ? t("general.NA")
-                                    : results.scenario ===
-                                        "ScreenTriageDiagnosticTestTreat" ||
-                                      (results.scenario ===
-                                        "ScreenDiagnosticTestTreat" &&
-                                        results.checkedValues[2] ===
-                                          "ScreenDiagnosticTestTreat")
-                                    ? results.percentMissedDueToSensitivity[
-                                        results.totalNeeded.length - 1 - 1
-                                      ] !== undefined &&
-                                      !isNaN(
-                                        results.percentMissedDueToSensitivity[
-                                          results.totalNeeded.length - 1 - 1
-                                        ]
-                                      )
-                                      ? asPercent(
-                                          results.percentMissedDueToSensitivity[
-                                            results.totalNeeded.length - 1 - 1
-                                          ]
-                                        )
-                                      : t("general.NA")
-                                    : t("general.NA")}
+                                  {sensitivityOfColposcopyPercent(results, t, asPercent)}
                                 </td>
                               ))}
                             </tr>
@@ -818,11 +697,7 @@ export default function CompareScenarios() {
                                   {/* {asPercent(
                                     results.percentMissedDueToLossAtTreatment
                                   ) ?? "N/A"} */}
-                                  {asPercent(
-                                    results.percentMissed[
-                                      results.totalNeeded.length - 1
-                                    ]
-                                  ) ?? t("general.NA")}
+                                  {lossAtTreatmentPercent(results, t, asPercent)}
                                 </td>
                               ))}
                             </tr>
