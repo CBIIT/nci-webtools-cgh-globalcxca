@@ -189,7 +189,7 @@ export default function RunScenarios() {
             diagnosticTest: prevForm.diagnosticTest || "colposcopyWithBiopsy",
             diagnosticTestSensitivity: prevForm.diagnosticTestSensitivity || 80,
             diagnosticTestSpecificity: prevForm.diagnosticTestSpecificity || 85,
-            percentTriaged: storedPercentTriaged , // Keep the previous value or default
+            percentTriaged: storedPercentTriaged || 0, // Keep the previous value or default
         }));
     }
 
