@@ -59,6 +59,9 @@ export default function RunScenarios() {
   const [hpv16or18Used, setHpv16or18Used] = useState(false); // Initialize with false
   const [hpvUsed, setHpvUsed] = useState(false); // Initialize with false
   const [hpv16or18GenotypingTriageUsed, setHpv16or18GenotypingTriageUsed] = useState(false); // Initialize with false
+  const [storedPercentTriaged, setStoredPercentTriaged] = useState(null);
+
+
 
   useEffect(() => {
     if (
@@ -138,23 +141,58 @@ export default function RunScenarios() {
         
         //console.log("updatedValues--------- ", updatedValues)
 
-        if (updatedValues.length == 3 && value === "ScreenDiagnosticTestTreat") {
-          setForm((prevForm) => ({
-            ...prevForm,
-            triageTest: "colposcopyWithBiopsy",
-            triageTestSensitivity: 80,
-            triageTestSpecificity: 85,
-          }));
-        }
+        // if (updatedValues.length === 3 && value === "ScreenDiagnosticTestTreat") {
+        //   setForm((prevForm) => ({
+        //     ...prevForm,
+        //     triageTest: "colposcopyWithBiopsy",
+        //     triageTestSensitivity: 80,
+        //     triageTestSpecificity: 85,
+        //   }));
+        // }
 
-        if (updatedValues.length == 4) {
+        // if (updatedValues.length === 4) {
+        //   setForm((prevForm) => ({
+        //     ...prevForm,
+        //     diagnosticTest: "colposcopyWithBiopsy",
+        //     diagnosticTestSensitivity: 80,
+        //     diagnosticTestSpecificity: 85,
+        //   }));
+        // }
+
+
+        if (updatedValues.length === 3 && updatedValues.includes("ScreenDiagnosticTestTreat")) {
+          //console.log("RESTORE COLPOSCOPY VALUES");
           setForm((prevForm) => ({
-            ...prevForm,
-            diagnosticTest: "colposcopyWithBiopsy",
-            diagnosticTestSensitivity: 80,
-            diagnosticTestSpecificity: 85,
+              ...prevForm,
+              diagnosticTest: prevForm.diagnosticTest || "colposcopyWithBiopsy",
+              diagnosticTestSensitivity: prevForm.diagnosticTestSensitivity || 80,
+              diagnosticTestSpecificity: prevForm.diagnosticTestSpecificity || 85,
+              percentDiagnosticTriaged: prevForm.percentDiagnosticTriaged , // Keep the previous value or default
           }));
-        }
+      }
+
+      if (updatedValues.length === 3 && updatedValues.includes("ScreenTriageDiagnosticTestTreat")) {
+          //console.log("RESTORE TRIAGE VALUES");
+          setForm((prevForm) => ({
+              ...prevForm,
+              triageTest: prevForm.triageTest || "ivaa",
+              triageTestSensitivity: prevForm.triageTestSensitivity || 60,
+              triageTestSpecificity: prevForm.triageTestSpecificity || 84,
+              percentTriaged: prevForm.percentTriaged , // Keep the previous value or default
+          }));
+      }
+
+      if (updatedValues.length === 4 ) {
+        //console.log("RESTORE ALL VALUES");
+        setForm((prevForm) => ({
+            ...prevForm,
+            diagnosticTest: prevForm.diagnosticTest || "colposcopyWithBiopsy",
+            diagnosticTestSensitivity: prevForm.diagnosticTestSensitivity || 80,
+            diagnosticTestSpecificity: prevForm.diagnosticTestSpecificity || 85,
+            percentTriaged: storedPercentTriaged , // Keep the previous value or default
+        }));
+    }
+
         // Update visibility of the div corresponding to the checked checkbox
         newDivVisibilities = newDivVisibilities.map((_, i) =>
           i === index || i === scenarios.length - 1 ? true : false
@@ -175,19 +213,40 @@ export default function RunScenarios() {
         //   }));
         // }
 
-        if (value === "ScreenTriageDiagnosticTestTreat" || updatedValues.length < 4) {
+        // if (value === "ScreenTriageDiagnosticTestTreat" || updatedValues.length < 4) {
+        //   setForm((prevForm) => ({
+        //     ...prevForm,
+        //     diagnosticTest: "",
+        //     diagnosticTestSensitivity: 0,
+        //     diagnosticTestSpecificity: 0,
+        //   }));
+        // }
+        if (value === "ScreenTriageDiagnosticTestTreat") {
+          //console.log("UNCHECKING TRIAGE");
+          setStoredPercentTriaged(form.percentTriaged); // Store the current value
           setForm((prevForm) => ({
-            ...prevForm,
-            diagnosticTest: "",
-            diagnosticTestSensitivity: 0,
-            diagnosticTestSpecificity: 0,
+              ...prevForm,
+              percentDiagnosticTriaged: prevForm.percentDiagnosticTriaged || 73, // Preserve the colposcopy percent value
+              triageTestSensitivity: prevForm.triageTestSensitivity,
+              triageTestSpecificity: prevForm.triageTestSpecificity,
+              percentTriaged: prevForm.percentTriaged, // Preserve the triage percent value
           }));
-        }
+      } else if (value === "ScreenDiagnosticTestTreat") {
+          //console.log("UNCHECKING COLPOSCOPY");
+          setStoredPercentTriaged(form.percentTriaged); // Store the current value
+          setForm((prevForm) => ({
+              ...prevForm,
+              diagnosticTestSensitivity: prevForm.diagnosticTestSensitivity,
+              diagnosticTestSpecificity: prevForm.diagnosticTestSpecificity,
+              percentDiagnosticTriaged: prevForm.percentDiagnosticTriaged, // Preserve the colposcopy percent value
+          }));
+      }
 
       }
     }
 
     //console.log("FORM ---- ", form);
+    //console.log("updatedValues ", updatedValues);
 
     // Update the state
     setDivVisibilities(newDivVisibilities);
