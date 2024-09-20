@@ -2213,7 +2213,7 @@ export default function RunScenarios() {
                                                         %
                                                       </span>
                                                     </InputGroup> */}
-                                                    <InputGroup
+                                                    {/* <InputGroup
                                                       className={`flex-nowrap ${
                                                         hpv16or18Used
                                                           ? "grayed-out"
@@ -2250,6 +2250,28 @@ export default function RunScenarios() {
                                                           ? 100
                                                           : form.percentDiagnosticTriaged}{" "}
                                                         %
+                                                      </span>
+                                                    </InputGroup>  */}
+                                                    <InputGroup className="flex-nowrap">
+                                                      <Form.Range
+                                                        type="number"
+                                                        min="0"
+                                                        max="100"
+                                                        step="1"
+                                                        className="border-end-0 me-2"
+                                                        placeholder="Enter 0 - 100"
+                                                        name="percentTriaged"
+                                                        value={form.percentTriaged}
+                                                        onChange={handleChange}
+                                                        onWheel={(e) =>
+                                                          e.target.blur()
+                                                        }
+                                                        required={[
+                                                          "ScreenTriageDiagnosticTestTreat",
+                                                        ].includes(form.scenario)}
+                                                      />
+                                                      <span className="text-nowrap">
+                                                        {form.percentTriaged} %
                                                       </span>
                                                     </InputGroup>
                                                   </Col>
@@ -3439,7 +3461,7 @@ export default function RunScenarios() {
                                                 xs={12}
                                                 className="d-flex flex-column m-auto"
                                               >
-                                                <InputGroup className="flex-nowrap">
+                                                {/* <InputGroup className="flex-nowrap">
                                                   <Form.Range
                                                     type="number"
                                                     min="0"
@@ -3460,6 +3482,45 @@ export default function RunScenarios() {
                                                   <span className="text-nowrap">
                                                     {form.percentTriaged} %
                                                   </span>
+                                                </InputGroup> */}
+                                                <InputGroup
+                                                      className={`flex-nowrap ${
+                                                        hpv16or18Used
+                                                          ? "grayed-out"
+                                                          : ""
+                                                      }`}
+                                                    >
+                                                      <Form.Range
+                                                        type="number"
+                                                        min="0"
+                                                        max="100"
+                                                        step="1"
+                                                        className="border-end-0 me-2"
+                                                        placeholder="Enter 0 - 100"
+                                                        name="percentDiagnosticTriaged"
+                                                        value={
+                                                          hpv16or18Used
+                                                            ? 100
+                                                            : form.percentDiagnosticTriaged
+                                                        }
+                                                        onChange={handleChange}
+                                                        onWheel={(e) =>
+                                                          e.target.blur()
+                                                        }
+                                                        required={[
+                                                          "ScreenDiagnosticTestTreat",
+                                                          "ScreenTriageDiagnosticTestTreat",
+                                                        ].includes(
+                                                          form.scenario
+                                                        )}
+                                                        disabled={hpv16or18Used}
+                                                      />
+                                                      <span className="text-nowrap">
+                                                        {hpv16or18Used
+                                                          ? 100
+                                                          : form.percentDiagnosticTriaged}{" "}
+                                                        %
+                                                      </span>
                                                 </InputGroup>
                                               </Col>
                                             </Form.Group>

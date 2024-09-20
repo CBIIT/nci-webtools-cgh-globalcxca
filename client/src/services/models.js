@@ -780,6 +780,8 @@ export function calculateValues(
   //sensitivity[1] - diagnosis
   //sensitivity[2] - triage
 
+  console.log("stages ", stages);
+
   for (let stage = 1; stage <= stages; stage++) {
     untestedPositives[stage] =
       testedTruePositives[stage - 1] * (1 - coverage[stage]);
@@ -817,6 +819,7 @@ export function calculateValues(
   const denominator = 100 - Math.round(percentHealthyOvertreated);
   const epsilon = 0.00000001; // Small non-zero value
   const adjustedDenominator = denominator !== 0 ? denominator : epsilon;
+  console.log("adjustedDenominator ", adjustedDenominator);
   const healthyOvertreated =
     (testedFalsePositives[0] * percentHealthyOvertreated) / adjustedDenominator;
 
