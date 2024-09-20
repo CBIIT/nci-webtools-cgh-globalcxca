@@ -811,8 +811,7 @@ export function calculateValues(
     (100 * testedPositives[stages + 1]) / testedTruePositives[0];
   const percentHealthyOvertreated =
     (100 * testedNegatives[stages + 1]) / testedFalsePositives[0];
-  const percentHealthyNotOvertreated = 100 - percentHealthyOvertreated;
-  //console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated)
+  const percentHealthyNotOvertreated_unrounded = 100 - percentHealthyOvertreated;
   // const healthyOvertreated =
   //   (percentHealthyOvertreated * testedFalsePositives[0]) / 100;
   // const healthyOvertreated =
@@ -822,6 +821,7 @@ export function calculateValues(
   const epsilon = 0.00000001; // Small non-zero value
   const adjustedDenominator = denominator !== 0 ? denominator : epsilon;
   //console.log("adjustedDenominator ", adjustedDenominator);
+  const percentHealthyNotOvertreated = percentHealthyNotOvertreated_unrounded !== 0 ? percentHealthyNotOvertreated_unrounded: epsilon;
   const healthyOvertreated =
     (testedFalsePositives[0] * percentHealthyOvertreated) / adjustedDenominator;
   //console.log("healthyOvertreated ", healthyOvertreated);
