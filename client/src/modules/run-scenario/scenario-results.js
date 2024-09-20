@@ -63,8 +63,8 @@ export default function ScenarioResults() {
   const handleModalShow = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
 
-  console.log("params", params);
-  console.log("result ------ ", results);
+  //console.log("params", params);
+  //console.log("result ------ ", results);
 
   const isSpanish = i18n.language === 'es';
  //console.log("LANGUAGE ", i18n.language)
@@ -204,7 +204,7 @@ export default function ScenarioResults() {
   // }
 
   const treatedIndex = results.totalNeeded.length - 1;
-  console.log("treatedIndex --- ", treatedIndex);
+  //console.log("treatedIndex --- ", treatedIndex);
   let totalNeededToScreen,
     totalNeededToTriage,
     totalNeededToDiagnosticTriage,

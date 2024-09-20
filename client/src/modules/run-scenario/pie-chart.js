@@ -191,7 +191,7 @@ function d3PieChart(
 
   // Calculate total value.
   const totalValue = d3.sum(I, (i) => V[i]);
-  console.log("totalValue ", totalValue);
+  //console.log("totalValue ", totalValue);
 
   // Calculate percentages.
   const percentages = I.map((i) => (V[i] / totalValue) * 100);

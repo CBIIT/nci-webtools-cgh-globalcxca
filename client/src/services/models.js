@@ -781,7 +781,7 @@ export function calculateValues(
   //sensitivity[1] - diagnosis
   //sensitivity[2] - triage
 
-  console.log("stages ", stages);
+  //console.log("stages ", stages);
 
   for (let stage = 1; stage <= stages; stage++) {
     untestedPositives[stage] =
@@ -812,7 +812,7 @@ export function calculateValues(
   const percentHealthyOvertreated =
     (100 * testedNegatives[stages + 1]) / testedFalsePositives[0];
   const percentHealthyNotOvertreated = 100 - percentHealthyOvertreated;
-  console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated)
+  //console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated)
   // const healthyOvertreated =
   //   (percentHealthyOvertreated * testedFalsePositives[0]) / 100;
   // const healthyOvertreated =
@@ -821,14 +821,14 @@ export function calculateValues(
   const denominator = 100 - Math.round(percentHealthyOvertreated);
   const epsilon = 0.00000001; // Small non-zero value
   const adjustedDenominator = denominator !== 0 ? denominator : epsilon;
-  console.log("adjustedDenominator ", adjustedDenominator);
+  //console.log("adjustedDenominator ", adjustedDenominator);
   const healthyOvertreated =
     (testedFalsePositives[0] * percentHealthyOvertreated) / adjustedDenominator;
-  console.log("healthyOvertreated ", healthyOvertreated);
-  console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated);
+  //console.log("healthyOvertreated ", healthyOvertreated);
+  //console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated);
   // Calculate healthyNotOvertreated, the number of true negatives
   const healthyNotOvertreated = 100 * healthyOvertreated /percentHealthyOvertreated;
-  console.log("healthyNotOvertreated ", healthyNotOvertreated)
+  //console.log("healthyNotOvertreated ", healthyNotOvertreated)
 
   let numberPrecancersMissed = 0;
 
