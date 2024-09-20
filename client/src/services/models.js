@@ -766,6 +766,7 @@ export function calculateValues(
 
   const populationTargeted = populationSize / screeningInterval;
 
+
   // Stage 0 (initial conditions)
   testedFalsePositives[0] =
     (populationSize / screeningInterval) * (1 - cinPrevalence);
@@ -810,7 +811,8 @@ export function calculateValues(
     (100 * testedPositives[stages + 1]) / testedTruePositives[0];
   const percentHealthyOvertreated =
     (100 * testedNegatives[stages + 1]) / testedFalsePositives[0];
-
+  const percentHealthyNotOvertreated = 100 - percentHealthyOvertreated;
+  console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated)
   // const healthyOvertreated =
   //   (percentHealthyOvertreated * testedFalsePositives[0]) / 100;
   // const healthyOvertreated =
@@ -822,6 +824,11 @@ export function calculateValues(
   console.log("adjustedDenominator ", adjustedDenominator);
   const healthyOvertreated =
     (testedFalsePositives[0] * percentHealthyOvertreated) / adjustedDenominator;
+  console.log("healthyOvertreated ", healthyOvertreated);
+  console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated);
+  // Calculate healthyNotOvertreated, the number of true negatives
+  const healthyNotOvertreated = 100 * healthyOvertreated /percentHealthyOvertreated;
+  console.log("healthyNotOvertreated ", healthyNotOvertreated)
 
   let numberPrecancersMissed = 0;
 
@@ -899,11 +906,13 @@ export function calculateValues(
     percentPrecancersTreated,
     percentHealthyOvertreated,
     healthyOvertreated,
+    healthyNotOvertreated,  // Add this line for the number of true negatives
     numberPrecancersMissed,
     percentMissed,
     percentMissedDueToSensitivity,
     percentPrecancersMissed,
     totalNeeded,
+    percentHealthyNotOvertreated,  
     checkedValues,
   };
 }

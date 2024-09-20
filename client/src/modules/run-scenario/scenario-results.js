@@ -3076,7 +3076,8 @@ function exportResultsExcel(tabContentId) {
                           data={[
                             {
                               label: t("results.populationNotOverTreated"),
-                              value: +results.testedFalsePositives[0],
+                              //value: +results.testedFalsePositives[0],
+                              value: +results.healthyNotOvertreated,
                             },
                             {
                               label: t("results.pPrecencersOverTreated"),
