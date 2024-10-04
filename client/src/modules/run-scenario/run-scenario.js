@@ -348,11 +348,20 @@ export default function RunScenarios() {
         (1 - (form.hpvPrevalence / 100) * (form.proportionOfPositives / 100)) *
         100
       ).toFixed(1);
-      setForm((prevForm) => ({
-        ...prevForm,
-        screeningTestSensitivity: tests.hpv?.sensitivity || 0,
-        screeningTestSpecificity: updatedSpecificity,
-      }));
+      if(form.screeningTest === "hpv16or18" ){
+        setForm((prevForm) => ({
+          ...prevForm,
+          screeningTestSensitivity: tests.hpv16or18?.sensitivity || 0,
+          screeningTestSpecificity: updatedSpecificity,
+        }));
+      }else {
+        setForm((prevForm) => ({
+          ...prevForm,
+          screeningTestSensitivity: tests.hpv?.sensitivity || 0,
+          screeningTestSpecificity: updatedSpecificity,
+        }));
+      }
+      
     } else {
       // Set specificity based on the selected screening test
       setForm((prevForm) => ({

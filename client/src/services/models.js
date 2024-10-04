@@ -132,7 +132,7 @@ export const tests = {
 // }
 
 export function runModel(params) {
-  //console.log("PARMS ****---- ", params);
+  console.log("PARMS ****---- ", params);
   const t = i18n.t;
 
   const scenario = params.scenario;
@@ -170,10 +170,10 @@ export function runModel(params) {
     coverage[2] = parseInt(params?.percentTreated, 10) / 100 || 0;
   }
 
-  // console.log("coverage ", coverage);
-  // console.log("sensitivity ", sensitivity);
-  // console.log("specificity ", specificity);
-  // console.log("screentest", screentest);
+   console.log("coverage ", coverage);
+   console.log("sensitivity ", sensitivity);
+   console.log("specificity ", specificity);
+   console.log("screentest", screentest);
   if (
     params.checkedValues &&
     params.checkedValues.length === 3 &&
@@ -184,8 +184,8 @@ export function runModel(params) {
     sensitivity[0] = parseInt(params?.triageTestSensitivity, 10) / 100 || 0;
     specificity[0] = parseInt(params?.triageTestSpecificity, 10) / 100 || 0;
   }
-  // console.log("sensitivity-after ", sensitivity);
-  // console.log("specificity-after ", specificity);
+   console.log("sensitivity-after ", sensitivity);
+   console.log("specificity-after ", specificity);
   return calculateValues(
     scenario,
     screentest,
@@ -820,12 +820,12 @@ export function calculateValues(
   const denominator = 100 - Math.round(percentHealthyOvertreated);
   const epsilon = 0.00000001; // Small non-zero value
   const adjustedDenominator = denominator !== 0 ? denominator : epsilon;
-  //console.log("adjustedDenominator ", adjustedDenominator);
+  console.log("adjustedDenominator ", adjustedDenominator);
   const percentHealthyNotOvertreated = percentHealthyNotOvertreated_unrounded !== 0 ? percentHealthyNotOvertreated_unrounded: epsilon;
   const healthyOvertreated =
     (testedFalsePositives[0] * percentHealthyOvertreated) / adjustedDenominator;
-  //console.log("healthyOvertreated ", healthyOvertreated);
-  //console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated);
+  console.log("healthyOvertreated ", healthyOvertreated);
+  console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated);
   // Calculate healthyNotOvertreated, the number of true negatives
   const healthyNotOvertreated = 100 * healthyOvertreated /percentHealthyOvertreated;
   //console.log("healthyNotOvertreated ", healthyNotOvertreated)
