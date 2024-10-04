@@ -329,6 +329,10 @@
     "prevalenceSourcesJustification": "The prevalence of HPV is highly variable by age, immune status and geography. For women age 30-49, the prevalence is generally around 11-12%. For women under age 25, HPV prevalence is typically much higher, and infections usually resolve within one year. Given geographic variations, we encourage users who do not know the HPV prevalence in their setting to use prevalence estimates based upon observed results among women of similar age in local screening programs or neighboring countries. This tool is not meant for HIV-endemic populations due to variations in HPV epidemiology.",
     "fixedAt100HPV":"Fixed at 100-HPV prevalence/",
     "fixedAt100HPV1618" :"Fixed at 100-(HPV prevalence x percent of HPV+ that are HPV 16/18+/)",
+    "proportionOfPositiveIncludingHPV1618":"Proportion of Positives including HPV 16/18",
+    "proportionOfPositiveIncludingHPV1618_Justification":"In the general population, the percent of those testing HPV positive with HPV16/18 varies slightly geographically. It is recommended to use preliminary or established data from the screening program or a neighbor settings.",
+    "proportionOfPositiveIncludingHPV1618_Source1":"Guan P, Howell-Jones R, Li N, Bruni L, de Sanjosé S, Franceschi S, Clifford GM. Human papillomavirus types in 115,789 HPV-positive women: a meta-analysis from cervical infection to cancer. Int J Cancer. 2012 Nov 15;131(10):2349-59. doi: 10.1002/ijc.27485. Epub 2012 Mar 20. PMID: 22323075.",
+    "proportionOfPositiveIncludingHPV1618_Source2":"Forman D, de Martel C, Lacey CJ, Soerjomataram I, Lortet-Tieulent J, Bruni L, Vignat J, Ferlay J, Bray F, Plummer M, Franceschi S. Global burden of human papillomavirus and related diseases. Vaccine. 2012 Nov 20;30 Suppl 5:F12-23. doi: 10.1016/j.vaccine.2012.07.055. PMID: 23199955.",
     "": ""
   }
 }

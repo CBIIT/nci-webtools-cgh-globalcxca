@@ -97,6 +97,19 @@ export default function About() {
                   </tr>
                 </thead>
                 <tbody>
+                <tr>
+                    <td>{t("about.proportionOfPositiveIncludingHPV1618")}</td>
+                    <td>10%</td>
+                    <td>40%</td>
+                    <td>25%</td>
+                    <td>
+                      <p>{t("about.proportionOfPositiveIncludingHPV1618_Justification")}</p>
+                    </td>
+                    <td>
+                      <p>{t("about.proportionOfPositiveIncludingHPV1618_Source1")}</p>
+                      <p>{t("about.proportionOfPositiveIncludingHPV1618_Source2")}</p>
+                    </td>
+                  </tr>
                   <tr>
                     <td>{t("about.hpvPrevelence")}</td>
                     <td>5%</td>

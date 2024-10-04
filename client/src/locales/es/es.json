@@ -316,6 +316,10 @@
     "prevalenceSourcesJustification": "La prevalencia del VPH varía mucho según la edad, el estatus inmunológico y la geografía. Para mujeres de entre 30 y 49 años, la prevalencia es generalmente alrededor de 11-12%. Para mujeres menores de 25 años de edad, la prevalencia de VPH es típicamente mucho más alta y las infecciones usualmente se resuelven dentro de un año. Dadas las variaciones geográficas, alentamos a los usuarios de esta herramienta que no conocieran la prevalencia de VPH en sus poblaciones objetivo, que utilicen los estimados de prevalencia de los países vecinos para las mujeres de edad equivalente. Esta herramienta no ha sido creada para ser utilizada en poblaciones en donde el VIH es endémico debido a que en este caso la epidemiologia del VPH es diferente.",
     "fixedAt100HPV":"Fijada en 100-prevalencia de VPH",
     "fixedAt100HPV1618":"Fijada en 100-(prevalencia de VPH x porcentaje de VPH positivo que son VPH16/18)",
+    "proportionOfPositiveIncludingHPV1618":"Proportion of Positives including HPV 16/18",
+    "proportionOfPositiveIncludingHPV1618_Justification":"In the general population, the percent of those testing HPV positive with HPV16/18 varies slightly geographically. It is recommended to use preliminary or established data from the screening program or a neighbor settings.",
+    "proportionOfPositiveIncludingHPV1618_Source1":"Guan P, Howell-Jones R, Li N, Bruni L, de Sanjosé S, Franceschi S, Clifford GM. Human papillomavirus types in 115,789 HPV-positive women: a meta-analysis from cervical infection to cancer. Int J Cancer. 2012 Nov 15;131(10):2349-59. doi: 10.1002/ijc.27485. Epub 2012 Mar 20. PMID: 22323075.",
+    "proportionOfPositiveIncludingHPV1618_Source2":"Forman D, de Martel C, Lacey CJ, Soerjomataram I, Lortet-Tieulent J, Bruni L, Vignat J, Ferlay J, Bray F, Plummer M, Franceschi S. Global burden of human papillomavirus and related diseases. Vaccine. 2012 Nov 20;30 Suppl 5:F12-23. doi: 10.1016/j.vaccine.2012.07.055. PMID: 23199955.",
     "": ""
   }
 }
