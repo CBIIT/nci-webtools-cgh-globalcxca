@@ -756,11 +756,11 @@ function exportResultsExcel(tabContentId) {
                               : t("general.NA")
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.percentMissed[treatedIndex - 1] !==
+                            ? results.percentMissed[treatedIndex - 2] !==
                                 undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 1])
+                              !isNaN(results.percentMissed[treatedIndex - 2])
                               ? asPercent(
-                                  results.percentMissed[treatedIndex - 1]
+                                  results.percentMissed[treatedIndex - 2]
                                 )
                               : t("general.NA")
                             : results.percentMissed[treatedIndex - 2] !==
@@ -799,11 +799,11 @@ function exportResultsExcel(tabContentId) {
                               : t("general.NA")
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex] !==
+                            ? results.untestedPositives[treatedIndex-1] !==
                                 undefined &&
-                              !isNaN(results.untestedPositives[treatedIndex])
+                              !isNaN(results.untestedPositives[treatedIndex-1])
                               ? Math.round(
-                                  results.untestedPositives[treatedIndex]
+                                  results.untestedPositives[treatedIndex-1]
                                 ).toLocaleString(locale)
                               : t("general.NA")
                             : results.untestedPositives[treatedIndex - 1] !==
@@ -974,10 +974,10 @@ function exportResultsExcel(tabContentId) {
                               : t("general.NA")
                             : results.scenario ===
                                 "ScreenTriageDiagnosticTestTreat" &&
-                              results.percentMissed[treatedIndex - 2] !==
+                              results.percentMissed[treatedIndex - 1] !==
                                 undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 2])
-                            ? asPercent(results.percentMissed[treatedIndex - 2])
+                              !isNaN(results.percentMissed[treatedIndex - 1])
+                            ? asPercent(results.percentMissed[treatedIndex - 1])
                             : t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
@@ -999,13 +999,13 @@ function exportResultsExcel(tabContentId) {
                               ).toLocaleString(locale)
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex - 1] !==
+                            ? results.untestedPositives[treatedIndex] !==
                                 undefined &&
                               !isNaN(
-                                results.untestedPositives[treatedIndex - 1]
+                                results.untestedPositives[treatedIndex]
                               )
                               ? Math.round(
-                                  results.untestedPositives[treatedIndex - 1]
+                                  results.untestedPositives[treatedIndex]
                                 ).toLocaleString(locale)
                               : t("general.NA")
                             : t("general.NA")}
@@ -1435,11 +1435,11 @@ function exportResultsExcel(tabContentId) {
                               : t("general.NA")
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.percentMissed[treatedIndex - 1] !==
+                            ? results.percentMissed[treatedIndex - 2] !==
                                 undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 1])
+                              !isNaN(results.percentMissed[treatedIndex - 2])
                               ? asPercent(
-                                  results.percentMissed[treatedIndex - 1]
+                                  results.percentMissed[treatedIndex - 2]
                                 )
                               : t("general.NA")
                             : results.percentMissed[treatedIndex - 2] !==
@@ -1478,11 +1478,11 @@ function exportResultsExcel(tabContentId) {
                               : t("general.NA")
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex] !==
+                            ? results.untestedPositives[treatedIndex-1] !==
                                 undefined &&
-                              !isNaN(results.untestedPositives[treatedIndex])
+                              !isNaN(results.untestedPositives[treatedIndex-1])
                               ? Math.round(
-                                  results.untestedPositives[treatedIndex] / 12
+                                  results.untestedPositives[treatedIndex-1] / 12
                                 ).toLocaleString(locale)
                               : t("general.NA")
                             : results.untestedPositives[treatedIndex - 1] !==
@@ -1656,10 +1656,10 @@ function exportResultsExcel(tabContentId) {
                               : t("general.NA")
                             : results.scenario ===
                                 "ScreenTriageDiagnosticTestTreat" &&
-                              results.percentMissed[treatedIndex - 2] !==
+                              results.percentMissed[treatedIndex - 1] !==
                                 undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 2])
-                            ? asPercent(results.percentMissed[treatedIndex - 2])
+                              !isNaN(results.percentMissed[treatedIndex - 1])
+                            ? asPercent(results.percentMissed[treatedIndex - 1])
                             : t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
@@ -1681,13 +1681,13 @@ function exportResultsExcel(tabContentId) {
                               ).toLocaleString(locale)
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex - 1] !==
+                            ? results.untestedPositives[treatedIndex] !==
                                 undefined &&
                               !isNaN(
-                                results.untestedPositives[treatedIndex - 1]
+                                results.untestedPositives[treatedIndex]
                               )
                               ? Math.round(
-                                  results.untestedPositives[treatedIndex - 1] /
+                                  results.untestedPositives[treatedIndex] /
                                     12
                                 ).toLocaleString(locale)
                               : t("general.NA")
@@ -2129,11 +2129,11 @@ function exportResultsExcel(tabContentId) {
                               : t("general.NA")
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.percentMissed[treatedIndex - 1] !==
+                            ? results.percentMissed[treatedIndex - 2] !==
                                 undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 1])
+                              !isNaN(results.percentMissed[treatedIndex - 2])
                               ? asPercent(
-                                  results.percentMissed[treatedIndex - 1]
+                                  results.percentMissed[treatedIndex - 2]
                                 )
                               : t("general.NA")
                             : results.percentMissed[treatedIndex - 2] !==
@@ -2173,13 +2173,13 @@ function exportResultsExcel(tabContentId) {
                               : t("general.NA")
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex ] !==
+                            ? results.untestedPositives[treatedIndex - 1] !==
                                 undefined &&
                               !isNaN(
-                                results.untestedPositives[treatedIndex ]
+                                results.untestedPositives[treatedIndex - 1]
                               )
                               ? Math.round(
-                                  results.untestedPositives[treatedIndex ] *
+                                  results.untestedPositives[treatedIndex - 1] *
                                     parseInt(params.screeningInterval)
                                 ).toLocaleString(locale)
                               : t("general.NA")
@@ -2354,10 +2354,10 @@ function exportResultsExcel(tabContentId) {
                               : t("general.NA")
                             : results.scenario ===
                                 "ScreenTriageDiagnosticTestTreat" &&
-                              results.percentMissed[treatedIndex - 2] !==
+                              results.percentMissed[treatedIndex - 1] !==
                                 undefined &&
-                              !isNaN(results.percentMissed[treatedIndex - 2])
-                            ? asPercent(results.percentMissed[treatedIndex - 2])
+                              !isNaN(results.percentMissed[treatedIndex - 1])
+                            ? asPercent(results.percentMissed[treatedIndex - 1])
                             : t("general.NA")}
                         </td>
                         <td className="text-end text-nowrap">
@@ -2380,13 +2380,13 @@ function exportResultsExcel(tabContentId) {
                               ).toLocaleString(locale)
                             : results.scenario ===
                               "ScreenTriageDiagnosticTestTreat"
-                            ? results.untestedPositives[treatedIndex - 1] !==
+                            ? results.untestedPositives[treatedIndex] !==
                                 undefined &&
                               !isNaN(
-                                results.untestedPositives[treatedIndex - 1]
+                                results.untestedPositives[treatedIndex]
                               )
                               ? Math.round(
-                                  results.untestedPositives[treatedIndex - 1] 
+                                  results.untestedPositives[treatedIndex] 
                              * parseInt(params.screeningInterval)
                                 ).toLocaleString(locale)
                               : t("general.NA")
