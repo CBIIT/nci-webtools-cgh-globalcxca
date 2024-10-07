@@ -344,21 +344,25 @@ export default function RunScenarios() {
   useEffect(() => {
     // Calculate updated specificity when HPV is selected as screening test
     if (form.screeningTest === "hpv" || form.screeningTest === "hpv16or18") {
-      const updatedSpecificity = (
+      const updatedSpecificityHPV1618 = (
         (1 - (form.hpvPrevalence / 100) * (form.proportionOfPositives / 100)) *
+        100
+      ).toFixed(1);
+      const updatedSpecificityHPV = (
+        (1 - (form.hpvPrevalence / 100) ) *
         100
       ).toFixed(1);
       if(form.screeningTest === "hpv16or18" ){
         setForm((prevForm) => ({
           ...prevForm,
           screeningTestSensitivity: tests.hpv16or18?.sensitivity || 0,
-          screeningTestSpecificity: updatedSpecificity,
+          screeningTestSpecificity: updatedSpecificityHPV1618,
         }));
-      }else {
+      } else {
         setForm((prevForm) => ({
           ...prevForm,
           screeningTestSensitivity: tests.hpv?.sensitivity || 0,
-          screeningTestSpecificity: updatedSpecificity,
+          screeningTestSpecificity: updatedSpecificityHPV,
         }));
       }
       
