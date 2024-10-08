@@ -273,11 +273,14 @@ export default function ScenarioResults() {
         : t("general.NA")
       : t("general.NA");
   
+  // totalNeededToTreat =
+  //   results.totalNeeded[treatedIndex] !== undefined &&
+  //   !isNaN(results.totalNeeded[treatedIndex])
+  //     ? Math.ceil(results.totalNeeded[treatedIndex]).toLocaleString(locale)
+  //     : t("general.NA");
+
   totalNeededToTreat =
-    results.totalNeeded[treatedIndex] !== undefined &&
-    !isNaN(results.totalNeeded[treatedIndex])
-      ? Math.ceil(results.totalNeeded[treatedIndex]).toLocaleString(locale)
-      : t("general.NA");
+    Math.round(results.healthyOvertreated_rounded + results.testedPositives[treatedIndex + 1]).toLocaleString(locale);
 
   //console.log("totalNeededToTreat", totalNeededToTreat);
   function saveScenario() {
@@ -3081,7 +3084,7 @@ function exportResultsExcel(tabContentId) {
                             },
                             {
                               label: t("results.pPrecencersOverTreated"),
-                              value: +results.healthyOvertreated,
+                              value: +results.healthyOvertreated_rounded,
                             },
                           ]}
                           colors={["#f7b885", "#FD7E14"]} // Pass the custom color palette to the PieChart component
