@@ -824,10 +824,13 @@ export function calculateValues(
   const percentHealthyNotOvertreated = percentHealthyNotOvertreated_unrounded !== 0 ? percentHealthyNotOvertreated_unrounded: epsilon;
   const healthyOvertreated =
     (testedFalsePositives[0] * percentHealthyOvertreated) / adjustedDenominator;
+  
+  const healthyOvertreated_rounded = Math.round(healthyOvertreated);
   console.log("healthyOvertreated ", healthyOvertreated);
+  console.log("healthyOvertreated_rounded" , healthyOvertreated_rounded);
   console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated);
   // Calculate healthyNotOvertreated, the number of true negatives
-  const healthyNotOvertreated = 100 * healthyOvertreated /percentHealthyOvertreated;
+  const healthyNotOvertreated = Math.round(populationTargeted) - healthyOvertreated_rounded;
   //console.log("healthyNotOvertreated ", healthyNotOvertreated)
 
   let numberPrecancersMissed = 0;
@@ -906,6 +909,7 @@ export function calculateValues(
     percentPrecancersTreated,
     percentHealthyOvertreated,
     healthyOvertreated,
+    healthyOvertreated_rounded,
     healthyNotOvertreated,  // Add this line for the number of true negatives
     numberPrecancersMissed,
     percentMissed,
