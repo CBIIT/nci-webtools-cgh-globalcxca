@@ -109,7 +109,9 @@
     "El": "",
     "NA": "NA",
     "colposcopy":"Colposcopy",
-    "scenarioParameters": "Scenario Parameters"
+    "scenarioParameters": "Scenario Parameters",
+    "specificityHelpText":"Go to about page section 'Screening Strategy Characteristics' for more information"
+
   },
   "runScenario": {
     "title": "Run Scenario",
@@ -180,8 +182,7 @@
     "screeningCoverage": "Screening coverage",
     "pleaseRefer": "Please refer to the <a href='/#/about'  target='_blank'>About</a> tab for more information about the below parameters before entering a scenario.",
     "proportionOfPositives": "Proportion of Positives Including HPV 16/18",
-    "proportionOfPositivesInfo": "Proportion of those who test HPV+ that also test positive for either HPV16 or HPV18"
-    
+    "proportionOfPositivesInfo": "Proportion of those who test HPV+ that also test positive for either HPV16 or HPV18"    
   },
   "results": {
     "screenDiagnosisTreatment": "Screening → Diagnosis → Treatment",
