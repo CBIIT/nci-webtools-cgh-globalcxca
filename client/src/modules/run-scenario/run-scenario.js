@@ -593,7 +593,7 @@ export default function RunScenarios() {
                               <OverlayTrigger
                                 overlay={
                                   <Tooltip id="hpvPrevalence-help">
-                                    {t("runScenario.prevelanceInfo")}
+                                    {t("runScenario.HPVHelpText")}
                                   </Tooltip>
                                 }
                               >
