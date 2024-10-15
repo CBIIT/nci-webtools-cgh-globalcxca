@@ -22,6 +22,7 @@ export default function BarChart({
     noDataAvailable: t("general.noData"),
     // ... other labels you need ...
   };
+  //console.log("bar chart data", data);
 
   const [isDataZero, setIsDataZero] = useState(false); // New state variable
   const [chartWidth, setChartWidth] = useState(layout.width); // New state variable for chart width
@@ -49,112 +50,94 @@ export default function BarChart({
   }, [updateChartWidth, chartWidth]);
 
   useEffect(() => {
-    if (data) {
-      setIsDataZero(data.every((item) => item.value === 0)); // Update isDataZero state
+    // Check if all data values are zero
+    if (data.every((item) => item.value === 0)) {
+      setIsDataZero(true);
+    } else {
+      setIsDataZero(false);
     }
 
-    if (ref.current && data && layout) {
+    if (ref.current) {
       while (ref.current.firstChild) {
         ref.current.removeChild(ref.current.firstChild);
       }
-      if (data.every((item) => item.value === 0)) {
-        const svg = d3
-          .create("svg")
-          .attr("width", chartWidth)
-          //.attr("width", layout.width)
-          .attr("height", layout.height);
 
-        // Append y axis line (vertical)
-        // svg
-        //   .append("line")
-        //   .attr("x1", 40) // Adjust position from the left
-        //   .attr("y1", 0)
-        //   .attr("x2", 40)
-        //   .attr("y2", layout.height)
-        //   .attr("stroke", "black");
+      const svg = d3
+        .create("svg")
+        .attr("width", chartWidth)
+        .attr("height", layout.height);
 
-        // Append x axis line (horizontal)
-        svg
-          .append("line")
-          .attr("x1", 40)
-          .attr("y1", layout.height) // Adjust position from the bottom
-          // .attr("x2", layout.width)
-          .attr("x2", chartWidth)
-          .attr("y2", layout.height)
-          .attr("stroke", "black");
+      // Define a yScale where 0 is at the bottom of the chart
+      const yScale = d3.scaleLinear()
+        .domain([0, 1])  // Ensure y=0 is at the bottom, set upper bound as 1 (or any other meaningful value)
+        .range([layout.height, 0]);
 
-        // Append axis labels
-        svg
-          .append("text")
-          // .attr("x", layout.width / 2)
-          .attr("x", chartWidth / 2)
-          .attr("x", layout.width / 2)
-          .attr("y", layout.height - 10)
-          .attr("text-anchor", "middle")
-          .text("");
-
-        svg
-          .append("text")
-          .attr("x", 10)
-          .attr("y", layout.height / 2)
-          .attr("text-anchor", "start")
-          .text("");
+      if (isDataZero) {
+        // No data case (all values are 0)
 
         // Append y-axis ticks with labels and gray lines
         if (yTickValues) {
           yTickValues.forEach((tickValue) => {
-            const yPosition = layout.height * (1 - tickValue);
+            const yPosition = yScale(tickValue); // Use yScale to position ticks
             svg
               .append("line") // Append gray line
               .attr("x1", 40)
               .attr("y1", yPosition)
-              // .attr("x2", layout.width)
               .attr("x2", chartWidth)
               .attr("y2", yPosition)
               .attr("stroke", "#E8E9E9")
-              .attr("stroke-array", "2,2"); // Dashed line style
+              .attr("stroke-dasharray", "2,2"); // Dashed line style
 
             svg
               .append("text") // Append y-axis tick label
               .attr("x", 30)
-              .attr("y", yPosition)
+              .attr("y", yPosition) // Adjust for label positioning
               .attr("text-anchor", "end")
               .text(tickValue);
           });
         }
 
-        // Append a text element to indicate there is no data
+        // Append x-axis line at the bottom (y=0)
         svg
-          .append("text")
-          // .attr("x", layout.width / 2)
+          .append("line")
+          .attr("x1", 40)
+          .attr("y1", layout.height) // y=0 at the bottom
+          .attr("x2", chartWidth)
+          .attr("y2", layout.height)
+          .attr("stroke", "black");
+
+        svg
+          .append("text") // "No Data Available" message
           .attr("x", chartWidth / 2)
           .attr("y", layout.height / 2)
           .attr("text-anchor", "middle")
           .text(translatedLabels.noDataAvailable)
-          .style("font-weight", "bold") // Apply bold font weight
-          .style("fill", "gray"); // Apply gray color
+          .style("font-weight", "bold")
+          .style("fill", "gray");
+
         // Append the SVG to the container
         ref.current.appendChild(svg.node());
       } else {
+        // Normal rendering of the chart when there's data
         ref.current.appendChild(
           d3BarChart(data, {
             x: (d) => d.label,
             y: (d) => d.value,
             yFormat: ",.0f",
             yLabel: t("general.population"),
-            //width: layout.width, // Use the width from the layout object
-            with: chartWidth,
-            height: layout.height, // Use the height from the layout object
-            color: color || "#0DAB61", // Use the provided color or default to green
+            width: chartWidth,
+            height: layout.height,
+            color: color || "#0DAB61",
             labels: translatedLabels,
             t: t,
             language: i18n.language,
-            barWidth: barWidth || 20, // Use the provided bar width or default to 20
+            barWidth: barWidth || 20,
           })
         );
       }
     }
-  }, [data, layout, color, barWidth, chartWidth]);
+  }, [data, layout, color, barWidth, chartWidth, isDataZero, yTickValues]);
+
 
   return <div className="" ref={ref} id={id} />;
 }
