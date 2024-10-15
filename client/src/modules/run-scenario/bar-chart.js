@@ -22,7 +22,7 @@ export default function BarChart({
     noDataAvailable: t("general.noData"),
     // ... other labels you need ...
   };
-  console.log("data", data);
+  //console.log("data", data);
 
   const [isDataZero, setIsDataZero] = useState(false); // New state variable
   const [chartWidth, setChartWidth] = useState(layout.width); // New state variable for chart width
