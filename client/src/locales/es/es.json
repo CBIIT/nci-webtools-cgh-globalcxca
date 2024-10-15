@@ -178,7 +178,8 @@
     "screeningCoverage": "Cobertura de tamizaje",
     "pleaseRefer": "Consulte la pestaña <a href='/#/about'  target='_blank'>Acerca de</a> para obtener más información sobre los siguientes parámetros antes de ingresar a un escenario.",
     "proportionOfPositives": "Proporción de positivos que tienen VPH16/18",
-    "proportionOfPositivesInfo": "Proporción de las que tienen resultado de VPH positiva que también tienen resultado positiva a VPH16 o VPH18"
+    "proportionOfPositivesInfo": "Proporción de las que tienen resultado de VPH positiva que también tienen resultado positiva a VPH16 o VPH18",
+    "HPVHelpText":"Enter number of women with HPV per 100 people in the population eligible for cervical screening" 
   },
     
   "results": {
