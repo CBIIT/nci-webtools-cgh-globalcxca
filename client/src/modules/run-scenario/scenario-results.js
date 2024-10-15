@@ -63,8 +63,8 @@ export default function ScenarioResults() {
   const handleModalShow = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
 
-  console.log("params", params);
-  console.log("result ------ ", results);
+  //console.log("params", params);
+  //console.log("result ------ ", results);
 
   const isSpanish = i18n.language === 'es';
  //console.log("LANGUAGE ", i18n.language)
@@ -337,7 +337,7 @@ export default function ScenarioResults() {
     tab4Content.forEach(node => nodes.push(node));
 
     // Log the selected nodes for debugging
-    console.log("Nodes to be exported:", nodes);
+   //console.log("Nodes to be exported:", nodes);
 
     exportPdf(filename, nodes);
 }
