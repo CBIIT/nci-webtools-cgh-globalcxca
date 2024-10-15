@@ -1140,7 +1140,7 @@ export default function RunScenarios() {
                                                     overlay={
                                                       <Tooltip id="screeningTestSpecificity-help">
                                                         {t(
-                                                          "general.enterValue0t100HelpText"
+                                                          "general.specificityHelpText"
                                                         )}
                                                       </Tooltip>
                                                     }
@@ -1364,9 +1364,9 @@ export default function RunScenarios() {
                                                     />
                                                     <OverlayTrigger
                                                       overlay={
-                                                        <Tooltip id="screeningTestSpecificity-help">
+                                                        <Tooltip id="triageTestSpecificity-help">
                                                           {t(
-                                                            "general.enterValue0t100HelpText"
+                                                            "general.specificityHelpText"
                                                           )}
                                                         </Tooltip>
                                                       }
@@ -1444,9 +1444,9 @@ export default function RunScenarios() {
                                                     />
                                                     <OverlayTrigger
                                                       overlay={
-                                                        <Tooltip id="screeningTestSpecificity-help">
+                                                        <Tooltip id="triageTestSpecificity-help">
                                                           {t(
-                                                            "general.enterValue0t100HelpText"
+                                                            "general.specificityHelpText"
                                                           )}{" "}
                                                         </Tooltip>
                                                       }
@@ -1669,9 +1669,9 @@ export default function RunScenarios() {
                                                     />
                                                     <OverlayTrigger
                                                       overlay={
-                                                        <Tooltip id="screeningTestSpecificity-help">
+                                                        <Tooltip id="triageTestSpecificity-help">
                                                           {t(
-                                                            "general.enterValue0t100HelpText"
+                                                            "general.specificityHelpText"
                                                           )}
                                                         </Tooltip>
                                                       }
@@ -1748,9 +1748,9 @@ export default function RunScenarios() {
                                                     />
                                                     <OverlayTrigger
                                                       overlay={
-                                                        <Tooltip id="screeningTestSpecificity-help">
+                                                        <Tooltip id="triageTestSpecificity-help">
                                                           {t(
-                                                            "general.enterValue0t100HelpText"
+                                                            "general.specificityHelpText"
                                                           )}{" "}
                                                         </Tooltip>
                                                       }
@@ -2012,7 +2012,7 @@ export default function RunScenarios() {
                                                     />
                                                     <OverlayTrigger
                                                       overlay={
-                                                        <Tooltip id="screeningTestSpecificity-help">
+                                                        <Tooltip id="triageTestSensitivity-help">
                                                           {t(
                                                             "general.enterValue0t100HelpText"
                                                           )}
@@ -2092,9 +2092,9 @@ export default function RunScenarios() {
                                                     />
                                                     <OverlayTrigger
                                                       overlay={
-                                                        <Tooltip id="screeningTestSpecificity-help">
+                                                        <Tooltip id="triageTestSpecificity-help">
                                                           {t(
-                                                            "general.enterValue0t100HelpText"
+                                                            "general.specificityHelpText"
                                                           )}{" "}
                                                         </Tooltip>
                                                       }
@@ -2387,7 +2387,7 @@ export default function RunScenarios() {
                                                     />
                                                     <OverlayTrigger
                                                       overlay={
-                                                        <Tooltip id="screeningTestSpecificity-help">
+                                                        <Tooltip id="triageTestSensitivity-help">
                                                           {t(
                                                             "general.enterValue0t100HelpText"
                                                           )}
@@ -2467,9 +2467,9 @@ export default function RunScenarios() {
                                                     />
                                                     <OverlayTrigger
                                                       overlay={
-                                                        <Tooltip id="screeningTestSpecificity-help">
+                                                        <Tooltip id="triageTestSpecificity-help">
                                                           {t(
-                                                            "general.enterValue0t100HelpText"
+                                                            "general.specificityHelpText"
                                                           )}{" "}
                                                         </Tooltip>
                                                       }
@@ -2688,7 +2688,7 @@ export default function RunScenarios() {
                                                   />
                                                   <OverlayTrigger
                                                     overlay={
-                                                      <Tooltip id="screeningTestSpecificity-help">
+                                                      <Tooltip id="colposcopyTestSpecificity-help">
                                                         {t(
                                                           "general.enterValue0t100HelpText"
                                                         )}
@@ -2768,7 +2768,7 @@ export default function RunScenarios() {
                                                   />
                                                   <OverlayTrigger
                                                     overlay={
-                                                      <Tooltip id="screeningTestSpecificity-help">
+                                                      <Tooltip id="colposcopyTestSpecificity-help">
                                                         {t(
                                                           "general.enterValue0t100HelpText"
                                                         )}{" "}
@@ -2980,7 +2980,7 @@ export default function RunScenarios() {
                                                   />
                                                   <OverlayTrigger
                                                     overlay={
-                                                      <Tooltip id="screeningTestSpecificity-help">
+                                                      <Tooltip id="colposcopyTestSpecificity-help">
                                                         {t(
                                                           "general.enterValue0t100HelpText"
                                                         )}
@@ -3059,7 +3059,7 @@ export default function RunScenarios() {
                                                   />
                                                   <OverlayTrigger
                                                     overlay={
-                                                      <Tooltip id="screeningTestSpecificity-help">
+                                                      <Tooltip id="colposcopyTestSpecificity-help">
                                                         {t(
                                                           "general.enterValue0t100HelpText"
                                                         )}{" "}
@@ -3286,7 +3286,7 @@ export default function RunScenarios() {
                                                   />
                                                   <OverlayTrigger
                                                     overlay={
-                                                      <Tooltip id="screeningTestSpecificity-help">
+                                                      <Tooltip id="colposcopyTestSpecificity-help">
                                                         {t(
                                                           "general.enterValue0t100HelpText"
                                                         )}
@@ -3364,7 +3364,7 @@ export default function RunScenarios() {
                                                   />
                                                   <OverlayTrigger
                                                     overlay={
-                                                      <Tooltip id="screeningTestSpecificity-help">
+                                                      <Tooltip id="colposcopyTestSpecificity-help">
                                                         {t(
                                                           "general.enterValue0t100HelpText"
                                                         )}{" "}
