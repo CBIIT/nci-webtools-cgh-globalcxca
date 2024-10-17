@@ -410,25 +410,45 @@ function d3PieChart(
     // })
     .data((d, i, nodes) => {
       const label = title(d.data);
-      const lines = [];
+      const lines = [];      
+      const isLeftHalf = (d.startAngle + d.endAngle) / 2 <= Math.PI; // Mid-angle check      console.log("d.satrtAngle ", d.startAngle);
+      
+      // Split the label into numeric and description parts
+      const splitLabel = label.split(")");
+      const numericPart = `${splitLabel[0]})`.trim(); // Ensure trailing parenthesis is included
+      const descriptionPart = splitLabel[1]?.trim() || ""; // Handle missing description gracefully
 
-      //console.log("label ", label);
-      // Check if label contains "(50%)" and split it into three lines
-      if (label.includes("(50.0%)")) {
-        //console.log("LABLE 50.0% ", label);
-        lines.push(label.split(" ")[0]);
-        lines.push(label.split(" ")[1]);
-        lines.push(label.split(" ")[2]);
-      } else {
-        lines.push(label);
-      }
-      //console.log("lines ", lines);
+      // Push the numeric part first, then the description part (consistent order)
+        if (isLeftHalf){
+          lines.push(descriptionPart);
+          lines.push(numericPart);
+        }else{
+          lines.push(numericPart);
+          lines.push(descriptionPart);
+        }
+ 
+
 
       return lines;
     })
     .join("tspan")
-    .attr("x", 0)
-    .attr("dy", "1.2em") // Add padding/margin between each label line
+    .attr("x", 0)    
+    .attr("dy", function (d, i, nodes) {
+      const isLeftHalf =
+        d.startAngle === 0 ;
+    
+      const lineHeight = 2.5; // Consistent line height in pixels
+      const totalLines = nodes.length;
+    
+      // Adjust spacing based on whether it's in the left or right half
+      if (isLeftHalf) {
+        // Left half: Slightly tighter spacing
+        return i === 0 ? `-${(totalLines - 1) * lineHeight / 2}px` : `${lineHeight}px`;
+      } else {
+        // Right half: Normal spacing
+        return i === 0 ? `-${(totalLines - 1) * lineHeight / 2}px` : `${lineHeight -12}px`;
+      }
+    })
     .attr("y", (_, i, nodes) =>
       i
         ? `${i * 1}em`
