@@ -456,7 +456,7 @@ function d3PieChart(
             percentages[d3.select(nodes[i].parentNode).datum().index]
           )}px`
     ) // Use adjustedLabelRadius based on percentage
-    .attr("font-weight", (_, i) => (i ? null : "bold"))
+    .attr("font-weight", "bold")
     .text((d) => d);
 
   return Object.assign(svg.node(), { scales: { color }, arc });
