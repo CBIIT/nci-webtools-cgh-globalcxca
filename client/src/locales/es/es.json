@@ -109,7 +109,7 @@
     "NA": "NA",
     "colposcopy":"Colposcopia",
     "scenarioParameters": "Parámetros del escenario",
-    "specificityHelpText":"Go to about page section 'Screening Strategy Characteristics' for more information"
+    "specificityHelpText":"Para más información vaya a la sección “Características de la estrategia de tamizaje” de la página “Acerca de”."
   },
   "runScenario": {
     "title": "Ejecutar escenario",
