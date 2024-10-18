@@ -186,12 +186,18 @@ function d3PieChart(
 ) {
   // Compute values.
   const N = d3.map(data, name);
-  const V = d3.map(data, value);
+  //const V = d3.map(data, value);
+  const V = d3.map(data, (d) => Math.max(value(d), 0)); // Prevent negative values
   const I = d3.range(N.length).filter((i) => !isNaN(V[i]));
-
+  console.log("Data ", data);
   // Calculate total value.
   const totalValue = d3.sum(I, (i) => V[i]);
-  //console.log("totalValue ", totalValue);
+  console.log("totalValue ", totalValue);
+  // Handle the case where all values are zero
+  if (totalValue === 0) {
+    console.warn("All values are zero. No valid data to display.");
+    return createEmptyChart(width, height, labels.noDataAvailable); // Render a fallback if needed
+  }
 
   // Calculate percentages.
   const percentages = I.map((i) => (V[i] / totalValue) * 100);
@@ -450,24 +456,14 @@ function d3PieChart(
     })
     .join("tspan")
     .attr("x", 0)    
-    .attr("dy", function (d, i, nodes) {
-      console.log("d: ", d);
-      console.log("i: ", i);
-      console.log("nodes: ", nodes);
-    
+    .attr("dy", function (d, i, nodes) {    
       
       const totalLines = nodes.length;
-      console.log("Total Lines: ", totalLines);
-    
-  // Extract the label directly from d (assuming it's a string)
-  const label = `${d}`; // Convert d to string to avoid errors
-  console.log("Label from d: ", label);
-
-  if(totalLines === 3){
-    return "0px";
-  } else {
-    return "0px";
-  }
+      if(totalLines === 3){
+        return "0px";
+      } else {
+        return "0px";
+      }
 
     })
     // .attr("y", (_, i, nodes) =>
@@ -478,24 +474,16 @@ function d3PieChart(
     //       )}px`
     // ) // Use adjustedLabelRadius based on percentage
     .attr("y", function (d, i, nodes) {
-      console.log("d: ", d);
-      console.log("i: ", i);
-      console.log("nodes: ", nodes);
-    
-      
       const totalLines = nodes.length;
       console.log("Total Lines: ", totalLines);
     
-  // Extract the label directly from d (assuming it's a string)
-  const label = `${d}`; // Convert d to string to avoid errors
-  console.log("Label from d: ", label);
 
-  if(totalLines === 3){
-    return `${i * 2}em`
-  } else {
-    return `${i * 1.5}em`
-  }
-})
+      if(totalLines === 3){
+        return `${i * 2}em`
+      } else {
+        return `${i * 1.5}em`
+      }
+    })
     .attr("font-weight", "bold")
     .text((d) => d);
 
@@ -518,4 +506,32 @@ function wrapText(text, width = 12) {
   return lines;
 }
 
+function createEmptyChart(width, height, message) {
+  const svg = d3
+    .create("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  svg
+    .append("circle")
+    .attr("cx", width / 2)
+    .attr("cy", height / 2)
+    .attr("r", Math.min(width, height) / 2.1)
+    .attr("fill", "#E8E9E9")
+    .attr("stroke", "gray")
+    .attr("stroke-width", 1);
+
+  svg
+    .append("text")
+    .attr("x", width / 2)
+    .attr("y", height / 2)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "1rem")
+    .attr("dy", "0.35em")
+    .attr("fill", "gray")
+    .style("font-weight", "bold")
+    .text(message);
+
+  return svg.node();
+}
 
