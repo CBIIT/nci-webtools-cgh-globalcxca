@@ -377,6 +377,8 @@ function d3PieChart(
       const isLeftHalf =
         d.startAngle + (d.endAngle - d.startAngle) / 2 < Math.PI;
       let xAdjustment = 0;
+      // Adjust the x-coordinate slightly based on the side it belongs to
+       xAdjustment = isLeftHalf ? 10 : -10; // Shift left labels to the left, right labels to the right
 
       // // Adjust label position based on whether it's in the left or right half of the pie chart
       // if (isLeftHalf) {
@@ -392,6 +394,12 @@ function d3PieChart(
           xAdjustment = -15; // Move the right half pie's label to the right
         }
         pos[1] = 0; // Adjust y-coordinate for horizontal alignment
+      } else if(label.includes("(100.0%)")){
+        if (isLeftHalf) {
+          xAdjustment = -10; // Move the left half pie's label to the left
+        } else {
+          xAdjustment = 3; // Move the right half pie's label to the right
+        }
       } else {
         pos[1] += 10; // Adjust y-coordinate for horizontal alignment
       }
@@ -418,44 +426,76 @@ function d3PieChart(
       const numericPart = `${splitLabel[0]})`.trim(); // Ensure trailing parenthesis is included
       const descriptionPart = splitLabel[1]?.trim() || ""; // Handle missing description gracefully
 
-      // Push the numeric part first, then the description part (consistent order)
-        if (isLeftHalf){
+      //console.log("label ", label);
+      // Check if label contains "(50%)" and split it into three lines
+      if (label.includes("(50.0%)")) {
+        //console.log("LABLE 50.0% ", label);
+        lines.push(label.split(" ")[0]);
+        lines.push(label.split(" ")[1]);
+        lines.push(label.split(" ")[2]);
+      } else {
+        //lines.push(label);
+        // Push the numeric part first, then the description part (consistent order)
+        // if (isLeftHalf){
+        //   lines.push(numericPart);
+        //   lines.push(descriptionPart);
+        // }else{
+        //   lines.push(numericPart);
+        //   lines.push(descriptionPart);
+        // }
+        lines.push(numericPart);
           lines.push(descriptionPart);
-          lines.push(numericPart);
-        }else{
-          lines.push(numericPart);
-          lines.push(descriptionPart);
-        }
- 
-
-
+      }
       return lines;
     })
     .join("tspan")
     .attr("x", 0)    
     .attr("dy", function (d, i, nodes) {
-      const isLeftHalf =
-        d.startAngle === 0 ;
+      console.log("d: ", d);
+      console.log("i: ", i);
+      console.log("nodes: ", nodes);
     
-      const lineHeight = 2.5; // Consistent line height in pixels
+      
       const totalLines = nodes.length;
+      console.log("Total Lines: ", totalLines);
     
-      // Adjust spacing based on whether it's in the left or right half
-      if (isLeftHalf) {
-        // Left half: Slightly tighter spacing
-        return i === 0 ? `-${(totalLines - 1) * lineHeight / 2}px` : `${lineHeight}px`;
-      } else {
-        // Right half: Normal spacing
-        return i === 0 ? `-${(totalLines - 1) * lineHeight / 2}px` : `${lineHeight -12}px`;
-      }
+  // Extract the label directly from d (assuming it's a string)
+  const label = `${d}`; // Convert d to string to avoid errors
+  console.log("Label from d: ", label);
+
+  if(totalLines === 3){
+    return "0px";
+  } else {
+    return "0px";
+  }
+
     })
-    .attr("y", (_, i, nodes) =>
-      i
-        ? `${i * 1}em`
-        : `${adjustedLabelRadius(
-            percentages[d3.select(nodes[i].parentNode).datum().index]
-          )}px`
-    ) // Use adjustedLabelRadius based on percentage
+    // .attr("y", (_, i, nodes) =>
+    //   i
+    //     ? `${i * 1.5}em`
+    //     : `${adjustedLabelRadius(
+    //         percentages[d3.select(nodes[i].parentNode).datum().index]
+    //       )}px`
+    // ) // Use adjustedLabelRadius based on percentage
+    .attr("y", function (d, i, nodes) {
+      console.log("d: ", d);
+      console.log("i: ", i);
+      console.log("nodes: ", nodes);
+    
+      
+      const totalLines = nodes.length;
+      console.log("Total Lines: ", totalLines);
+    
+  // Extract the label directly from d (assuming it's a string)
+  const label = `${d}`; // Convert d to string to avoid errors
+  console.log("Label from d: ", label);
+
+  if(totalLines === 3){
+    return `${i * 2}em`
+  } else {
+    return `${i * 1.5}em`
+  }
+})
     .attr("font-weight", "bold")
     .text((d) => d);
 
@@ -477,3 +517,5 @@ function wrapText(text, width = 12) {
   lines.push(line);
   return lines;
 }
+
+
