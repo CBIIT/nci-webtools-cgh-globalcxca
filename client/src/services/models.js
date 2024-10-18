@@ -829,8 +829,8 @@ export function calculateValues(
   if(healthyOvertreated_rounded > populationTargeted){
     healthyOvertreated_rounded = populationTargeted;
   }
-  console.log("healthyOvertreated ", healthyOvertreated);
-  console.log("healthyOvertreated_rounded" , healthyOvertreated_rounded);
+  //console.log("healthyOvertreated ", healthyOvertreated);
+  //console.log("healthyOvertreated_rounded" , healthyOvertreated_rounded);
   //console.log("percentHealthyNotOvertreated ", percentHealthyNotOvertreated);
   // Calculate healthyNotOvertreated, the number of true negatives
   const healthyNotOvertreated = Math.round(populationTargeted) - healthyOvertreated_rounded;
