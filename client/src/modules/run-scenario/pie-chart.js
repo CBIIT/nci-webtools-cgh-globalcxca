@@ -189,10 +189,10 @@ function d3PieChart(
   //const V = d3.map(data, value);
   const V = d3.map(data, (d) => Math.max(value(d), 0)); // Prevent negative values
   const I = d3.range(N.length).filter((i) => !isNaN(V[i]));
-  console.log("Data ", data);
+  //console.log("Data ", data);
   // Calculate total value.
   const totalValue = d3.sum(I, (i) => V[i]);
-  console.log("totalValue ", totalValue);
+  //console.log("totalValue ", totalValue);
   // Handle the case where all values are zero
   if (totalValue === 0) {
     console.warn("All values are zero. No valid data to display.");
@@ -475,7 +475,7 @@ function d3PieChart(
     // ) // Use adjustedLabelRadius based on percentage
     .attr("y", function (d, i, nodes) {
       const totalLines = nodes.length;
-      console.log("Total Lines: ", totalLines);
+      //console.log("Total Lines: ", totalLines);
     
 
       if(totalLines === 3){
