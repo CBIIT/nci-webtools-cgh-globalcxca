@@ -408,173 +408,180 @@ export default function RunScenarios() {
     setDivVisibilities(initialDivVisibilities);
   }
 
+  // useEffect(() => {
+  //   if (checkedValues.length <= 2) {
+  //     setForm((prevForm) => ({
+  //       ...prevForm,
+  //       scenario: "ScreenTreat",
+  //       checkedValues: checkedValues,
+  //       percentTriaged: 10,
+  //     }));
+  //   } else if (checkedValues.length === 3) {
+  //     setForm((prevForm) => ({
+  //       ...prevForm,
+  //       scenario: "ScreenDiagnosticTestTreat",
+  //       checkedValues: checkedValues,
+  //       percentTriaged: 0,
+  //     }));
+  //   } else {
+  //     setForm((prevForm) => ({
+  //       ...prevForm,
+  //       scenario: "ScreenTriageDiagnosticTestTreat",
+  //       checkedValues: checkedValues,
+  //     }));
+  //   }
+  // }, [checkedValues, setForm]);
+
+  ////////////////////////////////////////////////////////
+  // Refs to store previous triage and diagnostic values
+  const storedPercentTriagedRef = useRef(null); // Store percentTriaged from 4th state
+  const storedPercentDiagnosticTriagedRef4State = useRef(null); // Store percentTriaged from 4th state
+  const storedPecentaTriageRef4State = useRef(null); // Store percentTriaged from 4th state
+  const storePercentTriageDiagnosticRef3State = useRef(null); // Store percentDiagnosticTriaged from 3rd state
+  const previousStatesRef = useRef([]); // Queue to store the last three states
+  const [hasSwapped, setHasSwapped] = useState(false); // Swap control flag
+
   useEffect(() => {
+    console.log("Current checkedValues.length:", checkedValues.length);
+    console.log("Previous States Queue:", previousStatesRef.current); // Debug the queue
+
+    if (checkedValues.length === 4) {
+      if (form.percentTriaged === 0 && !hasSwapped) {
+        console.log("Entering 4 states, swapping values...");
+        handleStoreAndSwapValues();
+      } else if (form.percentTriaged !== 0 && !hasSwapped) {
+        console.log("Restoring values for 4 states...");
+        handleSwapBackValues();
+      }
+    } else {
+      resetScenario(); // Handle scenarios with fewer than 4 states
+    }
+    console.log("===StoredpercentTriaged:", storedPercentTriagedRef.current);
+
+
+    // Update the previous states queue
+    updatePreviousStatesQueue(checkedValues.length);
+  }, [checkedValues]);
+
+  // Function to update the previous states queue (max 3 states)
+  const updatePreviousStatesQueue = (currentState) => {
+    const queue = previousStatesRef.current;
+
+    // Add the current state to the queue
+    queue.push(currentState);
+
+    // Keep only the last three states in the queue
+    if (queue.length > 3) {
+      queue.shift(); // Remove the oldest state
+    }
+
+    console.log("Updated Previous States Queue:", queue);
+  };
+
+  // Store and swap values for the 4th state
+  const handleStoreAndSwapValues = () => {
+    console.log("Storing percentDiagnosticTriaged");
+
+    if (storedPercentTriagedRef.current === null) {
+      storedPercentTriagedRef.current = form.percentDiagnosticTriaged || 0;
+      console.log("StoredpercentTriaged:", storedPercentTriagedRef.current);
+    }
+
+    setForm((prevForm) => ({
+      ...prevForm,
+      checkedValues: checkedValues,
+      scenario: "ScreenTriageDiagnosticTestTreat",
+      percentTriaged: form.percentDiagnosticTriaged, // Use diagnostic value as triaged
+      percentDiagnosticTriaged: 0, // Reset diagnostic triaged
+    }));
+    setHasSwapped(true); // Prevent multiple swaps
+  };
+
+  // Swap values back when returning to 4 states
+  const handleSwapBackValues = () => {
+    console.log("Swapping back values...");
+
+    setForm((prevForm) => ({
+      ...prevForm,
+      checkedValues: checkedValues,
+       scenario: "ScreenTriageDiagnosticTestTreat",
+      percentTriaged: form.percentDiagnosticTriaged, // Restore triaged value
+      percentDiagnosticTriaged: storedPercentDiagnosticTriagedRef4State.current || 0, // Restore stored diagnostic value
+    }));
+    setHasSwapped(true); // Prevent multiple swaps
+  };
+
+  // Reset scenarios and manage state transitions
+  const resetScenario = () => {
+    console.log("Resetting scenario. Previous states:", previousStatesRef.current);
+    console.log("StoredpercentTriaged: ==== ", storedPercentTriagedRef.current);
+    const [thirdLastState, secondLastState, lastState] = previousStatesRef.current;
+
+    // Handle transition from 4 to 3 states
+    if (lastState === 4 && checkedValues.length === 3) {
+      console.log("Transitioning from 4 to 3 states...");
+      storedPercentDiagnosticTriagedRef4State.current = form.percentDiagnosticTriaged;
+      storedPecentaTriageRef4State.current = form.percentTriaged;
+      setForm((prevForm) => ({
+        ...prevForm,
+        percentDiagnosticTriaged: form.percentTriaged || 0, // Set diagnostic to triaged
+        percentTriaged: 0, // Reset triaged value
+      }));
+    }
+
+    // Handle transition from 3 to a previous 4 state
+    if (secondLastState === 3 && lastState === 4) {
+      console.log("Restoring values from the previous 3-state...");
+      storePercentTriageDiagnosticRef3State.current = form.percentDiagnosticTriaged;
+      setForm((prevForm) => ({
+        ...prevForm,
+        percentTriaged: form.percentDiagnosticTriaged || 0, // Restore triaged from diagnostic
+        percentDiagnosticTriaged: storedPecentaTriageRef4State.current || 0, // Restore stored value
+      }));
+    }
+
+      // Handle 2 → 3 → 2 state transition
+      if (secondLastState === 2 && lastState === 3) {
+        console.log("Handling 2 → 3 → 2 transition...");
+        //storedPercentTriagedRef.current = form.percentDiagnosticTriaged; // Store before resetting
+        console.log("StoredpercentTriaged:", storedPercentTriagedRef.current);
+        setForm((prevForm) => ({
+          ...prevForm,
+          percentTriaged: 0,
+          percentDiagnosticTriaged: storedPercentTriagedRef.current || 0,
+        }));
+      }
+
+    setHasSwapped(false); // Allow future swaps
+
+    // Handle other scenarios
     if (checkedValues.length <= 2) {
+      console.log("Switching to ScreenTreat scenario...");
+      storedPercentTriagedRef.current = form.percentDiagnosticTriaged;
       setForm((prevForm) => ({
         ...prevForm,
         scenario: "ScreenTreat",
         checkedValues: checkedValues,
-        percentTriaged: 10,
+        percentTriaged: 10, // Default for screening
+        percentDiagnosticTriaged: 0, // Reset for diagnostic case
       }));
     } else if (checkedValues.length === 3) {
+      console.log("Switching to ScreenDiagnosticTestTreat scenario...");
       setForm((prevForm) => ({
         ...prevForm,
         scenario: "ScreenDiagnosticTestTreat",
         checkedValues: checkedValues,
-        percentTriaged: 0,
+        percentTriaged: 0, // Reset for diagnostic case
       }));
     } else {
+      console.log("Switching to ScreenTriageDiagnosticTestTreat scenario...");
       setForm((prevForm) => ({
         ...prevForm,
-        scenario: "ScreenTriageDiagnosticTestTreat",
         checkedValues: checkedValues,
+        scenario: "ScreenTriageDiagnosticTestTreat",
       }));
     }
-  }, [checkedValues, setForm]);
-
-  ////////////////////////////////////////////////////////
-  // Refs to store previous triage and diagnostic values
-  // const storedPercentTriagedRef = useRef(null); // Store percentTriaged from 4th state
-  // const storedPercentDiagnosticTriagedRef4State = useRef(null); // Store percentTriaged from 4th state
-  // const storedPecentaTriageRef4State = useRef(null); // Store percentTriaged from 4th state
-  // const storePercentTriageDiagnosticRef3State = useRef(null); // Store percentDiagnosticTriaged from 3rd state
-  // const previousStatesRef = useRef([]); // Queue to store the last three states
-  // const [hasSwapped, setHasSwapped] = useState(false); // Swap control flag
-
-  // useEffect(() => {
-  //   console.log("Current checkedValues.length:", checkedValues.length);
-  //   console.log("Previous States Queue:", previousStatesRef.current); // Debug the queue
-
-  //   if (checkedValues.length === 4) {
-  //     if (form.percentTriaged === 0 && !hasSwapped) {
-  //       console.log("Entering 4 states, swapping values...");
-  //       handleStoreAndSwapValues();
-  //     } else if (form.percentTriaged !== 0 && !hasSwapped) {
-  //       console.log("Restoring values for 4 states...");
-  //       handleSwapBackValues();
-  //     }
-  //   } else {
-  //     resetScenario(); // Handle scenarios with fewer than 4 states
-  //   }
-  //   console.log("===StoredpercentTriaged:", storedPercentTriagedRef.current);
-
-
-  //   // Update the previous states queue
-  //   updatePreviousStatesQueue(checkedValues.length);
-  // }, [checkedValues]);
-
-  // // Function to update the previous states queue (max 3 states)
-  // const updatePreviousStatesQueue = (currentState) => {
-  //   const queue = previousStatesRef.current;
-
-  //   // Add the current state to the queue
-  //   queue.push(currentState);
-
-  //   // Keep only the last three states in the queue
-  //   if (queue.length > 3) {
-  //     queue.shift(); // Remove the oldest state
-  //   }
-
-  //   console.log("Updated Previous States Queue:", queue);
-  // };
-
-  // // Store and swap values for the 4th state
-  // const handleStoreAndSwapValues = () => {
-  //   console.log("Storing percentDiagnosticTriaged");
-
-  //   if (storedPercentTriagedRef.current === null) {
-  //     storedPercentTriagedRef.current = form.percentDiagnosticTriaged || 0;
-  //     console.log("StoredpercentTriaged:", storedPercentTriagedRef.current);
-  //   }
-
-  //   setForm((prevForm) => ({
-  //     ...prevForm,
-  //     percentTriaged: form.percentDiagnosticTriaged, // Use diagnostic value as triaged
-  //     percentDiagnosticTriaged: 0, // Reset diagnostic triaged
-  //   }));
-  //   setHasSwapped(true); // Prevent multiple swaps
-  // };
-
-  // // Swap values back when returning to 4 states
-  // const handleSwapBackValues = () => {
-  //   console.log("Swapping back values...");
-
-  //   setForm((prevForm) => ({
-  //     ...prevForm,
-  //     percentTriaged: form.percentDiagnosticTriaged, // Restore triaged value
-  //     percentDiagnosticTriaged: storedPercentDiagnosticTriagedRef4State.current || 0, // Restore stored diagnostic value
-  //   }));
-  //   setHasSwapped(true); // Prevent multiple swaps
-  // };
-
-  // // Reset scenarios and manage state transitions
-  // const resetScenario = () => {
-  //   console.log("Resetting scenario. Previous states:", previousStatesRef.current);
-  //   console.log("StoredpercentTriaged: ==== ", storedPercentTriagedRef.current);
-  //   const [thirdLastState, secondLastState, lastState] = previousStatesRef.current;
-
-  //   // Handle transition from 4 to 3 states
-  //   if (lastState === 4 && checkedValues.length === 3) {
-  //     console.log("Transitioning from 4 to 3 states...");
-  //     storedPercentDiagnosticTriagedRef4State.current = form.percentDiagnosticTriaged;
-  //     storedPecentaTriageRef4State.current = form.percentTriaged;
-  //     setForm((prevForm) => ({
-  //       ...prevForm,
-  //       percentDiagnosticTriaged: form.percentTriaged || 0, // Set diagnostic to triaged
-  //       percentTriaged: 0, // Reset triaged value
-  //     }));
-  //   }
-
-  //   // Handle transition from 3 to a previous 4 state
-  //   if (secondLastState === 3 && lastState === 4) {
-  //     console.log("Restoring values from the previous 3-state...");
-  //     storePercentTriageDiagnosticRef3State.current = form.percentDiagnosticTriaged;
-  //     setForm((prevForm) => ({
-  //       ...prevForm,
-  //       percentTriaged: form.percentDiagnosticTriaged || 0, // Restore triaged from diagnostic
-  //       percentDiagnosticTriaged: storedPecentaTriageRef4State.current || 0, // Restore stored value
-  //     }));
-  //   }
-
-  //     // Handle 2 → 3 → 2 state transition
-  //     if (secondLastState === 2 && lastState === 3) {
-  //       console.log("Handling 2 → 3 → 2 transition...");
-  //       //storedPercentTriagedRef.current = form.percentDiagnosticTriaged; // Store before resetting
-  //       console.log("StoredpercentTriaged:", storedPercentTriagedRef.current);
-  //       setForm((prevForm) => ({
-  //         ...prevForm,
-  //         percentTriaged: 0,
-  //         percentDiagnosticTriaged: storedPercentTriagedRef.current || 0,
-  //       }));
-  //     }
-
-  //   setHasSwapped(false); // Allow future swaps
-
-  //   // Handle other scenarios
-  //   if (checkedValues.length <= 2) {
-  //     console.log("Switching to ScreenTreat scenario...");
-  //     storedPercentTriagedRef.current = form.percentDiagnosticTriaged;
-  //     setForm((prevForm) => ({
-  //       ...prevForm,
-  //       scenario: "ScreenTreat",
-  //       percentTriaged: 10, // Default for screening
-  //       percentDiagnosticTriaged: 0, // Reset for diagnostic case
-  //     }));
-  //   } else if (checkedValues.length === 3) {
-  //     console.log("Switching to ScreenDiagnosticTestTreat scenario...");
-  //     setForm((prevForm) => ({
-  //       ...prevForm,
-  //       scenario: "ScreenDiagnosticTestTreat",
-  //       percentTriaged: 0, // Reset for diagnostic case
-  //     }));
-  //   } else {
-  //     console.log("Switching to ScreenTriageDiagnosticTestTreat scenario...");
-  //     setForm((prevForm) => ({
-  //       ...prevForm,
-  //       scenario: "ScreenTriageDiagnosticTestTreat",
-  //     }));
-  //   }
-  // };
+  };
 
   ////////////////////////////////////////////////////////
   useEffect(() => {
