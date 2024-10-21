@@ -765,9 +765,9 @@ export default function RunScenarios() {
                               <Form.Range
                                 type="range"
                                 min="5"
-                                max="20"
+                                max="30"
                                 step="1"
-                                placeholder="Enter 5 - 20"
+                                placeholder="Enter 5 - 30"
                                 name="hpvPrevalence"
                                 className="border-end-0 me-2"
                                 value={form.hpvPrevalence}

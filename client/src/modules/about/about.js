@@ -113,7 +113,7 @@ export default function About() {
                   <tr>
                     <td>{t("about.hpvPrevelence")}</td>
                     <td>5%</td>
-                    <td>20%</td>
+                    <td>30%</td>
                     <td>12%</td>
                     <td>
                       <p>{t("about.prevalenceSourcesJustification")}</p>
