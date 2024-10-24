@@ -442,21 +442,21 @@ export default function RunScenarios() {
   const [hasSwapped, setHasSwapped] = useState(false); // Swap control flag
 
   useEffect(() => {
-    console.log("Current checkedValues.length:", checkedValues.length);
-    console.log("Previous States Queue:", previousStatesRef.current); // Debug the queue
+    //console.log("Current checkedValues.length:", checkedValues.length);
+    //console.log("Previous States Queue:", previousStatesRef.current); // Debug the queue
 
     if (checkedValues.length === 4) {
       if (form.percentTriaged === 0 && !hasSwapped) {
-        console.log("Entering 4 states, swapping values...");
+        //console.log("Entering 4 states, swapping values...");
         handleStoreAndSwapValues();
       } else if (form.percentTriaged !== 0 && !hasSwapped) {
-        console.log("Restoring values for 4 states...");
+        //console.log("Restoring values for 4 states...");
         handleSwapBackValues();
       }
     } else {
       resetScenario(); // Handle scenarios with fewer than 4 states
     }
-    console.log("===StoredpercentTriaged:", storedPercentTriagedRef.current);
+    //console.log("===StoredpercentTriaged:", storedPercentTriagedRef.current);
 
 
     // Update the previous states queue
@@ -475,16 +475,16 @@ export default function RunScenarios() {
       queue.shift(); // Remove the oldest state
     }
 
-    console.log("Updated Previous States Queue:", queue);
+    //console.log("Updated Previous States Queue:", queue);
   };
 
   // Store and swap values for the 4th state
   const handleStoreAndSwapValues = () => {
-    console.log("Storing percentDiagnosticTriaged");
+    //console.log("Storing percentDiagnosticTriaged");
 
     if (storedPercentTriagedRef.current === null) {
       storedPercentTriagedRef.current = form.percentDiagnosticTriaged || 0;
-      console.log("StoredpercentTriaged:", storedPercentTriagedRef.current);
+      //console.log("StoredpercentTriaged:", storedPercentTriagedRef.current);
     }
 
     setForm((prevForm) => ({
@@ -499,7 +499,7 @@ export default function RunScenarios() {
 
   // Swap values back when returning to 4 states
   const handleSwapBackValues = () => {
-    console.log("Swapping back values...");
+    //console.log("Swapping back values...");
 
     setForm((prevForm) => ({
       ...prevForm,
@@ -513,13 +513,13 @@ export default function RunScenarios() {
 
   // Reset scenarios and manage state transitions
   const resetScenario = () => {
-    console.log("Resetting scenario. Previous states:", previousStatesRef.current);
-    console.log("StoredpercentTriaged: ==== ", storedPercentTriagedRef.current);
+    //console.log("Resetting scenario. Previous states:", previousStatesRef.current);
+    //console.log("StoredpercentTriaged: ==== ", storedPercentTriagedRef.current);
     const [thirdLastState, secondLastState, lastState] = previousStatesRef.current;
 
     // Handle transition from 4 to 3 states
     if (lastState === 4 && checkedValues.length === 3) {
-      console.log("Transitioning from 4 to 3 states...");
+      //console.log("Transitioning from 4 to 3 states...");
       storedPercentDiagnosticTriagedRef4State.current = form.percentDiagnosticTriaged;
       storedPecentaTriageRef4State.current = form.percentTriaged;
       setForm((prevForm) => ({
@@ -531,7 +531,7 @@ export default function RunScenarios() {
 
     // Handle transition from 3 to a previous 4 state
     if (secondLastState === 3 && lastState === 4) {
-      console.log("Restoring values from the previous 3-state...");
+      //console.log("Restoring values from the previous 3-state...");
       storePercentTriageDiagnosticRef3State.current = form.percentDiagnosticTriaged;
       setForm((prevForm) => ({
         ...prevForm,
@@ -542,9 +542,9 @@ export default function RunScenarios() {
 
       // Handle 2 → 3 → 2 state transition
       if (secondLastState === 2 && lastState === 3) {
-        console.log("Handling 2 → 3 → 2 transition...");
+        //console.log("Handling 2 → 3 → 2 transition...");
         //storedPercentTriagedRef.current = form.percentDiagnosticTriaged; // Store before resetting
-        console.log("StoredpercentTriaged:", storedPercentTriagedRef.current);
+        //console.log("StoredpercentTriaged:", storedPercentTriagedRef.current);
         setForm((prevForm) => ({
           ...prevForm,
           percentTriaged: 0,
@@ -556,7 +556,7 @@ export default function RunScenarios() {
 
     // Handle other scenarios
     if (checkedValues.length <= 2) {
-      console.log("Switching to ScreenTreat scenario...");
+      //console.log("Switching to ScreenTreat scenario...");
       storedPercentTriagedRef.current = form.percentDiagnosticTriaged;
       setForm((prevForm) => ({
         ...prevForm,
@@ -566,7 +566,7 @@ export default function RunScenarios() {
         percentDiagnosticTriaged: 0, // Reset for diagnostic case
       }));
     } else if (checkedValues.length === 3) {
-      console.log("Switching to ScreenDiagnosticTestTreat scenario...");
+      //console.log("Switching to ScreenDiagnosticTestTreat scenario...");
       setForm((prevForm) => ({
         ...prevForm,
         scenario: "ScreenDiagnosticTestTreat",
@@ -574,7 +574,7 @@ export default function RunScenarios() {
         percentTriaged: 0, // Reset for diagnostic case
       }));
     } else {
-      console.log("Switching to ScreenTriageDiagnosticTestTreat scenario...");
+      //console.log("Switching to ScreenTriageDiagnosticTestTreat scenario...");
       setForm((prevForm) => ({
         ...prevForm,
         checkedValues: checkedValues,
