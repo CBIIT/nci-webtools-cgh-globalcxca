@@ -125,7 +125,7 @@ export default function About() {
                   </tr>
                   <tr>
                     <td>{t("runScenario.prevelance")}</td>
-                    <td>0%</td>
+                    <td>1%</td>
                     <td>5%</td>
                     <td>2%</td>
                     <td>{t("about.prevalenceJustitication")}</td>
@@ -160,7 +160,7 @@ export default function About() {
                   <tr>
                     <td>{t("about.hpvPrevelence")}</td>
                     <td>5%</td>
-                    <td>20%</td>
+                    <td>30%</td>
                     <td>12%</td>
                     <td>
                       <p>{t("about.prevalenceSourcesJustification")}</p>
@@ -172,7 +172,7 @@ export default function About() {
                   </tr>
                   <tr>
                     <td>{t("runScenario.prevelance")}</td>
-                    <td>0%</td>
+                    <td>1%</td>
                     <td>5%</td>
                     <td>2%</td>
                     <td>{t("about.prevalenceJustitication")}</td>

@@ -7,9 +7,15 @@ export default function NavbarSearch() {
     event.preventDefault();
 
     const form = event.target;
-    const search = form.elements.search.value;
+    const search = form.elements.search.value.trim();
     const site = window.location.origin + window.location.pathname;
-    const query = encodeURIComponent(`site:${site} ${search}`);
+    console.log("window.location ", window.location);
+    console.log("site ", site);
+    const domain = window.location.hostname; // Extract only the domain name
+    console.log("domain ", domain);
+    const host = window.location.host; // Extract only the domain name
+    const query = encodeURIComponent(`site:${host} ${search}`);
+    console.log("query ", query);
     const searchUrl = `https://www.google.com/search?q=${query}`;
     window.open(searchUrl, "_blank");
   }
