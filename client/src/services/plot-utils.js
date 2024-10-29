@@ -74,59 +74,59 @@ export function saveChartAsPNG(chartId, filename, chartTitle) {
   }
 }
 
-export async function saveChartAsPNGForZip(chartId, chartTitle) {
-  var chartSVG = d3.select("#" + chartId).select("svg");
+// export async function saveChartAsPNGForZip(chartId, chartTitle) {
+//   var chartSVG = d3.select("#" + chartId).select("svg");
 
-  // Set the background color of the SVG element to white
-  chartSVG.style("background-color", "white");
+//   // Set the background color of the SVG element to white
+//   chartSVG.style("background-color", "white");
 
-  // Create a new SVG element to hold the chart with the title
-  var svgWithTitle = d3
-    .create("svg")
-    .attr("xmlns", "http://www.w3.org/2000/svg")
-    .attr("width", chartSVG.attr("width"))
-    .attr("height", +chartSVG.attr("height") + 40); // Adjust height for title and spacing
+//   // Create a new SVG element to hold the chart with the title
+//   var svgWithTitle = d3
+//     .create("svg")
+//     .attr("xmlns", "http://www.w3.org/2000/svg")
+//     .attr("width", chartSVG.attr("width"))
+//     .attr("height", +chartSVG.attr("height") + 40); // Adjust height for title and spacing
 
-  // Append a white background rectangle to ensure the entire area is white
-  svgWithTitle
-    .append("rect")
-    .attr("width", chartSVG.attr("width"))
-    .attr("height", +chartSVG.attr("height") + 40)
-    .attr("fill", "white");
+//   // Append a white background rectangle to ensure the entire area is white
+//   svgWithTitle
+//     .append("rect")
+//     .attr("width", chartSVG.attr("width"))
+//     .attr("height", +chartSVG.attr("height") + 40)
+//     .attr("fill", "white");
 
-  // console.log("svgWithTitle", svgWithTitle);
+//   // console.log("svgWithTitle", svgWithTitle);
 
-  // Append a group element for applying the transform
-  var chartGroup = svgWithTitle
-    .append("g")
-    .attr("transform", "translate(0, 40)"); // Adjust vertical translation
+//   // Append a group element for applying the transform
+//   var chartGroup = svgWithTitle
+//     .append("g")
+//     .attr("transform", "translate(0, 40)"); // Adjust vertical translation
 
-  // Append the original chart SVG to the new SVG, within the group element
-  chartGroup.append(() => chartSVG.node().cloneNode(true));
+//   // Append the original chart SVG to the new SVG, within the group element
+//   chartGroup.append(() => chartSVG.node().cloneNode(true));
 
-  // Append the title to the new SVG
-  svgWithTitle
-    .append("text")
-    .attr("x", chartSVG.attr("width") / 2)
-    .attr("y", 30) // Adjust y-coordinate for title position
-    .style("text-anchor", "middle")
-    .style("font-size", "18px")
-    .text(chartTitle);
+//   // Append the title to the new SVG
+//   svgWithTitle
+//     .append("text")
+//     .attr("x", chartSVG.attr("width") / 2)
+//     .attr("y", 30) // Adjust y-coordinate for title position
+//     .style("text-anchor", "middle")
+//     .style("font-size", "18px")
+//     .text(chartTitle);
 
-  var svgString = getSVGString(svgWithTitle.node());
+//   var svgString = getSVGString(svgWithTitle.node());
 
-  return new Promise((resolve) => {
-    svgString2Image(
-      svgString,
-      2 * defaultLayout.width,
-      2 * defaultLayout.height + 120, // Adjust height for title and spacing
-      "png",
-      (dataBlob) => {
-        resolve(dataBlob);
-      }
-    );
-  });
-}
+//   return new Promise((resolve) => {
+//     svgString2Image(
+//       svgString,
+//       2 * defaultLayout.width,
+//       2 * defaultLayout.height + 120, // Adjust height for title and spacing
+//       "png",
+//       (dataBlob) => {
+//         resolve(dataBlob);
+//       }
+//     );
+//   });
+// }
 
 export function getSVGString(svgNode) {
   svgNode.setAttribute("xlink", "http://www.w3.org/1999/xlink");
@@ -236,3 +236,99 @@ export function svgString2Image(svgString, width, height, format, callback) {
 
   image.src = imgsrc;
 }
+
+
+export async function saveChartAsPNGForZip(chartId, chartTitle) {
+  var chartSVG = d3.select("#" + chartId).select("svg");
+
+  // Set the background color of the SVG element to white
+  chartSVG.style("background-color", "white");
+
+  // Calculate dynamic height to fit the title
+  const fontSize = 13; // Adjust this if necessary
+  const titleHeight = fontSize + 10; // Adjust for title spacing
+  const chartHeight = +chartSVG.attr("height") + titleHeight;
+
+  // Create a new SVG element to hold the chart with the title
+  var svgWithTitle = d3
+    .create("svg")
+    .attr("xmlns", "http://www.w3.org/2000/svg")
+    .attr("width", chartSVG.attr("width"))
+    .attr("height", chartHeight); // Adjust height for title
+
+  // Add a white background rectangle
+  svgWithTitle
+    .append("rect")
+    .attr("width", chartSVG.attr("width"))
+    .attr("height", chartHeight)
+    .attr("fill", "white");
+
+  // Append the title, dynamically adjusting position and font size
+  svgWithTitle
+    .append("text")
+    .attr("x", chartSVG.attr("width") / 2)
+    .attr("y", fontSize + 5) // Add padding for better positioning
+    .style("text-anchor", "middle")
+    .style("font-size", `${fontSize}px`)
+    .style("font-family", "Arial, sans-serif")
+    .style("fill", "#000") // Optional: ensure the title is readable
+    .text(chartTitle)
+    .call(wrapText, chartSVG.attr("width") - 20); // Optional: Wrap long titles
+
+  // Append the original chart SVG to the new SVG
+  svgWithTitle
+    .append("g")
+    .attr("transform", `translate(0, ${titleHeight})`)
+    .append(() => chartSVG.node().cloneNode(true));
+
+  var svgString = getSVGString(svgWithTitle.node());
+
+  return new Promise((resolve) => {
+    svgString2Image(
+      svgString,
+      2 * chartSVG.attr("width"),
+      2 * chartHeight,
+      "png",
+      (dataBlob) => {
+        resolve(dataBlob);
+      }
+    );
+  });
+}
+
+// Helper function to wrap long text in multiple lines
+function wrapText(text, width) {
+  text.each(function () {
+    var text = d3.select(this),
+      words = text.text().split(/\s+/).reverse(),
+      word,
+      line = [],
+      lineNumber = 0,
+      lineHeight = 1.1, // ems
+      y = text.attr("y"),
+      dy = parseFloat(text.attr("dy")) || 0,
+      tspan = text
+        .text(null)
+        .append("tspan")
+        .attr("x", text.attr("x"))
+        .attr("y", y)
+        .attr("dy", `${dy}em`);
+
+    while ((word = words.pop())) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text
+          .append("tspan")
+          .attr("x", text.attr("x"))
+          .attr("y", y)
+          .attr("dy", `${++lineNumber * lineHeight + dy}em`)
+          .text(word);
+      }
+    }
+  });
+}
+
