@@ -177,7 +177,7 @@
     "cervicalTestChosen": "Prueba de detección cervical elegida",
     "screeningCoverage": "Cobertura de tamizaje",
     "pleaseRefer": "Consulte la pestaña <a href='/#/about'  target='_blank'>Acerca de</a> para obtener más información sobre los siguientes parámetros antes de ingresar a un escenario.",
-    "proportionOfPositives": "Proporción de positivos que tienen VPH16/18.",
+    "proportionOfPositives": "Proporción de positivos que tienen VPH16/18",
     "proportionOfPositivesInfo": "Proporción de las que tienen resultado de VPH positiva que también tienen resultado positiva a VPH16 o VPH18.",
     "HPVHelpText":"Ingrese el número de mujeres con VPH por cada 100 personas en la población eligible para el tamizaje cervical." 
   },

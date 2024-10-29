@@ -296,8 +296,8 @@ export default function About() {
                 <tbody>
                   <tr>
                     <td>{t("runScenario.PapTest")}</td>
-                    <td>61</td>
-                    <td>90</td>
+                    <td>60</td>
+                    <td>91</td>
                     <td>{t("about.papTestJustification")}</td>
                     <td>
                       <p>{t("about.papTestSource0")}</p>
@@ -374,8 +374,8 @@ export default function About() {
                 <tbody>
                   <tr>
                     <td>{t("runScenario.PapTest")}</td>
-                    <td>61</td>
-                    <td>90</td>
+                    <td>60</td>
+                    <td>91</td>
                     <td>{t("about.papTestJustification")}</td>
                     <td>
                       <p>{t("about.papTestSource0")}</p>
