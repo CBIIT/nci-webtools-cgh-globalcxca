@@ -1190,7 +1190,12 @@ function exportResultsExcel(tabContentId) {
                           {/* {results.totalNeededToTreat?.toLocaleString(locale) ??
                       "N/A"} */}
 
-                          {totalNeededToTreat}
+                          {/* {totalNeededToTreat} */}
+                          {Math.round(
+                            parseInt(totalNeededToTreat.replace(/\D/g, "")) 
+                          )?Math.round(
+                            parseInt(totalNeededToTreat.replace(/\D/g, "")) 
+                          ) : t("general.NA")}{" "}
                         </td>
                       </tr>
                     </tbody>
