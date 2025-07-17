@@ -129,7 +129,8 @@
     "participationTitle": "Participación en servicios de salud",
     "participationWarning": "Ingrese la participación observada o anticipada en el programa de tamizaje cervical de su población",
     "intervalofCervicalInYears": "Intervalo de tamizaje cervical (en años)",
-    "intervalInformation": "Si las personas tienen un tamizaje cervical una vez en la vida, ingrese 20 años. Para dos tamizajes cervicales en la vida, ingrese 10 años.",
+    "XintervalInformation": "Si las personas tienen un tamizaje cervical una vez en la vida, ingrese 20 años. Para dos tamizajes cervicales en la vida, ingrese 10 años.",
+    "intervalInformation": "El valor por defecto es una vez en la vida e igual al número de años que una persona puede estar en un programa de cribado, calculado por el rango de edad de los participantes en la población diana. Para dos cribados en la vida, introduzca la mitad del valor por defecto. Muchos programas realizan cribados cada 5 años.",
     "percentScreeningCoverage": "Porcentaje de cobertura de tamizaje",
     "percentScreeningPositiveWithTriage": "Porcentaje de personas con tamizaje positivo que reciben una prueba de triaje",
     "percentTriagePositiveWithDiagnostic": "Porcentaje de personas con triaje positivo que reciben una prueba diagnóstica",
@@ -177,9 +178,11 @@
     "cervicalTestChosen": "Prueba de detección cervical elegida",
     "screeningCoverage": "Cobertura de tamizaje",
     "pleaseRefer": "Consulte la pestaña <a href='/#/about'  target='_blank'>Acerca de</a> para obtener más información sobre los siguientes parámetros antes de ingresar a un escenario.",
-    "proportionOfPositives": "Proporción de positivos que tienen VPH16/18.",
+    "proportionOfPositives": "Proporción de VPH positivos que tienen VPH16/18.",
     "proportionOfPositivesInfo": "Proporción de las que tienen resultado de VPH positiva que también tienen resultado positiva a VPH16 o VPH18.",
-    "HPVHelpText":"Ingrese el número de mujeres con VPH por cada 100 personas en la población eligible para el tamizaje cervical." 
+    "HPVHelpText":"Ingrese el número de mujeres con VPH por cada 100 personas en la población eligible para el tamizaje cervical.",
+    "agesInitEndScreening":"Edades de inicio y finalización del cribado cervical",
+    "agesInitEndScreeningInfo":"Introduzca el intervalo de edad de las personas incluidas en su programa de detección."
   },
     
   "results": {
@@ -252,14 +255,15 @@
     "resultGraphDefinition3": "Porcentaje de personas tamizadas cada año que se asume que tienen precáncer*",
     "resultGraphDefinition4": "Porcentaje de personas tamizadas cada año que se asume que no tienen precáncer*",
     "resultGraphDefinition5": "*basado en los valores indicados en el simulador de prevalencia de precáncer",
-    "Approximately": "Se requerirán aproximadamente",
+    "Approximately": "En un año, se requerirán aproximadamente",
     "screeningTests": "pruebas de tamizaje",
     "triageTests": "pruebas de triaje",
     "resultsDes0": "pruebas colposcopy.",
     "resultsDes1": "mujeres requerirán tratamiento.",
     "resultsDes2": "de las mujeres posiblemente reciben un tratamiento excesivo.",
     "resultsInterpretation": "Interpretación de resultados",
-    "screeningColposcopyHelpText":"Los programas de tamizaje sin colposcopia suponen que el 4% de las mujeres tratadas no serán elegibles para la ablación inmediata y requerirán colposcopia."
+    "screeningColposcopyHelpText":"Los programas de tamizaje sin colposcopia suponen que el 4% de las mujeres tratadas no serán elegibles para la ablación inmediata y requerirán colposcopia.",
+    "lengthProgramHelpText":"La duración de un «programa» viene determinada por el intervalo seleccionado de cribado cervical en años."
   },
 
   "compareScenarios": {
@@ -320,7 +324,7 @@
     "prevalenceSourcesJustification": "La prevalencia del VPH varía mucho según la edad, el estatus inmunológico y la geografía. Para mujeres de entre 30 y 49 años, la prevalencia es generalmente alrededor de 11-12%. Para mujeres menores de 25 años de edad, la prevalencia de VPH es típicamente mucho más alta y las infecciones usualmente se resuelven dentro de un año. Dadas las variaciones geográficas, alentamos a los usuarios de esta herramienta que no conocieran la prevalencia de VPH en sus poblaciones objetivo, que utilicen los estimados de prevalencia de los países vecinos para las mujeres de edad equivalente. Esta herramienta no ha sido creada para ser utilizada en poblaciones en donde el VIH es endémico debido a que en este caso la epidemiologia del VPH es diferente.",
     "fixedAt100HPV":"Fijada en 100-prevalencia de VPH",
     "fixedAt100HPV1618":"Fijada en 100-(prevalencia de VPH x porcentaje de VPH positivo que son VPH16/18)",
-    "proportionOfPositiveIncludingHPV1618":"Proportion of Positives including HPV 16/18",
+    "proportionOfPositiveIncludingHPV1618":"Proportion of HPV positives including HPV 16/18",
     "proportionOfPositiveIncludingHPV1618_Justification":"In the general population, the percent of those testing HPV positive with HPV16/18 varies slightly geographically. It is recommended to use preliminary or established data from the screening program or a neighbor settings.",
     "proportionOfPositiveIncludingHPV1618_Source1":"Guan P, Howell-Jones R, Li N, Bruni L, de Sanjosé S, Franceschi S, Clifford GM. Human papillomavirus types in 115,789 HPV-positive women: a meta-analysis from cervical infection to cancer. Int J Cancer. 2012 Nov 15;131(10):2349-59. doi: 10.1002/ijc.27485. Epub 2012 Mar 20. PMID: 22323075.",
     "proportionOfPositiveIncludingHPV1618_Source2":"Forman D, de Martel C, Lacey CJ, Soerjomataram I, Lortet-Tieulent J, Bruni L, Vignat J, Ferlay J, Bray F, Plummer M, Franceschi S. Global burden of human papillomavirus and related diseases. Vaccine. 2012 Nov 20;30 Suppl 5:F12-23. doi: 10.1016/j.vaccine.2012.07.055. PMID: 23199955.",

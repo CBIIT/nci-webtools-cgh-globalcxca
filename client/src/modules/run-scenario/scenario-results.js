@@ -1907,6 +1907,9 @@ function exportResultsExcel(tabContentId) {
             <div id="tab3Content">
               <Card className="mb-4">
                 <Card.Body>
+                  <Card.Text className="small text-muted">
+                    {t("results.lengthProgramHelpText")}
+                  </Card.Text>
                   <Table hover responsive data-export>
                     <thead>
                       <tr className="bg-info-dark text-light">

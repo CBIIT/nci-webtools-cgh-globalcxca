@@ -149,3 +149,27 @@ a:hover {
   color:#297f94;
   text-decoration: underline;
 }
+
+/* rc-slider: overrides */
+.rc-slider-handle:hover, .rc-slider-handle:focus, .rc-slider-handle:focus-visible {
+  background-color: #537B90 !important;
+  border-color: white !important;
+  //width: 16px !important;  // Adjust the width
+  //height: 16px !important; // Adjust the  height
+  box-shadow: 0 0 0 2px #C4D8DE !important; 
+  cursor: pointer !important;
+  transition: background-color,border-color,box-shadow 0.3s ease !important;
+}
+.rc-slider-handle:active {
+  background-color: #C4D8DE !important;
+  border-color: white !important;
+  box-shadow: 0 0 0 2px #C4D8DE !important; 
+  transition: background-color,border-color,box-shadow 0.3s ease !important;
+}
+
+.rc-slider:hover {
+  cursor: pointer !important;
+}
+.rc-slider-handle:hover {
+  cursor: pointer !important;
+}

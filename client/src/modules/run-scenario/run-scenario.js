@@ -13,6 +13,10 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+
+import Slider, { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
+
 import {
   defaultFormState,
   formState,
@@ -61,8 +65,12 @@ export default function RunScenarios() {
   const [hpv16or18GenotypingTriageUsed, setHpv16or18GenotypingTriageUsed] = useState(false); // Initialize with false
   const [storedPercentTriaged, setStoredPercentTriaged] = useState(null);
   const [storedPercentDiagnosticTriaged, setStoredPercentDiagnosticTriaged] = useState(null);
-  
 
+  // Ranged Slider
+  const [rangeValues, setRangeValues] = useState([30, 49]); // Initial range values
+  const resetSlider = () => {
+    setRangeValues([30, 49]); // Reset to the desired default value
+  };
 
   useEffect(() => {
     if (
@@ -95,6 +103,31 @@ export default function RunScenarios() {
       setHpvUsed(false);
     }
   }, [params.screeningTest, params.triageTest]);
+
+  // Update 'Interval of cervical screening, when ages initiating changes'
+  /*
+  useEffect(() => {
+    if (form.agesInitEndScreening && form.agesInitEndScreening !== form.screeningInterval) {
+      //alert(form.agesInitEndScreen) // CMS
+      setForm((prevForm) => ({
+        ...prevForm,
+        screeningInterval: form.agesInitEndScreening,
+      }));
+    }
+  }, [form.agesInitEndScreening, form.screeningInterval, form.agesInitEndScreen]);
+  */
+
+  useEffect(() => {
+    let diffVal = (rangeValues[1] - rangeValues[0]) + 1;
+    if (diffVal !== form.screeningInterval) {
+      //alert(diffVal) // CMS
+      setForm((prevForm) => ({
+        ...prevForm,
+        screeningInterval: diffVal,
+      }));
+    }
+  }, [rangeValues]);
+
 
   //console.log("hpv16or18Used -- ", hpv16or18Used);
   //console.log("hpvUsed -- ", hpvUsed);
@@ -598,6 +631,7 @@ export default function RunScenarios() {
     event.preventDefault();
     initStates();
     window.scrollTo(0, 0);
+    resetSlider(); // for ranged slider
     resetForm();
   }
 
@@ -657,7 +691,6 @@ export default function RunScenarios() {
     if (form.triageTest === 'hpv16or18genotyping' && (value === 'hpv' || value === 'hpv16or18')) return true;
     return false;
   };
-
 
   return (
     <div className="bg-light py-2">
@@ -826,7 +859,6 @@ export default function RunScenarios() {
                           </Col>
                         </Form.Group>
                       </Row>
-
                       <Row className="ps-3">
                         <Form.Group as={Row} controlId="proportionOfPositives">
                           <Col lg={6} md={12} sm={12} xs={12}>
@@ -868,6 +900,60 @@ export default function RunScenarios() {
                               />
                               <span className="text-nowrap">
                                 {form.proportionOfPositives}%
+                              </span>
+                            </InputGroup>
+                          </Col>
+                        </Form.Group>
+                      </Row>
+                      <Row className="ps-3">
+                        <Form.Group as={Row} controlId="agesInitEndScreening">
+                          <Col lg={6} md={12} sm={12} xs={12}>
+                            <Form.Label column sm={12}>
+                              <span>
+                                {t("runScenario.agesInitEndScreening")}
+                              </span>
+                              <OverlayTrigger
+                                overlay={
+                                  <Tooltip id="agesInitEndScreening-help">
+                                    {t("runScenario.agesInitEndScreeningInfo")}
+                                  </Tooltip>
+                                }
+                              >
+                                <i className="ms-1 bi bi-question-circle"></i>
+                              </OverlayTrigger>
+                            </Form.Label>
+                          </Col>
+                          <Col
+                            lg={6}
+                            md={12}
+                            sm={12}
+                            xs={12}
+                            className="m-auto"
+                          >
+                            <InputGroup>
+                            <Slider name="agesInitEndScreen" id="agesInitEndScreen"
+                                min={25}
+                                max={60}
+                                step={1}
+                                defaultValue={[30, 49]}
+                                trackStyle={{ backgroundColor: '#537B90', height: 8 }} // Customize track height
+                                railStyle={{ backgroundColor: '#EAECEF', height: 8 }} // Customize rail height
+                                //handleStyle={{ backgroundColor: '#437D92', borderColor: '#437D92', height: 16, width: 16, marginTop: -3 }} // Adjust handle if needed
+                                //trackStyle={{ backgroundColor: '#437D92'}}
+                                handleStyle={{backgroundColor: '#537B90', 
+                                  borderColor: '#537B90',
+                                  width: '16px',  // Adjust the width
+                                  height: '16px', // Adjust the  height
+                                  borderRadius: '50%',
+                                  opacity: 1.0}}
+                                onChange={setRangeValues} // Update state on change
+                                allowCross={false} // Prevent handles from crossing
+                                range 
+                              />
+                              <br />
+                              <span className="text-nowrap">
+                                {rangeValues[0]}{"-"}{rangeValues[1]}{" "}
+                                {t("general.years")}
                               </span>
                             </InputGroup>
                           </Col>
