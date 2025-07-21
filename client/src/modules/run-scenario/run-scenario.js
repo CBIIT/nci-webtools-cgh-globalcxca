@@ -65,11 +65,17 @@ export default function RunScenarios() {
   const [hpv16or18GenotypingTriageUsed, setHpv16or18GenotypingTriageUsed] = useState(false); // Initialize with false
   const [storedPercentTriaged, setStoredPercentTriaged] = useState(null);
   const [storedPercentDiagnosticTriaged, setStoredPercentDiagnosticTriaged] = useState(null);
+  const [userChanged, setUserChanged] = useState(false); // used to track when user made change
 
   // Ranged Slider
   const [rangeValues, setRangeValues] = useState([30, 49]); // Initial range values
   const resetSlider = () => {
     setRangeValues([30, 49]); // Reset to the desired default value
+  };
+  // Handler for user input
+  const handleRangeChange = (newValues) => {
+    setRangeValues(newValues);
+    setUserChanged(true);
   };
 
   useEffect(() => {
@@ -104,27 +110,16 @@ export default function RunScenarios() {
     }
   }, [params.screeningTest, params.triageTest]);
 
-  // Update 'Interval of cervical screening, when ages initiating changes'
-  /*
   useEffect(() => {
-    if (form.agesInitEndScreening && form.agesInitEndScreening !== form.screeningInterval) {
-      //alert(form.agesInitEndScreen) // CMS
-      setForm((prevForm) => ({
-        ...prevForm,
-        screeningInterval: form.agesInitEndScreening,
-      }));
-    }
-  }, [form.agesInitEndScreening, form.screeningInterval, form.agesInitEndScreen]);
-  */
-
-  useEffect(() => {
-    let diffVal = (rangeValues[1] - rangeValues[0]) + 1;
-    if (diffVal !== form.screeningInterval) {
-      //alert(diffVal) // CMS
-      setForm((prevForm) => ({
-        ...prevForm,
-        screeningInterval: diffVal,
-      }));
+    if (userChanged) {
+      let diffVal = (rangeValues[1] - rangeValues[0]) + 1;
+      if (diffVal !== form.screeningInterval) {
+        setForm((prevForm) => ({
+          ...prevForm,
+          screeningInterval: diffVal,
+        }));
+      }
+      setUserChanged(false); // Reset flag
     }
   }, [rangeValues]);
 
@@ -946,7 +941,7 @@ export default function RunScenarios() {
                                   height: '16px', // Adjust the  height
                                   borderRadius: '50%',
                                   opacity: 1.0}}
-                                onChange={setRangeValues} // Update state on change
+                                onChange={handleRangeChange} // Update state on change
                                 allowCross={false} // Prevent handles from crossing
                                 range 
                               />

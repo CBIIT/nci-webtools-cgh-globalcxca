@@ -276,7 +276,7 @@
   },
   "about": {
     "title": "Description and sources for scenario parameters",
-    "prevalenceJustitication": "Population-based prevalence studies suggest 1-3% prevalence, depending upon previous screening history and immunocompetency challenges in the population.",
+    "prevalenceJustification": "Population-based prevalence studies suggest 1-3% prevalence, depending upon previous screening history and immunocompetency challenges in the population.",
     "prevalenceSources0": "Zhao FH, et al. Prevalence of human papillomavirus and cervical intraepithelial neoplasia in China: a pooled analysis of 17 population-based studies. Int J Cancer. 2012 Dec 15;131(12):2929-38. ",
     "prevalenceSources1": "Ting J, et al.  A global review of age-specific and overall prevalence of cervical lesions. Int J Gynecol Cancer. 2010 Oct;20(7):1244-9. doi: 10.1111/igc.0b013e3181f16c5f. PMID: 21495248.",
     "prevalenceSources2": "Vesco KK et al. Screening for Cervical Cancer: A Systematic Evidence Review for the U.S. Preventive Services Task Force [Internet]. Rockville (MD): Agency for Healthcare Research and Quality (US); 2011 May. Report No.: 11-05156-EF-1. PMID: 22132428.",
@@ -339,6 +339,8 @@
     "proportionOfPositiveIncludingHPV1618_Justification":"In the general population, the percent of those testing HPV positive with HPV16/18 varies slightly geographically. It is recommended to use preliminary or established data from the screening program or a neighbor settings.",
     "proportionOfPositiveIncludingHPV1618_Source1":"Guan P, Howell-Jones R, Li N, Bruni L, de Sanjosé S, Franceschi S, Clifford GM. Human papillomavirus types in 115,789 HPV-positive women: a meta-analysis from cervical infection to cancer. Int J Cancer. 2012 Nov 15;131(10):2349-59. doi: 10.1002/ijc.27485. Epub 2012 Mar 20. PMID: 22323075.",
     "proportionOfPositiveIncludingHPV1618_Source2":"Forman D, de Martel C, Lacey CJ, Soerjomataram I, Lortet-Tieulent J, Bruni L, Vignat J, Ferlay J, Bray F, Plummer M, Franceschi S. Global burden of human papillomavirus and related diseases. Vaccine. 2012 Nov 20;30 Suppl 5:F12-23. doi: 10.1016/j.vaccine.2012.07.055. PMID: 23199955.",
+    "agesInitEndScreening_Justification": "International guidelines recommend that in the general population of women, starting regular cervical cancer screening at the age of 30 years among, with priority given to screening women aged 30–49 years. When tools are available to manage women aged 50–65 years, those in that age bracket who have never been screened should also be prioritized. Finally, stopping screening is recommended after the age of 50 years after two consecutive negative screening results consistent with the recommended regular screening intervals.",
+    "agesInitEndScreening_Source1":"WHO guideline for screening and treatment of cervical pre-cancer lesions for cervical cancer prevention. Second edition. © World Health Organization 2021. ISBN: 978-92-4-003082-4.",
     "": ""
   }
 }

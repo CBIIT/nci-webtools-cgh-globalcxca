@@ -97,19 +97,7 @@ export default function About() {
                   </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>{t("about.proportionOfPositiveIncludingHPV1618")}</td>
-                    <td>10%</td>
-                    <td>40%</td>
-                    <td>25%</td>
-                    <td>
-                      <p>{t("about.proportionOfPositiveIncludingHPV1618_Justification")}</p>
-                    </td>
-                    <td>
-                      <p>{t("about.proportionOfPositiveIncludingHPV1618_Source1")}</p>
-                      <p>{t("about.proportionOfPositiveIncludingHPV1618_Source2")}</p>
-                    </td>
-                  </tr>
+
                   <tr>
                     <td>{t("about.hpvPrevelence")}</td>
                     <td>5%</td>
@@ -128,7 +116,7 @@ export default function About() {
                     <td>0%</td>
                     <td>5%</td>
                     <td>2%</td>
-                    <td>{t("about.prevalenceJustitication")}</td>
+                    <td>{t("about.prevalenceJustification")}</td>
                     <td>
                       <p>{t("about.prevalenceSources0")}</p>
                       <p>{t("about.prevalenceSources1")}</p>
@@ -139,6 +127,31 @@ export default function About() {
                       <p>{t("about.prevalenceSources6")}</p>
                       <p>{t("about.prevalenceSources7")}</p>
                       <p>{t("about.prevalenceSources8")}</p>
+                    </td>
+                  </tr>
+                                    <tr>
+                    <td>{t("about.proportionOfPositiveIncludingHPV1618")}</td>
+                    <td>10%</td>
+                    <td>40%</td>
+                    <td>25%</td>
+                    <td>
+                      <p>{t("about.proportionOfPositiveIncludingHPV1618_Justification")}</p>
+                    </td>
+                    <td>
+                      <p>{t("about.proportionOfPositiveIncludingHPV1618_Source1")}</p>
+                      <p>{t("about.proportionOfPositiveIncludingHPV1618_Source2")}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{t("runScenario.agesInitEndScreening")}</td>
+                    <td>25 {t("general.years")}</td>
+                    <td>60 {t("general.years")}</td>
+                    <td>30-49 {t("general.years")}</td>
+                    <td>
+                      <p>{t("about.agesInitEndScreening_Justification")}</p>
+                    </td>
+                    <td>
+                      <p>{t("about.agesInitEndScreening_Source1")}</p>
                     </td>
                   </tr>
                 </tbody>
