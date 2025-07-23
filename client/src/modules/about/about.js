@@ -228,7 +228,7 @@ export default function About() {
                     <td>{t("runScenario.intervalofCervicalInYears")}</td>
                     <td>1</td>
                     <td>40</td>
-                    <td>5</td>
+                    <td>20</td>
                     <td>
                       <p>
                         {t("about.intervalofCervicalInYearsJustification0")}

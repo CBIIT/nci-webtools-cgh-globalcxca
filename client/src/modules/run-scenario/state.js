@@ -31,7 +31,7 @@ export const defaultFormState = {
   hpvCancerPrevalence: "",
   hpvPrevalence: 12,
   cinPrevalence: 2,
-  screeningInterval: 5, // perhaps set to 20
+  screeningInterval: 20, // originally set to 5
   percentScreened: 0,
   percentTriaged: 0,
   percentDiagnosticTriaged: 0,
