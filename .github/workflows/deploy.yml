@@ -1,0 +1,141 @@
+name: Deploy cc3s (globalcxca)
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - github-actions
+  workflow_dispatch:
+    inputs:
+      tier:
+        description: "Tier to deploy to"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - qa
+          - staging
+          - prod
+
+env:
+  APP: cc3s (globalcxca)
+  APP_NAME: globalcxca
+  AWS_REGION: us-east-1
+  TZ: America/New_York
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  Deploy:
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.tier }}
+    env:
+      TIER: ${{ inputs.tier }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: client/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./client
+        run: npm ci
+
+      - name: Build application
+        working-directory: ./client
+        env:
+          CI: false
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          # React builds to docs/ due to homepage: "." in package.json
+          if [ -d "docs" ]; then
+            echo "✅ Build output found at: docs/"
+            ls -la docs/ | head -10
+          elif [ -d "client/build" ]; then
+            echo "✅ Build output found at: client/build/"
+            ls -la client/build/ | head -10
+          else
+            echo "❌ Error: Build output not found!"
+            echo "Checking directories:"
+            ls -la
+            ls -la client/
+            exit 1
+          fi
+
+      - name: Set dynamic environment variables
+        run: |
+          echo "PARAMETER_PATH=/analysistools/${TIER}/${{ env.APP_NAME }}" >> $GITHUB_ENV
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5.1.0
+        with:
+          role-to-assume: ${{ secrets.CICD_ROLE_ARN }}
+          role-session-name: ${{ env.TIER }}-${{ env.APP_NAME }}-deploy-${{ github.ref_name }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Retrieve AWS SSM parameters
+        uses: dkershner6/aws-ssm-getparameters-action@v2
+        with:
+          parameterPairs: |
+            ${{ env.PARAMETER_PATH }}/cloudfront_distribution_id = CLOUDFRONT_DISTRIBUTION_ID,
+            ${{ env.PARAMETER_PATH }}/cloudfront_domain_name = CLOUDFRONT_DOMAIN_NAME,
+            ${{ env.PARAMETER_PATH }}/cloudfront_s3_bucket = CLOUDFRONT_S3_BUCKET
+          withDecryption: "false"
+
+      - name: Sync files to S3
+        run: |
+          # Determine build output location (React builds to docs/ due to homepage: "." setting)
+          if [ -d "docs" ]; then
+            BUILD_DIR="docs"
+          elif [ -d "client/build" ]; then
+            BUILD_DIR="client/build"
+          else
+            echo "❌ Error: Build directory not found!"
+            exit 1
+          fi
+          
+          echo "Syncing from: $BUILD_DIR"
+          aws s3 sync \
+            --delete \
+            --region ${{ env.AWS_REGION }} \
+            $BUILD_DIR/ \
+            s3://${{ env.CLOUDFRONT_S3_BUCKET }}/
+
+      - name: Create CloudFront invalidation
+        run: |
+          INVALIDATION_ID=$(aws cloudfront create-invalidation \
+            --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*" \
+            --query 'Invalidation.Id' \
+            --output text)
+          
+          echo "CloudFront invalidation created: ${INVALIDATION_ID}"
+          echo "Distribution: ${{ env.CLOUDFRONT_DISTRIBUTION_ID }}"
+          echo "Domain: ${{ env.CLOUDFRONT_DOMAIN_NAME }}"
+
+      - name: Deployment summary
+        run: |
+          echo "## Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Tier:** ${{ env.TIER }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment:** ${{ env.CLOUDFRONT_DOMAIN_NAME }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **S3 Bucket:** ${{ env.CLOUDFRONT_S3_BUCKET }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **CloudFront Distribution:** ${{ env.CLOUDFRONT_DISTRIBUTION_ID }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Build:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+
