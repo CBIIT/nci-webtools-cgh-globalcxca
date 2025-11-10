@@ -6,6 +6,7 @@ on:
       - main
       - master
       - github-actions
+      - nonprod
   workflow_dispatch:
     inputs:
       tier:
