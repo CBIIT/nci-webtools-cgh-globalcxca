@@ -36,9 +36,9 @@ jobs:
       contents: read
       id-token: write
     runs-on: ubuntu-latest
-    environment: ${{ inputs.tier }}
+    environment: ${{ inputs.tier || (github.ref_name == 'main' && 'prod') || (github.ref_name == 'master' && 'prod') || (github.ref_name == 'staging' && 'staging') || (github.ref_name == 'qa' && 'qa') || 'dev' }}
     env:
-      TIER: ${{ inputs.tier }}
+      TIER: ${{ inputs.tier || '' }}
 
     steps:
       - name: Checkout code
