@@ -20,36 +20,22 @@ on:
           - staging
           - prod
 
-env:
-  APP: cc3s (globalcxca)
-  APP_NAME: globalcxca
-  AWS_REGION: us-east-1
-  TZ: America/New_York
-
 permissions:
   id-token: write
   contents: read
 
 jobs:
   Deploy:
-    permissions:
-      contents: read
-      id-token: write
     runs-on: ubuntu-latest
-    environment: ${{ inputs.tier || (github.ref_name == 'main' && 'prod') || (github.ref_name == 'master' && 'prod') || (github.ref_name == 'staging' && 'staging') || (github.ref_name == 'qa' && 'qa') || 'dev' }}
+    environment: ${{ inputs.tier }}
     env:
+      APP: globalcxca
+      AWS_REGION: us-east-1
+      TZ: America/New_York
       TIER: ${{ inputs.tier || '' }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: client/package-lock.json
+      - uses: "actions/checkout@v6.0.1"
 
       - name: Install dependencies
         working-directory: ./client
@@ -61,132 +47,39 @@ jobs:
           CI: false
         run: npm run build
 
-      - name: Verify build output
-        run: |
-          # React builds to docs/ due to homepage: "." in package.json
-          if [ -d "docs" ]; then
-            echo "✅ Build output found at: docs/"
-            ls -la docs/ | head -10
-          elif [ -d "client/build" ]; then
-            echo "✅ Build output found at: client/build/"
-            ls -la client/build/ | head -10
-          else
-            echo "❌ Error: Build output not found!"
-            echo "Checking directories:"
-            ls -la
-            ls -la client/
-            exit 1
-          fi
-
-      - name: Set dynamic environment variables
-        run: |
-          echo "PARAMETER_PATH=/analysistools/${TIER}/${{ env.APP_NAME }}" >> $GITHUB_ENV
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5.1.0
         with:
           role-to-assume: ${{ secrets.CICD_ROLE_ARN }}
-          role-session-name: ${{ env.TIER }}-${{ env.APP_NAME }}-deploy-${{ github.ref_name }}
+          role-session-name: ${{ env.TIER }}-${{ env.APP }}-deploy-${{ github.ref_name }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Retrieve AWS SSM parameters
-        uses: dkershner6/aws-ssm-getparameters-action@v2
-        with:
-          parameterPairs: |
-            ${{ env.PARAMETER_PATH }}/cloudfront_distribution_id = CLOUDFRONT_DISTRIBUTION_ID,
-            ${{ env.PARAMETER_PATH }}/cloudfront_domain_name = CLOUDFRONT_DOMAIN_NAME,
-            ${{ env.PARAMETER_PATH }}/cloudfront_s3_bucket = CLOUDFRONT_S3_BUCKET
-          withDecryption: "false"
-
-      - name: Sync files to S3
+      - name: Retrieve SSM parameters
         run: |
-          # Determine build output location (React builds to docs/ due to homepage: "." setting)
-          if [ -d "docs" ]; then
-            BUILD_DIR="docs"
-          elif [ -d "client/build" ]; then
-            BUILD_DIR="client/build"
-          else
-            echo "❌ Error: Build directory not found!"
-            exit 1
-          fi
-          
-          echo "Syncing from: $BUILD_DIR"
-          
-          # Sync CSS files with correct content type
-          echo "Syncing CSS files..."
-          aws s3 sync $BUILD_DIR/ s3://${{ env.CLOUDFRONT_S3_BUCKET }}/ \
-            --exclude "*" \
-            --include "*.css" \
-            --content-type "text/css" \
-            --cache-control "public, max-age=31536000" \
-            --region ${{ env.AWS_REGION }}
-          
-          # Sync JS files with correct content type
-          echo "Syncing JS files..."
-          aws s3 sync $BUILD_DIR/ s3://${{ env.CLOUDFRONT_S3_BUCKET }}/ \
-            --exclude "*" \
-            --include "*.js" \
-            --content-type "application/javascript" \
-            --cache-control "public, max-age=31536000" \
-            --region ${{ env.AWS_REGION }}
-          
-          # Sync HTML files with correct content type
-          echo "Syncing HTML files..."
-          aws s3 sync $BUILD_DIR/ s3://${{ env.CLOUDFRONT_S3_BUCKET }}/ \
-            --exclude "*" \
-            --include "*.html" \
-            --content-type "text/html; charset=utf-8" \
-            --cache-control "public, max-age=0, must-revalidate" \
-            --region ${{ env.AWS_REGION }}
-          
-          # Sync map files with correct content type
-          echo "Syncing map files..."
-          aws s3 sync $BUILD_DIR/ s3://${{ env.CLOUDFRONT_S3_BUCKET }}/ \
-            --exclude "*" \
-            --include "*.map" \
-            --content-type "application/json" \
-            --cache-control "public, max-age=31536000" \
-            --region ${{ env.AWS_REGION }}
-          
-          # Sync JSON files with correct content type
-          echo "Syncing JSON files..."
-          aws s3 sync $BUILD_DIR/ s3://${{ env.CLOUDFRONT_S3_BUCKET }}/ \
-            --exclude "*" \
-            --include "*.json" \
-            --content-type "application/json" \
-            --cache-control "public, max-age=3600" \
-            --region ${{ env.AWS_REGION }}
-          
-          # Sync image files
-          echo "Syncing images..."
-          aws s3 sync $BUILD_DIR/ s3://${{ env.CLOUDFRONT_S3_BUCKET }}/ \
-            --exclude "*" \
-            --include "*.png" \
-            --include "*.jpg" \
-            --include "*.jpeg" \
-            --include "*.gif" \
-            --include "*.svg" \
-            --include "*.webp" \
-            --include "*.ico" \
-            --cache-control "public, max-age=31536000" \
-            --region ${{ env.AWS_REGION }}
-          
-          # Sync font files
-          echo "Syncing fonts..."
-          aws s3 sync $BUILD_DIR/ s3://${{ env.CLOUDFRONT_S3_BUCKET }}/ \
-            --exclude "*" \
-            --include "*.woff" \
-            --include "*.woff2" \
-            --include "*.ttf" \
-            --include "*.eot" \
-            --cache-control "public, max-age=31536000" \
-            --region ${{ env.AWS_REGION }}
-          
-          # Sync everything else and delete removed files
-          echo "Syncing remaining files..."
-          aws s3 sync $BUILD_DIR/ s3://${{ env.CLOUDFRONT_S3_BUCKET }}/ \
-            --delete \
-            --region ${{ env.AWS_REGION }}
+          PARAMETER_PATH="/analysistools/${{ env.TIER }}/${{ env.APP }}"
+
+          # Define parameters to retrieve (SSM name = ENV_VAR_NAME)
+          declare -A PARAMS=(
+            ["cloudfront_distribution_id"]="CLOUDFRONT_DISTRIBUTION_ID"
+            ["cloudfront_domain_name"]="CLOUDFRONT_DOMAIN_NAME"
+            ["cloudfront_s3_bucket"]="CLOUDFRONT_S3_BUCKET"
+          )
+
+          # Retrieve each parameter and export to environment
+          for ssm_name in "${!PARAMS[@]}"; do
+            env_var="${PARAMS[$ssm_name]}"
+            value=$(aws ssm get-parameter \
+              --name "${PARAMETER_PATH}/${ssm_name}" \
+              --with-decryption \
+              --query "Parameter.Value" \
+              --output text)
+            echo "${env_var}=${value}" >> $GITHUB_ENV
+            echo "Retrieved ${ssm_name} -> ${env_var}"
+          done
+
+      - name: Copy build assets to S3
+        run: |
+          aws s3 sync client/docs/ s3://${{ env.CLOUDFRONT_S3_BUCKET }} --delete
 
       - name: Create CloudFront invalidation
         run: |
@@ -195,7 +88,7 @@ jobs:
             --paths "/*" \
             --query 'Invalidation.Id' \
             --output text)
-          
+
           echo "CloudFront invalidation created: ${INVALIDATION_ID}"
           echo "Distribution: ${{ env.CLOUDFRONT_DISTRIBUTION_ID }}"
           echo "Domain: ${{ env.CLOUDFRONT_DOMAIN_NAME }}"
@@ -210,4 +103,3 @@ jobs:
           echo "- **CloudFront Distribution:** ${{ env.CLOUDFRONT_DISTRIBUTION_ID }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Build:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
-
