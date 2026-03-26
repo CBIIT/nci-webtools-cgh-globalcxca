@@ -1,4 +1,9 @@
 name: Deploy cc3s (globalcxca)
+
+permissions:
+  id-token: write
+  contents: read
+
 on:
   workflow_dispatch:
     inputs:
@@ -13,12 +18,8 @@ on:
           - stage
           - prod
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
-  Deploy:
+  deploy-cloudfront:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     environment: ${{ inputs.tier }}
@@ -26,28 +27,26 @@ jobs:
       APP: globalcxca
       AWS_REGION: us-east-1
       TZ: America/New_York
-      TIER: ${{ inputs.tier || '' }}
-      CICD_ROLE_ARN: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/power-user-github-actions-cicd
+      TIER: ${{ inputs.tier }}
+      CICD_ROLE_ARN: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/power-user-github-actions-cicd
 
     steps:
-      - uses: "actions/checkout@v6.0.1"
-
-      - name: Install dependencies
-        working-directory: ./client
-        run: npm ci
-
-      - name: Build application
-        working-directory: ./client
-        env:
-          CI: false
-        run: npm run build
+      - uses: "actions/checkout@v6.0.2"
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v5.1.1
+        uses: aws-actions/configure-aws-credentials@v6.0.0
         with:
           role-to-assume: ${{ env.CICD_ROLE_ARN }}
           role-session-name: ${{ env.TIER }}-${{ env.APP }}-deploy-${{ github.ref_name }}
           aws-region: ${{ env.AWS_REGION }}
+
+      - name: Build application
+        env:
+          CI: false
+        run: |
+          cd client
+          npm ci
+          npm run build
 
       - name: Retrieve SSM parameters
         run: |
