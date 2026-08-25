@@ -8,5 +8,9 @@ import '@testing-library/jest-dom';
 // provide TextEncoder/TextDecoder globals, which react-router@7 requires at
 // import time. Polyfill from Node's util module so tests can load react-router-dom.
 import { TextEncoder, TextDecoder } from "util";
-global.TextEncoder = TextEncoder;
-global.TextDecoder = TextDecoder;
+if (typeof globalThis.TextEncoder === "undefined") {
+  globalThis.TextEncoder = TextEncoder;
+}
+if (typeof globalThis.TextDecoder === "undefined") {
+  globalThis.TextDecoder = TextDecoder;
+}
