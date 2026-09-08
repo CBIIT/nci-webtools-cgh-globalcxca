@@ -943,6 +943,7 @@ export default function RunScenarios() {
                                   opacity: 1.0}}
                                 onChange={handleRangeChange} // Update state on change
                                 allowCross={false} // Prevent handles from crossing
+                                ariaLabelForHandle={['Ages initiating cervical screening', 'Ages ending cervical screening']}
                                 range 
                               />
                               <br />
@@ -1397,6 +1398,7 @@ export default function RunScenarios() {
                                                       ? "grayed-out"
                                                       : ""
                                                   }`}
+                                                  aria-disabled={hpv16or18Used || hpvUsed}
                                                 >
                                                   <Form.Range
                                                     type="number"
@@ -1413,9 +1415,10 @@ export default function RunScenarios() {
                                                     onWheel={(e) =>
                                                       e.target.blur()
                                                     }
+                                                    disabled={hpv16or18Used || hpvUsed}
                                                     required
                                                   />
-                                                  <span className="text-nowrap">
+                                                  <span className="text-nowrap" aria-hidden={hpv16or18Used || hpvUsed}>
                                                     {
                                                       form.screeningTestSpecificity
                                                     }{" "}
@@ -1436,6 +1439,7 @@ export default function RunScenarios() {
                                               ? "grayed-out"
                                               : "d-none"
                                           }
+                                          aria-disabled={checkedValues.length === 2}
                                         >
                                           <div className="ps-3">
                                             <div>
@@ -1703,6 +1707,7 @@ export default function RunScenarios() {
                                                       ? "grayed-out"
                                                       : ""
                                                   }`}
+                                                    aria-disabled={hpv16or18GenotypingTriageUsed || checkedValues.length === 2}
                                                 >
                                                     <Form.Range
                                                       type="number"
@@ -1745,6 +1750,7 @@ export default function RunScenarios() {
                                               ? "grayed-out"
                                               : "d-none"
                                           }
+                                          aria-disabled={checkedValues.length === 3 && checkedValues.includes("ScreenDiagnosticTestTreat")}
                                         >
                                           <div className="ps-3">
                                             {" "}
@@ -2117,6 +2123,7 @@ export default function RunScenarios() {
                                                         ? "grayed-out"
                                                         : ""
                                                     }`}
+                                                    aria-disabled={hpv16or18Used}
                                                   >
                                                     <Form.Range
                                                       type="number"
@@ -2351,6 +2358,7 @@ export default function RunScenarios() {
                                                       ? "grayed-out"
                                                       : ""
                                                   }`}
+                                                   aria-disabled={hpv16or18GenotypingTriageUsed}
                                                 >
                                                     <Form.Range
                                                       type="number"
@@ -2726,6 +2734,7 @@ export default function RunScenarios() {
                                                       ? "grayed-out"
                                                       : ""
                                                   }`}
+                                                   aria-disabled={hpv16or18GenotypingTriageUsed}
                                                 >
                                                     <Form.Range
                                                       type="number"
@@ -2769,6 +2778,7 @@ export default function RunScenarios() {
                                               ? "grayed-out"
                                               : "d-none"
                                           }
+                                          aria-disabled={checkedValues.length === 2}
                                         >
                                           <Row>
                                             <Form.Group
@@ -3061,6 +3071,7 @@ export default function RunScenarios() {
                                               ? "grayed-out"
                                               : "d-none"
                                           }
+                                          aria-disabled={checkedValues.length === 3 && checkedValues.includes("ScreenTriageDiagnosticTestTreat")}
                                         >
                                           <Row>
                                             <Form.Group
@@ -3623,6 +3634,7 @@ export default function RunScenarios() {
                                                       ? "grayed-out"
                                                       : ""
                                                   }`}
+                                                  aria-disabled={hpv16or18GenotypingTriageUsed}
                                                 >
                                                   <Form.Range
                                                     type="number"
@@ -3736,6 +3748,7 @@ export default function RunScenarios() {
                                                           ? "grayed-out"
                                                           : ""
                                                       }`}
+                                                      aria-disabled={hpv16or18Used}
                                                     >
                                                       <Form.Range
                                                         type="number"
